@@ -96,8 +96,8 @@ Setup confirms child 004's handoff and reads the Telegram and Slack references. 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Replay | Each transport against its recorded fixtures, including a replay of the same fixture | `npx vitest run tests/channel-transports.vitest.ts` |
-| Golden | Every sent message against its golden or mockup payload | `-t "golden"` |
-| Security | The token never reaches the state root, the injection fixture stays in its block | `-t "token"` and `-t "injection"` |
+| Golden | Every sent message against its golden or mockup payload | `-t "^transport shared matches every golden$"` prints `Tests  1 passed` |
+| Security | The token never reaches the state root, the injection fixture stays in its block | `-t "^transport shared reads the token at every send$"` and `-t "^transport shared keeps an inbound message inside its block$"` each print `Tests  1 passed` |
 | Manual | A piped terminal session on a temporary state root | `tasks.md` T019 |
 <!-- /ANCHOR:testing -->
 
@@ -134,7 +134,7 @@ Setup ──► Implementation ──► Verification
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | Child 004 | Implementation |
-| Implementation | Setup | Verification, and child 006's edits of `bots.cjs` and the shared test file |
+| Implementation | Setup | Verification and child 006's edits of `bots.cjs` and the shared test file |
 | Verification | Implementation | Child 007 |
 <!-- /ANCHOR:phase-deps -->
 
@@ -149,6 +149,6 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 |------|----------|-------|----------|--------|---------|--------|
 | 0 | T001 to T004 | none, reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
 | 1 | T005 to T008 | `lib/channel-telegram.ts`, `lib/channel-slack.ts`, `lib/channel-terminal.ts` | `cli-pi` | `--thinking max` | 3 | T005 to T008 and the typecheck |
-| 2 | T009 to T011 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-pi` | `--thinking max` | 2: the verb, and the fixtures with the test file | T009 to T011 |
+| 2 | T009 to T011 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-pi` | `--thinking max` | 2: the verb and the fixtures with the test file | T009 to T011 |
 | 3 | T012 to T020 | none | the orchestrator | none | 1 | T012 to T020 |
 <!-- /ANCHOR:external-orchestration -->

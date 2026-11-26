@@ -23,7 +23,7 @@ The frame numbers in the last column are the state index in `mockups.md` section
 | # | Component | Reads | Keys | States | Frames |
 |---|-----------|-------|------|--------|--------|
 | 1 | Header | `bots status --json`: the bot count, `stale`, `updatedAt` or `builtAt` when it is absent | None | `ok`, `stale`, `error` | 1, 17 |
-| 2 | Tab bar | None | `Alt+1..4`, `[` `]` | `activity`, `inbox`, `routines`, `chat`; exactly one is active | 1, 2, 3, 4 |
+| 2 | Tab bar | None | `Alt+1..4`, `[` `]` | `activity`, `inbox`, `routines`, `chat`. Exactly one is active | 1, 2, 3, 4 |
 | 3 | Activity | `bots activity --json`, its `groups[]` in payload order | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `stale`, `error` | 1, 5, 6, 7, 8 |
 | 4 | Inbox | `bots inbox --json`, its `items[]` | `Up`, `Down`, `PgUp`, `PgDn`, `Enter` | `loading`, `empty`, `rows`, `stale`, `error`, and a row in `answered` that draws its outcome word until the next successful inbox read | 2, 9, 10, 11, 12, 27 |
 | 5 | Routines | `bots routines --json` | `Up`, `Down`, `PgUp`, `PgDn` | `loading`, `empty`, `rows`, `stale`, `error` | 3, 13, 14, 15, 16 |
@@ -85,7 +85,7 @@ The sanitize rule is the one with a reference implementation to follow: replace 
 | Rule | 80x24 | 120x40 |
 |------|-------|--------|
 | Body rows | 17 | 33 |
-| Detail column | Hidden; the detail lives in the overlay | 47 columns to the right of a `│` rule |
+| Detail column | Hidden. The detail lives in the overlay | 47 columns to the right of a `│` rule |
 | Overlay panel | 78 wide and 17 tall, centred in the body | 100 wide and 17 tall, centred in the body. Both clip to the body when it is shorter |
 | Footer | Two lines | Two lines |
 | Too-small screen | Below 24 columns or 8 rows, one message and nothing else | Same |
@@ -100,7 +100,7 @@ The overlay panel is capped at 100 columns and centred, so a wide terminal does 
 |-------|-------------------|
 | The rule under the tabs | A divider with no state and no content |
 | The refresh timer | The event source sends a Tick each second and the reducer's `next_poll_at` issues the reads. It draws nothing |
-| The terminal guard | It owns no cells; it restores the terminal on exit and on panic |
+| The terminal guard | It owns no cells. It restores the terminal on exit and on panic |
 | The palette's filter line | Part of the palette, not a component of its own |
 | The `›` focus mark | A property of the selected row, drawn by the pane that owns the row |
 

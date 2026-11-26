@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Phase 003 draws a Chat tab whose body is a placeholder naming phase 010, so a person who opens `bots ui` sees the tab and cannot read or send a message there",
     "created_at": "2026-11-25T23:17:49Z",
-    "last_save_at": "2026-11-25T23:51:58.321Z",
+    "last_save_at": "2026-11-26T06:42:18.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a5dc61dbe2f30cc72c366dd5e9bbeef58f8d5f9f293c64fbc4b9c06795b2afb",
+    "source_fingerprint": "sha256:8588d0218d30d6c453f65d48991e97e308ac459c0c0441975ee476c7b434c206",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83d0f7ef08fe27087f321d29bd515a8b150a85be39a8d3ab6ab274bcb917b9aa",
+      "spec.md": "b787740f64280910a960c58de71d1201f579b5f7a036b5783da0ac55878aaed8",
       "plan.md": "887ff8046a6b31da61a21f3336f7f59749e6dae2c71b7dce1a30503223024919",
-      "tasks.md": "42699352c30db95ec204abb1c594f8ca9e944f6d862d89c37aa0b18c4309e7aa",
+      "tasks.md": "194dae7ed0bbbbbee2d851b2143aed8b9d1ba34870b48868985228b0e5009ee2",
       "implementation-summary.md": "de64247757c296e328d6a3dd3de0fa304bef48776da35012d96a8833600da9b3"
     },
     "last_active_at": null

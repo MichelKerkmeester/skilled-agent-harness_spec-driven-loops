@@ -47,9 +47,9 @@ The Verification column names the block below that proves the row. The blocks ca
 | AC-001 | REQ-001 | Given the four documents in `design/`, When every `SOURCE` pointer is resolved, Then none is missing and none points past the last line of its file, and a pointer into the gitignored reference folder is skipped by name when that folder is absent | AC-001 block prints `4` then `0` | Unmet | - |
 | AC-002 | REQ-002 | Given the twenty-seven states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=53 bad=0` then `panels-misaligned=0` | Unmet | - |
 | AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, no key carries two meanings inside one context, and a key that answers is bound only outside text mode | AC-003 block prints `29` then `0` | Unmet | - |
-| AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value, and the ASCII set is selected by one flag | AC-004 block prints `7` then `2` | Unmet | - |
-| AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in, and the frame that draws each state | AC-005 block prints `13` then `13` | Unmet | - |
-| AC-006 | REQ-006 | Given the openhuman sources under `specs/system-skilled-bots/context/`, When the design documents are searched for their text, Then no line of openhuman source appears in them | AC-006 block prints nothing and exits 1 | Unmet | - |
+| AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value and the ASCII set is selected by one flag | AC-004 block prints `7` then `2` | Unmet | - |
+| AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in and the frame that draws each state | AC-005 block prints `13` then `13` | Unmet | - |
+| AC-006 | REQ-006 | Given the seventeen reference files the four documents cite under `specs/system-skilled-bots/context/`, When every line longer than 30 characters is compared with the design documents, Then no line of reference source appears in them | AC-006 block prints `0` | Unmet | - |
 | AC-007 | REQ-007 | Given the key map, When the operator approves it, Then the approval names the date and the key set it covers | AC-007 block prints one line | Unmet | - |
 | AC-008 | REQ-008 | Given each surface, When its reads are read, Then the document names the JSON verb it calls and the phase that owns that verb | AC-008 block prints `4` | Unmet | - |
 | AC-009 | REQ-009 | Given the visual references, When the design documents are read, Then the four screenshots and the openhuman `--demo` capture are named, so a reader can open each one | AC-009 block prints `5` | Unmet | - |
@@ -68,6 +68,7 @@ rg -o --no-filename '\[SOURC[E]: [^]]+\]' $D/*.md $P/spec.md $P/plan.md $P/tasks
   | while IFS= read -r p
     do
       f=${p%%:*}
+      f=${f%%, *}
       r=${p#*:}
       hi=${r##*-}
       if [ "${f#"$ctx"/}" != "$f" ] && [ ! -d "$ctx" ]
@@ -80,6 +81,9 @@ rg -o --no-filename '\[SOURC[E]: [^]]+\]' $D/*.md $P/spec.md $P/plan.md $P/tasks
         echo "MISSING $p"
         continue
       fi
+      case "$hi" in
+        ''|*[!0-9]*) continue ;;
+      esac
       n=$(wc -l < "$f" | tr -d ' ')
       [ "$hi" -le "$n" ] || echo "PAST-END $p"
     done | wc -l | tr -d ' '
@@ -123,10 +127,31 @@ rg -c '^\| [0-9]+ \| ' $D/component-inventory.md
 awk '/^## 1\. THE INVENTORY/{f=1;next} /^## 2\./{f=0} f && /^\| [0-9]+ \|.*\| [0-9]+(, [0-9]+)* \|$/{n++} END{print n}' $D/component-inventory.md
 ```
 
-**AC-006**: no line of the GPL source appears in the design documents.
+**AC-006**: no line of the reference source appears in the design documents.
+
+The reference files are the seventeen the four documents cite: `inline-approval.tsx`, `routines-list.tsx` and `activity-groups.ts` under `OpenBot-main`, `approval-card.js` and `ask-card.js` under `OpenGhost-main`, `README.md`, `activity.rs`, `app.rs`, `app/overlays.rs`, `render.rs`, `render/overlay.rs` and `theme.rs` under `openhuman-main/crates/openhuman-tui`, `ActivityPanel.tsx` and `ApprovalCard.tsx` under `OpenMausBot-main`, `RoutineList.tsx` under `rakazo-main`, and `cli.py` and `ui/colors.py` under `turnstone-main`. Every line longer than 30 characters is compared, so a copied block without its licence header is caught.
 
 ```bash
-rg -c 'GNU GENERAL PUBLIC LICENSE' $D/
+refs='specs/system-skilled-bots/context/OpenBot-main/app/src/components/approvals/inline-approval.tsx
+specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx
+specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts
+specs/system-skilled-bots/context/OpenGhost-main/approval-card.js
+specs/system-skilled-bots/context/OpenGhost-main/ask-card.js
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/activity.rs
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app.rs
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app/overlays.rs
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs
+specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs
+specs/system-skilled-bots/context/OpenMausBot-main/src/components/ActivityPanel.tsx
+specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx
+specs/system-skilled-bots/context/rakazo-main/apps/web/src/pages/routines/RoutineList.tsx
+specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py
+specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py'
+comm -12 \
+  <(printf '%s\n' "$refs" | while IFS= read -r f; do cat "$f"; done | sed 's/^[[:space:]]*//' | awk 'length>30' | sort -u) \
+  <(sort -u $D/*.md) | wc -l | tr -d ' '
 ```
 
 **AC-007**: the operator's approval row reads `Met`.

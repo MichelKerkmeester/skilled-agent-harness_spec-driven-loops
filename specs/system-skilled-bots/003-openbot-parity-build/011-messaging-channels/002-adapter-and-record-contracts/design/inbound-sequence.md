@@ -24,7 +24,7 @@ Every transport with an acknowledge runs these steps for one inbound message, in
 |---|------|--------|
 | 1 | Authenticate the delivery where the provider signs it. Only WhatsApp does | Nothing |
 | 2 | Compute the `messageId` (table below) and look for `seen/<channel>/<sha256 hex of messageId>.json`. Found means a redelivery: acknowledge and stop | Nothing |
-| 3 | Resolve the chat through `links.json`: unlinked, locked or a pairing code | `links.json` for a code or a failure count |
+| 3 | Resolve the chat and the sender through `links.json`: unlinked, locked, a pairing code, or a sender id that differs from the link record's `senderId` | `links.json` for a code or a failure count |
 | 4 | Act. A press or a matching reply calls `answerItem`. Any other text becomes one `enqueueRequest` whose event id is `<channel>:<messageId>` | The answered item, or the request and its seen marker under `requests/` |
 | 5 | Write the seen record with the request id, or `null` for an answer or a refusal | `seen/<channel>/<hash>.json` |
 | 6 | Enqueue the reply the catalog names, if any (an echo or a refusal) | `channels/queue/<key>.json` |
@@ -39,6 +39,8 @@ Every transport with an acknowledge runs these steps for one inbound message, in
 | `terminal` | none | A stdin line has no provider and no redelivery |
 
 **Two dedupe layers, one reason each.** The seen record catches a redelivery before anything runs, which matters for a press: answering twice is idempotent, but it would enqueue a second echo. The request queue's own seen marker catches the case where the process stopped between steps 4 and 5, because the event id is the same on redelivery and `enqueueRequest` returns `duplicate`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:133-150]
+
+**Step 3 resolves the sender, not only the chat.** A link record holds the provider-asserted `senderId` of the message that carried the code, and step 3 compares it with the inbound message's `sender.id` for every event kind, a press included. A sender that differs is refused `channel-unlinked` with no reply, no counter and no `answerItem` call, because the sender is not the person the chat linked and a reply would answer a stranger. A pairing code sent from a group on a transport whose `groupKnown` is `yes` links nothing, because the group's other members would share the link. A linked actor the roster does not name is a different case and is refused later, at `answerItem`, with reply M14 and one `notApprover` count.
 
 **What a stop leaves, the common case.**
 
@@ -92,7 +94,7 @@ How long Slack waits for an acknowledge before it redelivers is not stated in th
 | Step 1 | `X-Hub-Signature-256` is checked as HMAC-SHA256 of the raw bytes in constant time before any parse [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs:33-50]. A missing, malformed or wrong signature answers `401` with an empty body and the reason `channel-signature` in the local log, the same for all three |
 | Body size | At most 2 MiB, the reference's bound, because Meta batches several messages in one `POST` [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs:26-27]. A larger body answers `413` before the signature is computed |
 | A delivery for another number | Refused rather than routed: a `phone_number_id` other than the configured one is dropped [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs:6-8] |
-| Status updates | `statuses` entries carry no message from a person and are dropped after step 1 |
+| Status updates | A `statuses` entry carries no message from a person. One whose `status` is `failed` and whose `id` is a platform message id the queue holds moves that queue entry and the run record's delivery entry to `failed`, with the platform's error code in the entry's `error.message`, because the platform accepted the send and then could not deliver it. Every other status entry is dropped after step 1 |
 | The handshake | `GET` with `hub.mode=subscribe` and a `hub.verify_token` equal to the stored verify token echoes `hub.challenge` with `200`. Anything else answers `403` [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs:84-90] |
 | Stop between steps 4 and 7 | Meta saw no 2xx and posts the same body again. Step 2 drops every message already taken |
 

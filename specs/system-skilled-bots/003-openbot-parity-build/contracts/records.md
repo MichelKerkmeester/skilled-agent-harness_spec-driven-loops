@@ -102,7 +102,7 @@ The value of the item's `answer` key. Today it holds `text` and `answeredAt` and
 | `by` | string, an actor name, compared by exact match after trimming | yes, an answer stored before 001 | 001 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-004] | 001 | `null` |
 | `scope` | string: `once`, `deny` | no once written | 001, extended by 006 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010] | 001 | `once` |
 
-An answer with no `--scope` records `once`, except a NO (`deny`, `no` or `n`, case-insensitive and trimmed), which records `deny` from 006 on. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-005] An answer's identity is its text and its scope together. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013]
+An answer with no `--scope` records `once`, except a NO (`deny`, `no`, `n` or `reject`, case-insensitive and trimmed), which records `deny` from 006 on. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-005] A NO records `deny` even when `--scope once` is given, and on a claimed review item `reject` forces `deny` while `confirm` forces `once`, so a refusal is never recorded as an approval. An answer's identity is its text and its scope together. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013]
 
 Sample:
 
@@ -152,7 +152,7 @@ File: `<identity>/records/<runId>.json`. [SOURCE: .skilled/skills/system-skilled
 | `posture.secretsUsed` | string array, secret names, never values | no | 008 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-008] | 008 | `[]` |
 | `posture.skills` | array of `{name, digest}`, `digest` the SHA-256 hex of the loaded body | no | 009 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-011] | 009 | `[]` |
 | `request.grant` | object `{itemId, kind, scope, by}` | absent or `null` on every run that is not a resume of a granted item | 006 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-005] | 006 | `null`. Name decided below |
-| `postRunCauses` | array of `{cause, names, detail}`. `cause` is a post-run cause name from `refusals.md` (`secret-in-output`, `memory-proposal-secret`, `remember-type-invalid`), `names` lists secret names, or the known-secret map key for an environment or dotenv value, and never values, `detail` is a string or `null` | no, `[]` when nothing was found | 008 for `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014], reused by 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014], 005 for its two causes | 005 or 008, whichever lands first | `[]`. Name decided below |
+| `postRunCauses` | array of `{cause, names, detail}`. `cause` is a post-run cause name from `refusals.md` (`secret-in-output`, `memory-proposal-secret`, `remember-type-invalid`), `names` lists secret names, or the known-secret map key for an environment or dotenv value, and never values, `detail` is a string or `null` | no, `[]` when nothing was found | 005, which lands the field and its two causes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-011], then 008 for `secret-in-output` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014], reused by 010 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, REQ-014] | 005 | `[]`. Name decided below |
 | `delivery[].state` value `unknown` | existing enum value | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013] | today, `unknown` is already in `DELIVERY_STATES` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:55] | not applicable |
 | `delivery[].channel` values `telegram`, `slack`, `signal`, `whatsapp` | string | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-016] | 011, on `DELIVERY_CHANNELS` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45] | not applicable |
 
@@ -289,6 +289,7 @@ Files: `<identity>/secrets/index.json` (0600) and, for the file backend, `<ident
 | `entries.<name>.backend` | string: `keychain`, `file`. `keychain` is the host's OS keychain, the macOS keychain through `security` or the Linux Secret Service through `secret-tool`, and never names the program | no | 008 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md, section "1. WHICH BACKEND `set` USES"] | 008 | required |
 | `entries.<name>.createdAt` | string, ISO 8601 UTC | no | 008 | 008 | required |
 | `entries.<name>.updatedAt` | string, ISO 8601 UTC | no | 008 | 008 | required |
+| `entries.<name>.setBy` | string, an actor name, the actor `bots secret set` resolved | yes, an entry written before the actor was recorded | 008 | 008, written by `bots secret set` | `null` |
 
 **Name grammar.** `^[a-z0-9][a-z0-9-]*$`, the bot id pattern, at most 64 characters. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] **Environment key.** `SKILLED_BOT_SECRET_` plus the name upper-cased with each hyphen turned into an underscore: `demo` becomes `SKILLED_BOT_SECRET_DEMO` and `slack-app-token` becomes `SKILLED_BOT_SECRET_SLACK_APP_TOKEN`. The map cannot collide, because the grammar admits no underscore. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-007] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md, section "1.1 Secret names a transport derives"]
 
@@ -298,11 +299,13 @@ Sample (`fixtures/secrets-index.json`):
 {
   "schemaVersion": 1,
   "entries": {
-    "demo": { "backend": "file", "createdAt": "2026-11-25T20:00:00.000Z", "updatedAt": "2026-11-25T20:00:00.000Z" },
-    "telegram": { "backend": "keychain", "createdAt": "2026-11-25T20:01:00.000Z", "updatedAt": "2026-11-25T20:01:00.000Z" }
+    "demo": { "backend": "file", "createdAt": "2026-11-25T20:00:00.000Z", "updatedAt": "2026-11-25T20:00:00.000Z", "setBy": "ada" },
+    "telegram": { "backend": "keychain", "createdAt": "2026-11-25T20:01:00.000Z", "updatedAt": "2026-11-25T20:01:00.000Z", "setBy": "ada" }
   }
 }
 ```
+
+`setBy` is the actor `bots secret set` resolved, so a shared host does not erase who stored a value. `bots secret list` does not print it, so its line stays `<name> <backend> <createdAt> <updatedAt>`.
 
 The keychain read and delete commands are stated in `008-vault/design/backends.md`, and the write order and the orphan rule in `008-vault/design/index-and-writes.md`. This section fixes the shape they write.
 
@@ -356,7 +359,7 @@ File: `<identity>/conversations/<conversationId>.jsonl`, append-only, one JSON o
 
 A line feed kept in `text` is written as `\n` inside the JSON string, so the file still holds one message per line. The chat pane draws each line of `text`, and the prompt renderer turns each line feed into one space (`prompt-sections.md` section 1.9).
 
-A parked run's message and a failed run's message carry the item id and the reason inside `text`, in the fixed forms `needs you: <question> (item <itemId>)` and `failed: <exit reason>`. See Decisions taken.
+A parked run's message and a failed run's message carry the item id and the reason inside `text`, in the fixed forms `needs you: <question> (item <itemId>)` and `failed: <exit reason>`. A resumed run's message carries the resumed run's reply in `text`, or the `needs you:` form when the resumed run parks again, or the `failed:` form when it fails. The link from a resumed message to its item is `runId`, which is the resumed run's id. See Decisions taken.
 
 Sample (`fixtures/conversation.jsonl`, two lines):
 
@@ -448,7 +451,7 @@ File: one JSON file per outbound message under `<identity>/channels/queue/`, wri
 |-----|------|------|-------|-------|-----------------|
 | `schemaVersion` | integer `1` | no | 011 | 011 | `1` |
 | `idempotencyKey` | string, also the file name | no | 011 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-002] | 011 | required |
-| `channel`, `conversationId`, `text` | string. `text` is the `deliveryMessage()` output after the literal check | no | 011 | 011 | required |
+| `channel`, `conversationId`, `text` | string. `text` is the `deliveryMessage()` output after the literal check, in the button form for a channel whose capability says `buttons: yes` and in the text form otherwise | no | 011 | 011 | required |
 | `itemId`, `runId` | string | yes, a message for no item or no run | 011 | 011 | `null` |
 | `state` | string: `queued`, `sending`, `delivered`, `failed`, `unknown` | no | 011 | 011 | required |
 | `attempts` | integer | no | 011 | 011 | `0` |
@@ -457,6 +460,8 @@ File: one JSON file per outbound message under `<identity>/channels/queue/`, wri
 | `error` | object `{kind, message, unsupported, retryable, sentBeforeError}`, the send-error shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-002] | yes, no failure yet | 011 | 011 | `null` |
 
 `unknown` and `failed` with `retryable: false` are terminal and never retried. A retryable failure waits by attempt from `BACKOFF_MS = [0, 5000, 25000, 120000, 600000]`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/tasks.md, T008] No token appears in `text` or `error.message`, and every URL renders the token as `bot<redacted>`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-014]
+
+The literal check always runs over the title, the body and the text choice block, whichever form is queued. The capability is `channel.ts`'s table, which `delivery.ts` reads through `channel-queue.ts`, the one channels module it imports. A channel whose capability says `buttons: no` queues the text form, so a transport never has to build a choice block of its own.
 
 Sample: `fixtures/channel-queue-entry.json`. Its `text` is the M02 golden of `011-messaging-channels/001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt` without the file's final line feed.
 

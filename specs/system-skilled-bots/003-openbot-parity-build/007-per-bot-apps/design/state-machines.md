@@ -92,7 +92,11 @@ flowchart TD
 
 Step D comes before step E on purpose. A shared run that declares `apps` is refused without reading the config, so the refusal names the reason the operator can act on, which is the isolation, and not a config problem the operator cannot see.
 
-Step G runs for every run, including a shared run that declares nothing. That is this phase's decision G7 in `../goal.md`.
+Step G runs for every run, including a shared run that declares nothing. That is this phase's decision G7 in `../goal.md`. It writes `{"manual_call_templates": []}` when the source config is missing or unparsable, because a run that declares nothing never reads it.
+
+Step I is not optional. A worktree run writes the same bytes into the tree root, and a child that found no file there would read the tree's own committed config and reach every server. That is the fail-open case matrix rows 19 and 20 of `fixtures.md` section 1 rule out.
+
+`apps: []` on a shared run is refused `apps-unenforceable`, because step C tests `null` and an empty list is not `null`. The declaration is present, so the run has nowhere to place the file it would write.
 
 ---
 
@@ -214,7 +218,7 @@ sequenceDiagram
   end
 ```
 
-The checker imports the same predicate the runner calls, so a name the runner would refuse fails the check first. A checkout with no `.utcp_config.json` is not a definition defect, so the checker reports it as `INFO` and does not fail the invariant. The runner refuses that case as `apps-refused`, because a run cannot honor a declaration it cannot check.
+The checker imports the same predicate the runner calls, so a name the runner would refuse fails the check first. A checkout with no `.utcp_config.json` is not a definition defect, so the checker prints `INFO: apps-unknown-server: <path> is not there, so no server name can be checked` and does not fail the invariant. `records.md` section 7 fixes the line. The runner refuses that case as `apps-refused`, because a run cannot honor a declaration it cannot check.
 
 ---
 

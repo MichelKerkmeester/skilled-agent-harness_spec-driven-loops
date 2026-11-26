@@ -38,17 +38,17 @@ sequenceDiagram
   Sc->>Kc: read the recorded backend, 10 s timeout
   Kc-->>Sc: hex form, absent or an error
   Sc-->>Rn: the value, secret-unknown or secret-store-unreadable
-  Rn->>Sc: knownSecretValues(stateRoot, identity)
-  Sc-->>Rn: Map of vault rows, or secret-store-unreadable
-  Rn->>Rn: merge with collectKnownSecrets, then the literal loop over body, question, answer and request prompt
-  Rn->>Dp: dispatchHeadless with secretEnv set to the one key and its value
+  Rn->>Sc: collectAllKnownSecrets(env, checkoutRoot, stateRoot, identity)
+  Sc-->>Rn: collectKnownSecrets plus the vault rows, or secret-store-unreadable
+  Rn->>Rn: the literal loop over body, question, answer and request prompt
+  Rn->>Dp: dispatchHeadless with extraEnv set to the one key and its value
   Dp->>Au: runAuditedExecutorCommand with dispatchEnv and dispatchEnvKeys set to that one key
-  Au->>Au: assertDispatchEnvAllowed admits the kind list plus dispatchEnvKeys only
+  Au->>Au: assertDispatchEnvAllowed admits the kind list, or a dispatchEnvKeys entry at the floor
   Au->>Ch: spawn with the filtered environment merged with dispatchEnv
-  Ch-->>Au: output to stdout.log and exit
+  Ch-->>Au: stdout to stdout.log, stderr captured, exit
   Au-->>Dp: runner exit
   Dp-->>Rn: outcome with stdout
-  Rn->>Rn: post-run scan of stdout in memory, the run folder and the receipt folder
+  Rn->>Rn: post-run scan of stdout and stderr in memory, the run folder and the receipt folder
   Rn->>Rn: finalAnswerText and parseDecisionMarker on the redacted stdout
   Rn->>Rn: write the run record with posture.secretsUsed and postRunCauses
   Rn->>Dv: deliverRecord, every entry not-attempted when secret-in-output was recorded
@@ -64,18 +64,18 @@ sequenceDiagram
 | 2 | The checks before posture | unchanged | today's | nowhere |
 | 3 | Posture | `validatePosture`, unchanged [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:936-940] | `posture-refused` | nowhere |
 | 4 | Resolve | `resolveSecret` in `secrets.ts`, called right after `seed.posture` is set | `secret-unknown`, class `operator`, or `secret-store-unreadable`, class `environment`, exit 4, written through `refusalRecord` like every refusal | the runner's memory |
-| 5 | Known map | `knownSecretValues`, merged into the map at runner.ts:942 [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:942] | `secret-store-unreadable` | the runner's memory |
+| 5 | Known map | `collectAllKnownSecrets`, which calls `collectKnownSecrets` and adds every row of `knownSecretValues`, at the call site runner.ts:942 holds today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:942] | `secret-store-unreadable` | the runner's memory |
 | 6 | Literal loop | unchanged loop, wider map [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:948-953] | `body-secret` | the runner's memory |
-| 7 | Dispatch input | `DispatchInput` gains `secretEnv?: Record<string, string>`. `dispatchInLineage` passes `dispatchEnv: { ...built.env, ...secretEnv }` and `dispatchEnvKeys: Object.keys(secretEnv)` where it passes `built.env` today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:612] | none | the dispatch input |
-| 8 | Gate | `RunAuditedExecutorCommandInput` gains `dispatchEnvKeys?: string[]`. `assertDispatchEnvAllowed` accepts a key that is in `DISPATCH_ENV_KEYS[kind]` or in `dispatchEnvKeys` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1507-1516] | a throw naming the key, which the runner records as today's dispatch failure | the audit input |
+| 7 | Dispatch input | The runner passes `extraEnv: secretValues` on the `dispatchHeadless` call. That is the one `DispatchInput` field, and 007 lands it: `dispatchInLineage` merges it into `dispatchEnv` and passes its keys as `dispatchEnvKeys` where it passes `built.env` today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:612]. This phase adds no second field and no second merge, so a bot declaring both `apps` and `secrets` carries both keys | none | the dispatch input |
+| 8 | Gate | `RunAuditedExecutorCommandInput` gains `dispatchEnvKeys?: string[]`. `assertDispatchEnvAllowed` accepts a key that is in `DISPATCH_ENV_KEYS[kind]`, or one that is in `dispatchEnvKeys` and equals `UTCP_CONFIG_FILE` or matches `^SKILLED_BOT_SECRET_[A-Z0-9_]+$` [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1507-1516]. The floor keeps the gate the one place that says which keys a caller may name, so a caller cannot name `PATH` or any other key by listing it | a throw naming the key, which the runner records as today's dispatch failure | the audit input |
 | 9 | Spawn | unchanged merge after the per-kind filter [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1611] | none | the child's environment |
-| 10 | Post-run scan | new, in `runBot` before `finalAnswerText` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1092] | `secret-in-output` on `postRunCauses`, the run's own exit | the runner's memory until `runBot` returns |
+| 10 | Post-run scan | new, in `runBot` before `finalAnswerText`, over stdout and stderr in memory and over the run and receipt folders [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1092] | `secret-in-output` on `postRunCauses`, the run's own exit | the runner's memory until `runBot` returns |
 | 11 | Record | `posture.secretsUsed: [name]`, or `[]` for a bot with no `secrets` | none | never: names only |
 | 12 | Delivery | `deliverRecord` reads `postRunCauses` | entries `not-attempted`, `withheld: secret-in-output` | never |
 
 **What the runner never does with the value.** It never puts it in the prompt, the precheck environment, the run record, a needs-you item, a log line, an error detail or the environment of `runBot`'s own process. The value lives in local variables of `runBot` and in the `DispatchInput` object, and both go out of scope when `runBot` returns.
 
-**A bot with no `secrets`.** Steps 4 and 7 are skipped, `secretEnv` is absent, `dispatchEnvKeys` is absent and `secretsUsed` is `[]`. Step 5 still runs, because the known map guards every bot's body against every stored value.
+**A bot with no `secrets`.** Steps 4 and 7 are skipped, `extraEnv` is absent, `dispatchEnvKeys` is absent and `secretsUsed` is `[]`. Step 5 still runs, because the known map guards every bot's body against every stored value.
 
 ---
 

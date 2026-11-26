@@ -59,8 +59,8 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 ## Phase 3: Verification
 
 - [ ] T011 Check the reference names every derived secret name (`.skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md`). Verify: `for n in '<secret>-bot' '<secret>-app-secret' '<secret>-verify-token' '<secret>-phone-number-id'; do rg -qF -- "$n" .skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md || echo "MISSING $n"; done` prints nothing
-- [ ] T012 Prove the 18 undeclared cases (`$RT/tests/channel-conformance.vitest.ts`). Verify: `cd $RT && npx vitest run tests/channel-conformance.vitest.ts -t "R2"` prints `18 passed`
-- [ ] T013 Prove the three hardening cases (`$RT/tests/channel-conformance.vitest.ts`). Verify: `cd $RT && npx vitest run tests/channel-conformance.vitest.ts -t "hardening"` prints `3 passed`
+- [ ] T012 Prove the 18 undeclared cases (`$RT/tests/channel-conformance.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 ")` prints `Tests  18 passed`
+- [ ] T013 Prove the three hardening cases (`$RT/tests/channel-conformance.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-conformance.vitest.ts -t "^hardening ")` prints `Tests  3 passed`
 - [ ] T014 Run the whole runtime suite, was T061 (`$RT/tests/`). Verify: `cd $RT && npx vitest run` prints a `Test Files` line with no `failed`
 - [ ] T015 Type-check the runtime, was T062 (`$RT/tsconfig.json`). Verify: `cd $RT && npm run typecheck` exits 0
 - [ ] T016 Run the recursive validator on the parent, was T073 (`specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict --recursive` prints `RESULT: PASSED`

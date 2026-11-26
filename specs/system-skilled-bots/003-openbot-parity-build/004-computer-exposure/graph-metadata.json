@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot run starts in a directory its prompt never names",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-26T05:59:37.902Z",
+    "last_save_at": "2026-11-26T06:40:38.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:68ddb600722aedbfd4747ec528cd857e959fb70165ac4063c7ec0d8a593094fc",
+    "source_fingerprint": "sha256:6a41567edcb87a4e4d495dccdf239087149583fbc26cac994c11a26cc45938ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83233a125694aeed298530d6cf99b28aec7cac1c4c5edaab454a397b3ef7eb5c",
-      "plan.md": "029a6100a9595c8b3e8a3e9bfeb9e600f0272263aa5253156d180788bf379de2",
-      "tasks.md": "edc677298175addc3b89ddf8421380b5bf5b158499fbccfe2323f54cda304e46",
+      "spec.md": "5b84e6fc031995ea6df5666d775a383344fbb2c935d466e179a231c77c6ccbf6",
+      "plan.md": "ea940bc86594326e4ad7197371e7ef6772e8f8b21573f03094cb4e1c0fbe048b",
+      "tasks.md": "f4437bce84b560e92ff5b5cfbae0340b8b8334d0019104592035094e85a8159d",
       "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"
     },
     "last_active_at": null

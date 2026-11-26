@@ -107,16 +107,21 @@ The crate does not exist yet. Phase 003 builds it, so this phase starts when 003
 |-----------|-------------|-------------|
 | `$CRATE/src/state.rs` | Modify | `Surface::Chat`, `State.chat`, `State.chat_view`, `ChatView`, `ChatMode`, `Effect::ChatSend`, `Msg::ChatSent` and the `on_chat_action` arm |
 | `$CRATE/src/keys.rs` | Modify | `Context::Chat`, the `CHAT_ROWS` slice and the four `When` guards |
+| `$CRATE/src/app.rs` | Modify | The chat worker's job sender, the `Effect::ChatSend` hand-off, the `Msg::ChatSent` reply in `App::settle`, and a shutdown that drops the sender and does not join the worker |
 | `$CRATE/src/data.rs` | Modify | The chat worker and its job channel, started beside the read worker and dropped, not joined, on quit |
-| `$CRATE/src/cli.rs` | Modify | `chat_transcript(bot)` and `chat_send(bot, text)` with the argv of `design/pane-contract.md` section 1 |
+| `$CRATE/src/cli.rs` | Modify | `chat_transcript(bot)` and `chat_send(bot, text)` with the argv of `design/pane-contract.md` section 1, the draft written to the child's stdin |
 | `$CRATE/src/model.rs` | Modify | `Transcript`, `Message` and `Role` |
 | `$CRATE/src/view/panes.rs` | Modify | The chat body in place of the placeholder |
-| `$CRATE/tests/fixtures/bots` | Modify | A `chat` branch that prints a scenario's transcript and records a `--message` argv |
+| `$CRATE/tests/panes.rs` | Modify | The placeholder test `chat_placeholder_names_phase_010` is replaced by one that asserts the chat body draws the transcript's first message |
+| `$CRATE/tests/render_keys.rs` | Modify | The four chat footer lines of `design/key-map-delta.md` section 3, generated from `CHAT_ROWS` |
+| `$CRATE/tests/fixtures/bots` | Modify | A `chat` branch that prints a scenario's transcript and records a `--message -` argv and the stdin line |
 | `$CRATE/tests/fixtures/payloads/chat-*.json` | Create | One transcript payload per state, starting from `design/chat-transcript.sample.json` |
 | `$CRATE/design/chat-mockups.md` | Create | A copy of `../001-chat-ux-and-pane-map/design/mockups.md`, so the frame loader reads the approved chat frames inside the crate |
 | `$CRATE/tests/common/frames.rs` | Modify | Take the design document's name, keeping `mockups.md` as the default |
 | `$CRATE/tests/chat.rs` | Create | The 26 frame snapshots and the send, quit and refusal tests |
 | `$CRATE/README.md` | Modify | The chat tab's keys and the two calls |
+
+Three of those files are closed to later edits by phase 003's owner map: `src/app.rs` is 002's with no later editor, `tests/panes.rs` is 004's and `tests/render_keys.rs` is 003's. This phase edits them in its own change because the chat pane cannot be built without them, and `design/pane-contract.md` section 7 is the named right it takes.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -131,14 +136,14 @@ REQ-008 keeps the id it had in the pre-expansion phase. New requirements take id
 |----|-------------|
 | REQ-008 | The chat pane in `bots ui` draws the transcript from `bots chat <id> --transcript --json` and sends a typed line through `bots chat <id> --message <text>`, replacing the phase 003 placeholder |
 | REQ-016 | Every one of the thirteen states in `../001-chat-ux-and-pane-map/design/mockups.md` section 3 draws its frame cell for cell at 80x24 and at 120x40 |
-| REQ-017 | A send runs on a chat worker thread of its own with no deadline, in its own process group, with stdout to null and stderr to a temporary file, so the screen's reads stay live while a run lasts minutes |
+| REQ-017 | A send runs on a chat worker thread of its own with no deadline, in its own process group, with stdout to null, the draft written to the child's stdin and stderr to a temporary file, so the screen's reads stay live while a run lasts minutes and the draft never reaches a process table |
 | REQ-018 | The `chat` context's keys and footer lines come from one `CHAT_ROWS` slice holding `design/key-map-delta.md` section 2, and every bound key is labelled in the footer at 67 columns or wider |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-019 | After a send exits 0, 5 or 1 the pane re-reads the transcript and after it exits 2 or 4 the draft is put back with the stderr line in the status row |
+| REQ-019 | After a send exits 0, 5 or 1 the pane re-reads the transcript. After it exits 2 or 4 nothing was appended, so the draft is put back with the stderr line in the status row and pressing `Enter` again writes one message and not two |
 | REQ-020 | Quitting with a send in flight does not wait for it, and the reply still lands in the conversation file |
 | REQ-021 | The crate README names the chat tab's keys and the two calls |
 

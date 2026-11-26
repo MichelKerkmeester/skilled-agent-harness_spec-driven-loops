@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Each transport child proves its own transport",
     "created_at": "2026-11-26T00:00:21Z",
-    "last_save_at": "2026-11-26T00:48:05.611Z",
+    "last_save_at": "2026-11-26T06:45:45.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:160f37ff5c6ec8af385f5583adb05758106dcabc99a3085b575bccc3036a7c55",
+    "source_fingerprint": "sha256:37d4a0a6670b198022c669b439265fab1710b70bf0bd9a73f44780fdaaa5a4fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f19f7bececca605a3e0d99dfcec121d1807fe9e42c09be52b46747b772b9afa6",
-      "plan.md": "9864e024146b755b419e131cc7478a6d547ae22780f3a2b61d9040daca02f87f",
-      "tasks.md": "a196118f19c7b441716a053e94054f84dc55f221440d4f6a425058eaa3dcdaba",
+      "spec.md": "8886844e8c4d11cbfe6237beae4304d357e7f98e3cf05aed5af95434bb3ee4de",
+      "plan.md": "a1cbcb6a168323a9d7955d6cf3a5162f1ae8feb07a0daeccc6474beb28325f0b",
+      "tasks.md": "634a7c3d8973eec8846ee1b4d4585d99a7d7b43a44a0c40078c0ffb10be4215a",
       "implementation-summary.md": "4662bb621a4a6a19e092cd8351be32eb81838685ad3d06da676f63093b2073d3"
     },
     "last_active_at": null

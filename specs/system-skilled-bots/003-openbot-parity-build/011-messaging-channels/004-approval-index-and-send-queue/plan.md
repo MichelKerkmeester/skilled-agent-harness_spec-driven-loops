@@ -57,6 +57,7 @@ A durable outbox with a derived index: every message is a file before it is sent
 - **`channel-approval.ts`**: imports `channel`, `needs-you` and `state-root` (`contracts/runtime-architecture.md` section 1.2). It writes and reads the index, derives the action id with a 1-based index, removes an expired entry on read, refuses a group conversation, counts `notApprover` and parses a reply by the grammar of child 001. The action id follows the reference's `approval-v1` form [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/channel/event.rs:14-24], with a 1-based index where the reference counts from 0.
 - **`channel-queue.ts`**: imports `channel`, `state-root` and `run-record`. It creates an entry with the exclusive flag, walks due entries, moves states forward, applies the backoff and writes `unknown` to the run record's delivery entry. The backoff values are the reference's [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs:11].
 - **`delivery.ts`**: the four channel names, the choice block and the queue entry.
+- **The verb seam**: one exported function, `runChannelVerb(argv, transports)`, holds the body of every `channel` verb and takes the transport table as an argument. `bots.cjs` calls it with the real table and a test calls it with a fake one, because a spawned `bots.cjs` cannot be handed a fake transport and a test that spawned it would reach the real Telegram API once child 005 lands. Child 005 creates the table and child 006 adds its two entries.
 - **`list`, `send` and `drain`** in `bots.cjs`, after child 003's verbs. The `drain` verb is the one caller that joins the modules: it takes the due entries from `channel-queue.ts`, has `channel-approval.ts` write the index entry for one carrying an item id, has `channel-queue.ts` mark it `sending` and calls the channel's transport from the transport table `listen` uses. `channel-queue.ts` may import only `channel`, `state-root` and `run-record` (`contracts/runtime-architecture.md` section 1.2), so the loop cannot live there. Children 005 and 006 fill the table, and until they do a due entry for a channel with no transport stays `queued`.
 
 ### Data Flow
@@ -72,7 +73,8 @@ A run parks with the target `telegram:81234567`. `delivery.ts` builds the M01 te
 |---------|--------------|--------|--------------|
 | `lib/delivery.ts` | Sends the desktop notice and records each target's state | update - four channel names and the queue entry | `rg -n "DELIVERY_CHANNELS = \['desktop', 'telegram', 'slack', 'signal', 'whatsapp'\]" .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` prints one line |
 | `bin/bots.cjs` | The `channel` group from child 003 | update - `list`, `send` and `drain` | `node .skilled/bin/bots.cjs channel --help </dev/null` names all three |
-| `bots status` | Shows each run's delivery state | unchanged code, a channel entry can now read `unknown` | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-queue.vitest.ts -t "run record"` prints one passing test |
+| `bots status` | Shows each run's delivery state | unchanged code, a channel entry can now read `unknown` | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-queue.vitest.ts -t "^bots channel queue records an uncertain send as unknown$")` prints `Tests  1 passed` |
+| `lib/delivery.ts` and the terminal transport | `DELIVERY_CHANNELS` names the four chat channels and never `terminal` | unchanged list, because the terminal transport reads the open needs-you items directly and writes no index entry, so a prompt reaches it without a queue entry | `rg -n "DELIVERY_CHANNELS" .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` prints the list without `terminal` |
 
 Required inventories:
 - Same-class producers of the queue: `rg -n 'channels/queue|enqueueChannel' .skilled/skills/system-skilled-bots/runtime --glob '*.ts'` names one writer, `channel-queue.ts`.
@@ -99,7 +101,7 @@ Setup confirms child 003's handoff and reads the reference queue and action id. 
 |-----------|-------|-------|
 | Unit | The index: restart, expiry, group, grammar, counter | `npx vitest run tests/channel-approval.vitest.ts` |
 | Unit | The queue: exclusive create, backoff, `unknown`, the run record | `npx vitest run tests/channel-queue.vitest.ts` |
-| Integration | The delivery hook end to end with the fake transport, and the three verbs | `npx vitest run tests/channel-queue.vitest.ts -t "delivery"` and `tests/cli-channel.vitest.ts` |
+| Integration | The delivery hook end to end with the fake transport and the three verbs | `-t "^bots channel queue queues a prompt for the channel that asked$"` prints `Tests  1 passed` and `-t "^bots channel drain "` prints `Tests  2 passed` |
 | Manual | One empty drain on a temporary state root | `tasks.md` T020 |
 <!-- /ANCHOR:testing -->
 

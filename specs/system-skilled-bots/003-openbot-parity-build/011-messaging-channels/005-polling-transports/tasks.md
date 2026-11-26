@@ -51,7 +51,7 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 - [ ] T008 [P] Create the terminal transport, was T029 (`$RT/lib/channel-terminal.ts`). Verify: `rg -n 'readline|answerItem|enqueueRequest' $RT/lib/channel-terminal.ts` prints all three
 - [ ] T009 Add `listen` with the lease, the probe line and the transport table, was the listen half of T034 (`.skilled/bin/bots.cjs`). Verify: `rg -n "channel-listening|listen-" .skilled/bin/bots.cjs $RT/lib/channel.ts` prints the refusal and the lease path
 - [ ] T010 [P] Record the Telegram and Slack fixtures with invented data only (`$RT/tests/fixtures/channels/`). Verify: `ls $RT/tests/fixtures/channels/ | wc -l | tr -d ' '` prints a number above 0 and `rg -n 'xox[abp]-[0-9]|xapp-[0-9]|[0-9]{8,10}:[A-Za-z0-9_-]{30,}' $RT/tests/fixtures/channels/` exits 1
-- [ ] T011 Create the transport tests with one block per transport, was T040 and the injection half of T071 (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd $RT && npx vitest run tests/channel-transports.vitest.ts` prints no `failed`
+- [ ] T011 Create the transport tests with one block per transport and a sixth `transport shared` block for the rules every transport obeys, was T040 and the injection half of T071 (`$RT/tests/channel-transports.vitest.ts`). The blocks are `transport telegram`, `transport slack`, `transport terminal` and `transport shared`, and every test is named in `acceptance-criteria.md` AC-007 to AC-035. Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport ")` prints `Tests  15 passed`, and `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts)` prints no `failed`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -61,11 +61,11 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 
 - [ ] T012 Run the whole runtime suite (`$RT/tests/`). Verify: `cd $RT && npx vitest run` prints a `Test Files` line with no `failed`
 - [ ] T013 Type-check the runtime (`$RT/tsconfig.json`). Verify: `cd $RT && npm run typecheck` exits 0
-- [ ] T014 Prove the buttons and the press check (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "buttons"` prints one passing test
-- [ ] T015 Prove Telegram and Slack replay, chunking and redelivery (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "telegram"` and `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "slack"` each print one passing test
-- [ ] T016 Prove the token rule, was T058's proof (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "token"` prints one passing test
-- [ ] T017 Prove the injection fixture, was T060 and T071 (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "injection"` prints one passing test
-- [ ] T018 Prove every sent message equals its golden (`$RT/tests/channel-transports.vitest.ts`). Verify: `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "golden"` prints one passing test
+- [ ] T014 Prove the buttons and the press check (`$RT/tests/channel-transports.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport telegram sends an inline keyboard with the action id$")` prints `Tests  1 passed` and `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport slack sends Block Kit buttons with the action id$")` prints `Tests  1 passed` |
+- [ ] T015 Prove Telegram and Slack replay, chunking and redelivery (`$RT/tests/channel-transports.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport telegram follows the wire table$")` prints `Tests  1 passed` and `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport slack follows the wire table$")` prints `Tests  1 passed` |
+- [ ] T016 Prove the token rule, was T058's proof and the token half of T071 (`$RT/tests/channel-transports.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport shared reads the token at every send$")` prints `Tests  1 passed` |
+- [ ] T017 Prove the injection fixture, was T060 and the injection half of T071 (`$RT/tests/channel-transports.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport shared keeps an inbound message inside its block$")` prints `Tests  1 passed` |
+- [ ] T018 Prove every sent message equals its golden (`$RT/tests/channel-transports.vitest.ts`). Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport shared matches every golden$")` prints `Tests  1 passed` |
 - [ ] T019 Prove a piped terminal session on a temporary state root (`.skilled/bin/bots.cjs`). Verify: `T=$(mktemp -d) && mkdir -p "$T/checkout" && printf 'hello\n' | XDG_STATE_HOME="$T/state" SKILLED_BOTS_IDENTITY=acme/widgets $BOTS channel listen terminal --repo "$T/checkout"; echo "exit=$?"` prints `exit=0` once stdin closes
 - [ ] T020 Run the validator (`specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
@@ -113,7 +113,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 9
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 10
 - [ ] CHK-002 [P0] The Wire Table has one row per transport. Verify: `rg -c '^\| `(telegram|slack|terminal)` \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 3
 - [ ] CHK-003 [P1] Dependencies available. Verify: T001 to T004 print what they say
 <!-- /ANCHOR:pre-impl -->
@@ -133,7 +133,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/acceptance-criteria.md` prints 9
+- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/acceptance-criteria.md` prints 10
 - [ ] CHK-021 [P0] The suite passes. Verify: T012 prints no `failed`
 - [ ] CHK-022 [P1] No test reaches a network. Verify: `rg -n 'https://' $RT/tests/channel-transports.vitest.ts` names only fixture URLs passed to the injected `fetch`
 <!-- /ANCHOR:testing -->

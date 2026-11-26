@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 1: channel-ux-and-message-map"
-description: "Three design documents and 21 golden files in design/, written against deliveryMessage(), the frozen contracts and the capability matrix, so the build children compare every channel message byte for byte."
+description: "Three design documents and 23 golden files in design/, written against deliveryMessage(), the frozen contracts and the capability matrix, so the build children compare every channel message byte for byte."
 trigger_phrases:
   - "channel ux plan"
   - "channel message catalog plan"
@@ -40,7 +40,7 @@ Every run message is `deliveryMessage()`'s title and body, unchanged, so the cat
 - [ ] The nine files in `specs/system-skilled-bots/003-openbot-parity-build/contracts/` exist
 
 ### Definition of Done
-- [ ] The catalog check in `tasks.md` prints 36 and 21 and its loops print nothing
+- [ ] The catalog check in `tasks.md` prints 40 and 23 and its loops print nothing
 - [ ] The mockup check in `tasks.md` prints 12, 0 and the six chunk numbers
 - [ ] Every acceptance criterion reads `Met`
 - [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`
@@ -58,10 +58,10 @@ Design contract: each document owns one subject, and a build child that disagree
 - **`design/message-catalog.md`**: owns the text. Every channel message and host line, its producer and its golden.
 - **`design/mockups.md`**: owns the surface forms. The wire payload and the view per surface and situation, and the chunk rule.
 - **`design/reply-grammar.md`**: owns what a person may type back.
-- **`design/golden/`**: the catalog's text in 21 files, the input `tests/channel-transports.vitest.ts` compares against.
+- **`design/golden/`**: the catalog's text in 23 files, the input `tests/channel-transports.vitest.ts` compares against.
 
 ### Data Flow
-`003-link-roster-and-answer-gate` builds the reply table in `channel.ts` from catalog rows M07 to M20 and prints M09. `004-approval-index-and-send-queue` builds the choice block of M01 and M03 and the grammar, and prints M21. `005-polling-transports` and `006-daemon-and-webhook-transports` build the wire forms of `mockups.md` and assert every chat message against its golden.
+`003-link-roster-and-answer-gate` builds the reply table in `channel.ts` from catalog rows M07 to M20 and M22 to M23 and prints M09. `004-approval-index-and-send-queue` builds the choice block of M01 and M03 and the grammar, and prints M21. `005-polling-transports` and `006-daemon-and-webhook-transports` build the wire forms of `mockups.md` and assert every chat message against its golden.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -81,7 +81,7 @@ Setup confirms the runtime function and the contracts this phase reads. Implemen
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Count | 21 catalog rows plus 15 one-line rows, 21 goldens | `rg -c`, `ls` |
+| Count | 23 catalog rows plus 17 one-line rows, 23 goldens | `rg -c`, `ls` |
 | Coverage | Every chat refusal has a row | The refusal loop in `tasks.md` |
 | Drift | Every golden's first line is in the catalog | The drift loop in `tasks.md` |
 | Shape | Twelve mockups, every view line at most 73 columns | The mockup check in `tasks.md`, which counts characters with Perl |

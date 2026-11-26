@@ -156,17 +156,17 @@
     ],
     "causal_summary": "Skilled bots is headless by contract",
     "created_at": "2026-11-25T07:13:44Z",
-    "last_save_at": "2026-11-26T05:26:03.762Z",
+    "last_save_at": "2026-11-26T06:42:13.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9a5c34ff85d592790918a334f805bc6c849e4c67245da7e910e509d4116d57e5",
+    "source_fingerprint": "sha256:2a3c1e5abb22a1a0ad65f7a3f4391da821de629bf4b979330d0f200bf5ce4d29",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d28199775653c842c914419cdab4fb22803cfb78017afa75b0e545763669bd15"
+      "spec.md": "845375b24666ffd077754404fbfea5cce0cf54c414fe45db912748761d14bd41"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Design: the refusal catalogue of computer exposure"
-description: "The refusals this phase adds, which is none, the one existing cause it reuses with its class and exit, the four refusals it must not introduce and why, and the exit codes and registry count it leaves untouched."
+description: "The refusals this phase adds, which is none, the one existing cause it reuses with its class and exit, the four refusals it must not introduce and why and the exit codes and registry count it leaves untouched."
 trigger_phrases:
   - "computer exposure refusals"
   - "working place refusal"
@@ -42,7 +42,7 @@ The resumed-prompt check of [`prompt-line.md`](prompt-line.md) section 4 refuses
 
 The cause already covers a parked prompt that does not name the parked tree as its checkout, with the detail `the parked prompt does not name the parked tree as its checkout`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1000] The new detail is the same class of fault on the same prompt, so it takes the same cause and a different detail. A reader who greps the cause finds both.
 
-**Why not a new cause.** A new cause would enter `REFUSAL_CAUSES`, change the registry count, and need a row in the packet's table for a case that is nearly unreachable. The existing cause already means "the parked prompt cannot be dispatched as it stands", which is exactly this.
+**Why not a new cause.** A new cause would enter `REFUSAL_CAUSES`, change the registry count and need a row in the packet's table for a case that is nearly unreachable. The existing cause already means "the parked prompt cannot be dispatched as it stands", which is exactly this.
 
 ---
 

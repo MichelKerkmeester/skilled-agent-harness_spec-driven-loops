@@ -1,6 +1,6 @@
 ---
 title: "Design: every leak check the vault adds or widens"
-description: "The checks a value passes on the way in, the known-secret map every stored value joins and the six surfaces it guards, the one-pass matcher behind them, the post-run scan of the run folder with its encoded forms and redaction token, the withheld delivery and what the checks do not reach."
+description: "The checks a value passes on the way in, the known-secret map every stored value joins and the eight surfaces it guards, the one-pass matcher behind them, the post-run scan of stdout, stderr, the run folder and the receipt folder with its encoded forms and redaction token, the withheld delivery and what the checks do not reach."
 trigger_phrases:
   - "vault leak checks"
   - "post-run secret scan"
@@ -39,9 +39,13 @@ A value shorter than 8 characters is accepted and stored, and is invisible to ev
 
 ## 2. THE KNOWN-SECRET MAP
 
-`knownSecretValues(stateRoot, identity)` in `secrets.ts` returns a `Map<string, string>` with one row per index entry, keyed `vault:<name>`, valued with the resolved value. Callers merge it into the map `collectKnownSecrets` already builds from the environment and the checkout's dotenv files [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-279], so a detector match names `key vault:demo`, never a value. Every stored value joins, not only the one a bot declares, because any bot child can read any value file (D6 in `contracts/decisions.md`).
+`knownSecretValues(stateRoot, identity)` in `secrets.ts` returns a `Map<string, string>` with one row per index entry, keyed `vault:<name>`, valued with the resolved value.
 
-It guards six surfaces. Four exist today and two are new.
+**One function, not a merge per caller.** `collectAllKnownSecrets(env, checkoutRoot, stateRoot, identity)` in `dispatch.ts` is the only map any surface builds. It calls `collectKnownSecrets(env, checkoutRoot)` for the environment and the checkout's dotenv files [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:249-279], then adds every row of `knownSecretValues(stateRoot, identity)`, so a detector match names `key vault:demo`, never a value. Every stored value joins, not only the one a bot declares, because any bot child can read any value file (D6 in `contracts/decisions.md`).
+
+A per-caller merge would leave whichever surface was written before this phase on the environment-only map, and a vault value could then reach a memory file or a proposal draft. So this phase migrates every `collectKnownSecrets` call site that exists at build time, 005's `bots remember` check and its `answer confirm` settle included, and leaves `collectKnownSecrets` as the inner half that only `collectAllKnownSecrets` calls. Later phases call `collectAllKnownSecrets` too, as `contracts/runtime-architecture.md` states.
+
+It guards eight surfaces. Four exist today, two are new here, and two land in 005 before this phase.
 
 | Surface | Where | Refusal on a match | Today |
 |---------|-------|--------------------|-------|
@@ -51,6 +55,8 @@ It guards six surfaces. Four exist today and two are new.
 | queued request prompt | the same loop | `body-secret` | the same |
 | `bots answer` text | `answerItem` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:88-89] | `answer-secret` | the same |
 | delivery message | `deliverRecord` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:291] | the entry goes `not-attempted` with `withheld: ...` evidence [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:341-343] | the same |
+| `bots remember` text | 005's memory write check in `bots.cjs` | `memory-secret` | the same |
+| `answer confirm` settle | 005's settle check in `answerItem` | `answer-secret` | the same |
 
 **When the vault cannot be read.** Each surface fails closed. The runner refuses `secret-store-unreadable` before the loop. `answerItem` refuses `secret-store-unreadable` with exit 4. `deliverRecord` sets each queued entry `not-attempted` with the evidence `withheld: secret-store-unreadable`. None of them falls back to the environment-only map, because a check that silently drops the vault would pass the very value it exists to stop. The run check holds for every bot, a bot that names no secret included, because its body could still carry a stored value. So a locked keychain stops every run of the identity until it is unlocked, at the cost of one 10 s timeout per run (`backends.md` section 6).
 
@@ -66,11 +72,12 @@ The scan runs in `runBot` after the child exits and before anything reads its ou
 
 **Values.** Every row of `knownSecretValues` plus every row of `collectKnownSecrets`, at least 8 characters each, and for each vault value two encoded forms beside the plain one: standard base64 of its UTF-8 bytes, and `encodeURIComponent` of it. An encoded form equal to the plain value, or shorter than 8 characters, is dropped. The forms follow the reference, which redacts a command variable "in its plain, base64 and URL-encoded forms". [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:62]
 
-**Text.** Three places, in this order:
+**Text.** Four places, in this order:
 
 1. The child's captured stdout in memory, `outcome.stdout`, so the answer text, the decision marker and the delivery message are read from the redacted copy. A parked question therefore never carries a value into a needs-you item.
-2. Every regular file under the run folder, `stdout.log` and the ledger and observability files included (`contracts/runtime-architecture.md` section 2.2).
-3. Every regular file under the run's receipt folder, `<identity>/receipts/<runId>/`.
+2. The child's captured stderr in memory, `outcome.stderr`. Today `runAuditedExecutorCommand` writes that stream straight to the bots process's stderr [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts:1635-1637], which for a scheduled job is `<identity>/agent-logs/<label>.log` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts:243], outside every folder this scan reads. So this phase adds `onStderr?: (text: string) => void` to `RunAuditedExecutorCommandInput` and dispatch passes a collector, which leaves the stream in memory for the scan. The redacted copy is what is re-emitted to the bots process's stderr or written to a log, never the raw one.
+3. Every regular file under the run folder, `stdout.log` and the ledger and observability files included (`contracts/runtime-architecture.md` section 2.2).
+4. Every regular file under the run's receipt folder, `<identity>/receipts/<runId>/`.
 
 A file is read line by line, because no value holds a newline (section 1), and written to a temp file in the same folder with the original mode, then renamed over the original only when a line changed.
 
@@ -110,6 +117,8 @@ One scan records one row. 010's reply scan uses the same cause name and the same
 |-------|---------|--------|
 | The 8 character floor | `rg -n 'MIN_SECRET_LENGTH = ' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` | `54:export const MIN_SECRET_LENGTH = 8;` |
 | The runner's literal loop has no vault values today | `rg -n 'collectKnownSecrets\(env, context.checkoutRoot\)' .skilled/skills/system-skilled-bots/runtime/lib/runner.ts` | one line, 942 |
+| `collectKnownSecrets` has one call site per surface today | `rg -n 'collectKnownSecrets\(' .skilled/skills/system-skilled-bots/runtime/lib` | four lines, one each in `answer.ts`, `delivery.ts`, `dispatch.ts` and `runner.ts` |
+| The child's stderr is written raw today | `rg -n 'process.stderr.write\(stderr\)' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | one line, 1637 |
 | A withheld delivery is `not-attempted` | `rg -n "entry.state = 'not-attempted'" .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` | two lines |
 | The redaction token is the contract's | `rg -c 'redacted: <name>' specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md` | `2` |
 | `--value` is an unknown option today | `node .skilled/bin/bots.cjs secret set demo --value x 2>&1 \| head -1` | `bots: unknown option: --value` |

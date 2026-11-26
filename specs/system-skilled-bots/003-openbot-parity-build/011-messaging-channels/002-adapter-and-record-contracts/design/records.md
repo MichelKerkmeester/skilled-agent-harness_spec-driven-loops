@@ -17,6 +17,10 @@ version: 1.0.0.0
 
 Every file is 0600 inside a 0700 folder under `<identity>/channels/`, except `operators.json` at `<identity>/operators.json` (`contracts/runtime-architecture.md` section 2.1). Every write goes through `writeStateAtomic`, so a reader sees the old file or the new one and never half of one. Every record carries `schemaVersion: 1` (`contracts/versioning.md` rule 3).
 
+**How 0600 is set.** `writeStateAtomic` takes no file mode, so the mode is set after the write. `state-root.ts` gains one helper, `writeStateFile(path, content)`, which calls `writeStateAtomic` and then `chmodSync(path, 0o600)`, and every channel writer calls it instead of `writeStateAtomic` directly. The three files it covers are `channels/config.json`, `channels/links.json` and `channels/approvals.json`, plus every file under `channels/queue/` and `channels/seen/`. `operators.json` is written by the same helper. A file that already exists keeps its mode, so the helper chmods on every write rather than only on create.
+
+**One writer at a time.** `channels/approvals.json` has more than one writer process: the drain adds an entry, and each `listen` process removes one and bumps a counter. Every read-modify-write of that file holds an exclusive lock file, `channels/approvals.lock`, created with the exclusive flag and removed after the write, on the model of `needs-you/<item-id>.lock`. A writer that finds the lock held waits up to 2,000 ms, then leaves the file alone and reports the entry as still due, so the next pass takes it and a lost update can never delete a delivered prompt's entry and make its buttons dead. `channels/links.json` and `channels/config.json` take the same lock, `channels/links.lock` and `channels/config.lock`, because a `link` and an inbound code can race.
+
 ---
 
 ## 1. `channels/config.json`
@@ -53,9 +57,9 @@ The contract gives each channel one `secret`. Slack needs an app-level token and
 
 With the contract's sample, Slack reads `slack-app-token` and `slack-app-token-bot`. The phone number id and the account number are not credentials, and they sit in the vault because the config has no other place for them and the vault already keeps them off every log. A missing derived name refuses `secret-unknown` before any I/O, the same as a missing primary name.
 
-**The length bound.** A derived name must also stay within the 64 characters of the `contracts/records.md` section 8 grammar. The longest suffix is `-phone-number-id`, 16 characters, so a `whatsapp` entry's `secret` is at most 48 characters. A longer one derives a name the vault cannot hold: `bots secret set` refuses it `secret-name-invalid`, and `bots channel listen whatsapp` then refuses `secret-unknown`. No check at `channel link` enforces the bound. `contracts/records.md` section 11, "Derived secret names", states the same rule.
+**The length bound.** A derived name must also stay within the 64 characters of the `contracts/records.md` section 8 grammar. The longest suffix is `-phone-number-id`, 16 characters, so a `whatsapp` entry's `secret` is at most 48 characters. `bots channel link whatsapp --secret <name>` refuses a name longer than 48 characters with `secret-name-invalid` and exit 4, before it writes the entry, so the bound is checked where the name is chosen rather than discovered at the first `listen`. A name that reaches the vault anyway derives a name the vault cannot hold: `bots secret set` refuses it `secret-name-invalid`, and `bots channel listen whatsapp` then refuses `secret-unknown`. `contracts/records.md` section 11, "Derived secret names", states the same rule.
 
-Two addresses are fixed rather than configured, for the same reason: the Signal daemon at `http://127.0.0.1:8080` and the WhatsApp webhook listener at `127.0.0.1:8787`. `operator-runbook.md` tells the operator to start the daemon and the tunnel on those addresses. `contracts/records.md` section 11, "Fixed addresses", adopts both as fixed, so `channels/config.json` gains no key for them. A later key for either is an added key under `contracts/versioning.md` rule 1.
+Two addresses are fixed rather than configured, for the same reason: the Signal daemon at `http://127.0.0.1:8080` and the WhatsApp webhook listener at `127.0.0.1:8787`. `operator-runbook.md` tells the operator to start the daemon and the tunnel on those addresses. `contracts/records.md` section 11, "Fixed addresses", adopts both as fixed, so `channels/config.json` gains no key for them. A later key for either is an added key under `contracts/versioning.md` rule 1. Both are the default of an injected argument rather than a constant a test must bind: `channel-signal.ts` takes its base URL and `channel-whatsapp.ts` takes its listen port, so a test passes its own ephemeral loopback port and no test binds 8080 or 8787.
 
 ---
 
@@ -141,10 +145,14 @@ One entry holds one channel and one conversation. A bot with two channel targets
 |-------|-------|
 | The drain is about to send a queued entry that carries `itemId` | `prompts.<itemId>` written, before the entry goes `sending` |
 | A press or reply resolves and `answerItem` returns `enqueued`, `duplicate` or `reviewed` | `prompts.<itemId>` removed |
+| The drain's queue entry ends `failed` | `prompts.<itemId>` removed, because the prompt never arrived and a reply must not resolve against it |
+| A press or reply names an item with no entry | No write. The press falls through to `answerItem`, so the reply is the existing answered or expired row, M18 or M15, rather than a new refusal |
 | `answerItem` refuses `answer-not-approver` on the `channel` surface | `notApprover.<actor>` plus one and `lastAt` now |
 | Any read finds `expiresAt` past | That entry removed in the same read |
 
-The per-actor counter locks no chat. It lets `bots channel list` and the tests see repeated attempts by one actor without locking the other members of a linked chat out.
+Every one of those writes holds `channels/approvals.lock`, as the opening section fixes, so the drain's add and a `listen` process's remove cannot lose each other.
+
+The per-actor counter locks no chat. `bots channel list` reads it and prints one `notApprover <actor> <count>` line per actor with a count above zero, after the channel rows, so an operator sees repeated attempts by one actor without the counter locking the other members of a linked chat out. The `--json` payload of `contracts/cli-json.md` section 3.3 gains no key for it, because the contract is frozen and the human line is enough.
 
 ---
 
@@ -280,7 +288,7 @@ Restates `contracts/cli-json.md` section 3.3.
 3. The `drain` verb in `bots.cjs` takes the due entry from `channel-queue.ts` and, because it carries `itemId`, has `channel-approval.ts` write `prompts.<itemId>`. The verb joins the two because `channel-queue.ts` imports only `channel`, `state-root` and `run-record`.
 4. The drain sets `sending`, calls the transport and records the outcome.
 
-A stop after step 2 leaves a `queued` entry, which the next drain takes through steps 3 and 4. A stop after step 3 leaves an index entry and a `queued` entry, and the next drain writes the same index entry again and sends once. A stop during step 4 leaves `sending`, which the next drain turns into `unknown`. The index entry stays until `expiresAt`, so a press on a prompt that did arrive still resolves.
+A stop after step 2 leaves a `queued` entry, which the next drain takes through steps 3 and 4. A stop after step 3 leaves an index entry and a `queued` entry, and the next drain writes the same index entry again and sends once. A stop during step 4 leaves `sending`, which the next drain turns into `unknown`. The index entry stays until `expiresAt`, so a press on a prompt that did arrive still resolves. An entry that ends `failed` loses its index entry in the same pass, so a reply never resolves against a prompt the person never received.
 
 ---
 
@@ -289,7 +297,7 @@ A stop after step 2 leaves a `queued` entry, which the next drain takes through 
 ```bash
 D=specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design
 rg -c '"schemaVersion": 1' $D/records.md
-node -e 'const t=[0,5000,25000,120000,600000]; console.log(t.length, t.reduce((a,b)=>a+b))'
+rg -c '^\{ "BACKOFF_MS": \[0, 5000, 25000, 120000, 600000\], "MAX_ATTEMPTS": 5 \}$' $D/records.md
 ```
 
-The first prints 9, one per sample and the second prints `5 750000`.
+The first prints 9, one per sample. The second prints 1, the backoff table and its attempt cap on one line. The arithmetic that sums the backoff steps to 750,000 ms is a note rather than a check, because it reads no file.

@@ -25,7 +25,7 @@ The module's place in the runtime is fixed by the packet: `memory.ts` sits in th
 |--------|-------|---------|----------|
 | `MEMORY_LIMITS` | none | `{ entries: 60, bytes: 3600, text: 400 }`, frozen | none |
 | `MEMORY_TYPES` | none | `['user', 'general', 'feedback', 'reference']`, frozen | none |
-| `sharedMemoryFile` | the state root | The absolute path of `<stateRoot>/memory/shared.md` | none |
+| `sharedMemoryFile` | the state root | The absolute path of `<stateRoot>/memory/shared.md`. Declared in `state-root.ts` beside the other state paths and re-exported here, so a caller that already imports the state root needs no second import | none |
 | `botMemoryFile` | the state root, the identity, the bot id | The absolute path of `<stateRoot>/<identityKey>/memory/<botId>.md` | `bot-id-invalid` for an id that is not a safe segment |
 | `collapseText` | one string | The string with every whitespace run replaced by one space and both ends trimmed | none |
 | `serializeEntry` | one entry object | One line in the contract's five-field form, ending in one newline | none |
@@ -157,12 +157,14 @@ The builder gains the rendered blocks and the request prompt as inputs and does 
 | `body` | string | yes | The BOT.md body |
 | `specFolder` | string or null | yes | The bound spec folder |
 | `checkoutRoot` | string or null | no | The checkout line, for a child that starts outside the tree |
-| `workingPlace` | string or null | no | 004's line |
+| `workingPlace` | `{ path, branch, runFolder }` or absent | no | 004's line, passed through unchanged |
 | `memoryBlocks` | string array | no | The rendered `<memory>` blocks, the shared file's first |
 | `skillBlocks` | string array | no | The rendered `<skill_content>` blocks, in the order the `skills` list names them |
 | `requestPrompt` | string or null | no | The request prompt, which the builder wraps in the header |
 
 The return type becomes `Result<string>`. The success value is the joined prompt. The refusal is `prompt-over-budget` with the detail `<block> at <n> of 32000 characters`, where the block is the first one whose running total exceeds the bound. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.3 The overflow rule"]
+
+The module also exports `checkPromptBudget(prompt)`, which returns `Result<string>` over an already joined prompt and names the block the same way. The resume path needs it because a resumed run joins its prompt from the parked record rather than through a fresh build, and the bound has to hold there too. The block names are the contract's nine, and a resumed run whose total crosses the line names `resume`.
 
 The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "1.5 Memory"] The builder adds no line of its own, so a bot with no memory, no skills and no request prompt gets the string it gets today, byte for byte.
 
@@ -180,7 +182,7 @@ The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots
 |--------|---------------|------|
 | `--bot <id>` | yes | A safe segment. Refused `bot-id-invalid`, exit 2 |
 | `--type <type>` | yes | One of the four. Refused `bots: --type takes user, general, feedback or reference`, exit 2 |
-| `--as <name>` | yes | A non-empty actor name. Refused `bots: --as takes a name`, exit 2. No tty rule, because 001's tty refusal covers `bots answer` and `bots run` only |
+| `--as <name>` | yes | 001's rule whole: resolved through `resolveActor` against `ACTOR_PATTERN`, refused `bots: --as takes a name`, exit 2, and refused `bots: --as needs a tty` at exit 2 when it names someone other than the OS user outside a tty |
 | `--forget <n>` | yes | A whole number of 1 or more. Refused `bots: --forget takes a whole number`, exit 2 |
 | `--list` | no, a switch | Takes no fact |
 | `--json` | no, a switch | Only with `--list` |
@@ -192,6 +194,7 @@ The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots
 | `--forget` with a fact | `bots: remember --forget takes no fact` | 2 |
 | `--list` and `--forget` together | `bots: remember takes --list or --forget, not both` | 2 |
 | `--json` without `--list` | `bots: --json needs --list` | 2 |
+| A write form under `SKILLED_BOT_RUN_ID` or `AI_SESSION_CHILD=1` | `bots: child-write-refused: remember runs no write inside a bot run` | 2 |
 | Two positionals | `bots: unexpected argument: <second>` | 2 |
 
 The verb lives in the run mode, because it writes state. The status mode keeps its two read commands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D1]
@@ -209,4 +212,5 @@ The verb lives in the run mode, because it writes state. The status mode keeps i
 | `appendMemoryEntry` does not check for secrets | The known-secret map lives outside the contracts group, so the caller checks and the module writes |
 | `buildBotPrompt` returns `Result<string>` | The budget refusal has to reach the caller, and a throw would be reported as exit 1 rather than as a refusal |
 | The builder takes the rendered blocks rather than the files | `dispatch.ts` may not import `memory.ts`, and the runner already reads and renders |
-| `--as` on `remember` has no tty rule | 001's tty refusal covers `bots answer` and `bots run`, and a fact's actor is worth recording in a script |
+| `--as` on `remember` takes 001's rule whole | A second actor rule would let a script record a name the rest of the CLI refuses, and one rule is cheaper to hold than two |
+| The write forms refuse under the child marker | A bot child that appends a fact writes a line every later prompt reads as operator-confirmed, so the marker closes the loop the proposal item exists to keep open |

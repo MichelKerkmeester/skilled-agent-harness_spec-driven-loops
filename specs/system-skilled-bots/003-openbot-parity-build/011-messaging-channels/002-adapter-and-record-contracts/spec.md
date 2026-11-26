@@ -106,7 +106,7 @@ The first line is the contract handing this phase the acknowledge order. The sec
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design/capabilities.md` | Create | The keys, the descriptor facts, the matrix and how a transport uses its row |
+| `design/capabilities.md` | Create | The keys, the descriptor facts, the matrix, the TypeScript shapes and how a transport uses its row |
 | `design/records.md` | Create | Every channel record, the derived secret names, the backoff data, the listen lease and the write order of one prompt |
 | `design/inbound-sequence.md` | Create | The common order and one section per transport |
 | `design/conformance-rules.md` | Create | R1 to R5 and the fixture |
@@ -123,10 +123,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `design/capabilities.md` fixes a closed set of boolean keys, the descriptor facts and one matrix column for each of `terminal`, `telegram`, `slack`, `signal` and `whatsapp`, each value with its source |
-| REQ-002 | `design/records.md` gives a field table and a sample with `schemaVersion` for `channels/config.json`, the link record with its lockout, the approval index with its key structure, the queue entry with its state enum and the backoff table as data, the seen record, the listen lease, `operators.json` and `channel list --json` |
-| REQ-003 | `design/records.md` section 1.1 names every credential each transport reads, as the configured secret name or a fixed suffix of it, each inside the `contracts/records.md` section 8 grammar |
-| REQ-004 | `design/inbound-sequence.md` states per transport when the provider is acknowledged relative to the durable step and the seen record, what is on disk if the process stops between them and how a redelivery is recognized |
+| REQ-001 | `design/capabilities.md` fixes a closed set of boolean keys, the descriptor facts and one matrix column for each of `terminal`, `telegram`, `slack`, `signal` and `whatsapp`, each value with its source. Section 3 gives the TypeScript shapes the contract is written in: `ChannelInbound` with `conversation` of `{ id, isGroup }`, `sender` of `{ id }` and `actionId` for a press, `ChannelOutboundIntent` with `kind` and, on a buttons intent, `itemId` and `choices`, `ChannelReceipt`, `ChannelSendError`, `ChannelSendResult`, `ChannelSink`, `ChannelDescriptor`, `ChannelCapabilities`, `ChannelStatus` and the six `ChannelAdapter` methods |
+| REQ-002 | `design/records.md` gives a field table and a sample with `schemaVersion` for `channels/config.json`, the link record with its lockout, the approval index with its key structure, the queue entry with its state enum and the backoff table as data, the seen record, the listen lease, `operators.json` and `channel list --json`. It also names how 0600 is set, one `state-root.ts` helper that chmods after the atomic write, and the exclusive lock file every read-modify-write of the index, the links and the config holds, so two writer processes cannot lose each other's update |
+| REQ-003 | `design/records.md` section 1.1 names every credential each transport reads, as the configured secret name or a fixed suffix of it, each inside the `contracts/records.md` section 8 grammar. It states the 48-character bound on a `whatsapp` entry's `secret` and the check `bots channel link whatsapp --secret` runs against it, and it makes the two fixed loopback addresses the default of an injected argument so a test binds its own port |
+| REQ-004 | `design/inbound-sequence.md` states per transport when the provider is acknowledged relative to the durable step and the seen record, what is on disk if the process stops between them and how a redelivery is recognized. Step 3 resolves the sender as well as the chat for every event kind, so a sender id that differs from the link record's `senderId` is refused `channel-unlinked` with no reply, no counter and no `answerItem` call, and a pairing code sent from a group links nothing. A WhatsApp `statuses` entry whose status is `failed` for a known platform message id moves that queue entry and the run record's delivery entry to `failed` |
 | REQ-005 | `design/conformance-rules.md` numbers the five rules, gives each its fixture and lays out the cases over the matrix |
 | REQ-006 | `design/operator-runbook.md` gives per transport the credentials and scopes, the `bots secret set` and `bots channel link` commands, a preflight check, a health check and the rotation step |
 
@@ -147,10 +147,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The capability check prints 11
-- **SC-002**: The records check prints 9 and `5 750000`
+- **SC-001**: The capability check prints 11 and 14
+- **SC-002**: The records check prints 9 and 1
 - **SC-003**: The inbound check prints 5 and 4, the conformance check prints 5, 18 and 7 and the runbook check prints 12 and 12
-- **SC-004**: `git status --short specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing
+- **SC-004**: `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/goal.md | cut -d' ' -f3)"..HEAD -- specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing
 - **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:success-criteria -->
 

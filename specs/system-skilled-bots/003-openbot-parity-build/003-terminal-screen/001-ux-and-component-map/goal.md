@@ -87,10 +87,10 @@ and findings belong here.
 | `design/glyph-table.md` | Done | Seven group ids, three added glyphs, the ASCII set, the answered row's outcome word, the colour rule |
 | `design/component-inventory.md` | Done | 13 components, each with its reads, keys, states and frames, five pane states per data pane and one answered row state |
 | `spec.md` | Done | REQ-001 to REQ-011, SC-001 to SC-006, eight open questions |
-| `plan.md` | Done | Three phases, the testing strategy, and the external orchestration section |
+| `plan.md` | Done | Three phases, the testing strategy and the external orchestration section |
 | `tasks.md` | Done | 31 tasks in three phases, six waves, 15 checklist rows |
 | `acceptance-criteria.md` | Done | AC-001 to AC-011, each with a command block |
-| Operator approval | Pending | `design/key-map.md` section 6 reads `Unmet`; AC-007 is the packet's exit |
+| Operator approval | Pending | `design/key-map.md` section 6 reads `Unmet`. AC-007 is the packet's exit |
 
 ### Deviations and findings
 
@@ -106,4 +106,8 @@ and findings belong here.
 | The too-small message is ours | The reference's string is `Resize terminal · Ctrl+D exits` at `render.rs:32`. This packet draws `Too small · Ctrl+D exit`, so 003's REQ-016, T009, CHK-042 and AC-007 must grep the new wording when that child is fixed. |
 | The answered row is a row state, not a pane state | The inbox keeps five pane states and gains one row state, `answered`, which draws `approved`, `denied` or `answered` until the next successful inbox read. The screen issues no read of its own after an answer, because the inbox read filters answered items out and an immediate read would drop the row before the word could be read. REQ-011 and AC-011 carry it, and the frame that draws it is the state index's to add. |
 | The palette binds Backspace | The palette filters on typing, so it needs a key that deletes a filter character. The binding is `Backspace` in the `palette` context, drawn as `Bksp delete` in the palette footer, and it takes the key table from 28 bindings to 29. |
+| The task list now shows what is done | T001 to T023 are marked done with the goal log's evidence, and the remaining work is the last wave plus the operator's key-map approval at T030. The AC-001 pointer check now cuts each pointer at the first `, ` before the file test, so the eight `path, REQ-NNN` pointers resolve. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| AC-006 compares lines, not a licence banner | The block now compares every line longer than 30 characters in the seventeen cited reference files against the four documents with `comm -12`, and prints `0`, so a copied block without its header is caught. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| Frames 1 and 17 were redrawn | The sample set gained two `nightly-report` rows, so frame 1 and frame 17 were redrawn at both sizes with the title `Activity · 7 groups · 10 rows`, and the prose now separates the body row count from the list row count. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The prose rules were applied | Every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this child's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 <!-- /ANCHOR:log -->

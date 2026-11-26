@@ -136,7 +136,7 @@ When two refusals could apply, the earlier check wins. The order is the gate ord
 Two consequences a builder must not undo:
 
 - A shared bot that declares `apps` and whose checkout has no config is refused `apps-unenforceable` and not `apps-refused`. The isolation is the first thing wrong.
-- A bot that declares `apps: []` is never refused for its declaration. An empty list resolves to no name, so no name can be unknown, and the run writes a config with no server.
+- A bot that declares `apps: []` is never refused `apps-refused`. An empty list resolves to no name, so no name can be unknown, and the run writes a config with no server. On a shared run it is still refused `apps-unenforceable`, because the declaration is not `null` and the run has nowhere to place the file.
 
 ---
 

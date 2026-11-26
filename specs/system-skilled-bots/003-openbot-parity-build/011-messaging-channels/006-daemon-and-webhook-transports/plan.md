@@ -69,7 +69,7 @@ Meta posts a body to the operator's tunnel, which forwards to `127.0.0.1:8787`. 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `bin/bots.cjs` | `listen` with child 005's three rows | update - two rows | `rg -n "signal|whatsapp" .skilled/bin/bots.cjs` names both rows |
-| `tests/channel-transports.vitest.ts` | Child 005's three blocks | update - two blocks | `rg -c "^describe\\(" .skilled/skills/system-skilled-bots/runtime/tests/channel-transports.vitest.ts` prints 5 |
+| `tests/channel-transports.vitest.ts` | Child 005's three blocks | update - two blocks | `rg -c "^describe\\(" .skilled/skills/system-skilled-bots/runtime/tests/channel-transports.vitest.ts` prints 6 |
 
 Required inventories:
 - Parsers on the webhook path: `rg -n 'JSON.parse' .skilled/skills/system-skilled-bots/runtime/lib/channel-whatsapp.ts` names one call, after the signature check.
@@ -93,9 +93,9 @@ Setup reads the Signal and WhatsApp references. Implementation writes the two mo
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Replay | Signal events from a fake daemon, WhatsApp bodies posted to the listener, each replayed | `npx vitest run tests/channel-transports.vitest.ts -t "signal"` and `-t "whatsapp"` |
-| Security | Unsigned, malformed and wrong signatures, a body over 2 MiB, the handshake | `-t "signature"` and `-t "handshake"` |
-| Shared | Child 005's `token`, `injection` and `golden` cases over the two new transports | `-t "token"`, `-t "injection"` and `-t "golden"` |
+| Replay | Signal events from a fake daemon, WhatsApp bodies posted to the listener, each replayed | `-t "^transport signal follows the wire table$"` and `-t "^transport whatsapp follows the wire table$"` each print `Tests  1 passed` |
+| Security | Unsigned, malformed and wrong signatures, a body over 2 MiB, the handshake | `-t "^transport whatsapp refuses an unsigned body before parse$"` and `-t "^transport whatsapp echoes the handshake challenge$"` each print `Tests  1 passed` |
+| Shared | Child 005's `token`, `injection` and `golden` cases over the two new transports | `-t "^transport shared "` prints `Tests  7 passed` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -145,6 +145,6 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 |------|----------|-------|----------|--------|---------|--------|
 | 0 | T001 to T003 | none, reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
 | 1 | T004 to T006 | `lib/channel-signal.ts`, `lib/channel-whatsapp.ts` | `cli-pi` | `--thinking max` | 2 | T004 to T006 and the typecheck |
-| 2 | T007 to T009 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-pi` | `--thinking max` | 2: the verb rows, and the fixtures with the test blocks | T007 to T009 |
+| 2 | T007 to T009 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-pi` | `--thinking max` | 2: the verb rows and the fixtures with the test blocks | T007 to T009 |
 | 3 | T010 to T016 | none | the orchestrator | none | 1 | T010 to T016 |
 <!-- /ANCHOR:external-orchestration -->

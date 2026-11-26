@@ -119,8 +119,8 @@ Its exit code is the run's: 0 completed, 1 failed, 5 parked and 4 for a run refu
 $ node .skilled/bin/bots.cjs chat hello --transcript
 2026-11-25T21:02:12Z ada → hello: what changed on main since yesterday?
 2026-11-25T21:03:40Z hello › Three merges: the lint fix, the changelog and the CI cache bump.
-2026-11-25T21:05:08Z ada → digest: @digest summarize the open review threads
-2026-11-25T21:06:31Z digest › Two threads wait on you: the release notes and the cache key.
+2026-11-25T21:04:08Z ada → digest: @digest summarize the open review threads
+2026-11-25T21:04:31Z digest › Two threads wait on you: the release notes and the cache key.
 $ echo $?
 0
 ```

@@ -81,7 +81,7 @@ It prints `1 4 9`.
 - [ ] T008 Write the pane contract and its sample payload (`$D/pane-contract.md`, `$D/chat-transcript.sample.json`). Verify: `rg -n 'chat worker thread of its own' $D/pane-contract.md` prints one line and the payload check prints `1 4 9`
 - [ ] T009 [P] Write the loop session and the text forms (`$D/loop-transcript.md`). Verify: `rg -c '^\[hello\] > ' $D/loop-transcript.md` prints 6 and `rg -n '^\[hello\] > /exit$' $D/loop-transcript.md` prints one line
 - [ ] T010 [P] Write the routing grammar (`$D/routing-grammar.md`). Verify: `rg -c '^\| [1-8] \| ' $D/routing-grammar.md` prints 8 and `rg -c 'bot-unknown' $D/routing-grammar.md` prints a number above 2
-- [ ] T011 [P] Write the conversation block, the cap, the worked overflow and the injection table (`$D/prompt-boundary.md`). Verify: `node -e 'const a=[180,49,180,3721,3721,16295,192,0,2500]; const p=a.reduce((x,y)=>x+y)+8; const t=p+76+8230; console.log(p,t,t-16*199,p+16296)'` prints `26846 35152 31968 43142`, and `rg -o '26,846|35,152|31,968|43,142' $D/prompt-boundary.md | sort -u | wc -l` prints 4
+- [ ] T011 [P] Write the conversation block, the cap, the worked overflow and the injection table (`$D/prompt-boundary.md`). Verify: `rg -o '26,846|35,152|31,968|43,142' $D/prompt-boundary.md | sort -u | wc -l` prints 4, so the four derived numbers of section 3 are in the file
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -92,7 +92,7 @@ It prints `1 4 9`.
 - [ ] T012 Check every frame (`$D/mockups.md`). Verify: the frame check prints `frames=26 bad=0`
 - [ ] T013 Check every drawn label is in a frame (`$D/key-map-delta.md`). Verify: the label check prints `0`
 - [ ] T014 Check every footer line fits 67 columns (`$D/key-map-delta.md`). Verify: `awk -F'|' '/^## 3\. THE FOOTER LINES/,/^## 4\./' $D/key-map-delta.md | rg '^\| `' | awk -F'|' '{print $4; print $6}' | tr -d ' ' | sort -nr | head -1` prints 67
-- [ ] T015 Check no fenced block reproduces openhuman source (`$D/`). Verify: `rg -n 'pub fn |impl Composer' $D/` prints nothing
+- [ ] T015 Check no line of the openhuman source appears in the design (`$D/`). Verify: `comm -12 <(sort -u specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/composer.rs specs/system-skilled-bots/context/openhuman-main/LICENSE | awk 'length>30') <(sort -u $D/*.md)` prints nothing
 - [ ] T016 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
@@ -164,7 +164,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 - [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/acceptance-criteria.md` prints 10
 - [ ] CHK-021 [P0] The frames are the right size. Verify: the frame check prints `frames=26 bad=0`
 - [ ] CHK-022 [P1] Every label is drawn. Verify: the label check prints `0`
-- [ ] CHK-023 [P1] The worked overflow adds up. Verify: the `node -e` in T011 prints `26846 35152 31968 43142`
+- [ ] CHK-023 [P1] The worked overflow adds up. Verify: T011's `rg -o` prints 4
 <!-- /ANCHOR:testing -->
 
 ---

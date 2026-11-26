@@ -68,7 +68,7 @@ The unanswered human message is a row state, not a pane state, as the screen's a
 
 ### 2.4 Chat status line
 
-The title suffix is the status line. `blank` adds nothing, `sending` adds `· sending…`, and `message` is the screen's own status row carrying the first stderr line of a failed chat read or send. The status row keeps the screen's source rule, so a clean transcript read never wipes a refused send's line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:158]
+The title suffix is the status line. `blank` adds nothing, `sending` adds `· sending…` and `message` is the screen's own status row carrying the first stderr line of a failed chat read or send. The status row keeps the screen's source rule, so a clean transcript read never wipes a refused send's line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:158]
 
 ### 2.5 Bot picker
 

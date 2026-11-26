@@ -1,0 +1,1 @@
+This message names no bot this host runs. Start it with @ and the bot id, for example @digest Which channel?

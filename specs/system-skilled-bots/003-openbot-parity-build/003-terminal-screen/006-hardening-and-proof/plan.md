@@ -22,8 +22,8 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Rust 2021, ratatui 0.30, crossterm 0.29 |
-| **Framework** | ratatui `TestBackend` for buffer snapshots; no async runtime |
-| **Storage** | None; the crate opens no state file and reads only through `bots ... --json` |
+| **Framework** | ratatui `TestBackend` for buffer snapshots. No async runtime |
+| **Storage** | None. The crate opens no state file and reads only through `bots ... --json` |
 | **Testing** | `cargo test` over the library, the binary, the integration targets and the doc examples, plus vitest for the runtime |
 
 ### Overview
@@ -49,10 +49,10 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test pty_smoke` prints `1 passed` and no `SKIP release-absent:` line, so the release binary answered one item in a pseudo-terminal.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `1 passed`, so the release binary answered one item in a pseudo-terminal.
 - [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, and `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
-- [ ] The parent's `--recursive --strict` run prints `RESULT: PASSED` once the five sibling children leave Draft; that run is the parent's closure step and fails on their scaffolds today.
+- [ ] The parent's `--recursive --strict` run prints `RESULT: PASSED` once the five sibling children leave Draft. That run is the parent's closure step and fails on their scaffolds today.
 - [ ] Docs updated: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` agree on the gate set.
 <!-- /ANCHOR:quality-gates -->
 
@@ -62,7 +62,7 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 ## 3. ARCHITECTURE
 
 ### Pattern
-Gate and document. The phase owns no component; it reads the crate, writes two files, and repairs what a gate names.
+Gate and document. The phase owns no component. It reads the crate, writes two files and repairs what a gate names.
 
 ### Key Components
 - **The gate runner**: the orchestrator's own shell, which runs each gate, reads its output and exit status, and records both. It is not a script the crate ships, because a committed runner would be a second place the gate set lives.
@@ -70,7 +70,7 @@ Gate and document. The phase owns no component; it reads the crate, writes two f
 - **The Defect Audit table in `tasks.md`**: eight rows, one per defect the expansion fixes, each with a command and its expected output. It is the hardening claim's evidence, and it lives beside the tasks that run it.
 
 ### Data Flow
-The crate's modules feed the three crate gates; the runtime's tests feed the runtime suite; the design folder feeds the pointer check; the key table and the glyph table feed the README. Nothing flows back into the crate except a repair to a line a gate named, and that repair is recorded in `goal.md` when it changes behaviour.
+The crate's modules feed the three crate gates. The runtime's tests feed the runtime suite. The design folder feeds the pointer check. The key table and the glyph table feed the README. Nothing flows back into the crate except a repair to a line a gate named, and that repair is recorded in `goal.md` when it changes behaviour.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -84,9 +84,9 @@ This packet is a hardening pass over a crate five children wrote, so the fix sur
 |---------|--------------|--------|--------------|
 | `crates/bots-tui/src/**` | Owns the behaviour `002` to `005` wrote | Update only the file and line a gate names | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` |
 | `crates/bots-tui/tests/**` | Observes that behaviour through `TestBackend` and the fixture | Update only the test a suite names, and never lower an assertion | `cargo test` prints `test result: ok` for every target |
-| `crates/bots-tui/tests/pty_smoke.rs` | Does not exist | Create, one scripted run of the release binary in a pseudo-terminal | `cargo test --test pty_smoke` prints `1 passed` |
-| `crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer; read-only | The pointer loop prints nothing |
-| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change; read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'"` prints 2 |
+| `crates/bots-tui/tests/pty_smoke.rs` | Does not exist | Create, one scripted run of the release binary in a pseudo-terminal, with a temp skilled tree whose `.skilled/bin/bots.cjs` is a Node shim over the fixture | `cargo test --release --test pty_smoke` prints `1 passed` |
+| `crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer. Read-only | The pointer loop prints nothing |
+| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change. Read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'"` prints 2 |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Names the verbs the skill offers | Update, one line | `rg -n 'bots ui'` prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
 | `crates/bots-tui/README.md` | Does not exist | Create | The five README greps each print one line |
 
@@ -119,7 +119,7 @@ Setup reads the crate's module list, the toolchain versions and the parent's eig
 | Integration | The CLI client against `tests/fixtures/bots`, the buffer snapshots per pane and state, and the answer flow's argv log | `cargo test --test cli_client --test render_keys --test panes --test answer_flow` |
 | Doc | Every example in a doc comment, which `cargo test` runs by default | `cargo test --doc` |
 | Runtime | The `ui` verb's argv, exit passthrough and both refusals | `npm --prefix .skilled/skills/system-skilled-bots/runtime test` |
-| Pseudo-terminal | The release binary against the fixture, answering one item and reading the drawn screen | `cargo test --test pty_smoke` |
+| Pseudo-terminal | The release binary against the fixture, answering one item and reading the drawn screen | `cargo test --release --test pty_smoke` |
 | Static | Formatting, lints at the deny level, and the licence grep | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `rg` |
 
 Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries the four `--json` contracts the screen reads: `activity` and `inbox` from `001-activity-and-actor`, `routines` from `002-routine-layer`, and `status` from the runtime today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] The chat pane's transcript is `010-conversations`' payload, which the fixture gains when that phase lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, section "Files to Change"] The two refusals the answer flow draws in the status row are `006-approval-grants`' `item-answered-differently` and `011-messaging-channels`' `answer-not-approver`, and neither is a gate this phase runs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004]
@@ -132,11 +132,11 @@ Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `crates/bots-tui/` from `002-architecture-and-contracts` | Internal | Yellow | No manifest means no gate; the phase reports the absent path rather than passing a gate it could not run |
+| `crates/bots-tui/` from `002-architecture-and-contracts` | Internal | Yellow | No manifest means no gate. The phase reports the absent path rather than passing a gate it could not run |
 | `keys.rs` and `theme.rs` from `003-shell-and-navigation` | Internal | Yellow | The key and glyph checks have nothing to read, and the README's key list has no source |
 | `theme.rs` from `003-shell-and-navigation` and `view/panes.rs` from `004-panes` | Internal | Yellow | Two of the eight defect checks cannot run |
 | `view/overlay.rs` from `005-answer-flow` | Internal | Yellow | The free-text defect check cannot run |
-| A stable Rust toolchain with `clippy` and `rustfmt` | External | Green | The three crate gates cannot run; the CI job installs the same components |
+| A stable Rust toolchain with `clippy` and `rustfmt` | External | Green | The three crate gates cannot run. The CI job installs the same components |
 | `jq` for the manifest licence read | External | Green | The licence check falls back to `rg -n '^license' crates/bots-tui/Cargo.toml` |
 <!-- /ANCHOR:dependencies -->
 
@@ -172,7 +172,7 @@ Setup ──► Implementation ──► Verification
 
 ## External orchestration
 
-The build runs as four waves. Three dispatch external CLI workers; the fourth is the orchestrator's own verification. Each wave names its task ids, its executor, its model, its effort, the files its lanes hold, how many workers run at once, and the orchestrator's verify step. The orchestrator reads every worker's output and exit status before it accepts a wave, because a worker's `done` is a claim until the wave's verify commands print what they should.
+The build runs as five waves. Four dispatch external CLI workers. The fifth is the orchestrator's own verification. Each wave names its task ids, its executor, its model, its effort, the files its lanes hold, how many workers run at once and the orchestrator's verify step. The orchestrator reads every worker's output and exit status before it accepts a wave, because a worker's `done` is a claim until the wave's verify commands print what they should.
 
 ### The roster this packet may use
 
@@ -180,9 +180,9 @@ The build runs as four waves. Three dispatch external CLI workers; the fourth is
 |----------|-------|--------------|--------|-------|
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | `--thinking high` | `--thinking max` |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#<tier>` on the model id | upgraded to `max` | `#max` |
-| `cli-mistral-vibe` | `deepseek-flash` | none; the row's `thinking` field | not available | the row's `max` |
+| `cli-mistral-vibe` | `deepseek-flash` | none. The row's `thinking` field | not available | the row's `max` |
 | `cli-devin` | `deepseek-v4-1-flash-max` | the model id | `deepseek-v4-1-flash-high` | `deepseek-v4-1-flash-max` |
-| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort` | `high` | `xhigh`, the tier this packet uses; `max` is the model's ceiling |
+| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort` | `high` | `xhigh`, the tier this packet uses. `max` is the model's ceiling |
 
 Three of those levers are narrower than the two columns suggest, and each is a fact from its own packet rather than a preference. `cli-mistral-vibe` has no reasoning flag at all: effort is the roster row's `thinking` field and `max` is a property of the row, so a Vibe dispatch cannot be lowered to `high`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] `cli-opencode`'s `opencode-go/deepseek-v4.1-flash` route is pinned to the max thinking tier by policy, so a `#high` request is upgraded rather than honored. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] `cli-devin` carries the tier in the model id and has no headless effort flag. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156]
 
@@ -200,9 +200,9 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T001, T002, T003, T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none; four read-only probes |
+| A | T001, T002, T003, T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. Four read-only probes |
 
-**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands; `cargo fmt --version` and `cargo clippy --version` each print a version; `ls crates/bots-tui/src` prints the twelve module entries; `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
+**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands. `cargo fmt --version` and `cargo clippy --version` each print a version. `ls crates/bots-tui/src` prints the twelve module entries. `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 
 #### Wave 2 - Gate repair
 
@@ -211,7 +211,15 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 | A | T005, T006, T007 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `crates/bots-tui/src/**`, `crates/bots-tui/tests/**` |
 | B | T008 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/runtime/tests/**` |
 
-**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A takes the highest tier the roster offers. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0; `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A takes the highest tier the roster offers. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+
+#### Wave 2b - The pseudo-terminal test
+
+| Lane | Tasks | Executor, model, effort | Files held |
+|------|-------|-------------------------|------------|
+| A | T033 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `crates/bots-tui/tests/pty_smoke.rs` |
+
+**Workers:** 1. The lane holds one new file, so it is disjoint from Wave 2's repair lanes, and it runs after them so the repair pass does not rewrite the test it lands. It takes the highest tier the roster offers because a pseudo-terminal test that passes for the wrong reason proves nothing: the shim, the `env!("CARGO_BIN_EXE_bots-ui")` resolution and the drawn-screen read are three places a green run can be empty. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`. **Fallback:** rung 1 at `max` as a deliberate re-tier, then stop and report.
 
 #### Wave 3 - The two documents
 
@@ -220,15 +228,15 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 | A | T009 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `crates/bots-tui/README.md` |
 | B | T010, T011 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/SKILL.md` |
 
-**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback, and the design reference without copying a line of it, so it takes the max tier. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line; `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line; `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
+**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback and the design reference without copying a line of it, so it takes the max tier. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line. `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line. `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
 
 #### Wave 4 - Verification from the final state
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020, T021 | none; the orchestrator runs them itself | none |
+| Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020, T021 | none. The orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0; `cargo clippy --all-targets -- -D warnings` exits 0; `cargo test` prints `test result: ok` for every target; `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`; `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`; `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing; `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path; `ls crates/bots-tui/design` prints the six documents and the design-pointer loop prints nothing; the eight Defect Audit rows each print their expected output; `cargo test --test pty_smoke` prints `1 passed`; `validate.sh --strict` on this child prints `RESULT: PASSED`.
+**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0. `cargo clippy --all-targets -- -D warnings` exits 0. `cargo test` prints `test result: ok` for every target. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`. `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`. `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing. `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path. `ls crates/bots-tui/design` prints the six documents and the design-pointer loop prints nothing. The eight Defect Audit rows each print their expected output. `cargo test --test pty_smoke` prints `1 passed`. `validate.sh --strict` on this child prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 
@@ -249,8 +257,8 @@ A wave whose named executor runs out of usage moves down this ladder from the ne
 | 1 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
 | 2 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
 | 3 | `cli-mistral-vibe` · `deepseek-flash` | The Vibe budget, which a `402 API budget exhausted` ends |
-| 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a wave is handed to it; a free-tier model still answers when the paid quota reads 0% |
-| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The last rung, and the first choice for Wave 2's hardest lane; GPT models reach this packet only through `cli-codex` |
+| 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a wave is handed to it. A free-tier model still answers when the paid quota reads 0% |
+| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The last rung, and the first choice for Wave 2's hardest lane. GPT models reach this packet only through `cli-codex` |
 
 The `cli-devin` probe is one read-only call whose reply is read as text rather than as an exit code, because quota exhaustion and a lapsed credential look the same from the exit status alone. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
 

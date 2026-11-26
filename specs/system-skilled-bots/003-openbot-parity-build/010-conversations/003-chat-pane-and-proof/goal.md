@@ -80,4 +80,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Moved from the phase parent | REQ-008, AC-008, SC-004 and the crate tasks T022 to T026, T032 and T038 came from the pre-expansion phase with their ids. The tasks were rewritten against phase 003's file names. |
+| The draft goes on stdin | F-071 offered stdin or dropping the claim. The first was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `chat_send` writes the draft to the child's stdin, so REQ-017, T005, T011 and CHK-030 read `--message -`. |
+| Every exit 4 appends nothing | F-059 offered running the knowable refusals before the append or appending `failed: <cause>` for a run refusal. The first was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: REQ-019 and AC-030 say a send that exits 2 or 4 appended nothing, so the pane puts the draft back and a re-press is safe. |
+| The extended tests verify by name | O-005. T028 names the footer test it adds and filters it with a stated pass count, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 <!-- /ANCHOR:log -->

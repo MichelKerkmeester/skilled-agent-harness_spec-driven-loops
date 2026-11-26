@@ -27,7 +27,7 @@ contextType: "general"
 
 `CRATE` is `crates/bots-tui` and `P` is `specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof`. Every command runs from the repository root with no tty.
 
-The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded into the tasks below, which name phase 003's file names. The old list named `ui_state.rs` and `render/panes.rs`, which the crate does not have.
+The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded into the tasks below, which name phase 003's file names. The old list named `ui_state.rs` and `render/panes.rs`, which the crate does not have. New tasks take ids from T021 and skip the folded range.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -46,17 +46,20 @@ The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded int
 ## Phase 2: Implementation
 
 - [ ] T004 Add `Transcript`, `Message` and `Role` (`$CRATE/src/model.rs`). Verify: `rg -n 'struct Transcript|struct Message|enum Role' $CRATE/src/model.rs` prints three lines
-- [ ] T005 Add `chat_transcript` and `chat_send` with the argv of `design/pane-contract.md` section 1 (`$CRATE/src/cli.rs`). Verify: `rg -n 'fn chat_transcript|fn chat_send' $CRATE/src/cli.rs` prints both
+- [ ] T005 Add `chat_transcript` and `chat_send` with the argv of `design/pane-contract.md` section 1, the draft written to the child's stdin (`$CRATE/src/cli.rs`). Verify: `rg -n 'fn chat_transcript|fn chat_send' $CRATE/src/cli.rs` prints both, and `rg -n 'stdin' $CRATE/src/cli.rs` prints the draft write
 - [ ] T006 Add the chat state, `Effect::ChatSend` and `Msg::ChatSent` (`$CRATE/src/state.rs`). Verify: `rg -n 'ChatView|ChatMode|ChatSend|ChatSent' $CRATE/src/state.rs` prints all four
 - [ ] T007 Add `Context::Chat`, `CHAT_ROWS` and the four guards (`$CRATE/src/keys.rs`). Verify: `rg -n 'Context::Chat|CHAT_ROWS|When::Typing|When::Picking' $CRATE/src/keys.rs` prints all four
 - [ ] T008 Add the chat worker and its job channel (`$CRATE/src/data.rs`). Verify: `rg -n 'chat' $CRATE/src/data.rs` prints the worker and the channel
 - [ ] T009 Route the send's exit code (`$CRATE/src/state.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test chat exit_` prints `test result: ok. 5 passed`
 - [ ] T010 Replace the placeholder with the chat body (`$CRATE/src/view/panes.rs`). Verify: `rg -n 'phase 010' $CRATE/src/view/panes.rs` exits 1
-- [ ] T011 Add the `chat` branch to the fake CLI (`$CRATE/tests/fixtures/bots`). Verify: `rg -n 'chat' $CRATE/tests/fixtures/bots` prints the transcript and the send branches
+- [ ] T011 Add the `chat` branch to the fake CLI, recording the `--message -` argv and the stdin line (`$CRATE/tests/fixtures/bots`). Verify: `rg -n 'chat|stdin' $CRATE/tests/fixtures/bots` prints the transcript branch, the send branch and the stdin read
 - [ ] T012 Add one payload per state (`$CRATE/tests/fixtures/payloads/`). Verify: `ls $CRATE/tests/fixtures/payloads/chat-*.json | wc -l` prints the count the snapshot table names
 - [ ] T013 Copy the approved frames into the crate (`$CRATE/design/chat-mockups.md`). Verify: `cmp $CRATE/design/chat-mockups.md specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/mockups.md` prints nothing
 - [ ] T014 Let the frame loader take a document name and write the chat suite (`$CRATE/tests/common/frames.rs`, `$CRATE/tests/chat.rs`). Verify: `rg -c '^### Chat, ' $CRATE/design/chat-mockups.md` prints 13
 - [ ] T015 Document the chat tab's keys and calls (`$CRATE/README.md`). Verify: `rg -n 'bots chat' $CRATE/README.md` prints the two calls
+- [ ] T021 Hand the send to the chat worker and settle its reply (`$CRATE/src/app.rs`). Verify: `rg -n 'ChatSend|ChatSent' $CRATE/src/app.rs` prints the hand-off and the reply, and `rg -n 'chat' $CRATE/src/app.rs` prints the sender that shutdown drops
+- [ ] T027 Replace the placeholder test with one that asserts the chat body draws the transcript's first message (`$CRATE/tests/panes.rs`). Verify: `rg -n 'chat_placeholder_names_phase_010' $CRATE/tests/panes.rs` exits 1, and `rg -n 'chat' $CRATE/tests/panes.rs` prints the new test
+- [ ] T028 Add the four chat footer lines (`$CRATE/tests/render_keys.rs`). Verify: `rg -n 'chat' $CRATE/tests/render_keys.rs` prints four lines, and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys chat_footer` prints `test result: ok. 1 passed`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -140,7 +143,7 @@ The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded int
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] The pane passes the draft as one argv value after `--message`, never through a shell. Verify: `rg -n 'sh -c|Command::new\("sh"' $CRATE/src/cli.rs` prints nothing
+- [ ] CHK-030 [P0] The pane passes the draft on the child's stdin, never through a shell and never in argv. Verify: `rg -n 'sh -c|Command::new\("sh"' $CRATE/src/cli.rs` prints nothing, and `rg -n 'stdin' $CRATE/src/cli.rs` prints the draft write
 <!-- /ANCHOR:security -->
 
 ---
@@ -167,7 +170,7 @@ The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded int
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 6 | [ ]/6 |
-| P1 Items | 6 | [ ]/6 |
+| P1 Items | 5 | [ ]/5 |
 | P2 Items | 0 | [ ]/0 |
 
 **Verification Date**: 2026-11-26

@@ -45,7 +45,7 @@ _memory:
 | **Phase** | 3 of 14 |
 | **Predecessor** | `002-routine-layer` |
 | **Successor** | `004-computer-exposure` |
-| **Handoff Criteria** | `cargo test`, `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass in `crates/bots-tui`; `bots ui` opens against this repository; one needs-you item answered from the screen reads back as answered from its item file, because `bots inbox --json` lists only open and expired items. The scripted pseudo-terminal run in 006 proves the answer path without a person, and the operator's hand answer is the final acceptance step after 006 |
+| **Handoff Criteria** | `cargo test`, `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass in `crates/bots-tui`. `bots ui` opens against this repository. One needs-you item answered from the screen reads back as answered from its item file, because `bots inbox --json` lists only open and expired items. The scripted pseudo-terminal run in 006 proves the answer path without a person, and the operator's hand answer is the final acceptance step after 006 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -54,7 +54,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items, and phases 001 and 002 add `bots activity` and `bots routines` in the same shape. Reading three commands to learn what the bots did, what needs an answer and what each routine is set to is work the operator repeats every time they look. openhuman proves a terminal can draw all four surfaces from data a runtime already holds, but its client is GPL-3.0-only and cannot be lifted into this MIT tree. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:29] [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
+The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items and phases 001 and 002 add `bots activity` and `bots routines` in the same shape. Reading three commands to learn what the bots did, what needs an answer and what each routine is set to is work the operator repeats every time they look. openhuman proves a terminal can draw all four surfaces from data a runtime already holds, but its client is GPL-3.0-only and cannot be lifted into this MIT tree. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:29] [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
 
 ### Purpose
 One screen that draws activity, inbox and routines from the runtime's own JSON and answers a needs-you item without leaving the terminal.
@@ -102,21 +102,21 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 
 ### In Scope
 - One MIT Rust crate at `crates/bots-tui/` whose binary `bots-ui` draws four tabs, a pending-approval banner, an approval overlay and the eight status glyphs, and whose library target lets `cargo test --lib` and `tests/*.rs` reach every module.
-- One `ui` verb in `.skilled/bin/bots.cjs` that resolves the built binary, execs it with `--repo` and `--skilled-tree`, inherits stdio, passes the exit code through, and refuses `ui-unavailable` when the crate is absent and `ui-not-built` when only the binary is. The verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable of its own.
+- One `ui` verb in `.skilled/bin/bots.cjs` that resolves the built binary, execs it with `--repo` and `--skilled-tree`, inherits stdio, passes the exit code through and refuses `ui-unavailable` when the crate is absent and `ui-not-built` when only the binary is. The verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable of its own.
 - The activity, inbox and routines panes, drawn from `bots activity --json`, `bots inbox --json` and `bots routines --json`, and one answer written through `bots answer` with `--scope`.
 - A tracked `design/` folder holding the ASCII mockups per state at 80x24 and 120x40, the key map, the glyph table and the component inventory, written in our own words with `file:line` pointers into the reference sources.
 - A `bots-tui` CI job that installs a pinned toolchain with `dtolnay/rust-toolchain@1.92.0` plus the `clippy` and `rustfmt` components, then runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test`.
-- `crates/bots-tui/tests/fixtures/bots`, the fake CLI that prints the payload files under `tests/fixtures/payloads/` and records its argv.
+- `crates/bots-tui/tests/fixtures/bots`, the fake CLI that prints the payload files under `tests/fixtures/payloads/` and records its argv. A key that draws lands as a new scenario file rather than an edit to an existing payload, for example `tests/fixtures/payloads/inbox.grant.json` behind `--fixture-scenario grant`, so a later phase adds a file and never breaks a snapshot or the design-copy diff.
 
 ### Out of Scope
 - The chat pane - it needs `bots chat`, which is phase 010, so the fourth tab draws one line naming that phase and holds no state.
 - `bots activity --json`, `bots inbox --json` and `bots routines --json` - phases 001 and 002 own those verbs, and this phase consumes them unchanged.
 - A `--json` mode on `bots answer` - the screen reads the exit code and stderr the verb already writes.
-- Mouse support, a theme picker, a demo binary, a bench flag, and accessibility, themes or the test harness as separate phases - each child carries its own part of those.
+- Mouse support, a theme picker, a demo binary, a bench flag and accessibility, themes or the test harness as separate phases - each child carries its own part of those.
 - A desktop shell - the research rules it out, and openhuman's pointer hit testing is design detail this phase does not need. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:151]
 - Editing a BOT.md, installing a schedule or starting a run from the screen - each is a write verb with its own confirmation rules, and none is needed to read the three surfaces.
 - `insta` as a dependency - snapshot tests assert the ratatui `TestBackend` buffer directly.
-- A `THIRD_PARTY_NOTICES.md` entry - no third-party code is copied, so there is nothing to notice; the design reference is recorded in the crate README instead.
+- A `THIRD_PARTY_NOTICES.md` entry - no third-party code is copied, so there is nothing to notice. The design reference is recorded in the crate README instead.
 - The hub's mode table, `hub-router.json`, `mode-registry.json` and `ROUTER.md` - `bots ui` is a read surface over status, not a fifth mode.
 
 ### Dependencies
@@ -140,7 +140,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 | `crates/bots-tui/src/data.rs` | Create | 002 | The worker thread and the generation-tagged channel |
 | `crates/bots-tui/src/cli.rs` | Create | 002 | The only module that spawns a process: program, arguments, spawn, parse, answer |
 | `crates/bots-tui/src/model.rs` | Create | 002 | serde types with defaults, an unknown state kept as `Unknown(raw)` |
-| `crates/bots-tui/src/terminal.rs` | Create | 002 | RAII guard, a chained panic hook, and a signal handler that only sets a flag |
+| `crates/bots-tui/src/terminal.rs` | Create | 002 | RAII guard, a chained panic hook and a signal handler that only sets a flag |
 | `crates/bots-tui/src/keys.rs` | Create | 002 | The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` |
 | `crates/bots-tui/src/theme.rs` | Create | 002 | A stub. 003 writes the System and Mono palettes, the glyph table and `printable` |
 | `crates/bots-tui/src/view/header.rs` | Create | 003 | Header: bot count and the stale flag |
@@ -148,7 +148,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 | `crates/bots-tui/src/view/footer.rs` | Create | 003 | Footer generated from `keys.rs` |
 | `crates/bots-tui/src/view/mod.rs` | Create | 002 | A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls |
 | `crates/bots-tui/src/view/panes.rs` | Create | 004 | Activity, inbox, routines and chat-placeholder bodies |
-| `crates/bots-tui/src/view/banner.rs` | Create | 005 | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs`, and the hidden state |
+| `crates/bots-tui/src/view/banner.rs` | Create | 005 | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs` and the hidden state |
 | `crates/bots-tui/src/view/overlay.rs` | Create | 005 | Decision and choice overlays, free-text entry, the in-flight lock |
 | `crates/bots-tui/tests/fixtures/bots` | Create | 002 | The fake CLI: canned JSON per verb, records its argv, committed mode 0755 |
 | `crates/bots-tui/tests/common/` | Create | 002 | The frame loader and the fixture helper |
@@ -159,7 +159,7 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 | `crates/bots-tui/tests/render_keys.rs` | Create | 003 | `TestBackend` assertions that every bound key is drawn |
 | `crates/bots-tui/tests/panes.rs` | Create | 004 | One buffer snapshot per pane per state at both sizes |
 | `crates/bots-tui/tests/answer_flow.rs` | Create | 005 | The argv log, Esc and closed input |
-| `crates/bots-tui/README.md` | Create | 006 | Build, run, keys, and the openhuman design reference with no code copied |
+| `crates/bots-tui/README.md` | Create | 006 | Build, run, keys and the openhuman design reference with no code copied |
 | `.skilled/bin/bots.cjs` | Modify | 002 | The `ui` verb: usage line, verb spec, binary resolution, exec, exit passthrough, both refusals |
 | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | Create | 002 | The `ui` verb's tests: argv, exit passthrough, both refusals |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Modify | 006 | One line naming `bots ui` as a status surface |
@@ -187,7 +187,7 @@ Four pieces belong to the parent because no child owns them. The section keeps a
 
 - **Install.** The screen arrives as a source checkout plus `cargo build --release` in `crates/bots-tui/`, on macOS and Linux only, with a Rust toolchain as a stated prerequisite. A checkout that has not built the crate sees `ui-not-built` from the `ui` verb, and one without the crate sees `ui-unavailable`, so a non-source install is refused by name rather than by a stack trace.
 - **Version match.** `bots-ui --version` prints the crate version and a contract number. The `ui` verb reads that line and refuses a binary whose contract number differs from the one the verb carries, so a binary built before the last payload change is refused rather than drawn against a payload it does not know. `002-architecture-and-contracts` REQ-001 and REQ-009 carry the requirement.
-- **CI.** Every cargo command in the `bots-tui` job passes `--locked`. The job adds a release build beside the three gates and names its runner, its cache and its timeout. `002-architecture-and-contracts` owns the job.
+- **CI.** `--locked` goes on `cargo clippy`, `cargo test` and `cargo build` in the `bots-tui` job and `cargo fmt --check` takes none, because `cargo fmt` rejects the flag. The job adds a release build beside the three gates and names its runner, its cache and its timeout. `002-architecture-and-contracts` owns the job.
 - **Rollback.** One revert of the phase's commits removes the crate, the `ui` verb, the CI job and the hub line together, because the phase adds no behaviour to a module another phase owns. What stays is the runtime's `--json` verbs and `bots answer`, which packet phases 001 and 002 own and this phase only reads.
 <!-- /ANCHOR:install-and-rollback -->
 
@@ -203,7 +203,7 @@ These requirements hold across every child. A child that restates one keeps its 
 | REQ-002 | `crates/bots-tui/Cargo.toml` declares `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` matches only comment lines that name the design reference. No file in the crate carries a GPL header or a copied openhuman function. | 002, 006 |
 | REQ-003 | The binary reads only through `bots ... --json` and writes only through `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>`. `cli.rs` takes the program and its arguments from its caller, defaulting to `node` plus `<skilled-tree>/.skilled/bin/bots.cjs`, so every read is one `<program> <verb> --json --repo <repo>` call and the tests point it at `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`, which resolves from the crate directory cargo runs tests in. The binary opens no file under the state root. | 002, 004, 005 |
 | REQ-004 | The tab bar holds four tabs: Alt+1 activity, Alt+2 inbox, Alt+3 routines, Alt+4 chat, with `[` and `]` as the fallback pair. Ctrl+P opens the command palette and Ctrl+D exits. The chat tab draws one line naming phase 010 and holds no state. | 003 |
-| REQ-006 | The inbox pane lists every open and expired item from `bots inbox --json`. Digits 1 to 9 pick the option at that position, and only inside an overlay. `y` answers `approve` with `--scope once` and `n` answers `deny` with `--scope deny`, so every write is `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>`. Deny is `n`; no other key denies. The overlay offers no `always` and no `conversation` scope, because a standing grant needs a rule store no phase lands. | 005 |
+| REQ-006 | The inbox pane lists every open and expired item from `bots inbox --json`. Digits 1 to 9 pick the option at that position, and only inside an overlay. `y` answers `approve` with `--scope once` and `n` answers `deny` with `--scope deny`, so every write is `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>`. Deny is `n`. No other key denies. The overlay offers no `always` and no `conversation` scope, because a standing grant needs a rule store no phase lands. | 005 |
 | REQ-010 | Every bound key is drawn on screen in the frame that binds it: the footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`, the inbox footer names `Enter open`, and the decision overlay names `t`, `n`, `y` and `Esc` and the choice overlay names `1-9`, `n` and `Esc`, each drawing `n deny` before any approve key. At 67 columns or wider every bound key is in the footer. Narrower, labels drop whole from the right and the palette, whose label leads footer line 2, lists the rest. | 003, 005 |
 | REQ-011 | When the input closes while an item is selected, the binary writes no answer and exits 0, and `bots inbox --json` still lists the item as open. The loop takes its events from a source the caller supplies, so a closed input is one event a lib test feeds without a terminal, and that test asserts the fixture recorded no `answer` argv. | 002, 005 |
 
@@ -217,7 +217,7 @@ These requirements hold across every child. A child that restates one keeps its 
 <!-- ANCHOR:operator-decisions -->
 ## 5. OPERATOR DECISIONS
 
-The operator answered these on 2026-11-25. `decision-record.md` holds each one with its verbatim answer; this table is the summary a child reads.
+The operator answered these on 2026-11-25. `decision-record.md` holds each one with its verbatim answer. This table is the summary a child reads.
 
 | ID | Decision |
 |----|----------|
@@ -260,7 +260,7 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 | Phase | Folder | Scope | Depends on | Exit | Status |
 |-------|--------|-------|------------|------|--------|
 | 1 | `001-ux-and-component-map/` | ASCII mockups per state at 80x24 and 120x40, the key map, the glyph table and the component inventory, in a tracked `design/` folder in our own words with `file:line` pointers | None | The operator approves the key map, and every component lists its states | Draft |
-| 2 | `002-architecture-and-contracts/` | The crate, the terminal guard, the worker data layer, `cli.rs`, the fixture, the `ui` verb and the CI job | 001 | CI green on an empty frame, the cli client test passes, and both refusals are proven | Draft |
+| 2 | `002-architecture-and-contracts/` | The crate, the terminal guard, the worker data layer, `cli.rs`, the fixture, the `ui` verb and the CI job | 001 | CI green on an empty frame, the cli client test passes and both refusals are proven | Draft |
 | 3 | `003-shell-and-navigation/` | Header, tabs, footer generated from `keys.rs`, status row, palette and help, the too-small screen, the Mono palette | 002 | The key-label test passes, plus the shell buffer snapshots | Draft |
 | 4 | `004-panes/` | Activity, inbox, routines and the chat placeholder, each with loading, empty, rows, error and stale states | 002, 003 | One buffer snapshot per pane per state, and 2,000 rows costing at most the body height | Draft |
 | 5 | `005-answer-flow/` | Banner, decision and choice overlays, free-text entry, the in-flight lock, refusal display, closed input | 002, 004 | The argv log matches exactly, and Esc and closed input write nothing | Draft |
@@ -278,7 +278,7 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001-ux-and-component-map | 002-architecture-and-contracts | The key map is approved as a pre-build step, after the `ui-review-2.md` fixes land, and every component lists its states | The operator's approval is recorded in 001's `decision-record.md` before 002 starts, and `design/` names a state for every component |
-| 002-architecture-and-contracts | 003-shell-and-navigation | The crate builds, the `ui` verb resolves it, and both refusals print | `cargo build` exits 0, `cargo test --test cli_client` passes, and the two `ui` refusals exit 4 with their message |
+| 002-architecture-and-contracts | 003-shell-and-navigation | The crate builds, the `ui` verb resolves it and both refusals print | `cargo build` exits 0, `cargo test --test cli_client` passes and the two `ui` refusals exit 4 with their message |
 | 003-shell-and-navigation | 004-panes | Every bound key is drawn and the shell snapshots pass | `cargo test --test render_keys` passes and the shell buffer snapshots match |
 | 004-panes | 005-answer-flow | Each pane draws its five states and draws only the rows that fit its body | `cargo test --test panes` passes, including the 2,000-row count assertion |
 | 005-answer-flow | 006-hardening-and-proof | The argv log matches, and Esc and closed input write nothing | `cargo test --test answer_flow` and `cargo test --test end_to_end` pass |
@@ -290,10 +290,10 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Phase 001 fixes the `bots activity --json` shape before this phase starts. Decision: the client is written against the shape phase 001 documents and the fixture carries it; the runtime is not changed to suit the screen.
+- Phase 001 fixes the `bots activity --json` shape before this phase starts. Decision: the client is written against the shape phase 001 documents and the fixture carries it. The runtime is not changed to suit the screen.
 - Should the fourth tab be Chat or absent? Decision: present as a placeholder, so Alt+1..4 does not renumber when phase 010 lands.
 - Does `bots answer` need a `--json` mode for the screen to report the outcome? Decision: no. The screen reads the exit code and stderr, which the verb already writes.
-- Should the overlay offer `always`? Decision: no. A standing grant needs a rule store that no phase lands, so the overlay offers `once` and `deny`. It returns when a later packet lands a rule store with `bots grants list|revoke`, a 30-day default expiry, a scope bound to bot plus kind, and an audit row on every grant and revoke.
+- Should the overlay offer `always`? Decision: no. A standing grant needs a rule store that no phase lands, so the overlay offers `once` and `deny`. It returns when a later packet lands a rule store with `bots grants list|revoke`, a 30-day default expiry, a scope bound to bot plus kind and an audit row on every grant and revoke.
 - Where does the design folder live? Decision: `crates/bots-tui/design/`, so the mockups sit beside the code they describe and a reader of the crate finds them without leaving it.
 <!-- /ANCHOR:questions -->
 

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`declaredCapabilities` had no vocabulary and no matrix, the inbound acknowledge boundary was undefined and the `seen/` folder was named once with no content",
     "created_at": "2026-11-26T00:00:17Z",
-    "last_save_at": "2026-11-26T05:55:46.062Z",
+    "last_save_at": "2026-11-26T06:40:31.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7003a3e493783b63806008bbae6ed99b63536bf1fc0dd5f0d013b31a64967f9f",
+    "source_fingerprint": "sha256:884c2a9c4d741e94a287a63262d1ba399df8c9492896ff9b9ed174b9ef62807f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7fa22bc5010b1b6c7956197156df609f78c85e1a0acf503891f192a8f913000c",
-      "plan.md": "a7adadf36ee7841f496c624231fd36c44547be4c0f5f5ed98bd2f7e97ccc7699",
-      "tasks.md": "90de377b1e752e0d739043609f884c8bad5e672239557026f0cd483a6a4d7642",
+      "spec.md": "3debc9d0861901d0cac119b6fe70b50a71e9393603da3a7835c7e55d11de4b97",
+      "plan.md": "7983d7b8c7d6b2f69f63b99d6e062fd1f15675e639f9f4c82b9ab7508bea85e5",
+      "tasks.md": "9346ce924ad061b2a84c81b73e749003758941a84d56ba83cf9b66c601a9804e",
       "implementation-summary.md": "71baaa4771b7f8618b07c4bd7533651f2d9c731150ad82acbac56b0eb307978e"
     },
     "last_active_at": null

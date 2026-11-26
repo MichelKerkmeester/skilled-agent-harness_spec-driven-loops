@@ -24,7 +24,7 @@ File: `<stateRoot>/<identityKey>/records/<runId>.json`, the path `recordFile(sta
 
 | Key | Type | Null | Owner | Lands | Absent reads as |
 |-----|------|------|-------|-------|-----------------|
-| `evidence.branch` | string, the branch name git prints, or the tree's branch | yes, only on a detached HEAD or when git does not answer | 004 | today as a key, 004 widens the fill from worktree runs to every dispatched run | `null` |
+| `evidence.branch` | string, the branch name git prints or the tree's branch | yes, only on a detached HEAD or when git does not answer | 004 | today as a key, 004 widens the fill from worktree runs to every dispatched run | `null` |
 | `evidence.worktreePath` | string, absolute | yes, a shared run | today | today, unchanged | `null` |
 
 Both keys already exist on `EvidenceLocations` and both are already nullable. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:151-157] This phase adds no key to the record, so the record's `schemaVersion` stays `1` and no reader changes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]

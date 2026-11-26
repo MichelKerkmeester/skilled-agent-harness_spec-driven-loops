@@ -52,6 +52,15 @@
           "actor": "ada",
           "runId": null,
           "schedule": "every 6h"
+        },
+        {
+          "botId": "nightly-report",
+          "identity": "skilled-scratch/hello",
+          "state": "scheduled",
+          "at": "2026-11-26T02:00:00.000Z",
+          "actor": "ada",
+          "runId": null,
+          "schedule": "daily 02:00"
         }
       ]
     },
@@ -112,6 +121,15 @@
           "actor": "ada",
           "runId": null,
           "schedule": "every 6h"
+        },
+        {
+          "botId": "nightly-report",
+          "identity": "skilled-scratch/hello",
+          "state": "recurring",
+          "at": "2026-11-26T02:00:00.000Z",
+          "actor": "ada",
+          "runId": null,
+          "schedule": "daily 02:00"
         }
       ]
     }

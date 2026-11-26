@@ -83,9 +83,9 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`; `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` both exit 0.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` both exit 0.
 - [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`; after `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
+- [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2.
 - [ ] `001-ux-and-component-map/acceptance-criteria.md` AC-007 reads `Met`, and `001-ux-and-component-map/decision-record.md` carries the approval row naming the date and the key set it covers.
@@ -122,4 +122,7 @@ and findings belong here.
 | The parent goal owns the binding | `../goal.md` names this phase in its row 003 and binds it. This goal binds the six children below it. |
 | The pre-expansion documents are kept | `context/legacy-003/` holds the phase 003 spec, plan, tasks, acceptance criteria and goal as they stood before the expansion. The folder is gitignored, so it is reference only. |
 | The two cargo criteria are one | The checker caps a goal at seven criteria, so `cargo test`, `cargo clippy` and `cargo fmt` share one line. Every command and its expected output is still named, so no gate was dropped to make room for 001's key-map approval. |
+| The fixture hand-off names a scenario file | F-034: the fixture bullet now says a key that draws lands as a new scenario file, for example `tests/fixtures/payloads/inbox.grant.json` behind `--fixture-scenario grant`, so a later phase adds a file and never breaks a snapshot or the design-copy diff. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The banner is 004's | F-005: the file table gives `crates/bots-tui/src/view/banner.rs` to 004, because the frames that hold an open item draw the row and 004's snapshot gate must go green before 005 starts. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The prose rules were applied | O-021 and O-022: every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this packet's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 <!-- /ANCHOR:log -->

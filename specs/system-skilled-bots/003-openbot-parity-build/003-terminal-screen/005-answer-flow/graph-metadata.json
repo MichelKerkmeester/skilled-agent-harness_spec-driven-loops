@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The screen can draw an inbox item but cannot answer one",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-26T05:55:28.573Z",
+    "last_save_at": "2026-11-26T06:48:19.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e35094e95248258755a17e3740938d95b16bbae7c13dc0c07d582968d594f68",
+    "source_fingerprint": "sha256:72130fa1e615757a42685c9586d143e89f2339700e2f9b5b1fffd9208b4191d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f997a1a95eb1352d09e4ccac0ce274afc6427535d52c75065be9e236de0e5360",
-      "plan.md": "8a4590eca6e65074ec77c6959edcf9f49f551f980defc4cd78be883001f3c82d",
-      "tasks.md": "945272305933f5a15c4b7261709a88d1af307e8a386e1169cfa771fd39f86a0c",
+      "spec.md": "c2838805e667f81fd4d14ff34940a8df0612d16a8c7ca0d1f6b66112dd48de7f",
+      "plan.md": "e5388e3867621e7d7c480c29677d9a9f1fcb1f4d053625a8543bae843f2e3cdd",
+      "tasks.md": "96c561f5585a79a2697d57b13ea2df35e480ad0b30c7f8e67ecc174ced164d1d",
       "implementation-summary.md": "07b130c275a52df47f1e2197bffa7d47c2824f5acd12726984e448500f47311c"
     },
     "last_active_at": null

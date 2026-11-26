@@ -121,10 +121,14 @@ A resumed run is dispatched with the parked prompt, not a recomposed one, so a p
 | Outcome | Test | Action |
 |---------|------|--------|
 | Absent | No line of the parked prompt starts with the prefix constant | Insert the current line at the insertion point in section 4.1 |
-| Present and equal | One line starts with the prefix and equals the current line exactly | Nothing. The parked prompt already names the place this run works in |
-| Present and different | One line starts with the prefix and differs from the current line | Refuse the run `resume-item-invalid` with the detail `the parked prompt names another working place` |
+| Present and the same path | One line starts with the prefix and its text before `. This run's folder is ` equals the current line's text before that marker | Replace the parked line with the current line. The child stands in the same directory, so the line is refreshed rather than refused |
+| Present and another path | One line starts with the prefix and its text before `. This run's folder is ` differs from the current line's | Refuse the run `resume-item-invalid` with the detail `the parked prompt names another working place` |
 
-The third outcome is nearly unreachable, because a resumed worktree run reopens the same tree at the same path and `reopenBotWorktree` already refuses a tree that moved. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:577-590] It exists because the alternative is a child told to work in a directory it is not standing in, and the existing checkout check refuses exactly that case for the same reason. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:994-1000]
+**Why the comparison stops at the run folder.** A resume always gets a new run id, so it always gets a new run folder, and a parked line can never equal the current line in full. The path is the fact the line exists for, because it is the directory the child stands in. The run folder is the parked run's own and a resume continues that run, so the two lines differ there by construction. The comparison therefore reads the text before `. This run's folder is ` on both lines and compares those two strings. When they match, the parked line is replaced with the current line, so the prompt names the current run folder and the current branch.
+
+**A shared run whose operator switched branch.** The path is the checkout in both lines, so the comparison matches and the line is replaced. The replacement carries the branch the checkout is on now, which is the branch the child will edit and the branch `evidence.branch` records. A parked line naming the old branch is therefore corrected rather than refused, because the operator's branch switch is a fact about the checkout and not a fault in the parked prompt. A worktree run cannot reach this case, because `reopenBotWorktree` refuses a tree that moved and the tree's branch is the one it was made on.
+
+The refusal is nearly unreachable, because a resumed worktree run reopens the same tree at the same path and `reopenBotWorktree` already refuses a tree that moved. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/isolation.ts:577-590] It exists because the alternative is a child told to work in a directory it is not standing in, and the existing checkout check refuses exactly that case for the same reason. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:994-1000]
 
 `resume-item-invalid` is an existing cause with class `operator` and exit 4, so this phase adds no registry entry. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:135]
 
@@ -140,7 +144,7 @@ Step 3 is defensive. The spec-folder line is always present in a prompt this run
 
 ### 4.2 The order against the budget check
 
-The line is inserted before the budget check runs, so a resumed prompt that the line pushes over 32,000 characters is refused `prompt-over-budget` rather than dispatched. The budget rule and its overflow order are [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 4.3, and the check is 005's to land. This phase only fixes the order: insert, then check.
+The line is inserted or replaced before the budget check runs, so a resumed prompt that the line pushes over 32,000 characters is refused `prompt-over-budget` rather than dispatched. The budget rule and its overflow order are [`contracts/prompt-sections.md`](../../contracts/prompt-sections.md) section 4.3, and the check is 005's to land. This phase only fixes the order: insert or replace, then check.
 
 ### 4.3 The order against the secret check
 
@@ -171,4 +175,5 @@ The secret-literal check runs over the bot body, the resume question, the resume
 | A worktree run | `tests/isolation.vitest.ts` | The prompt holds `evidence.worktreePath` and the stub's `cwd` equals it, in the suite that already asserts both [SOURCE: .skilled/skills/system-skilled-bots/runtime/tests/isolation.vitest.ts:411-425] |
 | A shared run | `tests/runner.vitest.ts` | The prompt names the checkout and the record's `evidence.branch` is the checkout's branch |
 | A parked prompt without the line | `tests/runner.vitest.ts` | The dispatched prompt holds the line and the record names the parked tree |
+| A parked prompt naming the same path | `tests/runner.vitest.ts` | The parked line is replaced with the current line, so the prompt names the current run folder and the line appears exactly once |
 | A parked prompt with another place | `tests/runner.vitest.ts` | The run is refused `resume-item-invalid` and no child starts |

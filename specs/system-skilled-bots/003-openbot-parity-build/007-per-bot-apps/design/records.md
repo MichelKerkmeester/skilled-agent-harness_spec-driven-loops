@@ -43,6 +43,8 @@ The parse rules, in the order the parser applies them:
 
 An empty list is a legal declaration and is not the same as an absent key. `apps: []` yields `Posture.apps` `[]`, so the run writes a config with no server and records `posture.apps: []`. An absent key yields `Posture.apps` `null`, so the run writes the same empty config and records the same `[]`. The two differ only in the parsed definition, which is what the checker reads to decide whether to resolve names at all.
 
+A run whose `Posture.apps` is `null` writes `{"manual_call_templates": []}` without reading the source config, so a config that is missing or unparsable cannot widen it. A worktree run writes that same file into the tree root, because a child that found no file there would read the tree's own committed config and reach every server.
+
 The key joins the parser's closed key set, so a definition that declares it stops being refused `definition.unknown-key`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92] The set is closed and an unknown key refuses the whole definition, which is why the key must be added before any bot can declare it. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:233]
 
 Sample frontmatter, the four legal forms:
@@ -92,7 +94,7 @@ The four rules that decide the value:
 
 1. The value is the resolved list, in the source config's `manual_call_templates` order and never in declaration order, so two bots that declare the same names in a different order record the same list.
 2. A bot that declares no `apps` records `[]`. A bot that declares `apps: []` records `[]`. The record cannot tell the two apart, and nothing needs it to.
-3. A run refused before dispatch writes no record with a posture block, so `posture.apps` is never a partial list.
+3. A run refused before dispatch still writes a record, and that record carries the posture block the seed already holds, so `posture.apps` is `[]` there and never a partial list. The refusal is read from `exit.reason`, not from a missing posture block.
 4. A record written before this phase has no `posture.apps` and reads as `[]`. The record validator checks the posture block's shape and its named fields and keeps any other key, so no validator change is needed and `schemaVersion` stays `1`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:123] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/versioning.md, section "1. THE RULES"]
 
 Sample posture block on a run of a bot declaring `apps: [github]`:
@@ -234,6 +236,26 @@ The restore is what keeps the working tree the operator commits holding the repo
 
 The next-open restore covers the one case the after-exit restore cannot: a run killed between the write and the restore. The tree is left holding the filtered file, and the next run that opens that tree restores it before it writes anything, so the filtered file never becomes the base a later run copies from.
 
+### 5.1 Which file each executor kind reads
+
+The pin is a relative path, so the file it resolves to is decided by the child's working directory. One row per kind, so no builder assumes a kind reads the filtered file when it does not.
+
+| Kind | Config file | Pin present | Child working directory | Which file wins |
+|------|-------------|-------------|-------------------------|-----------------|
+| `native` | none, the runtime spawns no CLI | not applicable | the run's worktree, or the checkout for a shared run | the filtered file on a worktree run, the repository config on a shared run |
+| `cli-codex` | `.codex/config.toml` | yes | the run's worktree | the filtered file on a worktree run, the repository config on a shared run |
+| `cli-claude-code` | `.claude/mcp.json` | yes | the run's worktree | the same |
+| `cli-opencode` | `opencode.json` | yes | the run's worktree | the same |
+| `cli-cursor` | `.cursor/mcp.json` | yes | the run's worktree | the same |
+| `cli-devin` | `.devin/mcp_config.json` | yes | the run's worktree | the same |
+| `cli-pi` | `.pi/mcp.json` | yes | the run's worktree | the same |
+| `cli-deepseek-harness` | `.dsh/patches/mcp-code-mode.patch.yml` | yes, in the patch | the run's worktree | the same |
+| `cli-mistral-vibe` | `.vibe/config.toml` | no, the file holds no MCP block | a temporary lineage folder, not the tree | neither the filtered file nor the checkout's config, because the relative pin resolves inside the temporary folder |
+
+Two consequences a builder must not undo. The seven config files that hold the pin are `.mcp.json`, `.claude/mcp.json`, `.codex/config.toml`, `opencode.json`, `.cursor/mcp.json`, `.devin/mcp_config.json` and `.pi/mcp.json`, and `.dsh/patches/mcp-code-mode.patch.yml` carries it for the harness. `.vibe/config.toml` holds none, and `cli-mistral-vibe` starts its child in a temporary folder, so that kind reads neither copy. `apps` narrows the eight kinds whose child starts in the tree and not `cli-mistral-vibe`, which is the limit `../spec.md` section 6 names.
+
+No test proves a kind reads the filtered file, because that needs a live executor. The suite proves the file is written at the path the pin names, and the pin's own presence is the `/doctor:mcp` check's, which this phase leaves unchanged.
+
 ---
 
 ## 6. `UTCP_CONFIG_FILE` IN THE CHILD ENVIRONMENT
@@ -265,8 +287,10 @@ The checker prints one line per finding, in the form `PASS|FAIL|INFO: <id>: <mes
 | Message | the unknown names, comma separated, in declaration order |
 | Exit | 1, because a hard invariant failed |
 | Printed when | a definition declares at least one name the checkout's `.utcp_config.json` does not hold |
+| `INFO` line | `INFO: apps-unknown-server: <path> is not there, so no server name can be checked` |
+| `INFO` printed when | a definition declares `apps` and the checkout has no `.utcp_config.json`. The exit is unchanged, because a checkout defect is not a definition defect |
 
-The id joins the hard invariant list, so the checker's own audit reports it like every other hard invariant. [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:39] A definition that declares no `apps` prints no line for this id, and a checkout with no `.utcp_config.json` prints no line either, because there is no name to check against and the checker's job is the definition.
+The id joins the hard invariant list, so the checker's own audit reports it like every other hard invariant. [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:39] A definition that declares no `apps` prints no line for this id. A checkout with no `.utcp_config.json` prints the `INFO` line above and does not fail the invariant, because there is no name to check against and the checker's job is the definition. The runner refuses that case as `apps-refused`, so the run still stops.
 
 ---
 

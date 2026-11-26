@@ -40,15 +40,15 @@ The catalog check:
 rg -c '^\| M[0-9]{2} \| ' $D/message-catalog.md; ls $D/golden/*.txt | wc -l | tr -d ' '; for r in channel-unlinked channel-locked answer-not-approver item-expired channel-group-approval channel-roster-missing item-answered-differently item-busy; do rg -q "\`$r\`" $D/message-catalog.md || echo "MISSING $r"; done; for f in $D/golden/*.txt; do t=$(sed -n '1p' "$f"); rg -qF -- "$t" $D/message-catalog.md || echo "DRIFT $(basename "$f")"; done
 ````
 
-It prints 36, then 21 and no `MISSING` or `DRIFT` line.
+It prints 40, then 23 and no `MISSING` or `DRIFT` line.
 
 The mockup check:
 
 ````bash
-rg -c '^### [1-3]\.[1-4] ' $D/mockups.md; perl -CSD -ne 'if (/^```text/){$f=1;next} if (/^```/){$f=0;next} chomp; $n++ if $f && length($_) > 73; END{print $n+0, "\n"}' $D/mockups.md; node -e 'const b=4500+138+111, x=4500+138+123; console.log(b, b-4096, b-3900, x, x-4000, x-4096)'
+rg -c '^### [1-3]\.[1-4] ' $D/mockups.md; perl -CSD -ne 'if (/^```text/){$f=1;next} if (/^```/){$f=0;next} chomp; $n++ if $f && length($_) > 73; END{print $n+0, "\n"}' $D/mockups.md; for n in 4,749 653 849 4,761 761 665; do rg -qF -- "$n" $D/mockups.md || echo "MISSING $n"; done
 ````
 
-It prints 12, then 0, then `4749 653 849 4761 761 665`.
+It prints 12, then 0, then no `MISSING` line. The chunk arithmetic that gives those six numbers, `4500+138+111` and its three siblings, is a note rather than a check, because it reads no file.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -57,7 +57,7 @@ It prints 12, then 0, then `4749 653 849 4761 761 665`.
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the source of every run message (`.skilled/skills/system-skilled-bots/runtime/lib/delivery.ts`). Verify: `rg -n 'export function deliveryMessage' .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` prints `171:export function deliveryMessage(`
-- [ ] T002 Confirm the contracts this phase reads (`contracts/`). Verify: `ls specs/system-skilled-bots/003-openbot-parity-build/contracts/*.md | wc -l | tr -d ' '` prints 9 and `rg -c '^\| `channel-' specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md` prints 9
+- [ ] T002 Confirm the contracts this phase reads (`contracts/`). Verify: `ls specs/system-skilled-bots/003-openbot-parity-build/contracts/*.md | wc -l | tr -d ' '` prints 9 and `awk '/^### 3.10/,/^### 3.11/' specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md | rg -c '^\| `channel-'` prints 8
 - [ ] T003 Confirm the reference sources resolve (`specs/system-skilled-bots/context/`). Verify: `test -f specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs && test -f specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/channel/event.rs && echo ok` prints `ok`
 <!-- /ANCHOR:phase-1 -->
 
@@ -66,11 +66,11 @@ It prints 12, then 0, then `4749 653 849 4761 761 665`.
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Write where the text comes from and the 21-row catalog (`$D/message-catalog.md`). Verify: `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md | rg -c '^\| M[0-9]{2} \| '` prints 21
+- [ ] T004 Write where the text comes from and the 23-row catalog (`$D/message-catalog.md`). Verify: `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md | rg -c '^\| M[0-9]{2} \| '` prints 23
 - [ ] T005 Write the literal text and the rules for the varying fields (`$D/message-catalog.md`). Verify: `awk '/^## 3\. THE LITERAL TEXT/,/^## 4\./' $D/message-catalog.md | rg -c '^\| M[0-9]{2} \| '` prints 15
-- [ ] T006 Write one golden per catalog row (`$D/golden/`). Verify: `ls $D/golden/*.txt | wc -l | tr -d ' '` prints 21
+- [ ] T006 Write one golden per catalog row (`$D/golden/`). Verify: `ls $D/golden/*.txt | wc -l | tr -d ' '` prints 23
 - [ ] T007 State the fatigue rule and the reply-text decision (`$D/message-catalog.md`). Verify: `rg -c 'fatigue notice never reaches a chat|The run.s reply text is not sent' $D/message-catalog.md` prints 2
-- [ ] T008 [P] Write the chunk rule and the twelve mockups (`$D/mockups.md`). Verify: the mockup check prints 12, 0 and `4749 653 849 4761 761 665`
+- [ ] T008 [P] Write the chunk rule and the twelve mockups (`$D/mockups.md`). Verify: the mockup check prints 12, 0 and no `MISSING` line
 - [ ] T009 [P] Write the reply grammar (`$D/reply-grammar.md`). Verify: `rg -c '^\| [1-5] \| ' $D/reply-grammar.md` prints 5
 <!-- /ANCHOR:phase-2 -->
 
@@ -79,10 +79,10 @@ It prints 12, then 0, then `4749 653 849 4761 761 665`.
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Check the catalog and the goldens agree (`$D/`). Verify: the catalog check prints 36 and 21 and no `MISSING` or `DRIFT` line
-- [ ] T011 Check the mockups (`$D/mockups.md`). Verify: the mockup check prints 12, 0 and `4749 653 849 4761 761 665`
+- [ ] T010 Check the catalog and the goldens agree (`$D/`). Verify: the catalog check prints 40 and 23 and no `MISSING` or `DRIFT` line
+- [ ] T011 Check the mockups (`$D/mockups.md`). Verify: the mockup check prints 12, 0 and no `MISSING` line
 - [ ] T012 Check every action id in the mockups fits Telegram's 64 bytes (`$D/mockups.md`). Verify: `rg -o 'approval-v1:[0-9TZ-]+:[0-9]+' $D/mockups.md | awk '{ if (length($0) > 64) print }' | wc -l | tr -d ' '` prints 0
-- [ ] T013 Check no fenced block reproduces reference source (`$D/`). Verify: `rg -n 'pub fn |impl |async fn |use crate::' $D/` prints nothing
+- [ ] T013 Check no line of reference source appears in the design (`$D/`). Verify: `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + | sort -u | awk 'length>30') <(sort -u $D/*.md) | wc -l | tr -d ' '` prints 0
 - [ ] T014 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
@@ -151,7 +151,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 
 - [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/acceptance-criteria.md` prints 9
 - [ ] CHK-021 [P0] The catalog and the goldens agree. Verify: the catalog check prints no `DRIFT` line
-- [ ] CHK-022 [P1] The chunk sizes add up. Verify: the `node -e` of the mockup check prints `4749 653 849 4761 761 665`
+- [ ] CHK-022 [P1] The chunk sizes are the ones the mockups state. Verify: the mockup check prints no `MISSING` line
 <!-- /ANCHOR:testing -->
 
 ---

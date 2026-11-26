@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot that needs a key takes it from the operator's environment or a dotenv file, so every bot on the host can read every key and nothing records which bot used which",
     "created_at": "2026-11-25T07:13:42Z",
-    "last_save_at": "2026-11-26T06:08:50.116Z",
+    "last_save_at": "2026-11-26T06:41:23.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8c9a6c7eb41d47b5b56e336d26075544f3ee901132bb387886e4203f760c983",
+    "source_fingerprint": "sha256:d2d89c574e6a8a17c77a385f939fc794688aa95ebe47da46f0c8558afa091d6b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f05e79e077f0fc140abc71ed4ae84e0861cc9327e89f3f94df66467551c578fe",
-      "plan.md": "b61b880fbbde4c92f70118d23571661162bfdd3ffabd5f14b87b62d7d97f40ee",
-      "tasks.md": "c59f11b79c244fef892e1af7418050f48dbfc2862cfe31472cda9e07d7de222b",
+      "spec.md": "8c1281048c16df35fe063f6bba467f6afb5439cfdc13fdb88d2c8392a31678c5",
+      "plan.md": "fcc6942f63419cf4b39a321464a6f696f3088ba8a01a0a879095002331f71a6b",
+      "tasks.md": "d3d9ddeab82136e74d87c705817d1ef290f70f6c8972cd0f17a6f5ce61f9f567",
       "implementation-summary.md": "3e2f6c78f919e766404842e9f2eb1c03048397a1bac8a1b836b7a03f4b888414"
     },
     "last_active_at": null

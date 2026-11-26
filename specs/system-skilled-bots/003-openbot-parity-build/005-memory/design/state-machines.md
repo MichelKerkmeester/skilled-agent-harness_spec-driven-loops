@@ -213,6 +213,7 @@ sequenceDiagram
   Mm-->>Rn: the blocks, the shared file's first
   Rn->>Dp: buildBotPrompt with the blocks and the request prompt
   Dp-->>Rn: the prompt, or prompt-over-budget at exit 4
+  Note over Rn: over budget, the tree is finished, or returned to kept when the run resumed one
   Rn->>Rn: body-secret over every block, labelled memory path
   Rn->>Ch: dispatch
   Ch-->>Rn: the output and the exit
@@ -228,6 +229,8 @@ sequenceDiagram
   end
 ```
 
+A `prompt-over-budget` refusal happens before dispatch, so the run never reaches the child. The worktree still has to be settled: a fresh tree is finished with `finishBotWorktree`, and a resumed run returns its tree to `kept` with the awaiting-decision reason, which is the same pair of outcomes the `read-only-unconfined` branch already takes. A refusal that left the tree parked would hold the bot's next run behind a worktree nobody will use.
+
 ### 4.3 `bots answer confirm`
 
 ```mermaid
@@ -242,6 +245,7 @@ sequenceDiagram
   An->>It: take the lock, read the item, judge the state
   An->>An: the secret check over the answer text
   An->>An: the review claim, which refuses any text but confirm or reject
+  An->>An: the bound and secret pre-check over the fact, refusing memory-full or memory-secret before the item is claimed
   An->>It: one write of the answer and the grant
   An->>An: stamp answeredBy on the run record
   An->>An: the review settle
@@ -249,7 +253,7 @@ sequenceDiagram
   alt the source is already there
     An->>An: the effect already landed, so append nothing
   else the source is absent
-    An->>An: check the fact for a known secret literal, refuse memory-secret at exit 4
+    An->>An: the settle re-checks the bound and the secret as a backstop, because the file can fill between the claim and the write
     An->>Mm: appendMemoryEntry with the operator as actor and the run source
     Mm->>Fs: one appendFileSync of one whole line
   end
@@ -257,6 +261,8 @@ sequenceDiagram
   An-->>Cl: reviewed
   Cl-->>Cl: print bots: item id answered; memory-proposal review recorded, exit 0
 ```
+
+The bound and secret pre-check sits in the claim half, before the item is claimed and before any write. A refusal there leaves the item open with nothing to undo, so the operator can free space or reword the fact and answer again. The settle half keeps the same two checks as a backstop, because a file can fill between the claim and the write, and a settle refusal is the one case where the item is already claimed.
 
 ### 4.4 `bots answer reject`
 

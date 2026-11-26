@@ -40,6 +40,8 @@ Every row is one case the runtime suite must cover. The declaration axis is the 
 | 16 | `apps: github` | present, three servers | refused at parse | `apps-invalid: apps: expected a list of server names` |
 | 17 | `apps: [""]` | present, three servers | refused at parse | `apps-invalid: apps: entry 0 is not a non-empty string` |
 | 18 | `apps: [1]` | present, three servers | refused at parse | `apps-invalid: apps: entry 0 is not a non-empty string` |
+| 19 | absent | malformed JSON | the run proceeds, `posture.apps` `[]`, the written file holds no template, and the source config is never read | none |
+| 20 | `[]` | missing | the run proceeds, `posture.apps` `[]`, the written file holds no template, and the source config is never read | none |
 
 Rows 1 to 15 are the resolver's. Rows 16 to 18 are the parser's and belong to the definition suite, which is why the runtime suite asserts them through `parseDefinition` and not through `resolveApps`.
 
@@ -47,11 +49,13 @@ Three rows are outside the matrix because they are about the run and not the dec
 
 | # | Case | Expected outcome |
 |---|------|------------------|
-| 19 | a worktree run declaring `[github]` | `<worktree>/.utcp_config.json` holds one template, and the tree's own file is back after the run |
-| 20 | a shared run declaring `[github]` | refused `apps-unenforceable`, class `author`, exit 4, no filtered config written |
-| 21 | a worktree run killed between the write and the restore, then the next open of that tree | the tree's own file is back before the next run writes anything |
+| 21 | a worktree run declaring `[github]` | `<worktree>/.utcp_config.json` holds one template, and the tree's own file is back after the run |
+| 22 | a shared run declaring `[github]` | refused `apps-unenforceable`, class `author`, exit 4, no filtered config written |
+| 23 | a worktree run killed between the write and the restore, then the next open of that tree | the tree's own file is back before the next run writes anything |
 
-Row 21 is the case this phase adds for a run killed before the restore. It is the one row the plan's integration table gains.
+Row 23 is the case this phase adds for a run killed before the restore. It is the one row the plan's integration table gains.
+
+Rows 19 and 20 are the fail-closed default. A run that declares nothing writes `{"manual_call_templates": []}` without reading the source config, so a config that is missing or unparsable cannot widen it, and a worktree run writes that same file into the tree root. Without the worktree write the child would read the tree's own committed config and reach every server, which is the fail-open case the matrix exists to rule out.
 
 ---
 
@@ -115,9 +119,25 @@ One new folder beside the clean one, named for the invariant it proves. It is a 
 
 ```text
 .skilled/skills/system-skilled-bots/scripts/fixtures/apps-unknown-server/
+  .utcp_config.json
   bots/config.json
   bots/nightly-digest/BOT.md
 ```
+
+`.utcp_config.json`, one `github` template, so the checker's root resolves a config and the invariant can fail:
+
+```json
+{
+  "load_variables_from": [],
+  "tool_repository": { "tool_repository_type": "in_memory" },
+  "tool_search_strategy": { "tool_search_strategy_type": "tag_and_description_word_match" },
+  "manual_call_templates": [
+    { "name": "github", "call_template_type": "mcp", "config": { "mcpServers": { "github": { "transport": "stdio", "command": "npx", "args": ["-y", "@modelcontextprotocol/server-github@latest"], "env": {} } } } }
+  ]
+}
+```
+
+The checker's root is the fixture folder, so without this file `resolveApps` would refuse `utcp-config-missing` and the checker would print the `INFO` line `design/records.md` section 7 fixes instead of the `FAIL` line the fixture exists to prove.
 
 `bots/config.json`, identical to the clean fixture's:
 
@@ -144,7 +164,7 @@ Summarize the commits merged since the last run into a short digest.
 
 Two names, one the repository config holds and one it does not. The expected line names `nosuchserver` and not `github`, so the fixture proves the detail is selective and not a blanket complaint.
 
-The fixture declares `isolation: shared`, which the runner would refuse `apps-unenforceable`. That is deliberate: the checker audits the definition and never the run, so the fixture proves the invariant on the shortest path and the isolation refusal is the runtime suite's row 20.
+The fixture declares `isolation: shared`, which the runner would refuse `apps-unenforceable`. That is deliberate: the checker audits the definition and never the run, so the fixture proves the invariant on the shortest path and the isolation refusal is the runtime suite's row 22.
 
 The expected output, with the two lines the checker prints before the failure:
 

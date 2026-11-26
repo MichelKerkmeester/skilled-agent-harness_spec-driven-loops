@@ -142,7 +142,7 @@ The build is dispatched to external CLIs, one change per brief, with the orchest
 | `cli-mistral-vibe` | `deepseek-flash` | `max`, pinned by the model row | Design work: the frames, the key contexts, the glyph meanings | Print mode is the only dispatch surface, the roster is closed to two aliases, and the row's `thinking` is `max` with no flag to lower it [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:65] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` for mechanical work, `max` for design | The default executor: table rows, citation fixes, wording passes, and the design documents when Vibe is unavailable | `--thinking` is a first-class flag independent of the model id, so one route covers both efforts [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:61] |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max`, carried in the model id | The same work when both above are unavailable | Effort goes in `-m provider/model#<level>`, so the level travels with the model [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:125] |
-| `cli-devin` | `deepseek-v4-1-flash-max` | The model's max tier; there is no effort flag | Max-tier work when the three above are out of usage | Weekly quota, so a trivial read-only call probes it before a real brief [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:152] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237] |
+| `cli-devin` | `deepseek-v4-1-flash-max` | The model's max tier. There is no effort flag | Max-tier work when the three above are out of usage | Weekly quota, so a trivial read-only call probes it before a real brief [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:152] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237] |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` and `-c service_tier="fast"` | The hardest task, and the last fallback | GPT models reach this packet only through Codex, and the effort and the tier are config overrides rather than flags [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 
 ### The effort policy
@@ -162,7 +162,7 @@ Vibe is not the `high` route, because its roster row pins `thinking = "max"` and
 | One change per brief: the file, the edit and the check that proves it | A brief that asks a child to read a subsystem before it edits spends its context first [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:168] |
 | Redirect stdin on every non-interactive dispatch | A run that inherits the parent's stdin hangs with no output [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] |
 | Pass `--offline` on every automated Pi dispatch | Without it a Pi run hung for over two minutes with no reachable network path [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] |
-| Set `AI_SESSION_CHILD=1` and state the exemption in the prompt | The variable makes the waiver true; the prompt makes it observable |
+| Set `AI_SESSION_CHILD=1` and state the exemption in the prompt | The variable makes the waiver true. The prompt makes it observable |
 | Count a Vibe run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` | A clean stdout proves nothing, because a denied tool call still exits 0 [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116] |
 | Name the model and the effort explicitly on every dispatch | A caller's config default is not reproducible [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:235] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 | Keep GPL sources out of the brief of a worker that writes the matching module | A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay view gets our design files and MIT or Apache references only. openhuman and tinychannels paths appear in design documents as provenance, never in a brief, and the orchestrator compares the finished guard and overlay with the openhuman files by eye and records that it did [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/fable-review-1.md, section "P1: a builder would have to decide"] |
@@ -173,7 +173,7 @@ A wave is a set of tasks that can run at once. Parallelism follows file overlap 
 
 ### The verify step after each wave
 
-The orchestrator runs the wave's own verify commands before the next wave starts, and reads the output rather than the exit status alone. A wave that fails its verify is repaired inside the wave; a wave that cannot be repaired stops the build and the failure is reported with the command and its output.
+The orchestrator runs the wave's own verify commands before the next wave starts, and reads the output rather than the exit status alone. A wave that fails its verify is repaired inside the wave. A wave that cannot be repaired stops the build and the failure is reported with the command and its output.
 
 ### The fallback order
 
@@ -189,5 +189,5 @@ The order is the same for every wave, so a wave that falls back twice is visible
 
 ### What the orchestrator does not delegate
 
-The operator's approval of the key map, the decision to close the packet, and the reading of the validator's `RESULT:` line. A child can write the approval row; only the operator can fill it.
+The operator's approval of the key map, the decision to close the packet and the reading of the validator's `RESULT:` line. A child can write the approval row. Only the operator can fill it.
 <!-- /ANCHOR:external-orchestration -->

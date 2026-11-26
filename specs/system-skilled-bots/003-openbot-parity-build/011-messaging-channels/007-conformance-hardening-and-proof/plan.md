@@ -78,8 +78,8 @@ Setup confirms the five transports and reads the reference checker. Implementati
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Conformance | 25 cases over the matrix | `npx vitest run tests/channel-conformance.vitest.ts`, and `-t "R2"` for the 18 undeclared |
-| Hardening | The mismatched sender id, the withheld secret, the chunked send | `-t "hardening"` |
+| Conformance | 25 cases over the matrix | `npx vitest run tests/channel-conformance.vitest.ts`, and `-t "^R2 "` prints `Tests  18 passed` for the 18 undeclared |
+| Hardening | The mismatched sender id, the withheld secret, the chunked send | `-t "^hardening "` prints `Tests  3 passed` |
 | Documents | The reference names every derived secret name the runbook names | `tasks.md` T011 |
 | Packet | All eight folders validate | `validate.sh --strict --recursive` on the parent |
 <!-- /ANCHOR:testing -->

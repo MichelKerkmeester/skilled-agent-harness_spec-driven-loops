@@ -55,8 +55,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The catalog check in `tasks.md` prints 36 and 21 and no `MISSING` or `DRIFT` line.
-- [ ] The mockup check in `tasks.md` prints 12, 0 and `4749 653 849 4761 761 665`.
+- [ ] The catalog check in `tasks.md` prints 40 and 23 and no `MISSING` or `DRIFT` line.
+- [ ] The mockup check in `tasks.md` prints 12, 0 and no `MISSING` line.
 - [ ] `rg -c '^\| [1-5] \| ' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md` prints 5.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -74,13 +74,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Catalog, mockups, grammar and goldens | Written | On 2026-11-26 the catalog check printed 36 and 21 with no other line, the mockup check printed 12, 0 and `4749 653 849 4761 761 665` and the grammar check printed 5 |
+| Catalog, mockups, grammar and goldens | Written | On 2026-11-26 the catalog check printed 40 and 23 with no other line, the mockup check printed 12, 0 and no `MISSING` line and the grammar check printed 5 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| 21 messages, not the work order's twelve | The work order lists the approval prompt, the numbered prompt, the link lines, four refusals, the failure notice and the uncertain delivery. The catalog adds the button forms, the completed notice, the echo and its duplicate, the wrong code, the group, roster, race and busy refusals and the not-a-choice hint, because each is a message a person reads. |
+| 23 messages, not the work order's twelve | The work order lists the approval prompt, the numbered prompt, the link lines, four refusals, the failure notice and the uncertain delivery. The catalog adds the button forms, the completed notice, the echo and its duplicate, the wrong code, the group, roster, race and busy refusals, the not-a-choice hint, the bot-address usage reply and the ambiguous-reply hint, because each is a message a person reads. |
 | The contract's queue sample text | `contracts/fixtures/channel-queue-entry.json` writes `digest needs you: Which channel?`, which is not what `deliveryMessage()` builds. The parent spec lists the fix. |
 | A promise the split cannot keep | The pre-expansion out-of-scope line said the reply is sent when the run ends. REQ-014 sends only `deliveryMessage()` output. D4 follows REQ-014 and the parent spec asks the operator. |
+| M22 added, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-011's first alternative makes an `@<bot-id>` address required, so a message without one needs a reply. M22 is that reply and carries no refusal name, because the message reaches no bot and no verb returns it. |
+| M23 added, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-020's fix makes an ambiguous reply answer nothing and names the open item ids in a new catalog row. M23 is that row. It also covers `NO`, which the finding does not name, because a `NO` with two prompts open is as ambiguous as a number. |
+| The mockup check reads the file, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-012's first alternative drops the constant arithmetic from the check. The six chunk sizes are now searched for in `mockups.md`, and the arithmetic stays as a note. |
+| The copy check compares lines, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-011's first alternative replaces the keyword grep with a `comm -12` comparison of the design's lines against the reference sources. |
 <!-- /ANCHOR:log -->

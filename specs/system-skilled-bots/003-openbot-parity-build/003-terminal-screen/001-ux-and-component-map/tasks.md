@@ -46,11 +46,11 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the design folder is absent before the first write (`$D`). Verify: `ls crates/bots-tui/design` prints `No such file or directory`.
-- [ ] T002 Confirm the four payload shapes are documented by the phases that own them (`../001-activity-and-actor/spec.md`). Verify: `rg -c 'REQ-002|REQ-003' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints 2 and `rg -c 'REQ-007' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 1.
-- [ ] T003 Confirm every reference source resolves (`specs/system-skilled-bots/context/`). Verify: `test -f specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs && test -f specs/system-skilled-bots/context/OpenGhost-main/ask-card.js && test -f specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` exits 0.
-- [ ] T004 Confirm the four screenshots resolve (`../context/screenshots/`). Verify: when `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots` exists, `ls` of its `*.png` and `*.jpg` files piped to `wc -l` prints 4. When it is absent, `test -d specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots || echo 'SKIP context-absent: screenshots, see research/context-manifest.md' >&2` names the skip, and manifest rows I01 to I04 record the four files.
-- [ ] T005 Confirm the validator passes on the scaffold before the first edit (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+- [x] T001 Confirm the design folder is absent before the first write (`$D`). Verify: `ls crates/bots-tui/design` prints `No such file or directory`.
+- [x] T002 Confirm the four payload shapes are documented by the phases that own them (`../001-activity-and-actor/spec.md`). Verify: `rg -c 'REQ-002|REQ-003' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints 2 and `rg -c 'REQ-007' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 1.
+- [x] T003 Confirm every reference source resolves (`specs/system-skilled-bots/context/`). Verify: `test -f specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs && test -f specs/system-skilled-bots/context/OpenGhost-main/ask-card.js && test -f specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` exits 0.
+- [x] T004 Confirm the four screenshots resolve (`../context/screenshots/`). Verify: when `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots` exists, `ls` of its `*.png` and `*.jpg` files piped to `wc -l` prints 4. When it is absent, `test -d specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots || echo 'SKIP context-absent: screenshots, see research/context-manifest.md' >&2` names the skip, and manifest rows I01 to I04 record the four files.
+- [x] T005 Confirm the validator passes on the scaffold before the first edit (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,24 +58,26 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T006 Write the frame grammar and the state index (`$D/mockups.md`). Verify: `rg -c '^### ' $D/mockups.md` prints 27.
-- [ ] T007 Draw the eighteen shell and pane states at both sizes (`$D/mockups.md`). Verify: `rg -c '^\*\*80x24\*\*$' $D/mockups.md` prints 26.
-- [ ] T008 Draw the seven overlay states and the palette at both sizes (`$D/mockups.md`). Verify: `rg -c '^\*\*120x40\*\*$' $D/mockups.md` prints 26.
-- [ ] T009 Draw the too-small screen and the "what the frames do not show" table (`$D/mockups.md`). Verify: `rg -n 'Too small · Ctrl\+D exit' $D/mockups.md` prints one line.
-- [ ] T010 Write the six contexts and the key table (`$D/key-map.md`). Verify: `awk '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg -c '^\| `'` prints 29.
-- [ ] T011 Write the four rules that fix the pre-expansion keys and the selection rule (`$D/key-map.md`). Verify: `rg -c '^### ' $D/key-map.md` prints 4.
-- [ ] T012 Write the unbound keys and the approval record (`$D/key-map.md`). Verify: `rg -n '^\| \*\*Approved\*\* \| Unmet \|' $D/key-map.md` prints one line.
-- [ ] T013 Write the glyph table and the three glyphs this phase adds (`$D/glyph-table.md`). Verify: `awk '/^## 1\. THE GLYPH TABLE/,/^## 2\./' $D/glyph-table.md | rg -c '^\| `'` prints 7 and `awk '/^## 2\. THE THREE GLYPHS/,/^## 3\./' $D/glyph-table.md | rg -c '^\| `'` prints 3.
-- [ ] T014 Write the inbox's own words and the ASCII fallback set (`$D/glyph-table.md`). Verify: `awk '/^## 5\. THE ASCII FALLBACK SET/,/^## 6\./' $D/glyph-table.md | rg -c '^\| `'` prints 2.
-- [ ] T015 Write the colour rule (`$D/glyph-table.md`). Verify: `rg -n '^## 6\. COLOUR IS NEVER THE MEANING' $D/glyph-table.md` prints one line.
-- [ ] T016 Write the thirteen-component inventory (`$D/component-inventory.md`). Verify: `rg -c '^\| [0-9]+ \| ' $D/component-inventory.md` prints 13.
-- [ ] T017 Write the five shared states and the rules that apply to every component (`$D/component-inventory.md`). Verify: `rg -n '^## 2\. THE FIVE STATES EVERY DATA PANE SHARES' $D/component-inventory.md` prints one line.
-- [ ] T018 Write the layout rules and the not-a-component table (`$D/component-inventory.md`). Verify: `rg -n '^## 5\. WHAT IS NOT A COMPONENT' $D/component-inventory.md` prints one line.
-- [ ] T019 Write the requirements and the success criteria (`$P/spec.md`). Verify: `rg -c '^\| REQ-0' $P/spec.md` prints 11.
-- [ ] T020 Write the phases, the testing strategy and the external orchestration section (`$P/plan.md`). Verify: `rg -n '^## External orchestration' $P/plan.md` prints one line.
-- [ ] T021 Write the ordered tasks and the wave table (`$P/tasks.md`). Verify: `rg -c '^### Wave ' $P/tasks.md` prints 6.
-- [ ] T022 Write one acceptance criterion per requirement (`$P/acceptance-criteria.md`). Verify: `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 11.
-- [ ] T023 Write the durable directive and its completion criteria (`$P/goal.md`). Verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $P` exits 0.
+- [x] T006 Write the frame grammar and the state index (`$D/mockups.md`). Verify: `rg -c '^### ' $D/mockups.md` prints 27.
+- [x] T007 Draw the eighteen shell and pane states at both sizes (`$D/mockups.md`). Verify: `rg -c '^\*\*80x24\*\*$' $D/mockups.md` prints 26.
+- [x] T008 Draw the seven overlay states and the palette at both sizes (`$D/mockups.md`). Verify: `rg -c '^\*\*120x40\*\*$' $D/mockups.md` prints 26.
+- [x] T009 Draw the too-small screen and the "what the frames do not show" table (`$D/mockups.md`). Verify: `rg -n 'Too small · Ctrl\+D exit' $D/mockups.md` prints one line.
+- [x] T010 Write the six contexts and the key table (`$D/key-map.md`). Verify: `awk '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg -c '^\| `'` prints 29.
+- [x] T011 Write the four rules that fix the pre-expansion keys and the selection rule (`$D/key-map.md`). Verify: `rg -c '^### ' $D/key-map.md` prints 4.
+- [x] T012 Write the unbound keys and the approval record (`$D/key-map.md`). Verify: `rg -n '^\| \*\*Approved\*\* \| Unmet \|' $D/key-map.md` prints one line.
+- [x] T013 Write the glyph table and the three glyphs this phase adds (`$D/glyph-table.md`). Verify: `awk '/^## 1\. THE GLYPH TABLE/,/^## 2\./' $D/glyph-table.md | rg -c '^\| `'` prints 7 and `awk '/^## 2\. THE THREE GLYPHS/,/^## 3\./' $D/glyph-table.md | rg -c '^\| `'` prints 3.
+- [x] T014 Write the inbox's own words and the ASCII fallback set (`$D/glyph-table.md`). Verify: `awk '/^## 5\. THE ASCII FALLBACK SET/,/^## 6\./' $D/glyph-table.md | rg -c '^\| `'` prints 2.
+- [x] T015 Write the colour rule (`$D/glyph-table.md`). Verify: `rg -n '^## 6\. COLOUR IS NEVER THE MEANING' $D/glyph-table.md` prints one line.
+- [x] T016 Write the thirteen-component inventory (`$D/component-inventory.md`). Verify: `rg -c '^\| [0-9]+ \| ' $D/component-inventory.md` prints 13.
+- [x] T017 Write the five shared states and the rules that apply to every component (`$D/component-inventory.md`). Verify: `rg -n '^## 2\. THE FIVE STATES EVERY DATA PANE SHARES' $D/component-inventory.md` prints one line.
+- [x] T018 Write the layout rules and the not-a-component table (`$D/component-inventory.md`). Verify: `rg -n '^## 5\. WHAT IS NOT A COMPONENT' $D/component-inventory.md` prints one line.
+- [x] T019 Write the requirements and the success criteria (`$P/spec.md`). Verify: `rg -c '^\| REQ-0' $P/spec.md` prints 11.
+- [x] T020 Write the phases, the testing strategy and the external orchestration section (`$P/plan.md`). Verify: `rg -n '^## External orchestration' $P/plan.md` prints one line.
+- [x] T021 Write the ordered tasks and the wave table (`$P/tasks.md`). Verify: `rg -c '^### Wave ' $P/tasks.md` prints 6.
+- [x] T022 Write one acceptance criterion per requirement (`$P/acceptance-criteria.md`). Verify: `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 11.
+- [x] T023 Write the durable directive and its completion criteria (`$P/goal.md`). Verify: `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $P` exits 0.
+**T001 to T023 are done.** The goal log records each document as Done with its evidence: `design/mockups.md` holds 27 states and 53 fenced frames, `design/key-map.md` holds the six contexts and the key table, `design/glyph-table.md` holds the eight markers and the ASCII column, `design/component-inventory.md` holds the thirteen components, and `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` carry no unfilled token. The remaining work is the last wave, T024 to T031, plus the operator's key-map approval at T030, which gates child 002.
+
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -85,9 +87,9 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 
 - [ ] T024 Check every frame's height and width (`$D/mockups.md`). Verify: the frame check in Task Notation prints `frames=53 bad=0`, and the AC-002 block's border check prints `panels-misaligned=0`.
 - [ ] T025 Check every `SOURCE` pointer resolves (`$D/`). Verify: the second command of the AC-001 block in `acceptance-criteria.md` prints 0. When `specs/system-skilled-bots/context` is absent it also writes one `SKIP context-absent` line per skipped pointer to stderr.
-- [ ] T026 Check no openhuman source line is reproduced (`$D/`). Verify: `rg -c 'GNU GENERAL PUBLIC LICENSE' $D/` prints nothing and exits 1.
+- [ ] T026 Check no reference source line is reproduced (`$D/`). Verify: the AC-006 block in `acceptance-criteria.md` prints `0`, so every line longer than 30 characters in the seventeen cited reference files is absent from the four documents.
 - [ ] T027 Check every component names at least one frame (`$D/component-inventory.md`). Verify: `awk '/^## 1\. THE INVENTORY/,/^## 2\./' $D/component-inventory.md | rg -c '^\| [0-9]+ \|.*\| [0-9]+(, [0-9]+)* \|$'` prints 13.
-- [ ] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5); gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '` prints 0.
+- [ ] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5). Gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '` prints 0.
 - [ ] T029 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
 - [ ] T030 Record the approval row with its four fields (`$D/key-map.md`). Verify: `rg -c '^\| \*\*Approved\*\* \|' $D/key-map.md` prints 1.
 - [ ] T031 Check the answered row's outcome word is carried (`$P/spec.md`, `$P/acceptance-criteria.md`, `$D/component-inventory.md`, `$D/glyph-table.md`). Verify: `rg -l 'outcome word' $P/spec.md $P/acceptance-criteria.md $D/component-inventory.md $D/glyph-table.md | wc -l | tr -d ' '` prints 4.
@@ -127,7 +129,7 @@ One worker, because the requirements and the success criteria are one document a
 
 ### Wave 5: the packet documents
 
-Four workers, one per file: `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md`. All four read `spec.md`, which wave 4 closed, and none of them writes another's file. `plan.md`, `tasks.md` and `acceptance-criteria.md` follow the specification, so they are mechanical and run at `high`; `goal.md` is authored from a template with a budget, so it runs at `max`.
+Four workers, one per file: `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md`. All four read `spec.md`, which wave 4 closed, and none of them writes another's file. `plan.md`, `tasks.md` and `acceptance-criteria.md` follow the specification, so they are mechanical and run at `high`. `goal.md` is authored from a template with a budget, so it runs at `max`.
 
 ### Wave 6: verification
 
@@ -152,7 +154,7 @@ The order is the same for every wave, so a wave that falls back twice is visible
 | One change per brief: the file, the edit and the check that proves it | A brief that asks a child to read a subsystem before it edits spends its context first [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:168] |
 | Redirect stdin on every non-interactive dispatch | A run that inherits the parent's stdin hangs with no output [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] |
 | Pass `--offline` on every automated Pi dispatch | Without it a Pi run hung for over two minutes with no reachable network path [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] |
-| Set `AI_SESSION_CHILD=1` and state the exemption in the prompt | The variable makes the waiver true; the prompt makes it observable |
+| Set `AI_SESSION_CHILD=1` and state the exemption in the prompt | The variable makes the waiver true. The prompt makes it observable |
 | Count a Vibe run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` | A clean stdout proves nothing, because a denied tool call still exits 0 [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116] |
 | Name the model and the effort on every dispatch | A caller's config default is not reproducible [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:235] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 

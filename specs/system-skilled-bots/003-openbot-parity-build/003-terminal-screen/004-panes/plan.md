@@ -76,7 +76,8 @@ This child fixes the selection defect the parent records and consumes the saniti
 |---------|--------------|--------|--------------|
 | `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and one `PaneView<K>` per pane | update: `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
 | `crates/bots-tui/src/keys.rs` | 003 owns the table and fills `SHELL_ROWS` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
-| `crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
+| `crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line and one `mod banner;` line, and the banner slot call | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
+| `crates/bots-tui/src/view/banner.rs` | absent, and 005's file table used to hold it | create: the pending-approval row, from the open item count and the inbox tab key label `keys.rs` carries, so the frames that hold an open item draw without waiting on 005 | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none` |
 | `crates/bots-tui/src/theme.rs` | 003 owns the palette, the glyph table and the sanitizer | consumer: this child calls the marker function and the sanitizer, and keeps no second copy | `rg -n 'theme::marker' crates/bots-tui/src/view/panes.rs` prints the marker call, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0 |
 | `crates/bots-tui/src/view/header.rs` | 003 owns the header and `stale_label` | consumer: this child's stale state calls `stale_label` | `rg -n 'stale_label' crates/bots-tui/src/view/panes.rs` prints one call |
 | `crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'has("version") and has("routines")'` exits 0 |
@@ -120,7 +121,7 @@ The snapshot table is data, not sixteen hand-written tests: one row per pane and
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 002's `state.rs` with `Remote<T>` and one `PaneView<K>` per pane | Internal | Yellow | The panes have no state to draw; the reorder test fails and names the selection |
+| 002's `state.rs` with `Remote<T>` and one `PaneView<K>` per pane | Internal | Yellow | The panes have no state to draw. The reorder test fails and names the selection |
 | 002's `tests/common/frames.rs` frame loader | Internal | Yellow | Every snapshot has no approved frame to compare against |
 | 002's fixture carrying the four payloads | Internal | Yellow | No pane is testable, because every snapshot reads it |
 | 003's `src/view/mod.rs` view root | Internal | Yellow | The `mod panes;` line has nowhere to land and `cargo build` fails |
@@ -156,7 +157,7 @@ Setup ──► Implementation ──► Verification
 
 ## External orchestration
 
-The build runs as seven waves, one per section of the wave table in `tasks.md`. This section owns the roster, the effort levers, the parallelism rule, the fallback ladder and what every dispatch carries; `tasks.md` owns which task sits in which wave.
+The build runs as seven waves, one per section of the wave table in `tasks.md`. This section owns the roster, the effort levers, the parallelism rule, the fallback ladder and what every dispatch carries. `tasks.md` owns which task sits in which wave.
 
 ### The roster
 
@@ -166,7 +167,7 @@ Five executors are available to this packet. Each row names the model, the lever
 |----------|-------|--------------|----------------------|
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | `high` for mechanical work, `max` for design work |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#<tier>` on the model id | `#max` only |
-| `cli-mistral-vibe` | `deepseek-flash` | none; the roster row's `thinking` field | the row's `max` |
+| `cli-mistral-vibe` | `deepseek-flash` | none. The roster row's `thinking` field | the row's `max` |
 | `cli-devin` | `deepseek-v4-1-flash-max` | the model id | `max`, and only after a probe |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="<tier>"` | `xhigh` with `-c service_tier="fast"` |
 
@@ -192,7 +193,7 @@ A wave whose named executor runs out of usage moves down this ladder from the ne
 | 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a real task is handed to it |
 | 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The most expensive reasoning on the roster, kept for the hardest wave and for last |
 
-Rungs 2 and 3 cannot be lowered, so a `high` wave that falls to either runs at `max`. The tier rises on the way down the ladder; it never drops. That is the one asymmetry a reader should expect, and it is why the ladder is ordered by cost rather than by tier.
+Rungs 2 and 3 cannot be lowered, so a `high` wave that falls to either runs at `max`. The tier rises on the way down the ladder. It never drops. That is the one asymmetry a reader should expect, and it is why the ladder is ordered by cost rather than by tier.
 
 ### What every dispatch carries
 

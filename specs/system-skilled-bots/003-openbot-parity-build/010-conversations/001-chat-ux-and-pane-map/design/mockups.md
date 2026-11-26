@@ -30,7 +30,7 @@ The bands are the screen's seven, unchanged: header, tab bar, rule, body, banner
 | Blank | 16 | 32 | Nothing |
 | Composer | 17 | 33 | `[<bot>] > ` and the draft, or `(Enter to type)` while the pane is not in text entry |
 
-At 120 columns the body splits as the screen's does: 72 columns on the left, a `│` rule, and 47 columns of detail on the right. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:33] The transcript and the composer live in the left 72 columns. The detail column draws facts about the conversation and its newest bot message, because the transcript has no selected row.
+At 120 columns the body splits as the screen's does: 72 columns on the left, a `│` rule and 47 columns of detail on the right. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:33] The transcript and the composer live in the left 72 columns. The detail column draws facts about the conversation and its newest bot message, because the transcript has no selected row.
 
 The banner, the status row and the footer do not move. The banner still counts open items, because a parked chat message is an inbox item like any other.
 
@@ -52,7 +52,7 @@ A message is a label line, then its text on lines indented four columns and wrap
 | Bot message, a failed run | `✗ <botId> · <HH:MM>` | `✗` | `text` starts with `failed: `, the same section's second fixed form |
 | Bot message, a redacted reply | as a reply | `✓` | Nothing. The `[redacted: <name>]` token is drawn as stored, and the detail column names the secret |
 
-The glyphs are the screen's own: `✓` done, `✗` failed, `!` needs you, `·` working, each with its ASCII fallback from the screen's glyph table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/glyph-table.md:25-30] `<HH:MM>` is the message's `at` in local time.
+The glyphs are the screen's own: `✓` done, `✗` failed, `!` needs you, `·` working, each with its ASCII fallback from the screen's glyph table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/glyph-table.md:25-30] `<HH:MM>` is the message's `at` in UTC, read by the crate's existing `model::parse_utc`, because the crate adds no time crate (A6) and every other frame is drawn in UTC.
 
 A window that cannot hold every message drops whole messages from the top and draws `  ↑ <n> earlier messages · PgUp` in their place, followed by a blank line, so no message is ever drawn without its label.
 
@@ -256,10 +256,10 @@ Chat · hello · 4 messages
 ✓ hello · 21:03
     Three merges: the lint fix, the changelog and the CI cache bump.
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
 [hello] > (Enter to type)
@@ -280,8 +280,8 @@ Chat · hello · 4 messages                                               │Det
                                                                         │conversation  hello
                                                                         │default bot   hello
                                                                         │messages      4
-                                                                        │last reply    digest · 21:06
-                                                                        │run           20261125T210510Z-c2a81f3e
+                                                                        │last reply    digest · 21:04
+                                                                        │run           20261125T210410Z-c2a81f3e
                                                                         │file          conversations/hello.jsonl
                                                                         │
                                                                         │
@@ -301,10 +301,10 @@ Chat · hello · 4 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
 [hello] > (Enter to type)                                               │
@@ -332,10 +332,10 @@ Chat · hello · 4 messages
 ✓ hello · 21:03
     Three merges: the lint fix, the changelog and the CI cache bump.
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
 [hello] > is the release ready?
@@ -356,8 +356,8 @@ Chat · hello · 4 messages                                               │Det
                                                                         │conversation  hello
                                                                         │default bot   hello
                                                                         │messages      4
-                                                                        │last reply    digest · 21:06
-                                                                        │run           20261125T210510Z-c2a81f3e
+                                                                        │last reply    digest · 21:04
+                                                                        │run           20261125T210410Z-c2a81f3e
                                                                         │file          conversations/hello.jsonl
                                                                         │
                                                                         │
@@ -377,10 +377,10 @@ Chat · hello · 4 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
 [hello] > is the release ready?                                         │
@@ -403,10 +403,10 @@ Chat · hello · 5 messages · sending…
 
   ↑ 2 earlier messages · PgUp
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12
@@ -448,10 +448,10 @@ Chat · hello · 5 messages · sending…                                    │
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12                                                   │
@@ -478,10 +478,10 @@ Chat · hello · 6 messages
 
   ↑ 2 earlier messages · PgUp
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12
@@ -523,10 +523,10 @@ Chat · hello · 6 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12                                                   │
@@ -554,10 +554,10 @@ Chat · hello · 6 messages
 
   ↑ 2 earlier messages · PgUp
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12
@@ -599,10 +599,10 @@ Chat · hello · 6 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12                                                   │
@@ -630,10 +630,10 @@ Chat · hello · 6 messages
 
   ↑ 2 earlier messages · PgUp
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12
@@ -675,10 +675,10 @@ Chat · hello · 6 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12                                                   │
@@ -706,10 +706,10 @@ Chat · hello · 6 messages
 
   ↑ 2 earlier messages · PgUp
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12
@@ -751,10 +751,10 @@ Chat · hello · 6 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12                                                   │
@@ -785,10 +785,10 @@ Chat · hello · 5 messages
 ✓ hello · 21:03
     Three merges: the lint fix, the changelog and the CI cache bump.
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   ada → hello · 21:12 · no reply yet
@@ -830,10 +830,10 @@ Chat · hello · 5 messages                                               │Det
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   ada → hello · 21:12 · no reply yet                                    │
@@ -862,10 +862,10 @@ Chat · hello · 4 messages · stale 2m
 ✓ hello · 21:03
     Three merges: the lint fix, the changelog and the CI cache bump.
 
-  ada → digest · 21:05
+  ada → digest · 21:04
     @digest summarize the open review threads
 
-✓ digest · 21:06
+✓ digest · 21:04
     Two threads wait on you: the release notes and the cache key.
 
   Messages from the last successful read stay on screen.
@@ -888,8 +888,8 @@ Chat · hello · 4 messages · stale 2m                                    │De
                                                                         │conversation  hello
                                                                         │default bot   hello
                                                                         │messages      4
-                                                                        │last reply    digest · 21:06
-                                                                        │run           20261125T210510Z-c2a81f3e
+                                                                        │last reply    digest · 21:04
+                                                                        │run           20261125T210410Z-c2a81f3e
                                                                         │file          conversations/hello.jsonl
                                                                         │
                                                                         │
@@ -907,10 +907,10 @@ Chat · hello · 4 messages · stale 2m                                    │De
 ✓ hello · 21:03                                                         │
     Three merges: the lint fix, the changelog and the CI cache bump.    │
                                                                         │
-  ada → digest · 21:05                                                  │
+  ada → digest · 21:04                                                  │
     @digest summarize the open review threads                           │
                                                                         │
-✓ digest · 21:06                                                        │
+✓ digest · 21:04                                                        │
     Two threads wait on you: the release notes and the cache key.       │
                                                                         │
   Messages from the last successful read stay on screen.                │

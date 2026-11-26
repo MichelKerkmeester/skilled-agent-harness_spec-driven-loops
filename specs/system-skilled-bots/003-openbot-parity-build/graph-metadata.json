@@ -54,21 +54,21 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      "003-terminal-screen/goal.md",
+      ".github/workflows/bots-runtime.yml",
       ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
       "contracts/decisions.md",
       "contracts/records.md",
       "contracts/cli-json.md",
-      "contracts/fixtures/README.md",
+      "003-terminal-screen/002-architecture-and-contracts/spec.md",
       "contracts/prompt-sections.md",
       "contracts/answer-seam.md",
       "012-manual-testing-scenarios/scratch/failures.md",
-      "contracts/README.md",
-      "001-activity-and-actor/goal.md",
-      "002-routine-layer/goal.md",
-      "003-terminal-screen/goal.md",
-      "004-computer-exposure/goal.md"
+      "contracts/README.md"
     ],
     "entities": [
       {
@@ -102,6 +102,12 @@
         "source": "derived"
       },
       {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
         "name": "bot-template.txt",
         "kind": "file",
         "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
@@ -114,9 +120,21 @@
         "source": "derived"
       },
       {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "topics.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
         "source": "derived"
       },
       {
@@ -138,12 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "contracts/fixtures/README.md",
-        "source": "derived"
-      },
-      {
         "name": "prompt-sections.md",
         "kind": "doc",
         "path": "contracts/prompt-sections.md",
@@ -159,6 +171,12 @@
         "name": "failures.md",
         "kind": "doc",
         "path": "012-manual-testing-scenarios/scratch/failures.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "contracts/README.md",
         "source": "derived"
       },
       {
@@ -196,39 +214,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-26T05:21:59.871Z",
+    "last_save_at": "2026-11-26T06:38:35.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3c40ac9ae9f573b9beb7319d813aa8f2643bac1124ee639d24d71ef7a0f14883",
+    "source_fingerprint": "sha256:ec32745386a731bde945e15478582c652ba0c8d8d6733052ac241586d746a605",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfdbf1be4e037a85602eb0d6cd88974ec24accf87a5e7e2dfd994efe70368a5f"
+      "spec.md": "0d801712a0179641ce6498555db9592d10dbcc17f3b1dab9cc3aaa67f770426d"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen",
     "last_active_at": "2026-11-25T21:34:59.288Z"

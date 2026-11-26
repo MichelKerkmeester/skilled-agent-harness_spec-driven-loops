@@ -57,8 +57,9 @@ The parse reason is a detail of `definition-malformed` and never a registry entr
 |------|---------|-------------------|------|
 | `memory-proposal-secret` | A `[REMEMBER]` fact holds a known secret literal | The run stays `completed`, no item is written, the cause is recorded on the run record | `runner.vitest.ts`, `proposal secret` |
 | `remember-type-invalid` | A `[REMEMBER]` line names no type, or a type outside the four | The run stays `completed`, no item is written, the cause is recorded | `runner.vitest.ts`, `remember type` |
+| `remember-fact-too-long` | A `[REMEMBER]` fact is over 400 characters | The run stays `completed`, no item is written, the cause is recorded | `runner.vitest.ts`, `remember fact too long` |
 
-Both are post-run causes because the child already ran and this phase ends a proposing run `completed`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"] Neither enters `REFUSAL_CAUSES`, because neither refuses a run.
+All three are post-run causes because the child already ran and this phase ends a proposing run `completed`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"] None enters `REFUSAL_CAUSES`, because none refuses a run. Each is written to the run record's top-level `postRunCauses` as one `{cause, names, detail}` entry, and a run with no cause reads `[]` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "4. RUN RECORD ADDITIONS", row `postRunCauses`].
 
 ### 1.5 The run refusals
 
@@ -117,10 +118,10 @@ A builder must not invent a new name where one of these already fits.
 
 | Outcome | Exit | stdout | stderr |
 |---------|------|--------|--------|
-| An append landed | 0 | `bots: entry <n> in <path> (<count> entries, <bytes> bytes)` | nothing |
-| A list printed | 0 | The header line and one line per entry | nothing |
-| A list found no file | 0 | `bots: no memory` | nothing |
-| A forget landed | 0 | `bots: entry <n> forgotten from <path> (<count> entries, <bytes> bytes)` | nothing |
+| An append landed | 0 | `bots: entry <n> in <path> (<n> of 60 entries, <b> of 3600 bytes)` | nothing |
+| A list printed | 0 | `bots: <path> (<n> of 60 entries, <b> of 3600 bytes)` as the header, then one line per entry, and `, <k> line skipped` inside the header's bracket when the parser skipped any | nothing |
+| A list found no file | 0 | `bots: no memory in <path>` | nothing |
+| A forget landed | 0 | `bots: entry <n> forgotten from <path> (<n> of 60 entries, <b> of 3600 bytes)` | nothing |
 | A bound was reached | 4 | nothing | `bots: memory-full: <path> (<n> entries, <b> bytes)` |
 | A secret literal was found | 4 | nothing | `bots: memory-secret: <key>` |
 | The argument was wrong | 2 | nothing | `bots: <message>` then the usage text |
@@ -157,7 +158,7 @@ The screen classes every answer refusal as `gone` or `refused`. [SOURCE: specs/s
 | `memory-secret` | `refused` |
 | `item-busy` | `refused`, and a retry with the same key is safe |
 
-A `refused` class leaves the item open, so the operator can answer again with a text the review accepts.
+A `refused` class leaves the item open, so the operator can answer again with a text the review accepts. The bound and secret pre-check runs in the claim half, before the item is claimed and before the append, so a full file or a secret literal refuses without claiming the item and the item stays open with no settle to undo. The settle half keeps the same two checks as a backstop, because a file can fill between the claim and the write.
 
 ---
 

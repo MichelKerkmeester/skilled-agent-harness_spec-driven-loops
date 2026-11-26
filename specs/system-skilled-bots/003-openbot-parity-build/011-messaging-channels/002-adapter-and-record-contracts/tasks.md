@@ -40,7 +40,7 @@ Three shell variables keep the commands short. Every command runs from the repos
 ## Phase 1: Setup
 
 - [ ] T001 Confirm the six channel record sections (`$C/records.md`). Verify: `rg -c '^## 1[1-6]\. ' $C/records.md` prints 6
-- [ ] T002 Confirm the reference adapter and checker resolve (`specs/system-skilled-bots/context/tinychannels-main/`). Verify: `rg -n 'fn receive_ack_policy' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs` prints line 66, and `rg -n 'pub async fn check_feature' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs` prints line 374
+- [ ] T002 Confirm the reference adapter and checker resolve (`specs/system-skilled-bots/context/tinychannels-main/`). Verify: `rg -n 'fn receive_ack_policy' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs` prints line 66, and `rg -n 'pub async fn check_feature' specs/system-skilled-bots/context/tinychannels-conformance/src/lib.rs` prints line 374. The pre-expansion T002, "Record the four message types", is retired: its facts are the shapes of `design/capabilities.md` section 3, which T004 writes
 - [ ] T003 Confirm the two-credential gap (`$C/records.md`). Verify: `rg -c 'bot_token|app_token|app_secret' $C/records.md` prints nothing and exits 1
 <!-- /ANCHOR:phase-1 -->
 
@@ -49,8 +49,8 @@ Three shell variables keep the commands short. Every command runs from the repos
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Write the keys, the facts and the matrix (`$D/capabilities.md`). Verify: `awk '/^## 2\. THE MATRIX/,/^Where each value/' $D/capabilities.md | rg -c '^\| `[a-zA-Z]+` \|'` prints 11
-- [ ] T005 [P] Write every record, the derived names, the backoff data and the lease (`$D/records.md`). Verify: `rg -c '"schemaVersion": 1' $D/records.md` prints 9, `rg -c '^\| `(slack|whatsapp|signal|telegram)` \| `<secret>' $D/records.md` prints 8, and `node -e 'const t=[0,5000,25000,120000,600000]; console.log(t.length, t.reduce((a,b)=>a+b))'` prints `5 750000`
+- [ ] T004 [P] Write the keys, the facts, the matrix and the TypeScript shapes (`$D/capabilities.md`). Verify: `awk '/^## 2\. THE MATRIX/,/^Where each value/' $D/capabilities.md | rg -c '^\| `[a-zA-Z]+` \|'` prints 11 and `rg -c '^export (type|interface) ' $D/capabilities.md` prints 14
+- [ ] T005 [P] Write every record, the derived names, the backoff data and the lease (`$D/records.md`). Verify: `rg -c '"schemaVersion": 1' $D/records.md` prints 9, `rg -c '^\| `(slack|whatsapp|signal|telegram)` \| `<secret>' $D/records.md` prints 8 and `rg -c '^\{ "BACKOFF_MS": \[0, 5000, 25000, 120000, 600000\], "MAX_ATTEMPTS": 5 \}$' $D/records.md` prints 1
 - [ ] T006 [P] Write the common order and one section per transport (`$D/inbound-sequence.md`). Verify: `rg -c '^## [2-6]\. ' $D/inbound-sequence.md` prints 5 and `rg -c '^\| Policy \|' $D/inbound-sequence.md` prints 4
 - [ ] T007 [P] Write the five rules and the fixture (`$D/conformance-rules.md`). Verify: `rg -c '^\| R[1-5] \|' $D/conformance-rules.md` prints 5, and `awk '/^## 2\. THE FIXTURE/,/^That is 25/' $D/conformance-rules.md | rg -o 'R1 R2|R3 R4 R5' | sort | uniq -c` prints 18 for `R1 R2` and 7 for `R3 R4 R5`
 - [ ] T008 [P] Write the runbook (`$D/operator-runbook.md`). Verify: `rg -c '^\| (Preflight|Health|Rotation) \|' $D/operator-runbook.md` prints 12 and `rg -c 'bots secret set' $D/operator-runbook.md` prints 12
@@ -61,9 +61,9 @@ Three shell variables keep the commands short. Every command runs from the repos
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Check no contract file changed (`$C`). Verify: `git status --short $C` prints nothing
+- [ ] T009 Check no contract file changed (`$C`). The base commit is the one `goal.md` section 4 records at setup, so a contract edit this phase commits is caught as well as an uncommitted one. Verify: `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' $P/goal.md | cut -d' ' -f3)"..HEAD -- $C` prints nothing
 - [ ] T010 Check every unknown is marked (`$D/`). Verify: `rg -c 'UNKNOWN|not stated' $D/inbound-sequence.md $D/capabilities.md $D/operator-runbook.md | wc -l | tr -d ' '` prints 2, and `rg -n 'Confirm on the settings page' $D/operator-runbook.md` prints one line
-- [ ] T011 Check no fenced block reproduces reference source (`$D/`). Verify: `rg -n 'pub fn |impl |async fn |use crate::' $D/` prints nothing
+- [ ] T011 Check no line of reference source appears in the design (`$D/`). Verify: `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + | sort -u | awk 'length>30') <(sort -u $D/*.md) | wc -l | tr -d ' '` prints 0
 - [ ] T012 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
@@ -131,7 +131,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 
 - [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/acceptance-criteria.md` prints 9
 - [ ] CHK-021 [P0] The conformance cases cover the matrix. Verify: T007 prints 18 and 7
-- [ ] CHK-022 [P1] The backoff data adds up. Verify: T005's `node -e` prints `5 750000`
+- [ ] CHK-022 [P1] The backoff data is the table the design states. Verify: T005's third `rg -c` prints 1
 <!-- /ANCHOR:testing -->
 
 ---

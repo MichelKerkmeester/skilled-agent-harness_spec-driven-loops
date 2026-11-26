@@ -67,7 +67,7 @@ The operator's directive of 2026-11-25 was to plan the whole epic to ready-for-i
 
 A7's wording is the ruling's, not the assumption file's. The assumption file said an answered row shows its outcome word until the next successful refresh, and the ruling replaces that with the rule above, so the row is drawn until the next 5 second poll's successful inbox read.
 
-The source of each default is `research/fable-review-1.md` section 9, question by question: A1 is question 1, A2 is question 2, A3 is question 3, A4 is question 4, A5 is question 5, A6 is question 6, and A7 is question 8. Question 7, on third-party images, is answered by A3.
+The source of each default is `research/fable-review-1.md` section 9, question by question: A1 is question 1, A2 is question 2, A3 is question 3, A4 is question 4, A5 is question 5, A6 is question 6 and A7 is question 8. Question 7, on third-party images, is answered by A3.
 <!-- /ANCHOR:defaults-taken -->
 
 ---

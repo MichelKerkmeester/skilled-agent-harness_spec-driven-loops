@@ -68,8 +68,11 @@ Class is the failure class the run record carries, one of `author`, `operator`, 
 | `bots: --full-access needs a tty` | Verb refusal (`schedule install`), checked before the installer is called | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R6 |
 | `bots: activity takes no id` | Verb refusal (`activity`), a positional after the verb | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R7 |
 | `bots: activity takes no --<option>` | Verb refusal (`activity`), any option but `--json`, `--repo` and `--skilled-tree` | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R8 |
+| `child-write-refused` | Verb refusal (`answer`, `enable`, `remember`, `secret set`, `channel link`, `channel roster`), a bot child's run marker is in the environment | - | 2 | No | Named here, see [answer-seam.md](answer-seam.md) step 1 |
 
 The last two rows are the parser's existing messages for any verb, so they need only the verb's row in `VERB_SPECS` and no new code. The `activity` index failure keeps exit 1 because `bots status` already uses 1 for an index failure and the phase matches it on purpose. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"]
+
+`child-write-refused` is the one bar that separates a bot child from the operator. A child runs as the same OS user, so the roster cannot tell the two apart, and the run marker can. It is a bar and not an authentication: a child that clears the marker is not stopped by it. The marker is `SKILLED_BOT_RUN_ID`, which `dispatch.ts` sets, or `AI_SESSION_CHILD=1`. 001 lands the check in `bots.cjs` for the verbs it has, and each later phase adds its own write verb to the same list.
 
 ### 3.2 Phase 002, routine layer
 
@@ -86,6 +89,18 @@ The last two rows are the parser's existing messages for any verb, so they need 
 | `routine-floor-15-minutes` | Checker invariant, and an install refusal | - | 1 checker, 4 `bots install` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-005] |
 | `routine-fatigued` | Run refusal | `null` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, section "Files to Change"] |
 | `routine-completed` | Run refusal | `null` | 4 | Yes | Decided here, see section 5 |
+
+### 3.2.1 Phase 003, terminal screen
+
+Numbered 3.2.1 rather than 3.3 so the sections after it keep the numbers the phase documents cite.
+
+| Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
+|------|-------|-------|------|------------------|--------|
+| `ui-unavailable` | Verb refusal (`ui`), the Skilled tree holds no `crates/bots-tui` | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+| `ui-not-built` | Verb refusal (`ui`), the crate is present and the binary is not | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+| `ui-contract-mismatch` | Verb refusal (`ui`), the binary's contract number differs from the verb's | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+
+All three exit 4 rather than the 2 the layer rule gives a `bots.cjs` refusal, and the reason is the layer's own: the command line is valid and the failure is the environment's, which is the class exit 4 already carries for a verb whose runtime call refused. Each prints one line in the `bots: <reason>: <detail>` form, and the detail names the path or the two contract numbers.
 
 ### 3.3 Phase 004, computer exposure
 
@@ -115,9 +130,11 @@ The prompt budget and its overflow rule are in [prompt-sections.md](prompt-secti
 |------|-------|-------|------|------------------|--------|
 | `answer-not-approver` | Verb refusal (`answer`, `enable`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "In Scope"] |
 | `item-answered-differently` for a second answer with the same text and another scope, and for the loser of a race | Verb refusal (`answer`), existing reason | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013 and REQ-014] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:84-86] |
-| `item-busy` | Verb refusal (`answer`), the item lock is held by a live process past the wait | - | 4 | No | Named here, see [answer-seam.md](answer-seam.md) step 5 |
+| `item-busy` | Verb refusal (`answer`), the item lock is held by a live process past the wait | - | 4 | No | Named here, see [answer-seam.md](answer-seam.md) step 6 |
 | `action-kind-invalid` | Run failure reason after dispatch, for a run that parked a question with an `[ACTION: <kind>]` line naming no known kind | - | 1, the run is failed with class `author` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-012] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "L2: EDGE CASES"] |
 | `grant-kind-unknown` | Verb refusal, reserved. No rule store lands in this packet, so nothing can raise it yet | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-006] |
+
+`answer-not-approver` is named in 006's scope and built by 011, which lands the roster the check reads. Its row is section 3.10, because a row belongs to the phase that adds the refusal.
 
 ### 3.6 Phase 007, per-bot apps
 
@@ -187,13 +204,15 @@ The checker names are plural (`skills-unknown`) and the run names singular (`ski
 | `channel-roster-owner` | Verb refusal (`channel roster remove`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-020] |
 | `channel-group-approval` | Inbound answer refusal for a group chat | - | 4 where a verb returns it | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-006] |
 | `channel-signature` | Inbound refusal on the WhatsApp webhook before any parse | - | None, the webhook answers the HTTP request | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md, REQ-012] |
-| `channel-daemon-unreachable` | Send refusal on the Signal transport. The queue keeps the entry | - | 4 on `channel send` or `channel drain` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md, section "6. RISKS & DEPENDENCIES"] |
+| `channel-daemon-unreachable` | Send refusal on the Signal transport. The queue keeps the entry | - | 4 on `channel send`. `channel drain` exits 1 while any due entry is still queued or failed | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md, section "6. RISKS & DEPENDENCIES"] |
 | `channel-listening` | Verb refusal (`channel listen`), the per-channel lease is held | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-024] |
 | `bots: <channel> rejected the credential`, no refusal name | Failure line of `channel listen` when the provider rejects the credential on the start probe, as a `401` from Telegram's `getMe`. The lease is released | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-024 and REQ-025] |
 | `unsupported` | The adapter result for an undeclared operation, `retryable: false` | - | Not a CLI exit | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-001] |
 | `answer-not-approver`, `item-expired` on a press | Answer refusals, existing names | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-005] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-006] |
 
 A rejected credential exits 1 and carries no name, as 011 chose. The secret resolved, so it is not `secret-unknown`, and the provider's answer is a runtime failure the operator fixes by storing a new value, not a refusal the runtime decides. Exit 1 is also what 011's transport children specify, so the contract and 011 agree. A later name would be a new row here and a new exit for 011.
+
+**The drain's exit.** `channel drain` walks every due entry once. It exits 0 when every due entry reached a terminal state, 1 when any due entry is still `queued` or `failed` after the pass, and 4 only when the verb refuses before it walks the queue, such as a channel name it does not know. `channel send` exits 4 on a refusal and 1 on a send failure. This is the rule `bots drain` already follows, where a stopped drain exits 1 and a completed one exits 0. 005 REQ-024 names who runs the pass: `listen` runs it for its own channel after each inbound turn and on a fixed tick, and `bots channel drain` runs it once by hand.
 
 `channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/plan.md, section "7. ROLLBACK PLAN"]
 

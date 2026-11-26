@@ -51,14 +51,14 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
-      "design/records.md"
+      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md"
     ],
     "entities": [
       {
@@ -128,6 +128,18 @@
         "source": "derived"
       },
       {
+        "name": "posture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
         "name": "executor-audit.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -137,6 +149,12 @@
         "name": "bot-check.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
         "source": "derived"
       },
       {
@@ -155,24 +173,6 @@
         "name": "bot-definition.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-        "source": "derived"
-      },
-      {
-        "name": "bot-definition-contract.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "definition-checker.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md",
-        "source": "derived"
-      },
-      {
-        "name": "records.md",
-        "kind": "doc",
-        "path": "design/records.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-26T06:08:44.522Z",
+    "last_save_at": "2026-11-26T06:41:45.020Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f44daa8a253449b92e9c817524b699c41d5265ff331a2ef3f77f1139854dfaca",
+    "source_fingerprint": "sha256:0ad627fbe5cbdd2437a77b03f0c0841182bd3c93aa0e077e797c9fc45fcf8ee8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e6ff0e9213410ff8c26f75181130605c7d238430e33bb14c87395ac4a557362a",
-      "plan.md": "e6391b1affd78d05e7a10e17e001d148e66bd225e441e6ad5138f312410e47eb",
-      "tasks.md": "174c37f810b87dee7cc84d9e5ed2fa77d289f81d829616a6ae5cecfda5d12c69",
+      "spec.md": "187dc5a45c3880081a81bb825664ac31889fe1a13511d912b2275f46d7ea48a2",
+      "plan.md": "f3afc51f62e66a0979bf09e0c7b71e7522cd300b7ec91aa4adc3f4041f2bf31e",
+      "tasks.md": "362dc864e121f3d22577b83add7b17af8b3a6723b6d06853e5da0252b98db39b",
       "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
     },
     "last_active_at": null

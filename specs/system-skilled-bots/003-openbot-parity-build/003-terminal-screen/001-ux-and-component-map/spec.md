@@ -193,7 +193,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | A GPL-3.0 design reference invites copying | High | Every openhuman pointer is a path and a line range, no fenced block reproduces its text, and 006 greps for openhuman identifiers and GPL headers |
 | Risk | The frames drift from the build | Medium | 003, 004 and 005 assert their buffers against these frames, so a frame that changes is a design change with a diff |
 | Risk | The key map is approved and then amended silently | Medium | The approval names the key set it covers, so an added key is visibly a new approval rather than a quiet edit |
-| Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `crates/bots-tui/design/`; 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
+| Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `crates/bots-tui/design/`. 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
 
 **Where the approval is recorded.** The parent's phase handoff says the operator's approval is recorded in this child's `decision-record.md`, and this packet carries one. The answer is recorded in `design/key-map.md` section 6, restated as `acceptance-criteria.md` AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:280]
 <!-- /ANCHOR:risks -->
@@ -208,7 +208,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-P02**: The design adds no runtime cost: it is four markdown files and no process.
 
 ### Security
-- **NFR-S01**: No credential, token or state-root path appears in `design/`; the frames use invented ids and one fixed timestamp.
+- **NFR-S01**: No credential, token or state-root path appears in `design/`. The frames use invented ids and one fixed timestamp.
 - **NFR-S02**: No openhuman source line is reproduced, so no GPL text enters the tree.
 
 ### Reliability
@@ -222,10 +222,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 
 - Empty input: a pane with no rows draws its own one-line empty message, and the banner row is blank rather than absent, so the body does not move when an item arrives.
-- Maximum input: a 2,000-row list draws 17 rows at 80x24 and 33 at 120x40; the list scrolls and the selection stays visible.
-- Failure path: a read that exits non-zero keeps the rows, sets the stale flag and puts the first stderr line in the status row; the screen does not exit.
+- Maximum input: a 2,000-row list draws 17 rows at 80x24 and 33 at 120x40. The list scrolls and the selection stays visible.
+- Failure path: a read that exits non-zero keeps the rows, sets the stale flag and puts the first stderr line in the status row. The screen does not exit.
 - Narrow terminal: below 24 columns or 8 rows the frame draws `Too small · Ctrl+D exit` and nothing else.
-- Closed input: the input closes with an item selected; nothing is written and the binary exits 0.
+- Closed input: the input closes with an item selected. Nothing is written and the binary exits 0.
 - An item that closes under an open overlay: the overlay says the item is no longer open and disables every key but `Esc` and `Ctrl+C`, except while the overlay is sending, where the answer's own result decides.
 - An answer that exits 0: the row keeps its outcome word and the banner count drops at once, and the row leaves on the next successful inbox read rather than at once.
 <!-- /ANCHOR:edge-cases -->
@@ -237,8 +237,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | Four markdown documents in one folder; no code, no dependency, no runtime surface |
-| Risk | 6/25 | A GPL reference and an approval gate; nothing ships and nothing runs |
+| Scope | 8/25 | Four markdown documents in one folder. No code, no dependency, no runtime surface |
+| Risk | 6/25 | A GPL reference and an approval gate. Nothing ships and nothing runs |
 | Research | 12/20 | Six reference repositories read for shape, and five phase specs read for the payloads |
 | **Total** | **26/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->

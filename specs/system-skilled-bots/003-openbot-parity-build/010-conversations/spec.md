@@ -135,7 +135,7 @@ Both thresholds pass. The result rests on the line estimate: the same command at
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS THE CHILDREN INHERIT
 
-Requirement ids are unique across the three children. Child 002 holds REQ-001 to REQ-007 and REQ-009 to REQ-015. Child 003 holds REQ-008, the pre-expansion pane requirement and REQ-016 to REQ-021. Acceptance ids are unique the same way: child 002 holds AC-001 to AC-007, AC-009 to AC-014 and AC-033 and child 003 holds AC-008 and AC-015 to AC-032. Child 001 numbers its own REQ-001 to REQ-010 and AC-001 to AC-010 inside its folder, so a citation of those ids names child 001, as child 003 does for its key map approval.
+Requirement ids are unique across the three children. Child 002 holds REQ-001 to REQ-007 and REQ-009, REQ-010 and REQ-012 to REQ-015. Child 003 holds REQ-008, the pre-expansion pane requirement and REQ-016 to REQ-021. Acceptance ids are unique the same way: child 002 holds AC-001 to AC-007, AC-009 to AC-014 and AC-033 and child 003 holds AC-008 and AC-015 to AC-032. Child 001 numbers its own REQ-001 to REQ-010 and AC-001 to AC-010 inside its folder, so a citation of those ids names child 001, as child 003 does for its key map approval.
 
 | Rule | Carried by |
 |------|------------|
@@ -214,7 +214,7 @@ Requirement ids are unique across the three children. Child 002 holds REQ-001 to
 ## 7. OPEN QUESTIONS
 
 - The operator's approval of `001-chat-ux-and-pane-map/design/key-map-delta.md` is outstanding, and it gates child 003.
-- `contracts/fixtures/chat-transcript.json` and `conversation.jsonl` give the bot message an `at` before the human message it follows. The contract owner decides whether to fix them.
+- The two contract goldens, `contracts/fixtures/chat-transcript.json` and `conversation.jsonl`, now read in order: the human message at 21:12:00 and the bot message at 21:12:04. The earlier finding that the bot message came first is closed.
 <!-- /ANCHOR:questions -->
 
 ---

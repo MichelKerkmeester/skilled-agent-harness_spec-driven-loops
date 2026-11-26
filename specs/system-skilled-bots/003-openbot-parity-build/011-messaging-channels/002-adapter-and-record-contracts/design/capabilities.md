@@ -1,6 +1,6 @@
 ---
 title: "Design: channel capability keys and matrix"
-description: "The closed set of capability keys a channel transport declares, the operations each key admits, one matrix column per transport and the descriptor facts beside it. The conformance fixture reads the matrix as its input."
+description: "The closed set of capability keys a channel transport declares, the operations each key admits, one matrix column per transport, the descriptor facts beside it and the TypeScript shapes every transport implements. The conformance fixture reads the matrix as its input."
 trigger_phrases:
   - "channel capability matrix"
   - "declared capabilities vocabulary"
@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Channel capability keys and matrix
 
-`declaredCapabilities` had no vocabulary and no per-transport matrix. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:202] This file is both. `channel.ts` holds the keys as one exported constant, each transport returns one row of section 2 from `declaredCapabilities` and `tests/channel-conformance.vitest.ts` iterates section 2 as data. A transport that disagrees with this file is wrong until this file changes.
+`declaredCapabilities` had no vocabulary and no per-transport matrix. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:202] This file is both, and section 3 adds the shapes the contract is written in. `channel.ts` holds the keys as one exported constant, each transport returns one row of section 2 from `declaredCapabilities` and `tests/channel-conformance.vitest.ts` iterates section 2 as data. A transport that disagrees with this file is wrong until this file changes.
 
 The reference declares capabilities as one structured record with a version, flags for chat approvals and edits and nested content, action and delivery groups. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/capabilities.rs:162-185] Its conservative default declares text send and nothing else. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:55-63] This phase keeps the idea and flattens it to a closed list of booleans, because five transports and five operations do not need nested groups. The reference is GPL-3.0, so no line of it is copied.
 
@@ -82,7 +82,102 @@ Where each value comes from:
 
 ---
 
-## 3. HOW A TRANSPORT USES ITS ROW
+## 3. THE SHAPES AND THE ADAPTER
+
+`channel.ts` declares these types and every transport implements `ChannelAdapter`. The names are the ones `../../003-link-roster-and-answer-gate/spec.md` REQ-001 and REQ-002 use, and the sub-keys are what a transport needs to resolve a chat, a sender, a group and a press.
+
+```ts
+export type ChannelName = 'terminal' | 'telegram' | 'slack' | 'signal' | 'whatsapp';
+
+export interface ChannelConversation {
+  id: string;        // the provider's chat id, the second half of a links.json key
+  isGroup: boolean;  // true only where groupKnown is yes and the provider says so
+}
+
+export interface ChannelSender {
+  id: string;        // the provider-asserted sender id, compared with links.<key>.senderId
+}
+
+export interface ChannelInbound {
+  channel: ChannelName;
+  messageId: string;          // the form section 1 of inbound-sequence.md fixes per transport
+  replyToId: string | null;
+  timestampUnixMs: number;
+  conversation: ChannelConversation;
+  sender: ChannelSender;
+  text: string;
+  actionId: string | null;    // approval-v1:<itemId>:<index> on a press, null on a typed line
+  raw: unknown;
+}
+
+export type ChannelIntentKind = 'text' | 'buttons' | 'edit' | 'react' | 'file';
+
+export interface ChannelOutboundIntent {
+  kind: ChannelIntentKind;
+  idempotencyKey: string;
+  conversationId: string;
+  text: string;
+  itemId: string | null;      // set on a buttons intent, null otherwise
+  choices: string[] | null;   // set on a buttons intent, the item's options or ['YES', 'NO']
+}
+
+export interface ChannelReceipt {
+  platformMessageIds: string[];
+  primaryPlatformMessageId: string;
+}
+
+export interface ChannelSendError {
+  kind: string;
+  message: string;
+  unsupported: boolean;
+  retryable: boolean;
+  sentBeforeError: boolean;
+}
+
+export type ChannelSendResult =
+  | { ok: true; receipt: ChannelReceipt }
+  | { ok: false; error: ChannelSendError };
+
+export interface ChannelSink {
+  push(message: ChannelInbound): void;
+}
+
+export interface ChannelDescriptor {
+  name: ChannelName;
+  chunkLimit: number;
+  chunkUnit: 'utf8-bytes' | 'code-points';
+  ackPolicy: 'after-seen-record' | 'none';
+}
+
+export type ChannelCapabilities = Readonly<Record<
+  'sendText' | 'receiveText' | 'buttons' | 'numberedReply' | 'groupKnown' | 'edit' | 'react' | 'file',
+  boolean
+>>;
+
+export interface ChannelStatus {
+  running: boolean;
+  startedAt: string | null;
+}
+
+export interface ChannelAdapter {
+  descriptor(): ChannelDescriptor;
+  declaredCapabilities(): ChannelCapabilities;
+  start(sink: ChannelSink): Promise<void>;
+  stop(): Promise<void>;
+  send(intent: ChannelOutboundIntent): Promise<ChannelSendResult>;
+  status(): ChannelStatus;
+}
+```
+
+Three consequences a builder must not miss:
+
+- `conversation.id` is the chat id, so `links.json`'s key is `<channel>:<conversation.id>` and the request's reply target is the same string. `sender.id` is the provider-asserted sender, so the sender rule compares `sender.id` with `links.<key>.senderId` and never with a display name.
+- `actionId` is the only field a press fills, and it is `null` on a typed line. A transport that reads a press sets it and leaves `text` empty, so the reply grammar never sees a press and the press path never sees a typed line.
+- `kind` decides which capability key `send` checks, and `itemId` and `choices` are what a buttons intent carries. A transport whose `buttons` is `no` never receives a buttons intent, so its `send` returns the unsupported result for one, which is a programming error a test catches.
+
+---
+
+## 4. HOW A TRANSPORT USES ITS ROW
 
 - `declaredCapabilities()` returns its column of section 2 as a frozen object.
 - `send(intent)` first maps the intent to a key: text to `sendText`, buttons to `buttons`, edit to `edit`, reaction to `react`, attachment to `file`. A `false` key returns the explicit unsupported result of `../../003-link-roster-and-answer-gate/spec.md` REQ-001 before any I/O, which is the rule the reference checks once per provider. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:390-420]
@@ -91,13 +186,14 @@ Where each value comes from:
 
 ---
 
-## 4. CHECKS
+## 5. CHECKS
 
 Run from the repository root with no tty.
 
 ```bash
 D=specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design
 awk '/^## 2\. THE MATRIX/,/^Where each value/' $D/capabilities.md | rg -c '^\| `[a-zA-Z]+` \|'
+rg -c '^export (type|interface) ' $D/capabilities.md
 ```
 
-It prints 11, one row per key and descriptor fact.
+The first prints 11, one row per key and descriptor fact. The second prints 14, one per exported type or interface of section 3.

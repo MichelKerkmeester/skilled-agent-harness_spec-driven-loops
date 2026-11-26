@@ -143,7 +143,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-007 | `design/loop-transcript.md` holds a literal session of `bots chat <id>` with the prompt string, a reply, the line shown while a run executes, a parked question, a failure, a refusal and `/exit`, and names the stream each line goes to |
 | REQ-008 | The operator approves the key map delta, and the approval names the date and the key set it covers |
-| REQ-009 | No openhuman code or text is copied: every openhuman pointer is a path and a line range, and no fenced block reproduces a line of its source |
+| REQ-009 | No openhuman code or text is copied: every openhuman pointer is a path and a line range, and no line of the design reproduces a line of its source |
 | REQ-010 | Every acceptance criterion is answered by a command that runs without a tty |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,

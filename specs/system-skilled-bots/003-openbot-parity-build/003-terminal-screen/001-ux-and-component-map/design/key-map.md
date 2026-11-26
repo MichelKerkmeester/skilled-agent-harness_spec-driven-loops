@@ -79,7 +79,7 @@ The footer is two lines, and the line a label lands on follows the context rathe
 
 ### 3.1 Digits pick options only inside an overlay
 
-`1` to `9` are unbound in `main` and `inbox`. In the pre-expansion phase, REQ-006 picked option 1 with `1` and REQ-009 bound `1` to approve once, so one key answered two different questions. Here the digit is bound in `overlay` alone, and the overlay's shape decides what it means: with options, `1` picks the first option; with no options, `1` is unbound and does nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:243]
+`1` to `9` are unbound in `main` and `inbox`. In the pre-expansion phase, REQ-006 picked option 1 with `1` and REQ-009 bound `1` to approve once, so one key answered two different questions. Here the digit is bound in `overlay` alone, and the overlay's shape decides what it means: with options, `1` picks the first option. With no options, `1` is unbound and does nothing. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:243]
 
 The reference does the same: a number takes the choice it stands at, and only while a number is not being typed into the line. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/ask-card.js:264-268]
 
@@ -91,7 +91,7 @@ Alt+1..4 is the primary binding and stays. On macOS, Terminal.app and iTerm send
 
 Ctrl+C has one meaning per context and neither writes. In `main` and `inbox` it quits. In `overlay` and `palette` it closes the overlay and leaves the item open. Esc does the same thing inside an overlay, so the operator has two ways out and no way to answer by accident.
 
-The rule that makes this safe is the one the reference breaks: an unbound key does nothing. turnstone's prompt falls through to a denial for any answer that is not `y`, `yes`, `a` or `always`, so a mistyped key denies. This screen never denies on an unbound key; only `n` denies. [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487]
+The rule that makes this safe is the one the reference breaks: an unbound key does nothing. turnstone's prompt falls through to a denial for any answer that is not `y`, `yes`, `a` or `always`, so a mistyped key denies. This screen never denies on an unbound key. Only `n` denies. [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487]
 
 ### 3.4 A drawn key enters text mode, so an answer may start with `y` or `n`
 

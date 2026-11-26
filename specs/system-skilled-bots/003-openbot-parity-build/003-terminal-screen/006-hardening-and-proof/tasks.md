@@ -38,13 +38,14 @@ STATE=${SKILLED_BOTS_STATE_ROOT:-${XDG_STATE_HOME:-$HOME/.local/state}/system-sk
 
 ### The waves
 
-The tasks run in four waves. A wave's lanes hold disjoint files, so the worker count is the number of lanes, never the number of tasks. `plan.md`'s `External orchestration` section carries each lane's file set, the fallback ladder and the full verify step.
+The tasks run in five waves. A wave's lanes hold disjoint files, so the worker count is the number of lanes, never the number of tasks. `plan.md`'s `External orchestration` section carries each lane's file set, the fallback ladder and the full verify step.
 
 | Wave | Tasks | Executor, model, effort | Workers | Verify after the wave |
 |------|-------|-------------------------|---------|-----------------------|
 | 1 Setup probes | T001 to T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | 1 | The four probe commands print their expected output |
-| 2 Gate repair | T005 to T008 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
-| 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A; `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
+| 2 Gate repair | T005 to T008 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` on lane A. `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
+| 2b The pseudo-terminal test | T033 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | 1 | `cargo test --release --test pty_smoke` prints `1 passed` and names `answers_one_item_in_a_pseudo_terminal` |
+| 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A. `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
 | 4 Verification | T012 to T021 | the orchestrator, no dispatch | 0 | Every gate from the final state, the licence proof, the pointer check, the eight defect checks, the pseudo-terminal run and `RESULT: PASSED` |
 
 A wave whose executor runs out of usage moves down the ladder in `plan.md`'s `External orchestration` section and never lowers its effort tier. A wave already on the last rung stops and reports rather than dropping its tier.
@@ -77,7 +78,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 
 ### Wave 1 - Setup probes
 
-- [ ] T001 Confirm the measured gap before any edit (`$CRATE/Cargo.toml`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` while the crate is absent.
+- [ ] T001 Confirm the crate and the gate set before any edit (`$CRATE/Cargo.toml`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0, so the crate 002 lands is in place, and `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` exits non-zero naming no such target, so the one target this phase adds is the only thing absent.
 - [ ] T002 Record the toolchain the gates run under (`goal.md`). Verify: `cargo fmt --version` and `cargo clippy --version` each print a version and exit 0.
 - [ ] T003 Record the crate's module list as the gate's file set (`$CRATE/src`). Verify: `ls $CRATE/src` prints `app.rs`, `cli.rs`, `data.rs`, `event.rs`, `keys.rs`, `lib.rs`, `main.rs`, `model.rs`, `state.rs`, `terminal.rs`, `theme.rs` and `view`.
 - [ ] T004 Confirm the eight defect rows the audit covers (`../spec.md`). Verify: `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
@@ -94,6 +95,10 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 - [ ] T006 Run the linter and repair only the lines it names (`$CRATE/src`, `$CRATE/tests`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] T007 Run the crate suite and repair only the test it names (`$CRATE/tests`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] T008 Run the runtime suite and repair only the test it names (`.skilled/skills/system-skilled-bots/runtime/tests`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+
+### Wave 2b - The pseudo-terminal test
+
+- [ ] T033 Write the pseudo-terminal smoke test: build a temp skilled tree whose `.skilled/bin/bots.cjs` is a small Node shim that spawns `$CRATE/tests/fixtures/bots` with the argv it is given, resolve the binary with `env!("CARGO_BIN_EXE_bots-ui")`, open a pseudo-terminal, send the keys that answer one item and read the drawn screen. The test has no skip branch, so a missing binary or a missing shim fails it rather than passing it (`$CRATE/tests/pty_smoke.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`.
 
 ### Wave 3 - The two documents
 
@@ -133,7 +138,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
   ```
 - [ ] T019 Run the eight defect checks and record each result in `goal.md` section 4 (`$CRATE`). Verify: `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8, and each row of the Defect Audit table below prints its expected output.
 - [ ] T020 Validate this child (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
-- [ ] T021 Run the scripted pseudo-terminal smoke test (`$CRATE/tests/pty_smoke.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test pty_smoke` prints `test result: ok. 1 passed` and no `SKIP release-absent:` line, so the release binary answered one item and the fixture recorded the `answer` argv. The test opens its own pseudo-terminal, so no person and no interactive terminal are needed.
+- [ ] T021 Run the scripted pseudo-terminal smoke test (`$CRATE/tests/pty_smoke.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`, so the release binary answered one item and the fixture recorded the `answer` argv. The test opens its own pseudo-terminal, so no person and no interactive terminal are needed.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -141,7 +146,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 <!-- ANCHOR:defect-audit -->
 ## Defect Audit
 
-One row per defect the parent's §6 lists, each with the command that proves the fix is present and the output it must print. The grep proves the mechanism exists; the suite proves it behaves, so the pair is the evidence and neither alone is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:241]
+One row per defect the parent's §6 lists, each with the command that proves the fix is present and the output it must print. The grep proves the mechanism exists. The suite proves it behaves, so the pair is the evidence and neither alone is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:241]
 
 | ID | Defect | Check | Expected |
 |----|--------|-------|----------|
@@ -178,7 +183,7 @@ rg -n 'openhuman|tinychannels' $CRATE/src
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, `cargo test --test pty_smoke` prints `1 passed`, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0
+- [ ] `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `$CRATE`, `cargo test --release --test pty_smoke` prints `1 passed` and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -236,7 +241,7 @@ rg -n 'openhuman|tinychannels' $CRATE/src
 - [ ] CHK-021 [P0] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] CHK-022 [P0] Each of the eight Defect Audit rows prints its expected output.
 - [ ] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --doc` prints `test result: ok`, so a doc example that fails is a gate failure rather than a silent skip.
-- [ ] CHK-024 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test pty_smoke` prints `test result: ok. 1 passed` and no `SKIP release-absent:` line, so the release binary answered one item in a pseudo-terminal.
+- [ ] CHK-024 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`, so the release binary answered one item in a pseudo-terminal.
 <!-- /ANCHOR:testing -->
 
 ---

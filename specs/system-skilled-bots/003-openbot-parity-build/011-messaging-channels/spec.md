@@ -189,6 +189,7 @@ Requirement ids of the build children are unique across 003 to 007 and keep thei
 | REQ-030, REQ-031 | The three conformance cases beyond the rules, and the operator documents | 007 |
 | REQ-032, REQ-033 | The reply table in `channel.ts` and `redactToken` | 003 |
 | REQ-034 | `bots channel send` and `drain` | 004 |
+| REQ-035 | The `@<bot-id>` address, the M22 usage reply and the `<channel>:<chatId>` reply target | 005 |
 
 | Rule every child carries | From |
 |--------------------------|------|
@@ -237,7 +238,7 @@ Requirement ids of the build children are unique across 003 to 007 and keep thei
 | `declaredCapabilities` had no vocabulary | 002: `design/capabilities.md` |
 | The acknowledge boundary and the `seen/` record had no design | 002: `design/inbound-sequence.md` |
 | REQ-017 said five rules in one sentence | 002: `design/conformance-rules.md` numbers them R1 to R5 |
-| No message text existed | 001: `design/message-catalog.md` and 21 goldens |
+| No message text existed | 001: `design/message-catalog.md` and 23 goldens |
 | The phase called itself 11 of 11 with no successor | This spec: 11 of 14, successor `012-manual-testing-scenarios` |
 | The chat path was cited by a line number of the pre-expansion `010-conversations/spec.md` | Every child cites `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` section 9, anchor `chat-path` |
 | REQ-004 counted a failed code attempt for any message from an unlinked chat | 003: only a six-digit attempt counts (`002-adapter-and-record-contracts/design/records.md` section 2) |
@@ -253,7 +254,7 @@ Requirement ids of the build children are unique across 003 to 007 and keep thei
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-channel-ux-and-message-map/ | Every message a person reads on the five surfaces: catalog, mockups, reply grammar and 21 goldens | Draft, written |
+| 1 | 001-channel-ux-and-message-map/ | Every message a person reads on the five surfaces: catalog, mockups, reply grammar and 23 goldens | Draft, written |
 | 2 | 002-adapter-and-record-contracts/ | The capability matrix, the channel records, the inbound sequence, the five conformance rules and the operator runbook | Draft, written |
 | 3 | 003-link-roster-and-answer-gate/ | `channel.ts`, `channel-link.ts`, `operators.json`, the roster verbs and the roster check in `answer.ts` | Draft |
 | 4 | 004-approval-index-and-send-queue/ | `channel-approval.ts`, `channel-queue.ts`, the `delivery.ts` change and `list`, `send` and `drain` | Draft |
@@ -274,7 +275,7 @@ Order: 001 and 002 side by side, then 003, then 004 once 003's first wave lands,
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-channel-ux-and-message-map | 003-link-roster-and-answer-gate | The catalog and its 21 goldens exist | `ls specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/golden/*.txt \| wc -l` prints 21 |
+| 001-channel-ux-and-message-map | 003-link-roster-and-answer-gate | The catalog and its 23 goldens exist | `ls specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/golden/*.txt \| wc -l` prints 23 |
 | 002-adapter-and-record-contracts | 003-link-roster-and-answer-gate | The five design documents exist | `ls specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/*.md \| wc -l` prints 5 |
 | 003-link-roster-and-answer-gate | 004-approval-index-and-send-queue | `channel.ts` and the state folders land | `rg -n 'ChannelAdapter' .skilled/skills/system-skilled-bots/runtime/lib/channel.ts` prints the contract |
 | 004-approval-index-and-send-queue | 005-polling-transports | The queue and the index land | `rg -n 'BACKOFF_MS' .skilled/skills/system-skilled-bots/runtime/lib/channel-queue.ts` prints the table |
@@ -291,7 +292,7 @@ Order: 001 and 002 side by side, then 003, then 004 once 003's first wave lands,
 - **Does a chat see the bot's reply?** REQ-014 sends only `deliveryMessage()` output, which holds the outcome and a record pointer. The pre-expansion out-of-scope list promised the reply. This split follows REQ-014. Reversal condition: the operator accepts sending the run's final answer text through the same secret-literal check, and child 001 adds a reply row to the catalog.
 - **Are the derived secret names acceptable, or should `contracts/records.md` section 11 gain keys?** Settled by `contracts/records.md` section 11, "Derived secret names" and "Fixed addresses": the suffix names of `002-adapter-and-record-contracts/design/records.md` section 1.1 stand, `channels/config.json` gains no key, a `whatsapp` entry's `secret` is at most 48 characters and the Signal daemon and the WhatsApp listener keep fixed loopback addresses.
 - **Does signal-cli keep events for a client that was disconnected?** UNKNOWN. `002-adapter-and-record-contracts/design/inbound-sequence.md` section 4 names the manual run that would confirm it.
-- **Should the terminal transport answer on the `terminal` surface?** Settled by `contracts/answer-seam.md` section 1, step 1 "Surface", and its decisions table: the terminal transport answers on the surface `channel` with the OS user as the actor, so an absent roster refuses it `channel-roster-missing` while `bots answer` refuses nothing. Changing it is a change to that row and to child 005 REQ-015 together.
+- **Should the terminal transport answer on the `terminal` surface?** Settled by `contracts/answer-seam.md` section 1 step 1 "Surface" and its decisions table: the terminal transport answers on the surface `channel` with the OS user as the actor, so an absent roster refuses it `channel-roster-missing` while `bots answer` refuses nothing. Changing it is a change to that row and to child 005 REQ-015 together.
 - **Which refusal name covers a credential the provider rejects at start?** Settled by `contracts/refusals.md` section 3.10, the rejected credential row: no refusal name. `channel listen` prints `bots: <channel> rejected the credential`, releases the lease and exits 1, which is what children 005 and 006 specify. A later name would be a new row there and a new exit here.
 <!-- /ANCHOR:questions -->
 
@@ -308,6 +309,8 @@ This phase edits nothing outside its folder. Each row is for the owner of the fi
 | `contracts/fixtures/channel-queue-entry.json` | 6, `text` | The text is not what `deliveryMessage()` builds. Replace it with the M02 text of `001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt`, the one `records.md` section 14 says it is |
 | `contracts/records.md` | 446, the queue entry sample line and section 11 | Done. Section 11 names the derived secret names of `002-adapter-and-record-contracts/design/records.md` section 1.1 under "Derived secret names" and the two addresses under "Fixed addresses" |
 | `contracts/refusals.md` | section 3.10 | Done. The rejected credential row prints `bots: <channel> rejected the credential` with exit 1 and no refusal name |
+| `contracts/records.md` | 395, the sentence that 011 names no check for the bound at `channel link` | Now false. `003-link-roster-and-answer-gate/spec.md` REQ-023 refuses a `whatsapp` secret name over 48 characters `secret-name-invalid` with exit 4 before it writes anything |
+| `contracts/fixtures/channel-seen.json` | the `messageId` value | `"5521"` should be `update:<update_id>`, the form `002-adapter-and-record-contracts/design/inbound-sequence.md` fixes for Telegram |
 | `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` | 268 | "drawn in `contracts/runtime-architecture.md` section 3.3" should read section 3.4, the channel inbound sequence |
 | `../003-terminal-screen/005-answer-flow/design/state-machines.md` | 294 and 308 | Done. Both cites name `003-link-roster-and-answer-gate/spec.md` REQ-005 and REQ-021 |
 | `../spec.md` | the phase map row for 011 | Mark 011 a phase parent with seven children |

@@ -1,6 +1,6 @@
 ---
 title: "Design: the four sequences of computer exposure"
-description: "Four Mermaid sequence diagrams: a worktree run, a shared run, a resumed run whose parked prompt lacks the line, and a status read over an index built before this phase and one built after it."
+description: "Four Mermaid sequence diagrams: a worktree run, a shared run, a resumed run whose parked prompt lacks the line and a status read over an index built before this phase and one built after it."
 trigger_phrases:
   - "working place sequence"
   - "shared run branch sequence"
@@ -20,7 +20,7 @@ The run's own fixed order is [`contracts/runtime-architecture.md`](../../contrac
 
 ## 1. A WORKTREE RUN
 
-The tree is made, its branch is already known, and no git read happens. The line and the record take the same value.
+The tree is made, its branch is already known and no git read happens. The line and the record take the same value.
 
 ```mermaid
 sequenceDiagram
@@ -45,6 +45,7 @@ sequenceDiagram
   Rn->>Rn: seed.evidence.worktreePath and seed.evidence.branch are set
   Rn->>Dp: buildBotPrompt with the working place
   Dp-->>Rn: the prompt, the line third
+  Note over Rn: 005's budget check runs here, after the tree exists. A refusal finishes the fresh tree or returns a resumed one to kept, so no refusal leaves a tree recorded as active.
   Rn->>Ch: dispatch with cwd equal to workDir
   Ch-->>Rn: output and exit
   Rn->>Rc: writeRunRecord
@@ -196,6 +197,7 @@ sequenceDiagram
 | Secret check | None. The check never sees the composed prompt |
 | Isolation | Read. A tree's branch is taken, a shared run's branch is read |
 | Prompt build | The line is emitted, third |
+| Prompt budget | 005's check, after the build and before dispatch. A refusal finishes the tree it made |
 | Dispatch | `cwd` is the same value the line names |
 | Record write | `evidence.branch` is filled for every dispatched run |
 | Index write | The summary carries both fields |

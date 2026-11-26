@@ -60,14 +60,14 @@ The catalog check and the mockup check are written out once in `tasks.md` under 
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the catalog, When each row is read, Then it names a surface, a producer, whether it carries bot-authored text, its varying fields and its golden | `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md \| rg -c '^\| M[0-9]{2} \| '` prints 21 | Unmet | - |
-| AC-002 | REQ-002 | Given the goldens, When each is compared to the catalog, Then there is one per row and each first line is in the catalog | The catalog check prints 21 as its second line and no `DRIFT` line | Unmet | - |
+| AC-001 | REQ-001 | Given the catalog, When each row is read, Then it names a surface, a producer, whether it carries bot-authored text, its varying fields and its golden | `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md \| rg -c '^\| M[0-9]{2} \| '` prints 23 | Unmet | - |
+| AC-002 | REQ-002 | Given the goldens, When each is compared to the catalog, Then there is one per row and each first line is in the catalog | The catalog check prints 23 as its second line and no `DRIFT` line | Unmet | - |
 | AC-003 | REQ-003 | Given the chat refusals of `contracts/refusals.md` section 3.10 and the channel refusals of `contracts/answer-seam.md` section 1, When the catalog is searched for each name, Then each has a row | The catalog check prints no `MISSING` line | Unmet | - |
 | AC-004 | REQ-004 | Given three surfaces and four situations, When the mockups are counted and measured, Then there are twelve and no view line is wider than 73 columns | The mockup check prints 12 and then 0 | Unmet | - |
 | AC-005 | REQ-005 | Given the reply grammar, When it is read, Then it has five rows, names the open prompt a reply answers and what an unmatched line becomes | `rg -c '^\| [1-5] \| ' $D/reply-grammar.md` prints 5 and `rg -n '^## 3\. WHAT A LINE THAT MATCHES NONE BECOMES' $D/reply-grammar.md` prints one line | Unmet | - |
 | AC-006 | REQ-006 | Given the catalog, When it is searched, Then it states the fatigue rule and the reply-text decision | `rg -c 'fatigue notice never reaches a chat\|The run.s reply text is not sent' $D/message-catalog.md` prints 2 | Unmet | - |
-| AC-007 | REQ-007 | Given the limits and the cut rule, When the sizes are recomputed, Then they match the mockups | The mockup check prints `4749 653 849 4761 761 665` | Unmet | - |
-| AC-008 | REQ-008 | Given the tinychannels sources, When the design is searched for their code, Then no signature appears | `rg -n 'pub fn \|impl \|async fn \|use crate::' $D/` prints nothing | Unmet | - |
+| AC-007 | REQ-007 | Given the limits and the cut rule, When the six chunk sizes are searched for, Then each is in the mockups | The mockup check prints no `MISSING` line | Unmet | - |
+| AC-008 | REQ-008 | Given the tinychannels sources, When the design's lines are compared with theirs, Then no line of reference source appears | `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + \| sort -u \| awk 'length>30') <(sort -u $D/*.md) \| wc -l \| tr -d ' '` prints 0 | Unmet | - |
 | AC-009 | REQ-009 | Given every row above, When its Verification cell is read, Then it names a command that runs here without a tty, a token or a network | `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 9 | Unmet | - |
 
 ### Status values

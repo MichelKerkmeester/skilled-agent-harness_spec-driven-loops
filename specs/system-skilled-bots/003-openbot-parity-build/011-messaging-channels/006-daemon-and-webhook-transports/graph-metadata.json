@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Signal has no hosted bot API, so a bot speaks through a `signal-cli` daemon the operator runs",
     "created_at": "2026-11-26T00:00:20Z",
-    "last_save_at": "2026-11-26T00:48:04.417Z",
+    "last_save_at": "2026-11-26T06:45:44.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f73dd4a06c20908adf899746f16caf935477f625659da508a62bcf2a7b49d80b",
+    "source_fingerprint": "sha256:33a6194cdb0dda3e757b539959959dfd3db7275e8a168bc64962c8e1b75eda24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8fa79b787845d5a7cc111b3529adb3b94405450d248e94764feb4a3f6a164ce3",
-      "plan.md": "6468abf5ba0753356ed0ef2216680240556abc1edb545549fb8e098f9d846265",
-      "tasks.md": "9e5198e49f3c906eb7de265bac5101aa18fc4ae5a8cbc3855eeaea09628afba9",
+      "spec.md": "6b8552c7fd62f3d224b61bc5966ca139d4027f8d8cb2bea71e3e7aefd40eaed5",
+      "plan.md": "dee036a89985001d8084f7c10b999c7e7afb865313962d91cad58391fc5f84a5",
+      "tasks.md": "47c7afcd5c3845226ea7fcf1b482eafdaec0de873fe7ba0a663b592bb9f9d427",
       "implementation-summary.md": "698b6df1a9abc16e5fae9dbec9fdf5426cebf6b29433efd0b4598f3ff1615cb4"
     },
     "last_active_at": null

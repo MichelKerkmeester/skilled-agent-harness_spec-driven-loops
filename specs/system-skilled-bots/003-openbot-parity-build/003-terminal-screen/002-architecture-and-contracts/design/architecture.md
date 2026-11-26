@@ -32,7 +32,7 @@ pub struct BotId(pub String)        // a routine's `botId`. The routines selecti
 
 pub enum ActivityKey {              // the activity selection key, built from one row
     Run { identity: String, bot_id: String, run_id: String },   // a row that carries a runId. The key follows the run when it moves from Working to Done
-    Slot { identity: String, bot_id: String, group: String },   // a row whose runId is null, such as a scheduled or recurring row. One per bot per group
+    Slot { identity: String, bot_id: String, group: String, at: String },   // a row whose runId is null, such as a scheduled or recurring row. `at` is the row's own timestamp, so two scheduled rows for one bot in one group stay distinct
 }
 ```
 
@@ -53,7 +53,7 @@ pub enum Surface { Status, Activity, Inbox, Routines } // one per read verb, the
 pub struct Remote<T> {
     pub rows: T,                     // the payload of the last successful read, T::default() before the first one
     pub last_ok_at: Option<EpochMs>, // state.now when the last successful read landed, None before the first
-    pub error: Option<String>,       // the first stderr line of the last failed read, cleared by the next success
+    pub error: Option<String>,       // the composed failure line `cli.rs` builds for the last failed read, cleared by the next success
     pub in_flight: bool,             // a Fetch for this surface is out and its reply has not landed
     pub generation: u64,             // the generation of the newest Fetch issued for this surface
 }
@@ -87,7 +87,7 @@ pub struct PaneView<K> {
 
 | Pane | Field in `State` | Row key | Built from |
 |------|------------------|---------|------------|
-| Activity | `activity_view` | `ActivityKey` | `identity`, `botId` and `runId`, or `group` when `runId` is null |
+| Activity | `activity_view` | `ActivityKey` | `identity`, `botId` and `runId`, or `group` and `at` when `runId` is null |
 | Inbox | `inbox_view` | `ItemId` | the item `id` |
 | Routines | `routines_view` | `BotId` | the routine's `botId` |
 | Chat | none | none | Chat draws one line and selects nothing |
@@ -185,12 +185,14 @@ pub enum Msg {
 pub struct Read { pub payload: Payload, pub warning: Option<String> }   // a read that exited 0, with its first stderr line when it wrote one
 pub enum Payload { Status(StatusPayload), Activity(Vec<ActivityGroup>), Inbox(Vec<InboxItem>), Routines(Vec<Routine>) }
 pub struct AnswerOk { pub warning: Option<String> }                     // the write exited 0
-pub struct ReadError { pub kind: FailKind, pub line: String }           // a read that did not produce a payload, and its first stderr line
+pub struct ReadError { pub kind: FailKind, pub line: String }           // a read that did not produce a payload, and the composed failure line `cli.rs` builds for it
 pub struct AnswerError { pub kind: FailKind, pub refusal: Option<String>, pub line: String }  // a write that did not land, with the refusal name when stderr named one
 pub enum FailKind { Exit(i32), Spawn, Timeout, Parse }                  // why a call failed
 ```
 
 `Msg` carries no `Action`. A key reaches the reducer as `Msg::Key`, and the reducer turns it into an action itself (section 1.10), so no second message type exists for one key press.
+
+`ReadError.line` and `Remote.error` hold the same composed line, and `cli.rs` builds it once so the status row and the pane title draw one wording. The shape is `bots: <verb> --json exited <code>: <first stderr line with a leading "bots: " removed>`, and `contracts.md` section 9 owns it. A read that timed out or failed to spawn composes its line the same way with the reason in place of the exit code. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "9. THE STATUS ROW"]
 
 ### 1.8 Effect and Scope (`state.rs`)
 
@@ -364,6 +366,32 @@ The rules 005 must hold in its arms, fixed here because they shape the state:
 - From `Refused`, `t` returns to `Typing` with `buffer` kept, and `n`, `y` or a digit act as in `Idle`.
 - An `AnswerError` whose kind is `Timeout` moves to `Refused`, never to closed, because the write may have landed. The latest inbox rows decide whether the item is still open, and no read is issued to find out.
 
+### 1.13 The drawing and text signatures (`view/`, `theme.rs`)
+
+The band modules and the two text helpers are called from `view/mod.rs` and from the panes, so their signatures freeze here rather than in the child that fills them. A later child fills a body and never changes a signature.
+
+```rust
+// view/header.rs, 003. The title band: the bot count, the index age and the stale marker
+pub fn draw(frame: &mut Frame, area: Rect, state: &State)
+
+// view/tabs.rs, 003. The tab bar: four labels, the active one marked
+pub fn draw(frame: &mut Frame, area: Rect, state: &State)
+
+// view/footer.rs, 003. The two footer lines: the bound keys for the current context
+pub fn draw(frame: &mut Frame, area: Rect, state: &State)
+
+// theme.rs, 003. The `stale <n>m` age a pane title draws, from now and last_ok_at
+pub fn stale_label(now: EpochMs, last_ok_at: EpochMs) -> String
+
+// theme.rs, 003. Runtime text with control characters and bidi overrides replaced, so a payload cannot move a cell
+pub fn printable(text: &str) -> String
+
+// theme.rs, 003. The one-character marker a row state draws, and its ASCII fallback under --ascii
+pub fn marker(state: RowState, ascii: bool) -> &'static str
+```
+
+`marker` is the single place a row state becomes a character, so the glyph table's seven group ids, the three added glyphs and the ASCII fallback set all resolve through it. 003's T005 writes it and its test asserts one glyph and one ASCII character per state. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/glyph-table.md, section "1. THE GLYPH TABLE"]
+
 ---
 
 ## 2. THE THREAD MODEL
@@ -378,7 +406,7 @@ The rules 005 must hold in its arms, fixed here because they shape the state:
 
 There is one Msg channel, a `std::sync::mpsc` channel whose sender is cloned once to the input thread and once to the worker. Every message the reducer sees arrives on it. The job channel is the worker's queue: the UI thread sends `Effect::Fetch` and `Effect::Answer` into it and nothing else. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:192]
 
-`cli.rs` starts two short-lived reader threads per child inside `std::thread::scope`, one for stdout and one for stderr, so a payload larger than the pipe buffer cannot block the child while the worker waits on its deadline. A 2,000-row activity payload is far larger than a 64 KB pipe. The readers end with the child and never outlive the call.
+`cli.rs` starts two short-lived reader threads per read child inside `std::thread::scope`, one for stdout and one for stderr, so a payload larger than the pipe buffer cannot block the child while the worker waits on its deadline. A 2,000-row activity payload is far larger than a 64 KB pipe. The readers end with the child and never outlive the call. An answer child started at quit is the one exception: it is spawned with stdout and stderr null and gets no readers at all, because nothing will read them once the screen is gone (section 2.5).
 
 The UI loop takes one message with a blocking `recv`, then drains every message already waiting with `try_recv`, reducing each, then draws once. A burst of replies therefore costs one draw. A disconnected channel cannot happen while the input thread lives, so a lost worker reports itself (section 2.6).
 
@@ -395,7 +423,7 @@ The Tick is once a second rather than once every 5 seconds so the header's index
 1. **A generation is per surface.** A reply is dropped only when its generation is older than the newest Fetch issued for the same surface. Because `refresh` never issues a Fetch for a surface already in flight, no reply is dropped in normal running. The check stays so a later change to the in-flight rule cannot let an old read overwrite a newer one, and its test builds the case by hand.
 2. **An answer result is never dropped.** `Answered` carries no generation.
 3. **An answer jumps ahead of queued fetches.** Before each job the worker moves every waiting job from the job channel into a local queue and takes an `Answer` first. A read already running finishes first, so an answer waits at most one read.
-4. **Every child has a timeout.** The worker polls `try_wait` every 10 ms and kills the child at its deadline: 10 seconds for a read, 30 seconds for the answer. A killed read reports `FailKind::Timeout` with the line `bots-ui: <verb> timed out after 10s`. A killed answer reports the same kind with `bots-ui: answer timed out after 30s, it may have landed`. The measured read is 0.18 to 0.34 seconds, so 10 seconds is a hang, not a slow read. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:247]
+4. **Every child has a timeout.** The worker polls `try_wait` every 10 ms and kills a read at its deadline: 10 seconds. A killed read reports `FailKind::Timeout` with the line `bots-ui: <verb> timed out after 10s`. The answer's deadline is 30 seconds and it is not a kill: the worker stops waiting, reports `FailKind::Timeout` with `bots-ui: answer timed out after 30s, it may have landed`, and leaves the child running, because a kill could land between the item write and the print. The measured read is 0.18 to 0.34 seconds, so 10 seconds is a hang, not a slow read. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:247]
 5. **One named source sends the time.** The input thread's `Tick` is the only clock the reducer reads, so a test sets the time by sending a Tick.
 
 Every child runs with stdin null and never with `--as`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:204] A read that exits 0 and writes stderr still returns its payload, with the first stderr line as `warning`, so the "did not read" lines `bots inbox` writes reach the status row. [SOURCE: .skilled/bin/bots.cjs:461-473]
@@ -410,10 +438,12 @@ The worker runs one job at a time and sends each reply before it starts the next
 
 1. Sets the shared `shutting_down` flag the worker reads, and drops the job sender.
 2. Draws nothing more. An answer child already running is not waited for.
-3. Joins the worker. The worker kills a running read and drops every queued read. It starts a queued answer if one waits and returns without waiting for any answer child, because `bots answer` writes the item before it prints and the write completes after the screen exits. `cli.rs` starts the answer child in its own process group, so a hangup sent to the screen does not reach it.
+3. Joins the worker. The worker kills a running read and drops every queued read. It starts a queued answer if one waits and returns without waiting for any answer child, because `bots answer` writes the item before it prints and the write completes after the screen exits. An answer child started at quit, and one already running when quit arrives, is spawned with stdout and stderr null and gets no reader threads, so a write that outlives the screen cannot block on a pipe nobody drains. `cli.rs` starts the answer child in its own process group, so a hangup sent to the screen does not reach it.
 4. Returns the code. The guard's `Drop` then restores the terminal, and the input thread ends with the process.
 
 So Ctrl+D, Ctrl+C, a closed input and a signal never wait for an answer and never write a new one. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:193]
+
+An answer that reaches its 30-second deadline is the one child the worker stops waiting for without killing. It reports `FailKind::Timeout` with the line `bots-ui: answer timed out after 30s, it may have landed`, and the status row appends the exact command that re-runs the write, so the operator can repeat it by hand rather than guess what the screen sent. The child is left running, because a kill at the deadline could land between the item write and the print and turn a landed answer into a reported failure. `quit_does_not_wait_for_answer` proves the quit path: it starts an answer whose child sleeps past the quit, quits and asserts the loop returned without the child's exit and that the child was spawned with null stdout and stderr.
 
 ### 2.6 Signals and panics
 
@@ -448,20 +478,21 @@ The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-b
 | `src/data.rs` | 002: the worker, the job queue, the answer-first order, the shutdown rule | none |
 | `src/cli.rs` | 002: every read, the answer call in the argv `contracts.md` fixes, the timeout, the pipe readers, the stderr first line and the refusal name | none |
 | `src/model.rs` | 002: every payload type complete, `options` and `grants` included, `parse_utc` | none |
-| `src/app.rs` | 002: `run`, `App`, effect hand-off, the drain-then-draw loop, shutdown and the exit code | none |
+| `src/app.rs` | 002: `run`, `App`, effect hand-off, the drain-then-draw loop, shutdown and the exit code | 010 child 003: the Chat tab's surface wiring, so the placeholder becomes a transcript. It edits the Chat arm of the tab switch and nothing else |
 | `src/state.rs` | 002: every type in section 1, `update`, `on_tick`, `refresh`, `on_resize`, `on_fetched`, `on_answered`, `on_key`, `context_stack`, `apply`, the quit arms, the size helpers, and empty stubs for the five functions below | 003: `on_shell_action`. 004: `on_list_action`, `reconcile_selection`, `clamp_scroll`. 005: `on_overlay_action`, `reconcile_overlay`, `overlay_on_answered`. Each child's unit tests sit in its own `#[cfg(test)]` module named after its function |
 | `src/keys.rs` | 002: every type in section 1.9, `resolve`, `palette_entries`, `rows`, and the three slices empty | 003: `SHELL_ROWS`. 004: `LIST_ROWS`. 005: `OVERLAY_ROWS` |
 | `src/theme.rs` | 002: a stub holding `Theme::new(opts: &Options) -> Theme` and nothing drawn | 003: the whole body, the System and Mono palettes, the glyph table, `marker`, `printable` |
-| `src/view/mod.rs` | 002: a stub `draw(frame, state, opts)` that draws the empty frame | 003: the band layout, the too-small screen, the palette panel, the `header`, `tabs` and `footer` module lines. 004: the `panes` module line and the body-slot call. 005: the `banner` and `overlay` module lines, the banner-slot call and the overlay call |
+| `src/view/mod.rs` | 002: a stub `draw(frame, state, opts)` that draws the empty frame | 003: the band layout, the too-small screen, the palette panel, the `header`, `tabs` and `footer` module lines. 004: the `panes` and `banner` module lines, the body-slot call and the banner-slot call. 005: the `overlay` module line and the overlay call |
 | `src/view/header.rs`, `tabs.rs`, `footer.rs` | 003 | none. 004 calls `stale_label` from `header.rs` |
 | `src/view/panes.rs` | 004 | none |
-| `src/view/banner.rs`, `overlay.rs` | 005 | none |
+| `src/view/banner.rs` | 004: the needs-you count band | none |
+| `src/view/overlay.rs` | 005 | none |
 | `tests/fixtures/bots` | 002: every verb including `answer`, the argv log at `--fixture-log <path>`, the scenarios at `--fixture-scenario <name>` | none |
 | `tests/fixtures/payloads/*.json` | 002: the canonical data set the frames draw, copied from `design/payloads/` | 004 and 005 may add a new scenario file, never edit an existing one |
 | `tests/common/mod.rs`, `frames.rs`, `fixture.rs` | 002: the frame loader that reads a frame from `design/mockups.md` by heading and size, and the helper that builds a `Program` with a temp log | none |
 | `tests/cli_client.rs` | 002 | none |
 | `tests/render_keys.rs` | 003 | none |
-| `tests/panes.rs` | 004 | none |
+| `tests/panes.rs` | 004 | 010 child 003: the `chat_placeholder_names_phase_010` test, which it rewrites to assert the transcript. No other test in the file moves |
 | `tests/answer_flow.rs`, `tests/end_to_end.rs` | 005 | none |
 | `tests/pty_smoke.rs` | 006: the release binary in a pseudo-terminal from `libc::openpty`, against the fixture | none |
 | `design/` | 002: 001's four files plus this file and `contracts.md`. The sample payloads go to `tests/fixtures/payloads/`, not here | none. A later edit is made at the source and copied again |
@@ -517,7 +548,7 @@ flowchart TB
       STATE["state.rs, types and core arms by 002<br/>on_shell_action by 003<br/>on_list_action and reconcile_selection by 004<br/>overlay arms by 005"]
       KEYS["keys.rs, types and resolve by 002<br/>SHELL_ROWS 003, LIST_ROWS 004, OVERLAY_ROWS 005"]
       MODEL["model.rs, child 002<br/>serde types, Unknown raw, parse_utc"]
-      VIEW["view/mod.rs stub 002, bands 003<br/>header, tabs, footer: 003<br/>panes: 004<br/>banner, overlay: 005"]
+      VIEW["view/mod.rs stub 002, bands 003<br/>header, tabs, footer: 003<br/>panes, banner: 004<br/>overlay: 005"]
       THEME["theme.rs, stub 002, body 003<br/>System and Mono, glyphs, printable"]
     end
 
@@ -681,7 +712,7 @@ Each of these is a choice the other documents did not fix.
 | The status row line clears only on a clean result from the same source | A clean read must not wipe a refusal |
 | The banner draws blank under an open overlay or palette | Frames 18 to 25 draw it blank |
 | Footer labels drop whole from the right, and the palette label leads line 2 | Defines every size between the floor and 80x24 |
-| `tests/end_to_end.rs` belongs to 005 and `tests/pty_smoke.rs` to 006 | Frame 1 needs the banner, which 005 lands, and the pty run needs the finished binary |
+| `tests/end_to_end.rs` belongs to 005 and `tests/pty_smoke.rs` to 006 | Frame 1 needs the banner, which 004 lands, and the pty run needs the finished binary |
 | The fixture takes its log and scenario as leading arguments | Parallel tests cannot share one log or one environment |
 
 ### 5.1 The defaults this file relies on
@@ -702,14 +733,14 @@ Each of these is a choice the other documents did not fix.
 
 The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record.
 
-Each row names the file, the line as read on 2026-11-25, and the replacement. Paths are relative to `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/`.
+Each row names the file, the line as read on 2026-11-25 and the replacement. Paths are relative to `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/`.
 
 ### 6.1 The phase parent
 
 | File:line | Replacement text |
 |-----------|------------------|
 | `spec.md:137` | `` `crates/bots-tui/src/app.rs` \| Create \| 002 \| The loop: receive one message, reduce it, hand off its effects, draw once `` |
-| `spec.md:143` | `` `crates/bots-tui/src/terminal.rs` \| Create \| 002 \| RAII guard, a chained panic hook, and a signal handler that only sets a flag `` |
+| `spec.md:143` | `` `crates/bots-tui/src/terminal.rs` \| Create \| 002 \| RAII guard, a chained panic hook and a signal handler that only sets a flag `` |
 | `spec.md:144` | `` `crates/bots-tui/src/keys.rs` \| Create \| 002 \| The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` `` |
 | `spec.md:145` | `` `crates/bots-tui/src/theme.rs` \| Create \| 002 \| A stub. 003 writes the System and Mono palettes, the glyph table and `printable` `` |
 | `spec.md:149` | `` `crates/bots-tui/src/view/mod.rs` \| Create \| 002 \| A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls `` |
@@ -720,7 +751,7 @@ Each row names the file, the line as read on 2026-11-25, and the replacement. Pa
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `002-architecture-and-contracts/spec.md:157` | `` `crates/bots-tui/src/lib.rs` \| Create \| Library root: the whole argument parser including `--mono` and `--ascii`, the terminal guard, the loop entry, and every `pub mod` line including `keys`, `theme` and `view`, whose stub files this child also creates `` |
+| `002-architecture-and-contracts/spec.md:157` | `` `crates/bots-tui/src/lib.rs` \| Create \| Library root: the whole argument parser including `--mono` and `--ascii`, the terminal guard, the loop entry and every `pub mod` line including `keys`, `theme` and `view`, whose stub files this child also creates `` |
 | `002-architecture-and-contracts/spec.md:189` | REQ-005, last clause: `and it installs a SIGTERM, SIGHUP and SIGINT handler that only sets an atomic flag, which the event source turns into a Terminate message, so the loop returns and the guard's Drop restores the terminal.` |
 | `002-architecture-and-contracts/spec.md:190` | REQ-006: `No process is spawned on the UI thread. One worker thread runs every CLI call, answer jobs ahead of queued reads, each child under a timeout, and sends every result over one std::sync::mpsc channel. Each read carries its surface's generation and the reducer drops a read whose generation is older than the newest issued for that surface. An answer result is never dropped.` |
 | `002-architecture-and-contracts/spec.md:196` | REQ-012: `` `state.rs` is a pure reducer, `update(state, msg) -> Vec<Effect>`, with the effects `Fetch`, `Answer { id, text, scope }` and `Quit`. Each surface is a `Remote<T> { rows, last_ok_at, error, in_flight, generation }`, and each pane keeps its own `PaneView` keyed by the row key `design/architecture.md` names, never a row index. `` |
@@ -770,7 +801,7 @@ Each row names the file, the line as read on 2026-11-25, and the replacement. Pa
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `005-answer-flow/spec.md:126` | `` `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer, and the lock that `Sending` is `` |
+| `005-answer-flow/spec.md:126` | `` `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer and the lock that `Sending` is `` |
 | `005-answer-flow/spec.md:128-131` | Delete the `cli.rs`, `model.rs`, `app.rs` and fixture rows. 002 owns all four. Add `` `crates/bots-tui/tests/end_to_end.rs` \| Create \| The scripted loop from the fixture to frame 1 `` |
 | `005-answer-flow/spec.md:155` | REQ-016: `A bots answer that fails puts the first stderr line in the status row. A refusal contracts.md classes as gone moves the overlay to Gone, and every other failure, a timeout included, keeps it open on the same item in Refused.` |
 | `005-answer-flow/plan.md:63` | `` Overlay { item_id, options, item, phase, buffer } where phase is Idle, Typing, Sending, Refused(String) or Gone `` |

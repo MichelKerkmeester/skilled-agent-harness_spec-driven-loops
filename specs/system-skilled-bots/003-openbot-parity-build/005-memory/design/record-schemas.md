@@ -38,6 +38,7 @@ What this note adds is the part the contracts leave to the phase: the exact valu
 | Read by | `bots remember --list` with no `--bot`, and every run whose definition reads `memory: true` | `bots remember --list --bot <id>`, and every run of that bot whose definition reads `memory: true` |
 | Written by | `bots remember`, and `bots answer confirm` when `proposalBotId` is the shared scope | `bots remember --bot <id>`, and `bots answer confirm` for that bot |
 | `schemaVersion` | None | None |
+| Path helper | `sharedMemoryFile(stateRoot)`, declared in `state-root.ts` and re-exported by `memory.ts` | `botMemoryFile(stateRoot, identity, botId)`, declared in `memory.ts` |
 
 The folder modes and the file modes are the ones the state root already gives its own folders and the ones the packet's tree records. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/runtime-architecture.md, section "2.1 The user state root"] The state root's folder mode is 0700 [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:46].
 
@@ -214,8 +215,11 @@ A bot proposes a fact by printing one line. The line is the phase's own grammar 
 | `[REMEMBER] maybe Prefers ISO dates.` | No item. The run records `remember-type-invalid` |
 | `[REMEMBER] user ` | No item. The run records `remember-type-invalid` |
 | `[REMEMBER] user Prefers ISO dates.` twice | One item, from the first line. A second line is ignored |
+| `[REMEMBER] user ` followed by 401 characters | No item. The run records `remember-fact-too-long` |
 
 The type is never guessed. A line that names no type, or names one outside the four, is refused `remember-type-invalid` rather than defaulted to `general`, because a guessed type is a wrong fact about where the fact came from. The refusal is a post-run cause: the child already ran, so the run stays `completed` and no item is written. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory"]
+
+**An over-long fact.** A fact over 400 characters is refused `remember-fact-too-long` on the same terms: no item, the run stays `completed`, and the cause is recorded. The alternative is to cut the fact to 400 characters, and a cut fact is a wrong fact that reads as a whole one, so the line is reported and dropped. The bound is the same 400 characters `appendMemoryEntry` enforces, so a fact that passes here cannot fail the append on length.
 
 **Precedence.** A `[NEEDS-DECISION]` line in the same answer outranks a `[REMEMBER]` line. The run parks and no proposal item is written, because a parked run has not finished and its fact may be about work it did not do. A `[REMEMBER]` line in a failed run writes no item for the same reason.
 

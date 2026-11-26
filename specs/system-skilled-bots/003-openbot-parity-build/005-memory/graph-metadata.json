@@ -48,6 +48,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
@@ -57,8 +58,7 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts"
+      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md"
     ],
     "entities": [
       {
@@ -113,6 +113,12 @@
         "name": "runner.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
         "source": "derived"
       },
       {
@@ -176,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "dispatch.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]",
     "created_at": "2026-11-25T07:13:40Z",
-    "last_save_at": "2026-11-26T05:54:44.289Z",
+    "last_save_at": "2026-11-26T06:49:54.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1a502bfb234e55f707677c7124d30bfb40309f5d6145bf611363741d871ec85",
+    "source_fingerprint": "sha256:24f1e62522a7798ede89b30f3a543f9e840f32950e97bb0ff9ec67d98898ff50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a9849524d3d3a1dcbd92771a66b2c4102ffe41619400083712ba1bc5d0ce4d22",
-      "plan.md": "d3c6e5082061cdbe6aa79863331fa4ef09d1a18d7c9e8dfd87b5e11b838f5e9f",
-      "tasks.md": "ee41a5763bf1a307c5475958209107ef211de1514901db7b4b7680ee0da52e17",
+      "spec.md": "cf5717ddcf2258941e54a14c4ac49963075c78ca5e99e26a24c0c97a46fc90e8",
+      "plan.md": "6512fad11cf6421a4783885357b240c1e607b2f4e65b47d02b5112c3db844515",
+      "tasks.md": "77abdd9fc2e8c9c5e6f427bc1a7f73cf0e6f71390a375f89c5a2c17dba721cd5",
       "implementation-summary.md": "45353e8fed56bec9062246d66aeb1a85147a946294fcbde40201df7271a21b56"
     },
     "last_active_at": null

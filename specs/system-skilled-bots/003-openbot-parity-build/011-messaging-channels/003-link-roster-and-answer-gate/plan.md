@@ -59,6 +59,7 @@ One contract module, one file-backed state module, one gate in the shared answer
 ### Key Components
 - **`channel.ts`**: the contract, the message model and the capability keys. It imports `state-root.ts` and nothing else (`contracts/runtime-architecture.md` section 1.2). An undeclared operation returns `unsupported` with `retryable: false` and `sentBeforeError: false`, the rule the reference states once per provider [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:55-63]. The contract follows the reference's adapter shape: a descriptor, declared capabilities, a start that takes an inbound sink, a stop, a send that returns a receipt and a status [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs:13-117]. The reference is GPL-3.0, so it is design only and no line is copied.
 - **`channel-link.ts`**: the code, the link, the pairing lockout and the roster. The lockout constants are the reference's five attempts and 300 s [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/security/mod.rs:15-18]. An unlinked chat is denied by default, the allowlist rule the reference applies to every provider [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-bus/src/config.rs:133-172]. `link` and `unlink` write the config through `channel.ts`'s `writeChannelConfig`.
+- **The 0600 rule**: one helper, `writeStateFile(path, content)` in `state-root.ts`, which writes a temporary file beside the target, calls `chmodSync(temp, 0o600)` and renames it into place, the order `status-index.ts` already uses for its index [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:708]. Every channel file goes through it, so `operators.json`, `channels/config.json`, `channels/links.json` and child 004's `channels/approvals.json` are 0600 inside a 0700 folder without each writer remembering the mode.
 - **`answer.ts`**: the one write path an answer takes, and the one place the roster is checked. `answerItem` takes the surface and the actor as arguments and refuses at step 5 of `contracts/answer-seam.md`, before the lock of step 6.
 - **The `channel` verb group in `bots.cjs`**: `link`, `unlink` and `roster`. Children 004, 005 and 006 add their verbs to the same group in that order.
 
@@ -76,7 +77,7 @@ One contract module, one file-backed state module, one gate in the shared answer
 | `lib/state-root.ts` | Names every per-identity folder | update - add `channelFolder`, `operatorsFile` and `ensureChannelState` | `rg -n 'channelFolder\|operatorsFile\|ensureChannelState' .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` prints three |
 | `lib/answer.ts` | Owns the answer write and the resume enqueue | update - the roster check keyed on the surface | `rg -n 'answer-not-approver' .skilled/skills/system-skilled-bots/runtime/lib/answer.ts` prints the refusal |
 | `bin/bots.cjs` | Owns the verb table, the usage text and the exit codes | update - the `channel` group's first verbs | `node .skilled/bin/bots.cjs channel --help` exits 0 |
-| `bots answer` and the screen's answer | Write through `answerItem` with the surface `terminal` | unchanged argv, a present roster now refuses an actor it does not name | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/answer.vitest.ts -t "present roster"` prints one passing test |
+| `bots answer` and the screen's answer | Write through `answerItem` with the surface `terminal` | unchanged argv, a present roster now refuses an actor it does not name | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/answer.vitest.ts -t "^bots answer refuses a terminal answer from an actor off a present roster$")` prints `Tests  1 passed` |
 
 Required inventories:
 - Same-class producers of the roster: `rg -n 'operators.json|isApprover' .skilled/skills/system-skilled-bots/runtime --glob '*.ts'` names one writer (`channel-link.ts`) and one reader (`answer.ts`).
@@ -147,7 +148,7 @@ Setup ──► Implementation ──► Verification
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | Nothing | Implementation |
-| Implementation | Setup, and children 001 and 002 | Verification, and child 004 once T006 to T008 land |
+| Implementation | Setup and children 001 and 002 | Verification and child 004 once T006 to T008 land |
 | Verification | Implementation | Closure |
 <!-- /ANCHOR:phase-deps -->
 

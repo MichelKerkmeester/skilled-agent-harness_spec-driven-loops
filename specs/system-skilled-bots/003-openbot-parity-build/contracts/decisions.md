@@ -1,21 +1,22 @@
 ---
-title: "Contract: Packet decisions D1 to D10"
-description: "The ten packet-level decisions, nine the plan-depth research raised and one the conversations phase raised, each with the choice taken, its author, its date and the documents it changes. Each is open for the operator to override."
+title: "Contract: Packet decisions D1 to D11"
+description: "The eleven packet-level decisions, nine the plan-depth research raised, one the conversations phase raised and one the prompt budget raised, each with the choice taken, its author, its date and the documents it changes. Each is open for the operator to override."
 trigger_phrases:
   - "parity build decisions"
   - "proposal sentinel decision"
   - "deep review missing executor"
   - "routine streak after enable"
+  - "skills list cap"
 importance_tier: "important"
 contextType: "decision"
 version: 1.0.0.0
 ---
 
-# Packet decisions D1 to D10
+# Packet decisions D1 to D11
 
-D1 to D9 come from the plan-depth research's work order WO-01. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:321-333] For each of the nine the choice taken is the research's recommended default. D10 comes from the conversations phase's work order WO-08, which found that a stored message cannot keep a paragraph break.
+D1 to D9 come from the plan-depth research's work order WO-01. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:321-333] For each of the nine the choice taken is the research's recommended default. D10 comes from the conversations phase's work order WO-08, which found that a stored message cannot keep a paragraph break. D11 comes from the prompt budget, which found that the two memory caps and the skills cap could not all be filled under the 32,000 character total.
 
-**Who took them.** The assistant took D1 to D9 on 2026-11-25 and D10 on 2026-11-26, each time under the operator's directive to proceed without asking. None was put to the operator. Each stays open: the operator overrides one by editing its row here, and a writer applies the row as it stands when the work order runs.
+**Who took them.** The assistant took D1 to D9 on 2026-11-25, D10 on 2026-11-26 and D11 on 2026-11-26, each time under the operator's directive to proceed without asking. None was put to the operator. Each stays open: the operator overrides one by editing its row here, and a writer applies the row as it stands when the work order runs.
 
 **How a writer uses this file.** A work order that names a decision applies the choice below to the documents in the last column, in the same change. A decision this file marks overridden is applied as overridden.
 
@@ -31,3 +32,4 @@ D1 to D9 come from the plan-depth research's work order WO-01. [SOURCE: specs/sy
 | D8 | 002's first-failure notice | Defer, with one out-of-scope line. `delivery.onFailure` already reports each failure | The reference posts one notice on the first failure after a success [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:118-123]. The existing failure delivery covers the operator's need | 002's out-of-scope list | Taken 2026-11-25, open to override |
 | D9 | 002's failure streak after `bots enable` | Count only runs newer than a stored `enabledAt`, which `bots enable` writes into the routine state file | Without it the ten old failures stay the newest ten and the next single failure trips the switch again [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006]. The reference restarts the count at re-enable [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:118-123]. The field is in `records.md` section 6 | 002 REQ-006, the routine state file | Taken 2026-11-25, open to override |
 | D10 | How a stored conversation message keeps a line break | Keep it. A stored message keeps each line feed (LF) and drops every other control character, the carriage return included, so a CRLF is stored as LF. The chat pane splits the text on LF and draws each line. Single-line rows (inbox, activity, routines) still replace a line break with `?` through `theme::printable`. The prompt renderer writes each LF inside a message as one space, so one message is still one prompt line | Stripping the newline with the other control characters cost every stored bot reply its paragraph breaks [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md, section "6. CONTRADICTIONS AND DEFECTS THE SPLIT FIXES"]. The space at render keeps what the strip protected: the line cut of `prompt-sections.md` section 4.3 still drops whole messages, and no message can start a prompt line that reads as a request header or a forged tag. A space and an LF are each one character, so no budget count moves | `records.md` section 10, the `text` row. `prompt-sections.md` sections 1.9 and 6. 010 child 002 REQ-003 and the chat path in its spec, plan, tasks and acceptance criteria. 010 child 001's mockups, pane contract, component rows, prompt boundary, routing grammar, loop transcript and key map delta | Taken 2026-11-26 by the assistant under the do-not-ask directive, open to override |
+| D11 | The skills list cap under the 32,000 character prompt budget | Lower it. `SKILLS_TOTAL_MAX_BYTES` becomes 20,480 bytes, down from 24,576. The per-body cap stays 16,384 bytes | Two full memory files and a full skills list were 2 x 3,600 + 24,576 = 31,776 bytes before any wrapper, label, protocol line or body, so a bot at both caps was always refused `prompt-over-budget` and neither block truncates [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-015] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-003]. At 20,480 the two blocks are 27,680 bytes and 4,320 characters are left for the wrappers, the labels, the two fixed protocol lines and the body, so a bot at both caps fits. The list cap is the term that gives way because a memory file is the bot's own record and a skills list is a reference the author chooses | `prompt-sections.md` section 4.2, the Skills row and the arithmetic paragraph. 005's goal, which named a 23,219 byte ceiling. 009's `SKILLS_TOTAL_MAX_BYTES` and the cap its plan, spec and checker state | Taken 2026-11-26 by the assistant under the do-not-ask directive, open to override |

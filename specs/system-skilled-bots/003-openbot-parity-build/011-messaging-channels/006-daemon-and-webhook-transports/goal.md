@@ -83,4 +83,8 @@ and findings belong here.
 | Tasks moved from the pre-expansion list | T009, T010, T028 and T030. Each new task names its old id. |
 | UNKNOWN | Whether signal-cli keeps events for a disconnected client. |
 | Not stated in the reference | Signal's and Meta's own send limits. |
+| F-022, the Signal group | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: the first alternative, the Out of Scope line is corrected to WhatsApp only and a Signal group event is refused `channel-group-approval` with reply M16, because the capability matrix declares `groupKnown` yes for Signal. |
+| F-023, the failed status | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: a `statuses` entry whose status is `failed` for a known platform message id maps onto that queue entry and the run record, so a prompt Meta accepted and then rejected is never left `delivered`. |
+| F-064, the two addresses | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: both loopback addresses are injected arguments of the transport, fixed at `127.0.0.1:8787` and `127.0.0.1:8080` in production, so a test binds an ephemeral port. |
+| O-001, the anchored filters | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: every filter names its full test name and states its pass count, and the shared cases are one `transport shared` block that runs over every transport in the table. |
 <!-- /ANCHOR:log -->

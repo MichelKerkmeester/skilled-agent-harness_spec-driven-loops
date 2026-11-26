@@ -25,10 +25,10 @@ contextType: "implementation"
 | **Language/Stack** | Rust, 2021 edition, one package with a library and a binary target |
 | **Framework** | ratatui 0.30 with crossterm 0.29, no async runtime |
 | **Storage** | None. The shell reads `state.status` and opens no file |
-| **Testing** | `cargo test` for unit tests and `TestBackend` render tests; no snapshot crate |
+| **Testing** | `cargo test` for unit tests and `TestBackend` render tests. No snapshot crate |
 
 ### Overview
-The shell is three pieces that read each other. `keys.rs` holds one table of context, key, action and label rows, and both the footer and the palette read it, so a binding and its label cannot drift apart. `theme.rs` holds the two palettes, the glyph table with its ASCII column and the one control-character filter. `view/mod.rs` composes the seven bands and draws the too-small screen and the palette, and the three child modules draw the header, the tabs and the footer. The proof is `tests/render_keys.rs`: it iterates the table and asserts every label appears in the frame that binds it, then compares the whole buffer to an expected block at 80x24 and at 120x40.
+The shell is three pieces that read each other. `keys.rs` holds one table of context, key, action and label rows, and both the footer and the palette read it, so a binding and its label cannot drift apart. `theme.rs` holds the two palettes, the glyph table with its ASCII column and the one control-character filter. `view/mod.rs` composes the seven bands and draws the too-small screen and the palette, and the three child modules draw the header, the tabs and the footer. The proof is `tests/render_keys.rs`: it iterates the table and asserts every label appears in the frame that binds it, then compares the shell bands to an expected block at 80x24 and at 120x40, skipping the body rows 004 fills.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -64,7 +64,7 @@ One table, one frame.
 - **`view/header.rs`**: the bot count, the index age, `stale_label`, the stale flag with its age, and the error state. It reads `state.status` and draws nothing else. `stale_label` is the one age formatter, so 004's panes call it rather than keeping a second copy.
 - **`view/tabs.rs`**: the four tabs and the active mark. The `[` and `]` pair is the fallback for a keyboard that never delivers Alt. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:15] The chat tab's one line naming phase 010 is 004's, drawn into the body slot.
 - **`view/footer.rs`**: the status row and the key line. The key line is generated from `keys.rs`, so the footer cannot name a key the table does not bind. It draws two lines. Activity and Routines draw `Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page` over `Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit`, the inbox adds `Enter open` to line 1, and Chat draws `Alt+1..4 tabs · [ ] cycle` over the same line 2. The list labels reach the footer from 004's `list` rows, and the answer keys appear only in the overlay footers.
-- **`tests/render_keys.rs`**: the key-label assertion and the two shell snapshots. It iterates the table rather than a hand-written list, and it compares the `TestBackend` buffer to a block held in the test file, so no snapshot file hides the cells the operator sees.
+- **`tests/render_keys.rs`**: the key-label assertion and the two shell snapshots. It iterates the table rather than a hand-written list, and it compares the shell bands of the `TestBackend` buffer to a block held in the test file, so no snapshot file hides the cells the operator sees. The body rows are skipped, because 004 routes a pane into them and this phase's snapshots must stay green when it does.
 
 ### Data Flow
 The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, and below 24 columns or 8 rows it draws `Too small · Ctrl+D exit` and returns. Otherwise it draws the header from the status surface, the tabs from the active tab, the rule, the body slot, the banner slot, the status row from the last error, and the footer from `keys.rs`. When the palette is open it draws the panel over the body, filtered by the text the operator typed. A key reaches the reducer as `Msg::Key`. The reducer calls `keys::resolve` with the context stack and applies the action, and the next frame draws the label the same row carries.
@@ -85,7 +85,7 @@ The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, a
 
 Required inventories:
 - Same-class producers: `rg -n 'label:' crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
-- Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs`, `view/mod.rs` and `state.rs` only; `rg -n 'stale_label' crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
+- Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs`, `view/mod.rs` and `state.rs` only. `rg -n 'stale_label' crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
 - Matrix axes: three header states (`ok`, `stale`, `error`) by two sizes (80x24, 120x40), plus the too-small case at 23x8 and 24x7, plus two palettes (System, Mono) and two glyph columns (Unicode, ASCII).
 - Algorithm invariant: every drawn string passes `theme::printable`, and every band's height is computed with saturating subtraction, so no area from 1x1 upward can underflow.
 <!-- /ANCHOR:affected-surfaces -->
@@ -105,7 +105,7 @@ Setup confirms phase 002's crate builds, the fixture answers `status --json` wit
 <!-- ANCHOR:external-orchestration -->
 ## External orchestration
 
-The build runs as six waves of external CLI workers. Each wave names its tasks, one executor per lane, the effort tier, how many workers run at once, and the check the orchestrator runs before the next wave starts. The wave tables live in `tasks.md` under `## Execution Waves`; this section owns the executor contract they cite. The hub routes every dispatch and each mode's own `SKILL.md` owns its argv, so this section names the route and the effort, never a command line. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:26] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:31]
+The build runs as six waves of external CLI workers. Each wave names its tasks, one executor per lane, the effort tier, how many workers run at once and the check the orchestrator runs before the next wave starts. The wave tables live in `tasks.md` under `## Execution Waves`. This section owns the executor contract they cite. The hub routes every dispatch and each mode's own `SKILL.md` owns its argv, so this section names the route and the effort, never a command line. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:26] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:31]
 
 ### Executors and how each one expresses effort
 
@@ -113,7 +113,7 @@ The build runs as six waves of external CLI workers. Each wave names its tasks, 
 |----------|-------|--------------|--------|-------|
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | `--thinking high` | `--thinking max` |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#<tier>` on the model id | upgraded to `max` | `#max` |
-| `cli-mistral-vibe` | `deepseek-flash` | none; the row's `thinking` field | not available | the row's `max` |
+| `cli-mistral-vibe` | `deepseek-flash` | none. The row's `thinking` field | not available | the row's `max` |
 | `cli-devin` | `deepseek-v4-1-flash-max` | the model id | not named by this packet | the id itself |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort` | `high` | `xhigh`, the tier this packet uses |
 
@@ -162,7 +162,7 @@ Two rungs can refuse before they spend anything, and the ladder treats a refusal
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | The key table's actions and labels, the tab cycle, the palette filter and its reducer arms, the theme's `--mono` selection, the glyph table's two columns, `printable`, and `stale_label` | `cargo test --lib keys`, `--lib theme`, `--lib header`, `--lib state` |
-| Render | Every label in the table appears in the frame that binds it; the header's three states; the status row with and without an error; the too-small screen at 23x8 and 24x7; the palette's filter, Enter and Esc | `cargo test --test render_keys` |
+| Render | Every label in the table appears in the frame that binds it. The header's three states. The status row with and without an error. The too-small screen at 23x8 and 24x7. The palette's filter, Enter and Esc | `cargo test --test render_keys` |
 | Snapshot | The whole shell buffer at 80x24 and at 120x40, compared to an expected block held in the test file | `cargo test --test render_keys` |
 | Environment | `--mono` selects Mono and the Mono frame draws the same symbols as System | `cargo test --lib theme` |
 | Gate | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test`, the two greps and `validate.sh` | The commands in `tasks.md` |
@@ -178,8 +178,8 @@ No test needs a tty. The frame is drawn into a `TestBackend` buffer, the state i
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 002's crate, `state.rs`, `app.rs` and `cli.rs` | Internal | Yellow | The shell has nothing to draw from, and this phase cannot start |
-| `bots status --json` | Internal | Green | The header loses its bot count and stale flag; the fixture carries the payload, so the tests still run |
-| Phase 001's `design/` folder | Internal | Yellow | The exact strings and the glyph table have no approved source; the advisory's UX rules fix them, and a mismatch is a Logic-Sync |
+| `bots status --json` | Internal | Green | The header loses its bot count and stale flag. The fixture carries the payload, so the tests still run |
+| Phase 001's `design/` folder | Internal | Yellow | The exact strings and the glyph table have no approved source. The advisory's UX rules fix them, and a mismatch is a Logic-Sync |
 | ratatui 0.30 and crossterm 0.29 | External | Green | The frame cannot draw |
 | Rust stable toolchain | External | Green | The crate cannot build |
 <!-- /ANCHOR:dependencies -->

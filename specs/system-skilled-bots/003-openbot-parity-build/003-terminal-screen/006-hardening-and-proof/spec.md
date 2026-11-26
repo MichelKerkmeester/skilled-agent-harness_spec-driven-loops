@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Phase** | 6 of 6 |
 | **Predecessor** | `005-answer-flow` |
 | **Successor** | None |
-| **Handoff Criteria** | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `crates/bots-tui`; `cargo test --test pty_smoke` prints `1 passed`, so the answer path is proven without a person; the licence grep finds no GPL header in the code or the manifest and no copied openhuman code; `crates/bots-tui/README.md` names the build, the run, every bound key and the design reference; `validate.sh --strict` prints `RESULT: PASSED` for this child, which is the last of the six and so the row the parent's `--recursive` run reads last |
+| **Handoff Criteria** | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0 in `crates/bots-tui`. `cargo test --release --test pty_smoke` prints `1 passed`, so the answer path is proven without a person. The licence grep finds no GPL header in the code or the manifest and no copied openhuman code. `crates/bots-tui/README.md` names the build, the run, every bound key and the design reference. `validate.sh --strict` prints `RESULT: PASSED` for this child, which is the last of the six and so the row the parent's `--recursive` run reads last |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -111,7 +111,7 @@ Every gate this phase runs has nothing to run against today: the manifest, the s
 - The `bots-tui` CI job and its toolchain step - `002-architecture-and-contracts` owns `.github/workflows/bots-runtime.yml`, so this phase reads the job and reports a mismatch rather than editing it.
 - The hand proof - it is the operator's final acceptance step after this phase, and the scripted pseudo-terminal run here proves the same path without a person. The closed-input test stays `005-answer-flow`'s.
 - Any new module, option or dependency - this phase adds no behaviour, and a gate that needs a behaviour change is reported to the child that owns the module.
-- `THIRD_PARTY_NOTICES.md` - no third-party code is copied, so there is nothing to notice; the design reference is recorded in the crate README instead.
+- `THIRD_PARTY_NOTICES.md` - no third-party code is copied, so there is nothing to notice. The design reference is recorded in the crate README instead.
 - The design mockups and the screenshots - `001-ux-and-component-map` owns `design/`, and this phase reads it for the pointer check and links it from the README.
 - A `--demo` binary, a bench flag, mouse support and a theme picker - the parent rules each out, and none is needed to prove a gate.
 
@@ -131,7 +131,7 @@ Every gate this phase runs has nothing to run against today: the manifest, the s
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-REQ-002 is inherited from the parent and keeps its id and its wording, so a citation from another phase still resolves. This child's own requirements start at REQ-012, the highest parent id plus one, and run in one sequence across the P0 and P1 tables; a new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
+REQ-002 is inherited from the parent and keeps its id and its wording, so a citation from another phase still resolves. This child's own requirements start at REQ-012, the highest parent id plus one, and run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
@@ -153,7 +153,7 @@ REQ-002 is inherited from the parent and keeps its id and its wording, so a cita
 | REQ-019 | `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line naming the verb as a status surface, and both hub mirrors are symlinks, `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0, so the edited line and the edited verb each land once rather than in two copies. `rg -c 'ui' .opencode/bin/bots.cjs` prints the same count as `.skilled/bin/bots.cjs`. |
 | REQ-020 | `crates/bots-tui/design/` holds the four documents 001 authored, `mockups.md`, `key-map.md`, `glyph-table.md` and `component-inventory.md`, plus 002's `architecture.md` and `contracts.md`, and every `file:line` pointer in them resolves to a real line in the cited source under `specs/system-skilled-bots/context/` whenever that gitignored folder is present, the check names its skip when it is absent, and the folder names openhuman as the design reference with its GPL-3.0 licence. A pointer that dangles is a broken citation, not a design note, and a missing design folder is a failed check rather than an empty one. |
 | REQ-021 | The `bots-tui` job in `.github/workflows/bots-runtime.yml` runs the same three gates this phase runs, and `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2. A job that runs a different gate set is reported to `002-architecture-and-contracts` and recorded in `goal.md`, never edited here. |
-| REQ-022 | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test pty_smoke` starts the release binary in a pseudo-terminal against the fixture, sends the keys that answer one item and reads the drawn screen, so the answer path is proven without a person. The test resolves `crates/bots-tui/target/release/bots-ui` and, when it is absent, writes one `SKIP release-absent:` line to stderr naming the build command rather than passing silently. T021 requires `1 passed`, so a skip cannot satisfy the gate. |
+| REQ-022 | `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` starts the release binary in a pseudo-terminal against the fixture, sends the keys that answer one item and reads the drawn screen, so the answer path is proven without a person. The test resolves the binary with `env!("CARGO_BIN_EXE_bots-ui")`, which cargo sets for an integration test, so no path is typed and no build step is assumed. It builds a temp skilled tree whose `.skilled/bin/bots.cjs` is a small Node shim that spawns the fixture with the argv it is given, so the release binary's one fixed program path reaches the fixture without an environment variable. The test has no skip branch: a missing binary or a missing shim fails the test rather than passing it. |
 
 ### What REQ-002 means as design
 
@@ -175,7 +175,7 @@ The clean-room rule keeps those sources out of the briefs of the workers that wr
 - **SC-003**: `crates/bots-tui/README.md` names the build command, the run command, every bound key, the eight glyphs with their ASCII fallback, and openhuman as the design reference with no code copied.
 - **SC-004**: the eight rows of the Defect Audit table each print their expected output, so every defect the expansion fixes has a check that passes.
 - **SC-005**: `validate.sh --strict` on this child prints `RESULT: PASSED`, and the parent's `--recursive` run reads this child's line last.
-- **SC-006**: `cargo test --test pty_smoke` prints `1 passed`, so the release binary answers one item in a pseudo-terminal and the fixture records the `answer` argv.
+- **SC-006**: `cargo test --release --test pty_smoke` prints `1 passed`, so the release binary answers one item in a pseudo-terminal and the fixture records the `answer` argv.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -185,11 +185,11 @@ The clean-room rule keeps those sources out of the briefs of the workers that wr
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `003`, `004` and `005` land the modules and tests this phase gates | High: a missing target makes a gate fail on a path rather than on a defect | The gate runs against whatever exists and reports the missing target by name; the phase does not pass a gate it could not run |
+| Dependency | `003`, `004` and `005` land the modules and tests this phase gates | High: a missing target makes a gate fail on a path rather than on a defect | The gate runs against whatever exists and reports the missing target by name. The phase does not pass a gate it could not run |
 | Dependency | `002` lands the crate, the fixture and the `bots-tui` CI job | Medium: no manifest means no gate | The measured-behavior block records the absent manifest, and the phase starts only after 002's handoff row passes |
 | Risk | A gate failure tempts a rewrite of a module another child owns | High: a behaviour change in a hardening phase is invisible to the child that owns the module | Repair only the line the gate names, and record a deviation in `goal.md` when the repair changes behaviour |
 | Risk | The GPL grep is a text match, so a paraphrased copy passes it | Medium: the licence proof would be weaker than it reads | Pair the grep with the design-pointer check, the clean-room rule that keeps the GPL sources out of the worker briefs, and a recorded human read of the guard and the overlay, and say in the log that the three are the evidence |
-| Risk | The pseudo-terminal run needs a release binary the CI job may not have built | Medium: the test would skip and the answer path would go unproven | The test writes a named `SKIP release-absent:` line rather than passing silently, and T021 requires `1 passed`, so a skip cannot satisfy the gate |
+| Risk | The pseudo-terminal run needs a release binary the CI job may not have built | Medium: the test would skip and the answer path would go unproven | The test resolves the binary with `env!("CARGO_BIN_EXE_bots-ui")` and runs under `cargo test --release`, so cargo builds it, and the test has no skip branch, so a missing binary fails rather than passes |
 | Risk | A `cargo clippy` release changes the lint set under a pinned toolchain | Low: the gate fails on a lint the crate never had | The CI job pins the toolchain, and the local run records `cargo clippy --version` in the log |
 <!-- /ANCHOR:risks -->
 
@@ -203,7 +203,7 @@ The clean-room rule keeps those sources out of the briefs of the workers that wr
 - **NFR-P02**: `crates/bots-tui/README.md` stays under 200 lines, so a reader reaches the keys without scrolling past a manual.
 
 ### Security
-- **NFR-S01**: No gate command reads a credential or the state root; every test reads `crates/bots-tui/tests/fixtures/bots`.
+- **NFR-S01**: No gate command reads a credential or the state root. Every test reads `crates/bots-tui/tests/fixtures/bots`.
 - **NFR-S02**: The licence grep covers every file the crate ships that carries code, `src/` and the two Cargo files, and searches for the licence header text rather than the licence name. `README.md` and `design/` name the reference's GPL-3.0 licence by design, so they are outside the grep and a match there is not a failure.
 
 ### Reliability

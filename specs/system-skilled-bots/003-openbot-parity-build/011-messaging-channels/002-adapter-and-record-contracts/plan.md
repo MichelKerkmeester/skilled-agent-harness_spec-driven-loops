@@ -24,7 +24,7 @@ contextType: "implementation"
 | **Language/Stack** | Markdown. No code |
 | **Framework** | None |
 | **Storage** | `design/` in this child folder |
-| **Testing** | `rg`, `awk` and `node -e` checks that run without a tty |
+| **Testing** | `rg`, `awk` and `comm` checks that run without a tty |
 
 ### Overview
 The contracts own every channel record's fields. This child owns what they leave open. The capability matrix turns the reference's structured capability record into eight booleans and three facts per transport, because five transports and five operations need no more. The records document restates each contract table and adds its lifecycle, which the build children need to write files in the right order. The inbound sequence takes the reference's default acknowledge policy for every transport that has an acknowledge. The conformance rules number the reference checker's assertions. The runbook turns the risk table into steps.
@@ -41,7 +41,7 @@ The contracts own every channel record's fields. This child owns what they leave
 
 ### Definition of Done
 - [ ] Each check in `tasks.md` prints what it says
-- [ ] `git status --short specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing
+- [ ] `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/goal.md | cut -d' ' -f3)"..HEAD -- specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing
 - [ ] Every acceptance criterion reads `Met`
 - [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
@@ -83,9 +83,9 @@ Setup confirms the contracts and the reference files this phase reads. Implement
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Count | Eleven matrix rows, nine samples, five transport sections, five rules, twelve runbook checks | `rg -c` and `awk` |
-| Arithmetic | The backoff table holds five values that sum to 750,000 ms | `node -e` |
+| The backoff table | The table holds five values and a cap of five attempts, read out of `records.md` | `rg -c` |
 | Coverage | 18 undeclared and 7 declared conformance cases | `rg -o` and `uniq -c` |
-| Freeze | No contract file changed | `git status --short` |
+| Freeze | No contract file changed since the base commit | `git diff --name-only` |
 | Packet | The child validates | `validate.sh --strict` |
 <!-- /ANCHOR:testing -->
 

@@ -43,7 +43,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | `channel.ts` and the channel folders in `state-root.ts` land in the first wave, and child 004 starts when they do. |
 | D2 | `channel.ts` imports `state-root.ts` alone and owns the only reader and writer of `channels/config.json`. |
-| D3 | A link binds a chat to the actor who ran `link` and to the provider-asserted sender id, and a press resolves only when both match. |
+| D3 | A link binds a chat to the actor who ran `link` and to the provider-asserted sender id, and an event resolves only when both match, a press and a typed line alike. |
 | D4 | Only a six-digit attempt counts toward the 5-attempt 300 s lockout, and the lockout is a file. |
 | D5 | `answerItem` takes the surface as an argument: an absent roster refuses a `channel` answer and refuses nothing on `terminal`, and a present roster is checked on both. |
 | D6 | Every reply a channel sends of its own is a template in `channel.ts` that equals its golden in child 001. |
@@ -84,4 +84,13 @@ and findings belong here.
 | T053 moved to child 004 | The per-actor counter lives in the approval index as `notApprover`, `contracts/records.md` section 13, which child 004 owns. |
 | REQ-022 moved to child 005 | The untrusted wrap is rendered by the transports through `conversation.ts`, because `channel.ts` imports `state-root.ts` alone. |
 | Two new requirements | REQ-032 for the reply table and REQ-033 for `redactToken`, both code in `channel.ts`. |
+| F-021, the member link | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: the first alternative, `bots channel link <channel> --as <actor>` under 001's tty rule, with a link whose actor is neither owner nor member refused `answer-not-approver` and an AC-003 case that links a member. The second alternative, dropping the `members` path, was not taken because it cuts scope. |
+| F-063, the link resolver | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `isApprover` splits into `resolveLink(channel, conversationId, senderId)` and `isApprover(actor)`, so `answer.ts` calls the roster check alone and a transport calls the resolver before it emits an event. |
+| F-063, the verb cases | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: one decision sentence per case in REQ-020, and seven `bots channel roster` tests rather than six, because the absent-roster refusal for `add --role member` is a case of its own. |
+| F-071, the required surface | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `surface` is a required key on `answerItem` with no default, so a transport that omits it cannot skip the absent-roster refusal. |
+| F-071, the code void | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: a pending code is voided once five wrong attempts are counted across every chat for that channel, not five per chat. |
+| F-071, the WhatsApp secret bound | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `bots channel link whatsapp --secret <name>` refuses a name over 48 characters `secret-name-invalid` with exit 4, because the longest derived suffix is `-phone-number-id` and the whole name must stay inside the 64 characters of `contracts/records.md` section 8. |
+| F-024, the 0600 mechanism | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: one `writeStateFile` helper in `state-root.ts` that chmods the temporary file to 0600 before the rename, and CHK-031 extended to `config.json`, `links.json` and child 004's `approvals.json`. |
+| F-013, the outbound intent | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: the intent gains `kind`, and a `buttons` intent also carries `itemId` and `choices`. |
+| F-019, the sender rule | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: NFR-S02 covers every event kind, so a typed line from a sender who is not the link's `senderId` is refused the same way a press is. D3 is amended from "a press" to "an event" to match. |
 <!-- /ANCHOR:log -->

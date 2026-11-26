@@ -18,7 +18,7 @@ A glyph is a shorthand for a state, and it is never the only thing that says whi
 
 ## 1. THE GLYPH TABLE
 
-The seven group ids are phase 001's, in the order `bots activity --json` returns them. The group header draws the payload's `title`; the row draws the payload's `state` id beside the glyph. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts:17-41]
+The seven group ids are phase 001's, in the order `bots activity --json` returns them. The group header draws the payload's `title`. The row draws the payload's `state` id beside the glyph. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts:17-41]
 
 | Group id | Glyph | ASCII | Label drawn on the row | Meaning |
 |----------|-------|-------|------------------------|---------|

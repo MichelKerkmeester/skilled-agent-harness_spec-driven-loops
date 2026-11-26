@@ -146,7 +146,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | `bots status` prints `branch <name>` when the last run recorded a branch and `worktree <path>` when it recorded a tree, both appended after every part the row already prints, so no existing part moves. A row whose last run recorded neither prints neither. |
 | REQ-005 | `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath`, each a string or null, and adds no other key to a row. |
 | REQ-006 | The status index carries both fields in `RunSummary`, filled by `summarizeRecord` from the record's evidence, and `SCHEMA_VERSION` stays `'2'`, so an index built before this phase still opens. The reader coalesces: `lastRunOf` reads each field as the summary's value when it is a string and as null otherwise, because a summary written before this phase has neither key and `JSON.parse` yields `undefined` for an absent key, which would drop the key from the payload. [`design/records.md`](design/records.md) section 2.1 fixes the rule. |
-| REQ-007 | A resumed run's prompt names the parked tree. The runner inspects the parked prompt for the first line that starts with the prefix constant and takes one of three outcomes: absent, so the current line is inserted after the spec-folder line, or after the first line when no spec-folder line exists. Present and equal to the current line, so nothing changes. Present and different, so the run is refused `resume-item-invalid` with the detail `the parked prompt names another working place` and no child starts. The insertion is a position and never a string replacement, and it runs before the budget check. [`design/prompt-line.md`](design/prompt-line.md) section 4 fixes the three outcomes. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:135] |
+| REQ-007 | A resumed run's prompt names the parked tree. The runner inspects the parked prompt for the first line that starts with the prefix constant and takes one of three outcomes: absent, so the current line is inserted after the spec-folder line, or after the first line when no spec-folder line exists. Present and naming the same path, so the parked line is replaced with the current line, because a resume always gets a new run id and so a new run folder, and the path is the fact the line exists for. Present and naming another path, so the run is refused `resume-item-invalid` with the detail `the parked prompt names another working place` and no child starts. The comparison reads the text before `. This run's folder is ` on both lines, so a shared run whose operator switched branch between park and answer is corrected to the current branch rather than refused. The insertion or replacement is a position and never a string replacement of the body, and it runs before the budget check. [`design/prompt-line.md`](design/prompt-line.md) section 4 fixes the three outcomes. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:135] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -205,7 +205,7 @@ The phase's own design folder is the authority for every shape it writes, so a b
 - **SC-003**: `bots status --json` carries `lastRun.branch` and `lastRun.worktreePath` and no other new key.
 - **SC-004**: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
 - **SC-005**: An index built before the change still opens: `node .skilled/bin/bots.cjs status` exits 0 without `--rebuild`.
-- **SC-006**: The design folder holds six documents and twelve goldens, every golden parses, and each one names the test that reads it.
+- **SC-006**: The design folder holds six documents and twelve goldens, every golden parses and each one names the test that reads it.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -250,7 +250,7 @@ The phase's own design folder is the authority for every shape it writes, so a b
 
 - Empty input: a run on a detached HEAD records `branch: null`, the prompt line omits the branch clause, and the row omits `branch`.
 - Maximum input: a working-place path of 4,096 characters is carried verbatim. The line stays one line and the prompt is not wrapped.
-- Failure path: `git rev-parse` exits non-zero - `checkoutBranch` returns null, the run dispatches, and the record's `branch` is null.
+- Failure path: `git rev-parse` exits non-zero - `checkoutBranch` returns null, the run dispatches and the record's `branch` is null.
 - Failure path: `git rev-parse` exits 0 and prints nothing - `checkoutBranch` returns null, so no row prints `branch ` with an empty name.
 - Old index: an index built before this phase opens, and its rows print neither `branch` nor `worktree`.
 - Old parked prompt: a prompt parked before this phase gains the working-place line before dispatch, and its record names the parked tree.

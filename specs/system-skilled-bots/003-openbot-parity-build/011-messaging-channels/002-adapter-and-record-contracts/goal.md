@@ -56,7 +56,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] Each of T004 to T008 in `tasks.md` prints what it says.
-- [ ] `git status --short specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing.
+- [ ] `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/goal.md | cut -d' ' -f3)"..HEAD -- specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -73,7 +73,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Five design documents | Written | On 2026-11-26 T004 printed 11, T005 printed 9, 8 and `5 750000`, T006 printed 5 and 4, T007 printed 5, 18 and 7, T008 printed 12 and 12 and T009 printed nothing |
+| Five design documents | Written | On 2026-11-26 T004 printed 11 and 14, T005 printed 9, 8 and 1, T006 printed 5 and 4, T007 printed 5, 18 and 7, T008 printed 12 and 12 and T009 printed nothing |
+| Base commit | Recorded | base commit dbcd1c2ce1e8776ea5b9d344fc2dd1559e4b5e1c, the commit this phase started from. T009 and AC-007 read it from here |
 
 ### Deviations and findings
 
@@ -82,4 +83,11 @@ and findings belong here.
 | `records.md` restates the contract | The work order asks for field tables and samples here. The contract has them since WO-01, so each table here names its section and the contract wins. |
 | Gaps in the frozen contract | One `secret` per channel, no home for the Signal account, the WhatsApp phone number id or the two local addresses and a queue sample whose text is not `deliveryMessage()`. Each is in the parent spec section 8. |
 | UNKNOWN | Whether signal-cli keeps events for a disconnected client. The Slack app-token scope is marked for the operator to confirm. |
+| The shapes moved here, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-063's first alternative puts the TypeScript shapes and the adapter method signatures in `design/capabilities.md` section 3, because the child is named for the adapter contract and defined none. |
+| The sender rule covers every event kind, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-019's first alternative resolves the chat and the sender at step 3 for every event kind, so a typed line on Signal or WhatsApp is covered as well as a press. |
+| The failed status is mapped, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-023's first alternative maps a `failed` status for a known platform message id onto the queue entry and the run record, and the runbook states the 24-hour window. |
+| The index takes a lock, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-024's first alternative names an exclusive lock file around every index read-modify-write, and the opening section names the helper that sets 0600 after the atomic write. |
+| The copy check compares lines, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-011's first alternative replaces the keyword grep with a `comm -12` comparison of the design's lines against the reference sources. |
+| The backoff check reads the file, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-012's first alternative drops the constant arithmetic and greps the table out of `records.md`. |
+| The contract check reads a base commit, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-013's first alternative replaces `git status --short` with a diff from the base commit recorded above, so a contract edit this phase commits is caught too. |
 <!-- /ANCHOR:log -->

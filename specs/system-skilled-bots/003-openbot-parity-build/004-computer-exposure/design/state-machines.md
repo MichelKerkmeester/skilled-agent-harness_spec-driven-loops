@@ -115,15 +115,16 @@ stateDiagram-v2
   Parked --> Scanning: find the first line that starts with the prefix constant
 
   Scanning --> Absent: no line starts with it
-  Scanning --> Equal: the line equals the current line exactly
-  Scanning --> Different: the line differs from the current line
+  Scanning --> SamePath: the text before `. This run's folder is ` equals the current line's
+  Scanning --> OtherPath: that text differs from the current line's
 
   Absent --> Inserted: insert the current line after the spec-folder line
   Absent --> Inserted: no spec-folder line, so insert it after the first line
 
-  Equal --> Dispatched: nothing changes
+  SamePath --> Replaced: the parked line becomes the current line
   Inserted --> Dispatched: the prompt now names the place this run works in
-  Different --> Refused: resume-item-invalid, the parked prompt names another working place
+  Replaced --> Dispatched: the prompt names the current run folder and the current branch
+  OtherPath --> Refused: resume-item-invalid, the parked prompt names another working place
 
   Dispatched --> [*]: the budget check runs on the prompt as it now stands
   Refused --> [*]: no child starts, the record carries the cause
@@ -134,7 +135,14 @@ stateDiagram-v2
     never a string replacement, because
     the body after it may hold anything.
   end note
-  note right of Different
+  note right of SamePath
+    A resume always gets a new run id,
+    so the run folder always differs.
+    The path is the fact the line exists
+    for, so the comparison stops at
+    `. This run's folder is `.
+  end note
+  note right of OtherPath
     Nearly unreachable: a resumed tree
     reopens at the same path and
     reopenBotWorktree refuses a moved tree
@@ -142,14 +150,16 @@ stateDiagram-v2
     told to work where it does not stand.
   end note
   note right of Dispatched
-    Insert, then check the budget.
+    Insert or replace, then check the budget.
     A line that pushes the prompt over
     32,000 characters refuses the run
     prompt-over-budget, which is 005's cause.
   end note
 ```
 
-**The guard on `Equal`.** The comparison is on the whole line, not on the prefix. A parked prompt whose line names the same path and the same branch is equal even if the run folder differs, because the run folder is the parked run's and a resume continues that run. A test asserts this by parking a prompt, resuming it and asserting the line appears exactly once.
+**The guard on `SamePath`.** The comparison is on the text before `. This run's folder is `, not on the whole line. A parked prompt whose line names the same path is the same working place even though the run folder differs, because the run folder is the parked run's and a resume continues that run. The parked line is then replaced with the current line, so the prompt names the current run folder and the current branch. A test asserts this by parking a prompt, resuming it and asserting the line appears exactly once.
+
+**A shared run whose operator switched branch.** The path is the checkout in both lines, so the machine takes `SamePath` and replaces the line. The replacement carries the branch the checkout is on now, which is the branch the child edits and the branch `evidence.branch` records. A worktree run cannot reach the case, because `reopenBotWorktree` refuses a tree that moved and the tree's branch is the one it was made on.
 
 ---
 
@@ -248,6 +258,7 @@ stateDiagram-v2
 | Fresh prompt line | Both shapes and the slot assertions | `tests/dispatch.vitest.ts` |
 | Fresh prompt line | No working place given emits no line | `tests/dispatch.vitest.ts` |
 | Resumed prompt | Absent, so the line is inserted and appears once | `tests/runner.vitest.ts` |
-| Resumed prompt | Different, so the run is refused `resume-item-invalid` | `tests/runner.vitest.ts` |
+| Resumed prompt | The same path, so the parked line is replaced and appears once | `tests/runner.vitest.ts` |
+| Resumed prompt | Another path, so the run is refused `resume-item-invalid` | `tests/runner.vitest.ts` |
 | Status row parts | Both parts, branch alone, neither | `tests/status.vitest.ts` |
 | Index summary read | A summary with neither key reads back as two nulls | `tests/status-index.vitest.ts` |

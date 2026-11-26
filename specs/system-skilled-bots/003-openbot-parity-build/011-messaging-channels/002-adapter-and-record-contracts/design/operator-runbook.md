@@ -26,6 +26,15 @@ Every command below runs on the host as the operator. `bots` is `node .skilled/b
 | 2 | `bots channel roster add grace --role member` | Adds a person who may also answer from a chat |
 | 3 | `bots channel roster list` | Prints `owner ada` and `member grace` |
 
+A member links their own chat, so the link record names them and not the operator. `bots channel link <channel> --as <actor>` takes the actor under the tty rule of `../../../001-activity-and-actor/spec.md` REQ-008, and refuses a link whose actor is neither the `owner` nor a `member` with `answer-not-approver` and exit 4. The member runs it from a terminal on the host, because the state root is owner-only:
+
+```text
+$ bots channel link telegram --as grace
+bots: telegram link code 731406, valid for 5 minutes
+```
+
+Then grace sends `731406` from her own chat, and `links.json` records `actor: "grace"` with her sender id. A member who cannot reach the host's state root cannot link until the shared-host packet lands the 0770 mode, and the roster row is what makes their chat an approver once they can.
+
 A delivery target in a bot's definition names the chat a parked prompt goes to: `delivery.targets: ["telegram:81234567"]`, in the `<channel>:<address>` form `delivery.ts` already parses. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:44-45]
 
 ---
@@ -46,7 +55,7 @@ bots: telegram link code 482913, valid for 5 minutes
 $ bots channel listen telegram
 ```
 
-Then send `482913` to the bot from the chat to link. The bot answers with catalog row M06 of `../../001-channel-ux-and-message-map/design/message-catalog.md`.
+Then send `482913` to the bot from the chat to link. The bot answers with catalog row M10 of `../../001-channel-ux-and-message-map/design/message-catalog.md`.
 
 | Check | How | Pass |
 |-------|-----|------|
@@ -114,6 +123,7 @@ $ bots channel listen signal
 | Permissions | `whatsapp_business_messaging` and `whatsapp_business_management` on the token [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/hosted-whatsapp-launch.md:115] |
 | Public URL | Required. The webhook listener binds `127.0.0.1:8787`, and an operator-run HTTPS tunnel forwards the public URL to it. This is the one transport with that prerequisite |
 | Business account | A Meta business account with the number added. Without it no webhook is delivered |
+| The 24-hour window | Meta delivers a free-form message only within 24 hours of the person's last message. Outside it the API accepts the call and then reports the send as `failed` on a `statuses` entry, which `inbound-sequence.md` section 5 maps onto the queue entry and the run record. A prompt sent outside the window therefore reads `failed` in `bots status` rather than `delivered`, and the person never saw it. Template messages would reach them and this phase does not send any, so the runbook's advice is to answer inside the window or to ask the operator to run `bots answer` on the host |
 
 ```text
 $ printf '%s\n' "$WA_TOKEN"      | bots secret set whatsapp
@@ -144,7 +154,9 @@ Then set the webhook URL in the Meta app to the tunnel's public HTTPS URL with t
 | `bots: secret-unknown: <name>` on `listen` | stderr, exit 4 | Set the named secret. A derived name is listed in `records.md` section 1.1 |
 | `bots: channel-listening` | stderr, exit 4 | Another `listen` holds `channels/listen-<channel>.lease`. Stop it first |
 | A notice reads `unknown` in `bots status` | the run's delivery entry | The send may have landed. It is never retried. Check the chat by hand |
-| `queueDepth` grows in `bots channel list` | the channel row | The transport is down or rate limited. `bots channel drain` retries due entries and exits 1 while any stays queued |
+| A notice reads `failed` in `bots status` | the run's delivery entry | The provider accepted the send and then could not deliver it, as a WhatsApp send outside the 24-hour window does. The prompt's index entry is gone, so a reply cannot answer it. Answer on the host with `bots answer` |
+| `queueDepth` grows in `bots channel list` | the channel row | The transport is down or rate limited. `bots channel drain` retries due entries and exits 1 when any due entry ended `failed` or `unknown` in that pass, else 0 |
+| A prompt sits `queued` with no `listen` running | the queue folder | `bots channel listen <channel>` drains its own channel after every inbound turn and on a 60 s tick, so a prompt leaves the queue while a listener runs. With no listener, run `bots channel drain` by hand or install the drain job |
 
 ---
 

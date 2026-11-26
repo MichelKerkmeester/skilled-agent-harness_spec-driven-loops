@@ -105,7 +105,7 @@ exit=1
 - Running or registering `signal-cli` - the operator does, by the runbook.
 - A public URL or a tunnel for WhatsApp - the operator's, by the runbook. The listener binds loopback only.
 - The WhatsApp Web linked-device client - it needs a paired phone session.
-- Signal groups and WhatsApp groups - `groupKnown` is undeclared on both (`../002-adapter-and-record-contracts/design/capabilities.md` section 2).
+- WhatsApp groups - `groupKnown` is undeclared on WhatsApp (`../002-adapter-and-record-contracts/design/capabilities.md` section 2). Signal declares that it knows a group, so a Signal group event is refused `channel-group-approval` with reply M16 rather than treated as a direct message.
 
 ### Files to Change
 
@@ -128,15 +128,15 @@ REQ ids keep their pre-expansion numbers and are unique across children 003 to 0
 
 | ID | Requirement |
 |----|-------------|
-| REQ-011 | Signal follows the `signal` row of the Wire Table: it talks to a local `signal-cli daemon --http` on loopback, receives events over SSE from `/api/v1/events`, sends through JSON-RPC `send` on `/api/v1/rpc`, cuts text at 2,000 characters and needs no public URL. A daemon that does not answer refuses `channel-daemon-unreachable` and keeps the queue entry |
-| REQ-012 | WhatsApp follows the `whatsapp` row of the Wire Table: the listener binds `127.0.0.1:8787`, refuses a body over 2 MiB with `413` before the signature is computed, checks `X-Hub-Signature-256` over the raw bytes before any parse and answers a missing, malformed or wrong signature with `401` and the local reason `channel-signature`, the same for all three, drops a delivery for any number but the served one and answers `200` only after every message in the body ran steps 2 to 6 |
+| REQ-011 | Signal follows the `signal` row of the Wire Table: it talks to a local `signal-cli daemon --http` on loopback, receives events over SSE from `/api/v1/events`, sends through JSON-RPC `send` on `/api/v1/rpc`, cuts text at 2,000 characters and needs no public URL. A daemon that does not answer refuses `channel-daemon-unreachable` and keeps the queue entry. An event whose conversation is a group is refused `channel-group-approval` with reply M16, because the capability matrix declares `groupKnown` yes for Signal, so a group member's `1` never answers a prompt |
+| REQ-012 | WhatsApp follows the `whatsapp` row of the Wire Table: the listener binds `127.0.0.1:8787`, refuses a body over 2 MiB with `413` before the signature is computed, checks `X-Hub-Signature-256` over the raw bytes before any parse and answers a missing, malformed or wrong signature with `401` and the local reason `channel-signature`, the same for all three, drops a delivery for any number but the served one and answers `200` only after every message in the body ran steps 2 to 6. A `statuses` entry whose status is `failed` for a platform message id the queue knows maps onto that queue entry and the run record, so a prompt Meta accepted and then rejected is never left `delivered` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
 | REQ-026 | `bots channel listen signal` takes its lease, resolves the account secret, calls `/api/v1/check` once and prints `bots: signal ready as <account>` on stderr before it opens the event stream. A check that does not answer `200` refuses `channel-daemon-unreachable` with exit 4 and releases the lease |
-| REQ-027 | `bots channel listen whatsapp` takes its lease, resolves all four secrets before it binds, binds loopback only and prints `bots: whatsapp listening on 127.0.0.1:8787` on stderr. A `GET` with `hub.mode=subscribe` and the stored verify token echoes `hub.challenge` with `200` and logs `bots: whatsapp webhook verified`, and any other `GET` answers `403`. A missing secret refuses `secret-unknown` with exit 4 before the bind |
+| REQ-027 | `bots channel listen whatsapp` takes its lease, resolves all four secrets before it binds, binds loopback only and prints `bots: whatsapp listening on 127.0.0.1:8787` on stderr. The listener's address and the Signal daemon's address are injected arguments of the transport, fixed at `127.0.0.1:8787` and `127.0.0.1:8080` in production, so a test binds an ephemeral port and never the fixed one. A `GET` with `hub.mode=subscribe` and the stored verify token echoes `hub.challenge` with `200` and logs `bots: whatsapp webhook verified`, and any other `GET` answers `403`. A missing secret refuses `secret-unknown` with exit 4 before the bind |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

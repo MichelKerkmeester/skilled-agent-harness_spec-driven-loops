@@ -142,7 +142,7 @@ REQ ids keep their pre-expansion numbers and are unique across children 003 to 0
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `npx vitest run tests/channel-conformance.vitest.ts -t "R2"` runs 18 passing cases
+- **SC-001**: `npx vitest run tests/channel-conformance.vitest.ts -t "^R2 "` prints `Tests  18 passed`
 - **SC-002**: The three hardening cases pass
 - **SC-003**: The whole suite and the typecheck pass from the final state
 - **SC-004**: `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED`

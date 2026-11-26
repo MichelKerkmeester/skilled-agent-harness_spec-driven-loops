@@ -44,7 +44,7 @@ Today's group membership is the README's file table. [SOURCE: .skilled/skills/sy
 | `activity.ts` | 001 | Status index | `status-index` | The seven group ids, their order and the grouping of index rows [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] |
 | `actor.ts` | 001 | Contracts and state | none | The precedence `--as` then the pinned operator then the OS user, plus the name pattern [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md, section "Key Components"] |
 | `routine.ts` | 002 | Contracts and state | `repo-config`, and `definition` as a type-only import | The block parse, `renderTrigger`, the `until` rules, `routineDelivery` and `checkRoutineFloor` over a period its caller passes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
-| `routine-state.ts` | 002 | Contracts and state | `state-root`, `run-record`, `switches`, `needs-you`, `action-kind`, `approval-ladder` | The per-bot state file, the failure streak and the fatigue item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
+| `routine-state.ts` | 002 | Contracts and state | `state-root`, `run-record`, `switches`, `needs-you`, then `action-kind` and `approval-ladder` from 006 | The per-bot state file, the failure streak and the fatigue item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
 | `memory.ts` | 005 | Contracts and state | `state-root` | The entry line, the bounds, the parser, the renderer, append and forget [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md, section "Key Components"] |
 | `action-kind.ts` | 006 | Contracts and state | none | The six kinds, their order, their word lists and `classifyAction` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md, section "Key Components"] |
 | `approval-ladder.ts` | 006 | Contracts and state | `action-kind` | The four rungs, `decideApproval` and the scope rule |
@@ -54,7 +54,7 @@ Today's group membership is the README's file table. [SOURCE: .skilled/skills/sy
 | `secrets-guard.ts` | 008 | Contracts and state | none | The lifted placeholder guard and constant-time compare |
 | `skills.ts` | 009 | Contracts and state | `approval` | The name grammar, the two caps, `parseSkillList`, `loadSkills` and `renderSkillsPrompt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md, section "Key Components"] |
 | `skill-proposal.ts` | 009 | Request pipeline | `state-root`, `run-record`, `needs-you`, `action-kind`, `approval-ladder`, `dispatch` | The proposals folder, the review item and the settle |
-| `conversation.ts` | 010 | Request pipeline | `state-root` | The message record, the append, the torn-line read, `@bot` routing, the bound and the block renderer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/plan.md, section "Key Components"] |
+| `conversation.ts` | 010 | Request pipeline | `state-root`, `dispatch`, `definition` | The message record, the append, the torn-line read, `@bot` routing, the bound and the block renderer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/plan.md, section "Key Components"] |
 | `channel.ts` | 011 | Channels | `state-root` | The adapter contract, the message model, the capability table and `channels/config.json` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/plan.md, section "Key Components"] |
 | `channel-link.ts` | 011 | Channels | `channel`, `state-root`, `actor` | The pairing code, the link record, the lockout and the roster [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/plan.md, section "Key Components"] |
 | `channel-approval.ts` | 011 | Channels | `channel`, `needs-you`, `state-root` | The approval index and the reply grammar [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/plan.md, section "Key Components"] |
@@ -84,6 +84,7 @@ No new edge closes a cycle. The edges that come closest, checked by hand:
 - `answer` imports `skill-proposal`, which imports `dispatch`. `answer` already imports `dispatch` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:20], and neither `skill-proposal` nor `dispatch` imports `answer`.
 - A transport imports `answer`, which imports `runner` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:23], which imports `delivery`. `delivery` imports `channel-queue` and never a transport, so the loop through a transport does not close.
 - `answer` imports `channel-link`, which imports only `channel`, `state-root` and `actor`.
+- `conversation` imports `dispatch` for the literal check and `definition` for the bot-exists test. Neither imports `conversation`, and `request-drain` imports `conversation` beside `runner`, which already reaches `dispatch`.
 - `definition` imports `routine`, and `routine` imports `definition` for types only, which the compiler erases.
 - `status` imports `routine` for `describeStart`, and `routine` imports neither `status` nor `activity`.
 
@@ -116,7 +117,7 @@ Folder modes are 0700, the mode the state root gives every folder it makes. [SOU
       <itemId>.json                             umask         today, keys added by 001 005 006 009 010
       <itemId>.lock                             0600          006
     records/                                    0700          today
-      <runId>.json                              umask         today, fields added by 001 004 007 008 009 011
+      <runId>.json                              umask         today, fields added by 001 002 004 005 006 007 008 009 011
     installs/                                   0700          today
       <botId>.json                              umask         today, skillDigests added by 009
     receipts/<runId>/                           0700          today
@@ -126,7 +127,7 @@ Folder modes are 0700, the mode the state root gives every folder it makes. [SOU
     agent-logs/<label>.log                      launchd       today
     drain-backoff.json                          umask         today
     generation.json                             umask         today
-    routines/<botId>.json                       umask         002
+    routines/<botId>.json                       0600          002
     memory/<botId>.md                           0600          005
     secrets/                                    0700          008
       index.json                                0600          008
@@ -189,6 +190,8 @@ A worktree run also gets `<worktree>/.utcp_config.json`, the filtered config the
 
 The fixed order today is approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:5-6] The packet adds its checks inside that order and adds none before approval.
 
+The order the packet fixes is secret check, worktree, build and budget check, dispatch. The working-place line carries the tree path, so the builder runs after the tree is made. A `prompt-over-budget` refusal therefore fires with a fresh or reopened tree already recorded as active, and 005 finishes a fresh tree or returns a resumed one to kept on that refusal, as the existing `read-only-unconfined` branch does.
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -205,9 +208,9 @@ sequenceDiagram
   Rn->>Ct: needs-you hold and awaiting-resume hold for unattended kinds
   Rn->>Rn: take the lease, then the paused switch and the precheck
   Rn->>In: posture, apps resolve, secret resolve, skills load and digest check, memory read
+  Rn->>Rn: body-secret check over every block, then the worktree
   Rn->>Dp: buildBotPrompt with the rendered blocks and the request prompt
   Dp-->>Rn: the prompt, or prompt-over-budget after the conversation gave way
-  Rn->>Rn: body-secret check over every block, then the worktree
   Rn->>Ch: dispatch with the filtered environment and the secret key
   Ch-->>Rn: output and exit
   Rn->>Rn: scan stdout.log, parse a decision or remember line, until check or fatigue

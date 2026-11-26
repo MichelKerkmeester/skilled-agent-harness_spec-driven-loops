@@ -43,7 +43,7 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the measured gap before any edit (`.skilled/bin/bots.cjs`). Verify: `node .skilled/bin/bots.cjs status | rg -c 'branch '` prints nothing and exits 1.
+- [ ] T001 Confirm the measured gap before any edit (`.skilled/bin/bots.cjs`). Verify: `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout" | rg -c 'branch '` prints nothing and exits 1.
 - [ ] T002 Record the baseline suite so a later failure is this phase's (`runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 - [ ] T003 Record the baseline typecheck (`runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
 - [ ] T004 Read the prompt builder and record the two line shapes it already has (`$LIB/dispatch.ts`). Verify: `rg -n 'export function checkoutLine|export function buildBotPrompt' $LIB/dispatch.ts` prints two lines.
@@ -60,29 +60,29 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 
 ### `dispatch.ts`, worker W1a
 
-- [ ] T009 [P] Write `workingPlaceLine` in both shapes, with and without a branch, and the prefix constant `Your working place is ` with its trailing space (`$LIB/dispatch.ts`). The two shapes are `design/prompt-line.md` section 1. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch` prints no `failed` and names `workingPlaceLine`.
-- [ ] T010 [P] Add the `workingPlace` input to `buildBotPrompt` and emit the line after the spec-folder line and before the checkout line, in the shared order's working-place slot (`$LIB/dispatch.ts`). The slot is `contracts/prompt-sections.md` section 1.3 and the four slot assertions are `design/prompt-line.md` section 2. Verify: `rg -c 'workingPlace' $LIB/dispatch.ts` prints a number of 3 or more.
+- [ ] T009 [P] Write `workingPlaceLine` in both shapes, with and without a branch, and the prefix constant `Your working place is ` with its trailing space (`$LIB/dispatch.ts`). The two shapes are `design/prompt-line.md` section 1. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line both shapes$"` prints `Tests  1 passed`.
+- [ ] T010 [P] Add the `workingPlace` input to `buildBotPrompt` and emit the line after the spec-folder line and before the checkout line, in the shared order's working-place slot (`$LIB/dispatch.ts`). The slot is `contracts/prompt-sections.md` section 1.3 and the four slot assertions are `design/prompt-line.md` section 2. Verify: `rg -c 'workingPlace' $LIB/dispatch.ts` prints a number of 3 or more, and `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line slot$"` prints `Tests  1 passed`.
 
 ### `isolation.ts` and `runner.ts`, worker W1b
 
-- [ ] T011 [P] Write `checkoutBranch`, returning the branch or null and never a refusal, through the module's existing `git` helper (`$LIB/isolation.ts`). The five git answers are `design/prompt-line.md` section 3. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation` prints no `failed` and names `checkoutBranch`.
+- [ ] T011 [P] Write `checkoutBranch`, returning the branch or null and never a refusal, through the module's existing `git` helper (`$LIB/isolation.ts`). The five git answers are `design/prompt-line.md` section 3. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation -t "^working place line worktree run$"` prints `Tests  1 passed`.
 - [ ] T012 [P] Resolve the branch after `workDir` and before the builder, and pass the working place on the dispatch path (`$LIB/runner.ts`). The order is `design/sequences.md` section 1. Verify: `rg -n 'checkoutBranch' $LIB/runner.ts` prints one import line and one call line.
-- [ ] T013 [P] Fill `evidence.branch` on the dispatch path only, so a refusal before the isolation step keeps its nulls (`$LIB/runner.ts`). The five run shapes are `design/records.md` section 3. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` prints no `failed`.
-- [ ] T014 [P] Add the working-place line to a resumed prompt that lacks it, by exact-text check on the prefix constant, and refuse `resume-item-invalid` when the parked prompt names another place (`$LIB/runner.ts`). The three outcomes are `design/prompt-line.md` section 4. Verify: `rg -n 'workingPlaceLine' $LIB/runner.ts` prints one line.
+- [ ] T013 [P] Fill `evidence.branch` on the dispatch path only, so a refusal before the isolation step keeps its nulls (`$LIB/runner.ts`). The five run shapes are `design/records.md` section 3. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner -t "^working place shared run branch$"` prints `Tests  1 passed`.
+- [ ] T014 [P] Add the working-place line to a resumed prompt that lacks it, replace the parked line when it names the same path, and refuse `resume-item-invalid` when the parked prompt names another path (`$LIB/runner.ts`). The three outcomes are `design/prompt-line.md` section 4. Verify: `rg -n 'workingPlaceLine' $LIB/runner.ts` prints one line, and `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner -t "^working place parked prompt same path$"` prints `Tests  1 passed`.
 
 ### `status-index.ts` and `status.ts`, worker W1c
 
 - [ ] T015 [P] Add `worktreePath` and `branch` to `RunSummary` and fill them in `summarizeRecord` (`$LIB/status-index.ts`). The two fields are `design/records.md` section 2. Verify: `rg -n 'worktreePath|branch:' $LIB/status-index.ts` prints the two interface lines and the two fill lines.
 - [ ] T016 [P] Add `worktreePath` and `branch` to `LastRun` and fill them in `lastRunOf`, reading each summary field as the value when it is a string and else null (`$LIB/status.ts`). The coalescing rule is `design/records.md` section 4. Verify: `rg -n 'worktreePath' $LIB/status.ts` prints the interface line and the fill line.
-- [ ] T017 [P] Append `branch <name>` and `worktree <path>` after every part the row already prints, in that order (`$LIB/status.ts`). The part order and the seven mockups are `design/status-row.md` sections 1 to 3. Verify: `node .skilled/bin/bots.cjs status --rebuild` prints a row whose last two parts are `branch <name>` and `worktree <path>` for a worktree run.
+- [ ] T017 [P] Append `branch <name>` and `worktree <path>` after every part the row already prints, in that order (`$LIB/status.ts`). The part order and the seven mockups are `design/status-row.md` sections 1 to 3. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place row parts$"` prints `Tests  1 passed`.
 
 ### Tests
 
-- [ ] T018 [P] Write the dispatch cases: both shapes, no working place given, and the line's slot before the checkout line when the prompt carries one (`$TESTS/dispatch.vitest.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch` prints no `failed`.
-- [ ] T019 [P] Write the isolation case: a worktree run's prompt names its tree and its branch, and the stub's `cwd` equals `evidence.worktreePath` (`$TESTS/isolation.vitest.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation` prints no `failed`.
-- [ ] T020 [P] Write the runner cases: a shared run's branch, a refusal's two nulls and a parked prompt that gains the line (`$TESTS/runner.vitest.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` prints no `failed`.
-- [ ] T021 [P] Write the index cases: both fields, and a summary written without them reading back null (`$TESTS/status-index.vitest.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status-index` prints no `failed`.
-- [ ] T022 [P] Write the status cases: the row text, the JSON and a row over an index built before the change (`$TESTS/status.vitest.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status` prints no `failed`.
+- [ ] T018 [P] Write the dispatch cases: both shapes, no working place given, and the line's slot before the checkout line when the prompt carries one (`$TESTS/dispatch.vitest.ts`). The names are `working place line both shapes`, `working place line absent` and `working place line slot`, inside `describe('working place line')`. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line both shapes$"` prints `Tests  1 passed`, `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line absent$"` prints `Tests  1 passed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line slot$"` prints `Tests  1 passed`.
+- [ ] T019 [P] Write the isolation case: a worktree run's prompt names its tree and its branch, and the stub's `cwd` equals `evidence.worktreePath` (`$TESTS/isolation.vitest.ts`). The name is `working place line worktree run`, inside `describe('working place line')`. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation -t "^working place line worktree run$"` prints `Tests  1 passed`.
+- [ ] T020 [P] Write the runner cases: a shared run's branch, a detached HEAD, an unreadable branch, a refusal's two nulls and the three parked-prompt outcomes (`$TESTS/runner.vitest.ts`). The names are `working place shared run branch`, `working place detached head`, `working place unreadable branch`, `working place refusal records neither`, `working place parked prompt gains the line`, `working place parked prompt same path` and `working place parked prompt another path`, inside `describe('working place')`. Each reads the record through `recordFile`. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner -t "^working place parked prompt another path$"` prints `Tests  1 passed`.
+- [ ] T021 [P] Write the index cases: both fields, and a summary written without them reading back null (`$TESTS/status-index.vitest.ts`). The name is `working place summary fields`, inside `describe('working place')`. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status-index -t "^working place summary fields$"` prints `Tests  1 passed`.
+- [ ] T022 [P] Write the status cases: the row text, the JSON, and a row over an index built before the change (`$TESTS/status.vitest.ts`). The names are `working place row parts`, `working place json keys` and `working place old index`, inside `describe('working place')`. Each builds its own temp state root. Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place row parts$"` prints `Tests  1 passed`.
 
 ### Documentation, worker W2
 
@@ -99,8 +99,8 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 - [ ] T026 Run the typecheck over every changed signature (`runtime`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
 - [ ] T027 Prove a worktree run's prompt and record (`$LIB/runner.ts`). Verify: the run's receipt holds `Your working place is` and its record's `evidence.branch` equals the tree's branch.
 - [ ] T028 Prove a shared run's record (`$LIB/runner.ts`). Verify: the record's `evidence.branch` equals `git -C <checkout> rev-parse --abbrev-ref HEAD`.
-- [ ] T029 Prove the status row and its JSON (`$LIB/status.ts`). Verify: `node .skilled/bin/bots.cjs status` prints `branch <name>` on that row and `node .skilled/bin/bots.cjs status --json` carries `lastRun.branch` and `lastRun.worktreePath`.
-- [ ] T030 Prove an index built before the change still opens (`$LIB/status-index.ts`). Verify: `node .skilled/bin/bots.cjs status` exits 0 without `--rebuild`.
+- [ ] T029 Prove the status row and its JSON (`$LIB/status.ts`). Verify: `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout"` exits 0, and `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place json keys$"` prints `Tests  1 passed`.
+- [ ] T030 Prove an index built before the change still opens (`$LIB/status-index.ts`). Verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place old index$"` prints `Tests  1 passed`.
 - [ ] T031 Prove no schema version moved (`$LIB/status-index.ts`). Verify: `rg -n "SCHEMA_VERSION = '2'" $LIB/status-index.ts` prints one line.
 - [ ] T032 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
@@ -113,7 +113,7 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0, and `node .skilled/bin/bots.cjs status` prints `branch <name>` on a row whose last run recorded one
+- [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`, `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0 and `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place row parts$"` prints `Tests  1 passed`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -146,7 +146,7 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] `node .skilled/bin/bots.cjs status | rg -c 'branch '` prints nothing and exits 1 before the first edit.
+- [ ] CHK-001 [P0] `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout" | rg -c 'branch '` prints nothing and exits 1 before the first edit.
 - [ ] CHK-002 [P0] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed` before the first edit.
 - [ ] CHK-003 [P1] `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0 before the first edit.
 - [ ] CHK-004 [P1] `ls specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design` prints six documents and `fixtures` before the first edit.
@@ -174,7 +174,7 @@ TESTS=.skilled/skills/system-skilled-bots/runtime/tests
 - [ ] CHK-021 [P0] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation` asserts a worktree run's prompt names its tree and its branch, and the stub's `cwd` equals `evidence.worktreePath`.
 - [ ] CHK-022 [P1] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` covers a shared run's branch, a refusal's two nulls and a parked prompt that gains the line.
 - [ ] CHK-023 [P1] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status status-index` covers the row text, the JSON and a summary written without the two fields.
-- [ ] CHK-024 [P1] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner` covers the three resumed-prompt outcomes: absent, equal and different.
+- [ ] CHK-024 [P1] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner -t "^working place parked prompt same path$"` prints `Tests  1 passed`, so the three resumed-prompt outcomes are covered: absent, the same path and another path.
 - [ ] CHK-025 [P2] Every golden in `design/fixtures/` is read by the test `design/fixtures/README.md` names for it.
 <!-- /ANCHOR:testing -->
 

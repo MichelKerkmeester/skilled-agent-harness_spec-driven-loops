@@ -49,7 +49,7 @@
       "design/mockups.md",
       "design/reply-grammar.md",
       "design/golden/M01-prompt-options-text.txt",
-      "design/golden/M21-delivery-unknown.txt",
+      "design/golden/M23-reply-ambiguous.txt",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts"
     ],
     "entities": [
@@ -114,9 +114,9 @@
         "source": "derived"
       },
       {
-        "name": "M21-delivery-unknown.txt",
+        "name": "M23-reply-ambiguous.txt",
         "kind": "file",
-        "path": "design/golden/M21-delivery-unknown.txt",
+        "path": "design/golden/M23-reply-ambiguous.txt",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "No message a person reads in a chat was designed",
     "created_at": "2026-11-26T00:00:16Z",
-    "last_save_at": "2026-11-26T00:45:01.371Z",
+    "last_save_at": "2026-11-26T06:38:37.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +211,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:918d5b7512334422d3334f05de831513f4737c52ae03a34e6fd69ffab21dfc3d",
+    "source_fingerprint": "sha256:3f4de9c7a64f58424dce1b78478c01c045a4dc33b194309f96aec92280d19722",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d49ad89d818000b219975d16ac0294d0cccde55d3ea1cfb783c9dc9debca9184",
-      "plan.md": "34e19f1b619db7aff0dac5a708e2617c154e3a3e395d658ee4a4263d305e9beb",
-      "tasks.md": "4b5d64fa6e110dc9860e2a2c08f6231f7a9d5a31f03a720695222ea4b15a6d42",
+      "spec.md": "7447e6910761434429403a9becae469b1d6131ac3abb7de9a4db78d71792fdef",
+      "plan.md": "8914f5c642b247597ec6714e1c19665c8d10d7ac321cc62e3f4d2bb85b6d4131",
+      "tasks.md": "7d0b025b0cd1b843a1ac587c0f750c1c92216d435e327effad0f59e740e6d35b",
       "implementation-summary.md": "b8b24cf6112adc61234c98c0415c233c978ffdd7996fea2247737eef3949359e"
     },
     "last_active_at": null

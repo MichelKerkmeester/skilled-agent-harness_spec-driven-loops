@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Phase** | 1 of 7 |
 | **Predecessor** | None |
 | **Successor** | 002-adapter-and-record-contracts |
-| **Handoff Criteria** | The catalog, the mockups, the reply grammar and 21 goldens exist in `design/`, the catalog check prints 36 and 21 with no drift line and the mockup check prints 12, 0 and the six chunk numbers |
+| **Handoff Criteria** | The catalog, the mockups, the reply grammar and 23 goldens exist in `design/`, the catalog check prints 40 and 23 with no drift line and the mockup check prints 12, 0 and no `MISSING` line |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,7 +50,7 @@ This is **Phase 1** of the messaging channels phase parent: two design children,
 - The capability matrix of `../002-adapter-and-record-contracts/design/capabilities.md` section 2, for the chunk limits and which surface has buttons
 
 **Deliverables**:
-- `design/message-catalog.md`, 21 messages with their producer, their bot-authored text and their golden
+- `design/message-catalog.md`, 23 messages with their producer, their bot-authored text and their golden
 - `design/mockups.md`, twelve mockups: three surfaces by four situations, each with its wire payload and its view
 - `design/reply-grammar.md`, the accepted replies and what a line that matches none becomes
 - `design/golden/`, one text file per catalog row
@@ -80,7 +80,7 @@ $ rg -c 'approval-v1' .skilled/skills/system-skilled-bots/runtime/lib/delivery.t
 EXIT=1
 ```
 
-The first line is the gap: the pre-expansion spec holds no message text. The second shows delivery builds no prompt with an answer surface today. After this phase, `ls design/golden | wc -l` prints 21.
+The first line is the gap: the pre-expansion spec holds no message text. The second shows delivery builds no prompt with an answer surface today. After this phase, `ls design/golden | wc -l` prints 23.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -105,10 +105,10 @@ The first line is the gap: the pre-expansion spec holds no message text. The sec
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `design/message-catalog.md` | Create | The source of every message, the 21-row catalog, the literal text and the rules for the varying fields |
+| `design/message-catalog.md` | Create | The source of every message, the 23-row catalog, the literal text and the rules for the varying fields |
 | `design/mockups.md` | Create | The chunking rule and twelve mockups with wire and view |
 | `design/reply-grammar.md` | Create | The open prompt a reply answers, the five-row grammar and who may reply |
-| `design/golden/M01-prompt-options-text.txt` to `design/golden/M21-delivery-unknown.txt` | Create | 21 golden files, one per catalog row |
+| `design/golden/M01-prompt-options-text.txt` to `design/golden/M23-reply-ambiguous.txt` | Create | 23 golden files, one per catalog row |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,7 +125,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-002 | Every catalog row has one golden file in `design/golden/`, and the first line of each golden appears verbatim in the catalog |
 | REQ-003 | Every refusal of `contracts/refusals.md` section 3.10 that a person in a chat can cause, and every `answerItem` refusal the `channel` surface reaches in `contracts/answer-seam.md` section 1, has a catalog row |
 | REQ-004 | `design/mockups.md` draws Telegram, Slack and the plain text form each for a two-option item, a yes or no item, a question over the chunk limit and an expired prompt, twelve mockups, each with its wire payload or a pointer to one and a view no wider than 73 columns |
-| REQ-005 | `design/reply-grammar.md` gives the accepted replies as a table with the text each passes to `answerItem`, which open prompt a reply answers and what a line that matches none becomes |
+| REQ-005 | `design/reply-grammar.md` gives the accepted replies as a table with the text each passes to `answerItem`, which open prompt a reply answers and what a line that matches none becomes. The prompt a reply answers is the newest **delivered** one, an entry whose queue file is `delivered`, so a prompt still queued, in backoff or failed is never answered by a reply meant for another. Two delivered prompts open in one conversation make a bare number, `YES` or `NO` answer nothing and send M23. The terminal is the one exception: it lists the open needs-you items itself and resolves against that list, because no index entry reaches its stdout |
 | REQ-006 | The catalog states that the 002 fatigue notice never reaches a chat, and that a chat sees the run's outcome and record pointer and not its reply text, with the reason |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -145,7 +145,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: The catalog check in `tasks.md` prints 36 and 21 and its two loops print nothing
+- **SC-001**: The catalog check in `tasks.md` prints 40 and 23 and its two loops print nothing
 - **SC-002**: The mockup check in `tasks.md` prints 12, 0 and `4749 653 849 4761 761 665`
 - **SC-003**: `rg -c '^\| [1-5] \| ' design/reply-grammar.md` prints 5
 - **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map --strict` prints `RESULT: PASSED`
@@ -171,7 +171,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 ### Performance
 - **NFR-P01**: A view is at most 73 columns, so a reader checks it without scrolling
-- **NFR-P02**: The design adds no runtime cost: markdown and 21 text files
+- **NFR-P02**: The design adds no runtime cost: markdown and 23 text files
 
 ### Security
 - **NFR-S01**: No credential, token or real state-root path appears in `design/`. Samples use the contract's invented data set and `<bots state>` pointers
@@ -201,7 +201,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | Three design documents and 21 golden files in one folder, no code |
+| Scope | 8/25 | Three design documents and 23 golden files in one folder, no code |
 | Risk | 6/25 | A security rule decides what a chat sees |
 | Research | 10/20 | `delivery.ts`, four contracts, the screen's overlay and three reference providers |
 | **Total** | **24/70** | **Level 2** |

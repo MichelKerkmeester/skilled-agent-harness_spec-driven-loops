@@ -54,15 +54,15 @@ Every Verification cell is a command that runs without a tty. The loop takes its
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `BOTS_UI_BIN` naming a stub binary, When `node .skilled/bin/bots.cjs ui --repo .` runs, Then the stub starts with `--repo . --skilled-tree <root>` and the CLI exits with the stub's code. With `NO_COLOR` set the stub's argv also carries `--mono`, and with `--ascii` on the verb it carries `--ascii`. With `BOTS_UI_BIN` unset and a `--skilled-tree` holding `crates/bots-tui` but no binary it refuses `ui-not-built`, prints the build command and exits 4. With `BOTS_UI_BIN` unset and a `--skilled-tree` holding no `crates/bots-tui` it refuses `ui-unavailable` and exits 4. With a stub whose `--version` prints another contract number it refuses `ui-contract-mismatch` and exits 4 | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints one passing test per case: the stub answers `--version` with the verb's own contract number, then records its argv and exits 7, so the CLI's status is 7, the `NO_COLOR` case asserts `--mono` in that argv, the `--ascii` case asserts `--ascii`, the mismatch case asserts the refusal line and exit 4, and the two `--skilled-tree` refusals run against a temp `--skilled-tree`, so no file is moved and no tty is needed | Unmet | - |
+| AC-001 | REQ-001 | Given `BOTS_UI_BIN` naming a stub binary, When `node .skilled/bin/bots.cjs ui --repo .` runs, Then the stub starts with an absolute `--repo` naming the resolved checkout root and `--skilled-tree <root>`, and the CLI exits with the stub's code. With `NO_COLOR` set the stub's argv also carries `--mono`, and with `--ascii` on the verb it carries `--ascii`. With `BOTS_UI_BIN` unset and a `--skilled-tree` holding `crates/bots-tui` but no binary it refuses `ui-not-built`, prints the build command and exits 4. With `BOTS_UI_BIN` unset and a `--skilled-tree` holding no `crates/bots-tui` it refuses `ui-unavailable` and exits 4. With a stub whose `--version` prints another contract number it refuses `ui-contract-mismatch` and exits 4. With an unknown option it exits 2 and prints the usage text | AC-001 block prints `Tests  8 passed` and no `failed`, one test per case: the stub answers `--version` with the verb's own contract number, then records its argv and exits 7, so the CLI's status is 7, the `NO_COLOR` case asserts `--mono` in that argv, the `--ascii` case asserts `--ascii`, the mismatch case asserts the refusal line and exit 4, the unknown-option case asserts exit 2 and the two `--skilled-tree` refusals run against a temp `--skilled-tree`, so no file is moved and no tty is needed | Unmet | - |
 | AC-002 | REQ-002 | Given the crate, When its manifest and sources are read, Then the manifest declares MIT and no source file carries openhuman code | `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, and `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, so the licence-header grep covers the code and the manifest rather than `design/`, which names the reference and its licence on purpose | Unmet | - |
 | AC-003 | REQ-003 | Given the binary running, When it refreshes, Then every read is one `bots ... --json` call through a client that takes the program and its arguments, defaulting to `node <skilled-tree>/.skilled/bin/bots.cjs`, and no state file is opened | AC-003 block prints only `cli.rs` for the first command, the default program for the second and nothing outside `#[cfg(test)]` blocks for the third | Unmet | - |
 | AC-004 | REQ-004 | Given the crate, When it is built and its library tested, Then the release build writes `bots-ui` and the library target compiles | `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0, `ls crates/bots-tui/target/release/bots-ui` prints the path, and `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib` exits 0 | Unmet | - |
 | AC-005 | REQ-005 | Given the binary exits, panics or is killed, When the process ends, Then raw mode is off, the alternate screen is left and the cursor is shown | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib terminal` prints `test result: ok` and names `restore_runs_on_exit`, `restore_runs_on_panic` and `signal_becomes_terminate_event`, which assert the guard ran on each path. The signal test raises `SIGTERM` through the installed handler, asserts the flag became a `Terminate` message and asserts the loop returns 128 plus the signal, rather than killing the test process | Unmet | - |
 | AC-006 | REQ-006 | Given a refresh in flight, When a second refresh is issued, Then the loop thread spawns no process, an answer jumps queued reads and a child past its timeout is killed | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib data` prints `test result: ok` and names `answer_jumps_queued_reads`, `child_past_timeout_is_killed` and `loop_thread_spawns_nothing` | Unmet | - |
 | AC-007 | REQ-007 | Given a source the caller supplies, When it yields a key, a resize or a closed input, Then the loop consumes each without a terminal and returns 0 on the closed input | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib event` prints `test result: ok` and names `closed_input_is_one_event`, and `--lib app` names `closed_input_writes_nothing` | Unmet | - |
-| AC-008 | REQ-008 | Given the fixture, When each verb is called, Then it prints the payload file for its verb, its `status --json` carries `lastRun.branch` and `lastRun.worktreePath`, and it takes `--fixture-log` and `--fixture-scenario` as leading arguments | AC-008 block exits 0 on every `jq` check and prints `100755` | Unmet | - |
-| AC-009 | REQ-009 | Given the workflow, When it is read, Then it carries two `bots-tui` path entries and one job that installs a pinned toolchain with `clippy` and `rustfmt`, runs fmt, clippy and test with `--locked`, builds the release profile, runs the design `diff` checks SC-006 names, and names its runner, cache and timeout | AC-009 block prints one job line, then `2`, the toolchain step, nothing, the three steps, the cargo steps, the release build, `3` and at least `2` | Unmet | - |
+| AC-008 | REQ-008 | Given the fixture, When each verb is called, Then it prints the payload file for its verb, every payload carries `version` 1, its `status --json` carries `lastRun.branch` and `lastRun.worktreePath`, and it takes `--fixture-log` and `--fixture-scenario` as leading arguments | AC-008 block exits 0 on every `jq` check and prints `100755` | Unmet | - |
+| AC-009 | REQ-009 | Given the workflow, When it is read, Then it carries two `bots-tui` path entries and two packet design path entries, and one job that installs a commit-pinned toolchain with `clippy` and `rustfmt`, runs fmt with no `--locked` and clippy and test with it, builds the release profile, runs the design `diff` checks SC-006 names and names its runner, cache and timeout | AC-009 block prints one job line, then `2`, then `2`, the toolchain step, nothing, the three steps, the cargo steps, the release build, `3` and at least `2` | Unmet | - |
 | AC-010 | REQ-010 | Given a payload with a missing optional key and a state value the mapping does not name, When it is parsed, Then the missing key takes its default and the unknown state is kept as `Unknown(raw)` rather than dropped | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib model` prints `test result: ok` and names `missing_key_takes_default` and `unknown_state_keeps_raw` | Unmet | - |
 | AC-011 | REQ-011 | Given an item selected, When the input closes, Then nothing is written, the binary exits 0 and the item stays open | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`: the test drives the loop with a closed-input event and an item selected, asserts the loop returns 0, and asserts the fixture recorded no `answer` argv, with the client pointed at `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`, so no tty is needed | Unmet | - |
 | AC-012 | REQ-012 | Given a state and a message, When the reducer runs, Then it returns the next state and its effects, an Esc produces no `Answer` effect, and each pane's selection is its row key rather than a row index | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` and names `esc_produces_no_answer_effect`, `selection_is_a_row_key_per_pane` and `stale_generation_is_dropped` | Unmet | - |
@@ -75,6 +75,12 @@ Every Verification cell is a command that runs without a tty. The loop takes its
 
 ### The commands
 
+**AC-001**: the verb passes an absolute `--repo`, passes the binary's exit code through and refuses before dispatch.
+
+```bash
+(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts -t "^bots ui ")
+```
+
 **AC-003**: the only module that spawns a process is `cli.rs`, and no state file is opened.
 
 ```bash
@@ -83,14 +89,14 @@ rg -n 'bots\.cjs' crates/bots-tui/src/cli.rs
 rg -n 'read_to_string|File::open|fs::read' crates/bots-tui/src
 ```
 
-**AC-008**: the fixture prints the payload file for its verb and takes its log and its scenario as leading arguments.
+**AC-008**: the fixture prints the payload file for its verb, every payload carries `version` 1 and it takes its log and its scenario as leading arguments.
 
 ```bash
-bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows'
+bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.version == 1 and .rows'
 bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows[0].lastRun | has("branch") and has("worktreePath")'
-bash crates/bots-tui/tests/fixtures/bots activity --json | jq -e '.groups'
-bash crates/bots-tui/tests/fixtures/bots inbox --json | jq -e '.items'
-bash crates/bots-tui/tests/fixtures/bots routines --json | jq -e '.routines | type == "array"'
+bash crates/bots-tui/tests/fixtures/bots activity --json | jq -e '.version == 1 and .groups'
+bash crates/bots-tui/tests/fixtures/bots inbox --json | jq -e '.version == 1 and .items'
+bash crates/bots-tui/tests/fixtures/bots routines --json | jq -e '.version == 1 and (.routines | type == "array")'
 bash crates/bots-tui/tests/fixtures/bots --fixture-log "$(mktemp)" --fixture-scenario empty status --json | jq -e '.rows | length == 0'
 git ls-files -s crates/bots-tui/tests/fixtures/bots
 ```
@@ -100,8 +106,9 @@ git ls-files -s crates/bots-tui/tests/fixtures/bots
 ```bash
 rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml
 rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml
-rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml
-rg -n 'dtolnay/rust-toolchain@stable' .github/workflows/bots-runtime.yml
+rg -c -e "- 'specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/00[12]-[a-z-]*/design/\*\*'" .github/workflows/bots-runtime.yml
+rg -n 'dtolnay/rust-toolchain' .github/workflows/bots-runtime.yml
+awk '/^  bots-tui:/,0' .github/workflows/bots-runtime.yml | rg -c 'uses: [^ ]+@v[0-9]'
 rg -n 'cargo fmt --check|cargo clippy|cargo test' .github/workflows/bots-runtime.yml
 rg -n -e '--locked' .github/workflows/bots-runtime.yml
 rg -n 'cargo build --release' .github/workflows/bots-runtime.yml

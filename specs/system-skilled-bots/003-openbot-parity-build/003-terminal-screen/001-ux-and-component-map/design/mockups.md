@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 Every frame below is a state the screen can be in, drawn at the two sizes the packet fixes. A frame is a contract: the shell, the panes and the overlays are settled here, so a later phase draws cells rather than deciding layout.
 
-The frames are ours. openhuman's client is the design reference and is GPL-3.0-only, so no frame reproduces its text or its code; each section names the file and line range whose shape it follows. [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
+The frames are ours. openhuman's client is the design reference and is GPL-3.0-only, so no frame reproduces its text or its code. Each section names the file and line range whose shape it follows. [SOURCE: specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2]
 
 ---
 
@@ -30,7 +30,7 @@ The frames are ours. openhuman's client is the design reference and is GPL-3.0-o
 | 6 | 22 | 38 | Status row: the first stderr line of the last failed call, or blank |
 | 7 | 23-24 | 39-40 | Footer, two lines, generated from the key table |
 
-The body is 17 rows at 80x24 and 33 rows at 120x40. At 120 columns or wider the body splits into 72 columns of list, a `│` rule, and 47 columns of detail for the selected row; below 120 columns the detail lives in the overlay instead. The split is the one openhuman draws for its transcript and composer, narrowed to a list and a detail pane. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:20-40]
+The body is 17 rows at 80x24 and 33 rows at 120x40, and the list draws `body - 2` of them, so 15 list lines at 80x24 and 31 at 120x40. The two rows the body spends are the pane title and the blank under it. At 120 columns or wider the body splits into 72 columns of list, a `│` rule and 47 columns of detail for the selected row. Below 120 columns the detail lives in the overlay instead. The split is the one openhuman draws for its transcript and composer, narrowed to a list and a detail pane. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:20-40]
 
 Two footer lines rather than one, because the packet requires every bound key to be drawn in the frame that binds it, and one 80-column line cannot hold the tab keys, the list keys and the quit keys together. The footer is generated from the key table, so a key with no label cannot be bound. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:95-105]
 
@@ -44,7 +44,7 @@ Trailing blanks are trimmed in this document. Each frame is exactly 24, 40 or 7 
 
 | # | State | Components in the frame | What the frame settles |
 |---|-------|-------------------------|------------------------|
-| 1 | Shell, Activity tab, rows | Header, tab bar, activity, banner, footer | The seven groups in order, one glyph per group, the detail column at 120 |
+| 1 | Shell, Activity tab, rows | Header, tab bar, activity, banner, footer | The seven groups in order, one glyph per group, the detail column at 120. The list is 17 lines against a 15-line page at 80x24, so that frame shows the first 15 and the two Recurring rows sit one page-step below. The 120x40 frame shows all 17 |
 | 2 | Shell, Inbox tab, open and expired items | Header, tab bar, inbox, banner, footer | An open item and an expired item side by side, the expired row with no glyph, `Enter open` in the footer |
 | 3 | Shell, Routines tab, rows | Header, tab bar, routines, banner, footer | The four-part sentence on two lines, the state line under it |
 | 4 | Shell, Chat tab, placeholder | Header, tab bar, chat | One line naming phase 010, no state |
@@ -88,7 +88,7 @@ Each section names the state, then draws it at 80x24 and at 120x40. The too-smal
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 8 rows
+Activity · 7 groups · 10 rows
 
 Needs you
 › ! hello            needs_you   2m ago
@@ -97,6 +97,7 @@ Working
   · nightly-report   working     now
 Scheduled
   ○ digest           scheduled   in 3h
+  ○ nightly-report   scheduled   in 5h
 Done
   ✓ hello            done        12m ago
 Stopped
@@ -104,7 +105,6 @@ Stopped
 Failed
   ✗ nightly-report   failed      4m ago
 Recurring
-  ↻ digest           recurring   every 6h
 ! 2 pending approvals · Alt+2 → inbox
 
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
@@ -117,15 +117,16 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 8 rows                                            │Detail
-                                                                        │
-Needs you                                                               │bot       hello
-› ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
-  ! digest           needs_you   9m ago                                 │state     needs_you
-Working                                                                 │at        2026-11-25T21:12:04Z
-  · nightly-report   working     now                                    │actor     ada
-Scheduled                                                               │runId     20261125T211204Z-7c1e9a40
-  ○ digest           scheduled   in 3h                                  │
+Activity · 7 groups · 10 rows                                           
+
+Needs you                                                               │Detail
+› ! hello            needs_you   2m ago                                 │
+  ! digest           needs_you   9m ago                                 │bot       hello
+Working                                                                 │identity  skilled-scratch/hello
+  · nightly-report   working     now                                    │state     needs_you
+Scheduled                                                               │at        2026-11-25T21:12:04Z
+  ○ digest           scheduled   in 3h                                  │actor     ada
+  ○ nightly-report   scheduled   in 5h                                  │runId     20261125T211204Z-7c1e9a40
 Done                                                                    │
   ✓ hello            done        12m ago                                │
 Stopped                                                                 │
@@ -134,8 +135,7 @@ Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
 Recurring                                                               │
   ↻ digest           recurring   every 6h                               │
-                                                                        │
-                                                                        │
+  ↻ nightly-report   recurring   daily 02:00                            │
                                                                         │
                                                                         │
                                                                         │
@@ -1304,7 +1304,7 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago                                      status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 8 rows
+Activity · 7 groups · 10 rows
 
 Needs you
 › ! hello            needs_you   2m ago
@@ -1313,6 +1313,7 @@ Working
   · nightly-report   working     now
 Scheduled
   ○ digest           scheduled   in 3h
+  ○ nightly-report   scheduled   in 5h
 Done
   ✓ hello            done        12m ago
 Stopped
@@ -1320,7 +1321,6 @@ Stopped
 Failed
   ✗ nightly-report   failed      4m ago
 Recurring
-  ↻ digest           recurring   every 6h
 ! 2 pending approvals · Alt+2 → inbox
 bots: status --json exited 1: index locked
 Alt+1..4 tabs · [ ] cycle · ↑↓ select · PgUp/PgDn page
@@ -1333,15 +1333,16 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 bots · 4 bots · index 12s ago                                                                              status failed
  [1 Activity]  2 Inbox   3 Routines   4 Chat
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Activity · 7 groups · 8 rows                                            │Detail
-                                                                        │
-Needs you                                                               │bot       hello
-› ! hello            needs_you   2m ago                                 │identity  skilled-scratch/hello
-  ! digest           needs_you   9m ago                                 │state     needs_you
-Working                                                                 │at        2026-11-25T21:12:04Z
-  · nightly-report   working     now                                    │actor     ada
-Scheduled                                                               │runId     20261125T211204Z-7c1e9a40
-  ○ digest           scheduled   in 3h                                  │
+Activity · 7 groups · 10 rows                                           
+
+Needs you                                                               │Detail
+› ! hello            needs_you   2m ago                                 │
+  ! digest           needs_you   9m ago                                 │bot       hello
+Working                                                                 │identity  skilled-scratch/hello
+  · nightly-report   working     now                                    │state     needs_you
+Scheduled                                                               │at        2026-11-25T21:12:04Z
+  ○ digest           scheduled   in 3h                                  │actor     ada
+  ○ nightly-report   scheduled   in 5h                                  │runId     20261125T211204Z-7c1e9a40
 Done                                                                    │
   ✓ hello            done        12m ago                                │
 Stopped                                                                 │
@@ -1350,8 +1351,7 @@ Failed                                                                  │
   ✗ nightly-report   failed      4m ago                                 │
 Recurring                                                               │
   ↻ digest           recurring   every 6h                               │
-                                                                        │
-                                                                        │
+  ↻ nightly-report   recurring   daily 02:00                            │
                                                                         │
                                                                         │
                                                                         │
@@ -2080,10 +2080,10 @@ Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit
 | Reverse video on the focused row | Drawn here as `›` in the gutter and `[ ]` on the active tab, so the frame reads the same in a plain-text diff. The reverse video is added on top of the mark, never instead of it. |
 | The cursor in free text | Drawn as `> ` before the typed text. The real cursor sits after the last character. |
 | The 5-second refresh | No frame changes when a read returns the same rows. The header's index age is the only cell that moves. |
-| A 2,000-row list | The frame shows 15 list lines at 80x24 and 31 at 120x40. The list scrolls, and the selection stays visible; the frame is the window, not the list. |
+| A 2,000-row list | The frame shows 15 list lines at 80x24 and 31 at 120x40. The list scrolls, and the selection stays visible. The frame is the window, not the list. |
 | The too-small screen at 20 columns | The message is drawn truncated to the frame width, so at 20 columns it reads `Too small · Ctrl+D e`. It fits whole from 23 columns up. |
 | The overlay over a scrolled list | The panel clears its own area, so the rows behind it are not drawn. The header, the tabs and the footer stay visible, which is how the operator keeps their place. |
-| A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn; frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
+| A grant the item does not carry | The overlay and the detail column draw a grant's kind and rung only when the item carries them. Frame 18's item carries none, so no grant line is drawn. Frame 23's item carries one, so the line is. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
 | The detail column's grant lines | Frame 2's item carries no grant, so the detail column draws none. When an item carries one, the detail column draws the same grant line frame 23 draws in the overlay. |
 
 ---

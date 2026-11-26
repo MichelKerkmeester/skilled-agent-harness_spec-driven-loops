@@ -24,7 +24,7 @@ The four payloads the terminal screen reads keep their own contract, `003-termin
 
 | File | Holds | Owner | Cited by |
 |------|-------|-------|----------|
-| [`decisions.md`](decisions.md) | D1 to D10, the choice taken for each, the date and the documents it changes | The operator. The assistant recorded the defaults on 2026-11-25 and D10 on 2026-11-26 | 002, 005, 007, 008, 009, 010, 011, 012, 014 |
+| [`decisions.md`](decisions.md) | D1 to D11, the choice taken for each, the date and the documents it changes | The operator. The assistant recorded the defaults on 2026-11-25 and D10 and D11 on 2026-11-26 | 002, 005, 007, 008, 009, 010, 011, 012, 014 |
 | [`records.md`](records.md) | One field table, sample and version rule per durable record, plus the keys decided where the phases left them open | The packet keeps the file. Each section's owner phase fixes its keys, as its Owner column says | 001, 002, 004, 005, 006, 007, 008, 009, 010, 011 |
 | [`cli-json.md`](cli-json.md) | The `--json` rule, one row per verb, the field tables for the verbs the screen does not read, the four `state` vocabularies | The packet keeps the rule. Each verb's row belongs to the phase that adds the verb (001, 002, 005, 010, 011) | 001, 002, 003, 005, 010, 011, 012 |
 | [`versioning.md`](versioning.md) | When a version moves, why the item has none, what an older runtime does with a newer record and the revert step per phase | The packet | 001, 002, 005, 006, 008, 009, 010, 011 |
@@ -33,10 +33,12 @@ The four payloads the terminal screen reads keep their own contract, `003-termin
 | [`answer-seam.md`](answer-seam.md) | The numbered `answerItem` sequence, the item state transitions and the grant lifecycle | 005 for the review seam, 006 for the guarded write [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] | 001, 002, 005, 006, 009, 010, 011 |
 | [`runtime-architecture.md`](runtime-architecture.md) | The target module list and import edges, the final state-root tree and four sequence diagrams | The packet | 001 to 011 |
 | [`verification.md`](verification.md) | Rules V1 to V13 for writing a verify command: anchored vitest filters with a stated pass count, whole-file runs, exact counts, scratch state and baselines | The packet | Every phase with a tasks.md or acceptance-criteria.md |
-| [`fixtures/`](fixtures/README.md) | One golden per record and per `--json` verb the screen's samples do not hold, with the vitest file that reads each | Each golden belongs to its record's owner phase | 002, 005, 008, 009, 010, 011, and 001, 006 and 010 for the item |
+| [`fixtures/`](fixtures/README.md) | One golden per record and per `--json` verb the screen's samples do not hold, with the vitest file that reads each | Each golden belongs to its record's owner phase | 002, 005, 008, 009, 010, 011 and 001, 006 and 010 for the item |
 
 "Cited by" lists the phases whose work orders or documents read the file. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:280-296]
 
 ## Phase document lines that contradict a contract
 
-None is open. The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.
+One is open. `008-vault/design/index-and-writes.md` step 5 writes the index entry as `{ backend, createdAt, updatedAt }`, while `records.md` section 8 now carries `setBy`, the actor `bots secret set` resolved, so the parent's Scope line about a `by:` field on secret records is backed by a key. The 008 writer closes it by adding `setBy` to that step. `bots secret list` is unchanged, so 008 REQ-003's line format still holds.
+
+The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.

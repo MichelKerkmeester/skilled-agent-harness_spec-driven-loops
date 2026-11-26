@@ -38,7 +38,7 @@ _memory:
 | Q002 | Commit and push the ten planned phases of 003 at once, with phase 011 in a later commit. | Not stated. | None | commit 9890c8b507b on system-skilled-bots |
 | Q003 | Review the eleven phase plans on all four angles: plan versus runtime, cross-phase consistency, parity gaps and overbuild, security and failure modes. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
 | Q004 | Run the review as 4 lineages of 13 iterations, two Devin and two Vibe, all DeepSeek flash max. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
-| Q005 | After the review, verify the findings, show a ranked list, and on a yes apply the fixes to the phase specs with Vibe writers. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
+| Q005 | After the review, verify the findings, show a ranked list and on a yes apply the fixes to the phase specs with Vibe writers. | Not stated. | None | specs/system-skilled-bots/003-openbot-parity-build/research |
 | Q006 | Fix all 98 review findings, P0 through P2, in the review gate order. | Not stated. | None | the eleven 003 phase folders and the parent spec |
 | Q007 | Phase 001 adds the --scope once\|deny flag on bots answer so the terminal screen can use it, 006 extends it with grants, and the order stays 001 to 011. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-2-findings.md |
 | Q008 | Apply the second review findings with Vibe writers four at a time, then run a fresh Opus high review before commit. | Not stated. | None | specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-2-findings.md |

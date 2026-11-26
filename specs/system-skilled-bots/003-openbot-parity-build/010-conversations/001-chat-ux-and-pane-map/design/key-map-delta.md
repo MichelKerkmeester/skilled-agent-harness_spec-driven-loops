@@ -89,7 +89,7 @@ Every line is at most 67 columns, so at 67 columns or wider every bound key is i
 
 ### 4.4 A refused send
 
-A send that exits 2 or 4 appended nothing, so the pane puts the draft back, stays in typing and draws the first stderr line in the status row. A send that exits 0, 1 or 5 appended a reply, so the draft is cleared and the pane reads the transcript again. The exit codes are the runtime's own (`contracts/refusals.md` section 1).
+A send that exits 2 or 4 appended nothing, so the pane puts the draft back, stays in typing and draws the first stderr line in the status row. Exit 4 is the verb's three knowable refusals, `bot-unknown`, `body-secret` and `prompt-over-budget`, and each is raised before the append, so pressing `Enter` again writes one message and not two. A send that exits 0, 1 or 5 appended a reply, so the draft is cleared and the pane reads the transcript again. The exit codes are the runtime's own (`contracts/refusals.md` section 1).
 
 ### 4.5 Picking a bot
 

@@ -1,6 +1,6 @@
 ---
 title: "Design: Runtime payload contracts for the terminal screen"
-description: "The four JSON payloads the screen polls, one literal sample and one field table per verb, how each drawn string is derived, the versioning rule, the failed-read shape, the refresh-on-read rule, and the edits the producing phases must adopt."
+description: "The four JSON payloads the screen polls, one literal sample and one field table per verb, how each drawn string is derived, the versioning rule, the failed-read shape, the refresh-on-read rule and the edits the producing phases must adopt."
 trigger_phrases:
   - "terminal screen contracts"
   - "bots json payloads"
@@ -61,6 +61,7 @@ Rendering these four files at the fixed clock with the rules in section 3 gives 
 - A read is good when the child exits 0 and stdout parses as the payload object for that verb. Section 9 covers every other outcome.
 - Each payload is a JSON object with a top-level `version`. Section 8 has the rule.
 - The screen keeps no field it does not draw or select by, and ignores keys it does not know.
+- The screen keeps only rows whose `identity` equals the checkout's own identity, which is the `identity` the `status --json` read reports. A state root shared by two checkouts lists both, and a row from the other one is dropped before it reaches a pane, so a count, a selection and an answer target all name this checkout's rows.
 
 ---
 
@@ -68,7 +69,7 @@ Rendering these four files at the fixed clock with the rules in section 3 gives 
 
 ### Instants
 
-Every instant in every payload is ISO 8601 in UTC with a `Z` suffix, as `Date.prototype.toISOString` writes it, for example `2026-11-25T21:12:04.000Z`. The runtime already writes item instants this way. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] The screen parses only this shape, by hand with `std` and no time crate (A6): four digits, then `-MM-DDTHH:MM:SS`, an optional fraction, and `Z`. Any other shape is a parse failure of that field, drawn as `?` in its cell. The row itself is still drawn.
+Every instant in every payload is ISO 8601 in UTC with a `Z` suffix, as `Date.prototype.toISOString` writes it, for example `2026-11-25T21:12:04.000Z`. The runtime already writes item instants this way. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] The screen parses only this shape, by hand with `std` and no time crate (A6): four digits, then `-MM-DDTHH:MM:SS`, an optional fraction and `Z`. Any other shape is a parse failure of that field, drawn as `?` in its cell. The row itself is still drawn.
 
 Where a frame draws an instant itself (the detail column's `at` and `expiresAt`), it drops the fraction: `2026-11-25T21:12:04.000Z` draws as `2026-11-25T21:12:04Z`. [SOURCE: 001-ux-and-component-map/design/mockups.md:125] [SOURCE: 001-ux-and-component-map/design/mockups.md:202-203]
 
@@ -464,8 +465,8 @@ The empty payload is `{"version": 1, "groups": []}`, which draws frame 6.
 | `groups` | array | no | in the fixed order `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring`, an empty group left out | packet 001 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] | pane title count `7 groups` |
 | `groups[].id` | string | no | one of the seven ids | packet 001 | not drawn, selects the glyph with `state` |
 | `groups[].title` | string | no | `Needs you`, `Working`, `Scheduled`, `Done`, `Stopped`, `Failed`, `Recurring` | packet 001, from OpenBot's titles | group heading line, frames 1, 7, 17 |
-| `groups[].rows` | array | no, never empty | newest `at` first, and soonest first in `scheduled` and `recurring` | packet 001. `needs_you`, `done`, `stopped` and `failed` rows come from the index. `working`, `scheduled` and `recurring` rows have no index source today and need the sources in section 13.1 item 4 | pane title count `8 rows` |
-| `botId` | string | no | bot id | packet 001 | row column 1, padded to 17, and detail `bot` |
+| `groups[].rows` | array | no, never empty | newest `at` first, and soonest first in `scheduled` and `recurring` | packet 001. `needs_you`, `done`, `stopped` and `failed` rows come from the index. `working`, `scheduled` and `recurring` rows have no index source today and need the sources in section 13.1 item 4 | pane title count `10 rows` |
+| `botId` | string | no | bot id | packet 001 | row column 1, padded to 17 and detail `bot` |
 | `identity` | string | no | `owner/name` | packet 001 | detail `identity` at 120 |
 | `state` | string | no | equal to its group's `id` | packet 001 | row glyph and row column 2, detail `state` |
 | `at` | string | no | ISO 8601 UTC. The event time on a past row, the next fire on a `recurring` row and on a `scheduled` row from an installed schedule, so it is in the future there. A `scheduled` row from a queued request carries the request's `enqueuedAt`, which is in the past | packet 001, a future `at` from the next-fire computation REQ-012 adds (section 13.1 item 4) | row column 3 and detail `at` |
@@ -479,7 +480,7 @@ A state outside the seven draws `?` and the raw value as its label. [SOURCE: 001
 
 | Drawn | Rule |
 |-------|------|
-| `Activity · 7 groups · 8 rows` | `groups.length` and the sum of `rows.length` |
+| `Activity · 7 groups · 10 rows` | `groups.length` and the sum of `rows.length` |
 | `Needs you` | `title` verbatim |
 | the glyph | from `state` through the glyph table [SOURCE: 001-ux-and-component-map/design/glyph-table.md:25-31] |
 | `2m ago`, `12m ago`, `1h ago`, `4m ago` | the age formatter on `at` |
@@ -554,13 +555,13 @@ The ten item keys are packet 001's. [SOURCE: specs/system-skilled-bots/003-openb
 | `botId` | string | no | bot id, or a reserved sentinel such as `memory-proposals` after packet 005 | packet 001 | row column 1, detail `botId`, overlay title line |
 | `kind` | string | yes, until packet 005 | `decision`, `memory-proposal`, `skill-proposal` | key packet 001, values packet 005 and 009 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "10. OPEN QUESTIONS"] | detail `kind`, null drawn as `decision`, the absent-means-decision default |
 | `question` | string | no | free text, sanitized | packet 001 | row column 4, overlay question line |
-| `state` | string | no | `open`, `expired`, and `answered` only under `--all` | packet 001 | row glyph `!` when `open`, none when `expired`, row column 2, detail `state` |
+| `state` | string | no | `open`, `expired` and `answered` only under `--all` | packet 001 | row glyph `!` when `open`, none when `expired`, row column 2, detail `state` |
 | `at` | string | no | ISO 8601 UTC, equal to `createdAt` | packet 001 | row column 3 on an open item, detail `at`, overlay age |
 | `options` | string array | yes | a list of strings | today in the item file, printed by packet 001 [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:109] | detail `options`, choice overlay rows, frame 24 |
 | `createdAt` | string | no | ISO 8601 UTC | today in the item file | not drawn, `at` is drawn instead |
 | `expiresAt` | string | no | ISO 8601 UTC, `createdAt` plus `expiryDays` days | today [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:145-147] | row column 3 on an expired item, detail `expiresAt` |
 | `answer` | object | yes, until answered | `{text, answeredAt, by, scope}`, `scope` is `once` or `deny` | today `text` and `answeredAt`, packet 001 adds `by` and `scope` | not drawn, the screen lists no answered item |
-| `grants` | object | absent until packet 006 | `{kind, action, rung, scope, grantedBy, grantedAt}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] | packet 006 | the overlay's `grant kind <kind> · rung <rung>` line, frame 23, and the same line in the detail column, only when present |
+| `grants` | object | absent until packet 006 | `{kind, action, rung, scope, grantedBy, grantedAt}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] | packet 006 | the overlay's `grant kind <kind> · rung <rung>` line, frame 23 and the same line in the detail column, only when present |
 
 ### Derived strings
 
@@ -656,6 +657,7 @@ Selection key: `botId`.
 ## 8. VERSIONING AND UNKNOWN FIELDS
 
 - The binary's contract number is this major. `bots-ui --version` prints `bots-ui <crate version> contract 1`, and the `ui` verb compares the last field with its own copy of the number.
+- The number is one runtime constant, `PAYLOAD_CONTRACT` in `runtime/lib/contract.ts`, and `status.ts`, `activity.ts`, the routines verb and the `ui` verb all read it rather than each holding a copy. A second copy is the defect that lets a payload change land in one verb and not another.
 - Every payload object carries `version`, an integer contract major. Version 1 is this file. `status` ships without it today, and the screen reads an absent `version` as `1`.
 - Adding a key, or adding a value to an enum, is not a version change. The producer adds it here and to the sample in the same change.
 - Removing a key, renaming one, changing its type or making a non-null key nullable bumps `version`. The screen knows one major. A payload with a higher `version` is a failed read whose status row line is `bots-ui: <verb> --json speaks version <n>, the screen reads version 1`. The rows from the last good read stay.
@@ -762,7 +764,7 @@ Two rules belong here because they decide what the screen reads next.
 
 ## 13. EDITS THE OTHER DOCS NEED
 
-The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record. Sections 13.1 and 13.2 target packet phases 001-activity-and-actor and 002-routine-layer and are not applied yet.
+The edits inside this phase were applied in commit cf6bb92a5ce. Line numbers are the pre-edit lines and are kept as a record. Sections 13.1 and 13.2 target packet phases 001-activity-and-actor and 002-routine-layer, and both are applied there: 001-activity-and-actor REQ-001 carries the seven groups and 002-routine-layer REQ-007 carries `{"version": 1, "routines": [...]}` with `summary`.
 
 Line numbers are from the tree at commit `69ecfd0b1f9`. Paths are relative to `specs/system-skilled-bots/003-openbot-parity-build/`. Every search string and every replacement is in its own fenced block, verbatim, so an Edit tool can apply it as written.
 
@@ -1016,6 +1018,8 @@ Recurring                                                               │
 5. **Line 199, frame 2 at 120x40.** Replace `│kind      send` with `│kind      decision`. `send` is a grant kind, and the frame's item carries no grant. [SOURCE: 001-ux-and-component-map/design/mockups.md:2087]
 6. **Line 250, frame 3 at 80x24, and line 279, frame 3 at 120x40.** On nightly-report's state line, replace `streak 0` with `streak 1`. Its last finished run failed 4 minutes ago (frame 1), so the streak is one. At line 279 only the left-hand `streak 0` changes, and the detail column's `streak    0` is digest's and stays.
 7. **Frame 17, lines 1306 to 1322 at 80x24 and lines 1335 to 1351 at 120x40.** Apply the same bodies as items 2 and 3. Frame 17 draws the same rows as frame 1 and carries the same missing row, blank lines and run id.
+
+The sample set gained two `nightly-report` rows after these edits, one in `scheduled` and one in `recurring`, because `status.json` shows it installed and `routines.json` shows its switch enabled. Frames 1 and 17 therefore read `7 groups · 10 rows` today, and the blocks above show the count as it stood when the edit was applied.
 
 ### 13.7 Left for other files
 

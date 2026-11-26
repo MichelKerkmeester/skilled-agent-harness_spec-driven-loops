@@ -26,24 +26,24 @@
     },
     {
       "schemaVersion": 1,
-      "id": "msg-20261125T210508Z-b41d2e07",
+      "id": "msg-20261125T210408Z-b41d2e07",
       "conversationId": "hello",
       "botId": "digest",
       "role": "human",
       "text": "@digest summarize the open review threads",
-      "at": "2026-11-25T21:05:08.000Z",
+      "at": "2026-11-25T21:04:08.000Z",
       "runId": null,
       "by": "ada"
     },
     {
       "schemaVersion": 1,
-      "id": "msg-20261125T210510Z-c2a81f3e",
+      "id": "msg-20261125T210410Z-c2a81f3e",
       "conversationId": "hello",
       "botId": "digest",
       "role": "bot",
       "text": "Two threads wait on you: the release notes and the cache key.",
-      "at": "2026-11-25T21:06:31.000Z",
-      "runId": "20261125T210510Z-c2a81f3e",
+      "at": "2026-11-25T21:04:31.000Z",
+      "runId": "20261125T210410Z-c2a81f3e",
       "by": "bot"
     }
   ]

@@ -61,8 +61,14 @@ The samples use the screen's data set: identity `skilled-scratch/hello`, operato
 | M19 | `item-busy` | a linked chat | `channel.ts` table | None | item | `golden/M19-item-busy.txt` |
 | M20 | A reply that is not a choice of the open prompt | a linked chat | `channel.ts` table | None | highest number | `golden/M20-reply-not-a-choice.txt` |
 | M21 | Uncertain delivery | host stderr of `bots channel drain` | `bots.cjs` | None | channel, key | `golden/M21-delivery-unknown.txt` |
+| M22 | A message that names no bot this host runs | the chat that sent it | `channel.ts` table | None | none | `golden/M22-bot-unknown.txt` |
+| M23 | A bare reply while two prompts are open | a linked chat | `channel.ts` table | None | the open item ids | `golden/M23-reply-ambiguous.txt` |
 
 The refusal rows are every refusal `contracts/refusals.md` section 3.10 lists that a person in a chat can cause, plus every `answerItem` refusal the `channel` surface can reach in `contracts/answer-seam.md` section 1: `item-answered-differently` and `item-busy`. `channel-signature`, `channel-daemon-unreachable`, `channel-listening` and `unsupported` have no chat row, because no person in a chat causes them. The first answers an HTTP request and the other three are host lines `refusals.md` already fixes as `bots: <reason>`.
+
+M22 is a usage reply and carries no refusal name, because the message reaches no bot and no verb returns it. One row answers both a message with no `@<bot-id>` address and a message whose address names no bot definition, and the text names neither the address that was tried nor the bots this host runs, because either would tell a stranger what runs here.
+
+**Two rules every transport follows.** A message whose sender id differs from the link record's `senderId` is refused `channel-unlinked` with no reply, no counter and no `answerItem` call, on every transport and for every event kind, a press included. A linked actor the roster does not name is refused `answer-not-approver` with reply M14 and one `notApprover` count, on every transport. The first rule is silent because the sender is not the person the chat linked, so a reply would answer a stranger. The second replies because the person is the one the chat linked and the refusal is theirs to fix.
 
 ---
 
@@ -138,7 +144,7 @@ Reason: maxDurationReached
 Record: <bots state>/skilled-scratch%2Fhello/records/20261125T193000Z-5e6f7a8b.json
 ```
 
-**M07** to **M21**, one line each:
+**M07** to **M23**, one line each:
 
 | ID | Text |
 |----|------|
@@ -157,6 +163,8 @@ Record: <bots state>/skilled-scratch%2Fhello/records/20261125T193000Z-5e6f7a8b.j
 | M19 | `Item 20261125T210504Z-3f9d2b11 is being answered elsewhere right now. Send your answer again in a few seconds.` |
 | M20 | `Reply with a number from 1 to 2, or NO.` |
 | M21 | `bots: channel telegram: notice-20261125T210504Z-3f9d2b11-telegram is unknown: the send may have landed, so it is not retried` |
+| M22 | `This message names no bot this host runs. Start it with @ and the bot id, for example @digest Which channel?` |
+| M23 | `Two prompts are open in this chat, 20261125T210504Z-3f9d2b11 and 20261125T211204Z-7c1e9a40, so a bare reply answers neither. Answer on the host.` |
 
 Rules for the varying fields:
 
@@ -165,6 +173,8 @@ Rules for the varying fields:
 - M13 rounds the seconds left up to a whole number, so it never prints 0.
 - M14 names the linked actor, never the chat's display name, so a chat cannot claim another person's name in the reply either.
 - M20 names the highest choice number of the newest open prompt in that conversation. On a prompt with no options every reply `reply-grammar.md` accepts is a choice, so M20 is never sent there.
+- M22 is sent for a message with no `@<bot-id>` address and for one whose address names no bot definition. It names neither, and it lists no bot, so a stranger learns nothing about the host.
+- M23 names the open item ids in the order their prompts were delivered, oldest first. It is sent when more than one delivered prompt is open in the conversation and the reply is a bare number, `YES` or `NO`, because none of the three says which prompt it means.
 - M18 is the chat side of a race with the terminal. When the screen's overlay and a chat answer one item, the lock and the answer-identity check of `contracts/answer-seam.md` steps 6 and 8 let one win. A losing terminal answer goes to `Gone` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:292], and a losing chat answer gets M18. A second answerer that finds the lock held for more than 2,000 ms gets M19.
 
 ---
@@ -181,4 +191,4 @@ for r in channel-unlinked channel-locked answer-not-approver item-expired channe
 for f in $D/golden/*.txt; do id=$(basename "$f" | cut -c1-3); t=$(sed -n '1p' "$f"); rg -qF -- "$t" $D/message-catalog.md || echo "DRIFT $id"; done
 ```
 
-The first prints 36: 21 catalog rows and 15 one-line rows. The second prints 21. The two loops print nothing.
+The first prints 40: 23 catalog rows and 17 one-line rows. The second prints 23. The two loops print nothing.

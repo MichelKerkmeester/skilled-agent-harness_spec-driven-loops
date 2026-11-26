@@ -21,9 +21,9 @@ The pane is a client of two `bots chat` calls and of nothing else, which is the 
 | Call | Argv | When | Runs on | Deadline |
 |------|------|------|---------|----------|
 | Read | `<program> chat --transcript --json --repo <repo> -- <bot>` | On the first draw of the Chat tab, on choosing a bot, on every 5-second poll while the Chat tab is active, and once after each `ChatSent` | The screen's worker, as one `Fetch` for the new surface `Chat` | 10 seconds, the screen's read deadline [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "2.3 The worker rules"] |
-| Send | `<program> chat --message <text> --repo <repo> -- <bot>` | `Enter` in typing mode with a non-blank draft and no send in flight | The chat worker, section 4 | None of its own. The run's own bound applies |
+| Send | `<program> chat --message - --repo <repo> -- <bot>`, with the draft written to the child's stdin as one line | `Enter` in typing mode with a non-blank draft and no send in flight | The chat worker, section 4 | None of its own. The run's own bound applies |
 
-`<program>` is the screen's caller-supplied program, and `<repo>` its `--repo`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:204] The `--` ends the options, so a bot id is never read as a flag. [SOURCE: .skilled/bin/bots.cjs:118-121] The text follows `--message` as one argv element and is never passed through a shell. A text that starts with `-` is accepted because `--message` joins the CLI's free-text options (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-005).
+`<program>` is the screen's caller-supplied program, and `<repo>` its `--repo`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:204] The `--` ends the options, so a bot id is never read as a flag. [SOURCE: .skilled/bin/bots.cjs:118-121] The draft never reaches argv: `--message -` tells the verb to read one line from stdin, so a pasted token is not in a process table for the length of the run (`../../002-conversation-runtime-and-chat-verb/spec.md` REQ-001 and NFR-S02). A text that starts with `-` is still accepted, because the value is read from stdin and never parsed as an option.
 
 The pane sends the draft as typed, trimmed of leading and trailing whitespace. It does not parse `@<bot-id>`. The verb routes it (`routing-grammar.md`), so the pane and the loop route a line the same way.
 
@@ -44,7 +44,7 @@ The read prints the envelope that `contracts/cli-json.md` section 3.1 fixes and 
 | `messages[].botId` | string | no | The label's bot: the addressed bot on a human message, the replying bot on a bot message |
 | `messages[].role` | string, `human` or `bot` | no | Picks the label form. Any other value draws `? <raw role>` as the label and the text as stored |
 | `messages[].text` | string, which may hold line feeds (D10 in `contracts/decisions.md`) | no | Split on each line feed and drawn line by line, each line after the screen's control character rule. Its prefix picks the bot glyph (section 3) |
-| `messages[].at` | string, ISO 8601 UTC | no | Drawn as local `HH:MM` |
+| `messages[].at` | string, ISO 8601 UTC | no | Drawn as UTC `HH:MM`, read by the crate's existing `model::parse_utc`, because the crate adds no time crate (A6) and every other frame is drawn in UTC [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.10 The model types (`model.rs`)"] |
 | `messages[].runId` | string | yes, every human message | Drawn in the detail column for the newest bot message |
 | `messages[].by` | string | no | The human label's actor. The literal `bot` on a bot message, not drawn |
 
@@ -66,6 +66,8 @@ A missing conversation file prints the empty shape and creates nothing (`contrac
 | `role: bot`, any other text | `✓ <botId> · <HH:MM>`, then the text. A `[redacted: <name>]` token is drawn as stored and named in the detail column | C3, C6, C9 |
 
 The two text forms are fixed by `contracts/records.md` section 17, so the pane reads them from `text` and the record needs no tenth key. The unanswered state is derived by the reader and never printed as a key (`contracts/cli-json.md` section 3.1).
+
+The prefix is unambiguous because the append escapes it. A bot reply whose own text starts `needs you: ` or `failed: ` is stored with one leading backslash, so it draws as an ordinary reply and the two forms belong to the verb alone (`../002-conversation-runtime-and-chat-verb/spec.md` REQ-007).
 
 A resumed run's answer arrives as one more bot message after the parked one, in the same conversation, so an answered question draws `!` then `✓` and the pane needs no rule for it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE", row 14]
 
@@ -90,7 +92,7 @@ One `bots chat --message` blocks for a whole bot run. A run is bounded by the sm
 | The result is never dropped | `Msg::ChatSent` carries no generation, as `Answered` carries none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "2.3 The worker rules"] |
 | A read follows | `ChatSent` makes the reducer issue one `Fetch` for `Chat` at once, unlike an answer, because the reply is a new line the person is waiting for |
 | Its own process group | The send's child starts in a process group of its own, so a signal sent to the screen's group does not stop the run |
-| No stdout pipe | The child's stdout goes to null, because the pane reads the reply from the transcript, not from the send. Its stderr goes to a temporary file the worker reads after the child exits and then removes, so no pipe reader has to outlive the screen |
+| No stdout pipe | The child's stdout goes to null, because the pane reads the reply from the transcript, not from the send. Its stdin is a pipe the worker writes the draft to and closes. Its stderr goes to a temporary file the worker reads after the child exits and then removes, so no pipe reader has to outlive the screen |
 
 ### 4.3 What the result does
 
@@ -100,16 +102,16 @@ One `bots chat --message` blocks for a whole bot run. A run is bounded by the sm
 | 5 | The run parked and a `needs you:` message was appended | Clears the draft, reads the transcript, draws C7 |
 | 1 | The run failed and a `failed:` message was appended, or the CLI threw | Clears the draft, reads the transcript, draws C8 and puts `bots: chat --message exited 1: <first stderr line>` in the status row |
 | 2 | Usage: an empty message after the address, a bad `--conversation` | Puts the draft back, appends nothing, draws the first stderr line |
-| 4 | Refused: `bot-unknown`, `body-secret`, `prompt-over-budget` or another run refusal | Puts the draft back, draws the first stderr line. `bot-unknown` and `body-secret` append nothing. Any other run refusal leaves the human message with no reply, which the next read draws as C10 |
+| 4 | Refused before the append: `bot-unknown`, `body-secret` or `prompt-over-budget` | Appends nothing, so the pane puts the draft back, stays in typing and draws the first stderr line. Pressing `Enter` again is safe, because no human message was written and no run started |
 | Spawn failure | The program could not start | Puts the draft back, draws `bots-ui: chat send did not start: <error>` |
 
 ---
 
 ## 5. QUITTING WITH A SEND OUT
 
-`Ctrl+D`, a closed input and a signal quit the screen at once even while a send is out. The screen does not wait for the chat worker, unlike an answer in flight, which it waits up to 30 seconds for. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:405-414] The send's child is not killed: it holds no pipe to the screen, it sits in its own process group and `bots chat --message` appends the reply to the file before it prints anything. So the run finishes, the reply lands in the conversation and the next open of the Chat tab, or `bots chat <bot> --transcript`, shows it. A reply that has not landed yet draws as `no reply yet` (C10) until it does.
+`Ctrl+D`, a closed input and a signal quit the screen at once even while a send is out. The screen waits for no child on quit, the chat send and the answer alike: `app.rs` drops the job sender, draws nothing more and returns the code, and an answer child already running is not waited for either. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "2.5 Shutdown"] The send's child is not killed: it holds no pipe to the screen, it sits in its own process group and `bots chat --message` appends the reply to the file before it prints anything. So the run finishes, the reply lands in the conversation and the next open of the Chat tab, or `bots chat <bot> --transcript`, shows it. A reply that has not landed yet draws as `no reply yet` (C10) until it does.
 
-Before it quits with a send out, the screen writes `bots-ui: a chat send is still running; its reply lands in the transcript` to the status row and draws one frame, as it does for an answer in flight.
+The screen draws no frame for a send in flight on the way out, because shutdown draws nothing more. The reply is in the file either way, and the next open of the Chat tab draws it.
 
 ---
 
@@ -149,6 +151,53 @@ pub enum Context { Main, Inbox, List, Overlay, Palette, TooSmall, Chat }   // ke
 
 `State` gains `chat: Remote<Transcript>` beside the four surfaces and `chat_view: ChatView` beside the three pane views. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md:127-146]
 
+### 6.1 The fetch carries its bot
+
+`Effect::Fetch` today carries a surface and a generation, and the transcript read needs a bot id as well, because `bots chat --transcript` takes the bot as its positional argument. The variant gains one field:
+
+```rust
+Fetch { surface: Surface, bot: Option<BotId>, generation: u64 }   // bot is Some only for Surface::Chat
+```
+
+Every other surface passes `None`, so `refresh` and the reducer change in one place and no second effect variant is added.
+
+### 6.2 The new `Action` variants
+
+`keys.rs` holds one `Action` per row, and the chat rows need four meanings the screen's list does not have. The other chat rows reuse an existing variant, because the meaning is the same one the overlay already gives it.
+
+| Chat row | Action | New or reused |
+|---------|--------|---------------|
+| `Up`, `Down`, `PgUp`, `PgDn` in `main` on the Chat tab | `MoveUp`, `MoveDown`, `PageUp`, `PageDown` | Reused. The transcript window is a list |
+| `Enter` in `main` on the Chat tab | `EnterText` | Reused. It enters text entry, as `t` does in an overlay |
+| `b` in `main` on the Chat tab | `ChatPick` | New. It opens the bot picker, which no other surface has |
+| `Enter` in `chat`, typing | `SendText` | Reused. It sends the typed line |
+| `Up`, `Down` in `chat`, typing | `ChatHistoryUp`, `ChatHistoryDown` | New. They recall a sent line, which is not a list move |
+| `Backspace` in `chat`, typing | `DeleteChar` | Reused |
+| `Esc`, `Ctrl+C` in `chat` | `Close` | Reused. It leaves the context and keeps the draft |
+| `Up`, `Down` in `chat`, picking | `MoveUp`, `MoveDown` | Reused |
+| `Enter` in `chat`, picking | `ChatChoose` | New. It chooses the bot and reads its conversation |
+| `Ctrl+D` in `chat` | `Quit` | Reused |
+
+So `Action` gains `ChatPick`, `ChatChoose`, `ChatHistoryUp` and `ChatHistoryDown`, and no other variant.
+
+### 6.3 The two `When` variants are reused, not renamed
+
+`When::Typing` and `When::NotSending` already exist with the overlay's meaning, and `Cond` already carries `typing: bool` and `sending: bool`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.9 The key table types (`keys.rs`)"] The chat rows reuse both: `state.rs` sets `Cond.typing` from `ChatMode::Typing` and `Cond.sending` from `ChatView.sending.is_some()` whenever `Context::Chat` is on the stack. No variant is added and none is renamed, so the overlay's rows keep their meaning.
+
+### 6.4 The 002-owned functions that change
+
+The screen's owner map closes these files to later edits, so each change is named here and made by `../../003-chat-pane-and-proof/` in its own change.
+
+| Function | File | Change |
+|----------|------|--------|
+| `run` | `src/app.rs` | Hand `Effect::ChatSend` to the chat worker's job channel, and drop that sender on shutdown without joining the worker |
+| `App::settle` | `src/app.rs` | Accept a `Msg::ChatSent` reply, which carries no generation, as it accepts `Answered` |
+| `update`, `on_key`, `apply` | `src/state.rs` | The `on_chat_action` arm, the four new `Action` arms, `Cond.typing` and `Cond.sending` from the chat view, and the `Fetch` call that carries the bot |
+| `refresh` | `src/state.rs` | Issue `Fetch` for `Surface::Chat` with the chosen bot, and skip it while a chat read is in flight |
+| `spawn` and the worker start | `src/data.rs` | Start the chat worker beside the read worker, with its own job channel |
+| `chat_transcript`, `chat_send` | `src/cli.rs` | The two calls of section 1, with the draft written to the child's stdin |
+| `draw` | `src/view/mod.rs` | Call the chat body in place of the placeholder |
+
 ---
 
 ## 7. EDITS THE SCREEN'S FILES NEED
@@ -159,15 +208,20 @@ The screen's owner map closes most of its files to later edits inside phase 003.
 |-------------|------|-----|
 | `src/state.rs` | `Surface::Chat`, `Tab::Chat.surface()` returning it, `State.chat`, `State.chat_view`, `ChatView`, `ChatMode`, `Effect::ChatSend`, `Msg::ChatSent`, and an `on_chat_action` arm owned by 010 | Section 6 |
 | `src/keys.rs` | `Context::Chat`, a `CHAT_ROWS` slice holding `key-map-delta.md` section 2, and `When::ChatTab`, `When::Typing`, `When::Picking`, `When::NotSending` | `key-map-delta.md` section 2 |
+| `src/app.rs` | The chat worker's job sender, the `Effect::ChatSend` hand-off, the `Msg::ChatSent` reply in `App::settle`, and a shutdown that drops the sender and does not join the worker | Sections 4, 5 and 6.4 |
 | `src/data.rs` | The chat worker of section 4.2 and its job channel, started and joined beside the read worker. Shutdown drops its job sender and does not join it | Sections 4 and 5 |
-| `src/cli.rs` | `chat_transcript(bot)` and `chat_send(bot, text)` with the argv of section 1. `chat_send` sets the process group, stdout null and stderr to a temporary file | Section 1 and 4.2 |
+| `src/cli.rs` | `chat_transcript(bot)` and `chat_send(bot, text)` with the argv of section 1. `chat_send` sets the process group, stdout null, stdin a pipe it writes the draft to, and stderr to a temporary file | Section 1 and 4.2 |
 | `src/model.rs` | `Transcript`, `Message`, `Role` | Section 6 |
 | `src/view/panes.rs` | The chat body replaces the placeholder body: title, window, composer, the detail column at 120 | `mockups.md` |
-| `tests/fixtures/bots` | A `chat` branch: `--transcript --json` prints `tests/fixtures/payloads/chat-transcript.json`, and `--message` records its argv and exits as the scenario says | The screen's fixture rule [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:212] |
+| `tests/panes.rs` | The placeholder test `chat_placeholder_names_phase_010` is replaced by one that asserts the chat body draws the transcript's first message. The file is 004's, so this is the one row 010 edits in it | Section 7's note below |
+| `tests/render_keys.rs` | The four chat footer lines of `key-map-delta.md` section 3, one per context and mode, generated from `CHAT_ROWS` | `key-map-delta.md` section 3 |
+| `tests/fixtures/bots` | A `chat` branch: `--transcript --json` prints `tests/fixtures/payloads/chat-transcript.json`, and `--message -` records its argv and the stdin line and exits as the scenario says | The screen's fixture rule [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:212] |
 | `tests/fixtures/payloads/chat-transcript.json` | A new scenario file copied from `chat-transcript.sample.json` | The screen lets a later child add a payload file and never edit one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "3. THE OWNER MAP", row `tests/fixtures/payloads/*.json`] |
 | `README.md` | The chat tab's keys and the two calls | The pre-expansion phase listed it |
 
-`src/view/footer.rs` needs no edit, because the footer is generated from the key table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:35]
+`src/view/footer.rs` needs no edit, because the footer is generated from the key table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md:35] `tests/render_keys.rs` does need one, because it asserts the generated lines and the chat context adds four.
+
+Three of these files are closed to later edits by phase 003's owner map: `src/app.rs` is 002's with no later editor, `tests/panes.rs` is 004's and `tests/render_keys.rs` is 003's. Phase 010 edits them in its own change because the chat pane cannot be built without them, and the row above is the named right it takes.
 
 ---
 
@@ -180,4 +234,6 @@ The screen's owner map closes most of its files to later edits inside phase 003.
 | The pane reads the reply from the transcript, never from the send's stdout | One payload shape for every message, and a send whose screen went away loses nothing |
 | Quit does not wait for a send | A send can last sixteen minutes. The reply is in the file either way |
 | The pane does not parse `@<bot-id>` | One parser, in the runtime, so the pane and the loop cannot route one line two ways |
+| The draft goes over stdin, not argv | A pasted token in argv sits in a process table for the length of the run. `--message -` reads the line from stdin, so the draft is in one pipe and nowhere else |
+| Exit 4 always means nothing was appended | The verb runs its three knowable refusals before the append, so the pane can put the draft back and let the person press `Enter` again without writing a second copy of the message |
 | The conversation id is the chosen bot's id | It is the verb's default (`routing-grammar.md` section 3). A pane that picks another conversation is out of scope |

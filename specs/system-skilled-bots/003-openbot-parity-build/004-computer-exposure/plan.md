@@ -39,7 +39,7 @@ The change is one line in a prompt plus one field filled on a path that already 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `node .skilled/bin/bots.cjs status` prints a row with no `branch` part, the measured gap this phase closes
+- [ ] `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout"` prints a row with no `branch` part, the measured gap this phase closes
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` passes before the first edit, so a later failure is this phase's
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0 before the first edit
 - [ ] The six design documents and the twelve goldens exist, and every golden parses
@@ -48,7 +48,7 @@ The change is one line in a prompt plus one field filled on a path that already 
 - [ ] All acceptance criteria met
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0
-- [ ] `node .skilled/bin/bots.cjs status` exits 0 against the index built before the change, without `--rebuild`
+- [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place old index$"` prints `Tests  1 passed`, so an index built before the change still opens without `--rebuild`
 - [ ] `rg -n "SCHEMA_VERSION = '2'" .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` prints one line
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -59,7 +59,7 @@ The change is one line in a prompt plus one field filled on a path that already 
 ## 3. ARCHITECTURE
 
 ### Pattern
-One line builder, one record field, one appended row part, and one design folder that fixes all three before the first edit.
+One line builder, one record field, one appended row part and one design folder that fixes all three before the first edit.
 
 ### Key Components
 - **`dispatch.ts`**: owns the prompt. `workingPlaceLine` sits beside `checkoutLine`, and `buildBotPrompt` takes the working place as an input rather than reading the filesystem, so the prompt stays a pure function of what the runner resolved. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:306-334] The two shapes, the prefix constant and the four slot assertions are [`design/prompt-line.md`](design/prompt-line.md) sections 1 and 2.
@@ -69,7 +69,7 @@ One line builder, one record field, one appended row part, and one design folder
 - **`status.ts`**: owns the row. `LastRun` gains the two fields, `lastRunOf` coalesces an absent summary key to null, and `formatStatus` appends two parts after every part it already prints. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:479-486] The part order and the seven mockups are [`design/status-row.md`](design/status-row.md) sections 1 to 3.
 
 ### Data Flow
-The runner resolves the posture, makes or reopens a tree, and sets `workDir` to the tree or the checkout. It then resolves the branch in one step: the tree's branch when there is a tree, else `checkoutBranch(checkoutRoot, env)`. It writes that value into `seed.evidence.branch` and passes it, with `workDir` and `evidence.runFolder`, to `buildBotPrompt`, which emits the working-place line in its slot in the shared section order, after the spec-folder line and before the checkout line, which is emitted only for a child that starts outside the checkout. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "The nine prompt sections"] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:323-326] The record is written, the index reads it through `summarizeRecord`, and `bots status` reads the index, coalesces each summary field to a string or null, and appends `branch <name>` and `worktree <path>` to the row. A resumed run reuses the parked prompt, so the runner inspects it for the prefix constant and inserts the current line when it is absent, or refuses `resume-item-invalid` when it names another place.
+The runner resolves the posture, makes or reopens a tree and sets `workDir` to the tree or the checkout. It then resolves the branch in one step: the tree's branch when there is a tree, else `checkoutBranch(checkoutRoot, env)`. It writes that value into `seed.evidence.branch` and passes it, with `workDir` and `evidence.runFolder`, to `buildBotPrompt`, which emits the working-place line in its slot in the shared section order, after the spec-folder line and before the checkout line, which is emitted only for a child that starts outside the checkout. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "The nine prompt sections"] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:323-326] The record is written, the index reads it through `summarizeRecord` and `bots status` reads the index, coalesces each summary field to a string or null, and appends `branch <name>` and `worktree <path>` to the row. A resumed run reuses the parked prompt, so the runner inspects it for the prefix constant and inserts the current line when it is absent, or refuses `resume-item-invalid` when it names another place.
 
 The four sequences are drawn in [`design/sequences.md`](design/sequences.md) and the five machines in [`design/state-machines.md`](design/state-machines.md).
 <!-- /ANCHOR:architecture -->
@@ -108,7 +108,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Setup reads the five modules, reads the design folder and records the baseline: the status row with no branch, the shared run's record with `branch: null`, and the runtime suite green before the first edit. Implementation adds `workingPlaceLine` and the `workingPlace` input to `dispatch.ts`, `checkoutBranch` to `isolation.ts`, the branch resolution and the resumed-prompt check to `runner.ts`, the two `RunSummary` fields to `status-index.ts`, and the two `LastRun` fields, the coalescing read and the row parts to `status.ts`. Verification runs the runtime suite and typecheck, reads a worktree run's prompt and record, reads a shared run's record, prints a status row, and confirms an index built before the change still opens.
+Setup reads the five modules, reads the design folder and records the baseline: the status row with no branch, the shared run's record with `branch: null`, and the runtime suite green before the first edit. Implementation adds `workingPlaceLine` and the `workingPlace` input to `dispatch.ts`, `checkoutBranch` to `isolation.ts`, the branch resolution and the resumed-prompt check to `runner.ts`, the two `RunSummary` fields to `status-index.ts` and the two `LastRun` fields, the coalescing read and the row parts to `status.ts`. Verification runs the runtime suite and typecheck, reads a worktree run's prompt and record, reads a shared run's record, prints a status row and confirms an index built before the change still opens.
 
 **The order inside a module.** `dispatch.ts` first, because `runner.ts` calls it. `isolation.ts` before `runner.ts`, because the runner imports `checkoutBranch`. `status-index.ts` before `status.ts`, because `lastRunOf` reads the summary the index writes. A worker that owns two of these follows that order within its own group.
 <!-- /ANCHOR:phases -->
@@ -137,7 +137,7 @@ Tasks T001 to T008. One worker, the orchestrator, because the wave writes no fil
 Verify, each command on its own line:
 
 ```text
-node .skilled/bin/bots.cjs status | rg -c 'branch '
+T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout" | rg -c 'branch '
 npm --prefix .skilled/skills/system-skilled-bots/runtime test
 npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck
 rg -n 'export function checkoutLine|export function buildBotPrompt' $LIB/dispatch.ts
@@ -151,7 +151,7 @@ The first prints nothing and exits 1. The second prints a `Tests` line with no `
 
 ### W1 Implementation, `cli-opencode` at `opencode-go/deepseek-v4.1-flash`, three workers
 
-The wave brief fixes the three interfaces before any worker starts: `workingPlace` as `{ path, branch, runFolder }`, `checkoutBranch(root, env)` returning `string | null`, and `RunSummary` and `LastRun` carrying `worktreePath` and `branch` as `string | null`. With those fixed, the three groups share no file.
+The wave brief fixes the three interfaces before any worker starts: `workingPlace` as `{ path, branch, runFolder }`, `checkoutBranch(root, env)` returning `string | null` and `RunSummary` and `LastRun` carrying `worktreePath` and `branch` as `string | null`. With those fixed, the three groups share no file.
 
 | Worker | Task ids | Files | Effort | Fallback if `cli-opencode` runs out |
 |--------|----------|-------|--------|--------------------------------------|
@@ -169,9 +169,13 @@ npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck
 rg -n 'workingPlaceLine' $LIB/dispatch.ts $LIB/runner.ts
 rg -n 'export function checkoutBranch' $LIB/isolation.ts
 rg -n "SCHEMA_VERSION = '2'" $LIB/status-index.ts
+npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line both shapes$"
+npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation -t "^working place line worktree run$"
+npm --prefix .skilled/skills/system-skilled-bots/runtime test -- runner -t "^working place parked prompt same path$"
+npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status -t "^working place row parts$"
 ```
 
-The first prints no `failed`. The second exits 0. The third prints the definition and its two call sites. The fourth prints one line. The fifth prints one line.
+The first prints no `failed`. The second exits 0. The third prints the definition and its two call sites. The fourth prints one line. The fifth prints one line. The last four each print `Tests  1 passed`.
 
 ### W2 Docs, `cli-opencode` at `opencode-go/deepseek-v4.1-flash`, two workers
 
@@ -193,21 +197,21 @@ The first prints one line. The second prints one line.
 
 ### W3 Verification, orchestrator, no dispatch
 
-Tasks T025 to T032. One worker, the orchestrator, because the wave writes no file: it runs the whole suite and the typecheck, reads a worktree run's prompt and record, reads a shared run's record, prints a status row and its JSON, opens an index built before the change, and validates the packet.
+Tasks T025 to T032. One worker, the orchestrator, because the wave writes no file: it runs the whole suite and the typecheck, reads a worktree run's prompt and record, reads a shared run's record, prints a status row and its JSON, opens an index built before the change and validates the packet.
 
 Verify, each command on its own line:
 
 ```text
 npm --prefix .skilled/skills/system-skilled-bots/runtime test
 npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck
-node .skilled/bin/bots.cjs status
-node .skilled/bin/bots.cjs status --json
+T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --repo "$T/checkout"
+T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs status --json --repo "$T/checkout"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure --strict
 ```
 
-The first prints no `failed`. The second exits 0. The third prints `branch <name>` on a row whose last run recorded one and exits 0 without `--rebuild`. The fourth carries `lastRun.branch` and `lastRun.worktreePath`. The fifth prints `RESULT: PASSED`.
+The first prints no `failed`. The second exits 0. The third and fourth exit 0 against a scratch checkout whose `bots/config.json` pins `stateRoot` under the scratch folder, so neither reads the operator's state root. The fifth prints `RESULT: PASSED`.
 
-**What the orchestrator does between waves.** It reads each worker's own suite slice before the wave's verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch` for W1a, `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation runner` for W1b, `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status status-index` for W1c. A slice that prints `failed` sends that one group back with its own output, and the other two groups are not re-run. The wave's verify runs only after all three slices are green, so a red whole-suite run names the group that broke it rather than the wave.
+**What the orchestrator does between waves.** It reads each worker's own suite slice before the wave's verify: `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- dispatch -t "^working place line "` for W1a, `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- isolation runner -t "^working place "` for W1b, `npm --prefix .skilled/skills/system-skilled-bots/runtime test -- status status-index -t "^working place "` for W1c. A slice that prints `failed` sends that one group back with its own output, and the other two groups are not re-run. The wave's verify runs only after all three slices are green, so a red whole-suite run names the group that broke it rather than the wave.
 
 **Fallback order.** Every wave uses the same ladder, and a wave that moves down it keeps its task ids, its files and its verify step: `cli-opencode`, then `cli-pi`, then `cli-mistral-vibe`, then `cli-devin`, then `cli-codex` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"]. The phase's primary sits first and the parent's relative order holds for the four behind it. `cli-devin` is probed with a trivial read-only call before a wave spends it, because a quota banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit. It is also the escalation for W1b if that group fails twice, at `gpt-6-luna` `xhigh` on `fast` [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]. A wave that reaches the end of the ladder without a working executor stops and reports the wave, its task ids and the last refusal rather than authoring a file by hand outside the dispatch contract.
 <!-- /ANCHOR:external-orchestration -->

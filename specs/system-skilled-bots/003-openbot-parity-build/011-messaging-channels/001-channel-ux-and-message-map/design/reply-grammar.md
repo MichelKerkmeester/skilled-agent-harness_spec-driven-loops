@@ -18,7 +18,11 @@ A press carries its action id and needs no grammar. A typed reply does. This fil
 
 ## 1. THE OPEN PROMPT A REPLY ANSWERS
 
-A reply answers **the newest open prompt in its conversation**: the approval index entry with this channel and this conversation whose `sentAt` is latest and whose `expiresAt` is still ahead. No open prompt means the line is a chat message. The echo M07 names the item id, so a person who meant an older prompt sees which one was answered. To answer an older prompt the person uses `bots answer` on the host. A grammar that named an item in the reply would put a 25-character id in a chat line, which nobody types.
+A reply answers **the newest delivered prompt in its conversation**: the approval index entry with this channel and this conversation whose queue file is `delivered`, whose `sentAt` is latest and whose `expiresAt` is still ahead. An entry whose queue file is `queued`, `sending`, `failed` or `unknown` is not a prompt a person received, so a reply never resolves against one. The drain removes `prompts.<itemId>` when its queue entry ends `failed`, so a prompt that never arrived leaves no entry behind. No delivered prompt means the line is a chat message. The echo M07 names the item id, so a person who meant an older prompt sees which one was answered. To answer an older prompt the person uses `bots answer` on the host. A grammar that named an item in the reply would put a 25-character id in a chat line, which nobody types.
+
+**Two delivered prompts open.** When more than one delivered entry is open for the conversation, a bare number, `YES` or `NO` answers nothing, because none of the three says which prompt it means. The reply is M23, which names the open item ids, and both prompts stay open. A line that is not one of those three is judged as it would be with one prompt open.
+
+**The terminal is the exception.** The terminal transport has no approval index entry to resolve against, because a separate drain process cannot print to the listen process's stdout and the index is written by the drain. `bots channel listen terminal` lists the open needs-you items at start and on a tick, prints each one, and resolves a reply against that list. The list is the items `needs-you.ts` reports as `open` for the identity, newest first, so the newest open prompt is the first row. A reply that matches no row of the list is a chat message. The exception is the terminal's alone: every other transport resolves through the index.
 
 ## 2. THE ACCEPTED REPLIES
 
@@ -44,7 +48,7 @@ Row 5 is a chat message. On `signal` and `whatsapp` it becomes one request throu
 
 ## 4. WHO MAY REPLY
 
-A reply is an answer only after the chat is resolved. The order is the one `contracts/answer-seam.md` section 1 numbers: an unlinked chat gets M11 or M12 and its line is never parsed as a reply, a locked chat gets M13 and a group chat on a transport whose `groupKnown` is `yes` gets M16. A linked direct chat's reply then calls `answerItem` with the linked actor and the surface `channel`, which checks the roster (step 5) before the lock (step 6).
+A reply is an answer only after the chat and the sender are resolved. The order is the one `contracts/answer-seam.md` section 1 numbers: an unlinked chat gets M11 or M12 and its line is never parsed as a reply, a locked chat gets M13, a group chat on a transport whose `groupKnown` is `yes` gets M16, and a sender id that differs from the link record's `senderId` is refused `channel-unlinked` with no reply at all. That last rule holds for every event kind, a press included, and on every transport, because the sender is not the person the chat linked and a reply would answer a stranger. A linked direct chat's reply then calls `answerItem` with the linked actor and the surface `channel`, which checks the roster (step 5) before the lock (step 6). An actor the roster does not name is refused `answer-not-approver` with reply M14 and one `notApprover` count, on every transport.
 
 ## 5. CHECKS
 
