@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.26.0
+version: 2.3.27.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -86,7 +86,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 | Tier | When | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | The §8 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-implement.md` with IMPLEMENTATION, `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
-| SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
+| SURFACE | After SKILLED detection | The matched intents' `sk-code-skilled/` resources. A doc from `sk-code-skilled/references/shared/` joins only when IMPLEMENTATION, VERIFICATION or HOOKS maps it |
 | SURFACE | When the hub bundles `sk-code-ci` | The four rule references under `sk-code-ci/references/`, as the CI Workflow Map in §4 lists |
 | SURFACE | When the hub bundles `sk-code-frontend` | `sk-code-frontend/references/frontend-practice.md` plus the topic references the matched frontend intent maps, as the Frontend Map in §4 lists |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
@@ -465,7 +465,7 @@ The router does NOT load the whole matched-intent union. After surface detection
 
 - It does not load another surface's resources.
 - It defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice.
-- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders.
+- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*`, not the Python, shell, config, or JavaScript folders. The language-agnostic `sk-code-skilled/references/shared/*` docs are exempt from this slice and join only when a matched intent maps them.
 - An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map.
 
 This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.

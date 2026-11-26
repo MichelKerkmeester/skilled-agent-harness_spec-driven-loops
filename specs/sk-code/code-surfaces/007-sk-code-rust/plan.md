@@ -92,6 +92,14 @@ The follow-up after the first commit, set by decisions Q009 and Q010, changed th
 - `.skilled/skills/sk-code/SKILL.md`, `mode-registry.json`, `description.json` and `graph-metadata.json`: the hub moves to 3.12.6.0 with `changelog/v3.12.6.0.md` created, and the advisor metadata gains the vocabulary.
 - `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md` and `language-sub-detection/skilled-rust-app.md`: LS-007 created and wired in.
 - The Rust parts `overview-and-p0-parity.md`, `p1-required.md`, `build-and-organization.md`, `modeling-collections-and-api.md`, `overview-and-data-ownership.md`, `overview-and-boundary-template.md`, `interop-model.md`, `overview-and-file-header.md`, plus `sk-code-skilled/SKILL.md` and `changelog/v2.3.0.0.md`: the review fixes that scope TypeScript ownership and state the ASCII regex rule per class.
+The alignment fix pass, set by decisions Q012 to Q018, changed these files.
+
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` and the new `scripts/tests/rust-language-vocabulary.test.cjs`: the bracket-safe keyword parse and `#[napi]` in the detector.
+- `.skilled/skills/sk-code/ROUTER.md`, `shared/references/stack-detection.md`, `sk-code-skilled/ROUTER.md`, `sk-code-skilled/SKILL.md` and `sk-code-skilled/README.md`: the full Rust vocabulary and the shared folder loaded by intent.
+- `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md`, `language-sub-detection/skilled-rust.md`, `skilled-rust-app.md`, `skilled-javascript.md` and `surface-detection/skilled-detection.md`, plus the OC-007 and OC-009 scenarios under `sk-code-skilled/manual-testing-playbook/`.
+- `sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md` and `assets/checklists/rust-checklist/overview-and-p0-parity.md`: the rust-anything source note.
+- `.skilled/skills/sk-code/SKILL.md`, `description.json`, `mode-registry.json`, `hub-router.json`, `feature-catalog/` and `changelog/v3.12.7.0.md`, `sk-code-skilled/changelog/v2.3.1.0.md`, the root `README.md` and `.skilled/changelog/skilled/v4.2.0.0.md`.
+- Generated: `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` and the two sk-code compiled-routing `manifest.json` copies.
 <!-- /ANCHOR:phases -->
 
 ---

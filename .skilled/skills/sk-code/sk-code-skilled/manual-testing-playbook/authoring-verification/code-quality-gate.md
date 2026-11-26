@@ -18,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # OC-007: Code quality gate routing
@@ -44,8 +44,8 @@ resource set, per `ROUTER.md` §3's machine-readable router.
 Operators confirm the exact prompt for `OC-007` classifies as `CODE_QUALITY` and resolves the declared
 resource set without contradictory evidence.
 
-- Objective: confirm the exact prompt routes to surface `SKILLED`, intent `CODE_QUALITY`, and every path in
-  `expected_resources`.
+- Objective: confirm this packet's router sends the exact prompt to intent `CODE_QUALITY` and to every path in
+  `expected_resources`, inside the `SKILLED` surface this packet serves.
 - Real user request: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
 - Prompt: `Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.`
 
@@ -54,9 +54,11 @@ resource set without contradictory evidence.
 Run a quality gate for lint, format, naming, standards, and code smell risks in Skilled system code.
 ```
 
-- Expected execution process: the hub detects `SKILLED` (work under `.skilled/`), the `CODE_QUALITY`
-  `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
-  `expected_resources` resolves under the skill root.
+- Expected execution process: this packet's own router replays the prompt, the `CODE_QUALITY`
+  `INTENT_SIGNALS` keywords match it, and every path this scenario lists under
+  `expected_resources` resolves under the skill root. The prompt names no `.skilled/` path and no
+  SKILLED file, so the hub on its own leaves the surface `UNKNOWN` for it. `expected_surface: SKILLED`
+  records the surface this packet serves, which the hub reaches once the task names a `.skilled/` path.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
   documents `CODE_QUALITY` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `CODE_QUALITY` resources as the

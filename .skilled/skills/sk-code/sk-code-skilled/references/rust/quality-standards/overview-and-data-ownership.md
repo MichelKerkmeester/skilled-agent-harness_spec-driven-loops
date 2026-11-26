@@ -8,7 +8,7 @@ trigger_phrases:
   - "cargo verification baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Rust Quality Standards
@@ -35,6 +35,10 @@ assert_eq!(
 ```
 
 Semantic JSON equality is diagnostic only. Acceptance requires byte-for-byte equality wherever output is observable.
+
+### Source of the rust-anything citations
+
+A rule that ends in `(rust-anything, <file>:<line>)` restates a rule from the rust-anything repository, https://github.com/erkamyaman/rust-anything. Every line number refers to commit `beed6fa45fc984f566e9563c61614f476c70c43f` of its `main` branch, dated 2026-11-26. Read a cited line at that commit, because later upstream edits move the numbers.
 
 ### When to Use
 

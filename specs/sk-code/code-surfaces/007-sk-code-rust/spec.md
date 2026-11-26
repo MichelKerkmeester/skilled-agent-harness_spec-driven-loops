@@ -95,7 +95,7 @@ wasm-bindgen: 14
 
 The final list comes from the research synthesis, and `plan.md` names it before the first edit. The list as applied is in `plan.md` §Final File List.
 
-After the first commit, the operator widened the scope twice. Decision Q009 brought the LS-006 TypeScript-side load fix into this packet, which touches the hub `ROUTER.md`, `sk-code-review/SKILL.md` and `stack-detection.md`. Decision Q010 added the app-crate routing keywords and the LS-007 playbook scenario, which touch the hub routers, registry, metadata and playbook. `plan.md` §Final File List names every file the follow-up changed.
+After the first commit, the operator widened the scope twice. Decision Q009 brought the LS-006 TypeScript-side load fix into this packet, which touches the hub `ROUTER.md`, `sk-code-review/SKILL.md` and `stack-detection.md`. Decision Q010 added the app-crate routing keywords and the LS-007 playbook scenario, which touch the hub routers, registry, metadata and playbook. `plan.md` §Final File List names every file the follow-up changed. The alignment fix pass, decisions Q012 to Q018, fixed every finding from two alignment runs and is listed there too.
 <!-- /ANCHOR:scope -->
 
 ---

@@ -5,7 +5,7 @@ trigger_phrases:
   - "skilled system code"
   - "skilled surface authoring"
   - "system code standards"
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # sk-code-skilled
@@ -31,17 +31,17 @@ This surface carries the standards this repository applies to its own code under
 
 ### The Language Slice
 
-The language follows the extensions and local markers a task touches. The shared tier joins every slice. A parity task that spans a language pair loads both sets.
+The language follows the extensions, Cargo markers and Rust crate words a task names. The shared tier is exempt from the language slice and joins through the intent that maps each doc. A parity task that spans a language pair loads both sets.
 
 | Language | What the surface carries |
 |---|---|
 | **TypeScript** | `.ts`, `.tsx`, `.mts` and `.d.ts`: two style-guide parts, three quality-standard parts, two quick-reference parts and the TypeScript checklist |
 | **Python** | `.py`: a style guide, quality standards, a quick reference and the Python checklist |
 | **Shell** | `.sh` and `.bash`: two style-guide parts, two quality-standard parts, two quick-reference parts and the shell checklist |
-| **Rust** | `.rs`, plus `Cargo.toml`, `Cargo.lock`, napi-rs and wasm-bindgen markers: seven style-guide parts, five quality-standard parts, five quick-reference parts and four checklist parts |
+| **Rust** | `.rs`, plus `Cargo.toml`, `Cargo.lock`, the napi-rs, wasm-bindgen, WASI and cdylib binding words, and the app-crate words `clap cli`, `clap crate`, `clap derive`, `clap::`, ratatui and crossterm: seven style-guide parts, five quality-standard parts, five quick-reference parts and four checklist parts |
 | **Config** | `.json`, `.jsonc`, `.yaml` and `.yml` with a `graph-metadata` or `spec-folder` marker: a style guide, quality standards, a quick reference and the config checklist |
 | **JavaScript** | `.js`, `.cjs` and `.mjs`: a style guide, two quality-standard parts, a quick reference and the JavaScript checklist |
-| **Shared tier** | Every slice: universal patterns, code organization, hook contracts, alignment verification and the workflow guardrails |
+| **Shared tier** | By intent, never by language: universal patterns and code organization with IMPLEMENTATION, alignment verification with VERIFICATION and hook contracts with HOOKS. The workflow guardrails open first when a reader routes inside this packet |
 
 ### The House Style Lives Here
 

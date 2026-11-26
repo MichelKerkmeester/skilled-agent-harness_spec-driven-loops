@@ -23,7 +23,7 @@ expected_resources:
   - references/rust/quick-reference/collections-imports-and-errors.md
   - references/rust/quick-reference/rustdoc-and-cargo.md
   - references/rust/quick-reference/determinism-parity-and-related.md
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # OC-009: Rust standards routing
@@ -49,8 +49,8 @@ Per `SKILL.md` §3, Rust napi-rs/WASM/sidecar modules are compatibility implemen
 Operators confirm the exact prompt for `OC-009` classifies as `RUST` and resolves the declared
 resource set without contradictory evidence.
 
-- Objective: confirm the exact prompt routes to surface `SKILLED`, intent `RUST`, and every path in
-  `expected_resources`.
+- Objective: confirm this packet's router sends the exact prompt to intent `RUST` and to every path in
+  `expected_resources`, inside the `SKILLED` surface this packet serves.
 - Real user request: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
 - Prompt: `For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.`
 
@@ -59,9 +59,11 @@ resource set without contradictory evidence.
 For a Skilled Rust napi-rs or WASM module, apply the Rust standards and TypeScript parity contracts before I implement a feature.
 ```
 
-- Expected execution process: the hub detects `SKILLED` (work under `.skilled/`), the `RUST`
-  `INTENT_SIGNALS` keywords match the prompt, and every path this scenario lists under
-  `expected_resources` resolves under the skill root.
+- Expected execution process: this packet's own router replays the prompt, the `RUST`
+  `INTENT_SIGNALS` keywords match it, and every path this scenario lists under
+  `expected_resources` resolves under the skill root. The prompt names no `.skilled/` path and no
+  SKILLED file, so the hub on its own leaves the surface `UNKNOWN` for it. `expected_surface: SKILLED`
+  records the surface this packet serves, which the hub reaches once the task names a `.skilled/` path.
 - Expected signals: every path in `expected_resources` exists under `sk-code-skilled/`, and each one
   documents `RUST` routing per `SKILL.md` §2 or `ROUTER.md` §3.
 - Desired user-visible outcome: the bundled workflow cites the routed `RUST` resources as the

@@ -1,7 +1,7 @@
 ---
 title: "SD-002: SKILLED Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the SKILLED surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # SD-002: SKILLED Surface Detection
@@ -101,7 +101,7 @@ Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-re
 - `.skilled/skills/sk-code/shared/references/stack-detection.md`: the detection order and the SKILLED language sub-detection table (sections 2 and 3).
 - `.skilled/skills/sk-code/mode-registry.json`: the SKILLED `surfaceDetection` block.
 - `.skilled/skills/sk-code/sk-code-skilled/references/typescript/` — Expected-loaded TypeScript references.
-- `.skilled/skills/sk-code/sk-code-skilled/references/shared/` — Expected-loaded shared SKILLED references.
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/` — Shared SKILLED references, loaded only by an intent that maps them.
 - `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` — SKILLED alignment verifier (run after the edit for evidence).
 - `.skilled/agents/code.md` — @code agent dispatch convention.
 

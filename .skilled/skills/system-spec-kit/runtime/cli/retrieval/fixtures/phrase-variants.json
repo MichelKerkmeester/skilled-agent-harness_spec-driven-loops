@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8915c05cf46d25a7bc0a9a4169748a025489294eaa03ae78a2d7aefc33f47bf3",
+  "manifestHash": "7cbf58b794e8b8b00181cb3c0f3bc9962500ee62aa1418a8232ac2932a76613e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -106660,6 +106660,9 @@
     "rust anything research synthesis": [
       "rust anything research synthesis"
     ],
+    "rust anything source commit": [
+      "rust-anything source commit"
+    ],
     "rust app routing keywords": [
       "rust app routing keywords"
     ],
@@ -106738,6 +106741,9 @@
     "rust interop quality gate": [
       "rust interop quality gate"
     ],
+    "rust keyword parser bracket": [
+      "rust keyword parser bracket"
+    ],
     "rust known languages router replay fixtures": [
       "rust known_languages router-replay fixtures"
     ],
@@ -106779,6 +106785,9 @@
     ],
     "rust review resources": [
       "rust review resources"
+    ],
+    "rust route doc alignment": [
+      "rust route doc alignment"
     ],
     "rust rustdoc and cargo": [
       "rust rustdoc and cargo"
@@ -110414,6 +110423,9 @@
     "shared feedback aggregation": [
       "shared feedback aggregation"
     ],
+    "shared folder by intent": [
+      "shared folder by intent"
+    ],
     "shared frontmatter parser": [
       "shared frontmatter parser"
     ],
@@ -111825,6 +111837,9 @@
     ],
     "sk code 3 12 6 0": [
       "sk-code 3.12.6.0"
+    ],
+    "sk code 3 12 7 0": [
+      "sk-code 3.12.7.0"
     ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
@@ -113701,6 +113716,9 @@
     "sk code skilled 2 3 0 0": [
       "sk-code-skilled 2.3.0.0"
     ],
+    "sk code skilled 2 3 1 0": [
+      "sk-code-skilled 2.3.1.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -113895,6 +113913,9 @@
     ],
     "sk code skilled v2 3 0 0": [
       "sk-code-skilled v2.3.0.0"
+    ],
+    "sk code skilled v2 3 1 0": [
+      "sk-code-skilled v2.3.1.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -114114,6 +114135,9 @@
     ],
     "sk code v3 12 6 0": [
       "sk-code v3.12.6.0"
+    ],
+    "sk code v3 12 7 0": [
+      "sk-code v3.12.7.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"

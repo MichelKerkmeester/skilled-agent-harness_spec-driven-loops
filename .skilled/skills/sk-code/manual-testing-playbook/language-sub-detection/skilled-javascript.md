@@ -1,7 +1,7 @@
 ---
 title: "LS-005: SKILLED JavaScript Sub-Detection"
 description: "Verify that within SKILLED surface, JavaScript file extensions trigger loading of javascript/* references (not typescript, python, shell, rust, or config)."
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # LS-005: SKILLED JavaScript Sub-Detection
@@ -33,7 +33,8 @@ Prompt: `Add a guard to main in .skilled/skills/sk-code/benchmark/scripts/render
 - `sk-code-skilled/references/javascript/style-guide.md`
 - `sk-code-skilled/references/javascript/quick-reference.md`
 - `sk-code-skilled/references/javascript/quality-standards/`
-- `sk-code-skilled/references/shared/`
+
+The language-shared folder `sk-code-skilled/references/shared/` is not expected. The hub route adds a doc from it only for an intent that maps it, IMPLEMENTATION, VERIFICATION or HOOKS, and this prompt scores none of them.
 
 **Expected assets loaded**:
 - `sk-code-skilled/assets/checklists/javascript-checklist.md`
@@ -60,15 +61,15 @@ Prompt: `Add a guard to main in .skilled/skills/sk-code/benchmark/scripts/render
 2. **Verify**: sk-code is the top-1 candidate and its `passes_threshold` is true.
 3. **Invoke sk-code** with the exact prompt.
 4. **Capture loaded refs** to `/tmp/skc-LS005-loaded-refs.txt`.
-5. **Verify**: the three javascript paths plus `sk-code-skilled/references/shared/` loaded; 0 typescript/python/shell/rust/config paths loaded.
+5. **Verify**: the three javascript paths loaded; 0 typescript/python/shell/rust/config paths loaded.
 
 ### Expected Signals
 
-Expected signals: `SURFACE: SKILLED` then `LANGUAGE: JAVASCRIPT`; exactly one entry under `sk-code-skilled/references/javascript/quality-standards/`, plus `style-guide.md`, `quick-reference.md` and `sk-code-skilled/references/shared/`; 0 other-sub-language refs.
+Expected signals: `SURFACE: SKILLED` then `LANGUAGE: JAVASCRIPT`; exactly one entry under `sk-code-skilled/references/javascript/quality-standards/`, plus `style-guide.md` and `quick-reference.md`; 0 other-sub-language refs.
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: sub-language == JAVASCRIPT AND `style-guide.md`, `quick-reference.md` and at least one `quality-standards/` part are in the load set AND `sk-code-skilled/references/shared/` is in the load set AND 0 typescript/python/shell/rust/config refs are loaded.
+- **PASS** iff: sub-language == JAVASCRIPT AND `style-guide.md`, `quick-reference.md` and at least one `quality-standards/` part are in the load set AND 0 typescript/python/shell/rust/config refs are loaded.
 - **FAIL** iff: any other-sub-language ref is loaded, the prompt resolves to TYPESCRIPT because `.cjs` was not recognised, or one of the two flat javascript files is missing from the load set.
 
 Evidence: `/tmp/skc-LS005-advisor.txt` (advisor probe output) and `/tmp/skc-LS005-loaded-refs.txt` (loaded-refs transcript).

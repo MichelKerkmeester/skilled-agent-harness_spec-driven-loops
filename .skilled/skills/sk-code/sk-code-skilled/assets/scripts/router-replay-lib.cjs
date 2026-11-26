@@ -90,7 +90,9 @@ function parseIntentSignals(body) {
     const key = m[1];
     const inner = m[2];
     const weightMatch = /["']weight["']\s*:\s*(\d+(?:\.\d+)?)/.exec(inner);
-    const kwMatch = /["']keywords["']\s*:\s*\[([^\]]*)\]/.exec(inner);
+    // A keyword may itself hold a bracket, such as the `#[napi]` attribute, so the list
+    // body is read as whole quoted strings and a `]` inside one does not end it.
+    const kwMatch = /["']keywords["']\s*:\s*\[((?:"[^"]*"|'[^']*'|[^\]"'])*)\]/.exec(inner);
     signals[key] = {
       weight: weightMatch ? Number(weightMatch[1]) : 1,
       keywords: kwMatch ? quotedStrings(kwMatch[1]).map((k) => k.toLowerCase()) : [],
@@ -658,9 +660,11 @@ const SKILLED_LANGUAGE_FOLDER = /^sk-code-skilled\/references\/([^/]+)\//;
 // touches more than one (e.g. a napi-rs/WASM sidecar over a TypeScript backend must
 // load both the Rust and TypeScript standards), so selection is a set, not a single
 // first match. An empty set preserves the "no language slice" behaviour that a null
-// return used to signal. Rust is recognised by `.rs`, Cargo markers, or the
-// napi-rs/wasm-bindgen/WASI/cdylib interop vocabulary; those markers are consulted
-// here only after surface detection has already matched the Skilled surface.
+// return used to signal. Rust is recognised by `.rs`, Cargo markers, the
+// napi-rs/wasm-bindgen/WASI/cdylib interop vocabulary with its `#[napi]` and
+// `#[wasm_bindgen]` attributes, or the clap, ratatui and crossterm app-crate
+// vocabulary. Those markers are consulted only after surface detection has
+// already matched the Skilled surface.
 function detectSkilledLanguages(taskLower) {
   const langs = new Set();
   if (/\.tsx?\b/.test(taskLower)) langs.add('typescript');
@@ -668,7 +672,7 @@ function detectSkilledLanguages(taskLower) {
   if (/\.sh\b|set -euo|shellcheck/.test(taskLower)) langs.add('shell');
   if (/\.jsonc?\b|graph-metadata|descriptor|spec-folder/.test(taskLower)) langs.add('config');
   if (/\.cjs\b|\.mjs\b/.test(taskLower)) langs.add('javascript');
-  if (/\.rs\b|cargo\.toml|cargo\.lock|napi[-_]rs|wasm[-_]bindgen|\bwasi\b|\bcdylib\b|\bclap (?:cli|crate|derive)\b|\bclap::|\bratatui\b|\bcrossterm\b/.test(taskLower)) langs.add('rust');
+  if (/\.rs\b|cargo\.toml|cargo\.lock|napi[-_]rs|#\[napi\]|wasm[-_]bindgen|\bwasi\b|\bcdylib\b|\bclap (?:cli|crate|derive)\b|\bclap::|\bratatui\b|\bcrossterm\b/.test(taskLower)) langs.add('rust');
   return langs;
 }
 

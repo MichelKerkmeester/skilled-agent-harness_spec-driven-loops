@@ -88,6 +88,7 @@ and findings belong here.
 | LS-006 replay | Partial | Vibe worker exit 0 finished, Rust loaded in full, typescript/quick-reference not opened |
 | LS-006 replay rerun | Done | Run 4 after the loading fix loaded both trios and 7 of 7 TypeScript parts, scratch/ls006-replay.txt |
 | Follow-up after the first commit | Done | Review fixes, open-every-file rule, app-crate keywords, LS-007 run 3 meets its criteria, packet docs closed |
+| Alignment fix pass | Done | Every finding from both alignment runs fixed. The --recheck resolved 3 rows, found 0 new, and left 4 open rows that pass on main |
 
 ### Deviations and findings
 

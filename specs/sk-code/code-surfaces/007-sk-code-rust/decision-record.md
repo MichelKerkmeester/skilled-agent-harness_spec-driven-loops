@@ -45,6 +45,13 @@ _memory:
 | Q009 | Fix the LS-006 TypeScript-side load gap inside this packet rather than hand it off. | Not stated. | None | tasks.md CHK-021, sk-code ROUTER.md section 7, sk-code-review/SKILL.md |
 | Q010 | Add an app-style Rust playbook scenario and the clap, ratatui and crossterm routing keywords, amending decision D1. | Not stated. | None | goal.md D1, sk-code ROUTER.md, hub-router.json, manual-testing-playbook |
 | Q011 | Back up and rebuild the worktree's skill-graph.sqlite with /doctor:skill-advisor rebuild, then probe the LS-006 and LS-007 prompts. | Not stated. | None | tasks.md T028, implementation-summary.md Verification |
+| Q012 | Approve the skilled-alignment scope for the two Rust commits and send its four review lanes on cli-codex Luna xhigh fast. | Not stated. | None | tasks.md, implementation-summary.md Verification |
+| Q013 | Give /local-doc-alignment a scratch topic file for the Rust work rather than add a topic to topics.json. | Not stated. | None | implementation-summary.md Verification |
+| Q014 | Approve the three Luna xhigh fast doc-alignment lanes plus the native review critic. | Not stated. | None | implementation-summary.md Verification |
+| Q015 | Rebuild the bots worktree's stale skill-graph.sqlite with /doctor:skill-advisor rebuild, after a backup. | The database still listed the removed cli-orca skill, which failed 2 advisor tests. | None | implementation-summary.md Verification |
+| Q016 | Delete the stray decision-record.md the decision-capture hook wrote into an unrelated archive packet, after its four answers were copied here as Q012 to Q015. | Not stated. | None | implementation-summary.md Verification |
+| Q017 | Move the LS-007 sandbox to the gitignored .skilled/skills/.state/skc-LS007-sandbox/ path, so the app-crate words alone reach SKILLED and RUST. | A /tmp sandbox with no .rs or .ts file in the prompt leaves the surface UNKNOWN and loads no Rust reference. | None | T033, manual-testing-playbook LS-007 |
+| Q018 | Add the sk-code-review and sk-code-skilled Rust entries to the root v4.2.0.0 release notes, although v4.2.0.0 is already tagged and published without this branch. | Not stated. | None | T036, .skilled/changelog/skilled/v4.2.0.0.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -269,6 +276,145 @@ Skip rebuild
 Answer:
 ```text
 Rebuild (Recommended)
+```
+
+### Q012
+<!-- source: claude:34326d99-91b3-4b13-9128-71ec0666d036:toolu_016cBvvPZNCGJLiYEPfG9amb:0 -->
+
+Question:
+```text
+Skilled-alignment scope for the two Rust commits (035c9dd6bdd..efa2c253641, 193 files, 13 surfaces, 79 battery rows) is shown above. Approve it, and when the battery finishes, may I send the 4 review lanes on cli-codex Luna xhigh fast? Note: executors.json sets the critic to a native review subagent, not Luna.
+```
+
+Options:
+```text
+Approve, Luna lanes (Recommended)
+Approve, Luna critic too
+Battery only
+Cancel
+```
+
+Answer:
+```text
+Approve, Luna lanes (Recommended)
+```
+
+### Q013
+<!-- source: claude:34326d99-91b3-4b13-9128-71ec0666d036:toolu_016cBvvPZNCGJLiYEPfG9amb:1 -->
+
+Question:
+```text
+/local-doc-alignment needs a topic from topics.json, and no topic covers the Rust standards work. How should I give it one?
+```
+
+Options:
+```text
+Scratch topic file (Recommended)
+Add it to topics.json
+Skip doc alignment
+```
+
+Answer:
+```text
+Scratch topic file (Recommended)
+```
+
+### Q014
+<!-- source: claude:34326d99-91b3-4b13-9128-71ec0666d036:toolu_014WtAnD6ZwTZMRbvUFmm71z:0 -->
+
+Question:
+```text
+Doc-alignment on the sk-code Rust topic (36 docs, both topic checks passed) is ready for 3 Luna xhigh fast lanes plus the native review critic. Approve the paid lanes?
+```
+
+Options:
+```text
+Approve (Recommended)
+Checks only
+Cancel
+```
+
+Answer:
+```text
+Approve (Recommended)
+```
+
+### Q015
+<!-- source: claude:34326d99-91b3-4b13-9128-71ec0666d036:toolu_014WtAnD6ZwTZMRbvUFmm71z:1 -->
+
+Question:
+```text
+The bots worktree's gitignored skill-graph.sqlite dates from Nov 25 and still lists the removed cli-orca skill. That is why 2 of 3,562 advisor tests fail there after the merge, and both pass against a fresh database. May I rebuild it with /doctor:skill-advisor rebuild? It backs the database up to a .bak first, and the undo is copying that back.
+```
+
+Options:
+```text
+Rebuild it (Recommended)
+Leave it
+```
+
+Answer:
+```text
+Rebuild it (Recommended)
+```
+
+### Q016
+<!-- source: claude:18b5b122-c5b4-40c0-ac3e-13860897d68b:toolu_014sndXth1XYQaG8taAtHJaZ:0 -->
+
+Question:
+```text
+The decision-capture hook left a stray untracked file in the primary checkout: specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/decision-record.md. Its 4 answers are now copied into the Rust packet's decision-record.md as Q012 to Q015. May I delete the stray file? It is untracked, so the undo is restoring it from the copy I keep in the scratchpad.
+```
+
+Options:
+```text
+Delete it (Recommended)
+Keep it
+```
+
+Answer:
+```text
+Delete it (Recommended)
+```
+
+### Q017
+<!-- source: claude:18b5b122-c5b4-40c0-ac3e-13860897d68b:toolu_014sndXth1XYQaG8taAtHJaZ:1 -->
+
+Question:
+```text
+LS-007 must prove the clap/ratatui/crossterm words route to Rust with no .rs in the prompt. A /tmp sandbox cannot do that: without a .rs or .ts file in the prompt the hub surface is UNKNOWN and 0 Rust refs load (replayed). Which sandbox should LS-007 use?
+```
+
+Options:
+```text
+Gitignored .state path (Recommended)
+Keep /tmp, expect UNKNOWN
+Keep /tmp, add a .ts file
+```
+
+Answer:
+```text
+Gitignored .state path (Recommended)
+```
+
+### Q018
+<!-- source: claude:18b5b122-c5b4-40c0-ac3e-13860897d68b:toolu_01P4pdj5hdcx8wt4FSXfkhdi:0 -->
+
+Question:
+```text
+LOGIC-SYNC: the handoff says to add sk-code-review 1.9.19.0 and sk-code-skilled 2.3.x entries to .skilled/changelog/skilled/v4.2.0.0.md, but v4.2.0.0 is already tagged and published on GitHub (2026-11-26 18:07 UTC) from main, and the Rust branch is not merged into it. Where should the Rust release entries go?
+```
+
+Options:
+```text
+Defer to next release (Recommended)
+Start the next note now
+Add to v4.2.0.0 anyway
+```
+
+Answer:
+```text
+Add to v4.2.0.0 anyway
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

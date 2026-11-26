@@ -8,7 +8,7 @@ trigger_phrases:
   - "napi wasm rust review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Rust Code Quality Checklist
@@ -28,6 +28,8 @@ This checklist treats the TypeScript implementation as the compatibility oracle.
 ### Usage
 
 Apply this first part with the universal checklist, then continue in order through [p0-safety-and-boundary-discipline.md](./p0-safety-and-boundary-discipline.md), [p1-required.md](./p1-required.md) and [p2-evidence-validation-and-resources.md](./p2-evidence-validation-and-resources.md).
+
+A row that cites `(rust-anything, <file>:<line>)` points at the upstream commit the [Rust quality standards overview](../../../references/rust/quality-standards/overview-and-data-ownership.md) names.
 
 ### Scope
 

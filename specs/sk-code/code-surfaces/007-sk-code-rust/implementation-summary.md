@@ -8,25 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/code-surfaces/007-sk-code-rust"
-    last_updated_at: "2026-11-26T15:20:39Z"
+    last_updated_at: "2026-11-26T19:40:01Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed packet docs after the LS-006 and LS-007 replays"
-    next_safe_action: "Commit the follow-up on worktrees/546-sk-code-rust, no push"
+    recent_action: "Fixed every alignment finding and reran the gates"
+    next_safe_action: "Commit the fix pass on worktrees/546-sk-code-rust, staging by name, no push"
     packet_purpose: "Purpose: The Rust set covers a Rust app as well as a Rust binding, with every new rule traced to a line of the rust-anything repository or to an existing sk-code rule."
     blockers: []
     key_files:
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/rust-language-vocabulary.test.cjs"
       - ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md"
-      - ".skilled/skills/sk-code/changelog/v3.12.6.0.md"
-      - "specs/sk-code/code-surfaces/007-sk-code-rust/scratch/ls006-replay.txt"
+      - ".skilled/skills/sk-code/shared/references/stack-detection.md"
     session_dedup:
-      fingerprint: "sha256:3725ead087b4569e66b20291cdba151857227b12e115768a5cac1f0177d2b565"
+      fingerprint: "sha256:ba00becf02e908ab3ce40d1c45c8ec65b5dfaf6d516571c0c013ed32ab27608e"
       session_id: "scaffold-007-sk-code-rust"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "34326d99-91b3-4b13-9128-71ec0666d036"
+      sessionId: "18b5b122-c5b4-40c0-ac3e-13860897d68b"
       workspace: "/Users/michelkerkmeester/worktrees/public/546-sk-code-rust"
-      savedAt: "2026-11-26T15:20:39Z"
+      savedAt: "2026-11-26T19:40:01Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -82,6 +83,12 @@ A reviewer working on a Rust CLI now finds rules that apply to it. The checklist
 | `.skilled/skills/sk-code/sk-code-review/SKILL.md`, `changelog/v1.9.19.0.md` | Modified, Created | The open-every-file rule, version 1.9.19.0 |
 | `.skilled/skills/sk-code/SKILL.md`, `mode-registry.json`, `description.json`, `graph-metadata.json`, `changelog/v3.12.6.0.md` | Modified, Created | Hub version 3.12.6.0 and the advisor vocabulary |
 | `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md`, `language-sub-detection/skilled-rust-app.md` | Modified, Created | LS-007, a Rust-only clap CLI scenario |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs`, `scripts/tests/rust-language-vocabulary.test.cjs` | Modified, Created | The keyword parse reads past a bracketed keyword, `#[napi]` selects Rust, and a test pins the Rust words |
+| `.skilled/skills/sk-code/ROUTER.md`, `shared/references/stack-detection.md`, `sk-code-skilled/ROUTER.md`, `SKILL.md`, `README.md` | Modified | Every detector marker named, and the shared folder loaded by intent rather than language count |
+| `.skilled/skills/sk-code/manual-testing-playbook/` (SD-002, LS-001 to LS-007, `skilled-rust.md`, `skilled-rust-app.md`, `skilled-javascript.md`, `skilled-detection.md`), `sk-code-skilled/manual-testing-playbook/` (OC-007, OC-009) | Modified | Expected refs match the hub route, LS-007 proves the crate words with no `.rs` path |
+| `sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md`, `assets/checklists/rust-checklist/overview-and-p0-parity.md` | Modified | The rust-anything URL and commit `beed6fa45fc9` behind every anchor |
+| `.skilled/skills/sk-code/SKILL.md`, `description.json`, `mode-registry.json`, `hub-router.json`, `feature-catalog/`, `changelog/v3.12.7.0.md`, `sk-code-skilled/changelog/v2.3.1.0.md`, `README.md`, `.skilled/changelog/skilled/v4.2.0.0.md` | Modified, Created | Rust named in the hub, its catalog and the root docs, hub 3.12.7.0 and sk-code-skilled 2.3.1.0 |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json`, the two sk-code compiled-routing `manifest.json` copies | Regenerated | The compiled graph and the routing manifest match the edited metadata |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -90,7 +97,7 @@ A reviewer working on a Rust CLI now finds rules that apply to it. The checklist
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, and the orchestrator merged them into `research/research.md` with 18 ranked edit rows, opening every cited line. A review before writing found four rows that would give wrong guidance as worded, and research.md section 5 records how each was changed or dropped. The Rust examples were checked with a scratch crate: `cargo clippy --all-targets -- -D warnings` exited 0 on the new examples, and it failed with `unfulfilled_lint_expectations` on the old zero comparison, which is why that example changed. The integration test example passed under `cargo test`. Then the router sync check, the package validator, the copy check, the anchor check, the binding comparison and the packet validator ran in that order. The work was committed as `066a16af103` on `worktrees/546-sk-code-rust`. A fresh Opus review of that commit then found that four unchanged Rust docs still made TypeScript the owner of CLI wiring, and that a whole-pattern `unicode(false)` fails on common patterns. Both findings were checked by hand, the regex one with a `cargo run`, and fixed with three wording fixes. Two LS-006 replays had skipped the TypeScript quick-reference parts, so the operator chose to fix the load inside this packet. The hub router, the review packet and `stack-detection.md` now tell a reader to open every file the route selects. The operator also chose to add the clap, ratatui and crossterm keywords and the LS-007 scenario, which amends decision D1. The router sync check, the node suites, the advisor regression set and the playbook validator ran after those edits, the advisor graph was rebuilt with the operator's approval, and fresh Vibe workers replayed LS-006 and LS-007. The follow-up is committed on `worktrees/546-sk-code-rust`. Nothing is pushed.
+Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, and the orchestrator merged them into `research/research.md` with 18 ranked edit rows, opening every cited line. A review before writing found four rows that would give wrong guidance as worded, and research.md section 5 records how each was changed or dropped. The Rust examples were checked with a scratch crate: `cargo clippy --all-targets -- -D warnings` exited 0 on the new examples, and it failed with `unfulfilled_lint_expectations` on the old zero comparison, which is why that example changed. The integration test example passed under `cargo test`. Then the router sync check, the package validator, the copy check, the anchor check, the binding comparison and the packet validator ran in that order. The work was committed as `066a16af103` on `worktrees/546-sk-code-rust`. A fresh Opus review of that commit then found that four unchanged Rust docs still made TypeScript the owner of CLI wiring, and that a whole-pattern `unicode(false)` fails on common patterns. Both findings were checked by hand, the regex one with a `cargo run`, and fixed with three wording fixes. Two LS-006 replays had skipped the TypeScript quick-reference parts, so the operator chose to fix the load inside this packet. The hub router, the review packet and `stack-detection.md` now tell a reader to open every file the route selects. The operator also chose to add the clap, ratatui and crossterm keywords and the LS-007 scenario, which amends decision D1. The router sync check, the node suites, the advisor regression set and the playbook validator ran after those edits, the advisor graph was rebuilt with the operator's approval, and fresh Vibe workers replayed LS-006 and LS-007. The follow-up is committed on `worktrees/546-sk-code-rust`. A `/local-skilled-alignment` run and a `/local-doc-alignment` run on the two commits then found 42 findings, and the operator ordered every one fixed. The replay parser fix was checked by a new test that fails on the old library. Each scenario edit was written from a hub replay of its exact prompt, and the rust-anything commit was pinned by hashing every file of the local copy against the upstream tree. Then the router sync check, both node suites, both playbook validators, the package validator, the freshness check and a `--recheck` of the first alignment run ran from the final state. The fix pass is committed on `worktrees/546-sk-code-rust`. Nothing is pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -127,6 +134,9 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 | LS-006 scenario replay, run 4 after the fix | PASS. Both trios and the shared folder loaded, 7 of 7 TypeScript parts including both quick-reference parts, and no python, shell or config reference. One run cannot separate the fix from worker variance. Evidence in `scratch/ls006-replay.txt` |
 | LS-007 scenario replay, run 3 | Pass criteria hold: RUST alone, 17 of 17 Rust parts, 4 of 4 checklist parts, no other language. Two expected signals are unmet, the SKILLED surface label and the universal checklist, because `stack-detection.md` section 2 counts the /tmp fixture path as not SKILLED |
 | Follow-up gates | `verify-router-sync.cjs` 5/5. sk-code-skilled node tests 56/56. shared node tests 33/33. Advisor regression 84/84. `validate-playbook-package.cjs` PASS with violations=0. `validate_skill_package.py` PASS for sk-code-skilled and sk-code-review |
+| Fix pass gates | `verify-router-sync.cjs` 5/5. sk-code-skilled node tests 65/65, the new Rust vocabulary test 9/9 and 7/9 with the old library. shared node tests 33/33. Both playbook validators `--strict` PASS with violations=0. `validate_skill_package.py` PASS for sk-code, compiled-ready included. `skill-graph-freshness.cjs --strict` exit 0. `check-release-coverage.cjs` required=3 missing=0 |
+| Alignment recheck of the first run | 3 resolved, 0 new, 4 still open. The 4 are the skill-root metadata, system-spec-kit playbook, markdown-link and all-package playbook rows, and each passes on main, whose newer commits this branch's base lacks |
+| LS-006 run 4, reread | Its PASS counted the shared folder as loaded, but the hub route never selects it for that prompt. The worker opened it on its own, so that part of the PASS rested on a load the router did not ask for. The scenario now expects the folder absent |
 | Advisor stage one after the rebuild | sk-code first at 0.8682 for the LS-006 prompt and 0.8706 for the LS-007 prompt, 14 of 14 source files fresh |
 <!-- /ANCHOR:verification -->
 
@@ -138,7 +148,9 @@ Three `cli-mistral-vibe` lineages on `deepseek-flash` researched rust-anything, 
 
 1. **No terminal screen rules.** A ratatui or crossterm app, such as restoring raw mode on every exit path, gets no rule yet, because the source repository has none. A later packet can source them from ratatui's own documentation.
 2. **LS-006 passed once after the loading fix.** Runs 1 and 2 skipped the TypeScript quick-reference parts and run 4 opened them. A single passing run cannot show whether the fix or worker variance made the difference, so a later replay is the check.
-3. **A fixture outside the hub reads as UNKNOWN.** LS-006 and LS-007 both put their fixture under /tmp. `stack-detection.md` section 2 counts a path as SKILLED only inside the hub's `.skilled/` folder, so a reader that resolves the path reports UNKNOWN and skips the universal checklist, while the text route says SKILLED. That rule is outside this packet.
+3. **LS-006 still uses a /tmp fixture.** LS-007 moved to the gitignored `.skilled/skills/.state/` path. LS-006 keeps /tmp, where the text route says SKILLED from its `.rs` and `.ts` file names, but the quality selector resolves the real path and reports UNKNOWN. Moving LS-006 the same way would close that gap.
+4. **The branch base is older than main.** Four battery rows fail here and pass on main. `skill-graph.json`, the root v4.2.0.0 release notes and the sk-code routing manifest also changed on main, so a rebase should regenerate the graph and manifest rather than hand-merge them.
+5. **The v4.2.0.0 notes name unreleased work.** At the operator's direction the Rust entries went into v4.2.0.0, which is already tagged and published without this branch.
 <!-- /ANCHOR:limitations -->
 
 ---

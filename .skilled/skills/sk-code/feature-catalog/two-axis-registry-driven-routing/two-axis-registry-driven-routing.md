@@ -1,12 +1,12 @@
 ---
 title: "Two-Axis Registry-Driven Routing"
-description: "`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router."
+description: "`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router. Within SKILLED the route slices by the languages the task names, Rust included."
 trigger_phrases:
   - "two-axis registry-driven routing"
   - "sk-code workflow and surface axis"
   - "mode-registry mode and packet list"
   - "sk-code smart routing"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
@@ -31,6 +31,10 @@ Stack detection reads its order from data. A surface entry in `mode-registry.jso
 
 The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in `routerPolicy.tieBreak`. The compiled router carries the fallback in `routingModel.surfaceDetection`, so a `SKILLED` session hint never moves SKILLED ahead of another surface. `sk-code-frontend` declares a `FRONTEND` block with the `specific` role and file markers for stylesheet, markup and component files, and the hub also bundles it from request vocabulary. `sk-code-ci` declares no block, because the hub bundles it from request vocabulary alone.
 
+### SKILLED Language Sub-Detection
+
+Once SKILLED is detected, the route slices once more by language. The detector reads the task text and keeps the reference folder of every language it names, so a parity task that names a Rust binding and its TypeScript client keeps both sets. Rust is named by `.rs`, the `Cargo.toml` or `Cargo.lock` markers, the binding words such as `napi-rs`, `#[napi]`, `wasm-bindgen` and `cdylib`, or the app-crate words `clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui` and `crossterm`. The bare word `clap` is not one of them. The language-agnostic `sk-code-skilled/references/shared/` docs are exempt from the slice and join only when a matched intent maps them, IMPLEMENTATION, VERIFICATION or HOOKS. The table and the never-overrides rule live in section 3 of `shared/references/stack-detection.md`.
+
 ### Registry-Driven, Not Keyed-Resource
 
 `sk-code` is a simple intent-to-packet router, not a root `references/<key>/` resource router: root `references/` and `assets/` directories are intentionally absent at the hub level, and resource slicing lives inside the nested packets plus root `ROUTER.md`. Implement/debug/verify phase doctrine is consolidated in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, then symlinked into each surface packet rather than duplicated per packet.
@@ -50,7 +54,7 @@ The registry compiler rejects a hub that does not declare exactly one fallback o
 | `.skilled/skills/sk-code/shared/references/stack-detection.md` | Shared | The surface detection order and the `surfaceDetection` contract. |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs` | Compiler | Validates the declared surfaces and compiles the fallback into the routing model. |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs` | Compiled router | Applies a session surface hint, which never moves the fallback forward. |
-| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Replay | Detects surfaces from request text in the declared order. |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` | Replay | Detects surfaces from request text in the declared order, then the SKILLED languages the text names. |
 | `.opencode/plugins/system-skill-advisor.js` | Plugin | Detects the workspace surface in the declared order and sends it as the surface hint. |
 
 ### Validation And Tests
@@ -60,6 +64,7 @@ The registry compiler rejects a hub that does not declare exactly one fallback o
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Automated test | Structural hub conformance, including the invariant that hub `allowed-tools` equals the union of every registered mode's `toolSurface.allowed`. |
 | `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Automated test | A declared surface outranks SKILLED, SKILLED alone still routes, and the compiler rejects a misplaced or missing fallback. |
 | `.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts` | Automated test | The plugin hints an outside declared surface ahead of SKILLED and refuses SKILLED for a symlinked local skill. |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/rust-language-vocabulary.test.cjs` | Automated test | The Rust keyword list parses past its bracketed attributes, each crate and binding word keeps the Rust set beside a TypeScript file, and the bare word `clap` does not pull it in. |
 
 ---
 

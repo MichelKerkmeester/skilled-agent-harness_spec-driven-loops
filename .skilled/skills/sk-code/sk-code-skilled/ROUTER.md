@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-skilled routing"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-The hub bundles this surface when a request touches `.skilled/` system code, such as a skill, agent, command, plugin, MCP server, descriptor or config. A language or authoring signal then selects the leaf, and the first leaves loaded are the shared tier under `references/shared/`. From there the router selects among four families: language references, shared patterns, the authoring and quality checklists under `assets/checklists/`, and the verifier assets under `assets/scripts/`.
+The hub bundles this surface when a request touches `.skilled/` system code, such as a skill, agent, command, plugin, MCP server, descriptor or config. A language or authoring signal then selects the leaf. This router's `DEFAULT_RESOURCE` opens the shared tier under `references/shared/` first, while the hub route adds a shared doc only for an intent that maps it: IMPLEMENTATION, VERIFICATION or HOOKS. From there the router selects among four families: language references, shared patterns, the authoring and quality checklists under `assets/checklists/`, and the verifier assets under `assets/scripts/`.
 
 The router answers one question: given a request, which skill-local resources load and in what order.
 Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
@@ -39,7 +39,7 @@ loads before an intent selects it. When no intent matches, the hub's `../ROUTER.
 - **TYPESCRIPT** — "typescript / .ts / .tsx" requests load the seven `references/typescript/` docs: two style-guide parts, three quality-standards parts and two quick-reference parts.
 - **PYTHON** — "python / .py / docstring" requests load `references/python/style-guide.md`, `references/python/quality-standards.md` and `references/python/quick-reference.md`.
 - **SHELL** — "shell script / bash / .sh" requests load the six `references/shell/` docs: two style-guide parts, two quality-standards parts and two quick-reference parts.
-- **RUST** — "rust / .rs / cargo.toml / cargo.lock / napi-rs / napi_rs / #[napi] / wasm-bindgen / wasm_bindgen / #[wasm_bindgen] / wasi / cdylib" requests load the seventeen `references/rust/` docs: seven style-guide parts, five quality-standards parts and five quick-reference parts.
+- **RUST** — "rust / .rs / cargo.toml / cargo.lock / napi-rs / napi_rs / #[napi] / wasm-bindgen / wasm_bindgen / #[wasm_bindgen] / wasi / cdylib / clap cli / clap crate / clap derive / clap:: / ratatui / crossterm" requests load the seventeen `references/rust/` docs: seven style-guide parts, five quality-standards parts and five quick-reference parts.
 
 ---
 
