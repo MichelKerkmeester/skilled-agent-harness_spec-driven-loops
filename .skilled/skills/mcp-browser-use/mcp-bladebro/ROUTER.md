@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-bladebro routing"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.2.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -19,7 +19,7 @@ The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short rout
 
 ## 1. OVERVIEW
 
-A request reaches this packet when the `mcp-browser-use` hub's `mcp-bladebro` mode signal selects it for a prompt naming Bladebro, a stealth browser, `rb attach`, a caller-owned browser or agentic signed-in work. It routes to four flat reference leaves under `references/`: `cli-reference.md` for the five tools and the CLI, `browser-lanes.md` for the agent browser and the `rb` lanes, `mcp-wiring.md` for the Code Mode path together with the `assets/utcp-bladebro-manual.md` snapshot, and `install-and-verify.md` for install, pin and health-check intent. `references/cli-reference.md` is the fallback suggestion and never loads on its own.
+A request reaches this packet when the `mcp-browser-use` hub's `mcp-bladebro` mode signal selects it for a prompt naming Bladebro, a stealth browser, `bladebro rb`, a caller-owned or already-open browser that names no Chrome, or agentic signed-in work. It routes to four flat reference leaves under `references/`: `cli-reference.md` for the five tools and the CLI, `browser-lanes.md` for the agent browser and the `rb` lanes, `mcp-wiring.md` for the Code Mode path together with the `assets/utcp-bladebro-manual.md` snapshot, and `install-and-verify.md` for install, pin and health-check intent. `references/cli-reference.md` is the fallback suggestion and never loads on its own.
 
 Every path below stays inside this packet folder, and no resource loads before an intent selects it.
 

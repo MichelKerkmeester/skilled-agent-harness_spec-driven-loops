@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.5.0
+version: 1.2.11.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
@@ -41,7 +41,7 @@ Two routers coexist for a parent hub:
 
 ## 2. WHICH SKILLS THE ROUTER SERVES
 
-The compiled router serves exactly **eight parent hubs**, enumerated as `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`:
+The compiled router serves exactly **eight parent hubs**, listed in the hub registry `.skilled/bin/lib/compiled-routing/hub-registry.json`. The engine builds its `HUB_CHILD` map from that file:
 
 | Hub | Shadow-child |
 | --- | --- |
@@ -65,10 +65,10 @@ The router only ever selects **within** an already-identified hub — which of t
 
 A compiled-serving hub's routing decision passes through four layers on disk, in this order:
 
-1. **Shadow-child engine** — `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/`, holding that hub's own `lib/registry-compiler.cjs` (compiles the hub's `hub-router.json` + `mode-registry.json` + `SKILL.md` into a policy snapshot), `lib/router.cjs` or `lib/canary-router.cjs` (evaluates a prompt against that snapshot), and `fixtures/canary-cases.v1.json` (the hub's own scenario set). Each hub's compiler is hand-built and hand-sized to that hub's real vocabulary — line counts range from 384 (`cli-external-orchestration`) to 682 (`system-deep-loop`); there is no one-size-fits-all compiler.
+1. **Shadow-child engine** — `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/`, holding that hub's own `lib/registry-compiler.cjs` (compiles the hub's `hub-router.json` + `mode-registry.json` + `SKILL.md` into a policy snapshot), `lib/router.cjs` or `lib/canary-router.cjs` (evaluates a prompt against that snapshot), and `fixtures/canary-cases.v1.json` (the hub's own scenario set). Each hub's compiler is hand-built and hand-sized to that hub's real vocabulary — line counts range from 338 (`mcp-browser-use`) to 682 (`system-deep-loop`); there is no one-size-fits-all compiler.
 2. **Activation manifest** — `.../013-live-activation/activation/<hub>/manifest.json`: `{schemaVersion, selectedPolicy: {effectivePolicyHash, generation}, servingAuthority, shadowOnly}`. `servingAuthority` is the per-hub switch between `"legacy"` and `"compiled"`.
 3. **Resolver** — `.../014-runtime-engine/lib/resolve.cjs`. Serves the compiled decision for a hub only when **both** hold: the runtime flag `SPECKIT_COMPILED_ROUTING` permits it (forced to `1`, or unset/default with the hub listed in `DEFAULT_ON_HUBS`), **and** that hub's manifest reads `servingAuthority: "compiled"`. Any other case, or any error resolving the route, returns `null` and the caller falls back to the prose router. `SPECKIT_COMPILED_ROUTING=0` is the explicit fleet-wide kill-switch.
-4. **Front door** — `.skilled/bin/compiled-route.cjs --hub <hub> --prompt "<task>"`. This is the literal command a compiled-serving hub's `SKILL.md` directive invokes; it delegates to the resolver and prints either the compiled decision or a `{"servingAuthority":"legacy"}` sentinel, never throwing into the routing path.
+4. **Front door** — `.skilled/bin/compiled-route.cjs --hub <hub> --prompt-file <task-file>` (write the task there with your file tool, never a heredoc). This is the literal command a compiled-serving hub's `SKILL.md` directive invokes; it delegates to the resolver and prints either the compiled decision or a `{"servingAuthority":"legacy"}` sentinel, never throwing into the routing path.
 
 **Freshness** ties layers 1 and 2 together: a manifest's `selectedPolicy.effectivePolicyHash` must equal the shadow-child's own current snapshot hash (what `loadHubEngine(hub).snapshot.policy.effectivePolicyHash` computes right now, not a generic recompile). Any change to a hub's shadow-child compiler invalidates that hash, so the manifest must be re-minted afterward — preserving `servingAuthority` and `shadowOnly` — or the hub reads as stale and drops to legacy.
 
@@ -80,7 +80,7 @@ A hub earns the **`compiled-serving`** verdict when its compiled decision matche
 
 The bar for any new hub changed with the harness that replaced it. `.skilled/bin/compiled-route-admission.cjs` runs each hub's compiled decision against the routing gold its playbook already authors: the expected workflow mode and leaf resources, where every gold mode must be routed and negative, `UNKNOWN` or `defer` gold counts any compiled route as a failure. A `clarify` counts as a non-route. A hub outside the default-on cohort must also meet the coverage floors: at least one scored scenario for every declared workflow mode, and at least one negative or `defer` scenario. The admitted hubs get the same coverage measurement as a report. CI runs the check warn-only in the Routing Registry Drift Guard workflow.
 
-Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the eight hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
+Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the eight hubs in Section 2 carry that verdict and are in the cohort (verify directly in `hub-registry.json`: each entry has `defaultOn: true`).
 
 **A naming collision worth knowing:** `compiled-route-status.cjs` (a live per-hub probe, distinct from the retired Lane C harness) emits its own `causeCode: 'compiled-serving'` meaning "this hub is being served compiled right now, under the current flag and manifest." That is a request-time gate check, not a coverage judgment — a hub can hold the Lane C parity verdict `compiled-serving` while the live probe reports something else entirely, for example if the flag is forced off. Section 6 depends on keeping these two apart.
 
@@ -91,11 +91,13 @@ Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub 
 For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
 
 1. **Build the shadow-child compiler to route to the gold.** Grow `registry-compiler.cjs`'s detectors and `router.cjs`/`canary-router.cjs`'s selection logic against the hub's real `hub-router.json` vocabulary and its full playbook/route-gold scenario set, until compiled output satisfies the routing gold on all of them. Model it on the existing shadow children under `009-parent-hub-rollout/`; `002-system-deep-loop` has the largest compiler.
-2. **Pass the admission check** in Section 4: `node .skilled/bin/compiled-route-admission.cjs --hub <hub>` must report `pass`. It reads the engine directly, so the hub does not need to be serving yet, only registered in `HUB_CHILD`.
+2. **Pass the admission check** in Section 4: `node .skilled/bin/compiled-route-admission.cjs --hub <hub>` must report `pass`. It reads the engine directly, so the hub does not need to be serving yet, only registered: one entry in `hub-registry.json` naming the hub and its rollout folder, with `defaultOn: false` until step 4.
 3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte). Activation and the flip both run the admission check for the hub and refuse anything short of `pass`, and both refuse while the advisor scorer has changed since its last freeze. The freeze is stale today, so no hub can be flipped until it is renewed.
-4. **Join `DEFAULT_ON_HUBS`** in `014-runtime-engine/lib/resolve.cjs` so the hub serves compiled by default once the flag is unset, not only when forced on.
+4. **Join `DEFAULT_ON_HUBS`** by setting the hub's registry entry to `defaultOn: true`, so the hub serves compiled by default once the flag is unset, not only when forced on.
 
-**This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are hardcoded, frozen tables owned by the runtime-engine phase, not derived from any manifest or scaffold output. A hub absent from `HUB_CHILD` always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add another hub to this cohort, and does not attempt to.
+Adding a hub takes its rollout folder plus one registry entry and no code edit: the engine, the resolver, the sync tool, the guard and the advisor all read their hub lists from `hub-registry.json`. A repository that vendors `.skilled/` adds its hub the same way, appending the entry to `hub-registry.json` with a json-entry overlay. The leaf-route replay (`sk-create-skill/scripts/leaf-route-replay.cjs`) keeps its own hub list on purpose: it replays every parent hub's prose `ROUTER.md` keyword block against its gold, compiled-serving or not, so that list names parent hubs rather than the compiled-route set, and a new parent hub joins its report by an edit to that list.
+
+**This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are built from the hub registry, owned by the runtime engine, not derived from any manifest or scaffold output. A hub absent from the registry always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add another hub to this cohort, and does not attempt to.
 
 ---
 
@@ -111,11 +113,11 @@ What this proves: the hub's own router files are internally self-consistent and 
 
 | | `--compiled-routing ready` | Genuinely `compiled-serving` |
 | --- | --- | --- |
-| Engine | No shadow-child directory exists yet | Hand-built under `009-parent-hub-rollout/00N-<hub>/`, registered in `HUB_CHILD` |
+| Engine | No shadow-child directory exists yet | Hand-built under `009-parent-hub-rollout/00N-<hub>/`, registered in `hub-registry.json` |
 | Manifest | `servingAuthority: "legacy"`, `shadowOnly: true` | `servingAuthority: "compiled"`, re-minted to the shadow-child hash |
 | Coverage proof | None — no scenarios were evaluated | Parity with legacy for the eight admitted hubs; the admission check in Section 4 for a new hub |
 | Runtime effect | None; the front door always returns the legacy sentinel for this hub | Live, once the hub also joins `DEFAULT_ON_HUBS` (or the flag is forced on) |
-| Owned by | `create-skill` | The hub's own coverage build-out, then the runtime-engine cohort change (Section 5) |
+| Owned by | `create-skill` | The hub's own coverage build-out, then the registry cohort change (Section 5) |
 
 A freshly minted `ready` manifest is inert onboarding evidence — safe, reversible, and inspectable, but it changes nothing at runtime by itself. Treat `compiled-ready (fresh manifest verified)` as "this hub's files are onboarding-clean," never as "this hub now routes compiled traffic." Standalone skills never touch any of this: the manifest concept, the flag, and the front door are all parent-hub-only.
 
@@ -125,5 +127,5 @@ A freshly minted `ready` manifest is inert onboarding evidence — safe, reversi
 
 - [parent-skills-nested-packets.md](parent-skills-nested-packets.md) - the `modes[]`/`packetKind` contract the compiled router compiles.
 - [parent-hub-router-schema.md](parent-hub-router-schema.md) - the `hub-router.json` schema the shadow-child compiler consumes.
-- [goal-coverage-buildout.md](../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md) - the program goal and per-hub coverage recipe (worked example, spec history).
-- [handover.md](../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md) - the verified final state at cutover, when the cohort was seven hubs, and the exact recipe that fixed under-routing (spec history).
+- [goal-coverage-buildout.md](../../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md) - the program goal and per-hub coverage recipe (worked example, spec history).
+- [handover.md](../../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md) - the verified final state at cutover, when the cohort was seven hubs, and the exact recipe that fixed under-routing (spec history).

@@ -1,0 +1,16 @@
+## Iteration 1 Complete
+
+**Focus:** Q1, fan-out shutdown behavior. The wider Q1 audit remains open.
+
+**Findings:** 1 new P2 finding. A live child whose start time is unreadable can be left running while its lineage is recorded as stopped: the fallback only signals `no_recorded_identity`, and survivor tracking excludes `identity_unreadable`. Evidence: [fanout-run.cjs:1047](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047), [fanout-run.cjs:5288](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5288).
+
+**newInfoRatio:** 1.0  
+**Questions answered:** None; Q1 remains open.  
+**Questions remaining:** 5  
+**Recommended next focus:** Continue Q1 with the remaining fan-out stop/retry paths, then dispatch and append-gateway behavior.
+
+**Files written:** [iteration-001.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-001.md), [iter-001.jsonl](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-001.jsonl), and progressive [research.md](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md).
+
+**Verification:** Gateway returned exit 0 with a receipt; the refreshed projection contains exactly one iteration. The delta has the canonical record and one sourced finding, all 12 narrative citation anchors resolve, and the required sections are present. No reducer-owned file was directly edited.
+
+**Status:** complete. No operator action is needed for this iteration.

@@ -9,14 +9,14 @@ trigger_phrases:
   - "delegate from pi"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi Agent Delegation Reference
 
 This reference prevents a common category error: Pi's core CLI tools are not the same thing as a delegation framework.
 
-Pi's core stays small and has no sub-agents, and no community package supplies them either. A Pi session that needs to hand work out dispatches a CLI, itself included. Sources: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md), [Using Pi](https://pi.dev/docs/latest/usage).
+Pi's core stays small and has no sub-agents, and no community package supplies them either. A Pi session that needs to hand work out dispatches a CLI, itself included. Sources: [Pi contract pin](../../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md), [Using Pi](https://pi.dev/docs/latest/usage).
 
 ## 1. OVERVIEW
 

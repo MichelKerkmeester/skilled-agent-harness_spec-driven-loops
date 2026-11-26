@@ -121,8 +121,9 @@ function directiveBlockText(hubToken) {
   return [
     '> **Compiled routing (opt-in, flag-gated, additive).** When `SPECKIT_COMPILED_ROUTING=1`, resolve the mode via the compiled router contract first:',
     '> ```bash',
-    `> node .skilled/bin/compiled-route.cjs --hub ${hubToken} --prompt "<task>"`,
+    `> node .skilled/bin/compiled-route.cjs --hub ${hubToken} --prompt-file <task-file>`,
     '> ```',
+    '> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.',
     '> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). '
       + 'On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on '
       + `serving authority, and the flag is **off by default**, so this is inert until compiled routing is activated for \`${hubToken}\`.`,

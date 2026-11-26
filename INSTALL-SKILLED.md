@@ -158,13 +158,11 @@ Each folder should read `linked-whole` or `linked-merge`. A folder that reads `p
 
 `.skilled` is always linked. Each runtime you pick adds its own folder, and `claude` also adds `.mcp.json`. `--include` adds extras on request: `repo-rules`, `github`, `utcp` or `env`, for the repo rules folder, `.github`, `.utcp_config.json` and `.env`. Linking `.env` shares the checkout's secrets with every tool in the project, and the plan warns you before you approve it.
 
-The link shape decides how each folder is linked. `whole` makes each folder one link to the checkout. `merge` keeps a real folder and links each entry inside it. `auto` picks per folder. A folder your project already has stays real, and your own files in it stay untouched. A folder your project lacks becomes one link, unless it holds a link to a sibling folder, such as the `specs` link inside `.skilled`. That folder is built entry by entry instead.
+The link shape decides how each folder is linked. `whole` makes each folder one link to the checkout. `merge` keeps a real folder and links each entry inside it. `auto` picks per folder. A folder your project already has stays real, and your own files in it stay untouched. A folder your project lacks becomes one link, unless it holds a link to a sibling folder. That folder is built entry by entry instead.
 
 ### Keep The Links Out Of Git
 
 Most links point at your machine's checkout, so never commit them. `link` writes an ignore line for each one to `.git/info/exclude`, which git reads but never commits. Pass `--ignore gitignore` to write `.gitignore` instead.
-
-One link is different. When your project has its own `specs/` folder, `.skilled/specs` links to it with a relative path. That link works on any machine, so it gets no ignore line and you can commit it.
 
 ### Undo A Link
 

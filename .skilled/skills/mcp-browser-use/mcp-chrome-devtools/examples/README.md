@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools examples"
   - "bdg example scripts"
   - "browser automation scripts"
-version: 1.0.3.0
+version: 1.0.5.0
 ---
 
 # CLI Chrome DevTools - Example Scripts
@@ -49,7 +49,7 @@ When these scripts support a Spec Kit packet, route packet recovery back through
 
 ```bash
 # Install browser-debugger-cli
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 
 # Verify installation
 bdg --version
@@ -128,7 +128,7 @@ ${TMPDIR:-/tmp}/performance-baselines/
 - Style recalc count (threshold: 5 or fewer)
 - Task duration (threshold: 200ms or less)
 - Before/after visual states
-- Console errors during animation
+- Console errors during animation (not counted today, see the note in 3.3)
 
 **Exit codes:**
 - `0` - All assertions passed
@@ -186,8 +186,12 @@ ${TMPDIR:-/tmp}/viewport-tests/20241127-143022/
 ```
 
 **Exit codes:**
-- `0` - All viewport tests passed (no console errors)
+- `0` - All viewport tests passed
 - `1` - One or more viewport tests failed
+
+**How the bdg calls are shaped:**
+- The viewport is set with `bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'`. bdg 0.6.10 rejects the JSON as a second positional argument with `too many arguments`, so every CDP call in these scripts passes it through `--params`.
+- Console output is saved with `bdg console --list --json`. That returns an object with the messages under `.messages`, and each message carries `type`, not `level`. The scripts count errors with `jq '[.messages[] | select(.type == "error")] | length'`. In this script a viewport with a console error counts as failed.
 
 **Use cases:**
 - Cross-device visual consistency testing
@@ -323,7 +327,7 @@ command -v jq || sudo apt install jq  # Linux
 ```bash
 # Verify CDP command syntax
 bdg https://example.com 2>&1
-bdg cdp Emulation.setDeviceMetricsOverride '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1
+bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1
 bdg dom screenshot "${TMPDIR:-/tmp}/test.png" 2>&1
 bdg stop 2>&1
 ```

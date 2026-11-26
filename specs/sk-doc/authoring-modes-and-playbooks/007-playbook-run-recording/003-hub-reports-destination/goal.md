@@ -77,7 +77,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Recorder `--reports` and `resolveReports` | Done | `resolveReports` at recorder line 455, its export and its call; `runHubReports` 8 assertions PASS |
+| Recorder `--reports` and `resolveReports` | Done | `resolveReports` at recorder line 456, its export and its call; `runHubReports` 14 assertions PASS after the review follow-up |
 | Runner forwards `--reports` | Done | `run-conversation-scenario.test.cjs` reports `fail 0` |
 | Three playbook roots name the flag | Done | `rg -n -- '--reports .skilled'` prints one line per root; `validate-playbook-package.cjs --package` exit 0, `violations=0` on each |
 | cli-mistral-vibe blocks moved | Done | 0 `Recorded Result` blocks left; report folders hold 22 and 3 PASS rows |

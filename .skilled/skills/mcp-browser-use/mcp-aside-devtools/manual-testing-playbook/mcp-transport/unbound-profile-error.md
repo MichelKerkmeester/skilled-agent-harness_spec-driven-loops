@@ -1,7 +1,7 @@
 ---
 title: "ASD-010 -- Unbound-profile error classification"
 description: "This scenario validates browser-binding failure classification for `ASD-010`. It focuses on recording the binding state of a fresh MCP process and classifying a not-bound-to-a-browser-profile error as PROFILE_UNBOUND, not auth."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # ASD-010 -- Unbound-profile error classification
@@ -16,7 +16,7 @@ This scenario calls `listBrowserTabs()` through `tools/call(repl)` on a fresh `a
 
 ### Why This Matters
 
-This error is the first thing real MCP users will hit: a fresh server process is transport-healthy but not browser-capable. The live-probed message — "This task is not bound to a browser profile. Open it in Aside browser and try again." — must be reported as a binding state (PROFILE_UNBOUND), because misdiagnosing it as missing auth sends operators hunting for credentials that do not exist. The supported binding procedure is an open research question, so honest reporting is the entire fix.
+On earlier versions this error was the first thing real MCP users hit: a fresh server process was transport-healthy but not browser-capable. On 1.26.626.1517 with the app running and signed in, a fresh process is bound. The live-probed message — "This task is not bound to a browser profile. Open it in Aside browser and try again." — must be reported as a binding state (PROFILE_UNBOUND), because misdiagnosing it as missing auth sends operators hunting for credentials that do not exist. The supported binding procedure is an open research question, so honest reporting is the entire fix.
 
 ---
 

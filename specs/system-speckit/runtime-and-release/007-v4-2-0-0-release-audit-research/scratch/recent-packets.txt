@@ -1,0 +1,22 @@
+# The ~20 spec packets most recently touched in the window v4.1.0.0..HEAD (newest first), packet roots only.
+specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers
+specs/system-skilled-doctor/008-own-all-doctor-commands
+specs/hooks-plugins-extensions/decision-capture/001-decision-capture
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement
+specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality
+specs/sk-doc/document-standards/003-changelog-system
+specs/sk-git/worktree-lifecycle/008-provision-skill-graph-database
+specs/sk-git/worktree-lifecycle/007-provision-dev-dependencies
+specs/system-skill-advisor/routing-and-scoring/014-lexical-anchor-narrowing
+specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement
+specs/mcp/mcp-browser-use/001-mcp-browser-use-hub
+specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint
+specs/commands/007-alignment-lane-runner
+specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording
+specs/system-skilled-bots/001-headless-bots-first-build
+specs/hooks-plugins-extensions/session-handover/002-session-handover-loop
+specs/system-deep-loop/loop-architecture/006-sk-code-and-readme-alignment
+specs/system-skilled-doctor/007-overlay-framework-root-layout
+specs/system-deep-loop/loop-architecture/002-graph-engineering
+specs/mcp/mcp-code-mode
+specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat

@@ -6,7 +6,7 @@ trigger_phrases:
   - "install bladebro"
   - "bladebro binary"
   - "bladebro npm package"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bladebro-cli
@@ -22,7 +22,7 @@ version: 1.0.0.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Installing and verifying the `bladebro` CLI: the five tools `act`, `see`, `state`, `run` and `vision`, the `rb` real-browser lanes and the built-in `bladebro mcp` server. |
-| **Invoke with** | `npm install -g bladebro@4.8.2` after an operator yes, then `bladebro --version` and `bladebro doctor`. |
+| **Invoke with** | `npm install -g --ignore-scripts bladebro@4.8.2` after an operator yes, then `bladebro --version` and `bladebro doctor`. |
 | **Works on** | macOS arm64 or x64 with Node.js 14 or later and a Chromium-family browser. These are the only platforms with a recorded v4.8.2 digest. |
 | **Produces** | A `bladebro` launcher on npm's global bin path, backed by the native `bladebro-darwin-arm64` or `bladebro-darwin-x64` binary. |
 
@@ -50,12 +50,12 @@ Expected: `absent` before a first install, and Node 14 or later.
 **Step 2: Install, only after an operator yes.** State the rollback first: `npm uninstall -g bladebro`.
 
 ```bash
-npm install -g bladebro@4.8.2
+npm install -g --ignore-scripts bladebro@4.8.2
 ```
 
 Alternatively the operator runs the packet's wrapper, which adds the digest and version checks and removes the install on a mismatch: `bash ../../scripts/install.sh`.
 
-**Step 3: Verify the digest before the binary first runs.** Compare the installed native binary's SHA-256 with the v4.8.2 release `.sha256` sidecar through `shasum -a 256 -c`. The recorded arm64 value is `7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8`.
+**Step 3: Verify the digest before the binary first runs.** Compare the installed native binary's SHA-256 with the v4.8.2 release `.sha256` sidecar through `shasum -a 256 -c`. The recorded arm64 value is `7324e502b1710f8fb0a073b1f71d3647266d986a50e7351cb4257ec4eb5d8fa8`. Check the two JS launcher files too, `bin.js` and `binary.cjs` in `$(npm root -g)/bladebro`, against the values in `../../references/install-and-verify.md`.
 
 **Step 4: Check the version and health.**
 

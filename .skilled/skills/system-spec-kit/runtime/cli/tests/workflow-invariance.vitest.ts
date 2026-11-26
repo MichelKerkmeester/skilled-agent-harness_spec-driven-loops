@@ -4,6 +4,7 @@
 
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -119,7 +120,7 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md')) return true;
-  if (rel.startsWith('.skilled/manual-testing-playbook/doctor-commands/')) return true;
+  if (rel.startsWith('.skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands/')) return true;
   // Causal-graph edge records document a "kind" schema field (edge kind, e.g. "semantic") in their
   // JSON shape — a data-schema field name, not workflow taxonomy.
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md')) return true;
@@ -207,7 +208,11 @@ describe('workflow vocabulary invariance', () => {
   });
 
   it('reports leaks from extra-path sentinels', () => {
-    const tempDir = fs.mkdtempSync(path.join(process.cwd(), 'workflow-invariance-'));
+    // The sentinel is scratch data, so it lives in the OS temp directory. A
+    // directory created inside the checked-in tree is visible to every other
+    // test file running in parallel, and the suites that copy this tree fail
+    // when an entry disappears mid-copy.
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'workflow-invariance-'));
     try {
       const sentinel = path.join(tempDir, 'sentinel.md');
       fs.writeFileSync(sentinel, 'This public surface leaks preset vocabulary.\n', 'utf8');

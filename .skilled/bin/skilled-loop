@@ -483,7 +483,7 @@ goal_packet_for_receiver() {
   local goal_root="$2"
 
   if [[ -n "$goal_packet" && -n "$goal_root" && "$runtime" != 'claude' ]]; then
-    printf '%s\n' "warning: the goal was not set in the relaunched session: its packet is only in the linked worktree $goal_root, which a $runtime receiver does not read" >&2
+    printf '%s\n' "warning: the goal was not set in the relaunched session: its packet lives in the linked worktree $goal_root, and a $runtime receiver reads packets only from its own checkout, which may hold an older copy. Start the receiver inside $goal_root, or set the goal there by hand." >&2
     return 0
   fi
   printf '%s' "$goal_packet"

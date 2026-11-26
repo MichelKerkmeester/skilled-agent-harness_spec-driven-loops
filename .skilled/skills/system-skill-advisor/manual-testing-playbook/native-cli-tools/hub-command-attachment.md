@@ -1,7 +1,7 @@
 ---
 title: "NC-011 Hub Recommendation Names Its Slash Command"
 description: "Manual validation that advisor_recommend adds the routed mode's slash command to a hub recommendation, holds a deep-loop command back until the prompt asks for the loop itself and does not report a command row and its owner as a tie."
-version: 1.0.1.0
+version: 1.0.2.0
 id: NC-011
 category: native_cli_tools
 stage: routing
@@ -20,7 +20,7 @@ A hub skill such as `sk-doc` used to come back as a bare skill id. The reader th
 This scenario checks three rules with five real prompts:
 
 1. A plain authoring prompt for `sk-doc` returns `command: "/create:readme"`.
-2. A `system-deep-loop` command is attached only when the prompt asks for the loop itself: iterations, an iteration count, multiple passes, a deep loop by name behind a use verb, or the typed command. A prompt that names the topic gets the route and no command, and so does a prompt that only asks for depth, such as `in depth` or `thorough`, because depth asks for care inside one pass.
+2. A `system-deep-loop` command is attached only when the prompt asks for the loop itself: iterative wording that says how the review or research runs, an iteration count, multiple passes, a deep loop by name behind a use verb, or the typed command. A prompt that names the topic gets the route and no command, and so does a prompt that only asks for depth, such as `in depth` or `thorough`, because depth asks for care inside one pass.
 3. A command row and the skill that owns it are one answer, so their near tie does not set `ambiguous`.
 
 ---

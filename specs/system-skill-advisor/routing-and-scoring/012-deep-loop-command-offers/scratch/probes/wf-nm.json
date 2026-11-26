@@ -1,0 +1,152 @@
+[
+ {
+  "id": "M1",
+  "prompt": "give me a recap of the previous deep review report",
+  "expect": "system-deep-loop, no command",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 2,
+  "top": {
+   "skill": "system-deep-loop",
+   "conf": 0.95,
+   "unc": 0.12,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "review",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "sk-code",
+   "conf": 0.8617,
+   "unc": 0.12,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "sk-code-review",
+   "kind": "skill"
+  },
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "M2",
+  "prompt": "write a newsletter piece about iterative research habits",
+  "expect": "not system-deep-loop, no command",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": true,
+  "n": 3,
+  "top": {
+   "skill": "system-spec-kit",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "second": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.22,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "mcp-tooling",
+   "conf": 0.82,
+   "unc": 0.26,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "M3",
+  "prompt": "review the lexer carefully",
+  "expect": "sk-code, no command",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 3,
+  "top": {
+   "skill": "sk-code",
+   "conf": 0.9002,
+   "unc": 0.12,
+   "lane": "explicit_author",
+   "action": "route",
+   "sel": "single",
+   "modes": "sk-code-review",
+   "kind": "skill"
+  },
+  "second": {
+   "skill": "system-deep-loop",
+   "conf": 0.82,
+   "unc": 0.2,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "third": {
+   "skill": "sk-doc",
+   "conf": 0.82,
+   "unc": 0.16,
+   "lane": "lexical",
+   "action": "defer",
+   "sel": null,
+   "modes": "",
+   "kind": "skill",
+   "floored": true
+  },
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "M4",
+  "prompt": "check the boarding passes page for bugs",
+  "expect": "no deep command",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 0,
+  "top": null,
+  "second": null,
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ },
+ {
+  "id": "M5",
+  "prompt": "explain how the coverage graph is built in the deep-loop runtime",
+  "expect": "no doctor, no command",
+  "exit": 0,
+  "status": "ok",
+  "freshness": "live",
+  "ambiguous": false,
+  "n": 0,
+  "top": null,
+  "second": null,
+  "third": null,
+  "extra": [],
+  "stderr": ""
+ }
+]

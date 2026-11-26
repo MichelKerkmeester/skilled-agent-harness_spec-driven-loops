@@ -2,7 +2,7 @@
 name: mcp-code-mode
 description: "MCP orchestration via TypeScript execution. Use Code Mode for ALL external MCP tool calls; ~98% context reduction, type-safe."
 allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
-version: 1.0.18.0
+version: 1.0.19.0
 ---
 
 <!-- Keywords: code mode, call_tool_chain, call an mcp tool, use code mode, chain mcp tools, search_tools, list_tools, tool_info, utcp config, .utcp_config.json, tool not found, manual name prefix, prefixed env variable, register an mcp server, mcp-code-mode -->
@@ -37,7 +37,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 
 | Scenario                     | Code Mode Approach                                                      | Benefit                     |
 | ---------------------------- | ----------------------------------------------------------------------- | --------------------------- |
-| **Create ClickUp task**      | `call_tool_chain({ code: "await clickup.clickup_create_task({...})" })` | Type-safe, single execution |
+| **Create ClickUp task**      | `call_tool_chain({ code: "clickup_official.clickup_official_clickup_create_task({...})" })` | Type-safe, single execution |
 | **Multi-tool workflow**      | Figma → ClickUp → MyService in one execution                              | State persists, 5× faster   |
 | **Browser automation**       | Chrome DevTools MCP for testing/screenshots                             | Sandboxed, reliable         |
 | **Design-to-implementation** | Fetch Figma design → Create task → Update CMS                           | Atomic workflow             |
@@ -70,15 +70,15 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ✅ **Correct**:
 ```typescript
-await myservice.myservice_sites_list({});
-await clickup.clickup_create_task({...});
-await figma.figma_get_file({...});
+myservice.myservice_sites_list({});
+clickup_official.clickup_official_clickup_create_task({...});
+figma.figma_get_file({...});
 ```
 
 ❌ **Wrong** (missing manual prefix):
 ```typescript
-await myservice.sites_list({});        // Error: Tool not found
-await clickup.create_task({...});    // Error: Tool not found
+myservice.sites_list({});        // Error: Tool not found
+clickup_official.clickup_create_task({...});    // Error: Tool not found
 ```
 
 **See [references/naming-convention.md](references/naming-convention.md) for complete guide with troubleshooting.**
@@ -88,7 +88,7 @@ await clickup.create_task({...});    // Error: Tool not found
 Many Code Mode tools require a `context` parameter (15-25 words) for analytics:
 
 ```typescript
-await myservice.myservice_sites_list({
+myservice.myservice_sites_list({
   context: "Listing sites to identify collection structure for CMS update"
 });
 ```
@@ -103,7 +103,7 @@ This helps with usage tracking and debugging.
 
 1. Discover tools with `search_tools()` or `list_tools()`.
 2. Confirm exact callable syntax with `tool_info()`.
-3. Execute `call_tool_chain()` with `{manual_name}.{manual_name}_{tool_name}` calls.
+3. Execute `call_tool_chain()` with `{manual_name}.{manual_name}_{tool_name}` calls. The code runs inside a non-async function and tool calls return their result directly, so call them without `await`. A top-level `await` fails with "await is only valid in async functions". Keep `await` for promises inside an inner `async` function.
 4. Return structured state from the TypeScript block.
 
 Full multi-tool examples live in [references/workflows.md](references/workflows.md).
@@ -146,16 +146,16 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
 **Step 2: Use Progressive Discovery**
 ```typescript
 // Search for Code Mode tools by description
-const tools = await search_tools({
+const tools = search_tools({
   task_description: "browser automation",
   limit: 10
 });
 
 // List all available Code Mode tools
-const allTools = await list_tools();
+const allTools = list_tools();
 
 // Get info about a specific Code Mode tool
-const info = await tool_info({
+const info = tool_info({
   tool_name: "server_name.server_name_tool_name"
 });
 

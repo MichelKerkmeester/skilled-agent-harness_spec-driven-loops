@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-deepseek-max-1-1795550334883-gjbarh","sessionId":"fanout-deepseek-max-1-1795550334883-gjbarh"},"data":{"mode":"review","totalIterations":7,"activeP0":0,"activeP1":0,"activeP2":1,"dimensionCoverage":1,"verdict":"FAIL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

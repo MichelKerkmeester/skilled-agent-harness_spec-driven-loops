@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.14.0
+version: 1.1.15.0
 ---
 
 # Job Shape Rules
@@ -111,12 +111,12 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 
 - **The key covers every lockfile plus the Node major.** The cache key is built from the runner OS, the Node major read from the runner, the bun version and a hash of every lockfile and package manifest the trees install from. A change to any of them is a different key.
 - **No `restore-keys`.** A partial match would restore a tree built from another lockfile and pass a stale install. A miss means a cold provision.
-- **The provisioning walk runs on a hit.** The repository's own `provision_worktree` still runs after a restore and checks that each tree and each build output exists, so a hit shortens the install and is never a version check.
+- **The provisioning walk runs on a hit.** The repository's own `provision_worktree` still runs after a restore and checks that each tree's first dependency directory exists and that each listed build output exists with a stamp matching the tracked sources its list line names, so a hit shortens the install and is never a version check.
 - **The cache is saved only on a miss**, and an input named `cache` set to `false` forces a cold provision so the install path stays exercised.
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:507-512` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in four workflows call the action: `pi-entry-checks.yml` at `:63`, `opencode-v2-battery.yml` at `:108`, `opencode-plugin-tests.yml` at `:108` and `routing-registry-drift.yml` at `:150` and `:271`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in four workflows call the action: `pi-entry-checks.yml` at `:63`, `opencode-v2-battery.yml` at `:103`, `opencode-plugin-tests.yml` at `:103` and `routing-registry-drift.yml` at `:145` and `:266`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 

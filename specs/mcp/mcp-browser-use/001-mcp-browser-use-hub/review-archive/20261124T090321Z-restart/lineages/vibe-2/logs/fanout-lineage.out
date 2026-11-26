@@ -1,0 +1,21 @@
+The lineage is complete. Five iterations ran to legal convergence, every state record went through the append gateway (ledger sequences 2–7), and the reducer ran after each append.
+
+**Result: CONDITIONAL** — 0 P0, 3 P1, 6 P2 active.
+
+| Iter | Dimension | Findings | Ratio |
+|---|---|---|---|
+| 1 | correctness | 1 P1, 1 P2 | 1.0 |
+| 2 | security | 1 P1, 1 P2 | 1.0 |
+| 3 | traceability | 3 P2 | 1.0 |
+| 4 | maintainability | 1 P1, 1 P2 | 1.0 |
+| 5 | cross-reference | none | 0.0 |
+
+The three P1s are all surfaces the phase 014 fix pass touched but did not finish: the advisor's `promptNamesIdNoun` length filter lets ordinary four-letter words satisfy the anchor (`fusion.ts:332`), the Aside capture example's `./tmp/*` guard passes `./tmp/../../etc` (`repl-evidence-capture.sh:33`), and the hub capability matrix still advertises `page.on(...)` as working while the Aside packet documents that it throws (`SKILL.md:40`).
+
+Iteration 5 was the clean pass that drove convergence: the compiled destination graph carries exactly the hub's three modes, the recomputed `effectivePolicyHash` matches the recorded `be9b1fe7…`, all 15 canary cases agree with the compiled router, `.opencode/skills` is a symlink so the harness reads canonical sources, and `mcp-tooling` carries no browser pointer.
+
+Two things worth flagging. `validate.sh --strict --recursive` is blocked for this lineage because it writes repo-wide — the completion criterion that names it is left to the cross-lineage merge. And one probe was briefly written to `/tmp` before I caught it; it was deleted immediately and recorded in the report's audit appendix, with no repository file touched.
+
+Files written, all inside `review/lineages/vibe-2`: `iterations/iteration-001..005.md`, `deltas/iter-001..005.jsonl`, `review-report.md`, plus the strategy, dashboard, registry and state projection the reducer and gateway own.
+
+FANOUT_LINEAGE_COMPLETE:vibe-2

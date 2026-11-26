@@ -2,13 +2,12 @@
 //   - eligibility (advisor hub set) never diverges from the engine-dispatch map
 //   - the tri-state flag is parsed identically at both runtime read sites
 //   - the resolver's per-hub default-on cohort covers all nine promoted hubs; a
-//     stale manifest fails closed while the advisor's enrichment cohort remains
-//     in membership lockstep
+//     stale manifest fails closed while every hub-set copy equals the registry
 //   - the status probe's causeCode separates drift from breakage
 //   - the promoted serving path reads nothing under .opencode/specs
 //   - a future spec-tree import is blocked by the durable guard
 
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -40,26 +39,17 @@ const status = requireCjs(join(HERE, 'compiled-route-status.cjs'));
 const scanner = requireCjs(join(HERE, 'check-no-spec-imports.cjs'));
 const sync = requireCjs(join(HERE, 'compiled-route-sync.cjs'));
 
-// The default-on cohort is duplicated across four copies that must stay in lockstep:
-// the deployed runtime resolver and its current authored source, plus the advisor
-// flag source and its compiled dist. The paths are held here so the drift guard can
-// span all four rather than only the two live-imported ones.
+// The hub set has one source, the registry beside the runtime closure. Its readers
+// are the deployed runtime engine and resolver, their current authored source, and
+// the advisor flag module from source and from its compiled dist. Every one of them
+// must yield exactly the registry, in registry order.
 const REPO = join(HERE, '..', '..');
 const AUTHORED_RESOLVER = sync.AUTHORED_RESOLVER;
+const HUB_REGISTRY = join(RUNTIME, 'hub-registry.json');
 const ADVISOR_DIST_FLAG = join(
   REPO,
   '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/compiled-routing-flag.js',
 );
-
-// Extract the ordered DEFAULT_ON_HUBS members from a source file by text, so the
-// guard never depends on that copy being loadable (the dist is ESM; requiring it
-// would couple this check to module-resolution instead of the cohort itself).
-function cohortMembersFromSource(filePath: string): string[] {
-  const source = readFileSync(filePath, 'utf8');
-  const match = source.match(/DEFAULT_ON_HUBS\s*(?::[^=]*)?=\s*new Set\(\[([\s\S]*?)\]/);
-  if (!match) throw new Error(`no DEFAULT_ON_HUBS Set literal found in ${filePath}`);
-  return [...match[1].matchAll(/['"]([^'"]+)['"]/g)].map((m) => m[1]);
-}
 
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 function clearFlag() { delete process.env[FLAG]; }
@@ -121,28 +111,28 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     });
   }
 
-  it('all four default-on cohort copies stay in lockstep (9 hubs; twins order-identical)', () => {
-    const authoredResolver = requireCjs(AUTHORED_RESOLVER);
-    const binResolver = [...resolver.DEFAULT_ON_HUBS];
-    const authoredResolverCohort = [...authoredResolver.DEFAULT_ON_HUBS];
-    const advisorSrc = [...ADVISOR_DEFAULT_ON_HUBS];
-    const advisorDist = cohortMembersFromSource(ADVISOR_DIST_FLAG);
+  it('every hub-set copy equals the registry (9 hubs, registry order)', async () => {
+    const registry = JSON.parse(readFileSync(HUB_REGISTRY, 'utf8')) as {
+      hubs: Array<{ id: string; rolloutChild: string; defaultOn: boolean }>;
+    };
+    const eligible = registry.hubs.map((h) => h.id);
+    const defaultOn = registry.hubs.filter((h) => h.defaultOn).map((h) => h.id);
+    expect(eligible.length).toBe(9);
 
-    // Exactly 9 hubs in every one of the four copies.
-    for (const cohort of [binResolver, authoredResolverCohort, advisorSrc, advisorDist]) {
-      expect(cohort.length).toBe(9);
-    }
-    // Order-identity WITHIN each family: the two resolver copies must agree, and
-    // the advisor source and its compiled dist must list the cohort identically — an
-    // order change in one but not the other is a real drift a sorted check would miss.
-    expect(binResolver).toEqual(authoredResolverCohort);
-    expect(advisorSrc).toEqual(advisorDist);
-    // Membership-identity ACROSS the two families. The resolver family and the advisor
-    // family intentionally order the set differently, so this is set-equality; given
-    // the within-family identity above, matching one member of each family proves all
-    // four share the same membership.
-    const sorted = (list: string[]): string[] => [...list].sort();
-    expect(sorted(binResolver)).toEqual(sorted(advisorSrc));
+    const authoredResolver = requireCjs(AUTHORED_RESOLVER);
+    const authoredEngine = requireCjs(join(dirname(AUTHORED_RESOLVER), 'compiled-route.cjs'));
+    const advisorDist = await import(pathToFileURL(ADVISOR_DIST_FLAG).href);
+
+    // Eligibility: the engine-dispatch maps and the advisor's probe sets.
+    expect(Object.entries(engine.HUB_CHILD)).toEqual(registry.hubs.map((h) => [h.id, h.rolloutChild]));
+    expect(Object.keys(authoredEngine.HUB_CHILD)).toEqual(eligible);
+    expect([...COMPILED_ROUTING_HUBS]).toEqual(eligible);
+    expect([...advisorDist.COMPILED_ROUTING_HUBS]).toEqual(eligible);
+    // The default-on cohort: both resolver copies and both advisor copies.
+    expect([...resolver.DEFAULT_ON_HUBS]).toEqual(defaultOn);
+    expect([...authoredResolver.DEFAULT_ON_HUBS]).toEqual(defaultOn);
+    expect([...ADVISOR_DEFAULT_ON_HUBS]).toEqual(defaultOn);
+    expect([...advisorDist.DEFAULT_ON_HUBS]).toEqual(defaultOn);
   });
 
   it('unset resolves every fresh default-on hub and fails closed on authorized drift', () => {

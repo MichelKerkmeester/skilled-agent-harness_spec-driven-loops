@@ -18,7 +18,8 @@ const MAX_CAPTURED_SESSIONS = 64;
 const MAX_TRACKED_SESSIONS = 64;
 // The advisor's CLI budget ends first; this margin only catches a call that hangs past it.
 const PI_ADVISOR_DEADLINE_MARGIN_MS = 300;
-// Mirrors the Claude hook's default budget, which Pi cannot import statically because it loads the hook lazily.
+// Pi loads the built Claude hook lazily and fails open when it is missing, so the debug path still needs a local default.
+// Keep this equal to DEFAULT_CLAUDE_HOOK_TIMEOUT_MS in hooks/claude/user-prompt-submit.ts; runtime/tests/hooks/prompt-advisor.vitest.ts checks the copy.
 const PI_ADVISOR_DEFAULT_BUDGET_MS = 2500;
 
 // ───────────────────────────────────────────────────────────────────
@@ -276,6 +277,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
             prompt?: string;
             cwd?: string;
             hook_event_name?: string;
+            session_id?: string;
           },
           dependencies?: { runtime?: "pi"; writeDiagnostic?: (line: string) => void },
         ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
@@ -291,6 +293,9 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
                 prompt: event.text,
                 cwd: ctx.cwd,
                 hook_event_name: "UserPromptSubmit",
+                // The shared handler keys its weak-follow-up route receipt on the
+                // session id, and without one it neither reads nor writes it.
+                session_id: sessionIdFromContext(ctx),
               },
               // The hook runs inside Pi's own process, so its default stderr
               // diagnostic would draw over Pi's input line. The record is

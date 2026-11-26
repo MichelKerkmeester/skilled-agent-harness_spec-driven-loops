@@ -114,4 +114,40 @@ describe('synthesis-closeout refinement counting', () => {
     ]));
     expect(outcome.data.missingStructuredFindingCount).toBe(2);
   });
+
+  it('reports a missing kept refinement even when an unrelated finding reuses its id', () => {
+    const target = {
+      id: 'R1-P1-001',
+      title: 'Offer handler returns before attaching the command',
+      severity: 'P1',
+      file: '.skilled/skills/system-skill-advisor/runtime/lib/advisor-recommend.ts:120',
+      dimension: 'correctness',
+    };
+    const refinement = {
+      id: 'R2-P1-001',
+      title: 'Acceptance criteria still omit the handled exception',
+      severity: 'P1',
+      file: 'specs/system-skill-advisor/acceptance-criteria.md:1',
+      dimension: 'traceability',
+      refines: 'R1-P1-001',
+    };
+    const unrelatedIdCollision = {
+      findingId: 'R2-P1-001',
+      title: 'Subprocess cleanup loses its child process',
+      severity: 'P1',
+      file: '.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:200',
+      status: 'active',
+    };
+
+    const outcome = runReviewCloseout([[target], [refinement]], [
+      { findingId: 'R1-P1-001', ...target, status: 'active' },
+      unrelatedIdCollision,
+    ]);
+
+    expect(outcome.eventName).toBe('synthesis_incomplete');
+    expect(outcome.data.invariantFailures).toEqual(expect.arrayContaining([
+      'structured_state_findings_missing_from_registry',
+    ]));
+    expect(outcome.data.missingStructuredFindingCount).toBe(1);
+  });
 });

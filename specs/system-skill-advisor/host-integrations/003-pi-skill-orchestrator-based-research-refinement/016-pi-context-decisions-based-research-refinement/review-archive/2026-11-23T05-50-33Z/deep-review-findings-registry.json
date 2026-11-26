@@ -1,0 +1,1012 @@
+{
+  "sessionId": "2026-11-19T04:18:26.591Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "The hook's 64 KiB head cut runs before the pasted-reply strip, so a paste longer than that routes on the paste alone",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 200,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "The route-receipt guard ignores a lifecycle event carried on the prompt input, which the directive dedup treats as a boundary",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 376,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "A route receipt is written before the hook output reaches the host, unlike the directive receipt that waits for the write",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 604,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "Last-marker-wins drops the first half of a user task that has two markers",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+      "line": 253,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "The task-marker regex backtracks quadratically on a long whitespace run that holds newlines, and the Python strip runs it on unbounded input",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+      "line": 246,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "The hook decides whether to fire on the unstripped prompt, so a pasted reply turns a skipped follow-up into a routed one",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 580,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "The fire decision is computed at five call sites on two different inputs, so changing which text the gate reads means editing several sites in step",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
+      "line": 473,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The crash catch keeps a null-input branch that the line above it already returns from",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 651,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The floor flag reaches the hook only on the CLI path: the subprocess parser and the Python scorer never carry it, so the in-process brief path records every floored route as an earned one",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      "line": 198,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 6,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 9
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.89,
+  "graphConvergenceScore": 0.85,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 0,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.85
+  },
+  "candidateCoverage": {
+    "covered": [
+      "commit_ordering",
+      "contract_drift",
+      "dead_code",
+      "duplicated_logic",
+      "heuristic_boundary",
+      "regex_backtracking_cost",
+      "spec_code_drift",
+      "state_transition",
+      "truncate_before_normalize"
+    ],
+    "ruledOut": [
+      "crash_path_double_dedup",
+      "error_detail_leak",
+      "idempotence",
+      "parity_drift",
+      "prompt_injection_routing",
+      "race",
+      "shared_temp_dir_trust",
+      "spec_code_drift",
+      "state_transition",
+      "subprocess_argv_exposure",
+      "twin_drift",
+      "unreached_contract_field",
+      "weak_test"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "truncate_before_normalize": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "commit_ordering": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "heuristic_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "parity_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "crash_path_double_dedup": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "regex_backtracking_cost": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "shared_temp_dir_trust": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "subprocess_argv_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "error_detail_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prompt_injection_routing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "unreached_contract_field": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_logic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_code": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "twin_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "weak_test": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "idempotence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "race": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+      ],
+      "bugClass": "parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "regexes and trim sets match; 143 vitest tests pass",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+      ],
+      "reason": "verified by direct read and passing parity tests"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "crash_path_double_dedup",
+      "disposition": "ruled_out",
+      "rationale": "no throw possible after line 607",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:469"
+      ],
+      "reason": "emitDiagnostic and observeEmittedAdvisorPolicy swallow errors"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "shared_temp_dir_trust",
+      "disposition": "ruled_out",
+      "rationale": "store refuses foreign or loose folders and fails open",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283",
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230"
+      ],
+      "reason": "verified by direct read and existing tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      ],
+      "bugClass": "subprocess_argv_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no prompt in argv",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "error_detail_leak",
+      "disposition": "ruled_out",
+      "rationale": "no error text reaches additionalContext",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+      ],
+      "bugClass": "prompt_injection_routing",
+      "disposition": "ruled_out",
+      "rationale": "user text above a paste is never dropped; brief carries skill names only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-302",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "unreached_contract_field",
+      "disposition": "ruled_out",
+      "rationale": "no production producer",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249",
+        ".opencode/plugins/system-skill-advisor.js:890"
+      ],
+      "reason": "only tests set the field"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "all REQ predicates present",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4801"
+      ],
+      "bugClass": "twin_drift",
+      "disposition": "ruled_out",
+      "rationale": "shared fixture guards both twins",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25",
+        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538"
+      ],
+      "reason": "shared fixture read by vitest and Python suites"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
+      ],
+      "bugClass": "weak_test",
+      "disposition": "ruled_out",
+      "rationale": "guard exercised",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
+      ],
+      "reason": "measured on shipped dist"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "no confidence rewrite",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "idempotence",
+      "disposition": "ruled_out",
+      "rationale": "fixed-point loop plus fold only removes markers",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265"
+      ],
+      "reason": "probed on dist"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
+      ],
+      "bugClass": "race",
+      "disposition": "ruled_out",
+      "rationale": "window is microtasks",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187"
+      ],
+      "reason": "inference only, negligible window"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+      ],
+      "bugClass": "parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "regexes and trim sets match; 143 vitest tests pass",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+      ],
+      "proof": "verified by direct read and passing parity tests"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "crash_path_double_dedup",
+      "disposition": "ruled_out",
+      "rationale": "no throw possible after line 607",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:469"
+      ],
+      "proof": "emitDiagnostic and observeEmittedAdvisorPolicy swallow errors"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "shared_temp_dir_trust",
+      "disposition": "ruled_out",
+      "rationale": "store refuses foreign or loose folders and fails open",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283",
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230"
+      ],
+      "proof": "verified by direct read and existing tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-203",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
+      ],
+      "bugClass": "subprocess_argv_exposure",
+      "disposition": "ruled_out",
+      "rationale": "no prompt in argv",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "error_detail_leak",
+      "disposition": "ruled_out",
+      "rationale": "no error text reaches additionalContext",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+      ],
+      "bugClass": "prompt_injection_routing",
+      "disposition": "ruled_out",
+      "rationale": "user text above a paste is never dropped; brief carries skill names only",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-302",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "unreached_contract_field",
+      "disposition": "ruled_out",
+      "rationale": "no production producer",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249",
+        ".opencode/plugins/system-skill-advisor.js:890"
+      ],
+      "proof": "only tests set the field"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-303",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "all REQ predicates present",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-403",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4801"
+      ],
+      "bugClass": "twin_drift",
+      "disposition": "ruled_out",
+      "rationale": "shared fixture guards both twins",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25",
+        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538"
+      ],
+      "proof": "shared fixture read by vitest and Python suites"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
+      ],
+      "bugClass": "weak_test",
+      "disposition": "ruled_out",
+      "rationale": "guard exercised",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
+      ],
+      "proof": "measured on shipped dist"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "no confidence rewrite",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+      ],
+      "bugClass": "idempotence",
+      "disposition": "ruled_out",
+      "rationale": "fixed-point loop plus fold only removes markers",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265"
+      ],
+      "proof": "probed on dist"
+    },
+    {
+      "iteration": 5,
+      "id": "SL5-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
+      ],
+      "bugClass": "race",
+      "disposition": "ruled_out",
+      "rationale": "window is microtasks",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187"
+      ],
+      "proof": "inference only, negligible window"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "contract_drift",
+      "state_transition",
+      "idempotence",
+      "race"
+    ],
+    "covered": [
+      "contract_drift"
+    ],
+    "ruledOut": [
+      "state_transition",
+      "idempotence",
+      "race"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 0,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:539",
+          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1277"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "MCP path strips once before cache, embedding, scorer; hook-side gaps R1-P2-001 and R3-P2-001 remain"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "notApplicable",
+        "summary": "evidence folders out of bounds by operator direction"
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

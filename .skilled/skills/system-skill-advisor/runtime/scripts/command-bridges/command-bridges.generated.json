@@ -933,8 +933,8 @@
     {
       "id": "command-doctor-ci-report",
       "command": "/doctor:ci",
-      "skillId": "sk-code",
-      "ownerMode": "sk-code",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -988,8 +988,8 @@
     {
       "id": "command-doctor-ci-scaffold",
       "command": "/doctor:ci",
-      "skillId": "sk-code",
-      "ownerMode": "sk-code",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1028,8 +1028,8 @@
     {
       "id": "command-doctor-ci-toggle",
       "command": "/doctor:ci",
-      "skillId": "sk-code",
-      "ownerMode": "sk-code",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1068,8 +1068,8 @@
     {
       "id": "command-doctor-deep-loop",
       "command": "/doctor:deep-loop",
-      "skillId": "system-deep-loop",
-      "ownerMode": "system-deep-loop",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1156,8 +1156,8 @@
     {
       "id": "command-doctor-git-hooks",
       "command": "/doctor:git",
-      "skillId": "sk-git",
-      "ownerMode": "sk-git",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1202,8 +1202,8 @@
     {
       "id": "command-doctor-git-setup",
       "command": "/doctor:git",
-      "skillId": "sk-git",
-      "ownerMode": "sk-git",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1248,8 +1248,8 @@
     {
       "id": "command-doctor-git-standards",
       "command": "/doctor:git",
-      "skillId": "sk-git",
-      "ownerMode": "sk-git",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1696,8 +1696,8 @@
     {
       "id": "command-doctor-sk-code-quality",
       "command": "/doctor:sk-code",
-      "skillId": "sk-code",
-      "ownerMode": "sk-code",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1737,8 +1737,8 @@
     {
       "id": "command-doctor-sk-code-setup",
       "command": "/doctor:sk-code",
-      "skillId": "sk-code",
-      "ownerMode": "sk-code",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1780,8 +1780,8 @@
     {
       "id": "command-doctor-sk-skill-check",
       "command": "/doctor:sk-skill",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-doc",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1824,8 +1824,8 @@
     {
       "id": "command-doctor-sk-skill-convert",
       "command": "/doctor:sk-skill",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-doc",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1866,8 +1866,8 @@
     {
       "id": "command-doctor-skill-advisor-parent-skill",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1909,8 +1909,8 @@
     {
       "id": "command-doctor-skill-advisor-rebuild",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1950,8 +1950,8 @@
     {
       "id": "command-doctor-skill-advisor-router-reach",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -1992,8 +1992,8 @@
     {
       "id": "command-doctor-skill-advisor-skill-budget",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -2035,8 +2035,8 @@
     {
       "id": "command-doctor-skill-advisor-skill-graph-freshness",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
@@ -2076,8 +2076,8 @@
     {
       "id": "command-doctor-skill-advisor-tune",
       "command": "/doctor:skill-advisor",
-      "skillId": "system-skill-advisor",
-      "ownerMode": "system-skill-advisor",
+      "skillId": "system-skilled-doctor",
+      "ownerMode": "system-skilled-doctor",
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {

@@ -1,0 +1,7 @@
+{"iteration":4,"focus":"maintainability: TS/Python vocabulary sync cost; offer doc vs brief head consistency","dimensions":["maintainability"],
+"filesReviewed":[".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:277",".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4529",".skilled/commands/deep/assets/deep-review-presentation.txt:13",".skilled/commands/deep/review.md:81",".skilled/hooks/injection-contract.md:56"],
+"findings":[
+{"id":"O3-R4-P2-008","severity":"P2","title":"The Python gate hand-inlines the vocabulary lists the TS gate keeps as data, so a list edit must be retyped into a regex","file":".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4529","findingClass":"duplicated source of truth"}],
+"traceability":[{"protocolId":"spec_code","status":"pass","gateClass":"hard","applicable":true,"evidence":[".skilled/commands/deep/assets/deep-review-presentation.txt:13",".skilled/commands/deep/review.md:81",".skilled/hooks/injection-contract.md:56"],"summary":"REQ-005 offer section and 013 head agree across surfaces"}],
+"newFindingsRatio":0.29,"novelty":"One new P2 against 7 prior findings (weighted 1 of about 12); mostly confirmed-clean surfaces.","durationMs":200000,
+"ruledOut":[{"direction":"option-label mismatch between offer docs and brief head","reason":"presentation, step 0 and injection contract all use A :auto (Recommended), B :confirm, C no loop"}]}

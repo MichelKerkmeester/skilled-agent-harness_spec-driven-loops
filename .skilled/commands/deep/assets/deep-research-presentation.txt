@@ -15,10 +15,14 @@ For `:auto`, do not emit the consolidated prompt by default. Resolve setup with 
 Use this when the operator did not type the command and one of two things brought you here: a
 brief or advisor result named `/deep:research` with policy `ask` or with no policy, or the
 request asks for the loop itself. Asking for the loop means it names a deep loop, deep research
-or a research loop, gives an iteration count or says "iterations", "iterative" or
-"iteratively", says multi-pass or several passes, or asks to continue, resume or extend a deep
-run. Depth words alone, such as "thorough", "in depth", "exhaustive" or "deep dive", are not a
-loop ask: answer those in one pass and offer nothing. A missing policy counts as `ask`. An
+or a research loop, gives a count of two or more iterations or "one more", says the research
+itself runs in iterations ("iterative research", "investigate iteratively", "in several
+iterations"), says multi-pass or several passes, or asks to continue, resume or extend a deep
+run. A bare "iterations" or "iterative" that describes the subject is not a loop ask:
+"iterative deepening", "the last three iterations of the plan" and "needed more iterations to
+converge" name the subject or past runs. Depth words alone, such as "thorough", "in depth",
+"exhaustive" or "deep dive", are not a loop ask either: answer those in one pass and offer
+nothing. A missing policy counts as `ask`. An
 attached `:auto` or `:confirm` suffix means the mode is already chosen, so skip the offer: that
 covers the run you start after a yes and any dispatched child. A brief whose policy is `run` or
 `start` follows that policy, not this offer.

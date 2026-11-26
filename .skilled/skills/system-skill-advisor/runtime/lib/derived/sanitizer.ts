@@ -87,9 +87,5 @@ export function sanitizeDiagnostic(value: string): string {
   return sanitizeDerivedValue(value, 'diagnostic')?.value ?? 'SANITIZED_DIAGNOSTIC';
 }
 
-export function sanitizeEnvelopeSkillLabel(value: string): string | null {
-  return sanitizeDerivedValue(value, 'envelope')?.value ?? null;
-}
-
 export const DERIVED_SANITIZER_VERSION = SKILL_DERIVED_SANITIZER_VERSION;
 

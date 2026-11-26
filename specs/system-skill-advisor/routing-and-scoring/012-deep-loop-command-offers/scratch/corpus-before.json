@@ -1,0 +1,15 @@
+{
+  "source": "capture-command-routing-baseline.mjs without --write, run 2026-11-23 in a clean detached checkout at the pre-change commit, after a full build",
+  "preChangeCommit": "2ef3895f753",
+  "capturedAtSha": "2ef3895f753",
+  "corpusSha256": "sha256:e08017b5d8face375de4b51e0768fbc451e9b4d7f474e41d4ea25703ea8dcbff",
+  "false_offer": {
+    "count": 0,
+    "total": 35
+  },
+  "false_offer_attached": {
+    "count": 0,
+    "total": 35
+  },
+  "matchesCommittedBaseline": "The baseline committed at 2ef3895f753, recorded at 62a9359e60a, gives the same two counts."
+}

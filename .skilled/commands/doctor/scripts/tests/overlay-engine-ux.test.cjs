@@ -76,8 +76,17 @@ test('a re-pin rollback with an unknown run id names where the runs are listed',
 
   assert.equal(rolled.code, 2, rolled.output);
   assert.match(rolled.output, /^refuse: (not a run id|no backup for run)/m, rolled.output);
-  assert.ok(rolled.output.includes(`  Next: ls ${path.join(fixture.overlayDir, 'repin-runs')}, then rerun`), rolled.output);
+  const next = `  Next: ls ${path.join(fixture.overlayDir, 'repin-runs')}, then from ${fixture.tree}: ` +
+    `${ENGINE_COMMAND} repin --rollback <run-id>`;
+  assert.ok(rolled.output.includes(next), rolled.output);
   assert.match(rolled.output, /^RESULT: FAILED$/m);
+
+  // The line is pasted as it stands, so the words after the root have to parse:
+  // a run id in place of the placeholder reaches the rollback, not the usage block.
+  const words = next.slice(next.indexOf(`${ENGINE_COMMAND} `) + ENGINE_COMMAND.length + 1).split(' ');
+  const pasted = fixture.run(words.map((word) => (word === '<run-id>' ? '20260101T000000Z-missing' : word)));
+  assert.equal(pasted.output.includes('usage: node overlay-engine.cjs'), false, pasted.output);
+  assert.match(pasted.output, /^refuse: no backup for run 20260101T000000Z-missing/m, pasted.output);
 });
 
 test('a link to a folder where a whole-file overlay writes a file is refused, not a crash', (t) => {

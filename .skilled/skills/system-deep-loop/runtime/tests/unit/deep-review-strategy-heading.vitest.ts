@@ -152,6 +152,95 @@ describe('replaceAnchorSection — MACHINE-OWNED template dialect fallback', () 
   });
 });
 
+// A strategy seeded in the heading-first dialect carries the section heading
+// above the anchor markers instead of inside them. The anchor branch is what
+// normalizes such a file, so it has to absorb the authored heading; otherwise
+// every pass writes a second heading beside the first one and the section is
+// left with two titles for good.
+describe('replaceAnchorSection — heading authored above the anchor marker', () => {
+  const ANCHOR_ID = 'review-dimensions';
+  const HEADING_TEXT = '3. REVIEW DIMENSIONS (remaining)';
+  const BODY = '- [ ] correctness';
+  const HEADING_PATTERN = /## 3\. REVIEW DIMENSIONS \(remaining\)/g;
+
+  it('collapses the authored heading into the machine-owned section', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      `## ${HEADING_TEXT}`,
+      `<!-- ANCHOR:${ANCHOR_ID} -->`,
+      `## ${HEADING_TEXT}`,
+      '- [ ] correctness',
+      `<!-- /ANCHOR:${ANCHOR_ID} -->`,
+      '',
+      '## 4. NON-GOALS',
+      '[none]',
+      '',
+    ].join('\n');
+
+    const out = replaceAnchorSection(content, ANCHOR_ID, HEADING_TEXT, BODY);
+
+    expect(out.match(HEADING_PATTERN)?.length).toBe(1);
+    // The blank line the authored heading sat under is kept, so the section
+    // still starts on its own line under the document title.
+    expect(out.startsWith('# Deep Review Strategy\n\n<!-- ANCHOR:')).toBe(true);
+    expect(out).toContain('## 4. NON-GOALS');
+  });
+
+  it('stays idempotent on a file that already carries both headings', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      `## ${HEADING_TEXT}`,
+      `<!-- ANCHOR:${ANCHOR_ID} -->`,
+      `## ${HEADING_TEXT}`,
+      '- [ ] correctness',
+      `<!-- /ANCHOR:${ANCHOR_ID} -->`,
+      '',
+    ].join('\n');
+
+    const once = replaceAnchorSection(content, ANCHOR_ID, HEADING_TEXT, BODY);
+    const twice = replaceAnchorSection(once, ANCHOR_ID, HEADING_TEXT, BODY);
+
+    expect(once.match(HEADING_PATTERN)?.length).toBe(1);
+    expect(twice).toBe(once);
+  });
+
+  it('resolves the authored heading through an un-numbered dialect', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      '## Review Dimensions (remaining)',
+      `<!-- ANCHOR:${ANCHOR_ID} -->`,
+      '- [ ] correctness',
+      `<!-- /ANCHOR:${ANCHOR_ID} -->`,
+      '',
+    ].join('\n');
+
+    const out = replaceAnchorSection(content, ANCHOR_ID, HEADING_TEXT, BODY);
+
+    expect(out.match(/## .*REVIEW DIMENSIONS \(remaining\)/gi)?.length).toBe(1);
+    expect(out).toContain(`## ${HEADING_TEXT}`);
+  });
+
+  it('keeps a neighbouring heading that sits directly above the marker', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      '## 4. NON-GOALS',
+      `<!-- ANCHOR:${ANCHOR_ID} -->`,
+      '- [ ] correctness',
+      `<!-- /ANCHOR:${ANCHOR_ID} -->`,
+      '',
+    ].join('\n');
+
+    const out = replaceAnchorSection(content, ANCHOR_ID, HEADING_TEXT, BODY);
+
+    expect(out).toContain('## 4. NON-GOALS');
+    expect(out.match(/## 4\. NON-GOALS/g)?.length).toBe(1);
+  });
+});
+
 // String.replace reads `$\``, `$&` and `$'` in a string replacement as
 // match-relative text, so a section body quoting one of them must still be
 // written verbatim instead of splicing a copy of the surrounding file.

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "bd474396742",
-  "corpusSha256": "sha256:6ef1793bba23231acd9650e57b169eff1a1944364df38db9ca1ed084ea1e07bc",
+  "capturedAtSha": "2bc34a023f4",
+  "corpusSha256": "sha256:613802e52a85ac8e8544311e90771539f30e794bd202804a4b119b16a03344bb",
   "bridgeCounts": {
     "commandMetadata": 31,
     "doctorRoutes": 36,
@@ -22,26 +22,26 @@
     "plain_recall_at_1": {
       "tune": {
         "correct": 16,
-        "total": 50
-      },
-      "holdout": {
-        "correct": 2,
-        "total": 49
-      }
-    },
-    "plain_reach_top3": {
-      "tune": {
-        "correct": 18,
-        "total": 50
+        "total": 51
       },
       "holdout": {
         "correct": 3,
         "total": 49
       }
     },
+    "plain_reach_top3": {
+      "tune": {
+        "correct": 19,
+        "total": 51
+      },
+      "holdout": {
+        "correct": 4,
+        "total": 49
+      }
+    },
     "false_offer": {
-      "count": 2,
-      "total": 41
+      "count": 0,
+      "total": 57
     },
     "slash_variant": {
       "reached_top3": 0,
@@ -50,7 +50,7 @@
       "partial_total": 4
     },
     "agreement": {
-      "correct": 6,
+      "correct": 4,
       "total": 10
     }
   },
@@ -556,9 +556,9 @@
       },
       "plain": {
         "tune": {
-          "rows": 1,
+          "rows": 2,
           "top1": 0,
-          "top3": 1
+          "top3": 2
         },
         "holdout": {
           "rows": 1,
@@ -676,8 +676,8 @@
         },
         "holdout": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         }
       }
     },
@@ -1785,14 +1785,14 @@
     },
     "mns-chat-03": {
       "expected_command": null,
-      "top": "system-skilled-doctor",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
     },
     "mns-chat-04": {
       "expected_command": null,
-      "top": "mcp-tooling",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
@@ -1925,7 +1925,7 @@
     },
     "sv-02": {
       "expected_command": null,
-      "top": "system-spec-kit",
+      "top": null,
       "top1": false,
       "top3": false,
       "offered": false
@@ -1946,7 +1946,7 @@
     },
     "sv-05": {
       "expected_command": "/deep:research",
-      "top": "system-deep-loop",
+      "top": "cli-external-orchestration",
       "top1": false,
       "top3": false,
       "offered": false
@@ -2002,10 +2002,10 @@
     },
     "nm-system-deep-loop-02": {
       "expected_command": null,
-      "top": "command-doctor-deep-loop",
+      "top": null,
       "top1": false,
       "top3": false,
-      "offered": true
+      "offered": false
     },
     "nm-system-deep-loop-03": {
       "expected_command": null,
@@ -2014,11 +2014,11 @@
       "top3": false,
       "offered": false
     },
-    "nm-system-deep-loop-04": {
-      "expected_command": null,
+    "cmd-doctor-deep-loop-plain-tune-02": {
+      "expected_command": "/doctor:deep-loop",
       "top": "system-deep-loop",
       "top1": false,
-      "top3": false,
+      "top3": true,
       "offered": true
     },
     "nm-system-deep-loop-05": {
@@ -2037,7 +2037,126 @@
     },
     "nm-sk-code-03": {
       "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-06": {
+      "expected_command": null,
       "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-07": {
+      "expected_command": null,
+      "top": "sk-doc",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-08": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-09": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-sk-code-04": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-10": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-11": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-12": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-13": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-14": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-15": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-16": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-17": {
+      "expected_command": null,
+      "top": null,
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-18": {
+      "expected_command": null,
+      "top": "sk-code",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-19": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-20": {
+      "expected_command": null,
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "nm-system-deep-loop-21": {
+      "expected_command": null,
+      "top": "sk-code",
       "top1": false,
       "top3": false,
       "offered": false
@@ -2047,34 +2166,34 @@
     "plain": {
       "tune": {
         "own": 16,
-        "attached": 14,
-        "combined": 30,
-        "total": 50
+        "attached": 16,
+        "combined": 32,
+        "total": 51
       },
       "holdout": {
-        "own": 2,
-        "attached": 1,
-        "combined": 3,
+        "own": 3,
+        "attached": 2,
+        "combined": 5,
         "total": 49
       }
     },
     "plain_stages": {
       "tune": {
-        "total": 50,
+        "total": 51,
         "own": 16,
-        "ownerLed": 24,
-        "routed": 22,
-        "withCommand": 14,
-        "attached": 14,
-        "neither": 10
+        "ownerLed": 21,
+        "routed": 21,
+        "withCommand": 16,
+        "attached": 16,
+        "neither": 14
       },
       "holdout": {
         "total": 49,
-        "own": 2,
-        "ownerLed": 7,
-        "routed": 4,
-        "withCommand": 1,
-        "attached": 1,
+        "own": 3,
+        "ownerLed": 6,
+        "routed": 3,
+        "withCommand": 2,
+        "attached": 2,
         "neither": 40
       }
     },
@@ -2138,14 +2257,14 @@
       "doctor": {
         "tune": {
           "own": 10,
-          "attached": 0,
-          "combined": 10,
-          "total": 18
+          "attached": 2,
+          "combined": 12,
+          "total": 19
         },
         "holdout": {
-          "own": 1,
-          "attached": 0,
-          "combined": 1,
+          "own": 2,
+          "attached": 1,
+          "combined": 3,
           "total": 18
         }
       },
@@ -2184,11 +2303,11 @@
         "total": 24
       },
       "decline": {
-        "carried": 8,
+        "carried": 7,
         "total": 24,
         "byKind": {
           "refusal": {
-            "carried": 3,
+            "carried": 2,
             "total": 6
           },
           "question": {
@@ -2207,8 +2326,8 @@
       }
     },
     "false_offer_attached": {
-      "count": 3,
-      "total": 41
+      "count": 1,
+      "total": 57
     },
     "typed": {
       "own": 29,
@@ -2584,6 +2703,7 @@
       "cmd-create-skill-typed-01": "/create:sk-skill",
       "cmd-create-skill-plain-tune-01": "/create:sk-skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
+      "cmd-doctor-deep-loop-plain-tune-01": "/doctor:deep-loop",
       "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
@@ -2593,13 +2713,12 @@
       "cmd-design-extract-plain-tune-01": "/design:extract",
       "sv-07": "/create:sk-skill",
       "sv-10": "/design:chart",
-      "nm-system-deep-loop-03": "/deep:research",
-      "nm-system-deep-loop-04": "/deep:review",
+      "cmd-doctor-deep-loop-plain-tune-02": "/doctor:deep-loop",
       "nm-system-deep-loop-05": "/create:manual-testing-playbook"
     },
     "needs_mode_floor": {
       "count": 1,
-      "total": 41
+      "total": 57
     },
     "needsModeRows": [
       "nm-system-skill-advisor-01"

@@ -42,6 +42,7 @@ Calibration is a first-class capability in this program. The held-out corpus and
 
 The design source is the sibling research synthesis at `../001-research/010-unified-refactor-research/unified-refactor-synthesis.md`. This parent records the unified contract and its migration gates; the children record implementation detail and evidence.
 
+<!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
 | Phase | Folder | Focus |
@@ -66,6 +67,8 @@ The design source is the sibling research synthesis at `../001-research/010-unif
 | 018 | `018-benchmark-alignment/` | Extend benchmark validation to the compiled-serving path and its parity evidence. |
 | 019 | `019-routing-coverage-activation-verification/` | Build remaining hub coverage, verify activation, and close the end-to-end parity and rollback gates. This child retains its own internal children unchanged. |
 | 020 | `020-root-router-document-standard/` | Standardize mandatory root `ROUTER.md` contracts, align create-skill and validation, migrate all seven hubs, and restore coherent compiled-serving freshness. **Complete as of 2026-08-16; the only remaining step is the deferred authoritative main-side DB/index scan.** |
+| 025 | `025-data-driven-hub-registry/` | Move the compiled-route hub set out of five hard-coded lists into one `hub-registry.json` with validating readers in both trees and a fail-closed advisor reader, so a consumer adds a hub with one json-entry entry. Route output for the eight hubs is byte-identical. **Complete on `worktrees/544-upstream-overlay-mechanisms` as `db263f34ebe` and `bf022a67b20`, not yet merged.** |
+<!-- /ANCHOR:phase-map -->
 
 ## SHARED MIGRATION-GATE MODEL
 

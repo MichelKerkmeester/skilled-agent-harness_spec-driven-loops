@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
-version: 1.4.11.0
+version: 1.4.12.0
 ---
 
 # cli-devin Providers, Models & Invocation
@@ -57,6 +57,7 @@ Alphabetical by family, then by model uid within each family.
 | DeepSeek V4 Flash | `deepseek-v4-flash-max` | 1M | V4 Flash, Max thinking tier (added 2026-08-14) |
 | DeepSeek V4.1 Flash | `deepseek-v4-1-flash-high` | 1M | V4.1 Flash, High thinking tier. A separate family from V4 Flash, not a rename |
 | DeepSeek V4.1 Flash | `deepseek-v4-1-flash-max` | 1M | V4.1 Flash, Max thinking tier |
+| DeepSeek V4.1 Flash | `deepseek-v4-1-flash-1017-max` | 1M | The dated 1017 V4.1 Flash release, Max thinking tier. Listed live, not dispatch-tested |
 | GLM-5.2 | `glm-5-2` | 200K | High, free tier |
 | GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
 | GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |

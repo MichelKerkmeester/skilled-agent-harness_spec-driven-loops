@@ -98,7 +98,7 @@ Setup reads the recorder's default destination, the runner's printed command and
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | `resolveReports` and the recorder's refusal rules | `record-playbook-run.test.cjs` (`runHubReports`, 8 assertions) |
+| Unit | `resolveReports` and the recorder's refusal rules | `record-playbook-run.test.cjs` (`runHubReports`, 14 assertions) |
 | Integration | The runner's printed save command, and the package validator on the three roots | `run-conversation-scenario.test.cjs`, `validate-playbook-package.cjs --package <root>` |
 | Manual | A dry run into the sk-code hub | `record-playbook-run.cjs --dry-run --reports .skilled/skills/sk-code/benchmark/reports` exits 0 and writes nothing |
 <!-- /ANCHOR:testing -->

@@ -7,7 +7,7 @@ trigger_phrases:
   - "enhances edge propagation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Skill Graph Propagate Enhances Tool
@@ -73,7 +73,7 @@ Three modes control read-write behavior:
 
 The tool enforces several invariants on every call:
 
-- Trusted-caller authentication is required via `requireTrustedCaller`. Untrusted callers receive an authentication error before any detection runs.
+- A real apply (`mode:'apply'` with `dryRun` not true) requires a trusted caller via `requireTrustedCaller`. An untrusted caller gets `UNTRUSTED_CALLER` before detection runs. Report, propose and dry-run calls stay open to every caller.
 - The workspace-escape guard resolves `skillsRoot` and verifies it stays under the current working directory. External absolute paths are rejected.
 - The default mode is `report`. No writes occur unless `mode:'apply'` is set explicitly.
 - The default `dryRun` is true. Writes only occur when `dryRun:false` is set explicitly.

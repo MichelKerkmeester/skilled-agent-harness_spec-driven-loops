@@ -110,7 +110,7 @@ Every doc task is a conductor task, and the replacement text for each doc edit i
 
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [x] The 002, 003, 004 and parent goals hold no `- [ ]` line, and the recursive strict validation prints `RESULT: PASSED`
+- [x] The 002, 003, 004 and parent goals hold no unticked criterion line, and the recursive strict validation prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

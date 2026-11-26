@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools code mode"
   - "call_tool_chain chrome"
   - "mcp tool naming chrome_devtools_1"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Code Mode Invocation
@@ -20,7 +20,7 @@ All MCP browser operations run inside Code Mode's `call_tool_chain()` with the n
 
 ## 2. HOW IT WORKS
 
-The AI client sees only the 4 Code Mode tools rather than the 26 Chrome DevTools tools (~78k tokens natively, ~98% context reduction). Common tools include navigation, screenshots, console messages, viewport resize, clicks, form fill, waits, and page creation/selection/close. Prerequisite: Code Mode configured and the chrome_devtools manuals registered in `.utcp_config.json`.
+The AI client sees only the 4 Code Mode tools rather than the 29 Chrome DevTools tools (~78k tokens natively, ~98% context reduction). Common tools include navigation, screenshots, console messages, viewport resize, clicks, form fill, waits, and page creation/selection/close. Prerequisite: Code Mode configured and the chrome_devtools manuals registered in `.utcp_config.json`.
 
 ---
 

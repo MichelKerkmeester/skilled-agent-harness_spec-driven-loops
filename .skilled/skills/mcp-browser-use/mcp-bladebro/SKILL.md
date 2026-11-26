@@ -2,7 +2,7 @@
 name: mcp-bladebro
 description: "Bladebro browser driver: CLI first, MCP via Code Mode as fallback; owned agent-browser default, gated real-browser lanes."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Bladebro Browser Driver - CLI + MCP Integration
@@ -36,7 +36,7 @@ Every Bladebro fact here is upstream documentation pinned to v4.8.2 and read 202
 
 ## 2. SMART ROUTING
 
-The `mcp-browser-use` hub selects this packet when a request names Bladebro, a stealth browser, `rb attach` or agentic signed-in work.
+The `mcp-browser-use` hub selects this packet when a request names Bladebro, a stealth browser, a caller-owned or already-open browser that names no Chrome, or agentic signed-in work.
 Read [`ROUTER.md`](./ROUTER.md) before loading any packet-local resource, and open only the files it maps.
 `references/cli-reference.md` serves CLI and tool work, `references/browser-lanes.md` serves real-browser lane requests, and `references/mcp-wiring.md` serves the Code Mode path.
 `references/install-and-verify.md` serves install, pin and health-check intent. It never installs anything.
@@ -57,8 +57,8 @@ bladebro --version        # compare against the v4.8.2 pin before trusting any f
 ```
 
 - **CLI (default)** when `command -v bladebro` succeeds and `bladebro doctor` passes.
-- **MCP through Code Mode** with `bladebro mcp` (or `npx -y bladebro mcp`) when the binary is unavailable, or when the task needs composition with other Code Mode tools, parallel isolated sessions, or an MCP-only capability.
-- **Neither works:** report the install command and hand the decision to the operator. Never install implicitly (R-SEC-3).
+- **MCP through Code Mode** with the installed `bladebro mcp` when the task needs composition with other Code Mode tools, parallel isolated sessions, or an MCP-only capability.
+- **Binary missing, or neither works:** report the pinned install (`bash scripts/install.sh`, which installs `bladebro@4.8.2` and checks its digests) and hand the decision to the operator. Never install implicitly (R-SEC-3). Launching through `npx -y bladebro@4.8.2 mcp` also pulls the package, so it is an install too and needs the same operator yes.
 
 The fallback is transport-driven, not capability-driven: the CLI and MCP share the same five handlers, so switching transport never adds or removes a browser capability.
 
@@ -99,7 +99,7 @@ Extensions and session video recording are also outside the upstream tool surfac
 
 ### Aside Boundary
 
-Aside keeps deterministic signed-in work. Bladebro takes the complement: stealth on a signed-in site, `rb attach` to a caller-owned browser that must stay open, and agentic branching signed-in workflows.
+Aside keeps deterministic signed-in work. Bladebro takes the complement: stealth on a signed-in site, `bladebro rb attach` to a caller-owned browser that must stay open, and agentic branching signed-in workflows.
 
 ---
 

@@ -1,0 +1,596 @@
+{
+  "sessionId": "2026-11-26T11:28:30Z",
+  "parentSessionId": "2026-11-25T16:24:14Z",
+  "lineageMode": "restart",
+  "generation": 3,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 3,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-26T14:09:13.499Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-does-the-changed-system-deep-loop-runtime-dispatch-fan-out-convergence-append",
+      "inboxId": null,
+      "text": "Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-does-the-changed-system-skill-advisor-scorer-hooks-brief-policy-embedding-lan",
+      "inboxId": null,
+      "text": "Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-do-the-changed-mcp-browser-use-mcp-tooling-cli-external-orchestration-and-cli",
+      "inboxId": null,
+      "text": "Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-do-the-changed-system-spec-kit-runtime-and-hooks-decision-capture-session-han",
+      "inboxId": null,
+      "text": "Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-do-the-doctor-commands-and-skill-sk-doc-sk-code-sk-git-runtime-mirrors-ci-wor",
+      "inboxId": null,
+      "text": "Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-4-q4-do-the-changed-system-spec-kit-runtime-and-hooks-decision-capture-session-han",
+      "inboxId": null,
+      "text": "Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-do-the-doctor-commands-and-skill-sk-doc-sk-code-sk-git-runtime-mirrors-ci-wor",
+      "inboxId": null,
+      "text": "Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-does-the-changed-system-deep-loop-runtime-dispatch-fan-out-convergence-append",
+      "inboxId": null,
+      "text": "Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-does-the-changed-system-skill-advisor-scorer-hooks-brief-policy-embedding-lan",
+      "inboxId": null,
+      "text": "Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-3-q3-do-the-changed-mcp-browser-use-mcp-tooling-cli-external-orchestration-and-cli",
+      "inboxId": null,
+      "text": "Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?",
+    "Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-p2-a-live-fan-out-child-can-be-left-running-while-the-runner-records-it-as-stopp",
+      "text": "**P2 — A live fan-out child can be left running while the runner records it as stopped when its start time is unreadable.** On POSIX, `processStartOf` returns an empty value if `ps` cannot read the PID's start time; the classifier treats that as `identity_unreadable`. If the child leader still answers, the exited-group path yields no members. The runner's in-process fallback terminates held children only for `no_recorded_identity`, and the signal handler tracks refused survivors only for that same reason. It can therefore omit a still-live `identity_unreadable` child from survivor tracking and write its lineage's `stopped` row. This can leave the child running without a live status row. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1291] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1416] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5288] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5296]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1291]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1416]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5288]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:5296]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:152]",
+        "[SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2740]"
+      ]
+    },
+    {
+      "id": "finding-2-1-p3-the-packet-gives-two-incompatible-q1-closure-states-the-registry-marks-q1-res",
+      "text": "**P3 — The packet gives two incompatible Q1 closure states.** The registry marks Q1 resolved at iteration 1 and labels it `legacy-import`; the strategy checks Q1. The current iteration-1 state record has `answeredQuestions: []`, while its narrative and the progressive synthesis say Q1 remains open. This is an observed cross-artifact inconsistency. Whether the imported closure is intentionally carried forward or was applied incorrectly is UNKNOWN; this evidence alone does not establish a reducer defect. [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:13] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:18] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:19] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:58] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:6] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-001.md:58] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md:7]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/research.md:131]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:267]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:163]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs:400]",
+        "[SOURCE: .skilled/commands/deep/assets/deep-research.yaml:1602]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs:364]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:385]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/append-mode-event.ts:630]",
+        "[SOURCE: .skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway/README.md:74]",
+        "[SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:13] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:18] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:19]",
+        "[SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:6]"
+      ]
+    },
+    {
+      "id": "finding-3-1-p3-pi-omits-the-session-id-needed-by-the-shared-route-receipt-guard-pi-obtains-i",
+      "text": "**P3: Pi omits the session ID needed by the shared route-receipt guard.** Pi obtains its session ID from the host context, but the input object passed to the shared handler contains only the prompt, working directory and event name. The shared handler derives receipt identity only from input.session_id. Without it, both the weak-follow-up guard and the route-receipt writer return before reading or writing a receipt. A weak follow-up in Pi is therefore scored without the prior route receipt, even though the hook reference describes per-session receipts and lists Pi as a shared-handler adapter. [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:57] [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:290] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:339] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:370] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:407] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:164] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:57] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:74]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:57, 290-300, 336",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:339-345, 363-391, 397-432",
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:148-185",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55-59, 69-76",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8-18",
+        ".skilled/skills/system-skill-advisor/README.md:38",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md:110, 126",
+        "AGENTS.md:63-70",
+        "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:56-59, 81-84",
+        "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:10-19",
+        "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:6"
+      ]
+    },
+    {
+      "id": "finding-4-1-p3-q2-s-stored-answer-omits-the-prefix-the-reducer-matches-iteration-3-s-answere",
+      "text": "**P3 — Q2's stored answer omits the prefix the reducer matches.** Iteration 3's `answeredQuestions` entry is `Does the changed system-skill-advisor ...?`, while the strategy and registry store `Q2: Does the changed system-skill-advisor ...?`. The reducer's `normalizeText` only collapses whitespace, and its resolution path checks whether the normalized full strategy question is included in the normalized `answeredQuestions` list. The strings therefore do not match, leaving Q2 open in the registry and strategy despite the prior iteration's answer. This is a packet-state mismatch; the evidence does not show a reducer implementation defect. This record carries Q2's exact full text so the next reducer pass can recognize the prior answer. [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:12] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:59] [SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:24] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:210] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2740] [SOURCE: .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:2749]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-config.json`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-state.jsonl:12`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:59`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/findings-registry.json:24`",
+        "`.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs:210, 2740`",
+        "`.skilled/skills/mcp-browser-use/mode-registry.json:3, 19`",
+        "`.skilled/skills/mcp-browser-use/hub-router.json:3, 29`",
+        "`.skilled/skills/mcp-tooling/mode-registry.json:3, 30`",
+        "`.skilled/skills/mcp-tooling/hub-router.json:3, 32`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json:3, 19`",
+        "`.skilled/skills/cli-external-orchestration/hub-router.json:3, 34`",
+        "`.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8, 28`",
+        "`git diff --name-only v4.1.0.0..HEAD -- .skilled/skills/mcp-browser-use .skilled/skills/mcp-tooling .skilled/skills/cli-external-orchestration .skilled/skills/cli-orca`"
+      ]
+    },
+    {
+      "id": "finding-5-1-all-23-declared-hub-router-resource-paths-resolve-under-their-owning-hub-roots-5",
+      "text": "All 23 declared hub-router resource paths resolve under their owning hub roots: 5 in `mcp-browser-use`, 8 in `mcp-tooling`, and 10 in `cli-external-orchestration`. The verified declarations are in each router's fallback and per-mode resource lists. [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:17] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:36] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:46] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:56] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:20] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:39] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:53] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:63] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:73] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:83] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:93] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:22] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:40] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:50] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:60] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:70] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:80] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:90] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:100] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:110] [INFERENCE: based on the declared resource values and the 23-path filesystem existence scan.]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/mcp-browser-use/hub-router.json`",
+        "`.skilled/skills/mcp-tooling/hub-router.json`",
+        "`.skilled/skills/cli-external-orchestration/hub-router.json`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-004.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-executor-registry-consumer-s-expected-schema-matches-the-active-cli-registry",
+      "text": "The executor-registry consumer's expected schema matches the active CLI registry: it keeps entries with `packetKind: \"workflow\"`, reads each `packetSkillName` and string aliases, and the registry currently declares eight workflow entries. Fusion passes the configured workspace root to the consumer. No static consumer/schema mismatch was found. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:204] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:211] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:212] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts:267] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1514] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:20] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:57] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:87] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:118] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:148] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:179] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:213] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:242]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/mcp-browser-use/hub-router.json`",
+        "`.skilled/skills/mcp-tooling/hub-router.json`",
+        "`.skilled/skills/cli-external-orchestration/hub-router.json`",
+        "`.skilled/skills/cli-external-orchestration/mode-registry.json`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts`",
+        "`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/registry-compiler.cjs`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-004.md`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md`"
+      ]
+    },
+    {
+      "id": "finding-6-1-p3-the-pre-commit-header-s-uninstall-command-can-leave-the-active-hook-installed",
+      "text": "**P3 — The pre-commit header's uninstall command can leave the active hook installed.** It tells the reader to remove `.git/hooks/pre-commit`, while the installer resolves the actual hook directory through Git and its `--uninstall` path removes links from that directory. The installer explicitly honors repository or global `core.hooksPath`, and the Git Hooks README recommends `install-git-hooks.sh --uninstall`. When a non-default hooks path is active, the header command can remove an inactive file and leave the actual hook in place. [SOURCE: .skilled/scripts/git-hooks/pre-commit:12-13] [SOURCE: .skilled/scripts/install-git-hooks.sh:50-53] [SOURCE: .skilled/scripts/install-git-hooks.sh:166-179] [SOURCE: .skilled/scripts/install-git-hooks.sh:204-206] [SOURCE: .skilled/scripts/git-hooks/README.md:131] [SOURCE: .skilled/scripts/git-hooks/README.md:163-165]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/scripts/git-hooks/pre-commit:12-13`",
+        "`.skilled/scripts/install-git-hooks.sh:50-53,166-179,204-206`",
+        "`.skilled/scripts/git-hooks/README.md:131,163-165`",
+        "`.skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43,128-145,204-215`",
+        "`.skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145`",
+        "`.skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63`",
+        "`.skilled/commands/doctor/scripts/overlay-engine.cjs:23-26,9267-9316,9344-9348`",
+        "`.skilled/changelog/skilled/v4.2.0.0.md:509-522`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:61,246-248`"
+      ]
+    },
+    {
+      "id": "finding-7-1-p3-lowercase-sentence-starts-can-bypass-the-compact-field-narrative-check-the-se",
+      "text": "**P3 — Lowercase sentence starts can bypass the compact-field narrative check.** The sentence-boundary regex counts punctuation only when it is followed by uppercase text or the end of the value. A short value such as `Ready. fine.` therefore counts only its final period. The remaining discourse check only looks for a fixed list of phrases, so this value can pass the length and token limits and be accepted as a two-sentence `recent_action` or `next_safe_action`, despite the validator's compact, non-narrative requirement. The added rejection test uses an uppercase second sentence, so it does not cover this boundary. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:169] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:347] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:350] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:355] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:744] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts:129] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts:134]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:169,334-356,744-746`",
+        "`.skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts:106-145`",
+        "`.skilled/hooks/session-handover/lib/relaunch-core.cjs:1594,1648,1909,1998`",
+        "`.skilled/hooks/session-handover/runtime-behavior.md:25-32,139-168`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122-165`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241-255`",
+        "`.skilled/scripts/git-hooks/pre-commit:36-75,199-210`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-006.md:5-18`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deep-research-strategy.md:61`"
+      ]
+    },
+    {
+      "id": "finding-8-2-p2-track-root-sweep-errors-fail-open-in-pre-push-the-pre-push-gate-blocks-sweep-",
+      "text": "**P2 — Track-root sweep errors fail open in pre-push.** The pre-push gate blocks sweep exit 1 for detected drift, but warns and continues for other nonzero results. The sweep command returns exit 2 when it cannot read the pushed commit's track data, so that operational failure bypasses the consistency verdict and the hook can continue to exit successfully. The README describes the track-root check as a blocking gate but does not describe this error path. The implementation labels this handling as fail-open; whether that is intended policy or a defect is a gate-policy decision, but the resulting bypass is confirmed. [SOURCE: .skilled/scripts/git-hooks/pre-push:695] [SOURCE: .skilled/scripts/git-hooks/pre-push:709] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:86] [SOURCE: .skilled/scripts/git-hooks/README.md:119]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/scripts/git-hooks/commit-msg:19-20,53-60`",
+        "`.skilled/scripts/git-hooks/README.md:119,163-165`",
+        "`.skilled/scripts/git-hooks/pre-push:695-717`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:86-92`",
+        "`.opencode/plugins/session-handover.js:11,648`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:32-36,173-194`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-007.md`"
+      ]
+    },
+    {
+      "id": "finding-8-1-p3-stale-commit-msg-install-uninstall-comment-the-changed-hook-s-header-still-di",
+      "text": "**P3 — Stale commit-msg install/uninstall comment.** The changed hook's header still directs operators to `.opencode/scripts/install-git-hooks.sh`, while the hook's resolver and the README's documented commands point to `.skilled/scripts/install-git-hooks.sh`. This leaves stale operator guidance in the hook source. [SOURCE: .skilled/scripts/git-hooks/commit-msg:19] [SOURCE: .skilled/scripts/git-hooks/commit-msg:53] [SOURCE: .skilled/scripts/git-hooks/README.md:163]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/scripts/git-hooks/commit-msg:19-20,53-60`",
+        "`.skilled/scripts/git-hooks/README.md:119,163-165`",
+        "`.skilled/scripts/git-hooks/pre-push:695-717`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs:86-92`",
+        "`.opencode/plugins/session-handover.js:11,648`",
+        "`.skilled/hooks/shared/session-readers/opencode.mjs:32-36,173-194`",
+        "`specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-007.md`"
+      ]
+    },
+    {
+      "id": "finding-10-1-p2-fixed-task-heredoc-delimiter-permits-task-tail-shell-execution-the-sk-code-ro",
+      "text": "**P2 — Fixed TASK heredoc delimiter permits task-tail shell execution.** The sk-code router passes the task with <<'TASK'. A task line equal to the delimiter terminates stdin, so following task lines execute in the calling shell. The quoted heredoc protects shell metacharacters only while they remain inside the heredoc. This is confirmed by the harmless shell probe; the compiled-route CLI itself reads stdin as expected. [SOURCE: .skilled/skills/sk-code/ROUTER.md:497-500] [SOURCE: .skilled/skills/sk-doc/changelog/v2.10.1.0.md:15-24] [SOURCE: .skilled/bin/compiled-route.cjs:34-59]",
+      "addedAtIteration": 10,
+      "sources": [
+        "[SOURCE: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-009.md]",
+        "[SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:756,1343-1424]",
+        "[SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361,1306-1337]",
+        "[SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5]",
+        "[SOURCE: .skilled/skills/sk-code/ROUTER.md:497-501]",
+        "[SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:253]",
+        "[SOURCE: .skilled/commands/doctor/scripts/sk-code-quality-config.cjs:195-203]",
+        "[SOURCE: .skilled/bin/compiled-route.cjs:34-59]",
+        "[SOURCE: .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:309-327,425-430]",
+        "[SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815]",
+        "[SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46]",
+        "[SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833]",
+        "[SOURCE: .skilled/skills/sk-doc/changelog/v2.10.1.0.md:15-24]"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-5674e2df6789",
+      "text": "The current `keyQuestions` and `answeredQuestions` wording is consistent with the reducer's exact question matching; no defect confirmed in that contract.",
+      "contentHash": "5674e2df6789",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b694cb0b2399",
+      "text": "No duplicate append or stale-head retry defect was confirmed in the inspected append-gateway path.",
+      "contentHash": "b694cb0b2399",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-d7b7a5387135",
+      "text": "No independent retry-budget defect was confirmed in the inspected path: orphan requeues consume retry credit, and stopped lineages are terminal.",
+      "contentHash": "d7b7a5387135",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b474402b8c4f",
+      "text": "No new dispatch-wrapper defect was confirmed in the inspected CLI path.",
+      "contentHash": "b474402b8c4f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-21884a343cb6",
+      "text": "No conflict was found between the reviewed hook mechanics and AGENTS.md Gate 2 policy. Gate 2 gives the surfaced hook brief priority and names the direct advisor call as the fallback; the hook reference describes how the brief is produced and delivered. [SOURCE: AGENTS.md:63] [SOURCE: AGENTS.md:68] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:55] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:59]",
+      "contentHash": "21884a343cb6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-08368186bd7e",
+      "text": "The removed semantic lane did not leave a mismatch in the live lane registry, active README or architecture description.",
+      "contentHash": "08368186bd7e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d28e03ef2325",
+      "text": "The semantic embedding-lane removal does not show active scorer or documentation drift in the inspected surface. The live registry lists four active lanes, and the README and architecture describe the same four. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8] [SOURCE: .skilled/skills/system-skill-advisor/README.md:38] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:110] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:126]",
+      "contentHash": "d28e03ef2325",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f0acffa4ab0e",
+      "text": "The user-supplied Gate 2 policy is not contradicted by the hook behavior description reviewed here.",
+      "contentHash": "f0acffa4ab0e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5f86f84e42d0",
+      "text": "No version or mode-key mismatch was found between the current registry and hub-router manifests for `mcp-browser-use`, `mcp-tooling` and `cli-external-orchestration`. The moved Chrome DevTools and Aside modes are listed under `mcp-browser-use`, and absent from `mcp-tooling`'s current registry/router. [SOURCE: .skilled/skills/mcp-browser-use/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-browser-use/hub-router.json:3] [SOURCE: .skilled/skills/mcp-tooling/mode-registry.json:3] [SOURCE: .skilled/skills/mcp-tooling/hub-router.json:3]",
+      "contentHash": "5f86f84e42d0",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ad7bd792c789",
+      "text": "The current CLI registry/router manifests list eight CLI modes and do not retain `cli-orca`. The changed OpenCode setup helper is an installer/checker, not a dispatch-command builder. Static review found no executor-builder defect; runtime reachability remains unchecked. [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:19] [SOURCE: .skilled/skills/cli-external-orchestration/mode-registry.json:241] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:3] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:34] [SOURCE: .skilled/skills/cli-external-orchestration/hub-router.json:104] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:8] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:28]",
+      "contentHash": "ad7bd792c789",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8c3e8e969772",
+      "text": "The reviewed changed CLI helper did not contain executor construction logic, so it yielded no executor-builder defect.",
+      "contentHash": "8c3e8e969772",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1f62a13fe99c",
+      "text": "The static manifests did not reveal a registry/router key or version drift.",
+      "contentHash": "1f62a13fe99c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d9943a72d16c",
+      "text": "No field-shape mismatch was found between the current CLI mode registry and the executor consumer.",
+      "contentHash": "d9943a72d16c",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-1b355c997f34",
+      "text": "No missing or broken resource path was found among the 23 declarations checked.",
+      "contentHash": "1b355c997f34",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-007fdb0d494f",
+      "text": "None.",
+      "contentHash": "007fdb0d494f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-4fe62258ecfa",
+      "text": "The iteration 4 registry/version comparison was not repeated because strategy marks it exhausted.",
+      "contentHash": "4fe62258ecfa",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ce5479f94783",
+      "text": "The overlay guard's suggested `status` command is accepted by the overlay engine CLI; no command-shape drift was confirmed. [SOURCE: .skilled/hooks/overlay-guard/lib/overlay-guard.cjs:59-63] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:23-26] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9267-9316] [SOURCE: .skilled/commands/doctor/scripts/overlay-engine.cjs:9344-9348]",
+      "contentHash": "ce5479f94783",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-99458b5248d6",
+      "text": "The reviewed CLI dispatch path applies every rule to an unresolved OpenCode version, matching the release description; no version-gate drift was confirmed. [SOURCE: .skilled/hooks/cli-dispatch/lib/dispatch-rule-checks.mjs:1119-1145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:516-522]",
+      "contentHash": "99458b5248d6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-eb3a1dde77b2",
+      "text": "The reviewed OpenCode decision-capture sweep reads `session_v2` and `session_message`, consistent with the release's OpenCode 2-only support claim; no version-layout mismatch was confirmed. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:40-43] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:128-145] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:509-522]",
+      "contentHash": "eb3a1dde77b2",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-83297b33cfee",
+      "text": "No additional defect was confirmed in the sampled handover prepare/arm/relaunch/claim transitions. This is limited to those paths, not a full review of every runtime adapter. [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1594] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1648] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1909] [SOURCE: .skilled/hooks/session-handover/lib/relaunch-core.cjs:1998]",
+      "contentHash": "83297b33cfee",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-b65edb77aa77",
+      "text": "No additional defect was confirmed in the sampled pre-commit trust and comment-hygiene gate paths. This is not a conclusion about every Git hook or gate. [SOURCE: .skilled/scripts/git-hooks/pre-commit:36] [SOURCE: .skilled/scripts/git-hooks/pre-commit:63] [SOURCE: .skilled/scripts/git-hooks/pre-commit:199] [SOURCE: .skilled/scripts/git-hooks/pre-commit:209]",
+      "contentHash": "b65edb77aa77",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-e6e243c9437b",
+      "text": "The two-level working-tree sub-track reader and validator use matching depth bounds in the inspected functions. No mismatch was confirmed in those excerpts. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:122] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs:161] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:241] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:248]",
+      "contentHash": "e6e243c9437b",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-844833a14cb1",
+      "text": "No separate issue was confirmed in the sampled OpenCode plugin entrypoint or shared session reader. This is a bounded sample, not a clean bill of health for every session-handover adapter.",
+      "contentHash": "844833a14cb1",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-c4b0109155f6",
+      "text": "The previously reviewed handover transition sequence was marked exhausted in the prior iteration and was not repeated.",
+      "contentHash": "c4b0109155f6",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-7575bf70e99a",
+      "text": "The sampled adapter entrypoint/storage path exposed no new discrepancy requiring another pass in this iteration.",
+      "contentHash": "7575bf70e99a",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-6d82d73f3089",
+      "text": "A suspected gap caused by treating `agent-mirror-sync.yml` as the only CI mirror gate was not confirmed; the other reviewed workflows run the generated/runtime mirror checks.",
+      "contentHash": "6d82d73f3089",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-de10a713fdfc",
+      "text": "None. The sk-doc implementation, sk-code routing and quality surfaces, and the remaining sk-git paths still offer productive follow-up work.",
+      "contentHash": "de10a713fdfc",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-e475a2b16fc2",
+      "text": "The six-command move described in the release changelog does not conflict with the current skill's claim to own every doctor command.",
+      "contentHash": "e475a2b16fc2",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-271739435ac8",
+      "text": "A first read-only helper assumed the relocation ledger had an applied array and exited 1. The table was re-read using its actual schema; no artifact was changed.",
+      "contentHash": "271739435ac8",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-b22e7289b146",
+      "text": "No additional defect was confirmed in the sampled validator, rename, quality-router or sk-git paths.",
+      "contentHash": "b22e7289b146",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-20ea72d03cbe",
+      "text": "The changed sk-doc validator’s required result marker is present in all 57 discovered playbook roots; no uncovered package was found in this scan.",
+      "contentHash": "20ea72d03cbe",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-482508aac9b4",
+      "text": "The sampled citation-rename redirect chain reaches a tracked path; no stale target was confirmed in that chain. [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:349-361] [SOURCE: .skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json:5]",
+      "contentHash": "482508aac9b4",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-343101615a19",
+      "text": "The sampled sk-git gate refusal and provisioning behavior matched the inspected contracts. [SOURCE: .skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md:31-46] [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:796-815] [SOURCE: .skilled/changelog/skilled/v4.2.0.0.md:829-833]",
+      "contentHash": "343101615a19",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-39cdd7cb1cac",
+      "text": "The sk-code compiled-route CLI supports the documented stdin option; the shell wrapper is where the delimiter issue sits. [SOURCE: .skilled/bin/compiled-route.cjs:34-59]",
+      "contentHash": "39cdd7cb1cac",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 2,
+    "keyFindings": 11,
+    "sourceFindings": 11,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 147,
+      "other": 61
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

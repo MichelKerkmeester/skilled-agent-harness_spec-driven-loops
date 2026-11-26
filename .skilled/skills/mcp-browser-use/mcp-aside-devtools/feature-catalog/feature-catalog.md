@@ -6,8 +6,8 @@ trigger_phrases:
   - "aside feature catalog"
   - "aside capabilities"
   - "aside chrome devtools parity"
-last_updated: "2026-07-17"
-version: 1.0.2.0
+last_updated: "2026-11-24"
+version: 1.0.5.0
 ---
 
 # mcp-aside-devtools: Feature Catalog
@@ -55,7 +55,7 @@ Outcome-oriented browser-agent work: `aside "<task>"` and `aside exec` run natur
 | Explicit execution | Task execution with provider/model controls | MUTATING (browser-side) | `aside exec ...` |
 | Account selection | Run a direct task under a chosen account | MUTATING (browser-side) | `aside --account <id> "<task>"` |
 
-See [`task/agent-tasks.md`](task/agent-tasks.md) for boundary rules, the pause/resume approval model, and the unresolved model-flag spelling.
+See [`task/agent-tasks.md`](task/agent-tasks.md) for boundary rules, the pause/resume approval model, and the model-flag spelling.
 
 ---
 
@@ -66,7 +66,7 @@ Deterministic proof steps: `aside repl "<JavaScript>"` keeps a persistent Playwr
 | Feature | One-line description | Class | Canonical invocation |
 |---|---|---|---|
 | Deterministic browser steps | Persistent ES2023+/Playwright REPL: `openTab(url)`, `snapshot(page)` | MUTATING (browser-side) | `aside repl "<JavaScript>"` |
-| Evidence capture | Screenshot/PDF artifacts verified by PNG magic bytes, not tool response | MUTATING (writes artifacts) | `bash examples/repl-evidence-capture.sh <url> <dir>` |
+| Evidence capture | Screenshot/PDF artifacts verified by PNG magic bytes, not tool response | MUTATING (writes artifacts) | One `aside repl "..."` evaluation that opens the tab, writes `./tmp/<name>.png` and reads it back with `fs` (ASD-007) |
 
 See [`repl/repl-evidence-capture.md`](repl/repl-evidence-capture.md) for the helper inventory and the independent-artifact-verification rule.
 
@@ -113,14 +113,14 @@ See [`troubleshoot/troubleshooting-recipes.md`](troubleshoot/troubleshooting-rec
 
 ## 7. DEVTOOLS PARITY
 
-A dedicated family that mirrors the Chrome DevTools capability surface (`mcp-chrome-devtools`) through the one lane Aside actually exposes for structured browser work: the Playwright `page` API inside `aside repl`. The discovery fixture ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)) proves `page` is a real Playwright `Page`, so DOM, screenshot, console, network, cookie, storage, performance, and navigation capabilities are all reachable — expressed as Playwright, not as typed `aside dom/console/network` subcommands (which do not exist). Two capabilities have honest gaps: **no native HAR export** (assemble a HAR-equivalent from `page.on` events) and **no built-in Lighthouse audit** (Performance-API timing only; Lighthouse-parity needs external tooling).
+A dedicated family that mirrors the Chrome DevTools capability surface (`mcp-chrome-devtools`) through the one lane Aside actually exposes for structured browser work: the Playwright `page` API inside `aside repl`. The discovery fixture ([`../references/discovery-fixture-2026-07-16.json`](../references/discovery-fixture-2026-07-16.json)) proves `page` is a real Playwright `Page`, so DOM, screenshot, storage, performance, and navigation capabilities are reachable; console, network and context-cookie capture are gaps on 1.26.626.1517 — expressed as Playwright, not as typed `aside dom/console/network` subcommands (which do not exist). Two capabilities have honest gaps: **no native HAR export**, and on 1.26.626.1517 no HAR-equivalent either because `page.on` rejects the network events, and **no built-in Lighthouse audit** (Performance-API timing only; Lighthouse-parity needs external tooling).
 
 | Feature | One-line description | Class | Canonical repl pattern |
 |---|---|---|---|
 | DOM inspection + JS eval | Query/eval/read structure | READ-ONLY | `page.$eval`, `page.evaluate`, `page.content()`, `snapshot(page)` |
 | Screenshots + PDF | Full-page/clip/element capture, print | MUTATING (artifacts) | `page.screenshot({ fullPage })`, `locator.screenshot`, `page.pdf` |
-| Console + network capture | Event capture; HAR-equivalent (no native HAR) | READ-ONLY | `page.on('console'\|'request'\|'response', ...)` |
-| Cookies + storage | Read/inject cookies, storage keys | READ-ONLY read / MUTATING write | `page.context().cookies()`, `page.evaluate(localStorage)` |
+| Console + network capture | Gap on 1.26.626.1517. No dedicated tool, no native HAR | READ-ONLY | None. `page.on('console'\|'request'\|'response', ...)` throws on 1.26.626.1517. Probe it only inside `try`/`catch` |
+| Cookies + storage | Read page-visible cookie names, storage keys | READ-ONLY read / MUTATING write | `page.evaluate(document.cookie / localStorage)`; `page.context()` is undefined on 1.26.626.1517 |
 | Performance timing | Navigation/paint metrics (no Lighthouse) | READ-ONLY | `page.evaluate(performance.getEntriesByType(...))` |
 | Navigation + multi-tab | Open/attach/navigate/enumerate (no parallel isolation) | MUTATING (browser-side) | `openTab`, `attachActiveBrowserTab`, `page.goto`, `tabs` |
 
@@ -136,10 +136,10 @@ Maps each DevTools capability domain to its Aside repl pattern and confidence st
 | Console eval | `page.evaluate(() => ...)` | [`devtools-parity/dom-inspection.md`](devtools-parity/dom-inspection.md) · ASD-016 | confirmed / skip-valid |
 | Screenshot (full/clip/element) | `page.screenshot` / `locator.screenshot` | [`devtools-parity/screenshots-and-pdf.md`](devtools-parity/screenshots-and-pdf.md) · ASD-017 | confirmed |
 | Print to PDF | `page.pdf({ format })` | [`devtools-parity/screenshots-and-pdf.md`](devtools-parity/screenshots-and-pdf.md) · ASD-017 | confirmed |
-| Console capture | `page.on('console', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | skip-valid (needs bound session) |
-| Network capture | `page.on('request'\|'response'\|'requestfinished', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | skip-valid (needs bound session) |
-| HAR export | assemble HAR-equivalent from events | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) | **gap — no native HAR** |
-| Cookies (read/inject) | `page.context().cookies()` / `addCookies()` | [`devtools-parity/cookies-and-storage.md`](devtools-parity/cookies-and-storage.md) · ASD-019 | confirmed / skip-valid |
+| Console capture | `page.on('console', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | **gap on 1.26.626.1517 — `page.on` rejects the event** |
+| Network capture | `page.on('request'\|'response'\|'requestfinished', ...)` | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) · ASD-018 | **gap on 1.26.626.1517 — `page.on` rejects the events** |
+| HAR export | none on 1.26.626.1517: `page.on` rejects the network events a HAR-equivalent needs | [`devtools-parity/console-and-network-capture.md`](devtools-parity/console-and-network-capture.md) | **gap — no native HAR** |
+| Cookies (read/inject) | `page.context().cookies()` / `addCookies()` | [`devtools-parity/cookies-and-storage.md`](devtools-parity/cookies-and-storage.md) · ASD-019 | **gap on 1.26.626.1517 — `page.context` is undefined**; page-visible names via `document.cookie` run without error (ASD-019, a page with no cookies) |
 | Web storage | `page.evaluate(() => localStorage/sessionStorage)` | [`devtools-parity/cookies-and-storage.md`](devtools-parity/cookies-and-storage.md) · ASD-019 | confirmed / skip-valid |
 | Performance timing | `page.evaluate(performance.getEntriesByType(...))` | [`devtools-parity/performance-timing.md`](devtools-parity/performance-timing.md) · ASD-020 | confirmed / skip-valid |
 | Lighthouse audit | none — external tooling required | [`devtools-parity/performance-timing.md`](devtools-parity/performance-timing.md) | **gap — no Lighthouse** |

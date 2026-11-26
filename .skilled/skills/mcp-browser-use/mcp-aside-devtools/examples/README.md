@@ -5,7 +5,7 @@ trigger_phrases:
   - "aside examples"
   - "aside example scripts"
   - "aside workflow scripts"
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # Aside Devtools - Example Scripts
@@ -48,18 +48,20 @@ Each script is a working workflow and an honest capability boundary: it exercise
 **Purpose:** Deterministic evidence workflow: open a tab, capture a screenshot, verify the artifact by PNG magic bytes.
 
 ```bash
-./repl-evidence-capture.sh                          # https://example.com → /tmp/aside-evidence
-./repl-evidence-capture.sh https://example.org ./<evidence-dir>
+./repl-evidence-capture.sh                          # https://example.com, writes ./tmp/ in the REPL session folder
+./repl-evidence-capture.sh https://example.org ./tmp/<evidence-dir>
 ```
 
 **What it verifies:**
-- `openTab(url)` round trip (the documented REPL entry point)
-- `page.screenshot({ path })` writes a real file
-- File exists, size > 0, first four bytes are PNG magic `89504e47`, independent of the tool response
+- `openTab(url)`, `page.screenshot({ path })` and the file check all run in one `aside repl` evaluation
+- The REPL's `fs` global reads the file back, and the logged JSON must show size > 0 and PNG magic `89504e47`
+- The output must carry no error or `[WARN]` line, because an `aside repl` error still exits 0
 
 **Honest boundaries:** bound-page result shapes are untested territory; the script gates on the artifact, not the response. A "not bound to a browser profile" error is a binding state, not an auth failure.
 
-**Exit codes:** `0` artifact verified; `1` any step or verification failed.
+**Status on Aside 1.26.626.1517.** The script uses the one-evaluation form from [`manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md`](../manual-testing-playbook/repl-evidence/repl-screenshot-artifact.md) (ASD-007), which passed live. Each separate `aside repl` call starts with `page` null. The REPL redirects a `/tmp` path into its session folder and removes the session files when it exits. So the script writes to `./tmp/` and checks the file with `fs` inside the same evaluation. The REPL removes the PNG when it exits, so the logged JSON line is the evidence to keep. The second argument must stay under `./tmp`. An absolute path or a folder outside `./tmp` is rejected. It has not yet been run as a script against a live Aside.
+
+**Exit codes:** `0` artifact verified, `1` any step or verification failed.
 
 ---
 
@@ -92,7 +94,7 @@ command -v aside && aside --version 2>&1 && aside --help 2>&1 > /tmp/aside-help-
 
 ### Fixture-first flag usage
 
-The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags: especially around the unresolved `-m provider/model` vs `--model`/`--provider` spelling.
+The command surface is version-pinned. Capture `aside --help` for the installed version before scripting flags. On 1.26.626.1517 it defines both `-m, --model` (which also accepts `provider/model`) and `-p, --provider`.
 
 ### Artifact-evidence standard
 

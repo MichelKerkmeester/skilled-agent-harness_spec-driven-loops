@@ -6,8 +6,8 @@ trigger_phrases:
   - "aside full page screenshot"
   - "aside element screenshot"
   - "aside pdf"
-last_updated: "2026-07-17"
-version: 1.0.1.0
+last_updated: "2026-11-24"
+version: 1.0.3.0
 ---
 
 # Screenshots, Element Captures, and PDF (DevTools parity)
@@ -24,25 +24,38 @@ Capability class: MUTATING (writes artifacts to operator-directed paths). The ho
 
 Fixture-documented options: `page.screenshot` supports `path`, `fullPage`, `clip`, `type`, `quality`, `timeout`; `locator.screenshot` supports `path`, `type`, `quality`, `timeout`, `margin` (default 8, default `type` `webp`); `page.pdf` supports Playwright PDF options (`path`, `format`, `width`, `height`, `margin`, `pageRanges`, `preferCSSPageSize`, `printBackground`). The fixture directs user-visible PDFs to `./artifacts/`.
 
-A relative path lands in the repository that is open, so the examples below write to a scratch folder instead (SKILL.md ALWAYS rule 6).
+On 1.26.626.1517 the REPL confines file writes to its session folder, exposed as `pwd`. A `/tmp` screenshot path is redirected there with a `[WARN]` line, and `page.pdf` refuses a `/tmp` path as escaping the session directory. The session files are gone once the REPL exits, so a shell check afterwards finds nothing. The examples below write to `./artifacts/` and read each file back with the `fs` global in the same evaluation (ASD-017). Delete the files in a `finally` block, since a signed-in page can leak into them (SKILL.md ALWAYS rule 6).
 
 ```js
-// Full-page PNG (DevTools "capture full size screenshot" analog)
-await page.screenshot({ path: '/tmp/aside-artifacts/full.png', fullPage: true, type: 'png' });
+await openTab('https://example.com');
+await fs.mkdir('./artifacts', { recursive: true });
+try {
+  // Full-page PNG (DevTools "capture full size screenshot" analog)
+  await page.screenshot({ path: './artifacts/full.png', fullPage: true, type: 'png' });
 
-// Clipped region (DevTools "capture area screenshot" analog)
-await page.screenshot({ path: '/tmp/aside-artifacts/hero.png', clip: { x: 0, y: 0, width: 1200, height: 400 } });
+  // Clipped region (DevTools "capture area screenshot" analog)
+  await page.screenshot({ path: './artifacts/hero.png', clip: { x: 0, y: 0, width: 1200, height: 400 } });
 
-// Single element (DevTools "capture node screenshot" analog)
-await page.locator('main').screenshot({ path: '/tmp/aside-artifacts/main.webp' });
+  // Single element (DevTools "capture node screenshot" analog)
+  await page.locator('main').screenshot({ path: './artifacts/main.webp' });
 
-// Print to PDF (no native DevTools equivalent; Playwright print path)
-await page.pdf({ path: '/tmp/aside-artifacts/page.pdf', format: 'A4', printBackground: true });
+  // Print to PDF (no native DevTools equivalent; Playwright print path)
+  await page.pdf({ path: './artifacts/page.pdf', format: 'A4', printBackground: true });
 
-console.log('captured');
+  const png = await fs.readFile('./artifacts/full.png');
+  const pdf = await fs.readFile('./artifacts/page.pdf');
+  console.log(JSON.stringify({
+    png: { size: png.length, magic: png.subarray(0, 4).toString('hex') },
+    pdf: { size: pdf.length, head: pdf.subarray(0, 4).toString('latin1') }
+  }));
+} finally {
+  for (const f of ['full.png', 'hero.png', 'main.webp', 'page.pdf']) {
+    await fs.rm('./artifacts/' + f, { force: true });
+  }
+}
 ```
 
-Verify independently after every capture: existence, size > 0, and magic bytes (`89 50 4e 47` for PNG; `%PDF` for PDF). Keep a single writer per profile; redact sensitive on-screen content from shared artifacts. `annotatedScreenshot(page)` is the extra Aside-native path (PNG with visible ref-ID labels) with no direct DevTools analog.
+Verify every capture inside the same evaluation: size > 0 and magic bytes (`89504e47` for PNG, `%PDF` for PDF). Keep a single writer per profile; redact sensitive on-screen content from shared artifacts. `annotatedScreenshot(page)` is the extra Aside-native path (PNG with visible ref-ID labels) with no direct DevTools analog.
 
 ---
 
@@ -53,7 +66,7 @@ Verify independently after every capture: existence, size > 0, and magic bytes (
 | File | Layer | Role |
 |---|---|---|
 | `references/discovery-fixture-2026-07-16.json` | Fixture | Documents `page.screenshot`/`locator.screenshot`/`page.pdf` option sets |
-| `examples/repl-evidence-capture.sh` | Example | Open-snapshot-screenshot chain with PNG-magic validation |
+| `examples/repl-evidence-capture.sh` | Example | Open, screenshot and PNG-magic check in one `aside repl` evaluation, the ASD-007 form. It has not yet been run as a script against a live Aside. |
 
 ### Validation And Tests
 

@@ -1,0 +1,508 @@
+{
+  "sessionId": "fanout-vibe-2-1795511024070-2cuwlj",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 7,
+    "timestamp": "2026-11-24T09:16:03.312Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "1",
+      "severity": "P1",
+      "title": "Mixed id and alias forms drop a named mode from the bundle",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+      "line": 88,
+      "description": "",
+      "findingClass": "correctness",
+      "deltaStatus": null,
+      "scopeProof": "Both prompts sit inside the hub routing contract; scorer, vocabulary and outcome promise are all in the declared review target.",
+      "affectedSurfaceHints": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/router.cjs",
+        ".skilled/skills/mcp-browser-use/hub-router.json",
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/fixtures/canary-cases.v1.json"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "1",
+      "severity": "P1",
+      "title": "The hub front-door instruction splices the user task into a double-quoted shell argument",
+      "file": ".skilled/skills/mcp-browser-use/SKILL.md",
+      "line": 62,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": "Both docs are hub-owned and inside the declared review target; the CLI they name is the front door the hub completion criterion exercises.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/ROUTER.md",
+        ".skilled/bin/compiled-route.cjs"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "1",
+      "severity": "P1",
+      "title": "The hub README declares a release that has no changelog entry",
+      "file": ".skilled/skills/mcp-browser-use/README.md",
+      "line": 8,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": "Every file named is hub-owned and inside the declared review target; the invariant is stated by the hub own SKILL.md.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/README.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md",
+        ".skilled/skills/mcp-browser-use/changelog/"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "2",
+      "severity": "P1",
+      "title": "The Aside feature catalog still offers the unpinned curl-to-bash install",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md",
+      "line": 24,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": "The feature catalog entry and the wrapper are both inside the Aside packet, inside the declared review target.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/feature-catalog/install/install-and-doctor.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "1",
+      "severity": "P2",
+      "title": "Two of three mode READMEs carry a version behind their own SKILL.md and newest changelog",
+      "file": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md",
+      "line": 1,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": "All six files are inside the declared review target; the convention is stated by the hub own SKILL.md and README.md.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/README.md",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/README.md",
+        ".skilled/skills/mcp-browser-use/mcp-bladebro/README.md",
+        ".skilled/skills/mcp-browser-use/SKILL.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "1",
+      "severity": "P2",
+      "title": "The parent goal's BINDING table stops at phase 014 while the packet ships a fifteenth phase",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "line": 70,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": "Both files are inside the declared review target; the omission is visible by comparing the BINDING row count against ls -d 0* of the packet root, which returns fifteen phase folders.",
+      "affectedSurfaceHints": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/015-fix-follow-up-review-findings/goal.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "2",
+      "severity": "P2",
+      "title": "selectionKinds cannot express the bundle kind the compiler can emit",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs",
+      "line": 1,
+      "description": "",
+      "findingClass": "maintainability",
+      "deltaStatus": null,
+      "scopeProof": "Compiler and its selection-kind list are both inside the compiled-routing surface of the declared review target.",
+      "affectedSurfaceHints": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/010-mcp-browser-use/lib/registry-compiler.cjs"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "2",
+      "severity": "P2",
+      "title": "The phase 006 log records the older, greener Chrome DevTools run as the mode playbook evidence",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/goal.md",
+      "line": 1,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": "The phase 006 goal and the Chrome DevTools benchmark report are both inside the declared review target.",
+      "affectedSurfaceHints": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/006-verification/goal.md",
+        ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/README.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "2",
+      "severity": "P2",
+      "title": "The parent goal cites a review report path that no longer resolves",
+      "file": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+      "line": 129,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": "The citation and the archive are both inside the declared review target; find over the packet returns three review-report.md files, all under review-archive/, and none at the cited path.",
+      "affectedSurfaceHints": [
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/goal.md",
+        "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/review-report.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "3",
+      "severity": "P2",
+      "title": "ROUTER.md calls itself the single machine-readable projection while a second one is live",
+      "file": ".skilled/skills/mcp-browser-use/ROUTER.md",
+      "line": 53,
+      "description": "",
+      "findingClass": "traceability",
+      "deltaStatus": null,
+      "scopeProof": "Both files are hub-owned and inside the declared review target.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/ROUTER.md",
+        ".skilled/skills/mcp-browser-use/hub-router.json"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "3",
+      "severity": "P2",
+      "title": "The installer pin covers the script but not the archive, and the archive source is env-overridable",
+      "file": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+      "line": 14,
+      "description": "",
+      "findingClass": "security",
+      "deltaStatus": null,
+      "scopeProof": "The wrapper and its documented env overrides are both inside the Aside packet.",
+      "affectedSurfaceHints": [
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/install.sh",
+        ".skilled/skills/mcp-browser-use/mcp-aside-devtools/INSTALL-GUIDE.md"
+      ],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 7,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 7
+  },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 2,
+      "partial": 2,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "evidence": "Re-read: registry-compiler.cjs:263 still hardcodes selectionKinds ['single','orderedBundle']; ROUTER.md:53 still declares four intent signals against hub-router.json's three routerSignals; the hub README version and the two mode README versions are unchanged.",
+        "protocol": "spec_code",
+        "status": "partial",
+        "protocolId": "spec_code",
+        "gateClass": "hard",
+        "applicable": true
+      },
+      {
+        "evidence": "Re-read: 006-verification/implementation-summary.md:49 still records the 2026-11-21 run; the parent goal's evidence row still cites a path that does not resolve.",
+        "protocol": "checklist_evidence",
+        "status": "partial",
+        "protocolId": "checklist_evidence",
+        "gateClass": "hard",
+        "applicable": true
+      },
+      {
+        "evidence": "Carried: parent-skill-check.cjs exits 0 and names the hub.",
+        "protocol": "skill_agent",
+        "status": "pass",
+        "protocolId": "skill_agent",
+        "gateClass": "advisory",
+        "applicable": true
+      },
+      {
+        "evidence": "No agent definition carries hub logic.",
+        "protocol": "agent_cross_runtime",
+        "status": "notApplicable",
+        "protocolId": "agent_cross_runtime",
+        "gateClass": "advisory",
+        "applicable": false
+      },
+      {
+        "evidence": "Carried from iteration 6: install-and-doctor.md:24 still presents the unpinned form as an equal option.",
+        "protocol": "feature_catalog_code",
+        "status": "fail",
+        "protocolId": "feature_catalog_code",
+        "gateClass": "advisory",
+        "applicable": true
+      },
+      {
+        "evidence": "Carried: all three modes carry a playbook with a recorded run.",
+        "protocol": "playbook_capability",
+        "status": "pass",
+        "protocolId": "playbook_capability",
+        "gateClass": "advisory",
+        "applicable": true
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code",
+      "checklist_evidence"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

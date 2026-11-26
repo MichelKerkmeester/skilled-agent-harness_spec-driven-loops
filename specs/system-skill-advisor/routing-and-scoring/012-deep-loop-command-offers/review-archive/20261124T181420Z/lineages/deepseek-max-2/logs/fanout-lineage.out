@@ -1,0 +1,23 @@
+## Review loop complete — lineage `deepseek-max-2`
+
+**Setup bindings** (emitted before writes): target `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers`, maxIterations 7, convergence 0.1, mode review, dimensions correctness/security/traceability/maintainability, specFolder the 012 packet. No `steer.md` existed; the run proceeded under the dispatcher's pre-bound answers.
+
+### Iterations (all run inline as the dispatched executor; no nested CLI or sub-agent)
+
+| # | Dimension | Focus | New P2 | Ratio |
+|---|---|---|---|---|
+| 1 | correctness | Gate grammar sampled on the built copy; gate-layer REQs | 1 | 1.0 |
+| 2 | traceability | `spec_code` over REQ-001..REQ-039 vs producers and ADRs | 1 | 1.0 |
+| 3 | security | Spawn, label, policy, prompt cap, regex cost | 0 | 0.0 |
+| 4 | traceability | `checklist_evidence`: 123 task boxes, 47 criteria rows | 0 | 0.0 |
+| 5 | maintainability | Reducer strategy contract, comment truth, parity cost | 2 | 1.0 |
+| 6 | correctness | Served head end to end (handler → label) | 1 | 1.0 |
+| 7 | traceability | Closeout: re-read every filed finding, correct one anchor | 0 | 0.1 |
+
+**Findings (all P2, no P0/P1):** pronoun rerun read as a doctor ask (`command-attach.ts:566`); AC-041's evidence cell cites three drifted lines (`acceptance-criteria.md:98`); strategy heading duplicated by the reducer (`reduce-state.cjs:2394`); ruled-out direction rendered as a blocked approach (`reduce-state.cjs:2363`); dead duplicate-command guard (`advisor-recommend.ts:412`). The closeout caught its own bad anchor on R5-P2-001 and recorded a refinement to `:2394`.
+
+**Synthesis:** `review-report.md` with all 9 core sections, Planning Packet, Dimension Expansion Map and Audit Appendix. `terminal-gates.cjs` → evidence/scope/coverage all **pass**; `review-verdict.cjs` → **PASS**, hasAdvisories true, P0 0 / P1 0 / P2 5; stop reason **`maxIterationsReached`**; config flipped to `complete`; dashboard COMPLETE; lock released.
+
+**State integrity:** 10 ledger rows through `append-mode-event.cjs` (run-init, 7 iterations, terminal gates, synthesis_complete); state log never written directly; reducer run after every iteration and after closeout; 7 iteration narratives and 7 deltas, each ending/first-lining as the contract requires; route proof on every iteration. No file outside the lineage was created or modified (the only sibling changes are the parallel `deepseek-max-1` / `deepseek-max-3` lineages and the advisor daemon's gitignored heartbeat files).
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-2

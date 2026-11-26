@@ -54,7 +54,7 @@ for viewport in "${VIEWPORTS[@]}"; do
 
   # Set viewport
   echo "  🔧 Setting viewport to ${width}x${height} (mobile: $mobile)..."
-  bdg cdp Emulation.setDeviceMetricsOverride "{\"width\":$width,\"height\":$height,\"deviceScaleFactor\":2,\"mobile\":$mobile}" 2>&1
+  bdg cdp Emulation.setDeviceMetricsOverride --params "{\"width\":$width,\"height\":$height,\"deviceScaleFactor\":2,\"mobile\":$mobile}" 2>&1
 
   # Capture initial state
   echo "  📸 Capturing initial state..."
@@ -82,10 +82,10 @@ for viewport in "${VIEWPORTS[@]}"; do
     bdg cdp Performance.getMetrics > "$OUTPUT_DIR/$DATE_STAMP/${name}-metrics.json" 2>&1
 
     # Get console logs
-    bdg console --list > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>&1
+    bdg console --list --json > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>&1
 
     # Check for console errors
-    ERROR_COUNT=$(jq '[.[] | select(.level=="error")] | length' "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>/dev/null || echo "0")
+    ERROR_COUNT=$(jq '[.messages[] | select(.type=="error")] | length' "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>/dev/null || echo "0")
 
     if [ "$ERROR_COUNT" -gt 0 ]; then
       echo "  ⚠️ WARNING: $ERROR_COUNT console error(s) detected"

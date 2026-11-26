@@ -1,5 +1,5 @@
 {
-  "count": 1254,
+  "count": 1253,
   "mode": "readme",
   "results": [
     {
@@ -1494,7 +1494,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/manual-testing-playbook/doctor-commands/README.md",
+      "file": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -3949,16 +3949,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-external-orchestration/cli-pi/benchmark/reports/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/cli-orca/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

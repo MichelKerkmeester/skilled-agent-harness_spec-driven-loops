@@ -1,0 +1,26 @@
+## Review Iteration 4 Complete
+
+**Focus:** maintainability — duplication between the TS runtime and the Python fallback, drift-prone hand-kept lists, dead code, oversized pipelines, swallowed failures, comment hygiene, plus the operator's named hotspots (`fusion.ts`, `command-attach.ts`, `hooks/`).
+
+**Findings:** 6 total — P0 0 / P1 0 / P2 6 (15 P2 active overall, R2-P1-001 still active)
+
+- `R4-P2-001` `AdvisorToolInputSchemas` exported at `runtime/schemas/advisor-tool-schemas.ts:588` with zero consumers repo-wide.
+- `R4-P2-002` `scoreAdvisorPrompt` is a 368-line ordered pipeline (`runtime/lib/scorer/fusion.ts:1104-1471`); `primaryIntentBonus` 122 lines, `typedCommandForTop` 117 in `command-attach.ts:257-373` — order is behavior, no stage seam.
+- `R4-P2-003` Pi adapter hard-copies the Claude budget (`hooks/pi/prompt-advisor.ts:23` vs `hooks/claude/user-prompt-submit.ts:182`) and re-implements its parse rule; the comment itself names the drift.
+- `R4-P2-004` Prompt cap `10_000` and floor `0.82` hand-copied per language (`skill_advisor.py:52`, `:4147` vs `advisor-tool-schemas.ts:257`, `scoring-constants.ts:185-192`) while prompt-policy sets are data-sourced.
+- `R4-P2-005` Pasted-reply strip maintained in two regex dialects (`prompt-policy.ts:245` / `skill_advisor.py:5258`); the TS fixture guard sits in `runtime/tests/legacy/`.
+- `R4-P2-006` `currentGateQuestion()` swallows owner-module load failure (`runtime/lib/policy-plan.ts:203-211`) — absent and broken are the same value.
+
+**newFindingsRatio:** 0.30 (6 weighted new against 14 weighted prior)
+
+**Dimensions:** 4/4 covered — maintainability now complete.
+
+**Edge cases:** prompt-policy sets are data-sourced (not duplicated); the directive-lifecycle Python store is a split implementation, not a copy; `ablation.ts` is test support; four adapters differ by host capability, only the Pi/Claude budget pair must agree numerically. Python/TS parity suite still unexecuted (deferred, not clean).
+
+**Integration evidence:** Pi adapter import block (`hooks/pi/prompt-advisor.ts:11`), Claude budget source (`:182`), directive-lifecycle wrapper (`hooks/lib/directive-lifecycle.ts:19-33`), receipt consumers (`route-receipt.ts` vs vibe-local head receipts), Python strip and floors.
+
+**Recommended next focus:** closing cross-reference/synthesis pass — re-verify R2-P1-001 and the carried P2s, state release readiness; `skill_agent` and `agent_cross_runtime` overlays remain unrun.
+
+**Files written:** `review/iterations/iteration-004.md`, `review/deltas/iter-004.jsonl` (51 lines), strategy updated in place; record recorded through the append gateway (exit 0, receipt `event-289efd31…`, projection refreshed, 4 iteration records now in the state log). Target and all other files untouched.
+
+**Status:** `complete` — **Review verdict: CONDITIONAL**

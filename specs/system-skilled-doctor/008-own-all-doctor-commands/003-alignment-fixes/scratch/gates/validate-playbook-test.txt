@@ -1,0 +1,11 @@
+fixture suite: PASS (35 negative/positive assertions)
+clean: PASS; section-order: FAIL
+strict default: rc=1 on seeded violation; --no-strict: rc=0; boundary: rc=2
+result contract regressions: PASS (7 assertions)
+contract regressions: PASS (8 assertions)
+central package discovery regression: PASS (2 assertions)
+external package regression: PASS (13 assertions)
+prompt sync regressions: PASS (8 assertions)
+piped report regression: PASS (2 assertions)
+conversation script regressions: PASS (114 assertions)
+exit=0

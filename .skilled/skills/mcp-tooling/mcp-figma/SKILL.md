@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.3.0
+version: 1.2.4.0
 user-invocable: true
 ---
 
@@ -55,7 +55,7 @@ This transport moves and renders designs. It does not produce the measured refer
 **Skip this skill when:**
 - The work is generic app coding with no Figma input: use `sk-code`.
 - The work is extracting a measured Style Reference (design tokens) from a live website's real CSS. That is `sk-design-md-generator`, and this skill is the Figma transport.
-- The task is browser debugging or visual preview of a built page. That is `mcp-chrome-devtools`.
+- The task is browser debugging or visual preview of a built page. That is the `mcp-browser-use` hub.
 - Figma Desktop is not installed or not open. The CLI drives the live Desktop session and cannot work without it.
 
 ---
@@ -186,7 +186,7 @@ Find the full details and snippet in [`references/mcp-wiring.md`](references/mcp
   - Use it as a precondition before every design-affecting authoring path: render/create, variable binding, variants and token collections.
   This skill is the transport. The companion skill produces the measured reference.
 - **`sk-code`** owns adapting extracted tokens / DESIGN.md / exported code into a real application, and verifying it.
-- **`mcp-chrome-devtools`** is used only for a last-mile browser preview of an implemented page, never to operate Figma.
+- **The `mcp-browser-use` hub** is used only for a last-mile browser preview of an implemented page, never to operate Figma.
 
 ### External Tools
 
@@ -229,7 +229,7 @@ Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-on
 
 Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
-Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies. When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` (`web-visual-values.md`) and decide it there.
+Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-browser-use` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies. When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` (`web-visual-values.md`) and decide it there.
 
 A Figma read that feeds code ends at the five-pass check in `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`.
 

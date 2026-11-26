@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "system-deep-loop compiled routing"
-version: 1.0.1.0
+version: 1.0.4.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -23,11 +23,11 @@ The directive is on by default for `system-deep-loop` (a member of the per-hub d
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "<task>"` before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `system-deep-loop`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `system-deep-loop` routes unchanged. As of this writing, `system-deep-loop`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `system-deep-loop` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 
-`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Each side owns its own per-hub default-on cohort: `system-deep-loop` (like all seven eligible hubs) is now a member of the resolver's cohort, so `system-deep-loop`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort is tracked separately in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts` and is unaffected by this cutover; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
+`SPECKIT_COMPILED_ROUTING` is tri-state, parsed identically by the resolver and by the advisor-side consumption path. Both sides read one per-hub default-on cohort: `system-deep-loop` (like all seven eligible hubs) is now a member of the resolver's cohort, so `system-deep-loop`'s hub-routing directive resolves to compiled serving when the flag is unset — the advisor-side `compiledRoute` enrichment cohort, read in `system-skill-advisor/runtime/lib/compiled-routing-flag.ts`, comes from the same hub registry as the resolver's, `.skilled/bin/lib/compiled-routing/hub-registry.json`; `1` force-enables compiled resolution wherever the manifest also authorizes it; `0`, `false`, or `off` is an explicit fleet-wide kill-switch that forces legacy regardless of manifest state; any other value fails closed to legacy. `SPECKIT_COMPILED_ROUTING_DEBUG` gates optional stderr-only breadcrumbs for a fallback decision and never changes the served outcome.
 
 ### Outcome Handling
 

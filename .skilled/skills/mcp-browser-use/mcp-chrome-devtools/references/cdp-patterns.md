@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.6.0
 ---
 
 # CDP Patterns & Command Examples
@@ -59,12 +59,12 @@ Progressive disclosure from discovery to execution - always explore capabilities
 | Task | Command Pattern | Output |
 |------|----------------|--------|
 | Screenshot | `bdg dom screenshot "${TMPDIR:-/tmp}/output.png"` | PNG file saved |
-| Console logs | `bdg console --list` | JSON array of log entries |
-| Network cookies | `bdg network getCookies \| jq 'map({name, domain})'` | Cookie names and domains |
+| Console logs | `bdg console --list` | Chronological text view. Add `--json` for an object with the entries under `.messages` |
+| Network cookies | `bdg network getCookies --json \| jq 'map({name, domain})'` | Cookie names and domains |
 | DOM query | `bdg dom query ".classname"` | Matching elements |
 | HAR export | `bdg network har "${TMPDIR:-/tmp}/output.har"` | HAR file with network data |
 | JavaScript eval | `bdg dom eval "document.title"` | Execution result |
-| Page navigation | `bdg cdp Page.navigate '{"url":"https://example.com"}'` | Navigation response |
+| Page navigation | `bdg cdp Page.navigate --params '{"url":"https://example.com"}'` | Navigation response |
 
 **Capture Hygiene**:
 HAR files, cookie dumps, traces, heap snapshots and screenshots of logged-in pages can hold live session cookies and bearer tokens. The recipes below write them under `"${TMPDIR:-/tmp}"`, outside the repository. Never commit one. Redact cookie and authorization values before quoting any of it, and print cookie names and domains instead of values.
@@ -78,13 +78,13 @@ HAR files, cookie dumps, traces, heap snapshots and screenshots of logged-in pag
 **Navigation and Lifecycle**:
 ```bash
 # Navigate to URL
-bdg cdp Page.navigate '{"url":"https://example.com"}'
+bdg cdp Page.navigate --params '{"url":"https://example.com"}'
 
 # Get navigation history
 bdg cdp Page.getNavigationHistory
 
 # Reload page
-bdg cdp Page.reload '{"ignoreCache":true}'
+bdg cdp Page.reload --params '{"ignoreCache":true}'
 
 # Stop loading
 bdg cdp Page.stopLoading
@@ -99,7 +99,7 @@ bdg cdp Page.enable
 bdg cdp Page.captureScreenshot
 
 # Specific viewport screenshot
-bdg cdp Page.captureScreenshot '{
+bdg cdp Page.captureScreenshot --params '{
   "clip": {
     "x": 0,
     "y": 0,
@@ -110,7 +110,7 @@ bdg cdp Page.captureScreenshot '{
 }'
 
 # Print to PDF
-bdg cdp Page.printToPDF '{"landscape":false}'
+bdg cdp Page.printToPDF --params '{"landscape":false}'
 ```
 
 **Layout and Metrics**:
@@ -119,7 +119,7 @@ bdg cdp Page.printToPDF '{"landscape":false}'
 bdg cdp Page.getLayoutMetrics
 
 # Set device metrics override
-bdg cdp Emulation.setDeviceMetricsOverride '{
+bdg cdp Emulation.setDeviceMetricsOverride --params '{
   "width": 375,
   "height": 667,
   "deviceScaleFactor": 2,
@@ -137,16 +137,16 @@ bdg cdp Emulation.setDeviceMetricsOverride '{
 bdg cdp DOM.getDocument
 
 # Get document with depth
-bdg cdp DOM.getDocument '{"depth":-1,"pierce":true}'
+bdg cdp DOM.getDocument --params '{"depth":-1,"pierce":true}'
 
 # Query selector
-bdg cdp DOM.querySelector '{
+bdg cdp DOM.querySelector --params '{
   "nodeId": 1,
   "selector": ".my-class"
 }'
 
 # Query all matching
-bdg cdp DOM.querySelectorAll '{
+bdg cdp DOM.querySelectorAll --params '{
   "nodeId": 1,
   "selector": "div"
 }'
@@ -155,20 +155,20 @@ bdg cdp DOM.querySelectorAll '{
 **Node Operations**:
 ```bash
 # Get outer HTML
-bdg cdp DOM.getOuterHTML '{"nodeId":123}'
+bdg cdp DOM.getOuterHTML --params '{"nodeId":123}'
 
 # Get attributes
-bdg cdp DOM.getAttributes '{"nodeId":123}'
+bdg cdp DOM.getAttributes --params '{"nodeId":123}'
 
 # Set attribute value
-bdg cdp DOM.setAttributeValue '{
+bdg cdp DOM.setAttributeValue --params '{
   "nodeId": 123,
   "name": "class",
   "value": "active"
 }'
 
 # Remove node
-bdg cdp DOM.removeNode '{"nodeId":123}'
+bdg cdp DOM.removeNode --params '{"nodeId":123}'
 ```
 
 **Helper Command Alternative**:
@@ -198,10 +198,10 @@ bdg cdp Network.clearBrowserCookies
 bdg cdp Network.getAllCookies 2>&1 | jq '[.result.cookies[] | {name, domain}]'
 
 # Get cookies for URL
-bdg cdp Network.getCookies '{"urls":["https://example.com"]}' 2>&1 | jq '[.result.cookies[] | {name, domain}]'
+bdg cdp Network.getCookies --params '{"urls":["https://example.com"]}' 2>&1 | jq '[.result.cookies[] | {name, domain}]'
 
 # Set cookie (use a throwaway value, never a real session token)
-bdg cdp Network.setCookie '{
+bdg cdp Network.setCookie --params '{
   "name": "session",
   "value": "<throwaway-value>",
   "domain": "example.com",
@@ -211,7 +211,7 @@ bdg cdp Network.setCookie '{
 }'
 
 # Delete cookie
-bdg cdp Network.deleteCookies '{
+bdg cdp Network.deleteCookies --params '{
   "name": "session",
   "domain": "example.com"
 }'
@@ -220,17 +220,17 @@ bdg cdp Network.deleteCookies '{
 **Request Interception**:
 ```bash
 # Enable request interception
-bdg cdp Network.setRequestInterception '{
+bdg cdp Network.setRequestInterception --params '{
   "patterns": [{"urlPattern":"*"}]
 }'
 
 # Continue intercepted request
-bdg cdp Network.continueInterceptedRequest '{
+bdg cdp Network.continueInterceptedRequest --params '{
   "interceptionId": "id-123"
 }'
 
 # Block request
-bdg cdp Network.continueInterceptedRequest '{
+bdg cdp Network.continueInterceptedRequest --params '{
   "interceptionId": "id-123",
   "errorReason": "BlockedByClient"
 }'
@@ -238,8 +238,8 @@ bdg cdp Network.continueInterceptedRequest '{
 
 **Helper Command Alternative**:
 ```bash
-# Simpler network inspection
-bdg network getCookies 2>&1 | jq 'map({name, domain})'
+# Simpler network inspection (--json gives the array, plain output is text that shows cookie values)
+bdg network getCookies --json 2>/dev/null | jq 'map({name, domain})'
 
 # Headers can include Cookie and Authorization values, so redact them before quoting
 bdg network headers
@@ -258,19 +258,19 @@ bdg network har "${TMPDIR:-/tmp}/network-trace.har"
 bdg cdp Runtime.enable
 
 # Evaluate JavaScript
-bdg cdp Runtime.evaluate '{
+bdg cdp Runtime.evaluate --params '{
   "expression": "document.title",
   "returnByValue": true
 }'
 
 # Call function on object
-bdg cdp Runtime.callFunctionOn '{
+bdg cdp Runtime.callFunctionOn --params '{
   "functionDeclaration": "function() { return this.value; }",
   "objectId": "object-123"
 }'
 
 # Get properties
-bdg cdp Runtime.getProperties '{
+bdg cdp Runtime.getProperties --params '{
   "objectId": "object-123",
   "ownProperties": true
 }'
@@ -333,7 +333,7 @@ bdg cdp Performance.disable
 ```bash
 # A trace records request URLs, tokens in query strings included, so save it to a scratch path only
 # Start timeline
-bdg cdp Tracing.start '{
+bdg cdp Tracing.start --params '{
   "categories": "devtools.timeline"
 }'
 
@@ -358,7 +358,7 @@ bdg cdp Tracing.getCategories
 SCRATCH="${TMPDIR:-/tmp}"
 
 # Check bdg availability
-command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
+command -v bdg || { echo "Install: npm install -g browser-debugger-cli@0.6.10"; exit 1; }
 
 # Start session
 bdg https://example.com 2>&1
@@ -395,15 +395,16 @@ bdg https://example.com 2>&1
 # Enable console
 bdg cdp Runtime.enable 2>&1
 
-# Get console logs (helper)
-bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > "$SCRATCH/errors.json"
+# Get console logs (helper). --list --json puts the entries under .messages, each with a .type field.
+# --last 0 lifts the default cap of 100 entries.
+bdg console --list --last 0 --json 2>/dev/null | jq '[.messages[] | select(.type=="error")]' > "$SCRATCH/errors.json"
 
 # Count errors
-error_count=$(jq '. | length' "$SCRATCH/errors.json")
+error_count=$(jq 'length' "$SCRATCH/errors.json")
 echo "Found $error_count console errors"
 
 # Extract error messages
-jq -r '.[] | "\(.level): \(.text)"' "$SCRATCH/errors.json"
+jq -r '.[] | "\(.type): \(.text)"' "$SCRATCH/errors.json"
 
 bdg stop 2>&1
 ```
@@ -462,10 +463,10 @@ bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Get all cookies
-bdg network getCookies 2>&1 | jq 'map({name, domain})'
+bdg network getCookies --json 2>/dev/null | jq 'map({name, domain})'
 
 # Set authentication cookie (use a throwaway value, never a real session token)
-bdg cdp Network.setCookie '{
+bdg cdp Network.setCookie --params '{
   "name": "auth_token",
   "value": "<throwaway-value>",
   "domain": "example.com",
@@ -476,11 +477,11 @@ bdg cdp Network.setCookie '{
 }' 2>&1
 
 # Verify cookie set
-bdg cdp Network.getCookies '{"urls":["https://example.com"]}' 2>&1 | \
+bdg cdp Network.getCookies --params '{"urls":["https://example.com"]}' 2>&1 | \
   jq '.result.cookies[] | select(.name=="auth_token") | {name, domain}'
 
 # Navigate with cookie
-bdg cdp Page.navigate '{"url":"https://example.com/dashboard"}' 2>&1
+bdg cdp Page.navigate --params '{"url":"https://example.com/dashboard"}' 2>&1
 
 bdg stop 2>&1
 ```
@@ -499,16 +500,16 @@ bdg https://example.com 2>&1
 doc_node=$(bdg cdp DOM.getDocument 2>&1 | jq '.result.root.nodeId')
 
 # Find element by selector
-element_node=$(bdg cdp DOM.querySelector "{
+element_node=$(bdg cdp DOM.querySelector --params "{
   \"nodeId\": $doc_node,
   \"selector\": \"h1\"
 }" 2>&1 | jq '.result.nodeId')
 
 # Get element HTML
-bdg cdp DOM.getOuterHTML "{\"nodeId\": $element_node}" 2>&1 | jq -r '.result.outerHTML'
+bdg cdp DOM.getOuterHTML --params "{\"nodeId\": $element_node}" 2>&1 | jq -r '.result.outerHTML'
 
 # Modify attribute
-bdg cdp DOM.setAttributeValue "{
+bdg cdp DOM.setAttributeValue --params "{
   \"nodeId\": $element_node,
   \"name\": \"class\",
   \"value\": \"modified\"
@@ -530,14 +531,14 @@ bdg stop 2>&1
 # Extract specific fields
 bdg cdp Page.getNavigationHistory 2>&1 | jq '.result.entries[] | .url'
 
-# Filter results
-bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
+# Filter results (--json is required, and the entries sit under .messages with a .type field)
+bdg console --list --json 2>/dev/null | jq '.messages[] | select(.type == "error")'
 
 # Transform output (names and domains only, never values)
-bdg network getCookies 2>&1 | jq '[.[] | {name, domain}]'
+bdg network getCookies --json 2>/dev/null | jq '[.[] | {name, domain}]'
 
 # Count items
-bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
+bdg cdp DOM.querySelectorAll --params '{"nodeId":1,"selector":"div"}' 2>&1 | \
   jq '.result.nodeIds | length'
 ```
 
@@ -550,7 +551,10 @@ bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
 bdg console --list 2>&1 | grep -i "error"
 
 # Filter by URL pattern (print the URLs only, because a HAR entry also carries Cookie and Authorization headers)
-bdg network har - 2>&1 | jq -r '.log.entries[].request.url' | grep "api.example.com"
+# bdg reads "-" as a file name, not stdout, so export to a scratch file first
+bdg network har "${TMPDIR:-/tmp}/trace.har" 2>&1
+jq -r '.log.entries[].request.url' "${TMPDIR:-/tmp}/trace.har" | grep "api.example.com"
+rm -f "${TMPDIR:-/tmp}/trace.har"
 
 # Case-insensitive search
 bdg cdp DOM.getDocument 2>&1 | grep -i "title"
@@ -561,12 +565,13 @@ bdg cdp DOM.getDocument 2>&1 | grep -i "title"
 ### Pattern 3: Combine with curl and Other Tools
 
 ```bash
-# Download screenshot and upload to S3
-bdg dom screenshot - 2>&1 | aws s3 cp - s3://bucket/screenshot.png
+# Save a screenshot and upload it to S3 (bdg reads "-" as a file name, not stdout)
+bdg dom screenshot "${TMPDIR:-/tmp}/screenshot.png" 2>&1 && \
+  aws s3 cp "${TMPDIR:-/tmp}/screenshot.png" s3://bucket/screenshot.png
 
-# Extract data and POST to API
-bdg dom eval "localStorage.getItem('data')" 2>&1 | \
-  jq -r '.result.value' | \
+# Extract data and POST to API (dom eval --json prints {"result": <value>})
+bdg dom eval --json "localStorage.getItem('data')" 2>/dev/null | \
+  jq -r '.result' | \
   curl -X POST -d @- https://api.example.com/data
 
 # Chain multiple operations
@@ -591,7 +596,7 @@ done
 
 # Batch cookie extraction (names and domains only, since values are live session secrets)
 bdg https://example.com 2>&1
-bdg network getCookies 2>&1 | jq -r '.[] | "\(.name)@\(.domain)"' | \
+bdg network getCookies --json 2>/dev/null | jq -r '.[] | "\(.name)@\(.domain)"' | \
 while read cookie; do
   echo "$cookie" >> "${TMPDIR:-/tmp}/cookie-names.txt"
 done
@@ -605,7 +610,7 @@ bdg stop 2>&1
 ```bash
 # Capture stderr separately
 SCRATCH="${TMPDIR:-/tmp}"
-bdg cdp Page.navigate '{"url":"invalid"}' 2>"$SCRATCH/errors.log" 1>"$SCRATCH/output.json"
+bdg cdp Page.navigate --params '{"url":"invalid"}' 2>"$SCRATCH/errors.log" 1>"$SCRATCH/output.json"
 
 # Check exit code
 bdg status 2>&1
@@ -618,7 +623,7 @@ fi
 bdg cdp Network.enable 2>/dev/null
 
 # Combine and filter
-(bdg console --list 2>&1 | jq '.') || echo "Command failed"
+(bdg console --list --json 2>/dev/null | jq '.') || echo "Command failed"
 ```
 
 ---
@@ -634,7 +639,7 @@ bdg cdp Page.screenshot 2>&1  # FAILS - wrong method name
 bdg cdp Screenshot 2>&1       # FAILS - wrong domain
 bdg cdp capture 2>&1          # FAILS - incomplete name
 
-# Results in: "Error: Method not found"
+# Results in: {"success":false,"error":"Method 'Page.screenshot' not found","exitCode":81}
 # Wastes time with trial and error
 ```
 
@@ -645,8 +650,8 @@ bdg cdp --list  # → Discover "Page" domain exists
 
 **Validation**: `domains_discovered`
 
-# Step 2: Explore specific domain
-bdg cdp --describe Page  # → Find "captureScreenshot" method
+# Step 2: List the methods in a domain (--describe on a domain gives counts, not method names)
+bdg cdp Page --list  # → Find "captureScreenshot" method
 
 **Validation**: `method_identified`
 
@@ -707,7 +712,7 @@ For genuine parallel browser control, use `mcp-chrome-devtools`'s multiple regis
 
 ```bash
 # Execute CDP only if session active
-if bdg status 2>&1 | grep -q "active"; then
+if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
   bdg cdp Page.captureScreenshot 2>&1
 else
   echo "No active session"
@@ -726,8 +731,8 @@ done
 ```bash
 # Extract, transform, load pattern
 bdg https://example.com 2>&1 && \
-bdg dom eval "document.querySelectorAll('a')" 2>&1 | \
-jq -r '.result.value[] | .href' | \
+bdg dom eval --json "Array.from(document.querySelectorAll('a'), a => a.href)" 2>/dev/null | \
+jq -r '.result[]' | \
 sort -u > "${TMPDIR:-/tmp}/links.txt" && \
 bdg stop 2>&1
 

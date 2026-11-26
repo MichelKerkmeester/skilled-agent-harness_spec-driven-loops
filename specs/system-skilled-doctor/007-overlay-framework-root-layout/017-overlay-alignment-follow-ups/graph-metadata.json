@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Leg 1b of the router-sync guard walks every markdown file under a mode's `references/` and `assets/` folders, so a folder README that no router names fails the guard as an orphan",
     "created_at": "2026-11-21T00:41:47Z",
-    "last_save_at": "2026-11-21T02:00:59.631Z",
+    "last_save_at": "2026-11-25T18:50:37.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4791548e6a5bd9299ba13dd757bb8a0bde883226c6b5c7b33c0dc762e67f4bf9",
+    "source_fingerprint": "sha256:9da8fd8bd333ce82c84762b36c7ce2f611a7ee0795b9ec0535b08f007f11c195",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "304bec26491a61f11440b488fd0ce1ee61642f4cb9ad207075d7aded19e013e4",
+      "spec.md": "2a214afb2e2cdd5edf5b7e8a44aa249f73128ea72884d60134d21594e1ea331b",
       "plan.md": "7b4f1301abe0e91d338e02e4c99e217a83dc465d570447d7d93b641748052917",
       "tasks.md": "22464d430e535b1ab86c7e280c9e3eb441e37b94d5d042096f4d1f7d25d2559e",
       "implementation-summary.md": "0bcc96de5034ce671b1757bc75d903819a8dbf4eeed71d4e8e3d1e7f774d82c7"

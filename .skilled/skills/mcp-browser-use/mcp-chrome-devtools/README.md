@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.24.0
+version: 1.0.26.0
 ---
 
 # mcp-chrome-devtools
@@ -57,7 +57,7 @@ The protocol is the reason the CLI stays small. `bdg` does not wrap every CDP me
 **Step 1: Install the CLI.**
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 Expected: npm reports the added package and exits 0. Then confirm that the binary resolves and reports a version.
@@ -98,8 +98,8 @@ Then run browser work inside a `call_tool_chain()` block:
 
 ```typescript
 call_tool_chain(`
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" })
-  const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({})
+  chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" })
+  const shot = chrome_devtools_1.chrome_devtools_1_take_screenshot({})
   return shot
 `)
 ```
@@ -165,7 +165,7 @@ The counts and names come from the protocol schema bundled with `browser-debugge
 
 Each manual launches the same server through `npx`. `chrome_devtools_1` and `chrome_devtools_2` pass `--isolated=true`, so each starts its own browser with its own cookie and storage state. That is what makes parallel work possible. `chrome_devtools_live` passes `--autoConnect` and attaches to the Chrome you already have open, which is the only manual that reaches a signed-in page.
 
-The server exposes 26 tools per instance. These names come from the packet's own files. Code Mode discovery settles any name you are unsure of.
+The server exposes 29 tools per instance. These names come from the packet's own files. Code Mode discovery settles any name you are unsure of.
 
 | Need | Tool |
 |---|---|
@@ -182,7 +182,9 @@ Tool naming is `{manual_name}.{manual_name}_{tool_name}`, so a call reads `chrom
 
 - `performance-baseline.sh` writes metrics, a HAR trace, a screenshot, console logs and DOM counts into one folder under the temp directory, with a timestamp in each file name.
 - `animation-testing.sh` fails on a layout count above 3 or a task duration above 200ms. Style recalculations cap at 5.
-- `multi-viewport-test.sh` runs five viewports from 1920x1080 down to 414x896 and fails when a viewport logs a console error.
+- `multi-viewport-test.sh` runs five viewports from 1920x1080 down to 414x896. It sets each one with `bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'`, the form bdg 0.6.10 accepts.
+
+All three scripts save console output with `bdg console --list --json` and read errors from `.messages[]` where `type` is `error`. A console error fails a viewport in the viewport matrix, raises a warning in the animation test and is listed in the baseline summary.
 
 ---
 
@@ -211,10 +213,11 @@ The skill is not a cross-browser test framework. It drives Chromium-based browse
 
 | What you see | Why | Fix |
 |---|---|---|
-| `bash: bdg: command not found` | npm installed the binary somewhere that is not on PATH | Run `npm install -g browser-debugger-cli@alpha`, then check `npm config get prefix` to find its `bin` folder |
+| `bash: bdg: command not found` | npm installed the binary somewhere that is not on PATH | Run `npm install -g browser-debugger-cli@0.6.10`, then check `npm config get prefix` to find its `bin` folder |
 | `Error: Could not find Chrome/Chromium executable` | No browser binary at a standard path | Set `CHROME_PATH` to your browser executable and confirm with `ls -la "$CHROME_PATH"` |
-| `Error: Another session already active` | An earlier run never called `bdg stop` | Run `bdg stop 2>&1`. In a script, register `trap "bdg stop 2>&1" EXIT INT TERM` |
-| `Error: Method not found: Page.screenshot` | The method name does not exist | `bdg cdp --search screenshot` finds the real name, here `Page.captureScreenshot` |
+| `Error: Session already running` | An earlier run never called `bdg stop` | Run `bdg stop 2>&1`. In a script, register `trap "bdg stop 2>&1" EXIT INT TERM` |
+| `Error: Method 'Page.screenshot' not found` | The method name does not exist | `bdg cdp --search screenshot` finds the real name, here `Page.captureScreenshot` |
+| `Error: Session target not found` from `bdg dom eval`, exit 83 | bdg 0.6.10 looks for the tab on port 9222 only. A session on another port has no tab there | Start the session without `-p` when 9222 is free, or read the value with `bdg cdp Runtime.evaluate --params '<json>'`. See `references/troubleshooting.md` §6 |
 | Chrome DevTools tools missing in Code Mode | The manual is absent or disabled in `.utcp_config.json` | Compare the file against the manuals snapshot and restart the session |
 
 ---
@@ -239,7 +242,7 @@ Wherever the command points. A HAR file, a cookie dump, a trace or a screenshot 
 
 ### Does this work on Windows?
 
-Only through WSL. Native Windows shells are not supported. The setup asks for Node.js 18 or higher.
+Only through WSL. Native Windows shells are not supported. bdg 0.6.10 needs Node.js 20 or higher, and both setup scripts check for 20.
 
 ---
 
@@ -273,7 +276,7 @@ Expected: `✅ VALID` with `Total issues: 0`.
 | [`references/cdp-patterns.md`](./references/cdp-patterns.md) | CDP domain patterns and Unix pipe composition |
 | [`references/session-management.md`](./references/session-management.md) | Session lifecycle, retry and cleanup patterns |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference, diagnostic sequence and platform fixes |
-| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Inventory of 30 CLI and MCP features across 7 domains |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Inventory of 31 CLI and MCP features across 7 domains |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 22 manual scenarios that validate the skill's surface |
 | [`examples/README.md`](./examples/README.md) | Guide to the three example scripts and their CI use |
 | [`scripts/README.md`](./scripts/README.md) | What the install and diagnostic scripts change and print |

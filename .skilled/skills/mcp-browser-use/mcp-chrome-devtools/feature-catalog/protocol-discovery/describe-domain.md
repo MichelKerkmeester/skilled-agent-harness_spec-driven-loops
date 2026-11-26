@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg cdp --describe"
   - "describe cdp domain"
   - "cdp method signature"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Describe Domain or Method
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`bdg cdp --describe Page` lists the Page domain's methods (navigate, reload, captureScreenshot, ...); `bdg cdp --describe Page.captureScreenshot` shows one method's parameters and return type.
+`bdg cdp --describe Page` returns a Page domain summary with command and event counts and names no methods; `bdg cdp Page --list` lists the methods (navigate, reload, captureScreenshot, ...).
 
 ---
 

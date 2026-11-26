@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/017-fleet-front-door-stdin",
+  "description": "Phase 17: fleet-front-door-stdin",
+  "keywords": [
+    "phase",
+    "fleet-front-door-stdin"
+  ],
+  "lastUpdated": "2026-11-24T11:30:32.377Z",
+  "specId": "017",
+  "folderSlug": "fleet-front-door-stdin",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

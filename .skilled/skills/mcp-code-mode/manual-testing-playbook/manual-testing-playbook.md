@@ -1,7 +1,7 @@
 ---
 title: "MCP Code Mode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-code-mode skill."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # MCP Code Mode: Manual Testing Playbook
@@ -513,7 +513,7 @@ Expected signals: Turn 1 captures `clickup_official` from the Claude advisory or
 
 ## 15. DOCTOR COMMAND SCENARIOS
 
-The `/doctor:mcp` scenarios now live in the [central manual testing playbook](../../../manual-testing-playbook/manual-testing-playbook.md).
+The `/doctor:mcp` scenarios now live in the [system-skilled-doctor playbook](../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md).
 
 ---
 

@@ -1,0 +1,19 @@
+Audit the Skilled v4.2.0.0 release notes against the work shipped since v4.1.0.0, and report what is missing, what has drifted and what is broken.
+
+Inputs, read-only:
+- Release notes: .skilled/changelog/skilled/v4.2.0.0.md (926 lines, not tagged yet).
+- Window: git range v4.1.0.0..HEAD. The 1084 non-merge commits, one per line as "hash date subject", are in specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt. Use git show, git log -- <path> and git diff on that range for detail.
+- Recently touched packets: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt (21 spec folders; read their spec.md and implementation-summary.md).
+
+Definitions:
+- MISSING: a user-visible change in the window (a new or removed command, flag, skill, mode, hook, script, default or behavior) that the release notes never mention.
+- DRIFT: a release-note claim (a flag, path, count, default, version, test number or behavior) that the current code or docs contradict.
+- BUG: a defect in code changed in the window, shown by reading the code or running a read-only command.
+
+Key questions:
+1. Which commits in the window change user-visible behavior with no entry in the notes? Check each notes section in turn: Deep Loop, Fan-Out Runs, Dispatch and Safety, Skill Advisor, Installs and Overlays, OpenCode, Browser Use, Skills and Worktrees, How It Was Checked, Upgrade Notes.
+2. Which of the 21 recent packets shipped work the notes do not cover, or describe the shipped work differently from the notes?
+3. Which concrete claims in the notes (flags, paths, counts, test results, removed items) no longer match HEAD, including work that landed after a section was written?
+4. Which changes in the window introduced a bug, a dead reference or a broken cross-link?
+
+Rules: cite a commit hash and a file:line for every finding, plus the release-notes line it concerns. Mark each finding MISSING, DRIFT or BUG with a severity of P0, P1 or P2. Say when you could not confirm something. Do not edit any file outside your own research lineage folder.

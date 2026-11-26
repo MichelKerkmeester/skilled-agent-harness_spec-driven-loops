@@ -1,0 +1,41 @@
+# F6 (plan mode)
+
+prompt: extend the finished deep review by 3 iterations
+
+run: 2026-11-23, claude-sonnet-5-5, plan mode, `claude -p` in a behaviour arena at commit 2f3ef6d9ddc with no remote
+
+cost: 0.2192847
+turns: 7
+session: f7668154-27c0-4eaa-ab2a-3b611ccb7072
+
+## Turn record
+
+
+I'll start by finding the finished deep-review run and the `/deep:review` command's contract for extending a run.
+
+- Tool: Bash
+- Tool: Bash
+- Tool: Bash
+- Tool: Bash
+- Tool: Write
+- Tool: ExitPlanMode
+
+I haven't extended anything yet. Plan mode is on and the tool for submitting a plan for approval isn't available in this session, so I'm stopping here. The plan is in `/Users/michelkerkmeester/.claude/plans/extend-the-finished-deep-stateful-sonnet-of-f7668154-27c0-4eaa-ab2a-3b611ccb7072.md`.
+
+**The run I picked:** the 016 pi-context-decisions review, which finished today. I chose it because it's the most recent finished run that isn't a fan-out run, and `--extend` refuses fan-out runs. If you meant a different review, tell me which one and I'll swap the path.
+- It ran 5 of 5 iterations and stopped on `maxIterationsReached`.
+- The verdict is FAIL with 0 P0, 0 P1 and 6 P2 findings.
+- The `coverage` gate is failing (`traceability-incomplete`).
+
+**The command I'd run:**
+`/deep:review specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement :auto --extend=3`
+
+**What it does, per the `--extend` row in `.skilled/commands/deep/review.md`:**
+- The run keeps its session id and generation, and records one `run_extended` event.
+- Iterations 6 to 8 run under the original `fail-closed` stop policy.
+- The prior report is kept as `review/review-report-v2-r*.md`.
+
+**Before the first write**, I'd confirm the target packet with you (existing 016 packet, option A) and load `REPO RULES.md`.
+
+Reply to approve, or leave plan mode, and I'll run the extension and check the result against the numbers above.
+

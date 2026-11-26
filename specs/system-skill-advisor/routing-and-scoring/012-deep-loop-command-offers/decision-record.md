@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers"
-    last_updated_at: "2026-11-22T11:08:37Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized decision record template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-24T21:44:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded ADR-009 for the eleventh fix round"
+    next_safe_action: "Record any decision the traceability rerun raises"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-deep-loop-command-offers"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -30,29 +30,27 @@ _memory:
 ---
 
 <!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
-<!-- FILL: Write one ADR per decision with context, choice, consequences and the rejected option. GOOD: ADR-001: a `--keep` option, because the script already parses options. WEAK: We decided on an option. -->
+## ADR-001: Supersede the near-miss count in AC-019 with the operator's reversal D10
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | 2026-11-22 |
-| **Deciders** | [Names] |
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator (D10 in `scratch/decisions.md`), recorded in the closure pass |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
+AC-019 checks REQ-012 in two ways. The corpus must hold exactly 15 `near-miss` rows, up from 9, and `command-attach.ts` must gain no guard for N7, N9, D1, V7, H6 or A3. Both checks come from D6, which recorded those six prompts as near-miss rows and ruled out a fix. After the first landing the operator said "fix still open", and D10 reversed D6: each open item was fixed at its cause. Later review rounds also added near-miss rows of their own, so the corpus now holds 31.
 
 ### Constraints
 
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
+- A criterion is never renumbered or deleted. A superseded row names the ADR that replaced it.
+- No builder reads a `holdout` row. The id check below reads only rows whose split is not `holdout`.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -60,9 +58,9 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
+**We chose**: mark AC-019 `Superseded` by this ADR and check D10's outcome in its place.
 
-**How it works**: [Implementation approach in 2-3 direct sentences]
+**How it works**: the replacement check is that five of the six prompts sit in the corpus as `near-miss` rows: N7 as `nm-system-deep-loop-02`, N9 as `-03`, V7 as `-05`, H6 as `nm-sk-code-02` and A3 as `nm-sk-code-03`. D1 is now a positive `/doctor:deep-loop` row, `cmd-doctor-deep-loop-plain-tune-02`, because D10 fixed the stuck-run complaint instead of recording it as a miss. The guards that D10 added are covered by the shared fixture and the guard tests.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -72,10 +70,10 @@ Write in direct, active voice.]
 
 | Option | Pros | Cons | Score |
 |--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
+| **Supersede with D10's outcome** | Matches what the operator decided and what shipped | The original count check is gone | 9/10 |
+| Restore 15 rows and remove the guards | Meets the letter of AC-019 | Undoes fixes the operator asked for and brings back false offers | 1/10 |
 
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+**Why this one**: D10 is a later operator decision that reverses the rule AC-019 encodes, so the criterion now has to follow D10.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -84,17 +82,16 @@ Write in direct, active voice.]
 ### Consequences
 
 **What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
+- The closure gate checks what was actually built and decided.
 
 **What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
+- The corpus count is no longer pinned. Mitigation: the command-routing baseline recapture pins every row's outcome.
 
 **Risks**:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+| A future row edit drops one of the five near-miss prompts | L | The id list above names each row, so a search finds a missing one |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -104,13 +101,13 @@ Write in direct, active voice.]
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+| 1 | **Necessary?** | PASS | AC-019 cannot be met without reverting D10 |
+| 2 | **Beyond Local Maxima?** | PASS | Restoring the letter of the row was weighed above |
+| 3 | **Sufficient?** | PASS | One id check replaces one count check |
+| 4 | **Fits Goal?** | PASS | The packet goal is correct offers, which D10 serves |
+| 5 | **Open Horizons?** | PASS | No code changes |
 
-**Checks Summary**: [X/5 PASS]
+**Checks Summary**: 5/5 PASS
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---
@@ -119,12 +116,966 @@ Write in direct, active voice.]
 ### Implementation
 
 **What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
+- `acceptance-criteria.md` AC-019 reads `Superseded` with `ADR-001` in its Waiver cell.
 
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
+**How to roll back**: set AC-019 back to `Unmet` with `-` in its Waiver cell and set this ADR's status to `Deprecated`.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
+
+---
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Keep or drop the "multi-round research" alias after an out-of-domain hit
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, who chose "Keep it" on 2026-11-23 |
+
+---
+
+<!-- ANCHOR:adr-002-context -->
+### Context
+
+AC-017 asks two things of the research aliases that ship. K2, "multi-round research into vector index compaction", must top `system-deep-loop` on the research route. No out-of-domain prompt may top the hub. The closure pass replayed each shipped alias (`scratch/probes/probes-ac017-ood.json`). Three prompts pass. "write a memo on multi-round research funding for the grant committee" tops `system-deep-loop` on the research route with no command. The same memo without "multi-round" stays on `sk-doc`, so the alias is the cause. K2 depends on the same alias, so the two halves of AC-017 cannot both hold.
+
+### Constraints
+
+- `.skilled/repo-rules/skill-hub-routing.md` §4: "A term that also matches unrelated work … captures traffic the hub cannot serve."
+- D8 already dropped "autonomous research" for an out-of-domain hit.
+<!-- /ANCHOR:adr-002-context -->
+
+---
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+
+**We chose**: keep "multi-round research" and waive AC-017's out-of-domain clause for the memo prompt.
+
+**How it works**: no change ships. The memo prompt tops the hub but carries no command, so nothing runs or spends without the operator. K2 keeps its route. Dropping the alias would return K2 to no recommendation, which is where it was before this packet.
+<!-- /ANCHOR:adr-002-decision -->
+
+---
+
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Keep the alias, waive the memo hit** | K2 routes, and the hit carries no command | Departs from the D8 precedent | 7/10 |
+| Drop the alias, as D8 did | Follows §4 and D8 | K2 gets no recommendation, and AC-017's K2 clause then needs this waiver instead | 6/10 |
+
+**Why this one**: the out-of-domain hit needs a contrived phrase and offers no command, while K2 is a plain loop ask.
+<!-- /ANCHOR:adr-002-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+
+**What improves**:
+- A plain "multi-round research into X" ask keeps reaching the research mode.
+
+**What it costs**:
+- A text written about multi-round research funding can surface the hub as a skill suggestion. Mitigation: no command is attached.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| More real prompts name multi-round research as a subject | L | Add each as a near-miss row and revisit this ADR |
+<!-- /ANCHOR:adr-002-consequences -->
+
+---
+
+<!-- ANCHOR:adr-002-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | AC-017 cannot be met in full either way |
+| 2 | **Beyond Local Maxima?** | PASS | Both options were probed |
+| 3 | **Sufficient?** | PASS | No code change |
+| 4 | **Fits Goal?** | PASS | Loop asks keep reaching the loop |
+| 5 | **Open Horizons?** | PASS | Reversible by one alias edit |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-002-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+
+**What changes**:
+- On acceptance, AC-017 reads `Waived` with `ADR-002`. On rejection, "multi-round research" leaves `hub-router.json` and `ROUTER.md`, and AC-017's K2 clause is waived instead.
+
+**How to roll back**: set AC-017 back to `Unmet` with `-` in its Waiver cell.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->
+
+---
+
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Waive AC-008 on the measured offer rate
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, who chose "Change to Waived" on 2026-11-23 |
+
+---
+
+<!-- ANCHOR:adr-003-context -->
+### Context
+
+AC-008 asks that a session on F3, F5 or F6 answer first with the three-option offer. F6 asked it in 1 of 4 runs after the routing-step edit, and in 0 of 8 runs after packet 013 put the options in the brief. The F3 and F5 files hold only a final turn that points back at an earlier reply, so they cannot show the offer. The live terminal check quoted in `implementation-summary.md` has no transcript in `scratch/`. The row had been set to `Met` with the rate disclosed, but `Met` means verified.
+
+### Constraints
+
+- The status table in `acceptance-criteria.md`: "`Waived` | Deliberately not pursued. Requires an ADR in the Waiver cell."
+<!-- /ANCHOR:adr-003-context -->
+
+---
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+**We chose**: set AC-008 to `Waived` and record the measured rates here.
+
+**How it works**: no code changes. The offer stays taught in the command docs and named in the brief, and the rates stay in the behaviour files of both packets.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Waive with the rates** | The status says what was measured | The criterion stays unmet in substance | 8/10 |
+| Keep `Met` with the rate disclosed | No change | `Met` claims a verification the evidence does not hold | 3/10 |
+
+**Why this one**: a waiver states the gap plainly, and the rates stay on record.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+**What improves**:
+- The acceptance table no longer claims a verified offer.
+
+**What it costs**:
+- The packet closes with a behaviour criterion not reached.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later reader treats the waiver as a pass | M | The rates are in this ADR and in both implementation summaries |
+<!-- /ANCHOR:adr-003-consequences -->
+
+---
+
+<!-- ANCHOR:adr-003-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | `Met` overstated the evidence |
+| 2 | **Beyond Local Maxima?** | PASS | Two wordings were sampled across 12 runs |
+| 3 | **Sufficient?** | PASS | A status change only |
+| 4 | **Fits Goal?** | PASS | The docs say what was measured |
+| 5 | **Open Horizons?** | PASS | A later fix can set the row back to `Met` with new runs |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-003-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-003-impl -->
+### Implementation
+
+**What changes**:
+- AC-008 reads `Waived` with `ADR-003`.
+
+**How to roll back**: set AC-008 back to `Met` with `-` in its Waiver cell.
+<!-- /ANCHOR:adr-003-impl -->
+<!-- /ANCHOR:adr-003 -->
+
+---
+
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Narrow D2 so a loop name about the loop's own code is not an ask
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-23 |
+| **Deciders** | Operator, who chose "Narrow D2" on 2026-11-23 |
+
+---
+
+<!-- ANCHOR:adr-004-context -->
+### Context
+
+D2 counts naming deep research, deep review, a research loop or a review loop as an explicit loop ask. A fresh review showed that this offers the loop on prompts about the loop's own code or results, such as "refactor the deep research scorer", "fix the bugs the deep review found" and "open the review loop config". It also offers it on counts that describe a subject, such as "compare 10 iterations of the model" and "research three-pass vs two-pass compilers".
+
+### Constraints
+
+- D2 in `scratch/decisions.md` is the operator's rule, so narrowing it needs the operator.
+- The keep and gain probes must keep their commands.
+<!-- /ANCHOR:adr-004-context -->
+
+---
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
+
+**We chose**: a loop name counts as an ask only when no code, file or result noun follows it and no edit or fix verb leads it. A pass or iteration count counts only when it measures the loop rather than a subject.
+
+**How it works**: the gate in `command-attach.ts` and its Python copy read the words around the loop name before they count it, and the shared fixture pins both sides.
+<!-- /ANCHOR:adr-004-decision -->
+
+---
+
+<!-- ANCHOR:adr-004-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Narrow D2** | Ends the topic-mention false offers | Each new reading can drop a real ask, so the controls and probes must hold | 8/10 |
+| Keep D2 | No change | Every mention of the loop's code keeps offering the loop | 4/10 |
+
+**Why this one**: the topic mentions are common in this repository, and each one now costs a recommended `:auto` question.
+<!-- /ANCHOR:adr-004-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-004-consequences -->
+### Consequences
+
+**What improves**:
+- Prompts about the loop's code, results or config stop getting the offer.
+
+**What it costs**:
+- The gate carries more readings to keep in step between TypeScript and Python.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A real ask is read as a subject | M | Controls in the fixture and the 69-probe rerun |
+<!-- /ANCHOR:adr-004-consequences -->
+
+---
+
+<!-- ANCHOR:adr-004-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Nine reported false offers |
+| 2 | **Beyond Local Maxima?** | PASS | Keeping D2 was weighed |
+| 3 | **Sufficient?** | PASS | Readings in one gate and its copy |
+| 4 | **Fits Goal?** | PASS | Offer only when the loop is asked for |
+| 5 | **Open Horizons?** | PASS | Each reading is one pattern to revert |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-004-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-004-impl -->
+### Implementation
+
+**What changes**:
+- REQ-019 and T058 carry the narrowed rule. D11 in `scratch/decisions.md` points here.
+
+**How to roll back**: revert the T058 commit and remove D11.
+<!-- /ANCHOR:adr-004-impl -->
+<!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: A typed deep command outranks the stuck-run diagnosis on the served head
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24, recording the operator's confirmation of 2026-11-23 |
+| **Deciders** | Operator, who confirmed on 2026-11-23 that the typed command stays on the head (Q034, implementation-summary limitation 6) |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+"my deep review run is stuck, /deep:review again" is both a stuck-run complaint and a typed command. `attachCommand` answers a stuck run with `/doctor:deep-loop`, and the handler then runs `attachTypedCommand`, which puts the typed `/deep:review (ask)` back on the top row. The Python fallback dropped the run row on every stuck run, typed or not. REQ-020, SC-005 and AC-027 stated parity and hook results without naming this case, so a three-lineage deep review on 2026-11-24 filed it as a P1 closure-record gap and as a native and fallback disagreement.
+
+### Constraints
+
+- The served behaviour is the operator's settled choice and is not to change.
+- The native and fallback heads should not give a reader two answers to one prompt.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: a typed `/deep:*` command stays on the served head even on a stuck-run complaint, with policy `ask`, so the reader still answers one question before any run. `attachCommand` keeps answering `/doctor:deep-loop`, because it is the layer that reads the prompt's wording, and the gate-layer parity with Python holds on the stuck-run predicate. The Python fallback, which has no separate typed layer, keeps a typed run row on a stuck complaint, so both served heads agree.
+
+**How it works**: REQ-020 and AC-027 cover the gate layer, and REQ-029 and AC-036 cover the served head. The shared fixture carries two typed columns: `typedReviewKept` for `attachCommand`, and `servedReviewKept` for the served head, which the TypeScript suite reads through `attachTypedCommand` and the Python suite reads from its gate.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Typed command kept on both served heads** | The reader's own choice wins, and both paths agree | The doctor is not offered on that prompt | 8/10 |
+| Typed command kept natively, dropped by Python | No Python change | The fallback brief answers the same prompt differently | 4/10 |
+| Stuck diagnosis outranks the typed command everywhere | One reading of a stuck run | Reverses the operator's settled choice | 2/10 |
+
+**Why this one**: the operator ruled on the served head, and the fallback brief is a served head too.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- The docs state the exception, and both served paths give one answer.
+
+**What it costs**:
+- A reader who types the command on a stuck run is offered a new run rather than the diagnosis. The `ask` policy still stops before any spend.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later edit to `typedCommandForTop` moves the native head away from Python | M | The serving-layer test and the `servedReviewKept` column pin both |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | One P1 found by two lineages |
+| 2 | **Beyond Local Maxima?** | PASS | Three placements weighed |
+| 3 | **Sufficient?** | PASS | One Python branch and one fixture column |
+| 4 | **Fits Goal?** | PASS | A typed command is the reader's explicit ask |
+| 5 | **Open Horizons?** | PASS | Reverting is one condition in each copy |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- REQ-020, SC-005 and AC-027 name the exception now. REQ-029, AC-036 and the sixth-round tasks carry the served-layer pin and the Python alignment.
+
+**How to roll back**: restore the stuck drop for typed rows in `_apply_deep_loop_offer_gate`, set `servedReviewKept` to false on the typed-stuck case, and add a stuck check to `typedCommandForTop`.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: A bare deep loop, research loop or review loop name is not a loop ask
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Recorded under the operator's instruction to run the sixth round autonomously (Q035). It keeps the behaviour the gate has shipped with, and the operator can reverse it. |
+
+---
+
+<!-- ANCHOR:adr-006-context -->
+### Context
+
+D2 lists naming a deep loop, deep research, deep review, a research loop or a review loop as an explicit loop ask. The gate counts bare "deep research" and "deep review", but it counts "deep loop", "research loop" and "review loop" only behind a use, continue or want verb, so "deep loop: audit the payments flow" gets no command while "deep review: audit the payments flow" does. The deep review of 2026-11-24 found that the narrowing had no recorded decision. ADR-004 covers only loop names that name the loop's own code or results.
+
+### Constraints
+
+- D2's purpose is to offer the loop only on an explicit ask.
+- The keep and gain probes must keep their commands.
+<!-- /ANCHOR:adr-006-context -->
+
+---
+
+<!-- ANCHOR:adr-006-decision -->
+### Decision
+
+**We chose**: keep the current behaviour. "Deep research" and "deep review" count on their own, and the three loop names count only behind a use, continue or want verb.
+
+**How it works**: `LOOP_NAMES` in `command-attach.ts` and `_LOOP_NAME` in `skill_advisor.py` are read only through the verb-led alternations of `LOOP_REQUEST`. A shared fixture row pins "deep loop: audit the payments flow" as no ask.
+<!-- /ANCHOR:adr-006-decision -->
+
+---
+
+<!-- ANCHOR:adr-006-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Keep the verb requirement** | No new false offers. A bare loop name is as often a question or a topic as a request, as in "the review loop keeps the PR open" | A terse "deep loop: audit X" gets no command | 7/10 |
+| Count a bare loop name | Matches D2's list word for word | Widens the gate against D2's explicit-ask rule, and every topic mention of the loop offers a run | 4/10 |
+
+**Why this one**: changing it would widen the offer gate, which D2 exists to narrow. The cost of a miss is a skill suggestion with no command, and the reader can still type the command.
+<!-- /ANCHOR:adr-006-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-006-consequences -->
+### Consequences
+
+**What improves**:
+- The spec states the rule the code has run since the first round.
+
+**What it costs**:
+- "deep loop: audit the payments flow" offers no command.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A terse loop request is missed | L | The fixture row records it, and a typed command still asks |
+<!-- /ANCHOR:adr-006-consequences -->
+
+---
+
+<!-- ANCHOR:adr-006-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the narrowing unrecorded |
+| 2 | **Beyond Local Maxima?** | PASS | Counting the bare name was weighed |
+| 3 | **Sufficient?** | PASS | A spec line, this record and one fixture row |
+| 4 | **Fits Goal?** | PASS | Offer only on an explicit ask |
+| 5 | **Open Horizons?** | PASS | Reversing it is one alternation in each copy |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-006-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-006-impl -->
+### Implementation
+
+**What changes**:
+- The D2 bullet in `spec.md` names the verb requirement and points here. The sixth-round fixture adds the no-ask row.
+
+**How to roll back**: add a bare-name alternation for `LOOP_NAMES` to `LOOP_REQUEST` and `_LOOP_REQUEST_RE`, flip the fixture row, and amend the D2 bullet.
+<!-- /ANCHOR:adr-006-impl -->
+<!-- /ANCHOR:adr-006 -->
+
+---
+
+<!-- ANCHOR:adr-007 -->
+## ADR-007: Amend REQ-011 to the two research aliases the hub carries
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator decision D8 in `scratch/decisions.md`, as amended after the build; recorded in the seventh fix round on the traceability review's P1 |
+
+---
+
+<!-- ANCHOR:adr-007-context -->
+### Context
+
+D8 named three loop-shaped research aliases for the hub: `iterative research`, `multi-round research` and `autonomous research`. The build added the first two and dropped the third, because its out-of-domain replay under `.skilled/repo-rules/skill-hub-routing.md` section 4 pulled a slide-deck prompt to the hub. `hub-router.json` and `ROUTER.md` carry the two that shipped in their research alias lists, and T022 records the drop.
+
+REQ-011 was never amended: it still lists all three aliases as reaching both files, so a reader checking the requirement against the tree finds a clause that cannot hold. No acceptance row tested the alias set as built. The traceability review of 2026-11-24 raised this as its P1 finding.
+
+### Constraints
+
+- A requirement is amended by a recorded decision, never by a silent edit of its text. This record is that decision.
+- The alias set stays as shipped. Restoring `autonomous research` would re-add the out-of-domain route the replay rejected.
+- AC-016, AC-017 and AC-018 state the other clauses of REQ-011 and are left as they were recorded.
+- This record covers the hub's alias lists only, `hub-router.json` and the hub `ROUTER.md`, which pick the hub for a prompt. The deep-research mode packet also carries `autonomous research` in its `SKILL.md` keyword triggers, its `ROUTER.md` `LOOP_SETUP` keywords and its `README.md` trigger phrases, and the Python fallback boosts it in `skill_advisor.py`. Those entries predate this packet, and the replay ran with all of them in place, so the slide-deck route it rejected came from the hub alias the build was about to add. The mode packet's `ROUTER.md` keywords pick which references load after the hub has been chosen. This decision leaves those surfaces as they were, and removing them would be a separate change with its own replay.
+<!-- /ANCHOR:adr-007-context -->
+
+---
+
+<!-- ANCHOR:adr-007-decision -->
+### Decision
+
+**We chose**: amend REQ-011 to the two research aliases the tree carries, record the drop here, and give the requirement an owning acceptance row that reads the alias set as built.
+
+**How it works**: REQ-011 names `iterative research` and `multi-round research` as the delivered set and points at this record for the third alias. AC-043 greps both hub files for the two aliases and for `autonomous research`, so an unrecorded alias change fails a row instead of leaving the requirement and the tree to drift apart.
+<!-- /ANCHOR:adr-007-decision -->
+
+---
+
+<!-- ANCHOR:adr-007-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend the requirement to the two aliases** | The requirement, the tree and the decision agree | The third alias exists only as a rejected candidate | 9/10 |
+| Restore `autonomous research` in both hub files | Keeps D8's first wording | Re-adds the slide-deck route the replay rejected, and needs a fresh replay first | 3/10 |
+| Leave REQ-011 and record the drop only in the scratch log | No documentation change | The packet's own requirement stays false, and the coverage gate cannot pass | 1/10 |
+
+**Why this one**: the alias was dropped on measured evidence, so the record has to follow the measurement rather than the plan.
+<!-- /ANCHOR:adr-007-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-007-consequences -->
+### Consequences
+
+**What improves**:
+- REQ-011 can be checked against the tree, and AC-043 fails if an alias is added or dropped without a record.
+
+**What it costs**:
+- A reader of D8's first wording needs this record to know why only two aliases shipped.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later alias is dropped the same way and again goes unrecorded | M | AC-043 reads both hub files, and the requirement names the exact set |
+<!-- /ANCHOR:adr-007-consequences -->
+
+---
+
+<!-- ANCHOR:adr-007-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the requirement contradicted by the tree, with no amendment |
+| 2 | **Beyond Local Maxima?** | PASS | Restoring the alias was weighed and rejected on the replay |
+| 3 | **Sufficient?** | PASS | One requirement sentence, this record and one acceptance row |
+| 4 | **Fits Goal?** | PASS | The hub offers the loop on the wording it actually routes |
+| 5 | **Open Horizons?** | PASS | Reversing it is one alias in each hub file plus an ADR and a row |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-007-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-007-impl -->
+### Implementation
+
+**What changes**:
+- REQ-011 names the two aliases and points here. AC-043 tests the set in both hub files. T022 keeps the observed drop.
+
+**How to roll back**: replay the alias against an out-of-domain prompt, add it to `hub-router.json` and `ROUTER.md` if the replay stays off the hub, and amend REQ-011 and AC-043 in the same pass.
+<!-- /ANCHOR:adr-007-impl -->
+<!-- /ANCHOR:adr-007 -->
+
+---
+
+<!-- ANCHOR:adr-008 -->
+## ADR-008: Amend REQ-035 so a mode-free plural loop serves the hub without a command
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator, answering "Amend REQ-035 (Recommended)" in the ninth fix round on the third traceability rerun's P1 |
+
+---
+
+<!-- ANCHOR:adr-008-context -->
+### Context
+
+REQ-035 listed "run two deep loops on the cache layer" among the plural prompts that carry `/deep:review` or `/deep:research`. The prompt names neither mode. Its singular, "run a deep loop on the cache layer", has always served the hub with no command, because a deferred route offers a command only when the ask names one mode (REQ-026). The third traceability rerun found that the plural prompt carried no command anywhere and raised it as a P1.
+
+### Constraints
+
+- The gate never guesses a mode the prompt does not name. Guessing would change the singular prompt and the deferred-route probes too.
+- A requirement is amended by a recorded decision, never by a silent edit.
+<!-- /ANCHOR:adr-008-context -->
+
+---
+
+<!-- ANCHOR:adr-008-decision -->
+### Decision
+
+**We chose**: amend REQ-035 so the mode-free plural prompt asks for the run and serves the hub with no command, the same as its singular.
+
+**How it works**: REQ-035 names the seven prompts that name a mode as carrying their command and states the mode-free one separately. The shared fixture row `plural-deep-loops-served` reads `servedRun: "none"`, and both suites require zero run rows for it, so a copy that keeps both run rows fails, and AC-051 reads the built advisor's result for all eight.
+<!-- /ANCHOR:adr-008-decision -->
+
+---
+
+<!-- ANCHOR:adr-008-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Amend REQ-035 to the deferred-route rule** | The requirement, the singular prompt and the gate agree | A plural mode-free ask still gets no command | 9/10 |
+| Serve a default mode when none is named | Every plural prompt carries a command | Changes the singular prompt, the deferred-route rule and its probes, and offers a loop the prompt did not pick | 3/10 |
+<!-- /ANCHOR:adr-008-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-008-consequences -->
+### Consequences
+
+**What improves**:
+- REQ-035 can be checked against the tree, and the plural and singular mode-free prompts behave alike.
+
+**What it costs**:
+- A reader who asks for "deep loops" without a mode picks the mode from the hub's own routing.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later round reads a mode into a mode-free ask on one side only | M | The fixture row runs in both copies, and the drift guard compares the mode vocabulary on every surface |
+<!-- /ANCHOR:adr-008-consequences -->
+
+---
+
+<!-- ANCHOR:adr-008-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found the requirement contradicted by the gate's deferred-route rule |
+| 2 | **Beyond Local Maxima?** | PASS | Serving a default mode was weighed and rejected |
+| 3 | **Sufficient?** | PASS | One requirement sentence, this record and one acceptance row |
+| 4 | **Fits Goal?** | PASS | A command is offered only when the request asks for that loop |
+| 5 | **Open Horizons?** | PASS | A default mode can be added later in one gate rule, with its own decision |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-008-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-008-impl -->
+### Implementation
+
+**What changes**:
+- REQ-035 states the mode-free prompt on its own. AC-051 reads all eight prompts through the built advisor. T097 records the change.
+
+**How to roll back**: give the deferred route a default mode in both gate copies, change the fixture row's `servedRun`, and amend REQ-035 and AC-051 with a new record.
+<!-- /ANCHOR:adr-008-impl -->
+<!-- /ANCHOR:adr-008 -->
+
+---
+
+<!-- ANCHOR:adr-009 -->
+## ADR-009: Waive AC-020's blind-writer clause, which no kept record can check
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-24 |
+| **Deciders** | Operator, answering "Fix all, rerun gen 8 (Recommended)" on the fifth traceability rerun, which found the row `Met` without the evidence its own cell says is missing |
+
+---
+
+<!-- ANCHOR:adr-009-context -->
+### Context
+
+AC-020 checks REQ-013 in two parts: the three deep-family holdout rows were replaced, and no builder's report says it read a holdout row. The replacement is in the tree. The builder lane reports were never committed, so the second part rested on a summary sentence, and the row still read `Met`.
+
+### Constraints
+
+- A row may not read `Met` on evidence the packet cannot show.
+- The lane reports cannot be recovered, so the clause cannot be checked later either.
+<!-- /ANCHOR:adr-009-context -->
+
+---
+
+<!-- ANCHOR:adr-009-decision -->
+### Decision
+
+**We chose**: waive the blind-writer clause and keep the replacement check, so AC-020 reads `Waived` with this record.
+
+**How it works**: AC-020 keeps its row-id check of the replaced holdouts. REQ-013 names this record for the clause no kept artifact can show.
+<!-- /ANCHOR:adr-009-decision -->
+
+---
+
+<!-- ANCHOR:adr-009-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Waive the unkept clause** | The row states only what the tree shows | The blind-writer claim stays unproven | 8/10 |
+| Keep `Met` on the summary sentence | No change | A closure reader cannot confirm it | 2/10 |
+| Write fresh holdouts again with kept reports | Proves the clause | Replaces rows already scored, for a check of process rather than behaviour | 4/10 |
+<!-- /ANCHOR:adr-009-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-009-consequences -->
+### Consequences
+
+**What improves**:
+- Every `Met` row rests on evidence in the tree.
+
+**What it costs**:
+- REQ-013's second clause is recorded as unverified.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later holdout rewrite repeats the gap | L | A rewrite keeps its lane report in `scratch/` |
+<!-- /ANCHOR:adr-009-consequences -->
+
+---
+
+<!-- ANCHOR:adr-009-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The review found a `Met` row whose own cell names missing evidence |
+| 2 | **Beyond Local Maxima?** | PASS | Rewriting the holdouts with kept reports was weighed |
+| 3 | **Sufficient?** | PASS | One status, one requirement sentence and this record |
+| 4 | **Fits Goal?** | PASS | The holdouts still score blind, and only the proof of the process is waived |
+| 5 | **Open Horizons?** | PASS | A later rewrite with kept reports can set the row back to `Met` |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-009-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-009-impl -->
+### Implementation
+
+**What changes**:
+- AC-020 reads `Waived` with ADR-009, and REQ-013 names this record.
+
+**How to roll back**: rewrite the three deep-family holdouts with a kept lane report, then set AC-020 back to `Met` with that report as its evidence.
+<!-- /ANCHOR:adr-009-impl -->
+<!-- /ANCHOR:adr-009 -->
+
+---
+
+<!-- ANCHOR:adr-010 -->
+## ADR-010: Accept the offer gate's phrasing gaps and close AC-040 on a criterion a rerun can meet
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-25 |
+| **Deciders** | Proposed by an independent review of generation 10 (`scratch/opus-review.md`) and accepted by the operator on 2026-11-25 |
+
+---
+
+<!-- ANCHOR:adr-010-context -->
+### Context
+
+AC-040 closes only when a `/deep:review` rerun passes evidence, scope and coverage in every lineage. Ten generations and thirteen fix rounds have not got there. Two causes keep it from settling.
+
+The first is the offer gate. It decides whether to offer `/deep:research`, `/deep:review` or `/doctor:deep-loop`, and the offer is advisory. The policy is `ask`, so the reader sees one question and can say no. A missed offer still leaves the hub route and the typed command. The gate reads English with word patterns in two languages, which is a space no finite rule set closes. Each fix round added patterns, and each rerun found new phrasings and graded them P1: 2, 1, 4, 4, 3, 0, 1 and 4 across the eight traceability reruns. Generation 10 found two of its four P1s in round thirteen's own patterns. `command-attach.ts` grew from 586 to 1,834 lines over this packet, and the Python fallback grew by about 1,550 lines.
+
+The second is the closure docs. The review contract makes `spec_code` and `checklist_evidence` hard protocols, and either one reads `partial` on any claim that does not resolve. The docs quoted suite and fixture counts as true of the final tree, and every fix round made those counts wrong. Each stale quote left a hard protocol `partial`, and so coverage failed.
+
+### Constraints
+
+- A row may not read `Met` on a rerun that did not pass what the row asks.
+- The review contract's coverage rule governs every deep review in the repository, not only this packet.
+<!-- /ANCHOR:adr-010-context -->
+
+---
+
+<!-- ANCHOR:adr-010-decision -->
+### Decision
+
+**We chose**: three changes, in effect since the operator accepted this record on 2026-11-25.
+
+1. **Phrasing gaps are the gate's known limit.** A prompt the offer gate reads the wrong way costs one declined question or one missed offer, so this packet does not treat it as a defect and adds no new phrasing rule. Generation 10's L1-P1-001 (a refused run ask in a question's later clause) and R1-P1-001 (question auxiliaries outside the grammar) are recorded as accepted gaps of this class.
+2. **AC-040 and REQ-033 close on evidence, scope and severity.** The criterion becomes a `/deep:review` rerun in which every lineage passes the evidence and scope gates and the merged registry holds no open P0. Every open P1 must be either of the accepted phrasing class or dispositioned in this record. The coverage gate is still reported. If it fails only on closure-doc drift, that drift is fixed as P2 work and no further rerun is owed.
+3. **A closure doc quotes a count only when the count is pinned.** A suite or fixture count is pinned to the commit it was read on. Otherwise the doc names the command and says it reports 0 failed. REQ-022's "quotes the final suite count" reads as a pinned quote.
+
+**Dispositions of generation 10's other P1s**:
+- R3-P1-001 (the hook brief keeps the child's policy and owner) is fixed. The brief now prints the tracked table's policy and owner, and the ownership test feeds child fields that differ from the table's.
+- R2-P1-001 (the reducer publishes null `findingClass`, `scopeProof` and `affectedSurfaceHints` when a delta row omits them) is not a defect in the reducer. No gate in `runtime/scripts/` reads those fields. The strict v2 dispatch validator (`runtime/lib/deep-loop/post-dispatch-validate.ts`) already requires `scopeProof` and `affectedSurfaceHints` on an active finding at dispatch. Null is the honest value for a field the producer did not write.
+<!-- /ANCHOR:adr-010-decision -->
+
+---
+
+<!-- ANCHOR:adr-010-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Change the criterion (proposed)** | A rerun can meet it, and P0s and real P1s still block | A reviewer's phrasing P1 no longer blocks | 8/10 |
+| Keep AC-040 and keep fixing | No record needed | Each round adds rules that the next rerun grades, so the criterion has no fixed point | 2/10 |
+| Waive AC-040 outright | Closes the packet now | Drops the review evidence the row exists for | 5/10 |
+| Let coverage pass on a `partial` hard protocol | Coverage stops failing on doc drift | Changes the stop decision for every deep review, and the contract defines `partial` as unresolved | 3/10 |
+| Make the Python fallback offer only typed deep-loop commands | Removes the duplicate gate and its drift guard | The duplicate also feeds the fallback's workflow-owner scoring guard, the fixture's Python columns, the Python suite and about fifteen REQs, so it needs its own packet | 6/10, follow-up |
+<!-- /ANCHOR:adr-010-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-010-consequences -->
+### Consequences
+
+**What improves**:
+- AC-040 has a criterion that a rerun can meet.
+- A closure count no longer goes stale when a later round changes the suite.
+
+**What it costs**:
+- Phrasings the gate reads the wrong way stay open, and the reader declines or asks for the command.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A real defect is filed as a phrasing gap | M | Only a misread prompt counts as a phrasing gap. A crash, a wrong command for a typed ask, or a disagreement between the two copies on a fixture case still blocks |
+| The duplicate gate keeps drifting | L | The drift guard stays until the follow-up removes the duplicate |
+<!-- /ANCHOR:adr-010-consequences -->
+
+---
+
+<!-- ANCHOR:adr-010-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Eight reruns did not converge, and the P1 counts show no trend |
+| 2 | **Beyond Local Maxima?** | PASS | Waiving the criterion, redefining coverage and removing the duplicate were weighed |
+| 3 | **Sufficient?** | PASS | One criterion, one doc rule and two dispositions |
+| 4 | **Fits Goal?** | PASS | The offer stays one question that the reader can decline |
+| 5 | **Open Horizons?** | PASS | The follow-up can remove the duplicate gate without reopening this record |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-010-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-010-impl -->
+### Implementation
+
+**What changes on acceptance**:
+- REQ-033 and AC-040 take the criterion in decision 2. AC-040 is then read against the latest generation's report and terminal-gate rows. If it meets the criterion it reads `Met`, and otherwise the next rerun decides it.
+- REQ-022 reads its count clause as a pinned quote.
+
+**What already changed**: the closure-doc counts that claimed the final tree are now pinned to a commit, and R3-P1-001 is fixed. Neither change needs this record.
+
+**How to roll back**: mark this record Superseded, restore the previous AC-040 and REQ-033 text from git history and set AC-040 back to `Unmet`.
+
+**Operator answers this session**: on generation 8 the operator chose to fix the nine P2s and rerun as generation 9. On generation 9 the operator chose to fix all sixteen findings and rerun as generation 10. On generation 10 the operator asked what the rounds were fixing, then asked for an independent Opus review that could fix the work and the deep-review logic. On 2026-11-25 the operator accepted this record and asked for the packet to close and ship. The answer hook recorded the earlier session's answers of 2026-11-24 in the primary checkout, and they were carried into this record as Q040 to Q051.
+<!-- /ANCHOR:adr-010-impl -->
+<!-- /ANCHOR:adr-010 -->
+
+---
+
+<!-- ANCHOR:adr-011 -->
+## ADR-011: The Python fallback keeps a deep-loop command row only when it is typed
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-25 |
+| **Deciders** | The operator, who asked on 2026-11-25 for the open follow-up to be done, chose to reopen this packet and to build it in a worktree in this session (Q053 to Q055) |
+
+---
+
+<!-- ANCHOR:adr-011-context -->
+### Context
+
+ADR-010 scored the removal of the Python copy of the offer gate as the follow-up. `skill_advisor.py` `main()` probes the native advisor first and scores locally only when the probe fails or `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` is set, so the copy served a degraded path. It held about 1,300 lines of word patterns, and the drift guard in `tests/deep-loop-offer-cases.vitest.ts` read the Python source to keep each pattern in step with the native one.
+
+### Constraints
+
+- The native gate in `command-attach.ts` stays as it is.
+- The fallback's workflow-owner check still has to read a loop request beside an executor handoff.
+<!-- /ANCHOR:adr-011-context -->
+
+---
+
+<!-- ANCHOR:adr-011-decision -->
+### Decision
+
+**We chose**: in the Python fallback, a `/deep:research`, `/deep:review` or `/doctor:deep-loop` row stays only when the prompt types that command, and a kept run row is marked `typed`. The fallback reads no loop ask, refusal, question, stuck run, no-edit clause or piece written about the loop. A doc path such as `/deep:review.md` is not a typed command, so it keeps no row, and the hub is served in its place. The workflow-owner check reads its own loop regexes, which now include the adverb `iteratively`.
+
+**What this amends**: the Python halves of REQ-006, REQ-011, REQ-020, REQ-021, REQ-023, REQ-024, REQ-025, REQ-027, REQ-028, REQ-029, REQ-030, REQ-031, REQ-035, REQ-036, REQ-037, REQ-043, REQ-044, REQ-045, REQ-047, REQ-050, REQ-051, REQ-054, REQ-055, REQ-056 and REQ-057. Each of them still binds the native gate. Where one says "both copies", or names the Python gate, the shared fixture's Python reading or the drift guard, it now reads for the native gate alone.
+<!-- /ANCHOR:adr-011-decision -->
+
+---
+
+<!-- ANCHOR:adr-011-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Typed commands only (chosen)** | Deletes the copy and its drift guard, and no reading is left to drift | The fallback offers nothing for an untyped loop ask or stuck run | 8/10 |
+| Typed run commands only, doctor kept on a stuck-run reading | The fallback still offers the diagnosis | Keeps the stuck-run grammar, which is the part with the most patterns | 4/10 |
+| Keep the refusal and question readings for typed commands | "never run /deep:review" offers nothing | Keeps the command-naming grammar, about 250 lines | 4/10 |
+| Keep the copy | No change | Every gate change still lands twice | 2/10 |
+<!-- /ANCHOR:adr-011-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-011-consequences -->
+### Consequences
+
+**What improves**:
+- A gate change lands once, in `command-attach.ts`.
+- `skill_advisor.py` lost 1,319 lines, and the drift guard no longer reads Python source.
+
+**What it costs**:
+- When the native advisor is down, an untyped loop ask gets the hub and no command, and an untyped stuck run gets no `/doctor:deep-loop`.
+- A typed command the prompt refuses, as in "never run /deep:review on this", keeps its `ask` row on the fallback. The CLI degraded path still reads the refusal through the native typed-command reader.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The fallback serves often enough for the lost offers to matter | L | It serves only when the native probe fails, and the reader can still type the command |
+<!-- /ANCHOR:adr-011-consequences -->
+
+---
+
+<!-- ANCHOR:adr-011-impl -->
+### Implementation
+
+Built in worktree 543 at `73d98332fff`. REQ-060 and AC-068 carry it.
+
+**How to roll back**: revert `73d98332fff`, mark this record Superseded and drop REQ-060 and AC-068.
+<!-- /ANCHOR:adr-011-impl -->
+<!-- /ANCHOR:adr-011 -->
 
 ---
 
@@ -141,6 +1092,54 @@ Write in direct, active voice.]
 | Q005 | An offer proposes the native executor unless the request names one. | Not stated. | None | deep-*-presentation.txt flag table, decisions D4 |
 | Q006 | Replace the three deep-family holdout rows with fresh prompts written blind. | Not stated. | None | command-prompts.jsonl holdout -02 rows, decisions D7 |
 | Q007 | Provision the new worktree with npm ci and builds. | Not stated. | None | worktrees/516-deep-loop-command-offers |
+| Q008 | Add the deep-loop offer work to the untagged v4.2.0.0 changelog in place. | Not stated. | None | .skilled/changelog/skilled/v4.2.0.0.md |
+| Q009 | Fix every P1 and P2 finding from the review of this epic. | Not stated. Recorded from the handoff note of the reviewing session. | None | tasks.md Review fix round |
+| Q010 | Record the fix round inside this packet. | Not stated. Recorded from the handoff note of the reviewing session. | None | tasks.md, implementation-summary.md |
+| Q011 | Build the fix round in a git worktree. | Not stated. | None | worktrees/522-deep-loop-offer-review-fixes |
+| Q012 | Withhold the `/doctor:deep-loop` command row on a prompt that names no deep run. | Not stated. The lexical lane had begun to top that run-policy row on "research why the model needed more iterations to converge". | None | fusion.ts withholdDeepLoopDoctorWithoutRun, tasks.md T043 |
+| Q013 | List the offer flags in both /deep:* argument hints. | The operator had asked "Why would we limit those hints". The 140-character budget is a soft warning with no recorded failure behind it. | None | research.md, review.md, command-metadata.json, tasks.md T046 |
+| Q014 | Run the closure pass: probe once, mark each acceptance row with its evidence, and propose decision records for the rows that cannot be met as written. | Not stated. Evidence: yes_no, option false, overlap 0, imperative true, shift false. | None | acceptance-criteria.md, decision-record.md ADR-001 and ADR-002, tasks.md T051 |
+| Q015 | Keep the multi-round research hub alias and waive the memo out-of-domain replay in AC-017. | Not stated. | None | decision-record.md ADR-002, acceptance-criteria.md AC-017 |
+| Q016 | Record a fresh live behaviour session on the F6 prompt instead of waiving AC-008. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
+| Q017 | Commit and push the closure pass after the alias and F6 answers are applied. | Not stated. | None | tasks.md T051 |
+| Q018 | Rerun the F6 behaviour session outside plan mode with a spend cap. | Not stated. | None | scratch/behaviour/F6.md, acceptance-criteria.md AC-008 |
+| Q019 | Commit and push the AC-008 work to origin/main once it is settled. | Not stated. | None | tasks.md T052 |
+| Q020 | Keep AC-008 unmet and tighten the offer wording in both deep command documents, then rerun F6. | Not stated. | None | tasks.md T052, .skilled/commands/deep/review.md, .skilled/commands/deep/research.md |
+| Q021 | Sample F6 three more times before deciding how to close AC-008. | Not stated. | None | tasks.md T053, scratch/behaviour/F6-sample-1.md |
+| Q022 | Hold the push until the AC-008 choice is applied, then push everything together. | Not stated. | None | tasks.md T053 |
+| Q023 | Mark AC-008 met on F6 sample 1 and state that 1 of 4 runs since the routing-step edit asked the offer. | Not stated. | None | acceptance-criteria.md AC-008, implementation-summary.md limitation 5 |
+| Q024 | Tick each unticked task and checklist item against its own check, mark the packet Complete, then commit and push. | Not stated. | None | tasks.md, spec.md, acceptance-criteria.md |
+| Q025 | Leave the pending answers from 13 other sessions alone; each is recorded when its own packet is next saved. | Not stated. | None | none in this packet |
+| Q026 | Leave the checkout-dependent top skill on probes H5 and N12 recorded as it is, without investigating the cause. | Not stated. | None | T031, implementation-summary.md Verification |
+| Q027 | Replace the recorded pre-change corpus counts with a fresh capture run at the pre-change commit. | Not stated. | None | T003, scratch/corpus-before.json |
+| Q028 | Try a save to refresh completion_pct in acceptance-criteria.md and change nothing by hand if it does not. | Not stated. | None | acceptance-criteria.md frontmatter |
+| Q029 | Fix the gaps the fresh review found, planned first and built only after approval. | Not stated. | None | REQ-015 to REQ-022, T054 to T064 |
+| Q030 | Asked for the fixes as a phase child of this packet, which the phase rules do not allow for a correction. | Not stated. | None | none, superseded by the Structure answer |
+| Q031 | Reopen this packet for the gate fixes and packet 013 for the typed-command hint, as the phase rules prescribe for a correction. | Not stated. | the Review fixes and Phase answers | spec.md, tasks.md |
+| Q032 | Narrow D2 so a loop name about the loop's own code or results, and a count that describes a subject, is not a loop ask. | Not stated. | None | ADR-004, D11, REQ-019, T058 |
+| Q033 | Set AC-008 to Waived with the measured offer rates recorded in an ADR. | Not stated. | None | ADR-003, AC-008 |
+| Q034 | Keep a typed deep command on the served head when the prompt also complains about a stuck run. | The typed command is the reader's own choice. Recorded from implementation-summary limitation 6, confirmed 2026-11-23; the capture missed it. | None | ADR-005, REQ-020, REQ-029, AC-027, AC-036 |
+| Q035 | Run the sixth remediation round autonomously. | Not stated. Given 2026-11-24 as "Autonomously" when the deep review's remediation was requested. | None | ADR-006, REQ-023 to REQ-034, tasks.md Sixth fix round |
+| Q036 | Fix the nine generation 8 P2 findings and run generation 9 of the traceability review at seven iterations. | Not stated. | None | T084, AC-040, review/review-report.md |
+| Q037 | Fix all sixteen generation 9 findings as round thirteen and run generation 10 at seven iterations. | Not stated. | None | T115 to T122, AC-062 to AC-067 |
+| Q038 | Have a fresh Opus high agent review and fix the work and the deep-review logic, because the rerun loop looked like overengineering. | Not stated. | None | scratch/opus-review.md, 87f1cb952c7, 46465394d97, ADR-010 |
+| Q039 | Accept ADR-010, close AC-040 and T084 on generation 10, push to main and remove worktree 535. | Not stated. | The earlier AC-040 criterion that coverage must pass | ADR-010, AC-040, REQ-033, T084 |
+| Q040 | Keep a typed deep command outranking the stuck-run diagnosis on the hook head. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | ADR-005, Q034 |
+| Q041 | Run a deep review loop on the deep-loop offers work, focused on the typed-command hint. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, review/ |
+| Q042 | Run that review on native Opus rather than revert the dirty Pi settings file. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | review/ |
+| Q043 | Run the review as three fan-out lineages at once. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | review/ |
+| Q044 | Run the T084 traceability review before planning the fallback gap. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q045 | Use DeepSeek Flash max as the executor for the next work. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084 |
+| Q046 | Run npm ci in worktree 535 so the advisor builds. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084 |
+| Q047 | Fix every finding of the second traceability rerun and rerun at seven iterations. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q048 | Fix all twenty findings of the third traceability rerun and rerun. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q049 | Amend REQ-035 rather than serve a default mode for a mode-free loop ask. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | ADR-008, REQ-035 |
+| Q050 | Fix all generation 6 findings, cite evidence by symbol and rerun. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q051 | Fix all generation 7 findings and run generation 8. | Not stated. Recorded by the answer hook in the primary checkout and renumbered here. | None | T084, AC-040 |
+| Q052 | Merge the hook-recorded answers from the primary checkout into the committed decision record and push. | Not stated. Asked by a second session working in the primary checkout. | None | Q040 to Q051 |
+| Q053 | Reopen this packet for the Python fallback cut. | Not stated. | None | ADR-011, REQ-060 |
+| Q054 | Build the cut in a new git worktree. | Not stated. | None | ADR-011 |
+| Q055 | Build and verify the cut in this session, with no subagents. | Not stated. | None | ADR-011 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -285,6 +1284,873 @@ Create, skip install
 Answer:
 ```text
 Yes, provision it (Recommended)
+```
+
+### Q008
+<!-- source: claude:91021a9f-dca3-4cb7-9743-2973efffa465:toolu_018RsUNdyKrJb5Ux1aRZhRsa:0 -->
+
+Question:
+```text
+v4.2.0.0 covers the expanded deep modes themselves: expansive depth, open nodes holding the stop, --extend, fan-out and dispatch. It says nothing about today's deep-loop offer work in packet 012: the advisor offering /deep:* only on explicit loop asks, the one-question offer with the flags already filled in, setup through the question tool, and /doctor:deep-loop for stuck runs. Should I add it?
+```
+
+Options:
+```text
+Add it (Recommended)
+Leave as is
+```
+
+Answer:
+```text
+Add it (Recommended)
+```
+
+### Q011
+<!-- source: claude:b8ebe2c5-6d17-442a-9d87-25b409193411 -->
+
+Question:
+```text
+Where should the fix round for the deep-loop command-offers review (P1-1 to P1-3, P2-1 to P2-5) be built? The handoff notes this choice was never asked; the current branch is main, with only your own .pi/settings.json change in it.
+```
+
+Options:
+```text
+A) Git worktree (Recommended)
+B) Current branch (main)
+```
+
+Answer:
+```text
+A) Git worktree (Recommended)
+```
+
+### Q012
+<!-- source: claude:b8ebe2c5-6d17-442a-9d87-25b409193411 -->
+
+Question:
+```text
+"research why the model needed more iterations to converge" no longer gets /deep:research. It now tops the /doctor:deep-loop command row (policy run), which the lexical lane scores from that row's keywords ("deep-research convergence drift", "deep-review iteration graph"). The same row already tops "...needed iterations to converge" on main today, so it predates this round. How should this round handle it?
+```
+
+Options:
+```text
+Guard the row (Recommended)
+Record it, change nothing
+Retune the keywords
+```
+
+Answer:
+```text
+Guard the row (Recommended)
+```
+
+### Q013
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_011TRpQVus3HYAeNgqJm3YoE:0 -->
+
+Question:
+```text
+About the argument hints on /deep:research and /deep:review: the 140-character limit is only a soft warning (sk-create-command template line 215 and validate_document.py line 2640). It was added in commit 101bcb08175 with no stated reason for 140 and no recorded failure from a long hint, and deep/research was already 540 characters then. Nothing at runtime breaks on a long hint. Should I add the missing flags (--stop-policy, --lineage-mode, --extend-minutes on both, --review-focus on review, and --model/--reasoning-effort/--count nested under --executor)?
+```
+
+Options:
+```text
+Add the flags (Recommended)
+Leave hints as they are
+```
+
+Answer:
+```text
+Add the flags (Recommended)
+```
+
+### Q014
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:chat:fbf69d96-0603-413a-ac3f-361401b03e88:b1c1feb7-944a-4477-9429-1714fa33af62 -->
+
+Question:
+```text
+Your call: should I do the closure pass in this packet? That means running the probe once, marking each row with its evidence, and proposing decision records for AC-019 and AC-008 for you to approve.
+```
+
+Options:
+```text
+Yes
+No
+```
+
+Answer:
+```text
+fix
+```
+
+### Q015
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:0 -->
+
+Question:
+```text
+AC-017: the "multi-round research" hub alias makes "write a memo on multi-round research funding for the grant committee" top the deep-loop hub (no command attached), but K2 "multi-round research into vector index compaction" needs that alias to reach the hub. Keep or drop it?
+```
+
+Options:
+```text
+Keep it (Recommended)
+Drop it
+```
+
+Answer:
+```text
+Keep it (Recommended)
+```
+
+### Q016
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:1 -->
+
+Question:
+```text
+AC-008: the stored F6 behaviour recording answers a different prompt. Record a fresh live session on "extend the finished deep review by 3 iterations" (about $1 of paid turns in a throwaway checkout)?
+```
+
+Options:
+```text
+Record it (Recommended)
+Waive it
+```
+
+Answer:
+```text
+Record it (Recommended)
+```
+
+### Q017
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017rP9ush8rLRbMPhfKD19UH:2 -->
+
+Question:
+```text
+Commit and push the closure pass (1 test file, 7 packet docs, 3 probe files in worktree 522) to origin/main the same way as before?
+```
+
+Options:
+```text
+After the above (Recommended)
+Now
+Not yet
+```
+
+Answer:
+```text
+After the above (Recommended)
+```
+
+### Q018
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_014ffjWwLfhAqVXtLn1pkcij:0 -->
+
+Question:
+```text
+AC-008 (packet 012-deep-loop-command-offers) is the only acceptance row still Unmet. The fresh F6 session ($0.22, plan mode, Sonnet) composed the right command, /deep:review <newest review packet> :auto --extend=3, but wrote a plan for approval instead of asking the one offer question beside the spec-folder question. The earlier F3 and F5 plan-mode sessions did ask. How should AC-008 be closed?
+```
+
+Options:
+```text
+Rerun outside plan (Recommended)
+Tighten offer section
+Waive with an ADR
+```
+
+Answer:
+```text
+Rerun outside plan (Recommended)
+```
+
+### Q019
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_014ffjWwLfhAqVXtLn1pkcij:1 -->
+
+Question:
+```text
+Once AC-008 is settled, should the resulting changes be committed and pushed to origin/main the same way as before (owner token, which bypasses the signed-commit rule)?
+```
+
+Options:
+```text
+Commit and push (Recommended)
+Commit only
+Neither
+```
+
+Answer:
+```text
+Commit and push (Recommended)
+```
+
+### Q020
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01PssQBUbJ1vTQab2So6W7GU:0 -->
+
+Question:
+```text
+The F6 rerun outside plan mode ($0.18, 4 turns, nothing written) stopped before acting. It asked one turn with the spec-folder question (A Existing recommended), named the newest finished review and said it would run `/deep:review <target> --spec-folder=<016 packet> --extend=3` once confirmed. It did not present the offer options (A Run it with :auto, B :confirm, C no loop), so the recommended option itself does not carry --extend=3, as AC-008's wording asks. F3 did present a recommended run option (2A fan-out). How should AC-008 be recorded?
+```
+
+Options:
+```text
+Keep Unmet, tighten (Recommended)
+Mark Met as observed
+Waive with an ADR
+```
+
+Answer:
+```text
+Keep Unmet, tighten (Recommended)
+```
+
+### Q021
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01L9MRUT8BscTve3DfFcRgAP:0 -->
+
+Question:
+```text
+AC-008 is still Unmet after the tightening. I made step 0 of both deep command docs name the three offer options (commit 4c70ce2f517) and reran F6 ($0.16). This time the session asked which finished review was meant before it opened the command doc, so it never read the edit. Across three F6 runs, the session acts on the brief's bare '/deep:review (ask)' and never reaches the offer format, which lives one document away. How should AC-008 be closed?
+```
+
+Options:
+```text
+Waive with an ADR (Recommended)
+Put format in the brief
+Sample more F6 runs
+```
+
+Answer:
+```text
+Sample more F6 runs
+```
+
+### Q022
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01L9MRUT8BscTve3DfFcRgAP:1 -->
+
+Question:
+```text
+Two local commits are ready in worktree 522: 4c70ce2f517 (the step 0 wording in both deep command docs) and adc9501f05c (the F6 recordings with AC-008 kept Unmet). You said to push once AC-008 was settled, and it isn't yet. Push them now?
+```
+
+Options:
+```text
+Push after AC-008 (Recommended)
+Push now
+```
+
+Answer:
+```text
+Push after AC-008 (Recommended)
+```
+
+### Q023
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017P9emkhLYwWmvmYc1giqao:0 -->
+
+Question:
+```text
+The three new F6 samples ($0.49 total, nothing written) split. Sample 1 loaded /deep:review and asked the full offer as text, because headless has no question tool: 'Which packet?' plus A) `/deep:review:auto --extend=3 --spec-folder=<path>` (Recommended), B) :confirm, C) no loop. That matches AC-008 as worded, the same way F3 and F5 did. Samples 2 and 3 first asked which review was meant, since about 30 finished reviews exist, and deferred the command doc. Since the step 0 edit, 1 of 4 runs asked the offer. How should AC-008 be recorded?
+```
+
+Options:
+```text
+Met, rate disclosed (Recommended)
+Waive with an ADR
+Keep Unmet
+```
+
+Answer:
+```text
+Met, rate disclosed (Recommended)
+```
+
+### Q024
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01GwFmtxsW2bMNCb8sHGjLaq:0 -->
+
+Question:
+```text
+Packet 012 (deep-loop command offers) is closeable: every acceptance row is Met, Waived or Superseded and strict validation passes. But tasks.md still has T003 to T036 and the verification checklist unticked, and spec.md says In Progress. What should I do?
+```
+
+Options:
+```text
+Tick, mark Complete, push (Recommended)
+Tick and mark Complete, no push
+Leave it In Progress
+```
+
+Answer:
+```text
+Tick, mark Complete, push (Recommended)
+```
+
+### Q025
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01GwFmtxsW2bMNCb8sHGjLaq:2 -->
+
+Question:
+```text
+13 other sessions have operator answers that were never saved to a packet (for example 306ce05f with 23, f5cd4f6d with 14, 31b4908f with 13). They belong to other packets, not 012. What should happen to them?
+```
+
+Options:
+```text
+Leave them (Recommended)
+Write me a list
+```
+
+Answer:
+```text
+Leave them (Recommended)
+```
+
+### Q026
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:1 -->
+
+Question:
+```text
+Probes H5 ("review the sk-doc skill") and N12 ("thoroughly test the login flow in the browser") rank a different top skill depending on the checkout, with no command in either, and no advisor code changed. I haven't found the cause. Should I dig into it?
+```
+
+Options:
+```text
+Leave it recorded (Recommended)
+Investigate read-only
+```
+
+Answer:
+```text
+Leave it recorded (Recommended)
+```
+
+### Q027
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:2 -->
+
+Question:
+```text
+T003's pre-change corpus counts (0 of 35 for both) come from the baseline committed earlier, captured at an older commit `62a9359e60a`, not from a fresh run at the pre-change commit `2ef3895f753`. Should I do the fresh run?
+```
+
+Options:
+```text
+Keep as disclosed (Recommended)
+Run it fresh
+```
+
+Answer:
+```text
+Run it fresh
+```
+
+### Q028
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019arXajtfnsMvo3vr33UMv3:3 -->
+
+Question:
+```text
+The `completion_pct` field in acceptance-criteria.md's frontmatter still reads 0, though the packet is Complete. The save tool owns that field, so I didn't hand-edit it. What should I do?
+```
+
+Options:
+```text
+Leave it (Recommended)
+Try a targeted save
+```
+
+Answer:
+```text
+Try a targeted save
+```
+
+### Q029
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019jcCSwCn3zQ2mNm7s39T17:0 -->
+
+Question:
+```text
+The fresh Opus review found real gaps in the deep-loop offer epic (I reproduced 6 of them): refusals like "don't do deep research" still get the offer, a typed `/deep:review:confirm` still gets an A/B/C hint recommending :auto, questions like "how many iterations does deep research run" get the offer, "deep-review" with a hyphen loses it, and "not stuck" still routes to the doctor. Some packet claims also overstate the evidence. What should happen?
+```
+
+Options:
+```text
+New fix packet (Recommended)
+Fix only the top two
+Correct the docs only
+Leave it
+```
+
+Answer:
+```text
+New fix packet (Recommended)
+```
+
+### Q030
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_01Cq68zJvcBt7nLNpRtcANCd:0 -->
+
+Question:
+```text
+You said "phase" for the review-fix work. Which structure do you want?
+```
+
+Options:
+```text
+014 as a phased packet (Recommended)
+Phase child of 012
+One epic parent over all three
+```
+
+Answer:
+```text
+Phase child of 012
+```
+
+### Q031
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_019S6xoZAFB1hTDor6MaVoin:0 -->
+
+Question:
+```text
+"Phase child of 012" conflicts with spec-kit's rules. phase-definitions.md §4 says "A standard non-phased packet may not gain phase children unless both qualification thresholds are met, or the work qualifies for a series parent". 012 is Level 2, under the level-3 threshold. §2 also says a series parent needs "a different change", and that "A correction continues that packet with Option A, even when the packet is complete." The review fixes are corrections of 012's own change (and the typed-suffix hint fix corrects 013's). How should I proceed?
+```
+
+Options:
+```text
+Reopen 012 and 013 (Recommended)
+Phase child anyway (override)
+Standalone 014 instead
+```
+
+Answer:
+```text
+Reopen 012 and 013 (Recommended)
+```
+
+### Q032
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017NgHjmF6m34GboesBNRQYx:0 -->
+
+Question:
+```text
+Decision D2 in packet 012 says naming "deep research", "deep review", "research loop" or "review loop" counts as asking for the loop. Because of that, mentions of the loop's own code or results get the offer: "refactor the deep research scorer", "fix the bugs the deep review found", "open the review loop config". Should the fix narrow D2?
+```
+
+Options:
+```text
+Narrow D2 (Recommended)
+Keep D2 as is
+```
+
+Answer:
+```text
+Narrow D2 (Recommended)
+```
+
+### Q033
+<!-- source: claude:5789dc27-c573-44e7-afdc-52d0e17986b0:toolu_017NgHjmF6m34GboesBNRQYx:2 -->
+
+Question:
+```text
+AC-008 in packet 012 is marked Met on 1 of 4 F6 runs, plus F3 and F5 transcripts that don't show the offer. The reviewer says that should be Waived with a decision record, not Met. Change it?
+```
+
+Options:
+```text
+Change to Waived (Recommended)
+Keep Met
+```
+
+Answer:
+```text
+Change to Waived (Recommended)
+```
+
+### Q036
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01LBNoLX18yTxRNyrEhyCcPz:0 -->
+
+Question:
+```text
+Generation 8 found 0 P0, 0 P1 and 9 P2 (closure-record drift, a duplicated doctor string, a leftover alias). It still fails AC-040's gates, each in one lineage, for reasons in the reviewers' own runs rather than the packet: one lineage reviewed only the traceability dimension, one recorded bare file names, so its scope check fails, and one didn't close traceability. How should I proceed?
+```
+
+Options:
+```text
+Fix 9 P2s, rerun gen 9 (Recommended)
+Fix 9 P2s, waive and push
+Waive and push now
+```
+
+Answer:
+```text
+Fix 9 P2s, rerun gen 9 (Recommended)
+```
+
+### Q037
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01KqqCSTt8hGXJyK4hgFs1W5:0 -->
+
+Question:
+```text
+Generation 9 found 0 P0, 1 P1 and 15 P2; how should I proceed?
+```
+
+Options:
+```text
+Fix all 16, rerun gen 10
+Fix all 16, waive and push
+Fix the P1 only, waive and push
+```
+
+Answer:
+```text
+Fix all 16, rerun gen 10 (Recommended)
+```
+
+### Q038
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01H6be6W1tgj7VDDRrexJ5Te:0 -->
+
+Question:
+```text
+Generation 10 failed coverage with 4 P1 and 13 P2; how should I proceed?
+```
+
+Options:
+```text
+Fix P1s, waive AC-040, push
+Fix all 17, rerun gen 11
+Waive now, push
+```
+
+Answer:
+```text
+What are we actually fixing here for so many rounds
+```
+
+### Q039
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_012YiEgEsTpJEU9Fg17Nz6oF:0 -->
+
+Question:
+```text
+Accept ADR-010 and close AC-040 on generation 10?
+```
+
+Options:
+```text
+Accept ADR-010, close, push
+Accept, file Python removal
+Reject ADR-010, waive AC-040
+```
+
+Answer:
+```text
+Accept ADR-010, close, push (Recommended)
+```
+
+### Q040
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01URaLW6syh6uniNE1WcbHuR:0 -->
+
+Question:
+```text
+"my deep review run is stuck, /deep:review again" gets /doctor:deep-loop from the native gate and no run row from the Python gate, but the typed-command path still puts "/deep:review (ask)" on the hook head. Should the typed command keep outranking the stuck-run diagnosis? The merge and push to main go ahead either way; a change would be a follow-up commit.
+```
+
+Options:
+```text
+Keep typed (Recommended)
+Diagnosis outranks
+```
+
+Answer:
+```text
+Keep typed (Recommended)
+```
+
+### Q041
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_014LbwNRgCLxRvfjn2TzULy5:0 -->
+
+Question:
+```text
+Run a deep review loop on the deep-loop command offers work (packet 012, with 013's typed-command hint as the focus)? A one-turn test of opencode-go/hy4-flash-free at high answered at $0.
+```
+
+Options:
+```text
+A) Run it (Recommended)
+B) Step through setup
+C) No loop
+```
+
+Answer:
+```text
+A) Run it (Recommended)
+```
+
+### Q042
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01Ms8DnVsVuvcP8ofwHBd7K6:0 -->
+
+Question:
+```text
+The hy4-flash-free review can't start while the primary checkout is dirty: cli-opencode refuses to dispatch, and the only change is Pi's version bookkeeping in .pi/settings.json (two version bumps, untouched since Nov 21). How should I clear the way?
+```
+
+Options:
+```text
+Revert it for me (Recommended)
+I'll handle it
+Use native Opus instead
+Cancel
+```
+
+Answer:
+```text
+Use native Opus instead
+```
+
+### Q043
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_011rZkEM4owQmizDJCdaNWRJ:0 -->
+
+Question:
+```text
+How should "Opus medium, max parallel" run the deep review of the deep-loop offers work? Iterations inside one loop can't run in parallel, so parallel means fan-out lineages, each a separate claude process running all four dimensions with bypassPermissions so it can record state.
+```
+
+Options:
+```text
+3 lineages at once (Recommended)
+5 lineages at once
+One loop, no parallel
+```
+
+Answer:
+```text
+3 lineages at once (Recommended)
+```
+
+### Q044
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01F2kCQhRcthus3AaCrM5KvQ:0 -->
+
+Question:
+```text
+The fix round for the deep-loop offers is pushed to main as 2aaab457ccf. Two items are still open: T084 (a follow-up /deep:review focused on traceability, which AC-040 waits on) and the known gap where the Python fallback never offers an untyped command such as /deep:review for 'run a deep review on the parser'. Which should run next?
+```
+
+Options:
+```text
+T084 review first (Recommended)
+Both, review then plan
+Plan the fallback gap only
+Stop here
+```
+
+Answer:
+```text
+T084 review first (Recommended)
+```
+
+### Q045
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01F2kCQhRcthus3AaCrM5KvQ:1 -->
+
+Question:
+```text
+Which executor should the next work use? Claude agents were refused earlier over billing, and Luna resets at 12:55 PM.
+```
+
+Options:
+```text
+DeepSeek Flash max (Recommended)
+Luna xhigh after reset
+Mix both
+```
+
+Answer:
+```text
+DeepSeek Flash max (Recommended)
+```
+
+### Q046
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01KvwgucyCwVuPie3T3JYi3p:0 -->
+
+Question:
+```text
+Worktree 535 can't build the skill advisor: its spec-kit workspace (.skilled/skills/system-spec-kit) is missing @types/node, which its package.json declares, because provisioning left the install incomplete. May I run `npm ci --no-audit --no-fund` there from the repo's own lockfile? It writes only gitignored node_modules inside worktree 535. Undo: `rm -rf .skilled/skills/system-spec-kit/node_modules` in 535, or remove the worktree.
+```
+
+Options:
+```text
+Yes, run npm ci (Recommended)
+No, skip the build
+```
+
+Answer:
+```text
+Yes, run npm ci (Recommended)
+```
+
+### Q047
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01DG48QibkUdah5PCKiYsNgb:0 -->
+
+Question:
+```text
+The second traceability rerun of packet 012 also failed on the coverage gate: 0 P0, 1 P1, 18 P2. Two lineages finished traceability but needed one more iteration for coverage to mature (5 was too few). The P1 is a real gate gap: plural loop names ('run deep reviews on the parser') are never read as a loop ask. Three P2s are code (how-do questions, speed or cost complaints read as run asks, an unchecked fallback command), and fourteen are doc counts and evidence cells that drifted when round seven grew the fixture and suite. How should I continue?
+```
+
+Options:
+```text
+Fix all, rerun at 7 iters (Recommended)
+Fix all, close T084 now
+Fix code only, then stop
+Stop here
+```
+
+Answer:
+```text
+Fix all, rerun at 7 iters (Recommended)
+```
+
+### Q048
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_0118eh4VNGGXxAFvWYwjXrwR:0 -->
+
+Question:
+```text
+The third traceability rerun (7 iterations) of packet 012 failed again: 0 P0, 4 P1, 16 P2. One lineage passed every gate, the other two did not. The trend is 2, then 1, now 4 P1s: each fix round closes what the last review named, and each DeepSeek review then finds new edge cases in the gate's word rules (no-edit clauses, refused loop phrases still giving the mode cue, REQ-026's guard, REQ-035's plural promise). Round eight's code is green (3188 passed) and committed in worktree 535, not pushed. How should I end this?
+```
+
+Options:
+```text
+Fix the 4 P1s, then close (Recommended)
+Close now, backlog all 20
+Fix all 20 and rerun
+Switch reviewer to Luna
+```
+
+Answer:
+```text
+Fix all 20 and rerun
+```
+
+### Q049
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01QNPAoAwKPXxQqyVDirKxiB:0 -->
+
+Question:
+```text
+REQ-035 promises that "run two deep loops on the cache layer" serves a deep-loop command. But a deep-loop ask that names neither research nor review gets no command by design. The singular "run a deep loop on the cache layer" also gets none, and a review flagged it. Which should win?
+```
+
+Options:
+```text
+Amend REQ-035 (Recommended)
+Serve a default mode
+```
+
+Answer:
+```text
+Amend REQ-035 (Recommended)
+```
+
+### Q050
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01MnhBkKDqCLS2hR34giWcg8:0 -->
+
+Question:
+```text
+The generation 6 rerun has 4 P1 and 39 P2: one Python/TypeScript mismatch on "run two deep loops", the rest stale evidence cells and counts. It found no new word-rule bugs in the gate. How should I proceed?
+```
+
+Options:
+```text
+Fix all, cite by symbol, rerun (Recommended)
+Fix all, waive the rerun
+Stop and waive now
+```
+
+Answer:
+```text
+Fix all, cite by symbol, rerun (Recommended)
+```
+
+### Q051
+<!-- source: claude:520c649a-ce93-4135-91b0-cec71dd35a54:toolu_01FJF8KPsiX23VZPsFJp3BTn:0 -->
+
+Question:
+```text
+Generation 7 is the closest yet: two of three lineages pass every gate, coverage included. The run is FAIL with 0 P0, 3 P1 and 14 P2. The P1s are a whitespace gap in the gate (a tab, double space or line break inside "deep review" withholds the command), twelve change-set files missing from the scope I seed, and the open rerun requirement itself. How should I proceed?
+```
+
+Options:
+```text
+Fix all, rerun gen 8 (Recommended)
+Fix all, waive the rerun
+Stop and waive now
+```
+
+Answer:
+```text
+Fix all, rerun gen 8 (Recommended)
+```
+
+### Q052
+<!-- source: claude:ba78a7ba-1f3e-4c7b-a8ae-d3375662e0df:toolu_01DdLQN8gJyxfFMnHbbZPTa5:0 -->
+
+Question:
+```text
+My work is already committed, merged and pushed, so the only uncommitted change left is in packet 012's decision-record.md (the deep-loop offers packet). It holds 239 lines of answers the Stop hook recorded automatically, and 100 of them are not on origin/main. Meanwhile, 9 commits on origin/main changed that same file from the other live Claude session, so committing my local copy would mean merging over that session's work. What should happen to it?
+```
+
+Options:
+```text
+Leave it to that session (Recommended)
+Merge it in and push
+Discard local copy, sync main
+```
+
+Answer:
+```text
+Merge it in and push
+```
+
+### Q053
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:0 -->
+
+Question:
+```text
+Removing the Python copy of the deep-loop gate is new work outside closed packet 012: about 1,550 lines, the 806-line drift guard, about 15 'both copies' REQs, and a workflow-owner scoring guard in the Python fallback that reads the same gate. Which spec folder should hold it?
+```
+
+Options:
+```text
+B) New 015 packet (Recommended)
+A) Reopen 012
+D) Skip docs
+```
+
+Answer:
+```text
+A) Reopen 012
+```
+
+### Q054
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:1 -->
+
+Question:
+```text
+Where should the Python gate removal be built?
+```
+
+Options:
+```text
+A) New git worktree (Recommended)
+B) Current branch
+```
+
+Answer:
+```text
+A) New git worktree (Recommended)
+```
+
+### Q055
+<!-- source: claude:57590ed7-2583-4c04-88b9-822e46bf7bc7:toolu_01XQssttP7LdnBxiQs1vZRQj:2 -->
+
+Question:
+```text
+Who should do the Python gate removal? Earlier you refused Claude agents over billing, then asked for Opus.
+```
+
+Options:
+```text
+This session (Recommended)
+DeepSeek Flash max via pi
+```
+
+Answer:
+```text
+This session (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

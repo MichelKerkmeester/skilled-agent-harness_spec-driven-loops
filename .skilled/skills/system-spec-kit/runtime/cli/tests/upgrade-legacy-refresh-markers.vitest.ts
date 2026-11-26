@@ -150,13 +150,19 @@ function scaffoldPhaseChildSpec(): string {
 // copy is judged by mtimes; its dist was built from these sources, so the copy is
 // re-stamped to look built from its own tree.
 function refreshCopiedDistMtimes(): void {
+  // A Date has whole milliseconds and a file mtime is finer, so a dist stamped in the
+  // same millisecond as a source write can read older than that source. Sources are
+  // dated one second back instead, which keeps the dist strictly newer and leaves a
+  // later source edit newer than the dist.
   const now = new Date();
+  const past = new Date(now.getTime() - 1000);
   const touchDist = (dir: string): void => {
     for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
       if (item.name === 'node_modules') continue;
       const abs = path.join(dir, item.name);
       if (item.isDirectory()) touchDist(abs);
       else if (item.isFile() && abs.includes('/dist/')) fs.utimesSync(abs, now, now);
+      else if (item.isFile()) fs.utimesSync(abs, past, past);
     }
   };
   touchDist(path.join(copy, 'runtime'));
@@ -165,7 +171,10 @@ function refreshCopiedDistMtimes(): void {
 beforeAll(() => {
   sandbox = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'refresh-markers-')));
   copy = path.join(sandbox, '.skilled/skills/system-spec-kit');
-  fs.cpSync(skillRoot, copy, { recursive: true, filter: (src) => path.basename(src) !== 'node_modules' });
+  fs.cpSync(skillRoot, copy, {
+    recursive: true,
+    filter: (src) => !['node_modules', '.workflow-lock'].includes(path.basename(src)),
+  });
 
   // node_modules stays out of the copy and is linked back in at its real location: it is
   // large and identical, and the copied runtime resolves its dependencies through the same

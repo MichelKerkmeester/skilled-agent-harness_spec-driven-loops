@@ -9,7 +9,7 @@ trigger_phrases:
   - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -164,8 +164,9 @@ last, after the stage-two map above, and it declares no map of its own: the `INT
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub [parent-skill-name] --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub [parent-skill-name] --prompt-file <task-file>
 > ```
+> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.
 > Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in SMART ROUTING. The front door self-gates on serving-authority. Compiled routing is now the default for `[parent-skill-name]`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That variable is the explicit kill-switch.
 
 A fresh `[parent-skill-name]` ships without a compiled activation manifest, so the directive above

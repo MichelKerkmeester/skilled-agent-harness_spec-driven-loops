@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation"
-    last_updated_at: "2026-11-21T10:23:51Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_at: "2026-11-24T05:32:33Z"
+    last_updated_by: "claude-code"
+    recent_action: "Closed the packet after rerunning every criterion"
+    next_safe_action: "Keep every row Met when later phases touch the moved packets"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-mode-relocation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 
 **Packet:** `003-mode-relocation`
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-21
 <!-- /ANCHOR:metadata -->
 
@@ -89,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-002 is unmet: three residual old-path references remain, and none of them can be removed inside this phase's fence.
+Every row is Met, so no criterion blocks closure.
 <!-- /ANCHOR:closure -->

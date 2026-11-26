@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside utcp manual"
   - "register aside mcp"
   - "aside code mode setup"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # aside-mcp
@@ -32,7 +32,7 @@ mcp-aside-devtools routes composition work, browser operations chained with othe
 
 ### What It Does
 
-`aside mcp` speaks MCP over stdio and inherits the logged-in CLI account/provider context; there is no published transport credential, and no evidence of a remote HTTP/SSE endpoint. The live-probed inventory is **one tool, `repl`** (`title` + `code` inputs, persistent sandboxed ES2023+/Playwright REPL, 120 s call timeout). With `tools.listChanged: true`, that inventory is version-pinned evidence: every consumer must rediscover at runtime (`initialize` → `tools/list`; post-registration `search_tools()`/`tool_info()`), never hardcode it. A fresh MCP process is browser-unbound until a task/profile binding exists; the supported binding procedure is an open question.
+`aside mcp` speaks MCP over stdio and inherits the logged-in CLI account/provider context; there is no published transport credential, and no evidence of a remote HTTP/SSE endpoint. The live-probed inventory is **one tool, `repl`** (`title` + `code` inputs, persistent sandboxed ES2023+/Playwright REPL, 120 s call timeout). With `tools.listChanged: true`, that inventory is version-pinned evidence: every consumer must rediscover at runtime (`initialize` → `tools/list`; post-registration `search_tools()`/`tool_info()`), never hardcode it. On 1.26.626.1517 with the Aside app running and signed in, a fresh MCP process is bound and lists tabs. Earlier versions left it browser-unbound until a task/profile binding existed; the supported binding procedure is an open question.
 
 ---
 

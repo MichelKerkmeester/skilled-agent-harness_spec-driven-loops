@@ -111,7 +111,7 @@ A lane learns from its prompt which paths it may write. Nothing stops a write ou
 
 ### Installs And Builds Run Without Asking
 
-The skill advisor launcher, `.skilled/bin/system-skill-advisor-launcher.cjs`, runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in sk-git installs every package tree listed in `worktree-provision-paths.txt`. It uses npm, or bun for a package that ships a `bun.lock` or `bun.lockb` and no `package-lock.json`. Neither passes `--ignore-scripts`, so each package's install scripts run.
+The skill advisor launcher, `.skilled/bin/system-skill-advisor-launcher.cjs`, runs `npm ci` or `npm install` and a build when its runtime has not been built yet. `worktree-naming.sh create` in sk-git installs each package tree listed in `worktree-provision-paths.txt` that is not already installed, and skips a listed path with no `package.json`. It uses npm, or bun for a package that ships a `bun.lock` or `bun.lockb` and no `package-lock.json`. Neither passes `--ignore-scripts`, so each package's install scripts run.
 
 At session start, the dist freshness check rebuilds any watched package whose compiled build is older than its sources. In the main checkout with live sync on, the session-start git hooks check also installs a missing git hook.
 

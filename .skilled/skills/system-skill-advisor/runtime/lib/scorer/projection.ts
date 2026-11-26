@@ -151,7 +151,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-git-hooks',
-    ownerSkill: 'sk-git',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-git-hooks',
     kind: 'command',
@@ -189,7 +189,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-skill-budget',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-skill-budget',
     kind: 'command',
@@ -208,7 +208,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-git-setup',
-    ownerSkill: 'sk-git',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-git-setup',
     kind: 'command',
@@ -227,7 +227,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-git-standards',
-    ownerSkill: 'sk-git',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-git-standards',
     kind: 'command',
@@ -245,7 +245,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-sk-code-setup',
-    ownerSkill: 'sk-code',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-sk-code-setup',
     kind: 'command',
@@ -264,7 +264,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-tune',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-tune',
     kind: 'command',
@@ -282,7 +282,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-rebuild',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-rebuild',
     kind: 'command',
@@ -300,7 +300,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-parent-skill',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-parent-skill',
     kind: 'command',
@@ -319,7 +319,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-skill-graph-freshness',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-skill-graph-freshness',
     kind: 'command',
@@ -338,7 +338,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-skill-advisor-router-reach',
-    ownerSkill: 'system-skill-advisor',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-skill-advisor-router-reach',
     kind: 'command',
@@ -393,7 +393,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-deep-loop',
-    ownerSkill: 'system-deep-loop',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-deep-loop',
     kind: 'command',
@@ -447,7 +447,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-ci-report',
-    ownerSkill: 'sk-code',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-ci-report',
     kind: 'command',
@@ -467,7 +467,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-ci-scaffold',
-    ownerSkill: 'sk-code',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-ci-scaffold',
     kind: 'command',
@@ -485,7 +485,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-ci-toggle',
-    ownerSkill: 'sk-code',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-ci-toggle',
     kind: 'command',
@@ -503,7 +503,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-sk-code-quality',
-    ownerSkill: 'sk-code',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-sk-code-quality',
     kind: 'command',
@@ -521,7 +521,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-sk-skill-check',
-    ownerSkill: 'sk-doc',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-sk-skill-check',
     kind: 'command',
@@ -540,7 +540,7 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
   },
   {
     inventoryId: 'command-doctor-sk-skill-convert',
-    ownerSkill: 'sk-doc',
+    ownerSkill: 'system-skilled-doctor',
     routingEnabled: true,
     id: 'command-doctor-sk-skill-convert',
     kind: 'command',

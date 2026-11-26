@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Partial: REQ-002 met 2026-11-21; REQ-003 met at the default threshold but not at `--threshold 0.5`; REQ-008 held only after the browser fixtures were relabeled; REQ-009 not met as written |
+| **Status** | Partial: REQ-002 met 2026-11-21; REQ-003 met at the default threshold but not at `--threshold 0.5`; REQ-008 held only after the browser fixtures were relabeled; REQ-009 not met as written here, and phase 014 met it on 2026-11-24 |
 | **Created** | 2026-11-21 |
 | **Branch** | `worktrees/505-mcp-browser-use-hub` |
 | **Parent Spec** | ../spec.md |

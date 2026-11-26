@@ -20,7 +20,7 @@ trigger_phrases:
   - "delegate to vibe"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.8.8.0
+version: 1.8.10.0
 ---
 
 # cli-external-orchestration
@@ -44,7 +44,7 @@ version: 1.8.8.0
 
 The hub is the front door for external CLI dispatch. It reads the request and hands the task to one of eight workflow packets. The hub carries no per-mode logic, so each packet keeps its own dispatch contract and references.
 
-Start with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt "<task>"` when you want the decision before a dispatch. The reply names the mode the hub picked.
+Start with `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) when you want the decision before a dispatch. The reply names the mode the hub picked.
 
 Work with no cross-AI handoff belongs to the skill that owns it. Application-code implementation and review with no dispatch need go to `sk-code`. The hub exists for the task that has to leave this runtime.
 

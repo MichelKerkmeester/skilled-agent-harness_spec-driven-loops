@@ -4,6 +4,8 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderAdvisorBrief } from '../lib/render.js';
+import { degradedRecommendations } from '../skill-advisor-cli.js';
+import { resultFromCliData } from '../../hooks/lib/skill-advisor-cli-fallback.js';
 
 const DIRECTIVES_LABEL = '\nDirectives:';
 // The advisor portion is capped at 80 tokens and the renderer estimates four
@@ -19,6 +21,7 @@ interface RecommendationInput {
   readonly policy?: 'run' | 'start' | 'ask';
   readonly ownerSkillId?: string;
   readonly needsMode?: boolean;
+  readonly typed?: true;
   readonly confidence: number;
   readonly uncertainty: number;
 }
@@ -54,7 +57,7 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask: A /deep:research:auto (Recommended), B /deep:research:confirm, C no loop) 0.82/0.16 pass.',
   },
   {
     name: 'a design request names the chart mode',
@@ -76,11 +79,11 @@ const HEAD_CASES: readonly HeadCase[] = [
       kind: 'command',
       command: '/doctor:git hooks',
       policy: 'ask',
-      ownerSkillId: 'sk-git',
+      ownerSkillId: 'system-skilled-doctor',
       confidence: 0.82,
       uncertainty: 0.12,
     },
-    expectedHead: 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.',
+    expectedHead: 'Advisor: live; use system-skilled-doctor → /doctor:git hooks (ask) 0.82/0.12 pass.',
   },
   {
     name: 'a memory save names the spec workflow',
@@ -161,7 +164,35 @@ const HEAD_CASES: readonly HeadCase[] = [
       confidence: 0.82,
       uncertainty: 0.16,
     },
-    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask) 0.82/0.16 pass.',
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.82/0.16 pass.',
+  },
+  {
+    name: 'a typed deep-loop command with a mode suffix prints no offer options',
+    recommendation: {
+      skill: 'system-deep-loop',
+      kind: 'command',
+      command: '/deep:review',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+      confidence: 0.94,
+      uncertainty: 0.12,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:review (ask) 0.94/0.12 pass.',
+  },
+  {
+    name: 'a typed research command prints no offer options',
+    recommendation: {
+      skill: 'system-deep-loop',
+      kind: 'command',
+      command: '/deep:research',
+      policy: 'ask',
+      ownerSkillId: 'system-deep-loop',
+      typed: true,
+      confidence: 0.84,
+      uncertainty: 0.12,
+    },
+    expectedHead: 'Advisor: live; use system-deep-loop → /deep:research (ask) 0.84/0.12 pass.',
   },
 ];
 
@@ -243,12 +274,121 @@ describe('command brief golden heads', () => {
     expect(head).not.toContain('/create:agent');
   });
 
+  // A dispatched child must not start or offer the loop, so it keeps the
+  // parent-named marker and never sees the options it could act on.
+  it('renders a deep-loop command in a child session without the offer options', () => {
+    const head = headOf(renderAdvisorBrief(
+      advisorResult(HEAD_CASES[1].recommendation),
+      { childSession: true },
+    ));
+
+    expect(head).toBe('Advisor: live; use system-deep-loop → /deep:research (parent-named only) 0.82/0.16 pass.');
+    expect(head).not.toContain('A /deep:research:auto');
+  });
+
+  // The offer options make the head longer, and the diagnosis companion is the
+  // line a stuck run needs, so both must still fit the default cap.
+  it('keeps the doctor companion beside a deep-loop offer at the default cap', () => {
+    const rendered = renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [
+        { ...HEAD_CASES[1].recommendation, command: '/deep:review', passes_threshold: true },
+        { skill: 'command-doctor-deep-loop', kind: 'command', confidence: 0.8, uncertainty: 0.2, passes_threshold: true },
+      ],
+      metrics: { tokenCap: 80 },
+    });
+
+    expect(headOf(rendered)).toContain('/deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)');
+    expect(headOf(rendered)).toContain('\nAlso: /doctor:deep-loop');
+  });
+
+  // An ambiguous head renders each side through the same label, so the deep-loop
+  // side keeps its offer options beside the partner it ties with.
+  it('keeps the deep-loop offer options under an ambiguous head', () => {
+    const head = headOf(renderAdvisorBrief({
+      status: 'ok',
+      freshness: 'live',
+      recommendations: [
+        { ...HEAD_CASES[1].recommendation, command: '/deep:review', confidence: 0.95, uncertainty: 0.16, passes_threshold: true },
+        { skill: 'sk-code', confidence: 0.9, uncertainty: 0.12, passes_threshold: true },
+      ],
+      ambiguous: true,
+      metrics: { tokenCap: 120 },
+    }));
+
+    expect(head).toBe('Advisor: live; ambiguous: system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.16 vs sk-code 0.90/0.12 pass.');
+  });
+
   it('renders both command labels under an ambiguous head', () => {
     const head = headOf(renderAdvisorBrief(AMBIGUOUS_COMMAND_RESULT));
 
-    expect(head.startsWith('Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask)')).toBe(true);
+    expect(head.startsWith('Advisor: live; ambiguous: system-skilled-doctor → /doctor:git hooks (ask)')).toBe(true);
     expect(head).toContain(' vs system-spec-kit → /speckit:save (start)');
     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
     expect(head).not.toContain('command-');
+  });
+
+  // The local scorer answers when the daemon is down, and its rows reach the
+  // head through the same CLI normalizer the hook uses. A deep command the prompt
+  // typed must lose its offer options there too, while one it did not type keeps
+  // them, so both sides run the real degraded producer and the real normalizer.
+  describe('degraded local-scorer path', () => {
+    function degradedHead(skill: string, prompt: string): string {
+      const result = resultFromCliData({
+        data: {
+          freshness: 'stale',
+          recommendations: degradedRecommendations(
+            [{ skill, confidence: 0.94, uncertainty: 0.12, passes_threshold: true }],
+            prompt,
+          ),
+        } as never,
+        options: { maxTokens: 80 } as never,
+        startedAt: 0,
+        now: () => 1,
+      });
+      return headOf(renderAdvisorBrief({ ...result, metrics: { tokenCap: 80 } }));
+    }
+
+    it('prints a typed deep command plainly', () => {
+      const head = degradedHead('command-spec-kit-deep-review', '/deep:review:confirm the auth module');
+
+      expect(head).toContain('/deep:review (ask)');
+      expect(head).not.toContain('A /deep:review:auto');
+    });
+
+    // The degraded producer keeps a command row only when the prompt typed it,
+    // so an untyped deep row arrives as its owner skill. A command row that does
+    // reach the normalizer without the typed marker must still offer the modes,
+    // or the fix would have hidden the choice from every degraded deep row.
+    it('keeps the offer options on a degraded deep row that is not marked typed', () => {
+      const untyped = degradedRecommendations(
+        [{ skill: 'command-spec-kit-deep-review', confidence: 0.94, uncertainty: 0.12, passes_threshold: true }],
+        'review the auth module for regressions',
+      );
+      expect(untyped).toMatchObject([{ skillId: 'system-deep-loop', kind: 'skill' }]);
+      expect(untyped[0]).not.toHaveProperty('typed');
+
+      const result = resultFromCliData({
+        data: {
+          freshness: 'stale',
+          recommendations: [{
+            skillId: 'command-spec-kit-deep-review',
+            kind: 'command',
+            command: '/deep:review',
+            policy: 'ask',
+            ownerSkillId: 'system-deep-loop',
+            confidence: 0.94,
+            uncertainty: 0.12,
+          }],
+        } as never,
+        options: { maxTokens: 80 } as never,
+        startedAt: 0,
+        now: () => 1,
+      });
+      const head = headOf(renderAdvisorBrief({ ...result, metrics: { tokenCap: 80 } }));
+
+      expect(head).toContain('/deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop)');
+    });
   });
 });

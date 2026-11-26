@@ -1,0 +1,51 @@
+{
+  "run_id": "1795593886068-na5znl",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "codex",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "devin",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "codex": null,
+      "devin": null
+    }
+  }
+}

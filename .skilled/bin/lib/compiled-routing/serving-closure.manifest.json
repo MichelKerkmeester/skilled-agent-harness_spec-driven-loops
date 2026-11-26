@@ -13,7 +13,7 @@
     "mcp-browser-use",
     "system-skilled-bots"
   ],
-  "fileCount": 76,
+  "fileCount": 78,
   "files": [
     "003-contract-schemas/lib/canonical.cjs",
     "003-contract-schemas/schemas/compiled-policy.v1.schema.json",
@@ -81,7 +81,9 @@
     "013-live-activation/activation/system-deep-loop/manifest.json",
     "013-live-activation/activation/system-skilled-bots/manifest.json",
     "014-runtime-engine/lib/compiled-route.cjs",
+    "014-runtime-engine/lib/hub-registry.cjs",
     "014-runtime-engine/lib/resolve.cjs",
+    "hub-registry.json",
     "013-live-activation/activation/sk-code/fence-state.json",
     "013-live-activation/activation/system-deep-loop/fence-state.json",
     "013-live-activation/activation/mcp-tooling/fence-state.json",

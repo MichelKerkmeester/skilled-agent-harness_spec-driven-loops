@@ -70,7 +70,6 @@ while unset, without stopping work.
 | 001 | `001-tooling-and-pilot/goal.md` |
 | 002 | `002-cli-external-orchestration/goal.md` |
 | 003 | `003-cli-jev/goal.md` |
-| 004 | `004-cli-orca/goal.md` |
 | 005 | `005-mcp-code-mode/goal.md` |
 | 006 | `006-mcp-tooling/goal.md` |
 | 007 | `007-sk-code/goal.md` |

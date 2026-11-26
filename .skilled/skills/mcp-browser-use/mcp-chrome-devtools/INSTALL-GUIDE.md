@@ -1,14 +1,14 @@
 ---
 title: "Chrome DevTools Installation Guide"
 description: "Installation and configuration for Chrome DevTools browser debugging through the bdg CLI and the MCP fallback."
-version: 1.0.4.0
+version: 1.0.6.0
 ---
 
 # Chrome DevTools Installation Guide
 
 Complete installation and configuration guide for Chrome DevTools browser debugging, providing AI assistants with browser control through two approaches. The CLI tool (bdg) offers direct, fast, token-efficient browser debugging. The MCP fallback runs through Code Mode for multi-tool orchestration and parallel browser testing. Covers screenshot capture, DOM inspection, console evaluation, network monitoring and performance profiling.
 
-> **Package:** `browser-debugger-cli@alpha` | **Dependencies:** Node.js 18+, Chrome/Chromium
+> **Package:** `browser-debugger-cli@0.6.10` | **Dependencies:** Node.js 20+, Chrome/Chromium
 
 **Version:** 2.1.0 | **Updated:** 2026-02-20 | **Protocol:** Chrome DevTools Protocol (CDP)
 
@@ -22,7 +22,7 @@ Copy and paste this prompt to your AI assistant to get installation help:
 I want to install the Chrome DevTools CLI (bdg) for browser debugging.
 
 Please help me:
-1. Check if I have Node.js 18+ installed
+1. Check if I have Node.js 20+ installed
 2. Install browser-debugger-cli globally
 3. Verify Chrome/Chromium is available
 4. Test with a basic screenshot capture
@@ -34,7 +34,7 @@ Guide me through each step with the exact commands needed.
 ```
 
 The AI will:
-- Verify Node.js 18+ is available on your system
+- Verify Node.js 20+ is available on your system
 - Install `browser-debugger-cli` globally
 - Test Chrome/Chromium availability
 - Run a basic screenshot test to confirm installation
@@ -69,16 +69,16 @@ Chrome DevTools gives AI assistants browser debugging capabilities through two a
 | ---------------- | ------------------------------------------------------------------------------------------- |
 | **GitHub (CLI)** | [szymdzum/browser-debugger-cli](https://github.com/szymdzum/browser-debugger-cli)           |
 | **GitHub (MCP)** | [ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp) |
-| **npm (CLI)**    | `browser-debugger-cli@alpha`                                                                |
+| **npm (CLI)**    | `browser-debugger-cli@0.6.10`                                                               |
 | **npm (MCP)**    | `chrome-devtools-mcp@latest`                                                                |
 | **License**      | MIT / Apache-2.0                                                                            |
 
 ### Two Approaches
 
-| Approach            | Package                      | When to Use                             | Token Cost |
-| ------------------- | ---------------------------- | --------------------------------------- | ---------- |
-| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | Lowest     |
-| **MCP (Code Mode)** | `chrome-devtools-mcp@latest` | Multi-tool workflows, parallel browsers | Higher     |
+| Approach            | Package                       | When to Use                             | Token Cost |
+| ------------------- | ----------------------------- | --------------------------------------- | ---------- |
+| **CLI (bdg)**       | `browser-debugger-cli@0.6.10` | Single browser, quick tasks, debugging  | Lowest     |
+| **MCP (Code Mode)** | `chrome-devtools-mcp@latest`  | Multi-tool workflows, parallel browsers | Higher     |
 
 Default to CLI. Use MCP only when CLI is not sufficient.
 
@@ -98,7 +98,7 @@ Task received → Is bdg CLI available? (command -v bdg)
                         │               │
                         ▼               ▼
                    Use MCP         Install CLI:
-                   (fallback)      npm i -g browser-debugger-cli@alpha
+                   (fallback)      npm i -g browser-debugger-cli@0.6.10
 ```
 
 ### Architecture Diagram
@@ -118,7 +118,7 @@ Task received → Is bdg CLI available? (command -v bdg)
 │   - Direct terminal     │     │   - call_tool_chain()       │
 │   - Self-documenting    │     │   - Type-safe invocation    │
 │   - Unix composable     │     │   - Multi-tool integration  │
-│   - All 644 CDP methods │     │   - 26 exposed tools        │
+│   - All 644 CDP methods │     │   - 29 exposed tools        │
 └────────────┬────────────┘     └──────────────┬──────────────┘
              │                                  │
              └──────────────┬───────────────────┘
@@ -155,11 +155,11 @@ When using MCP, Chrome DevTools routes through Code Mode, not directly to your A
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  Chrome DevTools Provider (configured in .utcp_config.json)     │
-│  - 26 tools via chrome_devtools_1.chrome_devtools_1_{tool}      │
+│  - 29 tools via chrome_devtools_1.chrome_devtools_1_{tool}      │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-Chrome DevTools' 26 MCP tools would consume roughly 78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
+Chrome DevTools' 29 MCP tools would consume roughly 78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
 
 ### Performance Targets
 
@@ -177,10 +177,10 @@ Chrome DevTools' 26 MCP tools would consume roughly 78k tokens if exposed native
 
 ### Required Tools
 
-- **Node.js 18 or higher**
+- **Node.js 20 or higher** (browser-debugger-cli declares `engines.node >=20.0.0`)
   ```bash
   node --version
-  # Should show v18.x or higher
+  # Should show v20.x or higher
   ```
 
 - **npm** (comes with Node.js)
@@ -223,8 +223,10 @@ export CHROME_PATH="/usr/bin/chromium-browser"
 ### Step 1: Install browser-debugger-cli
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
+
+The version pin is deliberate. Later tags, including the moving `alpha` and `latest` tags, change bdg behavior that these docs describe. The docs in this packet describe 0.6.10. Move the pin only after you re-check the docs against the new version.
 
 ### Step 2: Verify the binary
 
@@ -235,8 +237,8 @@ command -v bdg || echo "Installation failed"
 # Check version
 bdg --version
 
-# List available CDP domains
-bdg --list
+# List available CDP domains (prints JSON)
+bdg cdp --list
 ```
 
 ### Step 3: Test basic operation
@@ -246,10 +248,10 @@ bdg --list
 bdg https://example.com 2>&1
 
 # Take a screenshot
-bdg screenshot /tmp/test.png 2>&1
+bdg dom screenshot /tmp/test.png 2>&1
 
 # Check console logs
-bdg console logs 2>&1
+bdg console --list 2>&1
 
 # Stop the session
 bdg stop 2>&1
@@ -276,11 +278,11 @@ source ~/.zshrc
 
 Run these checks to confirm prerequisites are met:
 
-| Check         | Command                  | Expected                     |
-| ------------- | ------------------------ | ---------------------------- |
-| CLI installed | `command -v bdg`         | Path to bdg binary           |
-| Version       | `bdg --version`          | `browser-debugger-cli@x.x.x` |
-| CDP domains   | `bdg --list \| head -5`  | `Page, DOM, Network...`      |
+| Check         | Command                          | Expected                     |
+| ------------- | -------------------------------- | ---------------------------- |
+| CLI installed | `command -v bdg`                 | Path to bdg binary           |
+| Version       | `bdg --version`                  | A bare version, e.g. `0.6.10` |
+| CDP domains   | `bdg cdp --list \| jq '.count'`  | `53`                         |
 
 ❌ **STOP if validation fails.** Fix the issue before continuing.
 
@@ -291,7 +293,7 @@ Confirm CLI installation is complete:
 | Check          | Command                             | Expected          |
 | -------------- | ----------------------------------- | ----------------- |
 | Session starts | `bdg https://example.com 2>&1`      | No errors         |
-| Screenshot     | `bdg screenshot /tmp/test.png 2>&1` | File created      |
+| Screenshot     | `bdg dom screenshot /tmp/test.png 2>&1` | File created  |
 | Session stops  | `bdg stop 2>&1`                     | Clean exit        |
 
 ❌ **STOP if validation fails.** Review [Troubleshooting](#9-troubleshooting) before continuing.
@@ -311,7 +313,7 @@ When using MCP, Chrome DevTools is a Code Mode provider, not a standalone MCP se
 | **Configuration**  | Chrome DevTools goes in `.utcp_config.json`, not `opencode.json`               |
 | **Access Method**  | Tools are accessed via Code Mode's `call_tool_chain()`                         |
 | **Prerequisite**   | Code Mode MCP must be installed first. See [Code Mode INSTALL-GUIDE.md](../../mcp-code-mode/INSTALL-GUIDE.md) section 4 |
-| **Context Cost**   | Your AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools |
+| **Context Cost**   | Your AI sees only 4 Code Mode tools (~1.6k tokens), not 29 Chrome DevTools tools |
 | **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                              |
 
 ### When to Use MCP
@@ -386,11 +388,13 @@ Register multiple instances for parallel testing. Each needs `--isolated=true`.
 
 ### Step 3: Verify MCP tools
 
-```typescript
-// In Code Mode context
-const tools = await list_tools();
-console.log(tools.filter(t => t.includes('chrome_devtools')));
-// Expected: chrome_devtools_1_navigate_page, chrome_devtools_1_take_screenshot, etc.
+Call Code Mode's `list_tools` tool from your AI client. It takes no arguments and returns every registered tool name. `list_tools` is a Code Mode MCP tool, not a function inside `call_tool_chain` code.
+
+```
+list_tools()
+// Expected entries include the dotted registry names:
+// chrome_devtools_1.chrome_devtools_1.navigate_page, chrome_devtools_1.chrome_devtools_1.take_screenshot, ...
+// Inside call_tool_chain code, call them as chrome_devtools_1.chrome_devtools_1_navigate_page({...})
 ```
 
 ### Validation: `phase_3_complete`
@@ -481,7 +485,7 @@ export CHROME_FLAGS="--disable-gpu --disable-dev-shm-usage --remote-debugging-ad
 # Complete CLI verification in one command
 bdg --version 2>&1 && \
   bdg https://example.com 2>&1 && \
-  bdg screenshot /tmp/verify.png 2>&1 && \
+  bdg dom screenshot /tmp/verify.png 2>&1 && \
   bdg stop 2>&1 && \
   ls -la /tmp/verify.png && \
   echo "SUCCESS: All checks passed" || \
@@ -493,11 +497,11 @@ bdg --version 2>&1 && \
 | #   | Check          | Command                             | Expected Result                 |
 | --- | -------------- | ----------------------------------- | ------------------------------- |
 | 1   | CLI installed  | `command -v bdg`                    | `/usr/local/bin/bdg` or similar |
-| 2   | Version        | `bdg --version`                     | `browser-debugger-cli@x.x.x`   |
-| 3   | CDP domains    | `bdg --list \| wc -l`               | 53+ domains                     |
+| 2   | Version        | `bdg --version`                     | A bare version, e.g. `0.6.10`   |
+| 3   | CDP domains    | `bdg cdp --list \| jq '.count'`     | `53`                            |
 | 4   | Session start  | `bdg https://example.com 2>&1`      | No errors                       |
-| 5   | Session status | `bdg status 2>&1`                   | `{"state": "active"}`           |
-| 6   | Screenshot     | `bdg screenshot /tmp/test.png 2>&1` | File created                    |
+| 5   | Session status | `bdg status --json \| jq '.active'` | `true`                          |
+| 6   | Screenshot     | `bdg dom screenshot /tmp/test.png 2>&1` | File created                |
 | 7   | Session stop   | `bdg stop 2>&1`                     | Clean exit                      |
 
 ### Verify in Your AI Client
@@ -531,7 +535,7 @@ Captures can hold live session cookies and bearer tokens. The patterns write the
 
 ```bash
 bdg https://example.com 2>&1
-bdg screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 bdg stop 2>&1
 ```
 
@@ -539,7 +543,7 @@ bdg stop 2>&1
 
 ```bash
 bdg https://example.com 2>&1
-bdg console logs 2>&1 | jq '.[] | select(.level == "error")'
+bdg console --list --json 2>&1 | jq '.messages[] | select(.type == "error")'
 bdg stop 2>&1
 ```
 
@@ -551,7 +555,7 @@ SCRATCH="${TMPDIR:-/tmp}"
 bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 sleep 5
-bdg har export "$SCRATCH/network-trace.har" 2>&1
+bdg network har "$SCRATCH/network-trace.har" 2>&1
 bdg stop 2>&1
 
 # Analyze slow requests
@@ -565,10 +569,10 @@ bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Get cookies (values are live secrets, so list names and domains only)
-bdg network cookies 2>&1 | jq 'map({name, domain})'
+bdg network getCookies --json 2>&1 | jq 'map({name, domain})'
 
 # Set a cookie (use a throwaway value, never a real session token)
-bdg cdp Network.setCookie '{
+bdg cdp Network.setCookie --params '{
   "name": "auth_token",
   "value": "<throwaway-value>",
   "domain": "example.com",
@@ -580,36 +584,36 @@ bdg stop 2>&1
 
 ### Pattern 5: Single Instance (MCP Fallback)
 
-When CLI is not sufficient, use Code Mode:
+When CLI is not sufficient, use Code Mode. Tool calls inside `call_tool_chain` return their result directly, so write them without `await`. Code Mode runs the code in a non-async function and rejects a top-level `await`.
 
 ```typescript
 call_tool_chain(`
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
-  const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-  const logs = await chrome_devtools_1.chrome_devtools_1_list_console_messages({});
+  chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
+  const screenshot = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  const logs = chrome_devtools_1.chrome_devtools_1_list_console_messages({});
   return { screenshot, logs };
 `)
 ```
 
 ### Pattern 6: Parallel Instances (MCP)
 
-Compare multiple sites at the same time:
+Compare two sites in two isolated browsers. The calls run in order, one instance after the other:
 
 ```typescript
 call_tool_chain(`
   // Instance 1: Production
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({
+  chrome_devtools_1.chrome_devtools_1_navigate_page({
     url: "https://production.example.com"
   });
 
   // Instance 2: Staging (isolated browser)
-  await chrome_devtools_2.chrome_devtools_2_navigate_page({
+  chrome_devtools_2.chrome_devtools_2_navigate_page({
     url: "https://staging.example.com"
   });
 
   // Capture both screenshots
-  const prod = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-  const staging = await chrome_devtools_2.chrome_devtools_2_take_screenshot({});
+  const prod = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  const staging = chrome_devtools_2.chrome_devtools_2_take_screenshot({});
 
   return { production: prod, staging: staging };
 `)
@@ -625,7 +629,7 @@ call_tool_chain(`
 | Cookie manipulation      | CLI  | Full CDP access             |
 | Multi-tool workflow      | MCP  | Chain with other tools      |
 | Parallel browser testing | MCP  | Multiple isolated instances |
-| CDP method discovery     | CLI  | `--list`, `--describe`      |
+| CDP method discovery     | CLI  | `cdp --list`, `cdp --describe` |
 
 ### bdg Command Reference
 
@@ -639,31 +643,31 @@ call_tool_chain(`
 
 **Helper Commands**
 
-| Command                      | Description             | Example                             |
-| ---------------------------- | ----------------------- | ----------------------------------- |
-| `bdg screenshot <path>`      | Capture page screenshot | `bdg screenshot /tmp/test.png 2>&1` |
-| `bdg console logs`           | Get console messages    | `bdg console logs 2>&1 \| jq '.'`   |
-| `bdg network cookies`        | Get all cookies         | `bdg network cookies 2>&1 \| jq 'map({name, domain})'` |
-| `bdg dom query "<selector>"` | Query DOM elements      | `bdg dom query ".my-class" 2>&1`    |
-| `bdg js "<expression>"`      | Execute JavaScript      | `bdg js "document.title" 2>&1`      |
-| `bdg har export <path>`      | Export network as HAR   | `bdg har export /tmp/trace.har 2>&1` |
+| Command                         | Description             | Example                                 |
+| ------------------------------- | ----------------------- | --------------------------------------- |
+| `bdg dom screenshot <path>`     | Capture page screenshot | `bdg dom screenshot /tmp/test.png 2>&1` |
+| `bdg console --list`            | Get console messages    | `bdg console --list --json 2>&1 \| jq '.messages'` |
+| `bdg network getCookies --json` | Get all cookies as JSON | `bdg network getCookies --json 2>&1 \| jq 'map({name, domain})'` |
+| `bdg dom query "<selector>"`    | Query DOM elements      | `bdg dom query ".my-class" 2>&1`        |
+| `bdg dom eval "<expression>"`   | Execute JavaScript      | `bdg dom eval "document.title" 2>&1`    |
+| `bdg network har <path>`        | Export network as HAR   | `bdg network har /tmp/trace.har 2>&1`   |
 
 **Discovery Commands**
 
-| Command                   | Description               | Example                                 |
-| ------------------------- | ------------------------- | --------------------------------------- |
-| `bdg --version`           | Show CLI version          | `bdg --version`                         |
-| `bdg --list`              | List all CDP domains (53) | `bdg --list`                            |
-| `bdg --describe <domain>` | Show domain methods       | `bdg --describe Page`                   |
-| `bdg --describe <method>` | Show method signature     | `bdg --describe Page.captureScreenshot` |
-| `bdg --search <term>`     | Search CDP methods        | `bdg --search screenshot`               |
+| Command                           | Description               | Example                                     |
+| --------------------------------- | ------------------------- | ------------------------------------------- |
+| `bdg --version`                   | Show CLI version          | `bdg --version`                             |
+| `bdg cdp --list`                  | List all CDP domains (53) | `bdg cdp --list`                            |
+| `bdg cdp <domain> --list`         | List a domain's methods   | `bdg cdp Page --list`                       |
+| `bdg cdp <method> --describe`     | Show method signature     | `bdg cdp Page.captureScreenshot --describe` |
+| `bdg cdp --search <term>`         | Search CDP methods        | `bdg cdp --search screenshot`               |
 
 **Raw CDP Commands**
 
-| Command                     | Description         | Example                                                     |
-| --------------------------- | ------------------- | ----------------------------------------------------------- |
-| `bdg cdp <method>`          | Execute CDP method  | `bdg cdp Page.reload 2>&1`                                  |
-| `bdg cdp <method> '<json>'` | CDP with parameters | `bdg cdp Network.setCookie '{"name":"x","value":"y"}' 2>&1` |
+| Command                              | Description         | Example                                                              |
+| ------------------------------------ | ------------------- | -------------------------------------------------------------------- |
+| `bdg cdp <method>`                   | Execute CDP method  | `bdg cdp Page.reload 2>&1`                                           |
+| `bdg cdp <method> --params '<json>'` | CDP with parameters | `bdg cdp Network.setCookie --params '{"name":"x","value":"y"}' 2>&1` |
 
 **Error Handling Pattern**
 
@@ -684,10 +688,10 @@ bdg "$URL" 2>&1 || exit 1
 
 | Feature            | CLI (bdg)                                   | MCP (Code Mode)                         |
 | ------------------ | ------------------------------------------- | --------------------------------------- |
-| **Installation**   | `npm install -g browser-debugger-cli@alpha` | Code Mode + UTCP config                 |
+| **Installation**   | `npm install -g browser-debugger-cli@0.6.10` | Code Mode + UTCP config                 |
 | **Token Cost**     | Lowest                                      | Medium                                  |
-| **CDP Access**     | All 644 methods                             | MCP-exposed subset (26 tools)           |
-| **Self-Discovery** | `--list`, `--describe`, `--search`          | `search_tools()`                        |
+| **CDP Access**     | All 644 methods                             | MCP-exposed subset (29 tools)           |
+| **Self-Discovery** | `cdp --list`, `cdp --describe`, `cdp --search` | `search_tools()`                        |
 | **Best For**       | Quick debugging, inspection                 | Multi-tool workflows, parallel browsers |
 
 **Core capabilities available through both approaches:**
@@ -715,22 +719,22 @@ trap "bdg stop 2>&1" EXIT INT TERM
 SCRATCH="${TMPDIR:-/tmp}"
 
 # Verify CLI is available
-command -v bdg || { echo "Install: npm install -g browser-debugger-cli@alpha"; exit 1; }
+command -v bdg || { echo "Install: npm install -g browser-debugger-cli@0.6.10"; exit 1; }
 
 # Start session
 bdg https://example.com 2>&1 || exit 1
 
 # Capture initial state
-bdg screenshot "$SCRATCH/before.png" 2>&1
-bdg console logs 2>&1 > "$SCRATCH/console-before.json"
+bdg dom screenshot "$SCRATCH/before.png" 2>&1
+bdg console --list --json 2>&1 > "$SCRATCH/console-before.json"
 
 # Enable network monitoring
 bdg cdp Network.enable 2>&1
 sleep 3
 
 # Export network trace
-bdg har export "$SCRATCH/session.har" 2>&1
-bdg screenshot "$SCRATCH/after.png" 2>&1
+bdg network har "$SCRATCH/session.har" 2>&1
+bdg dom screenshot "$SCRATCH/after.png" 2>&1
 
 echo "Debug session complete. Files in $SCRATCH: before.png, after.png, session.har, console-before.json"
 ```
@@ -741,13 +745,13 @@ echo "Debug session complete. Files in $SCRATCH: before.png, after.png, session.
 bdg https://example.com 2>&1
 
 # Get page title
-bdg js "document.title" 2>&1
+bdg dom eval "document.title" 2>&1
 
 # Count links on page
-bdg js "document.querySelectorAll('a').length" 2>&1
+bdg dom eval "document.querySelectorAll('a').length" 2>&1
 
 # Get all link hrefs
-bdg js "Array.from(document.querySelectorAll('a')).map(a => a.href)" 2>&1
+bdg dom eval "Array.from(document.querySelectorAll('a')).map(a => a.href)" 2>&1
 
 bdg stop 2>&1
 ```
@@ -761,11 +765,11 @@ bdg https://example.com 2>&1
 bdg dom query ".nav-link" 2>&1
 
 # Click a button via JavaScript
-bdg js "document.querySelector('#submit-btn').click()" 2>&1
+bdg dom eval "document.querySelector('#submit-btn').click()" 2>&1
 
 # Check result after click
-bdg screenshot "${TMPDIR:-/tmp}/post-click.png" 2>&1
-bdg console logs 2>&1
+bdg dom screenshot "${TMPDIR:-/tmp}/post-click.png" 2>&1
+bdg console --list 2>&1
 
 bdg stop 2>&1
 ```
@@ -780,7 +784,7 @@ bdg cdp Network.enable 2>&1
 
 # Wait for full page load activity
 sleep 5
-bdg har export "$SCRATCH/network-trace.har" 2>&1
+bdg network har "$SCRATCH/network-trace.har" 2>&1
 bdg stop 2>&1
 
 # Find slow requests (over 1 second)
@@ -798,17 +802,17 @@ rm -f "$SCRATCH/network-trace.har"
 ```typescript
 // Compare production and staging side by side
 call_tool_chain(`
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({
+  chrome_devtools_1.chrome_devtools_1_navigate_page({
     url: "https://production.example.com"
   });
-  await chrome_devtools_2.chrome_devtools_2_navigate_page({
+  chrome_devtools_2.chrome_devtools_2_navigate_page({
     url: "https://staging.example.com"
   });
 
-  const prodScreenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
-  const stagingScreenshot = await chrome_devtools_2.chrome_devtools_2_take_screenshot({});
-  const prodLogs = await chrome_devtools_1.chrome_devtools_1_list_console_messages({});
-  const stagingLogs = await chrome_devtools_2.chrome_devtools_2_list_console_messages({});
+  const prodScreenshot = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  const stagingScreenshot = chrome_devtools_2.chrome_devtools_2_take_screenshot({});
+  const prodLogs = chrome_devtools_1.chrome_devtools_1_list_console_messages({});
+  const stagingLogs = chrome_devtools_2.chrome_devtools_2_list_console_messages({});
 
   return {
     production: { screenshot: prodScreenshot, logs: prodLogs },
@@ -828,10 +832,10 @@ bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Export current cookies
-bdg network cookies 2>&1 > "$SCRATCH/cookies.json"
+bdg network getCookies --json 2>&1 > "$SCRATCH/cookies.json"
 
 # Inject an auth token (use a throwaway value, never a real session token)
-bdg cdp Network.setCookie '{
+bdg cdp Network.setCookie --params '{
   "name": "auth_token",
   "value": "<throwaway-value>",
   "domain": "example.com",
@@ -842,7 +846,7 @@ bdg cdp Network.setCookie '{
 
 # Reload to test authenticated state
 bdg cdp Page.reload 2>&1
-bdg screenshot "$SCRATCH/authenticated.png" 2>&1
+bdg dom screenshot "$SCRATCH/authenticated.png" 2>&1
 
 bdg stop 2>&1
 
@@ -858,7 +862,7 @@ rm -f "$SCRATCH/cookies.json"
 
 | Error | Cause | Fix |
 | ----- | ----- | --- |
-| `command not found: bdg` | CLI not installed or not in PATH | Run `npm install -g browser-debugger-cli@alpha`. Check PATH with `npm config get prefix` |
+| `command not found: bdg` | CLI not installed or not in PATH | Run `npm install -g browser-debugger-cli@0.6.10`. Check PATH with `npm config get prefix` |
 | `Error: Could not find Chrome` | Chrome path not set or binary missing | Set `CHROME_PATH` env var. See path examples below |
 | `Error: No active session` | Session not started or crashed | Run `bdg stop 2>&1` then retry `bdg <url> 2>&1` |
 | `Failed to move to new namespace` | Linux sandbox restriction | Enable user namespaces or set `CHROME_FLAGS`. See Linux sandbox section |
@@ -871,7 +875,7 @@ rm -f "$SCRATCH/cookies.json"
 
 ```bash
 # Install bdg
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 
 # Or fix PATH
 npm config get prefix
@@ -935,7 +939,7 @@ export CHROME_FLAGS="--no-sandbox"
 wsl --install
 
 # Inside WSL, install bdg
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 ### MCP: Tool Not Found
@@ -994,17 +998,41 @@ lsof -i :9222
 | **MCP** | `.mcp.json` / `opencode.json` | Code Mode server             |
 | **MCP** | `.utcp_config.json`           | Chrome DevTools registration |
 
-### MCP Tools Reference (26 tools)
+### MCP Tools Reference (29 tools)
 
-| Tool                    | Purpose            | CLI Equivalent                                   |
-| ----------------------- | ------------------ | ------------------------------------------------ |
-| `navigate_page`         | Navigate to URL    | `bdg <url>`                                      |
-| `take_screenshot`       | Capture screenshot | `bdg screenshot`                                 |
-| `list_console_messages` | Get console logs   | `bdg console logs`                               |
-| `resize_page`           | Set viewport size  | `bdg cdp Emulation.setDeviceMetricsOverride`     |
-| `click`                 | Click element      | `bdg js "document.querySelector('...').click()"` |
-| `type_text`             | Type into element  | `bdg js "..."`                                   |
-| `get_page_content`      | Get page HTML      | `bdg dom query "html"`                           |
+The pinned `chrome-devtools-mcp@0.26.0` exposes these 29 tools on each instance. The list comes from Code Mode `list_tools()` on `chrome_devtools_1`. Run discovery yourself before you rely on a name, since a server upgrade can change it.
+
+| Tool                          | Purpose                                  | CLI Equivalent                                   |
+| ----------------------------- | ---------------------------------------- | ------------------------------------------------ |
+| `navigate_page`               | Navigate to URL                          | `bdg <url>`                                      |
+| `new_page`                    | Open a new tab                           | None                                             |
+| `list_pages`                  | List open tabs                           | None                                             |
+| `select_page`                 | Switch the active tab                    | None                                             |
+| `close_page`                  | Close a tab                              | None                                             |
+| `wait_for`                    | Wait for text to appear                  | None                                             |
+| `take_screenshot`             | Capture screenshot                       | `bdg dom screenshot <path>`                      |
+| `take_snapshot`               | Text snapshot of the page's a11y tree    | `bdg dom a11y`                                   |
+| `take_memory_snapshot`        | Capture a heap snapshot                  | None                                             |
+| `list_console_messages`       | Get console logs                         | `bdg console --list`                             |
+| `get_console_message`         | Get one console message                  | None                                             |
+| `list_network_requests`       | List network requests                    | `bdg network list`                               |
+| `get_network_request`         | Get one network request                  | None                                             |
+| `evaluate_script`             | Run JavaScript in the page               | `bdg dom eval "<expression>"`                    |
+| `click`                       | Click element                            | `bdg dom click <selector>`                       |
+| `hover`                       | Hover over element                       | None                                             |
+| `drag`                        | Drag one element onto another            | None                                             |
+| `fill`                        | Fill an input                            | `bdg dom fill <selector> <value>`                |
+| `fill_form`                   | Fill several inputs at once              | None                                             |
+| `type_text`                   | Type into the focused element            | None                                             |
+| `press_key`                   | Press a key or key combination           | `bdg dom pressKey <selector> <key>`               |
+| `upload_file`                 | Upload a file through an input           | None                                             |
+| `handle_dialog`               | Accept or dismiss a browser dialog       | None                                             |
+| `resize_page`                 | Set viewport size                        | `bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'` |
+| `emulate`                     | Emulate network, CPU or device settings  | `bdg cdp Emulation.<method> --params '<json>'`   |
+| `performance_start_trace`     | Start a performance trace                | None                                             |
+| `performance_stop_trace`      | Stop the trace and return results        | None                                             |
+| `performance_analyze_insight` | Explain one trace insight                | None                                             |
+| `lighthouse_audit`            | Run a Lighthouse audit                   | None                                             |
 
 **Tool naming convention:** `{instance}.{instance}_{tool_name}`
 
@@ -1022,34 +1050,34 @@ chrome_devtools_2.chrome_devtools_2_navigate_page({ url: "..." })  // parallel i
 ### Installation
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 ### Discovery
 
 ```bash
-bdg --list                    # List all CDP domains
-bdg --describe Page           # Show domain methods
-bdg --search screenshot       # Find methods by keyword
+bdg cdp --list                # List all CDP domains
+bdg cdp Page --list           # Show domain methods
+bdg cdp --search screenshot   # Find methods by keyword
 ```
 
 ### Session Control
 
 ```bash
 bdg <url>                     # Start session
-bdg status                    # Check session state
+bdg status                    # Check whether a session is active
 bdg stop                      # Stop session
 ```
 
 ### Common Operations
 
 ```bash
-bdg screenshot <path>         # Capture screenshot
-bdg console logs              # Get console messages
-bdg network cookies | jq 'map({name, domain})'  # List cookie names and domains, never values
+bdg dom screenshot <path>     # Capture screenshot
+bdg console --list            # Get console messages
+bdg network getCookies --json | jq 'map({name, domain})'  # List cookie names and domains, never values
 bdg dom query "<selector>"    # Query DOM
-bdg js "<expression>"         # Execute JavaScript
-bdg har export <path>         # Export HAR file
+bdg dom eval "<expression>"   # Execute JavaScript
+bdg network har <path>        # Export HAR file
 ```
 
 ### MCP Quick Start
@@ -1057,8 +1085,8 @@ bdg har export <path>         # Export HAR file
 ```typescript
 // When CLI is not sufficient, use Code Mode:
 call_tool_chain(`
-  await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
-  const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+  chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "https://example.com" });
+  const screenshot = chrome_devtools_1.chrome_devtools_1_take_screenshot({});
   return screenshot;
 `)
 ```

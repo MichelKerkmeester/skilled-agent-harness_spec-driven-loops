@@ -1,0 +1,21 @@
+Lineage complete. Summary:
+
+**Run:** 7/7 iterations (stop reason `maxIterationsReached`), all four dimensions covered — traceability (1, 5, 6, 7), correctness (2), security (3), maintainability (4). Every iteration recorded through the append gateway (receipts seq 2–9) and reduced with `reduce-state.cjs`.
+
+**Verdict: CONDITIONAL** — 0 P0, 2 P1, 3 P2, no search debt.
+
+| ID | Sev | Finding |
+|---|---|---|
+| R2-P1-001 | P1 | `reduce-state.cjs:713` publishes `findingClass`/`scopeProof`/`affectedSurfaceHints` as null for a finding whose delta row omits them; the narrative parser (`:923`) never reads those lines and a run with delta rows skips its narrative (`:1224`). Observed live in this lineage's own registry. |
+| R3-P1-001 | P1 | `skill-advisor-brief.ts:191` renders the child process's `policy`/`ownerSkillId` for a tracked command, while `skill-advisor-cli.ts:1566` prints the tracked ones — a child row can present `/deep:review` as `(run)`, which NFR-S01 forbids. The only ownership test cannot see it (its row's child policy equals the tracked one). |
+| R1-P2-001 | P2 | AC-009/030/037/042 state `cases=359` on "the final tree"; the fixture holds 368. |
+| R5-P2-001 | P2 | `.skilled/changelog/skilled/v4.2.0.0.md:759` quotes 3,518 passed / 359 cases; the tree reads 3,557 / 368 (REQ-022's "final suite count"). |
+| R4-P2-001 | P2 | `lib/README.md:146` states the stuck-run doctor rule without REQ-024's run-refusing exception. |
+
+**Traceability protocols:** `spec_code` **pass** (53 REQ symbols resolve at their cited lines, all 9 ADRs exist, newest nine requirements implemented in both gate copies); `checklist_evidence` **partial** — swept to completion (121 of 122 ticks re-checkable and backed, every evidence tail resolves, run-evidence rows reproduce, 77 scope paths clean) but cannot pass while the two count findings stand.
+
+**Artifacts** (all inside `…/review/lineages/deepseek-max-2`): `deep-review-config.json`, `deep-review-state.jsonl` (config + 7 iterations + `synthesis_complete` carrying `maxIterationsReached`, no `terminal_gates` row), findings registry, strategy, dashboard, `review-report.md` (all 10 sections + Dimension Expansion Map), `resource-map.md`, 7 iteration files and 7 deltas. No file outside the lineage was written (packet docs are content-identical under `git diff`).
+
+Operator's next action: patch the two P1s (W1/W2) and the three count/doc drift cells (W3/W4) — that is what closes AC-040 on the next rerun.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-2

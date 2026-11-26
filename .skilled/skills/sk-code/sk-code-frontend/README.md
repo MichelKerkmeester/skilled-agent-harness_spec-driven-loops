@@ -4,7 +4,7 @@ description: "Stack-agnostic web frontend practice with a five-pass Figma check,
 trigger_phrases:
   - "web frontend practice"
   - "figma to code check"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # sk-code-frontend
@@ -146,7 +146,7 @@ Reach for the packet when a web interface change needs guidance that the project
 - A screen looks wrong or needs a visual review.
 - A built screen needs comparison with its Figma frame.
 
-The packet owns guidance, not process. `sk-code-quality` edits scoped files and runs the author gate. `sk-code-review` produces findings and leaves the files alone. Browser evidence comes from `mcp-chrome-devtools`, and a measured style reference comes from `sk-design-md-generator` before implementation starts.
+The packet owns guidance, not process. `sk-code-quality` edits scoped files and runs the author gate. `sk-code-review` produces findings and leaves the files alone. Browser evidence comes from the `mcp-browser-use` hub in whichever browser mode is installed, and a measured style reference comes from `sk-design-md-generator` before implementation starts.
 
 ### Related Skills
 

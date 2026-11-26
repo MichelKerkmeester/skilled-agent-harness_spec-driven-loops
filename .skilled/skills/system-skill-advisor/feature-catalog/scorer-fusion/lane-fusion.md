@@ -6,7 +6,7 @@ trigger_phrases:
   - "lane weights canonical"
   - "fusion scorer"
   - "advisor analytical fusion"
-version: 0.8.6.0
+version: 0.8.7.0
 ---
 
 # Analytical Lane Fusion
@@ -19,7 +19,7 @@ Combine evidence from four registered lanes into a single routing score with doc
 
 ## 2. HOW IT WORKS
 
-`lib/scorer/fusion.ts` fuses four lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
+`lib/scorer/fusion.ts` fuses four lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes. A `deprecated` skill is also held out of default routing unless the prompt names it (`isDefaultRoutable` in `lib/scorer/fusion.ts`).
 
 | Lane | Weight | Source |
 | --- | --- | --- |

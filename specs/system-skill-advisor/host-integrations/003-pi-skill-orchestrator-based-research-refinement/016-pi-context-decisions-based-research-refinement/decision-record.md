@@ -36,6 +36,11 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Once the fixes pass, the worktree 474 branch is merged to main and pushed. | Not stated. | none | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md |
 | Q002 | A fix phase is opened for the 9 P2 findings of the packet 016 deep review. | Not stated. | none | specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/spec.md |
+| Q003 | Run the five DeepSeek passes and the three native Opus passes as two generations in this packet, since the contract refuses a native fan-out lineage and --extend keeps the executor. | Not stated. | None | review/review-report.md, review-archive/2026-11-23T21-41-09Z/ |
+| Q004 | Use deepseek-v4-1-flash-max for the Devin passes. | Not stated. | None | review-archive/2026-11-23T21-41-09Z/deep-review-config.json |
+| Q005 | Review the advisor's runtime and hooks code, 154 source files, with prose docs out of scope unless code contradicts them. | Not stated. | None | review/deep-review-config.json reviewScopeFiles |
+| Q006 | Commit both generations' review packets, merge origin/main, push main and remove the worktree. | Not stated. | None | review/ |
+| Q007 | Switch the DeepSeek passes to cli-pi with deepseek-v4.1-flash-1017 after Devin's daily quota ran out, and resume the same generation. | Not stated. | None | review-archive/2026-11-23T21-41-09Z/deep-review-state.jsonl run_resumed event |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -82,6 +87,106 @@ Not now
 Answer:
 ```text
 Open a fix phase (Recommended)
+```
+
+### Q003
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01AGDTxJJx1JRHL4AJ4RyqLN:1 -->
+
+Question:
+```text
+The deep-review contract refuses a native lineage inside a fan-out (deep-review-presentation.txt line 53: 'cli-* kinds only, since a native lineage is refused in fan-out'). So 5 Devin passes plus 3 native Opus passes can't run as one parallel matrix. How should I run them?
+```
+
+Options:
+```text
+Devin 5, then native 3 (Recommended)
+Fan-out, Opus via Claude CLI
+Two separate reviews
+```
+
+Answer:
+```text
+Devin 5, then native 3 (Recommended)
+```
+
+### Q004
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01AGDTxJJx1JRHL4AJ4RyqLN:2 -->
+
+Question:
+```text
+Devin's allowlist has two DeepSeek flash-max models. Which one?
+```
+
+Options:
+```text
+deepseek-v4-1-flash-max (Recommended)
+deepseek-v4-flash-max
+```
+
+Answer:
+```text
+deepseek-v4-1-flash-max (Recommended)
+```
+
+### Q005
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01AGDTxJJx1JRHL4AJ4RyqLN:3 -->
+
+Question:
+```text
+What counts as 'system skill advisor logic' for the review target?
+```
+
+Options:
+```text
+Runtime + hooks code (Recommended)
+Routing and scoring only
+Whole skill incl. docs
+```
+
+Answer:
+```text
+Runtime + hooks code (Recommended)
+```
+
+### Q006
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_01TiPzteERrXCQuzxaDkZ3Cf:1 -->
+
+Question:
+```text
+When both generations finish, what should happen to the review packets?
+```
+
+Options:
+```text
+Commit, merge, push (Recommended)
+Commit only
+Leave uncommitted
+```
+
+Answer:
+```text
+Commit, merge, push (Recommended)
+```
+
+### Q007
+<!-- source: claude:0b81ad2f-04a7-4ad7-b174-0b3f9930b833:toolu_018E4GtEBbb2Dm9CMJvMzTQQ:0 -->
+
+Question:
+```text
+Devin refused iteration 1: "Your daily usage quota has been exhausted" (resource_exhausted). The run is halted, the lock released, and no pass was spent. The workflow says to switch executor or wait, then resume the same run. How should the 5 DeepSeek passes run?
+```
+
+Options:
+```text
+cli-pi, DeepSeek v4.1 flash (Recommended)
+cli-opencode, opencode-go route
+Native 3 now, Devin later
+Wait for Devin
+```
+
+Answer:
+```text
+cli-pi, DeepSeek v4.1 flash (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

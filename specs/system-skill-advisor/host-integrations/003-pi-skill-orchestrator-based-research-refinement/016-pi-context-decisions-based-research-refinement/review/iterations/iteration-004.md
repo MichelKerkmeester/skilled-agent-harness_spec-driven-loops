@@ -1,26 +1,22 @@
-# Iteration 004 - D4 Maintainability
+# Iteration 4: correctness, deferred scans and generation-4 recheck
 
 ## Dispatcher
 
-- Run: 4 of 5. Session `2026-11-19T04:18:26.591Z`, generation 1, lineageMode `new`.
-- Dimension: maintainability.
-- Focus (from strategy Next Focus): duplicated prompt-policy reads on one turn, the TS/Python strip twins, the length and crash-path coupling of `handleClaudeUserPromptSubmit`, and test fixture ownership across the vitest and Python suites.
-- Iteration number: the state log holds 3 iteration records, so this is iteration 4. That matches the dispatch.
-- Operator focus: the change range `git diff 538d2f789ec 57d3f5d9159^2` was read for `skill-advisor-brief.ts`, `skill-advisor-cli-fallback.ts`, `hooks/dsh/prompt-advisor.mjs` and `skill_advisor.py`. All four shipped features were checked for duplicated logic and for whether their tests would catch a regression. Evidence folders and the 012 verdict table were not read.
+- Run 4 of 7 (extended run, generation 5, lineageMode completed-continue, session 2026-11-23T21:41:17.101Z). Native executor, LEAF.
+- Prompt pack: `review/prompts/iteration-4.md`. HEAD `52f0bcb9a98`.
+- Operator focus: the advisor logic in `runtime/` and `hooks/`. This pass covered it through the lifecycle and derived libraries, every handler, and the generation-4 P2s in the scorer, the policy plan, the freshness lock, the Pi hook and the Python fallback.
+
+## Dimension
+
+Correctness. Three tasks: (1) the deferred `lifecycle_and_derived_defect_scan`, (2) the deferred `handler_defect_scan`, (3) recheck of the seven generation-4 P2s the v5-r3 report lists as not rechecked.
 
 ## Files Reviewed
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:91-93, 144-272`
-- `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1005-1018, 4785-4846, 5320-5335`
-- `.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:415-490`
-- `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:355-432, 505-660`
-- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:215-240` (range diff)
-- `.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs` (range diff)
-- `.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:15-28`
-- `.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2530-2600`
-- `.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json` (24 rows)
-- `.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1060-1130` and the crash-path test names at `:495-1060`
-- Measured on the shipped dist: `runtime/dist/runtime/lib/prompt-policy.js` (`shouldFireAdvisor` on the receipt-test prompts).
+- Read in full: every file in `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/` (age-haircut, archive-handling, rollback, schema-migration, status-values, supersession) and `.skilled/skills/system-skill-advisor/runtime/lib/derived/` (anti-stuffing, extract, provenance, sanitizer, sync, trust-lanes).
+- Read in full: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts`, `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts`.
+- Covered by a catch, parse, throw and status-site grep across all 12 handler files, plus targeted reads: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:296-360,530-548`, `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:60-75,200-222,355-395`, `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:238-318`. Not read line by line: the bodies of `advisor-validate.ts` beyond its error sites, and `skill-graph/query.ts`, `status.ts`, `validate.ts` and `propagate-enhances.ts` beyond their catch sites. Iteration 3 read `status.ts`, `validate.ts` and `propagate-enhances.ts`.
+- Caller sweep for the lifecycle and derived exports over `runtime/` and `hooks/`. Live callers are `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1275`, `.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:155` and `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts:94`. Everything else is called only from `runtime/stress-test/`.
+- Recheck reads: `.skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts:1-14`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1108`, `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:18-40`, `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:182,248`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:52,4147`, `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:185-192`, `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:198-230`, `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:125-195`, `.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:35-147`.
 
 ## Findings - New
 
@@ -34,51 +30,94 @@ None.
 
 ### P2 Findings
 
-1. **The fire decision is computed at five call sites on two different inputs, so changing which text the gate reads means editing several sites in step** -- .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:473 -- `buildSkillAdvisorBrief` calls `skippedAdvisorResultFor(prompt)` (`:470`), which runs `shouldFireAdvisor(prompt)` on the raw prompt (`:422`). It then runs the same raw call a second time (`:473`) only to read `metalinguisticMentions` for the diagnostics (`:480-484`). It runs it a third time on the stripped text (`:478`) only to borrow `canonicalPrompt` as a normalizer. The Claude hook keeps its own raw-prompt gate (`hooks/claude/user-prompt-submit.ts:580`). The receipt guard runs a fifth call on the stripped text (`:372,381`), and its comment (`:379-380`) records that the hook's own gate reads the raw prompt. So the two producers decide on the raw prompt while routing and the guard read the stripped prompt, and nothing ties the sites together. The cost shows in R3-P2-001: moving the fire gate to stripped text means changing `skill-advisor-brief.ts:422` (shared by the hook at `:580`), `:473` and the guard comment together. Changing only `:422` would leave the brief's `metalinguisticMention` and `skillNameSuppressions` diagnostics (`:482-483`) computed from text that was never routed. The duplicated raw call at `:473` repeats `:422` exactly and could take its value from that one call.
-   Finding class: duplicated_logic
-   Scope proof: all five call sites are in two in-scope files (`skill-advisor-brief.ts:422,470,473,478`; `user-prompt-submit.ts:372,381,580`). The diagnostics fields are diagnostic only: `skillNameSuppressions` has no reader outside `skill-advisor-brief.ts:89,428,483` (repo search excluding dist and tests).
-   Affected surface hints: `runtime/lib/skill-advisor-brief.ts` `skippedAdvisorResultFor` and `buildSkillAdvisorBrief` (compute one policy result per input and pass it down); `hooks/claude/user-prompt-submit.ts:580` and the guard comment at `:379-380`; a normalizer export from `runtime/lib/prompt-policy.ts` so `:478` stops running the full policy just for `canonicalPrompt`.
-   Case: on the prompt "Earlier you replied: I updated the README with sk-doc conventions and committed it with sk-git. Now: fix that too", `buildSkillAdvisorBrief` evaluates the policy twice on the raw text (`explicit_skill_or_governance_marker`) and once on the stripped text (`work_intent_with_meaningful_tokens`), and its diagnostics come from the raw call while its route comes from the stripped one.
+Each of these is a generation-4 P2 that still holds at HEAD. Generation 5 started a fresh registry, so they are recorded again under new ids with the full path.
 
-2. **The crash catch keeps a null-input branch that the line above it already returns from** -- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:651 -- The crash catch returns `{}` when `!input || typeof input.prompt !== 'string'` (`:643`). Eight lines later it still writes `const delivery = input ? applyDirectiveLifecycle(emitted, input, dependencies) : { effectiveEmitted: emitted }` (`:651-653`). The `: { effectiveEmitted: emitted }` branch cannot run: TypeScript has already narrowed `input` to non-null, and nothing between `:643` and `:651` reassigns it. A reader of the 155-line handler (`:505-659`), whose catch already depends on three `let` locals the try assigns in order (`prompt`, `skippedResult`, `deliveryState` at `:520-523`), is told by this branch that a null-input crash can reach the fallback render. That is false, and a future edit that trusts it could move the `:643` guard and silently ship the undeduplicated fallback.
-   Finding class: dead_code_misleading
-   Scope proof: both lines are in the in-scope hook file. `input` is a parameter (`:506`) and nothing between `:643` and `:651` assigns it.
-   Affected surface hints: `hooks/claude/user-prompt-submit.ts:651-653` (call `applyDirectiveLifecycle` directly); no test change is needed, since the crash tests at `claude-user-prompt-submit-hook.vitest.ts:853-1060` already pin the reachable path.
-   Case: no payload reaches line 651 with `input` null, because a null input or a payload with no prompt string returns `{}` at line 643, so the ternary's else branch never runs.
+1. **The contract-key header names consumers that do not exist** -- .skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts:6 -- The header at :5-9 says the tuples feed `skill_advisor/tools/...` and an `ALLOWED_PARAMETERS` map in `schemas/tool-input-schemas.ts`. `runtime/schemas/` holds no such file, and `ALLOWED_PARAMETERS` appears only in comments (`runtime/tools/advisor-recommend.ts:8`, `runtime/tools/advisor-validate.ts:8`). Recheck of R3-P2-001: holds.
+   - Finding class: documentation-contract drift, phantom consumer.
+   - Scope proof: `advisor-contract-keys.ts` is in reviewScopeFiles; a grep over `runtime/` and `hooks/` finds no `ALLOWED_PARAMETERS` symbol and no `tool-input-schemas` file.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts:5-9`, `.skilled/skills/system-skill-advisor/runtime/tools/advisor-recommend.ts:8`, `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts`.
+   - Case: a maintainer adds a key to the tuple and trusts the header, but the Zod input schema is not derived from it, so the handler parse at `advisor-recommend.ts:641` rejects the new key (inferred from the header, not probed).
+
+2. **scoreAdvisorPrompt is one 366-line pipeline with no stage seam** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1108 -- The function runs from :1108 to the end of the file at :1474. Its order-dependent withhold and handoff steps sit inline. Single-step tests exist (`runtime/tests/scorer/typed-command-owner.vitest.ts`, `runtime/tests/command-meaning-anchor.vitest.ts`), but no test or type pins the order of the steps. Recheck of R4-P2-002: holds; the start line moved from 1104 to 1108.
+   - Finding class: oversized function, implicit ordering invariant.
+   - Scope proof: fusion.ts is in reviewScopeFiles; the span comes from the function-declaration grep and `wc -l`.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1014-1108`, `.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`.
+   - Case: a new withhold step is inserted after the handoff step instead of before it, the ranking changes, and no existing test fails.
+
+3. **The Pi adapter hard-copies the Claude hook budget** -- .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:22 -- `PI_ADVISOR_DEFAULT_BUDGET_MS = 2500` and the copied env parse at :30-34 mirror `DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500` at `hooks/claude/user-prompt-submit.ts:182`. The Claude side parses through `positiveIntFromEnv` (:248). The comment at :21 admits the mirror. The only test that names the Claude constant (`runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:11,144`) does not touch the Pi value, and no test names `PI_ADVISOR_DEFAULT_BUDGET_MS`. Recheck of R4-P2-003: holds.
+   - Finding class: hand-kept duplicate with no guard.
+   - Scope proof: both hook files are in reviewScopeFiles; a test grep for `PI_ADVISOR` and `advisorBudgetMs` finds only the source and a hook doc.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:22-34`, `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:182,248`.
+   - Case: the Claude default is raised to 4000 ms, Pi keeps 2500 plus its 300 ms margin, and Pi's deadline fires while the CLI is still inside the new budget, so Pi silently drops briefs.
+
+4. **The prompt cap and confidence floors are hard-coded in both languages** -- .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:52 -- `ADVISOR_PROMPT_MAX_CHARS = 10_000` appears at `skill_advisor.py:52` and at `runtime/schemas/advisor-tool-schemas.ts:257`. `_LOOP_OWNER_CONFIDENCE_FLOOR = 0.82` at `skill_advisor.py:4147` mirrors the three 0.82 floors at `runtime/lib/scorer/scoring-constants.ts:185-192`. No cross-language test compares them; the vitest hits on `10000`/`0.82` are unrelated literals. Recheck of R4-P2-004: holds, now including the loop-owner floor that the report said was not rechecked.
+   - Finding class: cross-language duplicated constant.
+   - Scope proof: both files are in reviewScopeFiles.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:52,4147`, `.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:257`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts:185-192`.
+   - Case: the TypeScript cap is raised to 20000, and a 15000-character paste is scored by the daemon but truncated or refused by the Python fallback, so the two routes disagree.
+
+5. **The Gate-3 question lookup swallows a load failure** -- .skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:203 -- `currentGateQuestion` wraps `requireOwnerModule` for the spec-kit owner module in a bare catch that returns `undefined` (:209-211). Its only consumer is the `GATE_SPEC_FOLDER_QUESTION_ID` block (:226-229), which treats `undefined` as "no content". Recheck of R4-P2-006: holds.
+   - Finding class: swallowed failure, absent conflated with broken.
+   - Scope proof: policy-plan.ts is in reviewScopeFiles.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:203-212`, `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:226-229`.
+   - Case: `spec-gate-core.mjs` is moved or renamed, and every policy plan then drops the Gate-3 question with no diagnostic, which looks the same as a deliberately empty block.
+
+6. **The corrupt-lock reclaim deletes a lock that is still being acquired** -- .skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:186 -- The lock is created with `openSync(lockPath, 'wx')` (:154), and its token is written in a second call (:155). An empty or short file parses as `token: null, ageMs: null` (:132-135). The null branch removes the lock without a second read (:186-189), unlike the stale branch (:172-183). The test grep found no empty-lock case. Recheck of R5-P2-001: holds. The reach is still cross-process only, as generation 4 corrected it.
+   - Finding class: race in lock reclaim.
+   - Scope proof: generation.ts is in reviewScopeFiles.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:132-135,154-155,186-189`.
+   - Case: during a daemon lease handover, process A has created the empty lock and not yet written its token. Process B reads it as corrupt and deletes it, and both processes then publish generation N+1 for different states.
+
+## Recheck of Generation-4 P2s
+
+| Gen-4 id | Outcome | Gen-5 id | Evidence |
+|---|---|---|---|
+| R3-P2-001 | holds | G5-I4-P2-001 | `.skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts:5-9` |
+| R3-P2-002 | holds, out of reviewScopeFiles, not registered | none | `.skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-advisor-cli.md:16` cites `tests/skill-advisor-cli-manifest-parity.vitest.ts`; only `runtime/tests/...` exists |
+| R4-P2-002 | holds | G5-I4-P2-002 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1108` |
+| R4-P2-003 | holds | G5-I4-P2-003 | `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:22` |
+| R4-P2-004 | holds, floor now rechecked too | G5-I4-P2-004 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:52,4147` |
+| R4-P2-006 | holds | G5-I4-P2-005 | `.skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts:203` |
+| R5-P2-001 | holds | G5-I4-P2-006 | `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts:186` |
 
 ## Traceability Checks
 
-- `spec_code` (core): **pass** for the comments checked this iteration. The brief comment at `skill-advisor-brief.ts:474-477` (strip before the cut and before folding) matches `:478` and `prompt-policy.ts:91-93`. The Python comment at `skill_advisor.py:4789-4791` (JavaScript whitespace set) matches `_JS_SPACE_CHARS` (`:4792-4795`). The fixture `$comment` (both suites read it) matches `advisor-prompt-policy.vitest.ts:22-28` and `test_skill_advisor.py:2533-2538`.
-- `checklist_evidence` (core): not run again. It stays `notApplicable` because the evidence folders are out of bounds.
+- `spec_code` (core): still partial. This pass found no new contradiction, and the two it already carries (G5-I1-P1-001, G5-I2-P2-001) were not reopened. G5-I4-P2-001 is a comment-versus-code drift of the same kind.
+- `checklist_evidence` (core): notApplicable. The target has no checklist rows.
 
 ## Integration Evidence
 
-- Shared fixture ownership: `runtime/tests/fixtures/pasted-reply-strip-cases.json` is read by `runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25` and `runtime/tests/python/test_skill_advisor.py:2538`, and by no other file (repo search excluding dist).
+- `.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:80-87` builds the prompt-cache HMAC key from the normalized prompt, the runtime and `sourceSignature`. It does not use the generation number. This settles the publish-after-commit question below.
 
 ## Edge Cases
 
-- One routed hook turn strips the same prompt at four layers: `skill-advisor-cli-fallback.ts:233`, `skill-advisor-cli.ts:1490`, `advisor-recommend.ts:539` and `fusion.ts:1277`. The guard adds a fifth on a floored turn (`user-prompt-submit.ts:372`). The fixed-point loop (`prompt-policy.ts:265-272`) keeps this correct. The doc comment at `:261-262` names only the handler and the scorer as callers. The cost side belongs to R2-P2-001 and was not re-measured, so this is recorded here and not as a new finding.
-- `ADVISOR_PROMPT_MAX_CHARS` is duplicated as a literal in `skill_advisor.py:52` and `advisor-tool-schemas.ts:283`. It was not touched in the change range, so it is pre-existing and outside this review.
+- Lifecycle precedence: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1273-1276` lets an explicit `lifecycle_status: 'active'` override a `z_archive/` path, while `.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:155` filters corpus stats by path alone. A skill under `z_archive/` whose metadata says active would route while its documents stay out of the corpus statistics. At HEAD this cannot happen: no `z_archive` or `z-future` folder exists under `.skilled/skills/`, and `skill-graph-db.ts` has no special case for either name. Recorded, not a finding.
+- Publish after commit: in `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:53-61` and `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:89-96`, `indexSkillMetadata` commits its transaction (`skill-graph-db.ts:975`) before `publishSkillGraphGeneration` can throw on a lock timeout. The handler then reports failure, although the graph changed and the generation was not bumped. The prompt cache keys on the source signature, not the generation, so cached answers do not go stale through this path, and the next rebuild repairs the counter. It is not written up as a finding, because no consumer of the generation counter was shown to misbehave. A test that forces a lock timeout after indexing and then reads `advisor_status` would settle it.
 
 ## Confirmed-Clean Surfaces
 
-- TS/Python strip twins: the regexes are hand-copied (`prompt-policy.ts:245-246`, `skill_advisor.py:4801-4807`), but the shared 24-row fixture drives both suites. It includes rows for NBSP, U+001C, BOM, NEL, the long-s case fold and a trailing separator. A drift in either twin's whitespace set, folding or last-marker rule fails a row in the other suite.
-- Receipt guard test strength: `claude-user-prompt-submit-hook.vitest.ts:1116` would catch the guard reading the raw prompt. Measured on the dist: the pasted prompt reads `explicit_skill_or_governance_marker` raw and `work_intent_with_meaningful_tokens` stripped. The bare `fix that too` fires (`work_intent_with_meaningful_tokens`), so the test at `:1110` reaches the guard and not the policy skip.
-- Crash-path coupling: the ordering the catch depends on (`deliveryState` before the build, `skippedResult` before the CLI call) is pinned by tests at `:872`, `:962` and `:1250`.
-- DSH adapter: `rotateSessionClock` and `advanceBoundary` (range diff) share one session-id rule and log only. No logic is duplicated from the Claude hook.
+- `.skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts:43-60`: `workspaceRelativeFilePath` rejects absolute paths and realpath escapes.
+- `.skilled/skills/system-skill-advisor/runtime/lib/derived/extract.ts:127-140`: the walker uses Dirent types, so symlinks are neither followed nor collected.
+- `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts:33-45` and `.skilled/skills/system-skill-advisor/runtime/lib/derived/sync.ts:57-69`: atomic temp, fsync and rename, with the temp file removed on failure.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:370-391`: a failure becomes `freshness: 'unavailable'` with the error recorded, never a false live status.
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:119-135`: the trust check runs before any read or write.
 
 ## Ruled Out
 
-- TS/Python strip parity drift going unnoticed: the shared fixture is read by both suites and covers the whitespace and folding seams.
-- Receipt tests passing for the wrong reason: the follow-up prompts fire, so the guard is exercised (measured on the dist).
+- lifecycle_and_derived_defect_scan, searched-clean on the serving path. Two weak spots sit in code that only `runtime/stress-test/` calls: the all-or-nothing reject at `.skilled/skills/system-skill-advisor/runtime/lib/derived/anti-stuffing.ts:58-67`, where one instruction-shaped n-gram such as "run tool" empties every derived value of a skill, and the substring match at `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts:33-37`, where a prompt naming `sk-code-review` counts as naming `sk-code`. Neither reaches a live route, so they belong under the existing dead-feature finding G5-I3-P2-002 and do not need their own.
+- handler_defect_scan, searched-clean. Every handler either parses its input through Zod or returns through a catch that reports an error. No handler reports success on a failed step. The one half-write is the publish-after-commit gap under Edge Cases, shown harmless to the cache.
 
 ## Next Focus
 
-- Dimension: cross-reference / stabilization pass (all four dimensions covered).
-- Focus area: re-check the eight active P2s (R1-P2-001..004, R2-P2-001, R3-P2-001, R4-P2-001/002) against the current code for duplicates and severity, and confirm no P1 is hidden in the R1-P2-001 plus R2-P2-001 ordering constraint.
-- Reason: maintainability was the last uncovered dimension; iteration 5 is the final one under the max-iterations stop policy.
-- Rotation status: correctness, security, traceability and maintainability are covered.
-- Blocked/productive carry-forward: measuring on the shipped dist was productive again. Do not retry the strip-twin drift check or the receipt-test strength check.
-- Required evidence: file:line rereads for any severity change.
+- Dimension: traceability.
+- Focus area: the `playbook_capability` overlay (search debt SL-305, never run) and the contested R1-P2-005 that generation 5 ruled out without testing generation 4's case.
+- Reason: these are the open search-debt and contested items left after this pass.
+- Rotation status: all four dimensions covered; the extension passes clear debt.
+- Blocked/productive carry-forward: do not reopen the two scans swept here, parity, or the cross-skill-edges symlink path. Productive: caller sweeps that separate live code from stress-test-only code.
+- Required evidence: playbook rows mapped to code at file:line; for R1-P2-005, a probe of generation 4's exact case.
 
-Review verdict: PASS
+## Verdict
+
+Two P1s are still active (G5-I1-P1-001, G5-I2-P1-001). This pass added no P0 or P1.
+
+Review verdict: CONDITIONAL

@@ -25,9 +25,11 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
 readonly MCP_NAME="Chrome DevTools"
-readonly MCP_PACKAGE="browser-debugger-cli@alpha"
+# Pinned on purpose: the alpha and latest tags move, and later bdg releases change
+# behavior that this packet's docs describe. Move the pin with a docs re-check.
+readonly MCP_PACKAGE="browser-debugger-cli@0.6.10"
 readonly CLI_COMMAND="bdg"
-readonly MIN_NODE_VERSION="18"
+readonly MIN_NODE_VERSION="20"
 
 # Script options (mutable, set via CLI flags)
 VERBOSE="${VERBOSE:-false}"
@@ -56,7 +58,7 @@ OPTIONS:
     --add-profile    Add CHROME_PATH to shell profile if needed
 
 WHAT THIS SCRIPT DOES:
-    1. Checks prerequisites (Node.js 18+, npm)
+    1. Checks prerequisites (Node.js 20+, npm)
     2. Installs browser-debugger-cli globally via npm
     3. Detects Chrome path on your system
     4. Optionally adds CHROME_PATH to shell profile
@@ -90,7 +92,7 @@ detect_chrome_path() {
     platform=$(detect_platform)
     
     case "$platform" in
-        darwin)
+        macos)
             # macOS Chrome paths
             local mac_paths=(
                 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -144,7 +146,7 @@ chrome_at_default_location() {
     platform=$(detect_platform)
     
     case "$platform" in
-        darwin)
+        macos)
             [[ -x "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]]
             ;;
         linux)
@@ -259,9 +261,9 @@ verify_installation() {
     fi
     
     # List CDP domains (quick functional test)
-    if "$CLI_COMMAND" --list &> /dev/null; then
-        local domain_count
-        domain_count=$("$CLI_COMMAND" --list 2>/dev/null | wc -l | tr -d ' ')
+    local domain_count
+    if domain_count=$("$CLI_COMMAND" cdp --list 2>/dev/null | jq -r '.count' 2>/dev/null) \
+        && [[ "$domain_count" =~ ^[0-9]+$ ]]; then
         log_success "CDP domains available: ${domain_count}"
     else
         log_warn "Could not list CDP domains (may need Chrome running)"
@@ -378,15 +380,16 @@ main() {
     log_success "${MCP_NAME} (${CLI_COMMAND}) is ready to use"
     echo ""
     echo "Quick start:"
-    echo "  bdg https://example.com    # Start session"
-    echo "  bdg screenshot /tmp/test.png # Take screenshot"
-    echo "  bdg console logs           # Get console logs"
-    echo "  bdg stop                   # Stop session"
+    echo "  bdg https://example.com              # Start session"
+    echo "  bdg dom screenshot /tmp/test.png     # Take screenshot"
+    echo "  bdg console --list                   # List console messages"
+    echo "  bdg stop                             # Stop session"
     echo ""
     echo "Discovery:"
-    echo "  bdg --list                 # List CDP domains"
-    echo "  bdg --describe Page        # Show domain methods"
-    echo "  bdg --search screenshot    # Search methods"
+    echo "  bdg cdp --list                       # List CDP domains"
+    echo "  bdg cdp Page --list                  # List a domain's methods"
+    echo "  bdg cdp Page.captureScreenshot --describe  # Show a method signature"
+    echo "  bdg cdp --search screenshot          # Search methods"
     echo ""
     echo "Documentation:"
     echo "  .skilled/skills/mcp-browser-use/mcp-chrome-devtools/INSTALL-GUIDE.md"

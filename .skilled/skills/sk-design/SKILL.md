@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the artifact: a measured Style Reference, a chart or a diagram."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.0.2.0
+version: 3.0.3.0
 metadata:
   family: design
 ---
@@ -51,7 +51,7 @@ Stage two maps the chosen mode to its leaves in the root [`ROUTER.md`](./ROUTER.
 The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 The advisor routes every design query to the single identity `sk-design`.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
-Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`.
+Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt-file <task-file>` (write the task there with your file tool, never a heredoc).
 Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses.
 With no signal at all, `routerPolicy.defaultMode` is `null`, so the request defers and asks which artifact is wanted.
 
@@ -113,7 +113,7 @@ green gate all leave a request unable to arrive. Only replaying the request prov
 - Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
   `description.json` are documentation, not what gets scored.
 - Take the mode from the compiled front door,
-  `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 5
+  `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt-file <task-file>` (write the task there with your file tool, never a heredoc), as the section 5
   callout in [`ROUTER.md`](./ROUTER.md) says. On a `{"servingAuthority":"legacy"}` sentinel or
   any error, use the routing in section 5 of `ROUTER.md` instead.
 

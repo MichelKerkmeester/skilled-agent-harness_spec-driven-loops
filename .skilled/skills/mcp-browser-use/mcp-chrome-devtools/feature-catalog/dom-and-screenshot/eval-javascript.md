@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg dom eval"
   - "bdg js"
   - "run javascript in browser cli"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Eval JavaScript
@@ -22,6 +22,10 @@ version: 1.0.1.0
 
 The helper wraps the Runtime domain (`Runtime.evaluate` with `returnByValue`). Pipe results through `jq` for structured extraction, and chain eval with screenshot/console capture to verify interaction effects.
 
+### Port limit in bdg 0.6.10
+
+`bdg dom eval` works only when the session runs on port 9222. On any other session port it exits 83 with `Session target not found`, even though the tab is still open. `bdg dom click`, `fill`, `submit` and `pressKey` hard-code 9222 the same way. Screenshots, console reads and `bdg cdp` keep working. Start the session without `-p` when 9222 is free. Otherwise read the value with `bdg cdp Runtime.evaluate --params '{"expression":"document.title","returnByValue":true}'`, which works on any port. The full entry is `references/troubleshooting.md` §6.
+
 A result can hold a live token or cookie. Read storage keys instead of values and redact any value before quoting it (SKILL.md ALWAYS rule 7).
 
 ---
@@ -35,6 +39,7 @@ A result can hold a live token or cookie. Read storage keys instead of values an
 | `SKILL.md` §7 | CLI | Helper command list (`bdg dom eval`) |
 | `references/cdp-patterns.md` §4 | Reference | Runtime domain patterns and helper alternative |
 | `INSTALL-GUIDE.md` §8 | Guide | JavaScript execution examples |
+| `references/troubleshooting.md` §6 | Reference | `Session target not found` on a session port other than 9222 |
 
 ### Validation And Tests
 

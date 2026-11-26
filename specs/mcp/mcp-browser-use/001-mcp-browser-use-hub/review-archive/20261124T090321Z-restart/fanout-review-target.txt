@@ -1,0 +1,1 @@
+specs/mcp/mcp-browser-use/001-mcp-browser-use-hub

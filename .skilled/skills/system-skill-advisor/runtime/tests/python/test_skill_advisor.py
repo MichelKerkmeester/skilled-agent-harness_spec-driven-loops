@@ -18,6 +18,7 @@ import json
 import os
 import re
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import time
@@ -2795,11 +2796,291 @@ def test_native_bridge_forwards_location_overrides():
     expected = {
         "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH": "/tmp/advisor-feedback.jsonl",
         "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR": "/tmp/advisor-route-config",
+        "SPECKIT_ADVISOR_DOC_TRIGGERS": "true",
     }
     if env == expected:
         ok(name)
     else:
         fail_test(name, f"env={env!r}")
+
+
+def test_native_bridge_covers_launcher_scorer_keys():
+    """Every key the launcher forwards reaches the bridge child or is named launcher-only."""
+    name = "BRIDGE-PARITY: each launcher-forwarded key is forwarded by the bridge or listed as launcher-only"
+    launcher = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "..", "..", "..", "bin", "system-skill-advisor-launcher.cjs"))
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        with open(launcher, "r", encoding="utf-8") as handle:
+            source = handle.read()
+        block = re.search(r"CHILD_ENV_ALLOWLIST = new Set\(\[(.*?)\]\)", source, re.S)
+        launcher_keys = set(re.findall(r"'([A-Z0-9_]+)'", block.group(1))) if block else set()
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    missing = sorted(launcher_keys - advisor.NATIVE_BRIDGE_ENV_ALLOWLIST - advisor.LAUNCHER_ONLY_ENV_KEYS)
+    stale = sorted(advisor.LAUNCHER_ONLY_ENV_KEYS - launcher_keys)
+    if launcher_keys and not missing and not stale:
+        ok(name, f"launcher keys={len(launcher_keys)}")
+    else:
+        fail_test(name, f"missing from the bridge={missing} launcher-only keys the launcher no longer sends={stale}")
+
+
+def test_native_bridge_honors_scorer_override():
+    """A lane-weight override set for the caller changes the bridge child's answer."""
+    name = "BRIDGE-SCORER: a lane-weights override reaches the native bridge child and changes its result"
+    prompt = "create a git commit and push it"
+    key = "SPECKIT_ADVISOR_LANE_WEIGHTS_JSON"
+    previous = os.environ.get(key)
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        if not advisor.probe_native_advisor().get("available"):
+            print(f"  SKIP: {name} (native advisor not built)")
+            return
+        os.environ.pop(key, None)
+        plain = advisor.recommend_with_native_advisor(prompt)
+        os.environ[key] = json.dumps({"explicit_author": 0, "lexical": 0, "graph_causal": 0, "derived_generated": 1})
+        weighted = advisor.recommend_with_native_advisor(prompt)
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    finally:
+        if previous is None:
+            os.environ.pop(key, None)
+        else:
+            os.environ[key] = previous
+    def top(rows):
+        return [(row.get("skill"), round(float(row.get("confidence", 0)), 4)) for row in (rows or [])[:1]]
+    if plain and top(plain) != top(weighted):
+        ok(name, f"plain={top(plain)} weighted={top(weighted)}")
+    else:
+        fail_test(name, f"plain={top(plain)} weighted={top(weighted)}")
+
+
+def test_threshold_settings_reach_python_defaults():
+    """The Python defaults read the two threshold settings the way the native contract does."""
+    name = "THRESHOLD-ENV: the Python defaults honor an in-range threshold setting and ignore a bad one"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        key = "SPECKIT_ADVISOR_TEST_THRESHOLD"
+        results = []
+        for raw in ("0.6", "1.7", "high", None):
+            if raw is None:
+                os.environ.pop(key, None)
+            else:
+                os.environ[key] = raw
+            results.append(advisor._resolved_threshold(key, 0.8))
+        os.environ.pop(key, None)
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if results == [0.6, 0.8, 0.8, 0.8]:
+        ok(name)
+    else:
+        fail_test(name, f"results={results}")
+
+
+def test_scorer_predicate_parity():
+    """The fallback reads shared scorer predicate cases like TypeScript."""
+    name = "SCORER-PREDICATES: the fallback matches the shared predicate cases"
+    fixture = os.path.realpath(os.path.join(SCRIPT_DIR, "..", "tests", "fixtures", "scorer-predicate-cases.json"))
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        with open(fixture, "r", encoding="utf-8") as handle:
+            cases = json.load(handle)["cases"]
+        wrong = []
+        for case in cases:
+            prompt_lower = case["prompt"].lower()
+            got = (
+                advisor.has_typed_slash_command(prompt_lower),
+                advisor.meaningful_token_count(prompt_lower),
+                advisor.is_low_information_prompt(prompt_lower),
+            )
+            want = (
+                case["typedSlashCommand"],
+                case["meaningfulTokens"],
+                case["lowInformation"],
+            )
+            if got != want:
+                wrong.append((case["id"], got, want))
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if cases and not wrong:
+        ok(name, f"cases={len(cases)}")
+    else:
+        fail_test(name, f"wrong={wrong}")
+
+
+def test_prompt_policy_missing_degrades():
+    """The fallback still routes when the prompt-policy file is unusable."""
+    name = "PROMPT-POLICY-MISSING: a missing prompt policy degrades stop-word filtering instead of the fallback"
+    missing = os.path.join(tempfile.gettempdir(), "sk-advisor-absent-prompt-policy.json")
+    stdout = ""
+    try:
+        if os.path.exists(missing):
+            os.remove(missing)
+        completed = subprocess.run(
+            [sys.executable, os.path.join(SCRIPT_DIR, "skill_advisor.py"),
+             "implement a retry helper in the python client", "--force-local"],
+            capture_output=True, text=True, timeout=300,
+            env=dict(os.environ, SPECKIT_ADVISOR_PROMPT_POLICY_PATH=missing),
+        )
+        stdout = completed.stdout
+        results = json.loads(stdout) if stdout.strip() else []
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    warned = missing in completed.stderr
+    if completed.returncode == 0 and results and warned:
+        ok(name, f"exit={completed.returncode} results={len(results)} warned=True")
+    else:
+        fail_test(
+            name,
+            f"exit={completed.returncode} results={len(results)} warned={warned} stdout={stdout[:120]!r}",
+        )
+
+
+def test_deep_loop_doctor_naming_reading():
+    """The fallback keeps the doctor row only when the prompt types the doctor command."""
+    name = "DEEP-LOOP-DOCTOR: a typed doctor command keeps its row and a stuck run without it keeps none"
+    row = {"skill": "command-doctor-deep-loop", "confidence": 0.9, "uncertainty": 0.1}
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        typed = advisor._apply_deep_loop_offer_gate([dict(row)], "my deep research run is stuck, /doctor:deep-loop")
+        untyped = advisor._apply_deep_loop_offer_gate([dict(row)], "my deep research run is stuck")
+        doc_path = advisor._apply_deep_loop_offer_gate([dict(row)], "see /doctor:deep-loop.md for the flags")
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if len(typed) == 1 and untyped == [] and doc_path == []:
+        ok(name)
+    else:
+        fail_test(name, f"typed={typed} untyped={untyped} doc_path={doc_path}")
+
+
+def test_deep_loop_typed_run_row_marked():
+    """A typed run row the gate keeps says it was typed, and an untyped ask keeps no run row."""
+    name = "DEEP-LOOP-TYPED: the fallback marks a kept typed run row typed and keeps no row for an untyped ask"
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        row = {"skill": "command-spec-kit-deep-review", "confidence": 0.9, "uncertainty": 0.1}
+        gated = advisor._apply_deep_loop_offer_gate([dict(row)], "/deep:review:confirm the auth module")
+        emitted = json.loads(json.dumps(advisor.filter_recommendations(
+            gated, confidence_threshold=0.5, uncertainty_threshold=0.5, confidence_only=False, show_rejections=True,
+        )))
+        stuck = advisor._apply_deep_loop_offer_gate(
+            [dict(row)], "my deep review run is stuck, /deep:review again"
+        )
+        untyped_stuck = advisor._apply_deep_loop_offer_gate([dict(row)], "my deep review run is stuck")
+        asked = [
+            rec for rec in advisor.analyze_request("run a deep review on the parser")
+            if rec.get("skill") == "command-spec-kit-deep-review"
+        ]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if (
+        len(emitted) == 1 and emitted[0].get("typed") is True
+        and len(stuck) == 1 and stuck[0].get("typed") is True
+        and untyped_stuck == []
+        and asked == []
+    ):
+        ok(name, f"emitted={emitted[0].get('typed')}")
+    else:
+        fail_test(name, f"emitted={emitted} stuck={stuck} untyped_stuck={untyped_stuck} asked={asked}")
+
+
+def test_deep_loop_gate_reads_prompt_head():
+    """The fallback gate reads the head the native advisor accepts, not the whole prompt."""
+    # A typed command past the head is not read, as the native advisor never
+    # receives it; the same command after short padding still keeps its row.
+    name = "DEEP-LOOP-HEAD: a typed command past the 10,000-unit head is not read, one inside it is"
+    ask = "/deep:research vector indexes"
+    padding = "the garden looked fine after a mild week of weather. "
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+        inside = [row.get("skill") for row in advisor.analyze_request(padding * 4 + ask)]
+        past_prompt = padding * 200 + ask
+        past = [row.get("skill") for row in advisor.analyze_request(past_prompt)]
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if (
+        len(past_prompt) - len(ask) > advisor.ADVISOR_PROMPT_MAX_CHARS
+        and "deep-research" in inside
+        and "deep-research" not in past
+    ):
+        ok(name, f"inside={inside[:3]} past={past[:3]}")
+    else:
+        fail_test(name, f"inside={inside[:4]} past={past[:4]}")
+
+
+def test_deep_loop_served_head():
+    """A command named by its doc path serves the hub, and two typed loops lead with the first typed."""
+    # A doc path names the loop's workflow without typing its command, so the
+    # served head is the hub carrying no command. A prompt that types both loops
+    # leads with the command it typed first, and every other row follows by
+    # confidence.
+    name = "DEEP-LOOP-SERVED: a command doc path serves the hub, two typed loops lead with the first typed"
+    mentioned = ("see (/deep:review.md) for the flags",)
+    typed_runs = (
+        ("/deep:research caching then /deep:review the parser", "deep-research", "command-spec-kit-deep-review"),
+        ("/deep:review the parser then /deep:research caching", "command-spec-kit-deep-review", "deep-research"),
+    )
+    run_ids = {"command-spec-kit-deep-research", "command-spec-kit-deep-review", "deep-research", "deep-review"}
+    try:
+        advisor = load_module("skill_advisor", "skill_advisor.py")
+
+        def served(prompt):
+            return advisor.analyze_prompt(
+                prompt=prompt,
+                confidence_threshold=0.8,
+                uncertainty_threshold=0.35,
+                confidence_only=False,
+                show_rejections=False,
+            )
+
+        wrong = []
+        for prompt in mentioned:
+            rows = served(prompt)
+            head = rows[0] if rows else {}
+            run_rows = [row.get("skill") for row in rows if row.get("skill") in run_ids]
+            doctor = [row.get("skill") for row in rows if row.get("skill") == "command-doctor-deep-loop"]
+            if (
+                head.get("skill") != "system-deep-loop"
+                or head.get("kind") != "skill"
+                or head.get("passes_threshold") is not True
+                or "command" in head
+                or "typed" in head
+                or run_rows
+                or doctor
+            ):
+                wrong.append((prompt, head, run_rows, doctor))
+        for prompt, first, second in typed_runs:
+            rows = served(prompt)
+            head = rows[0] if rows else {}
+            if head.get("skill") != first or head.get("typed") is not True:
+                wrong.append((prompt, "served head", head.get("skill"), head.get("typed")))
+            if [row.get("skill") for row in rows[:2]] != [first, second]:
+                wrong.append((prompt, "served rows", [row.get("skill") for row in rows[:2]]))
+        expected_rows = {prompt: ["system-deep-loop"] for prompt in mentioned}
+        expected_rows.update({prompt: [first, second] for prompt, first, second in typed_runs})
+        for prompt, expected in expected_rows.items():
+            rows = advisor.analyze_request(prompt)
+            if [row.get("skill") for row in rows[:len(expected)]] != expected:
+                wrong.append((prompt, "head order", [row.get("skill") for row in rows[:3]]))
+            # A row below the typed leader follows by confidence, so a surer row is
+            # never listed under a weaker one.
+            below = [float(row.get("confidence", 0.0)) for row in rows[1:]]
+            if below != sorted(below, reverse=True):
+                wrong.append((prompt, "confidence order", below))
+    except Exception as exc:
+        fail_test(name, str(exc))
+        return
+    if not wrong:
+        ok(name, f"mentioned={len(mentioned)} typed={len(typed_runs)}")
+    else:
+        fail_test(name, f"wrong={wrong}")
 
 
 def main():
@@ -2821,6 +3102,16 @@ def main():
     test_deep_routing_clears_floor_flag()
     test_route_exclusions_in_fallback()
     test_native_bridge_forwards_location_overrides()
+    test_native_bridge_covers_launcher_scorer_keys()
+    test_native_bridge_honors_scorer_override()
+    test_threshold_settings_reach_python_defaults()
+    test_scorer_predicate_parity()
+    test_prompt_policy_missing_degrades()
+    test_deep_loop_doctor_naming_reading()
+    test_deep_loop_typed_run_row_marked()
+
+    test_deep_loop_gate_reads_prompt_head()
+    test_deep_loop_served_head()
 
     print(f"\nSummary: pass={passed}, fail={failed}")
     return 0 if failed == 0 else 1

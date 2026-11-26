@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 024 deep review (`../024-ollama-lane-removal/review/review-report.md`, verdict CONDITIONAL) found no P0 or P1 defect and ten P2 advisories",
     "created_at": "2026-11-21T13:34:37Z",
-    "last_save_at": "2026-11-21T15:28:50.115Z",
+    "last_save_at": "2026-11-23T10:24:48.171Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c48326d00406c80e8571c2009df904e660d0e1ffca15187fedd011b663afcb55",
+    "source_fingerprint": "sha256:825b1cec8b22dcb038f5e411d751facdd658172607017c104d35ed1733def67d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "547e0a8556938eb4eefd83773c7786e2b008cdda18df71713ba3dcb7413cf5e6",
       "plan.md": "079bd44d3d2354dc3feb7a958f55c9fda99ae38663f76d8c0c3183c0bc5b2088",
       "tasks.md": "ebaaeade11cef78249999e0d18b32a245bec4b95ea93b19a84619258487db231",
-      "implementation-summary.md": "cb19ff70e6be8d778e57849810e32cd547603f69454776591c15baad8d793ce1"
+      "implementation-summary.md": "42384c868377b3dcd0d5e38a041de31c143bd3ad99ebccb853027c25243f0a5b"
     },
     "last_active_at": null
   }

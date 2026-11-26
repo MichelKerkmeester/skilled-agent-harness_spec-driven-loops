@@ -161,7 +161,7 @@ check_node_version() {
 
     if ! check_command "node" "Node.js"; then
         log_error "Node.js is not installed"
-        log_info "Install Node.js 18+ from: https://nodejs.org/"
+        log_info "Install Node.js ${min_version}+ from: https://nodejs.org/"
         return 1
     fi
 

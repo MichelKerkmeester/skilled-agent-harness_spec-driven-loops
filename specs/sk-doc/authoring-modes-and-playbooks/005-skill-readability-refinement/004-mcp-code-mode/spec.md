@@ -25,7 +25,7 @@ contextType: "general"
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 4 of 13 |
-| **Predecessor** | 003-cli-orca |
+| **Predecessor** | 002-cli-external-orchestration |
 | **Successor** | 005-mcp-tooling |
 | **Handoff Criteria** | Luna passes the diff and the scope gate prints `render_warnings=0 invalid=0` |
 <!-- /ANCHOR:metadata -->

@@ -326,7 +326,7 @@ jobs:
           set -euo pipefail
           python3 - <<'EOF'
           import hashlib, json, pathlib, sys
-          baseline = json.load(open("../../../specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"))
+          baseline = json.load(open("../../../../specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"))
           corpus_dir = pathlib.Path("scripts/routing-accuracy")
           bad = []
           for name, meta in baseline["corpus"].items():

@@ -1,0 +1,24 @@
+## Review Iteration 3 Complete
+
+**Focus:** traceability (dimension 3 of 4). Operator focus on the advisor logic in `runtime/`/`hooks/` addressed by auditing the tool/CLI/Python/catalog contract surfaces; prose docs were read only where they assert something the code must satisfy.
+
+**Findings:** 2 new (P0: 0, P1: 0, P2: 2) — R2-P1-001 remains active and was rechecked.
+
+- **R3-P2-001** `runtime/tools/advisor-contract-keys.ts:5-11` — header names two consumers that do not exist (`schemas/tool-input-schemas.ts`, `ALLOWED_PARAMETERS`); only the descriptors import the tuples, while the Zod schema at `runtime/schemas/advisor-tool-schemas.ts:259-277` is hand-written with no tuple link, so the stated sync invariant covers one of the three surfaces it claims.
+- **R3-P2-002** `feature-catalog/cli-surface/skill-advisor-cli.md:3` — the parity suite is cited at `tests/skill-advisor-cli-manifest-parity.vitest.ts`, which resolves nowhere; the real suite is `runtime/tests/skill-advisor-cli-manifest-parity.vitest.ts:15-30` and the same file's table uses the correct base.
+
+**R2-P1-001 recheck (probe, not inference):** cross-user reach is contained — `/tmp/system-skill-advisor` is `drwx------` uid 501, the shared transport refuses foreign/writable dirs and chmods the socket 0600 after an lstat guard; the client has no peer-uid check, so same-uid processes can connect, but `_meta.trusted` is caller-asserted anyway. The durable defect remains the false fail-closed guarantee in the reference (`references/graph/propagate-enhances.md:76`), the server comment and the catalog; severity retained at P1 as a contract fix, with no cross-user exposure claimed.
+
+**Protocols:** `spec_code` fail, `feature_catalog_code` fail, `checklist_evidence` notApplicable (packet 016 ships no checklist/acceptance doc). Positive evidence: manifest vs `TOOL_DEFINITIONS` 9/9 identical (dist probe + source parity suite), 229/230 catalog-cited paths resolve, Python fixtures wired at `test_skill_advisor.py:2167,2533,2857` (suite execution deferred).
+
+**newFindingsRatio:** 0.321 (two new P2 + one 0.5× P1 refinement over weighted total 14) — above the 0.10 threshold, not converged.
+
+**Dimensions:** correctness, security, traceability reviewed; maintainability remains. Verdict: **CONDITIONAL**.
+
+**Edge cases:** dist probe corroborates rather than replaces the source suite; catalog path probe skipped globs; Python parity not executed; hook adapters not re-read (carried); lineage restart-vs-resume contradiction persists.
+
+**Next focus:** maintainability — hooks/ and the Python fallback as maintained code, plus the phantom/dead surfaces this pass found.
+
+**Files written:** `review/iterations/iteration-003.md`, strategy in-place update, record through the append gateway (exit 0, ledger sequence 18, projection refreshed to 3 iteration records), `review/deltas/iter-003.jsonl` (10 rows; first row byte-identical to the gateway record).
+
+**Status:** `complete`

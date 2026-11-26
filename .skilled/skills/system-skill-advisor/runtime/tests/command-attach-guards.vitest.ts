@@ -12,13 +12,18 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
+  asksForLoopRun,
   attachCommand,
   commandOnlyMentioned,
   isNoEditRequest,
+  isStuckRunComplaint,
+  isWritingAboutTopic,
   MODE_COMMANDS,
+  namesDeepRun,
   NO_EDIT_REQUEST,
   typedCommandForTop,
   typedCommandIn,
+  typedCommandsIn,
 } from '../lib/command-attach.js';
 
 // The only route shape that names a command unambiguously: one decision and one
@@ -230,7 +235,9 @@ describe('a command the prompt only mentions', () => {
   });
 
   // A run command acts without asking, so an unled naming of it needs a use verb
-  // or the name opening a sentence before it counts as a request.
+  // or the name opening a sentence before it counts as a request. A comma joins
+  // the clause to the command that answers it, so it asks for the command as a
+  // sentence does, unless the clause it joins is a refusal.
   it.each([
     ['no need for /doctor:deep-loop, I will handle it myself', '/doctor:deep-loop', true],
     ['the /doctor:speckit output looked odd yesterday', '/doctor:speckit', true],
@@ -242,6 +249,9 @@ describe('a command the prompt only mentions', () => {
     ['/doctor:speckit, cancel that', '/doctor:speckit', true],
     ['run /doctor:deep-loop, on second thought do not', '/doctor:deep-loop', true],
     ['/doctor:deep-loop on this packet please', '/doctor:deep-loop', false],
+    ['the deep research run is stuck, /doctor:deep-loop', '/doctor:deep-loop', false],
+    ['my research run is stuck, please /doctor:deep-loop', '/doctor:deep-loop', false],
+    ['my deep research run is stuck, no fix please, /doctor:deep-loop', '/doctor:deep-loop', true],
   ])('reads the run command naming %s as a mention: %s', (prompt, command, mentioned) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(mentioned);
   });
@@ -531,6 +541,9 @@ describe('command attach on a deep-loop prompt', () => {
     'do a thorough review of the parser',
     'find out everything you can about the parser',
     'give me a final verdict on the parser',
+    'review the parser thoroughly',
+    'do an exhaustive review of the parser',
+    'do a deep dive review of the parser',
   ])('withholds the review command on depth wording alone: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBeUndefined();
   });
@@ -538,9 +551,93 @@ describe('command attach on a deep-loop prompt', () => {
   // A loop's name with no use verb asks about the loop rather than for a run.
   it.each([
     'how does the research loop decide when it has enough',
-    'my research loop stopped converging and I cannot see why',
   ])('withholds the research command on a loop name with no use verb: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', SINGLE('research'), prompt)).toBeUndefined();
+  });
+
+  // A request to read what a past run produced asks for its output, not a run.
+  it.each([
+    ['research', 'summarize the findings.md from yesterday\'s deep research run'],
+    ['review', 'give me a recap of the previous deep review report'],
+    ['research', 'explain what the earlier deep research concluded about retries'],
+  ])('withholds the %s command on a request to read a past run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'extend the previous deep review by 2 iterations', '/deep:review'],
+    ['research', 'run deep research on log shipping, then summarize it', '/deep:research'],
+  ])('keeps the %s command when the run is asked for again: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  // A run the reader adds behind "then" opens a clause of its own, so it outranks
+  // a reading of what a past run produced even with no punctuation in front of it.
+  // "and" keeps the reading's own clause, and the wording it joins names no loop
+  // run at all.
+  it.each([
+    ['review', 'read the deep review report then run a deep review on the parser', '/deep:review'],
+    ['research', 'summarize the last deep research run then run deep research on caching', '/deep:research'],
+    ['review', 'summarize the deep review report and run notes', undefined],
+  ] as const)('reads the clause "then" opens and not the word "and": %s', (mode, prompt, command) => {
+    expect(asksForLoopRun(prompt), prompt).toBe(command !== undefined);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt), prompt).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
+  // A piece written about the loop is the other reading the same mark outranks, so
+  // a run ask behind "then" turns the request back into the ask it carries.
+  it.each([
+    ['write a blog post about review loops then run a deep review on the parser', '/deep:review'],
+    ['write a blog post about review loops and run notes', undefined],
+  ] as const)('reads a piece written about the loop past a "then" clause: %s', (prompt, command) => {
+    expect(isWritingAboutTopic(prompt), prompt).toBe(command === undefined);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
+  // Writing a piece about a loop method names the loop as a topic.
+  it.each([
+    ['research', 'draft a blog post about iterative research for designers'],
+    ['review', 'write an essay on why multi-pass review finds more bugs'],
+  ])('withholds the %s command on writing about the loop: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // A stuck run is diagnosed, not rerun, whichever mode the route picked.
+  it.each([
+    ['research', 'my research loop stopped converging and I cannot see why'],
+    ['review', 'the deep review is stuck and keeps repeating the same findings'],
+    ['research', 'the coverage graph of my deep research looks empty after 6 iterations'],
+  ])('offers the doctor on a stuck %s run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe('/doctor:deep-loop');
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    ['research', 'run deep research on why websocket connections hang', '/deep:research'],
+    ['review', 'the deep review hit max iterations, keep going for a few more', '/deep:review'],
+  ])('keeps the %s run command when a symptom word is the topic or the ask is more: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it('withholds the doctor on a stuck run when the reader rules out a change', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), 'the deep review is stuck, make no changes')).toBeUndefined();
+  });
+
+  // A reader who rules out a change still asks for the run, and a loop mode only
+  // reads the code, so the offer stands on either route shape.
+  it.each([
+    ['review', "run a deep review of the parser but don't change anything", '/deep:review'],
+    ['review', 'run a deep review of the parser and make no changes', '/deep:review'],
+    ['research', 'run a deep research on cache eviction, read-only only', '/deep:research'],
+  ])('keeps the %s command when the prompt rules out a change: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  it('keeps a typed run command when the prompt also rules out a change', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), "run /deep:review on the parser, don't change anything")).toBe('/deep:review');
   });
 
   it.each([
@@ -556,6 +653,8 @@ describe('command attach on a deep-loop prompt', () => {
     ['run 5 iterations with cli-opencode on the caching research', '/deep:research'],
     ['run 8 more review iterations with cli-codex on the advisor runtime', '/deep:review'],
     ['investigate iteratively how the hook pipeline orders its adapters', '/deep:research'],
+    ['check the billing service for bugs in several passes', '/deep:review'],
+    ['inspect the importer for regressions iteratively', '/deep:review'],
   ])('names the mode a deferred route leaves open when one cue names it: %s', (prompt, command) => {
     expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
   });
@@ -566,12 +665,377 @@ describe('command attach on a deep-loop prompt', () => {
     'how does the deep loop decide to stop?',
     'do a thorough review of the release packet',
     "don't run /deep:review for 5 iterations, just summarize the report",
+    'check that the build passes in several environments',
+    'check the boarding passes page for bugs',
   ])('leaves a deferred route without a command: %s', (prompt) => {
     expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
   });
 
+  it.each([
+    ['review', 'how does the deep review decide that it has converged'],
+    ['research', 'why does deep research stop after ten iterations?'],
+    ['review', 'explain what the review loop does between passes'],
+  ])('offers no %s run on a question about how the loop works: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'how does deep review handle this? run a deep review on the parser', '/deep:review'],
+    ['research', 'what is the best cache policy? do 5 research iterations on it', '/deep:research'],
+    ['research', 'deep research: how do vector databases handle hybrid search', '/deep:research'],
+  ])('still offers the %s run when a question also asks for it: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  // A spelled-out count, rounds, and a loop name behind a want verb ask for the
+  // loop as a digit count and a use verb do.
+  it.each([
+    ['research', "I'd like a research loop on vector database pricing", '/deep:research'],
+    ['review', 'I want a review loop over the payments module', '/deep:review'],
+    ['research', 'can you set up a research loop on CRDT sync strategies', '/deep:research'],
+    ['review', 'review the auth service for ten rounds', '/deep:review'],
+    ['review', 'do a dozen passes of review on the importer', '/deep:review'],
+  ])('offers the %s command on a wanted loop or a spelled count: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it('names the mode a deferred route leaves open on a hyphenated spelled count', () => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, 'run a twelve-iteration research pass on edge caching')).toBe('/deep:research');
+  });
+
+  it.each([
+    ['review', 'write ten tips about review loops'],
+    ['review', 'how many rounds does the review loop run'],
+    ['review', 'how many passes does the review loop make'],
+    ['review', "I'd like to know what a review loop is"],
+    ['review', 'review the five changes in this pull request'],
+    ['review', 'do one pass of review on the parser'],
+    ['review', 'review why 3 tests pass locally but fail in CI'],
+    ['research', 'research the 3 funding rounds Acme raised'],
+    ['research', 'investigate several rounds of layoffs at the company'],
+  ])('withholds the %s command when no loop run is asked for: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // The run can be named as an audit loop or as the run the reader started.
+  it.each([
+    ['review', 'my audit loop keeps spinning and never converges'],
+    ['review', 'the code audit loop I launched has stalled'],
+    ['review', 'the review I started is stuck on iteration 4'],
+    ['research', 'the research run keeps spinning without converging'],
+    ['research', 'the research I launched yesterday never converges'],
+  ])('offers the doctor on a stuck %s run named in other words: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    'my build keeps spinning',
+    'the CI job is stuck',
+    'the test runner I started has stalled',
+    'my event loop keeps spinning at full CPU',
+    'review why the retry loop in the scheduler never converges',
+  ])('withholds the doctor when the stuck thing is no deep run: %s', (prompt) => {
+    expect(isStuckRunComplaint(prompt)).toBe(false);
+  });
+
+  // A reader who reports a run that did not finish and asks to repeat it is
+  // asking for the run, not for a diagnosis, so the pronoun rerun cancels the
+  // doctor reading and the run it names is offered in its place.
+  it.each([
+    ["the deep review didn't finish, run it again", '/deep:review'],
+    ['my deep review run is stuck, rerun it', '/deep:review'],
+    ['the deep research run went stale, run that again', '/deep:research'],
+    ['my deep research run is stuck, run this again', '/deep:research'],
+    ['the deep review is stalled, run that one again', '/deep:review'],
+    ['the deep research is hanging, start this one again', '/deep:research'],
+  ])('offers the run a pronoun rerun asks for instead of the doctor: %s', (prompt, command) => {
+    expect(isStuckRunComplaint(prompt)).toBe(false);
+    expect(asksForLoopRun(prompt)).toBe(true);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  // The pronoun needs the deep run it repeats and a second-time marker: "run it
+  // by hand" names a manner, a refusal leaves the doctor reading standing, and a
+  // prompt that names no deep run has no run to repeat.
+  it.each([
+    ['my deep research run is stuck, run it by hand', true, false],
+    ["my deep research run is stuck, please don't run it", true, false],
+    ["my deep research run is stuck, don't run it again", true, false],
+    ['run it again to reproduce the crash', false, false],
+  ])('reads "%s" as stuck run %s and a run ask %s', (prompt, stuck, asks) => {
+    expect(isStuckRunComplaint(prompt)).toBe(stuck);
+    expect(asksForLoopRun(prompt)).toBe(asks);
+  });
+
+  // The doctor reads a run's live state, so a run the reader asks to repeat or to
+  // report on names nothing for it to read.
+  it.each([
+    ['my deep research run is stuck', true],
+    ["the deep review didn't finish, run it again", false],
+    ['summarize the deep reviews from last week', false],
+    ['run it again to reproduce the crash', false],
+  ])('reads "%s" as naming a live deep run: %s', (prompt, names) => {
+    expect(namesDeepRun(prompt)).toBe(names);
+  });
+
+  // Convergence and a coverage graph name a deep run only beside its noun.
+  it.each([
+    'my k-means convergence is stuck, help me debug the code',
+    'why is the coverage graph empty in my jest report',
+  ])('withholds the doctor when convergence or a coverage graph names no deep run: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'resume the review loop on the auth module', '/deep:review'],
+    ['research', 'extend the research loop on cache eviction', '/deep:research'],
+    ['research', 'run deep research to explain why the last CI run failed', '/deep:research'],
+    ['research', 'run 10 research iterations on LLM caching so I can write an article about it', '/deep:research'],
+    ['review', 'what is a deep review? run one on the auth module', '/deep:review'],
+  ])('offers the %s command on a continued run or an explicit run beside another reading: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it.each([
+    ['run 5 research iterations on review tooling', '/deep:research'],
+    ['I would like a deep loop reviewing the session store', '/deep:review'],
+  ])('names the mode the loop unit or an -ing cue names on a deferred route: %s', (prompt, command) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  it.each([
+    ['review', 'audit the first 2 iterations for drift'],
+    ['review', 'review this PR in one iteration'],
+    ['review', 'review why the build failed after 3 iterations'],
+    ['research', 'research 3 rounds of the clinical trial results'],
+    ['research', 'research why the model needed more iterations to converge'],
+    ['review', 'set up a review loop for PR approvals in GitHub'],
+    ['review', 'run tests until the review loop passes'],
+    ['review', 'write a blog post about how to run a deep review'],
+  ])('withholds the %s command on a count, a loop name or a run ask that asks for no run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  // A refusal spelled out in words withholds the run the way a refused typed
+  // command does, whether it leads the loop name or follows it.
+  it.each([
+    ['research', "don't do deep research, just answer quickly"],
+    ['research', 'never run deep research on this'],
+    ['review', 'no need to run a deep review here'],
+    ['review', "I'm not asking for a deep review, just explain the bug"],
+    ['review', 'no deep review, please; explain the bug'],
+    ['review', 'a deep review is not needed, just check the diff'],
+  ])('withholds the %s command on a refused run: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    'do a deep review of the parser',
+    'why not run a deep review of the parser',
+    'no, run a deep review of the parser',
+  ])('keeps the review command when nothing refuses the run: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+
+  it.each([
+    ['research', 'how many iterations does deep research run by default?'],
+    ['review', 'how many passes does the deep review do'],
+  ])('offers no %s run on a question about how long the loop runs: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run a deep-review of the auth module', '/deep:review'],
+    ['research', 'I’d like a research loop on cache eviction policies', '/deep:research'],
+    ['research', 'the deep research run is not stuck, run 5 more iterations', '/deep:research'],
+  ])('offers the %s command on a hyphen, a curly apostrophe or a denied symptom: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  // A zero-width character is invisible in the prompt, so a paste or a word
+  // processor can split a phrase with one and leave the reader's words looking
+  // whole on screen. Every gate pattern reads the fold, so the fold has to read
+  // each of these as whitespace or the phrase matches nothing and the command is
+  // lost on exactly the prompt the reader sees as an ask.
+  it.each([
+    ['review', 'run a deep\u200breview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u200creview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u200dreview of the auth module', '/deep:review'],
+    ['review', 'run a deep\u2060review of the auth module', '/deep:review'],
+    ['review', 'run a deep\ufeffreview of the auth module', '/deep:review'],
+  ] as const)('offers the %s command across a zero-width character: %s', (mode, prompt, command) => {
+    expect(asksForLoopRun(prompt), prompt).toBe(true);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt), prompt).toBe(command);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBe(command);
+  });
+
+  // The same fold answers the control: a zero-width character inside a question
+  // about the loop still names no run, so the command stays withheld.
+  it('withholds the review command across a zero-width character in a question', () => {
+    const prompt = 'explain what a deep\u200breview is';
+    expect(asksForLoopRun(prompt), prompt).toBe(false);
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt), prompt).toBeUndefined();
+  });
+
+  it('reads a hyphenated loop name inside a path as a file name', () => {
+    expect(asksForLoopRun('update the wording in deep-review.md and system-deep-review/SKILL.md')).toBe(false);
+  });
+
+
+  // A loop name about the loop's own code or results, and a count that
+  // describes a subject, name what the request is about rather than a run.
+  it.each([
+    ['research', 'refactor the deep research scorer'],
+    ['review', 'fix the bugs the deep review found'],
+    ['review', 'open the review loop config'],
+    ['review', 'we need a review loop for every PR'],
+    ['review', 'I want a review loop that approves PRs automatically'],
+    ['review', 'compare 10 iterations of the model and review the results'],
+    ['research', 'research three-pass vs two-pass compilers'],
+    ['review', 'several passes of the linter failed, review the config'],
+    ['review', 'review our multi-pass compiler'],
+  ])('withholds the %s command when the loop is the subject: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run a deep review on the parser', '/deep:review'],
+    ['research', 'do 5 research iterations on caching', '/deep:research'],
+    ['review', 'review the parser in several passes', '/deep:review'],
+    ['review', 'do a multi-pass review of the parser', '/deep:review'],
+    ['review', 'fix the parser with a deep review', '/deep:review'],
+  ])('keeps the %s command when the loop measures the work: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
   it('reads no deferred mode for a hub other than the deep loop', () => {
     expect(attachCommand('sk-doc', { action: 'defer' }, 'run 5 iterations of review')).toBeUndefined();
+  });
+});
+
+// An effort word after the loop name says how much effort the reader wants
+// unless the loop name is the subject of a complaint, so a request that names
+// the manner still gets its command while a report of the loop's own speed does
+// not.
+describe('an effort word after the loop name', () => {
+  it.each([
+    ['review', 'run a deep review longer than the last one on the parser', '/deep:review'],
+    ['review', 'run a deep review slower', '/deep:review'],
+    ['review', 'a deep review slower please', '/deep:review'],
+    ['research', 'run a deep research pass that takes longer', '/deep:research'],
+  ])('keeps the %s command on the manner of the run: %s', (mode, prompt, command) => {
+    expect(asksForLoopRun(prompt)).toBe(true);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it.each([
+    ['review', 'the deep review takes longer than the last one'],
+    ['review', 'the deep review loop is too slow'],
+    ['review', 'make the deep review faster'],
+    ['research', 'deep research runs cost too much'],
+  ])('withholds the %s command on a complaint about the loop: %s', (mode, prompt) => {
+    expect(asksForLoopRun(prompt)).toBe(false);
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBeUndefined();
+  });
+});
+
+// A refusal verb close before the loop name withholds the run as a negation
+// does, while "skip straight to" and a negation four words back still ask.
+describe('command attach on a refusal verb', () => {
+  it.each([
+    'skip the deep review and just answer',
+    'avoid deep research; answer from memory',
+    'there is no need for a deep review',
+    'instead of a deep review, just explain the bug',
+    'I refuse a deep review here',
+    'do not even think about running a deep review',
+  ])('gives no command on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBeUndefined();
+  });
+
+  it.each([
+    'skip straight to the deep review of the parser',
+    "don't hesitate to run a deep review",
+    "don't forget to run a deep review on the parser",
+  ])('keeps /deep:review on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+});
+
+// A refused phrase names the run the reader ruled out, so it settles no mode on a
+// deferred route: the modes are read from the phrases the prompt still asks for,
+// which keeps the run it did ask for and never offers the one it skipped.
+describe('deferred mode cues past a refused loop phrase', () => {
+  it.each([
+    'run deep reviews on the parser, but skip the deep research',
+    'run deep reviews on the parser and skip the deep research',
+    'run a deep review on the parser and skip the deep research',
+    'skip the deep research, run a deep review on the parser',
+    'no deep research, run a deep review on the parser',
+    'run two deep reviews on the parser but skip the deep research',
+  ])('offers /deep:review on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/deep:review');
+  });
+
+  it.each([
+    'run deep research on the parser, but skip the deep review',
+    'run a deep research on the parser, and skip the deep review',
+    'run two deep researches on vector indexes but skip the deep review',
+  ])('offers /deep:research on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/deep:research');
+  });
+
+  // The plural spelling of the deep name is the same name, so it settles the mode
+  // where no other cue does; the singular-only read left it to the topic cues,
+  // whose word boundary stops inside "reviews" and "researches".
+  it.each([
+    ['run two deep reviews on the parser', '/deep:review'],
+    ['run two deep researches on vector indexes', '/deep:research'],
+  ])('offers the deep name in the plural on "%s"', (prompt, command) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
+  });
+
+  // Blanking a refused phrase cannot turn a prompt that asks for nothing into an
+  // ask, and two modes still asked for leave the choice to the reader.
+  it.each([
+    'skip the deep research and just answer',
+    'run 5 iterations of research and review on the parser',
+    'run a deep loop on the routing code',
+  ])('still leaves the deferred route without a command on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+});
+
+// "deep loops" is the hub's own name in the plural, so it names a loop without
+// naming a mode any more than the singular does. The deferred route then keeps
+// the reader's choice, as the hub's disambiguation contract requires, and serves
+// whichever mode a routed route names. A prompt that does name a mode answers for
+// that mode in either route shape, so the two shapes cannot disagree.
+describe('a plural loop name that names no mode', () => {
+  it.each([
+    'run two deep loops on the cache layer',
+    'run a deep loop on the cache layer',
+    'run two deep loops on the cache layer and one more on the parser',
+  ])('leaves the deferred route without a command on "%s"', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+
+  it.each([
+    ['review', 'run two deep loops on the cache layer'],
+    ['research', 'run two deep loops on the cache layer'],
+  ])('serves the %s route a mode-neutral ask leaves the caller: %s', (mode, prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(`/deep:${mode}`);
+  });
+
+  // Naming the mode anywhere in the ask settles it, so a plural ask that carries
+  // both a count and a mode word serves that mode rather than the reader's pick.
+  it.each([
+    ['run two review loops of the importer', '/deep:review'],
+    ['run two research loops on the cache and pick the better one', '/deep:research'],
+  ])('serves the named mode on "%s"', (prompt, command) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe(command);
   });
 });
 
@@ -665,6 +1129,81 @@ describe('typed command boundaries', () => {
   });
 });
 
+// A prompt can type two workflows. The longest typed name is not the only one
+// asked for, so a gate that asks whether its own command was typed reads every
+// typed command, and a deferred route reads its mode past a loop name that is
+// only the subject of the request.
+describe('more than one typed command', () => {
+  it('lists every typed command in the order it was typed', () => {
+    expect(typedCommandsIn('run /deep:review on the parser, then /create:changelog')).toEqual(['/deep:review', '/create:changelog']);
+  });
+
+  it('reads one command where two names start at the same place, and maps a retired name', () => {
+    expect(typedCommandsIn('/create:skill-parent for the hub, then /create:skill for a leaf')).toEqual(['/create:skill-parent', '/create:sk-skill']);
+    expect(typedCommandIn('/create:skill-parent for the hub, then /create:skill for a leaf')).toBe('/create:skill-parent');
+  });
+
+  it.each([
+    'run /deep:review on the parser, then /create:changelog',
+    '/deep:review the parser and then /doctor:deep-loop',
+  ])('keeps a typed deep command beside a longer typed command: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/deep:review');
+  });
+
+  it('offers no deep command beside a typed command when the loop is neither typed nor asked for', () => {
+    expect(attachCommand('system-deep-loop', SINGLE('review'), 'look at the parser, then /create:changelog')).toBeUndefined();
+  });
+
+  it('delivers the typed command the leading skill owns when a longer one belongs to another skill', () => {
+    const prompt = 'run /deep:review on the parser, then /create:changelog';
+    expect(typedCommandForTop('system-deep-loop', prompt)?.command).toBe('/deep:review');
+    expect(typedCommandForTop('sk-doc', prompt)?.command).toBe('/create:changelog');
+    expect(typedCommandForTop('mcp-tooling', prompt)).toBeUndefined();
+  });
+
+  it('skips a refused typed command and delivers the next one the leading skill owns', () => {
+    expect(typedCommandForTop('sk-doc', "don't run /create:skill-parent, run /create:changelog")?.command).toBe('/create:changelog');
+  });
+
+  it('keeps a typed doctor on a stuck run beside a longer typed command', () => {
+    const prompt = "my deep research run is stuck, don't fix anything, just run /doctor:deep-loop and later /create:manual-testing-playbook";
+    expect(attachCommand('system-deep-loop', SINGLE('review'), prompt)).toBe('/doctor:deep-loop');
+  });
+
+  it.each([
+    'run a deep loop to review the research loop config',
+    'run a deep loop checking the parser for bugs',
+  ])('names the review mode on a deferred route: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBe('/deep:review');
+  });
+
+  // The router scores fixed phrases, and one of them can be the loop the request
+  // only works on: "run a deep loop to review the research loop config" scores the
+  // research phrase while the ask is a review of that loop. A routed mode answers
+  // to the prompt's own ask the way a deferred route does, so the guard that
+  // blanks a subject loop name is not left to one route shape alone.
+  it.each([
+    ['a subject loop name the route scored', 'run a deep loop to review the research loop config', '/deep:review'],
+    ['a defect-check cue', 'run a deep loop checking the parser for bugs', '/deep:review'],
+  ])('names the mode the ask reads past %s: %s', (_case, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE('research'), prompt)).toBe(command);
+  });
+
+  it.each([
+    ['research', 'run a deep loop on the cache layer', '/deep:research'],
+    ['review', 'run 5 iterations of deep research on vector indexes', '/deep:research'],
+  ])('keeps a %s route the ask supports: %s', (mode, prompt, command) => {
+    expect(attachCommand('system-deep-loop', SINGLE(mode), prompt)).toBe(command);
+  });
+
+  it.each([
+    'run a deep loop to fix the research loop config',
+    'run a deep loop checking that the build passes',
+  ])('leaves a deferred route without a command when only a subject or no defect is named: %s', (prompt) => {
+    expect(attachCommand('system-deep-loop', { action: 'defer' }, prompt)).toBeUndefined();
+  });
+});
+
 describe('generated command table', () => {
   it('holds no separate policy table', async () => {
     expect('COMMAND_POLICIES' in await import('../lib/command-attach.js')).toBe(false);
@@ -680,5 +1219,38 @@ describe('generated command table', () => {
     for (const field of fields) {
       expect(sentence).toContain('`' + field + '`');
     }
+  });
+});
+
+// A pasted prompt can repeat a refusal or a loop name thousands of times. The
+// gate reads the words before each naming on a bounded window, so such a prompt
+// costs time linear in its length and keeps the answer a short prompt gets. The
+// ceilings are generous on purpose: they catch the quadratic cost, which ran to
+// seconds, not a slow machine.
+describe('long prompts', () => {
+  const REFUSALS = 'do not run /deep:review. '.repeat(400);
+  const NO_LOOP = 'no deep review '.repeat(667);
+
+  it('reads a 10,000-character repeated refusal as a refusal, in bounded time', () => {
+    expect(REFUSALS.length).toBe(10_000);
+    const started = performance.now();
+    expect(commandOnlyMentioned(REFUSALS, '/deep:review')).toBe(true);
+    expect(attachCommand('system-deep-loop', SINGLE('review'), REFUSALS)).toBeUndefined();
+    expect(performance.now() - started).toBeLessThan(1_000);
+  });
+
+  it('reads a 10,000-character repeated "no deep review" as no loop ask', () => {
+    expect(asksForLoopRun(NO_LOOP)).toBe(false);
+  });
+
+  it('still reads a request that follows the repeated refusals', () => {
+    expect(commandOnlyMentioned(`${REFUSALS}now run /deep:review on the parser`, '/deep:review')).toBe(false);
+    expect(asksForLoopRun(`${NO_LOOP}but run a deep review on the parser`)).toBe(true);
+  });
+
+  it('reads a refusal whose lead sits just before the name after a long prompt', () => {
+    const padding = 'the parser and the lexer were refactored last week. '.repeat(200);
+    expect(commandOnlyMentioned(`${padding}do not run /deep:review`, '/deep:review')).toBe(true);
+    expect(asksForLoopRun(`${padding}skip the deep review`)).toBe(false);
   });
 });

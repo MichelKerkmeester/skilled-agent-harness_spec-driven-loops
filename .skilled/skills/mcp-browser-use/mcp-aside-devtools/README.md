@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.8.0
+version: 1.1.11.0
 ---
 
 # mcp-aside-devtools
@@ -44,16 +44,16 @@ Browser work arrives in two shapes. A goal such as sign in and download wants an
 | **Agent task lane** | multi-step goals under a signed-in account, with approval gates and human-only identity checks |
 | **Deterministic REPL lane** | Playwright JavaScript in a persistent context, with `openTab`, `snapshot`, `page.screenshot` and `page.pdf` helpers |
 | **MCP composition path** | one `repl` tool over local stdio for chaining browser work with other Code Mode tools |
-| **DevTools parity** | console and network events through the `page` API, with no native HAR export and no dedicated capture tool |
+| **DevTools parity** | DOM query, screenshot and PDF, performance timing and navigation through the `page` API. Console and network capture are gaps on 1.26.626.1517, because `page.on` rejects those events. No native HAR export |
 
 ---
 
 ## 2. QUICK START
 
-**Step 1: Install the CLI.** The installer is macOS only and operator-invoked.
+**Step 1: Install the CLI.** The installer is macOS only and operator-invoked. The wrapper checks the official installer against a pinned sha256 before it runs it.
 
 ```bash
-curl -fsSL https://releases.aside.com/install.sh | bash
+bash scripts/install.sh
 ```
 
 Expect the binary at `~/.local/bin/aside`. Add `~/.local/bin` to PATH if `command -v aside` finds nothing.
@@ -83,7 +83,7 @@ Discovery lists the registry name `aside.aside.repl`. The TypeScript callable in
 
 ```typescript
 call_tool_chain({ code: `
-  const result = await aside.aside_repl({
+  const result = aside.aside_repl({
     title: "Open example.com",
     code: "await openTab('https://example.com'); console.log(await snapshot(page));"
   });
@@ -135,7 +135,7 @@ The REPL lane keeps a persistent JavaScript context with Playwright APIs and hel
 
 ### The MCP Path
 
-`aside mcp` is a client-spawned local stdio process with no credential field. It inherits the signed-in CLI context. The live handshake on `1.26.626.1517` reported protocol `2024-11-05` with `tools.listChanged: true`. `tools/list` returned one `repl` tool with a 120-second call timeout. A fresh process is browser-unbound until a task or profile binding exists. That error is a binding state, not an auth failure.
+`aside mcp` is a client-spawned local stdio process with no credential field. It inherits the signed-in CLI context. The live handshake on `1.26.626.1517` reported protocol `2024-11-05` with `tools.listChanged: true`. `tools/list` returned one `repl` tool with a 120-second call timeout. On `1.26.626.1517` with the Aside app running and signed in, a fresh process is bound and lists tabs. Earlier versions left it browser-unbound until a task or profile binding existed. That error is a binding state, not an auth failure.
 
 ### Working Beside the User
 
@@ -167,7 +167,7 @@ Reach for `mcp-chrome-devtools` for CDP debugging or HAR export. Reach for a cro
 |---|---|---|
 | `command not found: aside` | CLI absent or `~/.local/bin` not on PATH | Run the official installer as an operator. Add `~/.local/bin` to PATH |
 | The installer refuses to run | Host is not macOS | macOS arm64 or x64 only. No workaround |
-| `This task is not bound to a browser profile.` | Fresh MCP process with no task or profile binding | Not an auth error. The binding procedure is undocumented, so report the error verbatim and escalate |
+| `This task is not bound to a browser profile.` | MCP process with no task or profile binding (seen on earlier versions; a fresh process is bound on `1.26.626.1517` with the app running and signed in) | Not an auth error. The binding procedure is undocumented, so report the error verbatim and escalate |
 | Built-in models fail after sign-out | The built-in tier fails closed when signed out | Run `aside account use <id>` or sign in again. BYO API-key providers keep working |
 | A task pauses mid-run | MFA, CAPTCHA, identity check, vault unlock or an approval gate | Act in Aside, then resume the task |
 | `tools/list` differs from one `repl` tool | Version drift under `listChanged: true` | Run discovery again, save a new fixture and re-check the workflow |
@@ -186,7 +186,7 @@ Yes. `aside mcp` speaks stdio and the `aside` manual is registered in `.utcp_con
 
 ### Does Aside capture console logs or network traffic?
 
-You can collect them yourself through the Playwright `page` API in the REPL. Register `page.on('console', ...)` or `page.on('request', ...)` and keep the events you need. There is no dedicated capture tool and no native HAR export. A live capture needs a bound authorized session, so treat the pattern as unconfirmed until it runs against one.
+Not on Aside 1.26.626.1517. The live runs showed that `page.on('console', ...)`, `page.on('request', ...)` and `page.on('response', ...)` each throw. The error points to `page.console.logs()`, which has not been run yet. There is no dedicated capture tool and no native HAR export. What works is `page.evaluate(...)`, which reads page state such as page-visible cookie names and storage keys.
 
 ### Can I run parallel Aside sessions?
 

@@ -1,7 +1,7 @@
 ---
 title: "ASD-014 -- Missing binary"
 description: "This scenario validates the CLI_MISSING diagnosis for `ASD-014`. It simulates an absent aside binary via a restricted PATH and verifies the workflow reports install guidance without installing anything."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # ASD-014 -- Missing binary
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `ASD-014` and confirm th
 
 ### Expected
 
-- Step 1: warns "aside not on PATH" and prints `curl -fsSL https://releases.aside.com/install.sh | bash` as operator guidance; exits 0
+- Step 1: warns "aside not on PATH" and prints `bash scripts/install.sh` as operator guidance; exits 0
 - Step 2: real environment unchanged
 
 ### Evidence

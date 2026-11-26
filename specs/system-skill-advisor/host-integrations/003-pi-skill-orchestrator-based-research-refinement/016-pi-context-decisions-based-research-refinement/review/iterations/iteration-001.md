@@ -1,28 +1,24 @@
-# Iteration 001 - Inventory pass plus D1 Correctness
+# Iteration 001 - Correctness (unread modules + fusion.ts recheck)
 
 ## Dispatcher
 
-- Run 1, iteration 1 of 5, session `2026-11-19T04:18:26.591Z`, generation 1, lineageMode `new`.
-- Dimension: correctness. Operator focus (the change range `git diff 538d2f789ec 57d3f5d9159^2`) covered by reading the diff of every implementation file in scope and following one hop into `hooks/lib/directive-lifecycle.ts` and `runtime/lib/render.ts` to confirm the guard and fallback behavior.
-- The working tree differs from `57d3f5d9159^2` on six advisor files, none of them a strip, receipt or hook implementation file in scope, so the diff and main agree for this iteration's targets.
+- Generation 5, iteration 1 of 3, native executor (opus), lineageMode restart, sessionId 2026-11-23T21:41:17.101Z.
+- Iteration number derived from the state log: zero prior `type:"iteration"` records, so this is iteration 1 (matches the dispatch).
+
+## Dimension
+
+Correctness. Operator focus addressed: this pass read the modules generation 4 never opened (`runtime/lib/lifecycle/`, `runtime/lib/derived/sync.ts`, `runtime/lib/skill-graph/skill-graph-db.ts` index path, `runtime/handlers/skill-graph/scan.ts`) and rechecked the five generation-4 fusion.ts findings at HEAD. Four of five still hold and are recorded below with full paths; one is ruled out.
 
 ## Files Reviewed
 
-Inventory (33 files in the range under `.skilled/skills/system-skill-advisor/`; 27 in scope). Read in full or by diff this iteration:
-
-- `hooks/claude/user-prompt-submit.ts` (diff, plus lines 183-222, 248-295)
-- `hooks/lib/route-receipt.ts` (full)
-- `hooks/lib/skill-advisor-cli-fallback.ts` (diff)
-- `hooks/dsh/prompt-advisor.mjs` (diff)
-- `runtime/lib/prompt-policy.ts` (diff, normalizePrompt)
-- `runtime/lib/skill-advisor-brief.ts` (diff)
-- `runtime/lib/scorer/fusion.ts`, `runtime/lib/subprocess.ts`, `runtime/skill-advisor-cli.ts`, `runtime/handlers/advisor-recommend.ts`, `runtime/schemas/advisor-tool-schemas.ts` (diff)
-- `runtime/scripts/skill_advisor.py` (diff)
-- `runtime/tests/fixtures/pasted-reply-strip-cases.json` (all 24 cases)
-- `runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` (lines 1236-1285)
-- Context only (one hop): `hooks/lib/directive-lifecycle.ts:135-180`, `runtime/lib/render.ts:469-500, 640-675`
-
-Commands run from the runtime folder: `npx vitest run tests/hooks/route-receipt.vitest.ts tests/legacy/advisor-prompt-policy.vitest.ts tests/hooks/claude-user-prompt-submit-hook.vitest.ts tests/parity/python-ts-parity.vitest.ts` exit 0, 4 files, 143 tests passed. `python3 -m pytest -q test_skill_advisor.py -k "strip or pasted"` exit 0, 1 passed.
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts (lines 520-560, 1110-1140, 1170-1470, 340-380)
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts (94-110)
+- .skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts, archive-handling.ts, rollback.ts, schema-migration.ts, supersession.ts (full)
+- .skilled/skills/system-skill-advisor/runtime/lib/derived/sync.ts (full)
+- .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts (70-110)
+- .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts (607-632, 738-747, 859-1075)
+- .skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts (full)
+- .skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts (test reading, 114-122)
 
 ## Findings - New
 
@@ -32,68 +28,76 @@ None.
 
 ### P1 Findings
 
-None.
+1. **A scoped skill_graph_scan deletes every skill outside the scanned root and publishes the shrunken graph as live** -- .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976 -- `handleSkillGraphScan` accepts any `skillsRoot` under the workspace [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:44] and passes it to `indexSkillMetadata` [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:53]. Inside the index transaction `deleteMissingNodes(database, skillIds)` runs with only the ids found under that root [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976], and that helper issues `DELETE FROM skill_nodes WHERE id NOT IN (...)` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:745]. The handler then publishes a generation with `state: 'live'` [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:55-60], and the scorer projection reads `skill_nodes` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1402]. The code already guards the empty-root case ("preserving existing graph") [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:921-922], which shows deletion of unseen skills was not meant to follow from a narrow root; the one-skill root bypasses that guard. The tool schema advertises the parameter as "Optional skills root to scan" [SOURCE: .skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts:28], and the only handler test covers the empty root [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts:114-122].
+   Finding class: stale-or-destructive-state-on-rebuild
+   Scope proof: handler and index function are both in reviewScopeFiles; the deletion is unconditional inside the transaction for any non-empty id set.
+   Affected surface hints: runtime/handlers/skill-graph/scan.ts, runtime/lib/skill-graph/skill-graph-db.ts deleteMissingNodes, skill_graph_scan tool schema, projection SQLite read path.
+   Case: a trusted caller runs skill_graph_scan with skillsRoot set to .skilled/skills/sk-code, which deletes every other skill node and its rows, so the advisor projection can route only to sk-code until a full-root scan runs again.
+
+```json
+{"type":"correctness","claim":"skill_graph_scan with a sub-root deletes all skill_nodes not under that root and publishes the generation as live","evidenceRefs":[".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:44",".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:53",".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976",".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:745",".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1402"],"counterevidenceSought":"Looked for a scope filter on deleteMissingNodes (none, it takes only the id list), for a test pinning sub-root semantics (only the empty-root test exists), and for an empty-scan guard (exists but only for zero ids).","alternativeExplanation":"skillsRoot may be intended only as a full replacement root for tests or alternate workspaces, in which case deleting unseen ids is the mirror semantics; the schema text does not say so.","finalSeverity":"P1","confidence":0.75,"downgradeTrigger":"Downgrade to P2 if the serving projection does not read skill_nodes on the live path, or if skillsRoot is documented and enforced as a full-tree replacement root only."}
+```
+
+Skeptic/referee (compact): the call requires a trusted caller, which limits exposure but not correctness; a trusted agent passing a narrower root is a natural use of an advertised parameter. Not P0, because a full-root rescan restores the graph and no data outside the derived index is lost. Held at P1.
 
 ### P2 Findings
 
-1. **The hook's 64 KiB head cut runs before the pasted-reply strip, so a paste longer than that routes on the paste alone** -- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:200 -- `normalizePrompt` keeps the first `MAX_PROMPT_BYTES` (64 KiB, line 183) of the prompt at line 555, before the strip in `skill-advisor-brief.ts:478` or `skill-advisor-cli-fallback.ts:233` ever sees it. The strip needs the task marker after the cue (`prompt-policy.ts:252`); once the cut removes the trailing `Now:`/`Task:` segment, `stripPastedReplyOnce` finds no marker and returns the paste unchanged. The comments at the 10,000-character cut promise a long paste cannot push the task past the cut; that holds up to 64 KiB only.
-   Finding class: edge-case ordering bug (truncate-before-normalize).
-   Scope proof: confined to the Claude hook entry; the MCP handler (`advisor-recommend.ts`) and Python scorer strip the untruncated prompt.
-   Affected surface hints: `hooks/claude/user-prompt-submit.ts` normalizePrompt; optionally strip before the byte cut or keep the tail when a cue is present.
-   Case: a prompt that starts with "Earlier you replied:" followed by about 70 KiB of pasted text and ends with "Now: fix the parser" is routed on the pasted text, with the task never scored.
+1. **RRF fusion scores flow into confidence and the ranking adjustments as if they were weighted sums** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1190 -- Under the opt-in RRF flag (`isAdvisorRrfFusionEnabled` defaults false [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:166-168]) `score` becomes the RRF score [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1190-1191], is divided by the weighted-sum `liveTotal` into `liveNormalized` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1208], and is compared against the fixed -0.08 command penalty [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1254-1255]. With k=8 [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:84] a rank-1 hit in a 0.4-weight lane scores about 0.044 (probe), smaller than the 0.08 penalty, so the penalty and confidence ramp operate on a different scale than the one they were calibrated for. Recheck of generation-4 finding, still holds.
+   Finding class: scale-mismatch
+   Scope proof: all lines in fusion.ts, in scope.
+   Affected surface hints: fusion.ts confidenceFor input, sort comparator, RRF flag users.
+   Case: with the RRF flag on, any command candidate without a slash in the prompt loses to a skill even when it holds rank 1 in every lane, because the 0.08 penalty exceeds its whole RRF score.
 
-2. **The route-receipt guard ignores a lifecycle event carried on the prompt input, which the directive dedup treats as a boundary** -- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:376 -- `guardWeakFollowUp` expires a receipt only through `lifecycle.clock(sessionId)` and transcript shrink (`route-receipt.ts:173-183`). The same turn's `applyDirectiveLifecycle` passes `lifecycleEventFor(input)` (line 458), and `directive-lifecycle.ts:165` forces full delivery on `startup`/`resume`/`compact` without moving the clock. So on a prompt flagged `lifecycle_event: 'compact'` the directives are re-delivered as after a boundary, while the guard still reads the pre-boundary clock and can hold back a floored follow-up against a route whose brief the compaction may have removed. Reach is inferred: no host producer of `lifecycle_event` on UserPromptSubmit was found in the hook folder; Claude moves the clock through its separate lifecycle hooks.
-   Finding class: inconsistent boundary signal between two consumers of the same lifecycle state.
-   Scope proof: only the receipt guard; dedup honors the flag.
-   Affected surface hints: `guardWeakFollowUp` / `decideRouteReceiptGuard` (add `lifecycleEventFor(input)` as a deliver condition).
-   Case: a session holds a sk-doc receipt, then a UserPromptSubmit payload with `lifecycle_event: "compact"` and prompt "fix that too" floored to sk-code is suppressed instead of delivered.
+2. **Any slash in the prompt disables the skill-versus-command tie-break and the breadth abstention** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1254 -- The command penalty is skipped whenever `promptLower.includes('/')` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1254-1255]; the Class C breadth abstention uses the same test [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1360]. The intent is a typed slash command, but a file path or "and/or" also contains a slash (probe: "fix bug in src/parser.ts" yields penalty 0). Recheck of generation-4 finding, still holds.
+   Finding class: over-broad-predicate
+   Scope proof: fusion.ts in scope.
+   Affected surface hints: fusion.ts sort comparator, Class C abstention, lowInfoPrompt predicate at :1308.
+   Case: the prompt "refactor src/scorer/fusion.ts" drops the command penalty, so a command candidate ties or beats the sk-code skill on raw score alone.
 
-3. **A route receipt is written before the hook output reaches the host, unlike the directive receipt that waits for the write** -- .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:604 -- `recordRouteReceipt` stores the delivered skill (line 413) as soon as the brief renders, while `writeHookOutput` commits the directive receipt only when the stdout write succeeds (line 700) so that "the next turn delivers the full brief again instead of a head the model never saw". A failed write leaves a route receipt for a brief the model never received, and the next floored weak follow-up is held back against it.
-   Finding class: commit-ordering inconsistency.
-   Scope proof: requires a failed stdout handoff; receipts are otherwise advisory and expire on the lifecycle clock.
-   Affected surface hints: defer `recordRouteReceipt` behind the same commit hook as `DIRECTIVE_RECEIPT_COMMIT`.
-   Case: the stdout write for a turn routed to sk-doc fails, then the next prompt "fix that too" floored to sk-code gets "Advisor: prompt skipped." although the model never saw sk-doc.
+3. **The returned `ambiguous` flag is recomputed on the doctor-inclusive list** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1462 -- The code states that doctor bridges must not shape skill ambiguity and computes a doctor-free pass for that reason [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1272-1273], yet the result's `ambiguous` is `isAmbiguousTopTwo(ranked)` over the merged list that still contains doctor bridges [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1462]; `isAmbiguousTopTwo` looks at the passing-top cluster [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:94-97]. Recheck of generation-4 finding, still holds.
+   Finding class: invariant-violation
+   Scope proof: fusion.ts and ambiguity.ts in scope.
+   Affected surface hints: fusion.ts final return, consumers of `ambiguous` in render and hooks.
+   Case: a prompt where a passing doctor bridge sits within the cluster band of the top skill returns ambiguous=true even though the doctor-free pass found a single clear skill.
 
-4. **Last-marker-wins drops the first half of a user task that has two markers** -- .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:253 -- `stripPastedReplyOnce` keeps only the text after the last `Now:`/`Task:` marker. When the user's own task carries two markers, everything before the last one is discarded with the paste. The fixture records this as accepted (`pasted-reply-strip-cases.json:76`, `expected` differs from `ideal`), and the Python mirror copies it, so parity holds but routing loses the main task.
-   Finding class: known heuristic limitation, documented in tests.
-   Scope proof: needs a cue at the start plus two markers; parity between TypeScript and Python is unaffected.
-   Affected surface hints: `prompt-policy.ts` stripPastedReplyOnce and `skill_advisor.py` `_strip_pasted_reply_once` together.
-   Case: "Earlier you replied: Done. Task: Refactor the session store module. Now: also update its tests." is scored as "also update its tests.".
+4. **Low-information abstention counts stop words as meaningful tokens** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1303 -- `meaningfulTokenCount` keeps every whitespace token longer than one character [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1303-1304], so function words count toward the three-token ceiling at :1305. Probe: "do it to me" (all stop words) counts 4 and is NOT treated as low-information, while "review it" counts 2. Recheck of generation-4 finding, still holds.
+   Finding class: miscount
+   Scope proof: fusion.ts in scope.
+   Affected surface hints: fusion.ts lowInfoPrompt, any shared stop-word list in scorer/text.ts.
+   Case: a four-word prompt made only of stop words escapes the low-information abstention, so strict callers get a routed recommendation for a prompt with no content.
 
 ## Traceability Checks
 
-- `spec_code`: partial. The behavior claims in the strategy (strip parity, crash fallback, weak follow-up receipts) are implemented as described; the strip is applied at the MCP handler (`advisor-recommend.ts` scoredPrompt), the scorer (`fusion.ts` scoreAdvisorPrompt), the brief builder, the CLI fallback, the degraded CLI path and both Python entry points. The phase `spec.md` files were not read this iteration, so the check stays partial.
-- `checklist_evidence`: notApplicable this iteration by operator direction (evidence folders and verdict tables are out of bounds); judged from code and tests only.
-- `feature_catalog_code`: not run.
+- spec_code: partial. The empty-scan comment ("preserving existing graph", skill-graph-db.ts:922) states the preservation intent the sub-root path violates; fusion.ts:1272-1273 states the doctor-free ambiguity intent :1462 violates. Packet spec docs not read this iteration (planned for iteration 3).
+- checklist_evidence: notApplicable this iteration; the review target is a skill code tree with no checklist rows for these modules; recheck in iteration 3.
 
 ## Integration Evidence
 
-- `hooks/dsh/prompt-advisor.mjs` rotates the shared lifecycle clock per session on `agent/created` and `compaction/end`, and refuses to rotate without a session id (so it never advances the store generation). Reviewed via diff.
-- `hooks/lib/directive-lifecycle.ts:135-180` read as context for finding 2.
+- Tool surface: `skill_graph_scan` schema in .skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts:28 (skillsRoot description).
+- Consumer: scorer projection SQLite read at .skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1402.
 
 ## Edge Cases
 
-- Ambiguity: the dispatch gives no iteration number; the JSONL holds zero `type:"iteration"` records, so this is iteration 1, matching the dispatch.
-- The working tree differs from the diff end on six advisor files outside the strip and receipt code (routing-accuracy scripts and their test); judged as not affecting this iteration's targets.
+- Partial coverage: cross-skill-edges/, derived/extract.ts, provenance.ts, sanitizer.ts, skill-graph-queries.ts, bfs-traversal.ts and handlers/skill-graph/status.ts, validate.ts, query.ts were not read within the 24-call budget; carried to iteration 2.
+- Production-dead code: routeSupersession, rollbackGraphMetadataFile, backfillDerivedV2 and readMixedVersion have no non-test caller (grep over runtime and hooks); only applyAgeHaircutToLane (via scorer/age-policy.ts) and lifecycleStatusForPath (projection.ts:1275) are live. Correctness defects in the dead modules (for example supersession.ts:33-36 substring mention matching) do not reach routing; recorded for the maintainability pass rather than as findings.
+- Probes ran in /private/tmp/dr530/probe.mjs, reproducing the fusion.ts expressions literally; exit 0.
 
 ## Confirmed-Clean Surfaces
 
-- TypeScript and Python strippers agree: same cue and marker regexes, `^` start-only in both, JS whitespace set spelled out for Python, ASCII-only case folding (`re.ASCII`), JS trim set in `strip`. Fixture cases for NBSP, BOM, U+001C, U+0085 and U+017F cover the divergence points; parity tests pass.
-- Idempotence: both strippers loop to a fixed point, so the handler, scorer and native bridge stripping the same text twice is safe.
-- Crash fallback: diagnostics are double-wrapped; a payload with no prompt string stays silent; a policy-skipped prompt renders the skipped line, otherwise the timeout line; tests cover the removed-cwd case.
-- Receipt store: lstat plus owner and mode checks on base and folder, same-folder temp file plus rename, size cap, eviction bound, every fault reads as no receipt.
+- .skilled/skills/system-skill-advisor/runtime/lib/derived/sync.ts: atomic write with tmp cleanup, idempotent compare ignoring generated_at, workspace containment check.
+- .skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts: path lifecycle mapping consistent with filterDefaultRoutable.
 
 ## Ruled Out
 
-- Double application of directive dedup on the crash path: every statement after the normal-path `applyDirectiveLifecycle` (line 607) is fail-open (`emitDiagnostic` and `observeEmittedAdvisorPolicy` swallow errors), so the crash path cannot run after a full receipt was recorded on the same turn.
-- Receipt cross-session leak: receipts are keyed by a sha256 of a confirmed session id and re-checked against `sessionId` on parse.
+- heldBelow naming one holder (fusion.ts:545-558): the named binding is the lowest-scored holder, which is the one whose ceiling (min) set the final score, as the comment at :542-544 states. Not a defect.
+- NaN from age-haircut.ts:37-40 on a malformed timestamp: the only live caller passes `derivedGeneratedAt` validated through isoTimestampOrNull (projection.ts:1334). Not reachable.
 
 ## Next Focus
 
-- Dimension: security.
-- Focus area: `route-receipt.ts` file store under a shared temp dir, `skill-advisor-cli-fallback.ts` subprocess payload, regex cost of `PASTED_REPLY_CUE`/`TASK_MARKER` on 64 KiB input, and pasted-text injection into routing.
-- Reason: correctness pass done; the receipt store and the strip are new trust-boundary surfaces.
-- Rotation status: correctness covered; security, traceability, maintainability remain.
-- Required evidence: file:line for any store or regex claim; read the phase `spec.md` files for the traceability pass later.
+- Dimension: security plus Python/TS parity (as planned).
+- Focus area: socket_hijack, R2-P1-001 trust default recheck, shadow log; then the correctness carry-over modules above if budget allows.
+- Reason: planned order; correctness on cross-skill-edges and remaining skill-graph handlers is uncovered.
+- Rotation status: correctness covered partially (1/4 dimensions).
+- Required evidence: file:line plus a probe or test reading per finding.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

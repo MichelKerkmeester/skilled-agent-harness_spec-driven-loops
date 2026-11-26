@@ -249,6 +249,27 @@ describe('buildTraceabilityRollup', () => {
     ]);
     expect(rollup.summary.gatingFailures).toBe(1);
   });
+
+  it('takes the contract class over a class the reviewer recorded', () => {
+    const rollup = buildTraceabilityRollup([
+      {
+        traceabilityChecks: {
+          results: [
+            { protocolId: 'spec_code', status: 'partial', gateClass: 'advisory' },
+            { protocolId: 'skill_agent', status: 'partial', gateClass: 'hard' },
+            { protocolId: 'custom_overlay', status: 'partial', gateClass: 'hard' },
+          ],
+        },
+      },
+    ]);
+
+    expect(rollup.results.map((result) => [result.protocolId, result.gateClass])).toEqual([
+      ['spec_code', 'hard'],
+      ['skill_agent', 'advisory'],
+      ['custom_overlay', 'hard'],
+    ]);
+    expect(rollup.summary.gatingFailures).toBe(2);
+  });
 });
 
 describe('coverage gate over recorded iterations', () => {

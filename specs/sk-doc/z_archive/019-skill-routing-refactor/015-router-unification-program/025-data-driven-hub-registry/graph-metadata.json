@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/025-data-driven-hub-registry",
+  "spec_folder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/025-data-driven-hub-registry",
+  "parent_id": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "data driven hub registry",
+      "compiled route hub registry",
+      "hub-registry.json",
+      "phase 25 data driven hub registry",
+      "data driven hub registry plan",
+      "data driven hub registry tasks",
+      "data driven hub registry implementation summary"
+    ],
+    "key_topics": [
+      "data",
+      "driven",
+      "hub",
+      "registry",
+      "compiled",
+      "route",
+      "hub-registry",
+      "json",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/hub-registry.json",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/hub-registry.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/bin/compiled-routing-foundation.vitest.ts",
+      ".skilled/bin/tests/compiled-route-hub-registry.test.cjs",
+      ".skilled/bin/tests/fixtures/hub-registry/registry-cases.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-hub-registry.vitest.ts",
+      ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/hub-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-registry.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/hub-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-registry.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/hub-registry.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-foundation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/compiled-routing-foundation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-hub-registry.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-hub-registry.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "registry-cases.json",
+        "kind": "config",
+        "path": ".skilled/bin/tests/fixtures/hub-registry/registry-cases.json",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-flag.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-hub-registry.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-hub-registry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-routing-architecture.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The compiled-route hub set was written out five times: `HUBCHILD` in `014-runtime-engine/lib/compiled-route.cjs`, `DEFAULTONHUBS` in `resolve.cjs`, `HUBS` in the guard, `HUBS` in the sync tool, and the sets in the advisor's `compiled-routing-flag.ts`",
+    "created_at": "2026-11-25T17:49:11Z",
+    "last_save_at": "2026-11-25T18:49:00.780Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c396b8f405978e988384774ea5c5977793c05b7f1a8dd85885029a6ee5c41ea3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d20a1b0fc3fcc993fe3ae2094bc83f867c5838640b2fa7601a903a8fa8314bb3",
+      "plan.md": "0504b0781bc5dca4dbf350bf6c0b27ea9392960a8f4d83edc4fc4ee0d656c2ee",
+      "tasks.md": "ac5016323ea95578661bfc9e85f8fe215d1e81c50d423422f903399c059be60e",
+      "implementation-summary.md": "bcb0e53551153fd7b675b50b6066e2281f07fd71089dc7d5ecf6d7b08fb05310"
+    },
+    "last_active_at": null
+  }
+}

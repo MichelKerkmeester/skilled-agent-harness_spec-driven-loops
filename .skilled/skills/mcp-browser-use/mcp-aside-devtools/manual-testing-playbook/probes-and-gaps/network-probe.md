@@ -1,7 +1,7 @@
 ---
 title: "ASD-013 -- Network capture probe (guarded)"
 description: "This scenario validates the network-capture gap for `ASD-013`. It is a guarded probe for request/response listeners on a bound page; no HAR parity is promised in any outcome."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # ASD-013 -- Network capture probe (guarded)
@@ -60,7 +60,7 @@ The REPL transcript and, on success, the redacted event fixture. Confirm no head
 
 ### Pass / Fail
 
-- **Pass**: either outcome, honestly evidenced, redaction intact, no HAR-parity claim.
+- **Pass**: either outcome, honestly evidenced, redaction intact, no HAR-parity claim. The saved reason opens with `supported:` or `unsupported:`, so a PASS row in the report index never reads as a working capture.
 - **Fail**: unguarded listeners, skipped probe, overclaimed verdict, or sensitive data in evidence.
 
 ### Failure Triage

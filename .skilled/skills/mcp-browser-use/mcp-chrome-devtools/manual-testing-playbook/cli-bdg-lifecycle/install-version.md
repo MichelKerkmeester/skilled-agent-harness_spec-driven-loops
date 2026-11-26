@@ -1,7 +1,7 @@
 ---
 title: "BDG-001 -- Install + version"
 description: "This scenario validates the bdg CLI install + version surface for `BDG-001`. It focuses on confirming bdg is on PATH and reports a version string."
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # BDG-001 -- Install + version
@@ -61,7 +61,7 @@ Capture both command outputs and exit codes.
 
 ### Failure Triage
 
-1. If `command -v bdg` is empty: install with `npm install -g browser-debugger-cli@alpha`; verify Node `node --version` >= 18; check `npm config get prefix` and ensure that path is in `PATH`.
+1. If `command -v bdg` is empty: install with `npm install -g browser-debugger-cli@0.6.10`; verify `node --version` reports 20 or higher, which bdg 0.6.10 needs; check `npm config get prefix` and ensure that path is in `PATH`.
 2. If `--version` errors: check `which bdg` — if multiple paths, there may be a stale install; remove with `npm uninstall -g browser-debugger-cli` and reinstall.
 
 ---

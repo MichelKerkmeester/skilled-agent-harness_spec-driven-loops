@@ -18,6 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 const { compiledRoute } = require('./compiled-route.cjs');
+const { loadHubRegistry } = require('./hub-registry.cjs');
 
 // Activation state root. Tests point SPECKIT_ACTIVATION_ROOT_OVERRIDE at a temp
 // copy so the harness never reads or mutates live committed state.
@@ -26,27 +27,15 @@ const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
 const FLAG = 'SPECKIT_COMPILED_ROUTING';
 const DEBUG_FLAG = 'SPECKIT_COMPILED_ROUTING_DEBUG';
 
-// Per-hub default-on cohort. The five hubs cut over together were verified
-// compiled-serving by the legacy-parity harness before it was retired;
-// cli-classifier joined at its own first activation, admitted on its own canary
-// corpus and a fresh manifest, when it absorbed the Jev transport as a mode.
-// sk-design joins the same way, on this rollout's admission, and so do
-// mcp-browser-use, admitted on its own canary corpus after it split out of
-// mcp-tooling, and system-skilled-bots, admitted on its own playbook gold.
+// Per-hub default-on cohort: the registry entries marked defaultOn, in registry
+// order. A hub joins it once it is admitted on its own canary corpus and a fresh
+// manifest; eligibility alone (a registry entry) does not put it here.
 // An unset flag resolves to compiled for every hub listed here;
 // SPECKIT_COMPILED_ROUTING=0 remains the explicit fleet-wide kill-switch back
 // to legacy.
-const DEFAULT_ON_HUBS = new Set([
-  'sk-code',
-  'system-deep-loop',
-  'mcp-tooling',
-  'cli-external-orchestration',
-  'cli-classifier',
-  'sk-doc',
-  'sk-design',
-  'mcp-browser-use',
-  'system-skilled-bots',
-]);
+const DEFAULT_ON_HUBS = new Set(
+  loadHubRegistry().filter((hub) => hub.defaultOn).map((hub) => hub.id),
+);
 
 // Emit-only diagnostic. Gated behind an explicit debug flag and written to
 // stderr, so it never reaches stdout (the routing channel) or the TUI.
@@ -148,7 +137,8 @@ module.exports = {
 // legacy sentinel so the caller falls back to the prose smart-router.
 if (require.main === module) {
   const args = process.argv.slice(2);
-  const hub = args[args.indexOf('--hub') + 1];
+  const hubIdx = args.indexOf('--hub');
+  const hub = hubIdx >= 0 ? args[hubIdx + 1] : undefined;
   const promptIdx = args.indexOf('--prompt');
   const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
   if (!hub) {

@@ -2130,12 +2130,15 @@ workflow:
 
           Options:
           A) Proceed to synthesis (compile review/review-report.md)
-          B) Run more iterations (increase max or focus on specific dimension)
+          B) Run more iterations (increase max or focus on specific dimension; a fan-out run ends here and names the rerun)
           C) Cancel (keep iteration files)
         wait_for: "User response"
         after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
         on_A: { proceed_to: step_read_all_iterations }
-        on_B: { action: "Increase max_iterations or adjust focus, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again and writes another terminal record", proceed_to: phase_loop }
+        on_B:
+          branch_on: "config.fanout"
+          if_absent: { action: "Increase max_iterations or adjust focus, return to loop. When reason is maxDurationReached, raise maxDurationMinutes in the config too, or the duration check stops the loop again and writes another terminal record", proceed_to: phase_loop }
+          if_present: { action: "A fan-out run has no loop to return to, and --extend is refused with fan-out. Keep the artifacts and tell the operator to start a new fan-out run with a higher --max-iterations.", status: "PARTIAL" }
         on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
 
       step_read_all_iterations:

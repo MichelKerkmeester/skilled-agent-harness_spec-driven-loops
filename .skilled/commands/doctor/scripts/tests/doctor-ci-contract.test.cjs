@@ -154,7 +154,7 @@ test('every trigger phrase has three or more words and every route declares its 
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('the router carries the skill tag and one workflow row per target', () => {
-  assert.equal(ROUTER.split('<!-- skill_agent: sk-code -->').length - 1, 1);
+  assert.equal(ROUTER.split('<!-- skill_agent: system-skilled-doctor -->').length - 1, 1);
   for (const target of TARGETS) {
     assert.match(ROUTER, new RegExp(`^\\| \`${target}\` \\| \`\\.skilled/commands/doctor/assets/doctor-ci-${target}\\.yaml\` \\|$`, 'm'));
   }

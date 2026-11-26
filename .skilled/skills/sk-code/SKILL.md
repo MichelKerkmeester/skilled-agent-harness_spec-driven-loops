@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.12.1.0
+version: 3.12.5.0
 metadata:
   family: sk-code
 ---
@@ -55,7 +55,7 @@ Any other sk-code doc that counts surfaces points to this sentence.
 ### When NOT to Use
 - Documentation-only changes with no code-work contract - use `sk-doc`.
 - Git workflow, branch, commit, PR, merge, or release work - use `sk-git`.
-- Pure browser inspection or external MCP transport work - use the relevant MCP skill.
+- Pure browser inspection - use the `mcp-browser-use` hub, which routes to its Chrome DevTools, Aside or Bladebro mode. Other external MCP transport work - use the relevant MCP skill.
 - For a measured Style Reference (design tokens extracted from a live source), use `sk-design-md-generator` first.
 - When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` and decide it from its visual-values reference.
 - Backend support primitives in `shared/` - they are consumed by the modes, not invoked as a user workflow.
@@ -69,7 +69,7 @@ Stage 1 (hub → mode) uses `hub-router.json` as the authored mode vocabulary. `
 Stage 2 (mode → leaves) uses the root [`ROUTER.md`](./ROUTER.md) as the authored leaf-set router.
 Both files point back here instead of restating the split.
 
-The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"` and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
+The advisor routes every code query to the single identity `sk-code`. Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) and follow the decision: `route` loads its `targets`, `clarify` and `defer` ask, `reject` refuses.
 Compiled routing is the default. The legacy fallback, the kill-switch and the `UNKNOWN_FALLBACK_CHECKLIST` live in the compiled-routing section of [`ROUTER.md`](./ROUTER.md).
 
 A bare implement, debug or verify request with no workflow mode becomes a pure surface bundle, and an unclear code intent asks for disambiguation. Neither path forces a stale default.
@@ -151,6 +151,7 @@ After adding or removing a surface, run `/doctor:sk-code setup`. It checks the h
 - **ALWAYS** keep the implement/debug/verify workflow doctrine as one shared source under `shared/references/`, symlinked into each surface, and never fork per-surface copies.
 - **ALWAYS** keep `ROUTER.md` `RESOURCE_MAP` keys aligned with its intent keys and packet leaves aligned with `leaf-manifest.json`.
 - **ALWAYS** keep hub-shared map inputs explicit in `SHARED_CONTROL_RESOURCES`, because they are control resources and never typed leaves.
+- **ALWAYS** meet the changed surface's row in `ROUTER.md` §5 before reporting a change complete, however small the change. For a changed stylesheet, markup or component file, read `.skilled/skills/mcp-browser-use/SKILL.md` to find an installed browser mode, open the page through it in a browser session the agent owns, and report a screenshot and the console. Its modes are command-line tools as well as MCP servers, so check for `bdg` and `bladebro` with `command -v` before concluding none is installed. Aside runs on the user's signed-in account, so use it only when the user asks. When none can run, write the words NOT RUN and the reason.
 
 ### ⛔ NEVER
 - **NEVER** add a `graph-metadata.json` inside a mode packet or `shared/`.

@@ -1,0 +1,135 @@
+{
+  "topic": "Audit the Skilled v4.2.0.0 release notes against the work shipped since v4.1.0.0, and report what is missing, what has drifted and what is broken.\n\nInputs, read-only:\n- Release notes: .skilled/changelog/skilled/v4.2.0.0.md (926 lines, not tagged yet).\n- Window: git range v4.1.0.0..HEAD. The 1084 non-merge commits, one per line as \"hash date subject\", are in specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/window-commits.txt. Use git show, git log -- <path> and git diff on that range for detail.\n- Recently touched packets: specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/scratch/recent-packets.txt (21 spec folders; read their spec.md and implementation-summary.md).\n\nDefinitions:\n- MISSING: a user-visible change in the window (a new or removed command, flag, skill, mode, hook, script, default or behavior) that the release notes never mention.\n- DRIFT: a release-note claim (a flag, path, count, default, version, test number or behavior) that the current code or docs contradict.\n- BUG: a defect in code changed in the window, shown by reading the code or running a read-only command.\n\nKey questions:\n1. Which commits in the window change user-visible behavior with no entry in the notes? Check each notes section in turn: Deep Loop, Fan-Out Runs, Dispatch and Safety, Skill Advisor, Installs and Overlays, OpenCode, Browser Use, Skills and Worktrees, How It Was Checked, Upgrade Notes.\n2. Which of the 21 recent packets shipped work the notes do not cover, or describe the shipped work differently from the notes?\n3. Which concrete claims in the notes (flags, paths, counts, test results, removed items) no longer match HEAD, including work that landed after a section was written?\n4. Which changes in the window introduced a bug, a dead reference or a broken cross-link?\n\nRules: cite a commit hash and a file:line for every finding, plus the release-notes line it concerns. Mark each finding MISSING, DRIFT or BUG with a severity of P0, P1 or P2. Say when you could not confirm something. Do not edit any file outside your own research lineage folder.\n",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "depthMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research",
+  "createdAt": "2026-11-25T08:04:38Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "2026-11-25T08:04:38Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart",
+      "completed-continue"
+    ],
+    "deferredModes": [
+      "fork"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map": {
+    "emit": true,
+    "present": false
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "xhigh",
+        "serviceTier": "fast",
+        "label": "codex",
+        "count": 1,
+        "iterations": 10,
+        "timeoutSeconds": 1800
+      },
+      {
+        "kind": "cli-devin",
+        "model": "deepseek-v4-1-flash-max",
+        "label": "devin",
+        "count": 1,
+        "iterations": 10,
+        "timeoutSeconds": 1800
+      }
+    ],
+    "concurrency": 2
+  }
+}

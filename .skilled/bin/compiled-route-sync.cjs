@@ -52,17 +52,58 @@ const PROMOTED_RESOLVER = promotedResolverFor(RUNTIME_ROOT);
 const PUBLICATION_STATE_FILE = '.compiled-route-publication.json';
 const PUBLICATION_STATE_SCHEMA = 'V1';
 
-const HUBS = [
-  'sk-code',
-  'system-deep-loop',
-  'mcp-tooling',
-  'cli-external-orchestration',
-  'cli-classifier',
-  'sk-doc',
-  'sk-design',
-  'mcp-browser-use',
-  'system-skilled-bots',
-];
+// The hub set is the registry's. Each closure root carries its own copy, so a
+// trace drives the hubs of the tree it reads: the authored root for a build or
+// check, the promoted root for a verify. The module-level list is the authored
+// registry, or the promoted one where only the promoted closure ships (a host
+// repository that vendors Skilled). Each registry is read by the reader in its own
+// closure, so a missing or older promoted tree cannot break a build of the
+// authored one. The reader is loaded only when a registry is present, and a
+// registry without one fails naming the folder to restore, never a raw module
+// error.
+const HUB_REGISTRY_FILE = 'hub-registry.json';
+const HUB_REGISTRY_READER = path.join('014-runtime-engine', 'lib', 'hub-registry.cjs');
+
+// The folder a closure root is restored from: the authored program for the
+// authored root, the root itself otherwise.
+function closureLabel(root) {
+  if (path.resolve(root) === path.resolve(IMPL_ROOT)) return layout.AUTHORED_PROGRAM_DIR;
+  const relative = path.relative(REPO_ROOT, root);
+  return relative && !relative.startsWith('..') && !path.isAbsolute(relative) ? relative : root;
+}
+
+function registryHubsIn(root) {
+  const file = path.join(root, HUB_REGISTRY_FILE);
+  if (!fs.existsSync(file)) return null;
+  const reader = path.join(root, HUB_REGISTRY_READER);
+  if (!fs.existsSync(reader)) {
+    const label = closureLabel(root);
+    throw new Error(`compiled-route hub registry under ${label} has no reader beside it (${HUB_REGISTRY_READER}); ` +
+      `restore ${label}`);
+  }
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const { loadHubRegistry } = require(reader);
+  return loadHubRegistry(file).map((hub) => hub.id);
+}
+
+let hubRegistryError = null;
+const HUBS = (() => {
+  try {
+    return registryHubsIn(IMPL_ROOT) || registryHubsIn(RUNTIME_ROOT) || [];
+  } catch (error) {
+    hubRegistryError = error;
+    return [];
+  }
+})();
+
+// The hubs a closure root registers; a root that predates the registry falls back
+// to the module-level list. A refused registry surfaces here, naming its file.
+function hubsFor(root) {
+  if (hubRegistryError) throw hubRegistryError;
+  const hubs = registryHubsIn(root) || HUBS;
+  if (hubs.length === 0) throw new Error(`no compiled-route hub registry found under ${root}`);
+  return hubs;
+}
 
 // Diverse probes maximize the branches (route/clarify/defer) the engine walks,
 // so no conditionally-loaded module is missed by the trace.
@@ -121,6 +162,7 @@ function clearRequireCache(root) {
 }
 
 function traceClosure(resolverPath, closureRoot = path.resolve(resolverPath, '..', '..', '..')) {
+  const hubs = hubsFor(closureRoot);
   const probe = instrument();
   const priorFlag = process.env.SPECKIT_COMPILED_ROUTING;
   process.env.SPECKIT_COMPILED_ROUTING = '1';
@@ -137,7 +179,7 @@ function traceClosure(resolverPath, closureRoot = path.resolve(resolverPath, '..
     // did the hub's compiled engine load and produce a route at all.
     // eslint-disable-next-line global-require, import/no-dynamic-require
     const { compiledRoute } = require(path.join(path.dirname(resolverPath), 'compiled-route.cjs'));
-    for (const hub of HUBS) {
+    for (const hub of hubs) {
       let decision = null;
       let reachable = false;
       for (const prompt of PROBES) {
@@ -159,7 +201,7 @@ function traceClosure(resolverPath, closureRoot = path.resolve(resolverPath, '..
     else process.env.SPECKIT_COMPILED_ROUTING = priorFlag;
     probe.restore();
   }
-  return { touched: probe.touched, resolved, reachableHubs };
+  return { touched: probe.touched, resolved, reachableHubs, hubs };
 }
 
 function underRoot(root, abs) {
@@ -458,12 +500,12 @@ function validateExternalManifest(hubId, manifestBytes) {
  * @param {string} activationRoot - Activation store to inspect.
  * @returns {Array<Object>} Byte-preserving manifest snapshots.
  */
-function captureExternalActivationManifests(activationRoot = ACTIVATION_ROOT) {
+function captureExternalActivationManifests(activationRoot = ACTIVATION_ROOT, hubs = HUBS) {
   const root = safeActivationRoot(activationRoot);
   if (!root) return [];
   const captured = [];
   for (const entry of fs.readdirSync(root.resolvedRoot, { withFileTypes: true })) {
-    if (HUBS.includes(entry.name)) continue;
+    if (hubs.includes(entry.name)) continue;
     if (entry.isSymbolicLink()) syncConflict(entry.name);
     if (!entry.isDirectory()) continue;
     if (!isCanonicalHubId(entry.name)) syncConflict(entry.name);
@@ -525,7 +567,7 @@ function restoreExternalActivationManifests(
 }
 
 function externalManifestMap(runtimeRoot) {
-  const captured = captureExternalActivationManifests(activationRootFor(runtimeRoot));
+  const captured = captureExternalActivationManifests(activationRootFor(runtimeRoot), hubsFor(runtimeRoot));
   return new Map(captured.map((entry) => [entry.hubId, entry]));
 }
 
@@ -698,14 +740,14 @@ function verifyRoot(runtimeRoot, { emit = true, allowStaleManifests = false } = 
   if (!resolverPath || !fs.existsSync(resolverPath)) {
     throw new Error(`promoted resolver missing at ${resolverPath || 'no coherent layout'}; run the sync build first`);
   }
-  const { touched, resolved } = traceClosure(resolverPath, runtimeRoot);
+  const { touched, resolved, hubs } = traceClosure(resolverPath, runtimeRoot);
   const specReads = [...touched].filter(underSpecs).sort();
   // A promoted root is judged on what it will actually serve, so this gate stays on
   // the manifest-sensitive route rather than bare engine reachability. The compiled
   // engine answers for a hub whose manifest is missing, malformed or invalid, so
   // reachability alone would wave those through; only `resolved` distinguishes them.
   // Genuine staleness is a separate case, sorted below by the status probe.
-  const unresolved = HUBS.filter((h) => !resolved[h]);
+  const unresolved = hubs.filter((h) => !resolved[h]);
   const allowedStale = [];
   const blockedUnresolved = [];
   if (allowStaleManifests && unresolved.length > 0) {
@@ -734,8 +776,8 @@ function verifyRoot(runtimeRoot, { emit = true, allowStaleManifests = false } = 
     throw new Error(`MOVE-SIMULATION FAILED:\n${errors.join('\n')}`);
   }
   const message = allowedStale.length > 0
-    ? `move-simulation OK: ${HUBS.length - allowedStale.length}/${HUBS.length} hubs resolve; ${allowedStale.length} validated stale-manifest rollback fallback(s): ${allowedStale.join(', ')}; 0 reads under .opencode/specs`
-    : `move-simulation OK: all ${HUBS.length} hubs resolve; 0 reads under .opencode/specs`;
+    ? `move-simulation OK: ${hubs.length - allowedStale.length}/${hubs.length} hubs resolve; ${allowedStale.length} validated stale-manifest rollback fallback(s): ${allowedStale.join(', ')}; 0 reads under .opencode/specs`
+    : `move-simulation OK: all ${hubs.length} hubs resolve; 0 reads under .opencode/specs`;
   if (emit) process.stdout.write(`${message}\n`);
   return { resolved, touched, allowedStale, message };
 }
@@ -770,13 +812,13 @@ function build({
   if (!fs.existsSync(authoredResolver)) {
     throw new Error(`authored resolver missing at ${authoredResolver}`);
   }
-  const { touched, reachableHubs } = traceClosure(authoredResolver, sourceRoot);
+  const { touched, reachableHubs, hubs } = traceClosure(authoredResolver, sourceRoot);
   const closureFiles = [...touched]
     .filter((abs) => underRoot(sourceRoot, abs))
     .filter((abs) => { try { return fs.statSync(abs).isFile(); } catch { return false; } })
     .sort();
 
-  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
+  const unresolved = hubs.filter((h) => !reachableHubs[h]);
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
   }
@@ -803,7 +845,7 @@ function build({
       verifyRoot(runtimeResolved, { emit: false, allowStaleManifests: true });
       priorClosureFingerprint = closureFingerprint(runtimeResolved);
     }
-    const externalManifests = captureExternalActivationManifests(activationRootFor(runtimeResolved));
+    const externalManifests = captureExternalActivationManifests(activationRootFor(runtimeResolved), hubs);
     const copied = [];
     for (const abs of closureFiles) {
       const rel = path.relative(sourceRoot, abs);
@@ -813,7 +855,7 @@ function build({
       copied.push(rel);
     }
     // The resolver does not read fence state, but the status probe reports it.
-    for (const hub of HUBS) {
+    for (const hub of hubs) {
       const rel = path.join(CURRENT_LAYOUT.activation, 'activation', hub, 'fence-state.json');
       const src = path.join(sourceRoot, rel);
       if (fs.existsSync(src)) {
@@ -832,7 +874,7 @@ function build({
       schemaVersion: 'V1',
       generatedFrom: path.relative(REPO_ROOT, sourceRoot),
       runtimeRoot: path.relative(REPO_ROOT, runtimeResolved),
-      hubs: HUBS,
+      hubs,
       fileCount: copied.length,
       files: copied,
     };
@@ -1009,12 +1051,12 @@ function check({ sourceRoot = IMPL_ROOT, runtimeRoot = RUNTIME_ROOT } = {}) {
   if (!fs.existsSync(authoredResolver)) {
     throw new Error(`authored resolver missing at ${authoredResolver}`);
   }
-  const { touched, reachableHubs } = traceClosure(authoredResolver, sourceRoot);
+  const { touched, reachableHubs, hubs } = traceClosure(authoredResolver, sourceRoot);
   const closureFiles = [...touched]
     .filter((abs) => underRoot(sourceRoot, abs))
     .filter((abs) => { try { return fs.statSync(abs).isFile(); } catch { return false; } })
     .sort();
-  const unresolved = HUBS.filter((h) => !reachableHubs[h]);
+  const unresolved = hubs.filter((h) => !reachableHubs[h]);
   if (unresolved.length > 0) {
     throw new Error(`authored closure failed to resolve hubs: ${unresolved.join(', ')}`);
   }
@@ -1032,7 +1074,7 @@ function check({ sourceRoot = IMPL_ROOT, runtimeRoot = RUNTIME_ROOT } = {}) {
   }
   process.stdout.write(`${closureFiles.length} closure files under authored root\n`);
   for (const abs of closureFiles) process.stdout.write(`  ${path.relative(sourceRoot, abs)}\n`);
-  process.stdout.write(`all ${HUBS.length} hubs resolve\n`);
+  process.stdout.write(`all ${hubs.length} hubs resolve\n`);
   if (drifted.length > 0) {
     throw new Error(`${drifted.length} served file(s) out of sync; rebuild with compiled-route-sync.cjs, or copy a re-minted activation manifest back to its authored path:\n  ${drifted.join('\n  ')}`);
   }
@@ -1162,4 +1204,5 @@ module.exports = {
   PROMOTED_RESOLVER,
   IMPL_ROOT,
   HUBS,
+  registryHubsIn,
 };

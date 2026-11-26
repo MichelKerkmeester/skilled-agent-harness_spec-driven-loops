@@ -53,6 +53,8 @@ Fire once per user turn, before the model call.
 
 **Injects:** `Advisor: {live|stale}; use {skill} {confidence}/{uncertainty} pass.` (or the ambiguous two-skill variant), followed by one fixed directive appended to every brief regardless of the recommendation: the **comment-hygiene HARD BLOCK** reminder.
 
+A deep-loop command with policy `ask` also names its three offer options, so a session can ask the offer before it opens the command doc: `use system-deep-loop → /deep:review (ask: A /deep:review:auto (Recommended), B /deep:review:confirm, C no loop) 0.95/0.12 pass.` A dispatched child gets `(parent-named only)` instead, with no options. A deep-loop command the prompt typed, with or without a mode suffix, prints plain `(ask)`, because the reader already chose: `use system-deep-loop → /deep:review (ask) 0.94/0.12 pass.`
+
 The governor and proof-over-appearance directives were retired: both restated a disposition every turn, which is what the system prompt and AGENTS.md already carry, so they spent context re-asserting what was not in dispute. The hygiene directive stays because it is not a disposition. It names a specific prohibition a pre-commit gate enforces, and the gate is what makes it load-bearing.
 
 ```text

@@ -1,0 +1,20 @@
+Lineage complete. Final state:
+
+**Run:** `deepseek-max-2`, session `fanout-deepseek-max-2-1795550334883-gjbarh`, 7/7 iterations, stop reason `maxIterationsReached`, config `status: complete`.
+
+**Focus executed (operator traceability focus, all 7 iterations):**
+| Iter | Slice | Result |
+|---|---|---|
+| 1 | REQ-001→014 vs code/docs | clean |
+| 2 | REQ-015→034, ADR-005/006 | 1 P2 (timeline one round short) |
+| 3 | REQ-035→052, drift guard, reducer | clean |
+| 4 | ticked tasks, counts recomputed | 2 P2 (stale pair counts; unsatisfiable scope claim) |
+| 5 | AC-001→029 | clean |
+| 6 | AC-030→042, sixth round | 1 P2 (AC-038 stale pair count) |
+| 7 | overlay protocols + consolidation | clean; catalog drift deferred (out of scope) |
+
+**Verdict:** `CONDITIONAL` — 0 P0, 0 P1, 4 P2 (all docs-drift), 1 search-debt row (`SL-019`, the feature-catalog no-edit sentence that predates REQ-040's read-only-loop exception). `spec_code` and `checklist_evidence` both **pass** (52/52 REQs bound; all 60 acceptance `Evidence:` tails resolve, packet checker `problems=0`). Coverage is honestly partial: `traceability` covered, the other three dimensions not re-reviewed by this lineage.
+
+**State integrity:** 9 ledger frames → 7 unique iteration records with full route proof in the projection, `synthesis_complete` carrying `maxIterationsReached`, 7 iteration files each with exactly one final verdict line, 7 write-once deltas whose first row matches the gateway record, registry/dashboard/strategy all reduced from the ledger after every iteration. No writes outside the lineage; no gateway refusals.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-max-2

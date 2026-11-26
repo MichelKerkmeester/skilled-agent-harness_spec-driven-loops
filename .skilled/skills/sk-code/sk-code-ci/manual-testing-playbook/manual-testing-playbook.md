@@ -1,7 +1,7 @@
 ---
 title: "sk-code-ci: Manual Testing Playbook"
 description: "Corpus for the sk-code-ci surface: the routing-recall scenario for its CI_WORKFLOW intent signal and resource map, the negative floor that keeps CI words out of unrelated turns, one scenario per shipped rule reference, and the two /doctor:ci scenarios for a repository with its own switch names."
-version: 1.1.4.0
+version: 1.1.7.0
 ---
 
 # sk-code-ci: Manual Testing Playbook
@@ -16,13 +16,6 @@ Routing-recall, rule-reference and foreign-repository corpus for the `sk-code-ci
 > with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs
 > --playbook .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook --reports .skilled/skills/sk-code/benchmark/reports
 > --results <verdicts.csv> --label manual-testing-playbook--<variant> --executor "<runtime and model>"`.
->
-> The record is written by hand, because the harness that once wrote it was retired with its lane.
-> A manual run produces one dated folder holding a `README.md` with the verdict, the reason, the
-> evidence paths and the scenario ids, and a `source.md` naming the spec packet that holds the raw
-> transcript. The hub's own report index states that its rows are written by that harness at the
-> moment it writes a report, so a hand-written run adds its folder and leaves that index alone; the
-> folder name is what makes it findable.
 
 ---
 
@@ -203,4 +196,4 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 | ci-foreign-repository-profile | A foreign repository reads clean | Foreign Repository | [foreign-repository-profile](foreign-repository/foreign-repository-profile.md) |
 | ci-doctor-route-options | Doctor route options and exit codes | Foreign Repository | [route-options](foreign-repository/route-options.md) |
 
-Doctor command scenarios now live in the [central manual testing playbook](../../../../manual-testing-playbook/manual-testing-playbook.md). Their feature catalog entry remains `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, and the entry for the routing and rule-reference scenarios is `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`. The rule references themselves have no separate catalog entry, which each scenario's Playbook Sources section states.
+The `DOC` scenarios of `/doctor:ci` now live in the [system-skilled-doctor playbook](../../../system-skilled-doctor/manual-testing-playbook/manual-testing-playbook.md). The two foreign-repository scenarios above stay here, because they test this mode through its doctor command. Their feature catalog entry remains `feature-catalog/doctor-commands/ci-workflow-doctor-and-switches.md`, and the entry for the routing and rule-reference scenarios is `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`. The rule references themselves have no separate catalog entry, which each scenario's Playbook Sources section states.

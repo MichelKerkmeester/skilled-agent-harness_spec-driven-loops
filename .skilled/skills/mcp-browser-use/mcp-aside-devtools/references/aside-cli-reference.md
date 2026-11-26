@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside session flag"
 importance_tier: normal
 contextType: reference
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Aside CLI Reference
@@ -55,15 +55,15 @@ If no command is given, Aside starts a browser-agent session; passing a URL open
 ### Top-Level Options (observed on 1.26.626.1517)
 
 ```text
---version | --session <id> | --account <id> | --model <model> | --provider <provider>
---speed <default|fast> | --effort <off|minimal|low|medium|high|xhigh|ultrabrowse> | --update
+-V, --version | --session <id> | --account <id> | -m, --model <model> | -p, --provider <provider>
+-s, --speed <default|fast> | --effort <off|minimal|low|medium|high|xhigh|ultrabrowse> | --update
 ```
 
 `--update` exists but must stay operator-invoked; never run updates or the installer implicitly.
 
-### UNKNOWN: Model-Flag Spelling
+### Model-Flag Spelling (resolved on 1.26.626.1517)
 
-Documentation examples show `aside exec --account u1 -m openai-codex/gpt-5.5` (a combined `-m provider/model` convention), while the installed `--help` shows separate `--model <model>` and `--provider <provider>` options with no `-m` recorded. This is unresolved — likely a docs-example alias versus installed-help difference. Capture the installed version's help before freezing either spelling in a script.
+Both spellings work. The installed `aside --help` and `aside exec --help` define `-m, --model <model>`, which "also accepts provider/model for convenience", and `-p, --provider <provider>`. So `aside --account u1 -m openai-codex/gpt-5.5 "<task>"` and `aside --model claude-opus-4-6 --provider anthropic "<task>"` are both valid, and the help examples print both forms. Flags stay version-pinned, so capture the installed help before scripting them.
 
 ---
 

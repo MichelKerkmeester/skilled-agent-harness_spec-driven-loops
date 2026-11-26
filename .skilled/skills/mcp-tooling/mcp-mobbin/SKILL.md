@@ -3,7 +3,7 @@ name: mcp-mobbin
 description: "Mobbin MCP transport: read-only app/screen/flow research via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.7.0
+version: 1.1.8.0
 user-invocable: true
 ---
 
@@ -55,7 +55,7 @@ Deep operational detail lives in [`references/tool-surface.md`](references/tool-
 - The work is measured design-reference extraction: turning a live website's real CSS into a Style Reference DESIGN.md of named design tokens (type scale, components, Quick-Start CSS/Tailwind). That is `sk-design-md-generator`; this packet only retrieves Mobbin screenshot evidence.
 - The task is styles, screens, or flows research through Refero. That is `mcp-refero`, the sibling transport.
 - The task is Figma work (inspect, tokens, render, Code Connect). That is `mcp-figma`.
-- The task is browser automation, live-page inspection, or visual preview of a built page. That is `mcp-chrome-devtools`.
+- The task is browser automation, live-page inspection, or visual preview of a built page. That is the `mcp-browser-use` hub.
 - The work is generic app coding with no design-reference input: use `sk-code`.
 - The target is Mobbin's documentation search. `docs.mobbin.com/mcp` is a **separate** Mintlify docs-search MCP, not the design-reference server; this packet targets `api.mobbin.com/mcp` only.
 - The user asks to change this repo's files, edit the registered `.utcp_config.json` manual, or repair auth state. This transport forbids Write/Edit/Task, never mutates the workspace, and the registered manual is operator-owned.
@@ -65,7 +65,7 @@ Deep operational detail lives in [`references/tool-surface.md`](references/tool-
 ## 2. SMART ROUTING
 
 The `mcp-tooling` hub routes a Mobbin request here when the prompt names Mobbin or asks for app design research, real app screenshots or UX flow references, and the hub's `mcp-mobbin` signal selects this packet.
-Generic design, UI or screen phrasing is not a Mobbin signal: measured extraction belongs to `sk-design-md-generator`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to `mcp-chrome-devtools`.
+Generic design, UI or screen phrasing is not a Mobbin signal: measured extraction belongs to `sk-design-md-generator`, Refero references to `mcp-refero`, Figma work to `mcp-figma`, and browser work to the `mcp-browser-use` hub.
 
 `references/tool-surface.md` is the research baseline and loads for every research intent, `references/mcp-wiring.md` and `assets/utcp-mobbin-manual.md` load for wiring or auth intent, and `references/troubleshooting.md` for setup and error intent.
 
@@ -87,9 +87,9 @@ Discovery through Code Mode is mandatory before any call:
 ```typescript
 // Live-confirmed dotted discovery names (2026-07-16 fixture):
 //   mobbin.mobbin.search_screens · mobbin.mobbin.search_flows · mobbin.mobbin.search_sections
-const all = await list_tools();
+const all = list_tools();
 // MANDATORY per session: confirm the exact callable + schema before relying on any name
-const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" });
+const info = tool_info({ tool_name: "mobbin.mobbin_search_screens" });
 ```
 
 Live discovery on 2026-07-16 **CONFIRMED both the dotted discovery names and the callable form** (`references/discovery-fixture-2026-07-16.json`). The convention-derived prediction held exactly.
@@ -121,7 +121,7 @@ Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_descr
 ```typescript
 call_tool_chain({
   code: `
-    const result = await mobbin.mobbin_search_screens({
+    const result = mobbin.mobbin_search_screens({
       query: "iOS banking app onboarding identity verification",
       platform: "ios",
       limit: 5
@@ -298,7 +298,7 @@ Scripts: `scripts/doctor.sh` (read-only, non-interactive diagnostics; manual abs
 
 Examples: `examples/README.md` plus worked Code Mode walkthroughs (smoke search, platform-filtered flow research, element intent), all quoting the 2026-07-16 discovery-confirmed callables with the mandatory per-session `tool_info` confirmation first.
 
-Related skills: `sk-design-md-generator` (the measured-extraction companion), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-chrome-devtools` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design-md-generator` (the measured-extraction companion), `mcp-code-mode` (the substrate), `mcp-refero` (the closest sibling transport), `mcp-figma` (the hub's Figma transport), `mcp-browser-use` (browser preview only), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 

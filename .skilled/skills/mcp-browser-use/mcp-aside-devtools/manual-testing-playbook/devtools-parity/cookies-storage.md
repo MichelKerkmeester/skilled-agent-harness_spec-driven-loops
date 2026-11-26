@@ -1,7 +1,7 @@
 ---
 title: "ASD-019 -- Cookies + web storage read"
 description: "This scenario validates Chrome-DevTools Application-panel parity for `ASD-019`: the page.context() cookie gap, page-visible cookie names, and localStorage/sessionStorage key reads via page.evaluate through the aside REPL, redacted, with a SKIP-valid path when no bound session exists."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # ASD-019 -- Cookies + web storage read
@@ -57,7 +57,7 @@ The REPL transcript and the parsed, redacted JSON. Never save cookie/storage VAL
 
 ### Pass / Fail
 
-- **Pass**: the output parses; the verdict states the context-cookie gap; no values in evidence.
+- **Pass**: the output parses; the verdict states the context-cookie gap; no values in evidence. The saved reason opens with `gap:` and names what was read, so a PASS row in the report index never reads as working cookie access.
 - **Skip**: no bound session — documented blocker.
 - **Fail**: values logged unredacted, or the call errors against a genuinely bound tab.
 

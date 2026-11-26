@@ -1,0 +1,18 @@
+Skill check: system-skilled-doctor (canon)
+
+C1  PASS    Location: Direct child of the skills root.
+C2  PASS    Input kind: Resolver verdict: router-md; input kind: canon.
+C3  PASS    Format: Strict package validation passed.
+C4  FINDING Root metadata: Root metadata contract has violations. Codes: STALE_GENERATED_FILE.
+C5  PASS    Intent signals: The intent signals differ from the scaffold defaults.
+C6  PASS    Derived freshness: Generated derived content is current.
+C7  PASS    Router equivalence: Parsed 2 intent signal groups and 2 resource-map entries.
+C8  FINDING Advisor home: compiled skill graph is stale Advisor queries completed; the skill appeared in 3 of 3 result(s).
+C9  PASS    Runtime mirrors: Runtime mirror status: Claude:pass, OpenCode:pass, Pi:pass, Devin:pass, Codex:n/a, Cursor:n/a.
+C10 PASS    Changelog: The versioned changelog and index link resolve.
+C11 PASS    Description budget: Description is OK at 116 characters.
+C12 PASS    Collisions: No duplicate, reserved-prefix or runtime-persona collision found.
+C13 INFO    Regression coverage: Regression corpus contains 2 matching cases.
+
+Result: FINDINGS (2)
+exit=1

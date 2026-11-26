@@ -1,0 +1,65 @@
+{
+ "record": {
+  "type": "iteration", "iteration": 2, "mode": "review", "target_agent": "deep-review", "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-deepseek-max-1-1795546920757-7pyjry", "status": "complete", "focus": "traceability", "dimension": "traceability",
+  "dimensions": ["traceability"],
+  "filesReviewed": [
+   "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:255",
+   "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/decision-record.md:412",
+   ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688",
+   ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:274",
+   ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454",
+   ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:216",
+   ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1489",
+   ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:442",
+   ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888",
+   ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2",
+   ".skilled/skills/system-skill-advisor/runtime/tests/typed-on-stuck-serving.vitest.ts:31",
+   ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1",
+   ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2386",
+   ".skilled/changelog/skilled/v4.2.0.0.md:484",
+   "specs/system-skill-advisor/routing-and-scoring/013-deep-loop-offer-in-hint/implementation-summary.md:123",
+   "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77"
+  ],
+  "findingsCount": 1, "findingsSummary": {"P0": 0, "P1": 0, "P2": 1},
+  "findingsNew": ["R2-P2-001"],
+  "findingDetails": [
+   {"id": "R2-P2-001", "severity": "P2", "title": "AC-020 reads Met while its own verification says the evidence it needs is not in the packet, and REQ-013 rests on the same unkept record", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77", "dimension": "traceability", "findingClass": "matrix/evidence"}
+  ],
+  "traceabilityChecks": {"results": [
+   {"protocolId": "spec_code", "status": "partial", "gateClass": "hard", "applicable": true, "evidence": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537", ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2"], "summary": "REQ-015 to REQ-048 resolved; with part 1 all 48 rows are mapped. Run-level clauses (REQ-021, REQ-039, REQ-042) stay partial because a leaf cannot execute the suites"},
+   {"protocolId": "checklist_evidence", "status": "pending", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77"], "summary": "Carried to iteration 3: 104 ticked tasks, 56 acceptance rows, 26 CHK boxes"}
+  ]},
+  "newFindingsRatio": 0.142857,
+  "noveltyJustification": "One P2 against seven severity-weighted units of active findings (the carried P1 and P2 plus this row); the row is a new evidence-weakness class, not a restatement of R1-P1-001 or R1-P2-001.",
+  "sessionId": "fanout-deepseek-max-1-1795546920757-7pyjry", "generation": 7, "lineageMode": "new",
+  "timestamp": "2026-11-24T19:20:00.000Z", "durationMs": 900000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {"scopeClass": "complex", "enforcement": "warn", "reason": "48 requirement rows across two gate copies, a shared fixture, four degraded paths and three deep-loop reducer behaviours", "evidenceRefs": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:255"]},
+  "targetSelection": {"selectedTargets": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts", ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py", "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md"], "selectionReason": "every sixth-to-ninth round requirement names one of the two gate copies or a packet document", "discoveryMethods": ["direct_read", "exact_search", "built_dist_probe"], "omittedHighRiskTargets": [], "graphStatus": "available", "semanticSearchStatus": "unavailable", "evidenceRefs": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:255"]},
+  "searchCoverage": {"requiredBugClasses": ["requirement_without_code", "evidence_without_artifact", "parity_gap", "stale_count", "reducer_regression"], "covered": ["requirement_without_code", "evidence_without_artifact", "parity_gap", "stale_count", "reducer_regression"], "ruledOut": ["requirement_without_code", "parity_gap", "stale_count", "reducer_regression"], "deferred": [], "blocked": [], "graphCoverageMode": "graph"},
+  "searchLedger": [
+   {"id": "SL-006", "dimension": "traceability", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"], "bugClass": "requirement_without_code", "hypothesis": "a REQ row in the sixth-to-ninth round block names no implementing symbol", "searchActions": [{"method": "exact_search", "queryOrPath": "RUN_REFUSED, typedCommandsIn, namesLoopSubject, passesAsked, trackedCommandForOwner, attachTypedCommand, refinesSameLocation, MIN_BLOCKED_ATTEMPTS", "result": "each row resolved to a symbol and a test or fixture row", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:897"]}], "disposition": "ruled_out", "rationale": "every row in part 2 mapped to a symbol plus a test title", "ruledOutReason": "verified by direct read plus twelve built-dist probes"},
+   {"id": "SL-007", "dimension": "traceability", "targetRefs": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"], "bugClass": "evidence_without_artifact", "hypothesis": "a Met row cites evidence that the packet does not hold", "searchActions": [{"method": "direct_read", "queryOrPath": "AC-020 verification cell against the corpus and the lane reports", "result": "the replacement rows exist; the blind-writer report does not", "evidenceRefs": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77"]}], "disposition": "finding", "linkedFindingId": "R2-P2-001", "rationale": "the row is Met on a clause the tree cannot show"},
+   {"id": "SL-008", "dimension": "traceability", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"], "bugClass": "parity_gap", "hypothesis": "the Python head or the mode-free rule differs from the native copy", "searchActions": [{"method": "direct_read", "queryOrPath": "_advisor_prompt_head and the mode-free run row", "result": "the head counts JavaScript code units and the gate keeps no row for a mode-free ask", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:888"]}], "disposition": "ruled_out", "rationale": "both behaviours match the native copy and the fixture", "ruledOutReason": "direct read of both copies"},
+   {"id": "SL-009", "dimension": "traceability", "targetRefs": [".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json"], "bugClass": "stale_count", "hypothesis": "a count quoted in the closure docs no longer matches the tree", "searchActions": [{"method": "direct_read", "queryOrPath": "fixture cases, REQ rows, CHK boxes, VOCABULARY_PAIRS rows, baseline metrics", "result": "347 cases, 48 REQ rows, 26 CHK boxes as 12/13/1, 22 pairs, false_offer 0 of 57", "evidenceRefs": [".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json:1"]}], "disposition": "ruled_out", "rationale": "every quoted count matches the tree", "ruledOutReason": "counted from the files"},
+   {"id": "SL-010", "dimension": "traceability", "targetRefs": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"], "bugClass": "reducer_regression", "hypothesis": "the reducer still writes a single ruling as blocked or duplicates a heading", "searchActions": [{"method": "direct_read", "queryOrPath": "MIN_BLOCKED_ATTEMPTS, replaceAnchorSection", "result": "one attempt writes RULED OUT with a reopen line; an authored heading is absorbed", "evidenceRefs": [".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:2386"]}], "disposition": "ruled_out", "rationale": "both behaviours are present and this lineage's own strategy kept its section numbers", "ruledOutReason": "direct read plus the strategy file's numbering after the first reducer pass"}
+  ],
+  "graphEvents": [
+   {"type": "node", "id": "finding-R2-P2-001", "kind": "FINDING", "label": "AC-020 Met without in-tree evidence"},
+   {"type": "edge", "id": "edge-R2-P2-001", "source": "finding-R2-P2-001", "target": "slice-012", "relation": "IN_DIMENSION"}
+  ]
+ },
+ "rows": [
+  {"type": "finding", "id": "R2-P2-001", "severity": "P2", "title": "AC-020 reads Met while its own verification says the evidence it needs is not in the packet, and REQ-013 rests on the same unkept record", "file": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77", "iteration": 2, "dimension": "traceability", "findingClass": "matrix/evidence", "scopeProof": "both files are packet documents inside the review target", "affectedSurfaceHints": ["spec.md REQ-013", "tasks.md T047", "implementation-summary.md Eighth round row"]},
+  {"type": "classification", "iteration": 2, "detail": "REQ-015 to REQ-020 probed on the built dist with 12 prompts, 0 disagreements; REQ-023 to REQ-048 resolved to symbols, test titles and fixture rows"},
+  {"type": "classification", "iteration": 2, "detail": "Counts re-derived from the tree: fixture 347 cases, spec 48 REQ rows, 26 CHK boxes split 12/13/1, VOCABULARY_PAIRS 22, baseline false_offer 0 of 57"},
+  {"type": "traceability_check", "iteration": 2, "protocolId": "spec_code", "status": "partial", "gateClass": "hard", "applicable": true, "evidence": [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:1537"]},
+  {"type": "traceability_check", "iteration": 2, "protocolId": "checklist_evidence", "status": "pending", "gateClass": "hard", "applicable": true, "evidence": ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:77"]},
+  {"type": "ruled_out", "iteration": 2, "direction": "routing baseline stale capturedAt", "reason": "the field is the pinned scorer-eval scoring date, not the capture time"},
+  {"type": "ruled_out", "iteration": 2, "direction": "Python head cuts at a different length", "reason": "_advisor_prompt_head counts JavaScript code units"},
+  {"type": "ruled_out", "iteration": 2, "direction": "single ruling written as permanently blocked", "reason": "MIN_BLOCKED_ATTEMPTS=2 writes RULED OUT with a reopen line"},
+  {"type": "ruled_out", "iteration": 2, "direction": "task cites a test title that does not exist", "reason": "the title exists at command-attach-guards.vitest.ts:803; the miss was the checker's normalisation"}
+ ]
+}

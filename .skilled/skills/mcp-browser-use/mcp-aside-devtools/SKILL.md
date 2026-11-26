@@ -2,7 +2,7 @@
 name: mcp-aside-devtools
 description: "Aside AI-browser orchestrator: routes between the aside CLI (agent tasks + deterministic REPL) and Aside MCP via Code Mode."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.11.0
+version: 1.1.13.0
 ---
 
 # Aside Browser Orchestrator - CLI + MCP Integration
@@ -72,7 +72,7 @@ aside --version 2>&1      # capture the installed version as a fixture
 aside --help 2>&1         # capture the installed command surface as a fixture
 ```
 
-The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the official install command (`curl -fsSL https://releases.aside.com/install.sh | bash`, macOS-only) and let the operator decide — never install implicitly.
+The command surface is version-pinned evidence. Re-capture `--help` before relying on any flag; never freeze flag spellings from memory. If the binary is absent, report the install command (`bash scripts/install.sh`, macOS-only, which runs the official installer only after its pinned sha256 matches) and let the operator decide — never install implicitly.
 
 #### Verified Command Surface
 
@@ -88,7 +88,7 @@ The command surface is version-pinned evidence. Re-capture `--help` before relyi
 
 Boundary rules: `--account` is documented for direct tasks and `exec` only — never invent `aside mcp --account` or `aside repl --account`. `--session` is agent-task continuation, not an MCP browser selector. There are no typed `aside navigate/dom/screenshot/console/network` subcommands.
 
-**UNKNOWN — model-flag spelling**: docs show `-m provider/model` while the installed help shows separate `--model` and `--provider` options. Unresolved; capture the installed version's help before using either spelling.
+**Model-flag spelling**: on 1.26.626.1517 the installed help defines `-m, --model <model>` (it also accepts `provider/model`) and `-p, --provider <provider>`, so `-m provider/model` and `--model <id> --provider <name>` both work. Capture the installed version's help before scripting flags.
 
 ### MCP Approach (Fallback) - Aside MCP via Code Mode
 
@@ -104,7 +104,7 @@ The required inputs are `title` and `code`. It is a persistent, sandboxed ES2023
 Code Mode discovery **re-confirmed the one-`repl`-tool inventory live on 2026-07-16** (`references/discovery-fixture-2026-07-16.json`). This is evidence, not a contract. Always rediscover at runtime with `initialize` and `tools/list`, then Code Mode `search_tools()`, `list_tools()` or `tool_info()` before invocation.
 There are no first-class `navigate`, `dom`, `screenshot`, `console` or `network` MCP tools.
 
-**Browser-profile binding**: a fresh `aside mcp` process is transport-healthy but browser-unbound — `listBrowserTabs()` fails with "This task is not bound to a browser profile." This is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
+**Browser-profile binding**: on 1.26.626.1517, with the Aside app running and signed in, a fresh `aside mcp` process is bound and `listBrowserTabs()` returns tabs (ASD-010). Earlier versions left a fresh process browser-unbound, and `listBrowserTabs()` failed with "This task is not bound to a browser profile." Other states, such as the app closed, are untested. When that error appears, it is a binding failure, not an auth failure. The supported binding procedure is **UNKNOWN** (undocumented); report it distinctly and stop.
 
 ### Session and Permission Model
 
@@ -144,17 +144,17 @@ For cleanup, close the MCP stdio process. No public `daemon`/`status`/`stop` com
 6. Misdiagnose the unbound-profile error as missing bearer auth, or silently fall back across safety boundaries (transport failure never justifies changing account, profile, permissions, or approval semantics).
 7. Claim a *native dedicated* console/network tool, a *native HAR export*, a *Lighthouse audit*, *parallel isolated instances* or *raw CDP passthrough*. Aside has none of these.
 
-Console/network capture IS reachable through Playwright `page.on(...)` events in the repl (fixture-confirmed API). The caller assembles it, so it is not a dedicated tool.
-Document the pattern and its gaps. Treat any live capture as requiring a bound session and independent verification. See the DevTools-parity feature family.
+Console and network capture are gaps on Aside 1.26.626.1517. The `page.on('console' | 'request' | 'response')` calls throw there. The error points to `page.console.logs()`, which has not been run yet.
+Run each listener inside its own `try`/`catch` and report the per-event outcome. Never call a capture working without a bound session and independent proof. See the DevTools-parity feature family.
 
 ### ⚠️ ESCALATE IF
 
 1. The host is not macOS (installer rejects Linux/Windows).
 2. The account is signed out and built-in models fail closed (recover via `aside account use <id>` or re-sign-in — needs the operator).
-3. The browser-unbound error persists — the supported binding procedure is undocumented.
+3. The browser-unbound error appears and persists. The supported binding procedure is undocumented.
 4. A task pauses on MFA, CAPTCHA, identity verification, vault unlock, or an approval gate.
 5. Parallel mutating sessions on one profile are requested.
-6. A needed flag spelling depends on the unresolved `-m` vs `--model`/`--provider` conflict.
+6. A needed flag is missing from the installed version's `--help`.
 
 ---
 
@@ -199,10 +199,10 @@ Confidence labels mean: `confirmed` is backed by a fixture and online research; 
 |---|---|---|
 | DOM query / eval | `page.$eval` / `page.evaluate` / `snapshot(page)` | confirmed / skip-valid |
 | Screenshot + PDF | `page.screenshot({ fullPage })` / `page.pdf` | confirmed |
-| Console capture | `page.on('console', ...)` | skip-valid |
-| Network capture | `page.on('request'\|'response', ...)` | skip-valid |
-| HAR export | assemble from events | **gap — no native HAR** |
-| Cookies + storage | `page.context().cookies()` / `page.evaluate(localStorage)` | confirmed / skip-valid |
+| Console capture | `page.on('console', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the event** |
+| Network capture | `page.on('request'\|'response', ...)` | **gap on 1.26.626.1517 — `page.on` rejects the events** |
+| HAR export | none on 1.26.626.1517: `page.on` rejects the network events | **gap — no native HAR** |
+| Cookies + storage | `page.evaluate(document.cookie / localStorage)`; `page.context()` is undefined | names and keys run without error on 1.26.626.1517 (ASD-019, a page with no cookies) / **context cookies a gap** |
 | Performance timing | `page.evaluate(performance.getEntriesByType(...))` | confirmed / skip-valid |
 | Lighthouse audit | — external tooling required | **gap — no Lighthouse** |
 | Navigate + multi-tab | `openTab` / `attachActiveBrowserTab` / `page.goto` / `tabs` | confirmed / skip-valid |

@@ -1,0 +1,9 @@
+Lead with traceability: finish spec_code and checklist_evidence. Check every REQ in spec.md against its code or decision, and every ticked task in tasks.md and Met row in acceptance-criteria.md against real evidence, including the thirteenth round (T115 onward).
+
+Cover all four dimensions before the last iteration: correctness, security and maintainability one iteration each within iterations 1 to 4, the rest traceability.
+
+Write no gateClass on protocol results: the reducer assigns hard to the two core protocols and advisory to the overlays.
+
+File findings only on files in review-scope-files.txt, with full repo-relative paths, never bare file names. A defect in an unlisted file goes under Edge Cases.
+
+Do not write a terminal_gates row: the orchestrator computes it after the run.

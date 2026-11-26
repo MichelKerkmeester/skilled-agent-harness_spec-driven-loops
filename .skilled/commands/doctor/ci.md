@@ -3,7 +3,7 @@ description: "List GitHub Actions workflows with their switch state, scaffold a 
 argument-hint: "[report|scaffold|toggle] [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Write
 ---
-<!-- skill_agent: sk-code -->
+<!-- skill_agent: system-skilled-doctor -->
 
 # /doctor:ci Router
 

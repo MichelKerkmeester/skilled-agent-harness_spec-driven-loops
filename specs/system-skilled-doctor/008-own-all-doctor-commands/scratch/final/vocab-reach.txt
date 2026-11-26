@@ -1,0 +1,2 @@
+[sk-doc] router reach shipped-fleet ranking passed
+exit=0

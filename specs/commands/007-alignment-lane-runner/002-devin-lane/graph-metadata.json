@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/007-alignment-lane-runner/002-devin-lane",
+  "spec_folder": "commands/007-alignment-lane-runner/002-devin-lane",
+  "parent_id": "commands/007-alignment-lane-runner",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin lane",
+      "phase 2 devin lane",
+      "cli-devin alignment lane",
+      "devin lane plan",
+      "devin lane tasks",
+      "002-devin-lane operator decisions",
+      "devin lane implementation summary"
+    ],
+    "key_topics": [
+      "devin",
+      "lane",
+      "phase",
+      "cli-devin",
+      "alignment",
+      "plan",
+      "tasks",
+      "002-devin-lane",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/executors.json",
+      ".skilled/commands/local-skilled-alignment.md",
+      ".skilled/commands/local-doc-alignment.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executors.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-skilled-alignment/executors.json",
+        "source": "derived"
+      },
+      {
+        "name": "local-skilled-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-skilled-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-doc-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/commands/local-doc-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "those",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`run-lanes.cjs` accepts four executor kinds, and cli-devin is not one of them, so a preset that names it stops the run with exit 2",
+    "created_at": "2026-11-23T18:09:54Z",
+    "last_save_at": "2026-11-23T18:56:04.167Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8c5e54f644ba863732d7fec6d49f8d382a483418a024ac1ff9bff27214469924",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b2d0921aa187519182f2564467ed16ebd7955a8df18d81089d7eedaad7653860",
+      "plan.md": "9fe08165d7be077460521728e6bfc4e6f7f6a87ce9e981629b5bea3916074419",
+      "tasks.md": "b01a680245d6f7d64ac360a6b6f0709b286ef314fd07b1de07d32f558cd83b86",
+      "decision-record.md": "70f82459af2d0f0fb8748e04d9bfe1936c103c210bd1f4a866a630cc5f4965b0",
+      "implementation-summary.md": "efc60f7354f3b6bcd9dd3e97bc61e6eaa5ba7c94802fa83e5d6c1aad58c53231"
+    },
+    "last_active_at": null
+  }
+}

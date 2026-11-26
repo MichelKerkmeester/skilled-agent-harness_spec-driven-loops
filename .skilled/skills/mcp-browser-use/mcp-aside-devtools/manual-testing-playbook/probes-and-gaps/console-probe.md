@@ -1,7 +1,7 @@
 ---
 title: "ASD-012 -- Console capture probe (guarded)"
 description: "This scenario validates the console-capture gap for `ASD-012`. It is a guarded probe: either a sentinel round trip succeeds and its shape is recorded, or the failure is captured and console capture stays unsupported."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # ASD-012 -- Console capture probe (guarded)
@@ -60,7 +60,7 @@ The full REPL transcript and, on success, the result-shape fixture (message text
 
 ### Pass / Fail
 
-- **Pass**: either outcome, honestly evidenced and correctly worded (no `bdg console --list` parity claim).
+- **Pass**: either outcome, honestly evidenced and correctly worded (no `bdg console --list` parity claim). The saved reason opens with `supported:` or `unsupported:`, so a PASS row in the report index never reads as a working capture.
 - **Fail**: probe skipped, listener left unguarded, or verdict claims capability beyond the evidence.
 
 ### Failure Triage

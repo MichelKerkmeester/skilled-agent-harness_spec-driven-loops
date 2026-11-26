@@ -14,6 +14,7 @@ import { disabledRecommendOutput, emptyOutput, requestWorkspaceRoot } from '../l
 import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import { extractMetalinguisticSkillMentions, stripLeadingPastedReply } from '../lib/prompt-policy.js';
+import { routeExclusionsStamp } from '../lib/route-exclusions.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
@@ -64,8 +65,11 @@ function emitCompiledRoutingBreadcrumb(message: string): void {
   }
 }
 
+// The exclusion list is read beside the graph, so an edit to it retires cached
+// answers the same way a graph rebuild does.
 function cacheSourceSignature(status: AdvisorStatus): string {
-  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`;
+  return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`
+    + `:${routeExclusionsStamp()}`;
 }
 
 function recommendationLabels(output: AdvisorRecommendOutput): string[] {
@@ -356,7 +360,7 @@ function compiledRouteForRecommendation(
   }
 }
 
-function enrichCompiledRoutes(
+export function enrichCompiledRoutes(
   output: AdvisorRecommendOutput,
   prompt: string,
   workspaceRoot: string,
@@ -380,6 +384,8 @@ function enrichCompiledRoutes(
   const namedSkills = extractMetalinguisticSkillMentions(prompt);
   // A command row that already ranks in this result offers its command by itself,
   // so the owning hub must not offer the same one again and spend a second slot on it.
+  // The pass adds to the set as it keeps a command too, because two rows can derive
+  // the same one and only the first of them should carry it.
   const alreadyOffered = new Set<string>();
   for (const recommendation of output.recommendations) {
     if (recommendation.command) alreadyOffered.add(recommendation.command);
@@ -402,17 +408,29 @@ function enrichCompiledRoutes(
       // types to run it, so it rides along only when the route names exactly one mode
       // that has a command. A broader route leaves the key off rather than guessing.
       const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
+      if (!command) {
+        return {
+          ...recommendation,
+          compiledRoute,
+          ...(routeNeedsMode(recommendation.skillId, compiledRoute, namedSkills) ? { needsMode: true as const } : {}),
+        };
+      }
       // Every caller renders the head and at most one partner, so a command a
       // lower row carries would never reach the reader. The head keeps the
       // command whichever request shape the caller asked for.
-      return command && (!alreadyOffered.has(command) || index === 0)
-        ? {
-          ...recommendation,
-          compiledRoute,
-          command,
-          ...(Object.hasOwn(TRACKED_COMMANDS, command) ? { policy: TRACKED_COMMANDS[command].policy } : {}),
-        }
-        : { ...recommendation, compiledRoute, ...(!command && routeNeedsMode(recommendation.skillId, compiledRoute, namedSkills) ? { needsMode: true as const } : {}) };
+      if (alreadyOffered.has(command) && index !== 0) {
+        // A withheld command has to leave nothing behind that offers it: spreading
+        // the row as it stands would print the very command this guard refused.
+        const { command: _command, policy: _policy, ownerSkillId: _owner, typed: _typed, ...rest } = recommendation;
+        return { ...rest, compiledRoute };
+      }
+      alreadyOffered.add(command);
+      return {
+        ...recommendation,
+        compiledRoute,
+        command,
+        ...(Object.hasOwn(TRACKED_COMMANDS, command) ? { policy: TRACKED_COMMANDS[command].policy } : {}),
+      };
     }),
   });
 }
@@ -437,6 +455,7 @@ export function attachTypedCommand(
         command: typed.command,
         policy: typed.policy,
         ownerSkillId: typed.ownerSkillId,
+        typed: true as const,
       },
       ...output.recommendations.slice(1),
     ],

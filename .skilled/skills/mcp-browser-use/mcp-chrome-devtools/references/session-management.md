@@ -10,7 +10,7 @@ trigger_phrases:
   - "browser session state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.6.0
 ---
 
 # Advanced Session Management
@@ -42,7 +42,7 @@ Always verify session state before operations - session failures cascade. Implem
 **Foundation:** Follow session basics from SKILL.md Section 3 before using advanced patterns:
 - **Session Lifecycle**: Start → Verify → Execute → Stop workflow
 - **Session States**: inactive, starting, active, error
-- **Basic Verification**: `bdg status 2>&1 | jq '.state'`
+- **Basic Verification**: `bdg status --json | jq '.active'`. Plain `bdg status` prints text, and its no-session text contains the word "active", so never grep it.
 - See [../SKILL.md](../SKILL.md) Section 3 "HOW IT WORKS"
 
 **Recommended Tools**:
@@ -88,7 +88,7 @@ bdg stop
 bdg https://example.com 2>&1
 
 # Check if started successfully
-if bdg status 2>&1 | grep -q "active"; then
+if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
   echo "Session ready"
 else
   echo "Session failed to start"
@@ -115,7 +115,7 @@ start_session() {
     bdg "$url" 2>&1
     sleep $RETRY_DELAY
 
-    if bdg status 2>&1 | grep -q "active"; then
+    if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
       echo "Session started successfully"
       return 0
     fi
@@ -150,7 +150,7 @@ start_with_timeout() {
   # Wait with timeout
   local elapsed=0
   while [ $elapsed -lt $SESSION_TIMEOUT ]; do
-    if bdg status 2>&1 | grep -q "active"; then
+    if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
       echo "Session active after ${elapsed}s"
       return 0
     fi
@@ -176,12 +176,12 @@ start_with_timeout "https://example.com"
 # Simple status check
 bdg status 2>&1
 
-# Check and extract state
-session_state=$(bdg status 2>&1 | jq -r '.state')
-echo "Current state: $session_state"
+# Check and extract the active flag (bdg status --json reports active: true or false)
+session_active=$(bdg status --json 2>/dev/null | jq -r '.active')
+echo "Session active: $session_active"
 
 # Conditional execution based on status
-if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
+if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
   bdg dom screenshot "${TMPDIR:-/tmp}/output.png" 2>&1
 else
   echo "Session not active, cannot capture screenshot"
@@ -198,46 +198,32 @@ check_session_health() {
   # Check if bdg is installed
   command -v bdg >/dev/null 2>&1 || {
     echo "ERROR: bdg not installed"
-    echo "Install: npm install -g browser-debugger-cli@alpha"
+    echo "Install: npm install -g browser-debugger-cli@0.6.10"
     return 1
   }
 
-  # Check session status
-  local status_output=$(bdg status 2>&1)
-  local exit_code=$?
+  # Check session status. bdg status --json reports active, plus stale when
+  # the recorded bdg process is gone; it exits non-zero when no daemon runs.
+  local status_output exit_code
+  status_output=$(bdg status --json 2>&1)
+  exit_code=$?
 
   if [ $exit_code -ne 0 ]; then
-    echo "ERROR: Status check failed"
+    echo "✗ No bdg daemon or session (exit $exit_code)"
     echo "$status_output"
-    return 1
+    return 3
   fi
 
-  # Parse status
-  local state=$(echo "$status_output" | jq -r '.state // "unknown"')
-
-  case "$state" in
-    active)
-      echo "✓ Session healthy and active"
-      return 0
-      ;;
-    starting)
-      echo "⚠ Session starting..."
-      return 2
-      ;;
-    inactive)
-      echo "✗ No active session"
-      return 3
-      ;;
-    error)
-      echo "✗ Session in error state"
-      echo "$status_output" | jq '.error // "Unknown error"'
-      return 4
-      ;;
-    *)
-      echo "✗ Unknown session state: $state"
-      return 5
-      ;;
-  esac
+  if echo "$status_output" | jq -e '.active' > /dev/null; then
+    echo "✓ Session healthy and active"
+    return 0
+  elif echo "$status_output" | jq -e '.stale' > /dev/null; then
+    echo "✗ Stale session: the recorded bdg process is gone"
+    return 4
+  else
+    echo "✗ No active session"
+    return 3
+  fi
 }
 
 check_session_health
@@ -249,7 +235,7 @@ check_session_health
 
 ### Sequential Session Labeling (No True Concurrency)
 
-Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option. A locally-tracked bash label does not select a specific bdg session: every `bdg status` / `bdg stop` call still targets the single active session, so two "tracked" sessions started back to back are not actually isolated from each other, and the second `bdg <url>` replaces the first. Label sessions for reporting only, and fully finish one (start, verify, use, stop) before starting the next. For true parallel browser control, use the `mcp-browser-use/mcp-chrome-devtools` MCP surface's multiple registered instances (see `SKILL.md`) instead of the `bdg` CLI.
+Live `bdg 0.6.10 --help` exposes one global `status` / `stop` lifecycle with no session-id, name, or selector option. A locally-tracked bash label does not select a specific bdg session: every `bdg status` / `bdg stop` call still targets the single active session, so two "tracked" sessions started back to back are not actually isolated from each other, and a second `bdg <url>` fails with `Error: Session already running`. Label sessions for reporting only, and fully finish one (start, verify, use, stop) before starting the next. For true parallel browser control, use the `mcp-browser-use/mcp-chrome-devtools` MCP surface's multiple registered instances (see `SKILL.md`) instead of the `bdg` CLI.
 
 ```bash
 #!/bin/bash
@@ -268,7 +254,7 @@ run_labeled_session() {
   bdg "$url" 2>&1
   SESSIONS[$name]="$url"
 
-  if bdg status 2>&1 | grep -q "active"; then
+  if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
     echo "✓ Session $name active"
   else
     echo "✗ Session $name failed"
@@ -317,7 +303,7 @@ process_url() {
 
   # Capture data
   bdg dom screenshot "$SCRATCH/${filename}.png" 2>&1
-  bdg console --list 2>&1 > "$SCRATCH/${filename}-console.json"
+  bdg console --list --json 2>/dev/null > "$SCRATCH/${filename}-console.json"
   bdg network har "$SCRATCH/${filename}.har" 2>&1
 
   # Cleanup
@@ -347,7 +333,7 @@ resume_or_start() {
   local url=$1
 
   # Check if session already active
-  if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
+  if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
     echo "Resuming existing session"
 
     # Verify session URL matches
@@ -384,8 +370,9 @@ SESSION_STATE_FILE="${TMPDIR:-/tmp}/bdg-session-state.json"
 save_session_state() {
   echo "Saving session state..."
 
-  local state=$(bdg status 2>&1)
-  local cookies=$(bdg network getCookies 2>&1)
+  local state=$(bdg status --json 2>&1)
+  # --json is required: plain getCookies prints text that --argjson cannot parse
+  local cookies=$(bdg network getCookies --json 2>/dev/null)
   local url=$(bdg cdp Page.getNavigationHistory 2>&1 | \
     jq -r '.result.entries[-1].url')
 
@@ -419,7 +406,7 @@ restore_session_state() {
 
   # Restore cookies
   echo "$cookies" | jq -r '.[] | @json' | while read cookie; do
-    bdg cdp Network.setCookie "$cookie" 2>&1 > /dev/null
+    bdg cdp Network.setCookie --params "$cookie" 2>&1 > /dev/null
   done
 
   echo "✓ Session state restored"
@@ -577,7 +564,7 @@ stop_and_verify() {
   sleep 1
 
   # Verify stopped
-  if bdg status 2>&1 | jq -e '.state == "inactive"' > /dev/null; then
+  if bdg status --json 2>/dev/null | jq -e '.active | not' > /dev/null; then
     echo "✓ Session stopped successfully"
     return 0
   else
@@ -604,7 +591,7 @@ SESSION_IDLE_TIMEOUT=60
 
 warm_session() {
   # Check if session active
-  if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
+  if bdg status --json 2>/dev/null | jq -e '.active' > /dev/null; then
     echo "Session already warm"
     return 0
   fi
@@ -673,8 +660,8 @@ batch_operations() {
 # Usage
 batch_operations "https://example.com" \
   "bdg dom screenshot ${TMPDIR:-/tmp}/page.png" \
-  "bdg console --list > ${TMPDIR:-/tmp}/console.json" \
-  "bdg network getCookies | jq 'map({name, domain})' > ${TMPDIR:-/tmp}/cookie-names.json" \
+  "bdg console --list --json > ${TMPDIR:-/tmp}/console.json" \
+  "bdg network getCookies --json | jq 'map({name, domain})' > ${TMPDIR:-/tmp}/cookie-names.json" \
   "bdg network har ${TMPDIR:-/tmp}/network.har"
 ```
 

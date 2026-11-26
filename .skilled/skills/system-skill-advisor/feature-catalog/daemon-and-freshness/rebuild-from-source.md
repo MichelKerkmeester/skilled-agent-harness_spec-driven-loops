@@ -6,7 +6,7 @@ trigger_phrases:
   - "corrupt sqlite recovery"
   - "source driven rebuild"
   - "advisor recovery"
-version: 0.8.0.13
+version: 0.8.1.0
 ---
 
 # Rebuild From Source on Corrupt SQLite
@@ -21,6 +21,8 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 `lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.skilled/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook. After a rebuild the stored content hashes match the source files on disk, which is the comparison `advisor_status.indexStaleness` and `skill_graph_status.staleness` read. A `stale` index verdict therefore clears once `advisor_rebuild` completes.
 
+The skill graph database carries its own schema version, `SCHEMA_VERSION` in `lib/skill-graph/skill-graph-db.ts`, separate from the `schema_version` field in each `graph-metadata.json`. A database stored below it is deleted with its `-wal`, `-shm` and `-journal` sidecars on open and rebuilt by the next scan, never migrated in place. That discard is implemented by `readOutdatedSchemaVersion`, `removeOutdatedDatabase` and `discardOutdatedDatabase`.
+
 ---
 
 ## 3. SOURCE FILES
@@ -31,13 +33,14 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/lib/freshness/rebuild-from-source.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts` | Daemon | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts` | Library | Source reference |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
-| `Playbook scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md) and [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md).` | Manual playbook | Source reference |
 
 ---
 

@@ -12,13 +12,22 @@ import { describe, expect, it } from 'vitest';
 
 import { advisorRecommendTool } from '../../tools/advisor-recommend.js';
 import { SKILL_ADVISOR_CLI_TOOL_MANIFEST } from '../../skill-advisor-cli-manifest.js';
-import { AdvisorRecommendInputSchema } from '../../schemas/advisor-tool-schemas.js';
+import {
+  ADVISOR_PROMPT_MAX_CHARS,
+  AdvisorRecommendInputSchema,
+} from '../../schemas/advisor-tool-schemas.js';
 
 function jsonSchemaOptionKeys(inputSchema: Record<string, unknown>): string[] {
   const properties = inputSchema.properties as Record<string, unknown> | undefined;
   const options = properties?.options as Record<string, unknown> | undefined;
   const optionProperties = options?.properties as Record<string, unknown> | undefined;
   return Object.keys(optionProperties ?? {}).sort();
+}
+
+function jsonSchemaPromptMaxLength(inputSchema: Record<string, unknown>): unknown {
+  const properties = inputSchema.properties as Record<string, unknown> | undefined;
+  const prompt = properties?.prompt as Record<string, unknown> | undefined;
+  return prompt?.maxLength;
 }
 
 function handlerOptionKeys(): string[] {
@@ -28,6 +37,10 @@ function handlerOptionKeys(): string[] {
 }
 
 describe('advisor_recommend descriptor ↔ handler schema parity', () => {
+  it('keeps the descriptor prompt cap equal to the handler schema cap', () => {
+    expect(jsonSchemaPromptMaxLength(advisorRecommendTool.inputSchema)).toBe(ADVISOR_PROMPT_MAX_CHARS);
+  });
+
   it('descriptor option keys match the handler Zod schema exactly', () => {
     expect(jsonSchemaOptionKeys(advisorRecommendTool.inputSchema)).toEqual(handlerOptionKeys());
   });

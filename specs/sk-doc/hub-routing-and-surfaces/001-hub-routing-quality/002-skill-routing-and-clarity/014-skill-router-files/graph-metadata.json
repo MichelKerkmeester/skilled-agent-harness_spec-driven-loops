@@ -15,7 +15,6 @@
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/010-align-cli-classifier",
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/011-align-cli-external-orchestration",
-    "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/012-align-cli-orca",
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode",
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/014-align-mcp-tooling",
     "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/015-align-sk-code",
@@ -168,17 +167,17 @@
     ],
     "causal_summary": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
     "created_at": "2026-10-29T07:52:39Z",
-    "last_save_at": "2026-11-10T05:26:30.510Z",
+    "last_save_at": "2026-11-24T18:14:04.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:9f18760f5e3ed6ca5bc2eee9f3a32b26582862475e312d21de523eaf2cabe040",
+    "source_fingerprint": "sha256:c44fce4209c69586f328ef1f683bf61948bafe35829ed607ad7b50eb7a7c5558",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d7d82f4648cbb53185f2931ecc36b8d672e30e67fffd556e983a93d092ec3b9"
+      "spec.md": "8ac11655b5c2207afa6430e2d4754b438fbcd1be278ae038922c14330d264acd"
     },
     "last_active_child_id": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
     "last_active_at": "2026-10-30T04:49:52.232Z"

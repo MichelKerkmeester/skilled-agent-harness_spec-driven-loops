@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp/mcp-browser-use/001-mcp-browser-use-hub/011-bdg-eval-port-note",
+  "description": "Phase 11: bdg-eval-port-note",
+  "keywords": [
+    "phase",
+    "bdg-eval-port-note"
+  ],
+  "lastUpdated": "2026-11-23T15:25:52.024Z",
+  "specId": "011",
+  "folderSlug": "bdg-eval-port-note",
+  "parentChain": [
+    "mcp",
+    "mcp-browser-use",
+    "001-mcp-browser-use-hub"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

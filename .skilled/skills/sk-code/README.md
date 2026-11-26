@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.52.0
+version: 2.2.55.0
 ---
 
 # sk-code
@@ -29,7 +29,7 @@ version: 2.2.52.0
 
 `sk-code` is the single entry point for code work. It reads the request and picks the workflow mode that owns the job. It then attaches the surface evidence for the files you touched. The hub only routes. The packet it selects does the work and reports back.
 
-The canonical entry point is `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"`, which returns the targets to load. The skill advisor reaches the same hub from a plain code request, so you can also ask.
+The canonical entry point is `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-file <task-file>` (write the task there with your file tool, never a heredoc), which returns the targets to load. The skill advisor reaches the same hub from a plain code request, so you can also ask.
 
 ### The Two Axes
 
@@ -45,7 +45,7 @@ The hub holds two kinds of packet. A workflow mode acts on your change. A surfac
 
 ### Where It Stops
 
-`sk-doc` owns documentation quality. `sk-git` owns the git workflow. `system-spec-kit` owns spec folders and their validation. A measured style reference comes from `sk-design-md-generator` before the frontend surface implements it. Browser evidence comes from `mcp-chrome-devtools`. This hub reviews in one pass. `deep-review` owns the iterative loop.
+`sk-doc` owns documentation quality. `sk-git` owns the git workflow. `system-spec-kit` owns spec folders and their validation. A measured style reference comes from `sk-design-md-generator` before the frontend surface implements it. Browser evidence comes from the `mcp-browser-use` hub, in whichever browser mode is installed. This hub reviews in one pass. `deep-review` owns the iterative loop.
 
 ---
 

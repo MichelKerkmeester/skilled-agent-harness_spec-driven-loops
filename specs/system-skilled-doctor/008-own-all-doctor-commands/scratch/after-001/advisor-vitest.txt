@@ -1,0 +1,174 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/541-own-all-doctor-commands/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ tests/command-routing-slice.vitest.ts (12 tests | 3 failed) 7782ms
+     × matches the captured baseline row by row 3ms
+     × splits each plain row into one reach stage 0ms
+     × matches the captured totals 1ms
+ ❯ tests/doctor-routing-slice.vitest.ts (2 tests | 1 failed) 1283ms
+     × scores every row of every active wave as expected 1227ms
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 74013 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=720168
+[system-skill-advisor-launcher] ownerLeaseReclaimed: unreadable
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=301665
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/sav-larB4z/system-skill-advisor-launcher-vZd2X1/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+ ❯ tests/command-brief-golden.vitest.ts (20 tests | 1 failed) 11ms
+     × renders both command labels under an ambiguous head 2ms
+ ❯ tests/render-child-session.vitest.ts (12 tests | 2 failed) 7ms
+     × keeps the policy word for a read-only run 2ms
+     × renders a doctor bridge at the top as parent-named only 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/command-brief-golden.vitest.ts > command brief golden heads > renders both command labels under an ambiguous head
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/command-brief-golden.vitest.ts:326:91
+    324|     const head = headOf(renderAdvisorBrief(AMBIGUOUS_COMMAND_RESULT));
+    325|
+    326|     expect(head.startsWith('Advisor: live; ambiguous: sk-git → /doctor…
+       |                                                                                           ^
+    327|     expect(head).toContain(' vs system-spec-kit → /speckit:save (start…
+    328|     expect(head.length).toBeLessThanOrEqual(HEAD_CHARACTER_CAP);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured baseline row by row
+AssertionError: command routing rows drifted from the committed baseline; re-capture with `node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write` when the change is intended: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "nm-system-skilled-doctor-01: baseline {\"expected_command\":null,\"top\":\"system-skilled-doctor\",\"top1\":false,\"top3\":false,\"offered\":false} live {\"expected_command\":null,\"top\":null,\"top1\":false,\"top3\":false,\"offered\":false}",
++ ]
+
+ ❯ tests/command-routing-slice.vitest.ts:201:7
+    199|       drifted,
+    200|       `command routing rows drifted from the committed baseline; re-ca…
+    201|     ).toEqual([]);
+       |       ^
+    202|   });
+    203|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > splits each plain row into one reach stage
+AssertionError: expected 15 to be less than or equal to 13
+ ❯ tests/command-routing-slice.vitest.ts:276:30
+    274|       const stage = attached.plain_stages[split];
+    275|       expect(stage.own + stage.ownerLed + stage.neither).toBe(stage.to…
+    276|       expect(stage.attached).toBeLessThanOrEqual(stage.withCommand);
+       |                              ^
+    277|       expect(stage.withCommand).toBeLessThanOrEqual(stage.routed);
+    278|       expect(stage.routed).toBeLessThanOrEqual(stage.ownerLed);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/command-routing-slice.vitest.ts > command routing slice > matches the captured totals
+AssertionError: expected { typed_recall_at_1: { …(2) }, …(6) } to deeply equal { typed_recall_at_1: { …(2) }, …(6) }
+
+- Expected
++ Received
+
+@@ -1,8 +1,8 @@
+  {
+    "agreement": {
+-     "correct": 6,
++     "correct": 4,
+      "total": 10,
+    },
+    "false_offer": {
+      "count": 0,
+      "total": 57,
+
+ ❯ tests/command-routing-slice.vitest.ts:316:26
+    314|
+    315|   it('matches the captured totals', () => {
+    316|     expect(live.metrics).toEqual(baseline.metrics);
+       |                          ^
+    317|     expect(live.unreachable).toEqual(baseline.unreachable);
+    318|     // `capturedAtSha` is deliberately not compared: it names the comm…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/doctor-routing-slice.vitest.ts > doctor routing slice > scores every row of every active wave as expected
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "doctor-b-helper-02 [B-helper] \"which doctor command should I run\": top=system-skilled-doctor (want sk-doc), second=command-doctor-helper (want command-doctor-helper)",
++   "doctor-b-helper-04 [B-helper] \"what doctor command fixes this\": top=system-skilled-doctor (want command-doctor-helper), second=command-doctor-helper (want null)",
++ ]
+
+ ❯ tests/doctor-routing-slice.vitest.ts:167:24
+    165|     }
+    166|     expect(asserted).toBeGreaterThan(0);
+    167|     expect(mismatches).toEqual([]);
+       |                        ^
+    168|   });
+    169| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/render-child-session.vitest.ts > child session command brief > keeps the policy word for a read-only run
+AssertionError: expected 'Advisor: live; use system-skilled-doc…' to be 'Advisor: live; use sk-git → /doctor:g…' // Object.is equality
+
+- Expected
++ Received
+
+- Advisor: live; use sk-git → /doctor:git setup (run) 0.85/0.20 pass.
++ Advisor: live; use system-skilled-doctor → /doctor:git setup (run) 0.85/0.20 pass.
+  Directives:
+  - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.
+
+ ❯ tests/render-child-session.vitest.ts:73:22
+     71|     const rendered = renderAdvisorBrief(advisorResult('command-doctor-…
+     72|
+     73|     expect(rendered).toBe(expectedBrief(
+       |                      ^
+     74|       'Advisor: live; use sk-git → /doctor:git setup (run) 0.85/0.20 p…
+     75|     ));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/render-child-session.vitest.ts > child session command brief > renders a doctor bridge at the top as parent-named only
+AssertionError: expected 'Advisor: live; use system-skilled-doc…' to be 'Advisor: live; use sk-git → /doctor:g…' // Object.is equality
+
+- Expected
++ Received
+
+- Advisor: live; use sk-git → /doctor:git hooks (parent-named only) 0.85/0.20 pass.
++ Advisor: live; use system-skilled-doctor → /doctor:git hooks (parent-named only) 0.85/0.20 pass.
+  Directives:
+  - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.
+
+ ❯ tests/render-child-session.vitest.ts:139:22
+    137|     const rendered = renderAdvisorBrief(advisorResult('command-doctor-…
+    138|
+    139|     expect(rendered).toBe(expectedBrief(
+       |                      ^
+    140|       'Advisor: live; use sk-git → /doctor:git hooks (parent-named onl…
+    141|     ));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  4 failed | 186 passed (190)
+      Tests  7 failed | 3197 passed | 4 skipped (3208)
+   Start at  19:57:57
+   Duration  234.66s (transform 1.55s, setup 781ms, import 7.06s, tests 214.90s, environment 7ms)
+
+exit=1

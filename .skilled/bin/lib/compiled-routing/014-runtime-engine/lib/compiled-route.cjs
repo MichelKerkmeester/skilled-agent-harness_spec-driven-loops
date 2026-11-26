@@ -17,6 +17,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { loadHubRegistry } = require('./hub-registry.cjs');
 
 // Each hub's compiled policy + engine live in its shadow rollout child; this
 // phase reuses them read-only rather than duplicating the compiled contract.
@@ -25,19 +26,15 @@ const IMPL_ROOT = path.resolve(__dirname, '..', '..');
 // Promoted activation manifests (never the spec tree). Fingerprinting a hub's
 // manifest lets the engine cache invalidate when the manifest flips, so a
 // serving-authority or selected-policy change never serves an engine cached
-// against the prior manifest.
-const ACTIVATION_ROOT = path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
-const HUB_CHILD = Object.freeze({
-  'sk-code': '009-parent-hub-rollout/001-sk-code',
-  'system-deep-loop': '009-parent-hub-rollout/002-system-deep-loop',
-  'mcp-tooling': '009-parent-hub-rollout/003-mcp-tooling',
-  'cli-external-orchestration': '009-parent-hub-rollout/004-cli-external-orchestration',
-  'cli-classifier': '009-parent-hub-rollout/008-cli-classifier',
-  'sk-doc': '009-parent-hub-rollout/007-sk-doc',
-  'sk-design': '009-parent-hub-rollout/009-sk-design',
-  'mcp-browser-use': '009-parent-hub-rollout/010-mcp-browser-use',
-  'system-skilled-bots': '009-parent-hub-rollout/011-system-skilled-bots',
-});
+// against the prior manifest. The resolver honors the same test override, so
+// the engine must fingerprint the manifest the resolver gates on.
+const ACTIVATION_ROOT = process.env.SPECKIT_ACTIVATION_ROOT_OVERRIDE
+  || path.resolve(__dirname, '..', '..', '013-live-activation', 'activation');
+// Engine-dispatch map: each registered hub's rollout folder, in registry order.
+// A hub absent from the registry has no compiled engine and stays legacy.
+const HUB_CHILD = Object.freeze(Object.fromEntries(
+  loadHubRegistry().map((hub) => [hub.id, hub.rolloutChild]),
+));
 
 const engineCache = new Map();
 

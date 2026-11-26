@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.23.0
+version: 2.3.26.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -190,7 +190,7 @@ The map is the packet's own `RESOURCE_MAP` for the web, visual and Figma-to-code
 | --- | --- |
 | SKILLED | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | `sk-code-ci` | The changed workflow checked against each rule in `sk-code-ci/references/ci-workflow-standards.md`, which the quality runner names for `.github/workflows/**`, plus a run of the changed workflow or the reason it could not run |
-| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the page rendered in a browser. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
+| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the changed page opened through the `mcp-browser-use` hub in whichever browser mode the user has installed (Chrome DevTools, Aside or Bladebro): a screenshot at the affected viewport and the console showing no new errors, or NOT RUN with the reason, such as no browser mode installed. The agent uses a browser session it owns, and opens the user's signed-in browser only when the user asks. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -494,8 +494,9 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<task>"
+> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-file <task-file>
 > ```
+> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.
 > Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate) or `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`. Set `SPECKIT_COMPILED_ROUTING=0`, the explicit kill-switch, to force legacy routing fleet-wide.
 
 **Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](shared/references/stack-detection.md) on the session's working directory and the files it is editing.

@@ -1,7 +1,7 @@
 ---
 title: "MCP Chrome DevTools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-chrome-devtools skill."
-version: 1.0.6.0
+version: 1.0.8.0
 ---
 
 # MCP Chrome DevTools: Manual Testing Playbook
@@ -32,7 +32,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-This playbook provides 22 deterministic scenarios across 6 categories validating the `mcp-chrome-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides deterministic operator scenarios validating the `mcp-chrome-devtools` skill surface, plus the benchmark-facing routing-recall checks in §15. The validator derives the counts from the tree. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -309,12 +309,12 @@ Expected signals: Step 1: navigate call succeeds; Step 2: `take_screenshot` with
 ### BDG-015 | Dual-instance parallel
 
 #### Description
-Verify `chrome_devtools_1` and `chrome_devtools_2` can run navigate + screenshot simultaneously via `Promise.all`.
+Verify one `call_tool_chain` drives `chrome_devtools_1` and `chrome_devtools_2` through navigate and screenshot, one call after another.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and total wall time < 2x single-instance time. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.
+Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in one Code Mode call, using plain synchronous calls against both MCP instances. Screenshot each to its own file and verify both files are valid PNGs. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: chain returns array of length 2; Step 2: both screenshots are valid PNG; Step 3: parallel timing visible (< 2x sequential).
+Expected signals: Step 1: both manuals are registered. Step 2: the chain returns both navigate results with no `[ERROR] Code execution failed` log line. Step 3: both screenshot files are valid PNGs.
 
 #### Test Execution
 > **Feature File:** [BDG-015](../manual-testing-playbook/mcp-parallel-instances/dual-instance-parallel.md)
@@ -473,9 +473,9 @@ Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-sessio
 
 ---
 
-## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT PART OF THE 22-SCENARIO COUNT
+## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT AN OPERATOR SCENARIO
 
-This category validates the `mcp-chrome-devtools` smart router itself (`../ROUTER.md` §3 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally outside the 22-scenario count above, but every file is still linked here so nothing is orphaned from this root index.
+This category validates the `mcp-chrome-devtools` smart router itself (`../ROUTER.md` §3 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally kept apart from the operator scenarios above, but every file is still linked here so nothing is orphaned from this root index.
 
 ### Scenario Summary
 

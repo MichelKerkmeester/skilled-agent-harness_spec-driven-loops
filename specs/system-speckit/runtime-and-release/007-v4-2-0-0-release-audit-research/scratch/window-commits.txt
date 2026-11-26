@@ -1,0 +1,1084 @@
+c75200c504a 2026-11-25 chore(system-spec-kit): rebuild the trigger index
+4bfa9bfcd22 2026-11-25 docs(system-skill-advisor): record the Python fallback cut in the offers packet
+73d98332fff 2026-11-25 refactor(system-skill-advisor): keep a fallback deep-loop row only when its command is typed
+67dd1889e3c 2026-11-25 chore(system-spec-kit): rebuild the trigger index
+b03275d2722 2026-11-25 docs(system-skill-advisor): record the hook-captured operator answers in the offers decision record
+c4a74e33e40 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+28047f9dd40 2026-11-25 docs(specs): point AC-040 at the report heading line
+b208ffc0bf5 2026-11-25 docs(specs): close the deep-loop offers packet under ADR-010
+1dae1408f08 2026-11-25 docs(specs): drop a stale test count from AC-009 and complete the review notes
+fa6dae58780 2026-11-25 docs(specs): pin deep-loop offers closure counts and propose a closable AC-040
+46465394d97 2026-11-24 fix(system-skill-advisor): print the tracked policy and owner on a brief command
+87f1cb952c7 2026-11-24 fix(system-deep-loop): let the review contract own each protocol's gate class
+7db7cbe3915 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+3dd4cc226f7 2026-11-24 fix(system-skilled-doctor): align doctor docs and pins with the new owner
+766dcef90f4 2026-11-24 docs(specs): record the eighth deep-loop offers traceability review
+335720592ca 2026-11-24 docs(specs): record the thirteenth deep-loop offers fix round
+78b0dad94ee 2026-11-24 docs(system-skill-advisor): state the no-edit rule as the gate applies it
+9bf5cdbaab8 2026-11-24 fix(system-deep-loop): keep clean surfaces and ruled-out reasons apart
+c5c97b12dfc 2026-11-24 fix(system-skill-advisor): read loop asks by clause and vet brief commands
+6fa766254f6 2026-11-24 docs(specs): record the seventh deep-loop offers traceability review
+4b3258e754d 2026-11-24 docs(specs): record the twelfth deep-loop offers fix round
+257bda24512 2026-11-24 fix(system-skill-advisor): read the doctor command name from one place
+3f0f4b70337 2026-11-24 docs(specs): save deep-loop offers continuity after generation 8
+bfd30f8195f 2026-11-24 docs(specs): record the sixth deep-loop offers traceability review
+4db9cef56bc 2026-11-24 feat(system-skilled-doctor): own every doctor command and its playbook
+6e48734eeca 2026-11-24 docs(specs): record the eleventh deep-loop offers fix round
+4edba5ad264 2026-11-24 fix(system-skill-advisor): read loop phrases across any whitespace
+af98184acd9 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+7ab56d8669b 2026-11-24 docs(specs): record the stop-hook auto-record landing decisions
+3287685dd7a 2026-11-24 docs(specs): record the fifth deep-loop offers traceability review
+5e8c04c61db 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+d57563b175a 2026-11-24 feat(system-spec-kit): record queued answers at Stop for one bound packet
+2b95ae07b51 2026-11-24 chore(pi): record the Pi changelog versions
+c71cd12c176 2026-11-24 docs(specs): record the advisor CI filter decisions
+780cfe7de50 2026-11-24 docs(specs): add the stop-hook auto-record phase
+4ddb3aad77d 2026-11-24 docs(specs): cite deep-loop offers evidence by name for the tenth round
+9f1190407eb 2026-11-24 fix(system-skill-advisor): serve no run row on a mode-free loop ask in the fallback
+894ed35e175 2026-11-24 docs(specs): add the stop-hook auto-record plan child
+f9931326498 2026-11-24 docs(specs): record the session's operator decisions
+02fa918619d 2026-11-24 docs(specs): plan the stop-hook auto-record child
+e7da77b240e 2026-11-24 docs(specs): record the fourth deep-loop offers traceability review
+342e7fa7586 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+4f139c98f51 2026-11-24 docs(specs): record the changelog decisions for the advisor packet
+5cd127c1c6f 2026-11-24 chore(specs): rebuild the spec descriptions cache
+7e511525bac 2026-11-24 chore(specs): delete the two sk-doc cli-orca phases
+928e42db6d9 2026-11-24 docs(specs): record the ninth deep-loop offers fix round
+a710e0338f2 2026-11-24 chore(specs): delete the cli-orca spec track
+8b3411d68ff 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+582d2f3814c 2026-11-24 docs(changelog): align the advisor and sk-git entries with the template
+5ace62e10e6 2026-11-24 fix(system-skill-advisor): read a plural loop noun in the explicit lane
+3db3085bcf0 2026-11-24 fix(system-skill-advisor): close the ninth-round deep-loop offer findings
+ca8b177a5ae 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+ab45d376ce1 2026-11-24 docs(changelog): record the stdin front door in seven hubs and sk-create-skill
+ae0f718ddb9 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+e569b90e708 2026-11-24 docs(sk-git): record the v1.11.15.0 changelog
+f40f91adb71 2026-11-24 docs(system-skill-advisor): record the v2.0.5.0 changelog
+957f47570f3 2026-11-24 fix(sk-git): build the advisor skill graph when provisioning a worktree
+5f4b5611457 2026-11-24 docs(cli-orca): record why the cite-drift label rows stay
+10b7dd11e31 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+b953014a2eb 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+0bb10ec5058 2026-11-24 docs(sk-git): say only provision is idempotent, not create
+a20ca40a0fc 2026-11-24 docs(specs): record the session's operator decisions in the cli-orca and sk-git packets
+f4259f56c09 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+0e5f161fde7 2026-11-24 docs(skilled): record the cli-orca removal in the v4.2.0.0 release notes
+ee991eb5ab4 2026-11-24 docs(sk-git): record the provisioning fix and correct the docs that describe it
+527fc5f9d43 2026-11-24 fix(system-skill-advisor): a skill counts as named only on a word few skills share
+baacf84626e 2026-11-24 docs(system-skill-advisor): record the lexical anchor measurements and stop
+e767a249951 2026-11-24 fix(system-skill-advisor): run the advisor suite on hook changes and drop dead helpers
+7efe2da3b43 2026-11-24 fix(mcp-browser-use): close the generation-4 P2 findings
+991fe6d127a 2026-11-24 fix(compiled-routing): pass the task to every hub front door on stdin
+febc695d7b4 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+16f83331276 2026-11-24 fix(sk-git): install a nested lockfile package an ancestor seemed to satisfy
+9acc0f8749a 2026-11-24 docs(specs): record the third deep-loop offers traceability review
+e78b90812c0 2026-11-24 docs(specs): bring the deep-loop offers closure docs to the eighth round
+2520456bd3f 2026-11-24 fix(system-skill-advisor): read plural loop names and loop questions correctly
+5f5405d8a67 2026-11-24 refactor(cli-orca)!: remove the cli-orca skill and its mirrors
+70c3aca7fe3 2026-11-24 docs(specs): record the second deep-loop offers traceability review
+b9e9b3283b2 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+a0ee07d8a71 2026-11-24 docs(specs): correct the deep-loop offers closure docs
+7b0660c9b6e 2026-11-24 test(system-skill-advisor): widen the deep-loop vocabulary drift guard
+1ad6a392b3d 2026-11-24 fix(mcp-browser-use): keep a mode named by its short name in the bundle
+5ccb4cd9c54 2026-11-24 docs(system-skill-advisor): record the advisor review verification
+5c5b9fe3e5b 2026-11-24 fix(system-skill-advisor): fix the advisor logic review findings
+5792298078d 2026-11-24 docs(specs): record the deep-loop offers traceability review
+b2d57de924a 2026-11-24 docs(system-skill-advisor): open the lexical anchor narrowing packet
+2ecd0b8dafc 2026-11-24 fix(mcp-browser-use): fix the follow-up deep review findings
+692a4b8c81c 2026-11-24 fix(system-skill-advisor): one shared word no longer names a skill
+2aaab457ccf 2026-11-24 chore(system-spec-kit): rebuild the trigger index
+f2217f9ad60 2026-11-24 docs(specs): record the sixth fix round of the deep-loop offers
+777feef2920 2026-11-24 fix(system-skill-advisor): close the deep-loop offer review findings
+b0386a5eaa0 2026-11-24 docs(mcp-browser-use): record the follow-up deep review and open phase 015
+ec3ed74ad01 2026-11-24 fix(mcp-browser-use): fix the hub deep review findings
+dbea9ff4a25 2026-11-24 fix(system-skill-advisor): floor confidence only for a skill the prompt names
+bd771c9cbae 2026-11-24 docs(specs): record the deep-loop offers deep review
+52f0bcb9a98 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+892a3e4a68e 2026-11-23 docs(specs): record two review generations of the skill advisor logic
+1a350b1512b 2026-11-23 fix(mcp-browser-use): fix the browser hub alignment findings
+353fa073102 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+e53bec2092a 2026-11-23 docs(specs): record the deep-loop offer packets as merged and on main
+4eda64f6c27 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+72634aa84e2 2026-11-23 docs(changelog): scope the deep-loop refusal claim to the words it reads
+f92669de19c 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+6e366b0f78d 2026-11-23 docs(specs): close the deep-loop offers and brief after the fresh review
+c8eee36a1f5 2026-11-23 fix(system-skill-advisor): withhold deep-loop offers on refusals and subjects
+f719566d860 2026-11-23 docs(specs): record the cli-devin alignment lane and the browser-hub doc topic
+a139ac3b248 2026-11-23 docs(specs): reopen the deep-loop brief for the typed-command hint
+587a50974cc 2026-11-23 docs(specs): reopen the deep-loop offers for the fresh-review gate fixes
+a5d054a2f1c 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+ee0d71e6ca8 2026-11-23 docs(specs): close the deep-loop brief packet with its behaviour gap recorded
+a501696c444 2026-11-23 docs(specs): record the deep-loop brief resample after marking the run option
+9dcaaea6b8f 2026-11-23 feat(system-skill-advisor): mark the run option recommended in the deep-loop brief
+951b3eb9d2c 2026-11-23 docs(specs): record the deep-loop brief build and its F6 runs
+c4198c6f8cc 2026-11-23 feat(system-skill-advisor): name the deep-loop offer options in the brief
+a00a5201127 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+6038136a031 2026-11-23 docs(specs): plan carrying the deep-loop offer options in the advisor brief
+9ee94a05bcc 2026-11-23 docs(specs): record a fresh pre-change corpus run for the deep-loop offers
+af080bb765c 2026-11-23 docs(mcp-browser-use): explain the bdg dom eval port failure
+0aa1ad6a560 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+3d93e219ac1 2026-11-23 docs(specs): keep the final probe rerun in the deep-loop offer packet
+f5b5d15173d 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+77cb1e64a53 2026-11-23 docs(specs): tick the deep-loop offer tasks and mark the packet complete
+958fa817187 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+069b73578fb 2026-11-23 docs(specs): mark the F6 offer row met on one of four sampled sessions
+4efb740df93 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+d27b2b540fb 2026-11-23 docs(specs): say round 4's json indent finding stays open in the ux pass
+0917cbdb460 2026-11-23 docs(specs): record the json-entry layout fix in the ux pass
+5f1af6159d0 2026-11-23 fix(doctor): go back to the shallowest indent when no opener step reads
+adc9501f05c 2026-11-23 docs(specs): record two more F6 offer sessions and keep AC-008 unmet
+4c70ce2f517 2026-11-23 docs(system-deep-loop): spell out the three offer options in the routing step
+d6525194aed 2026-11-23 docs(doctor): say how a file with no opener step gets its json indent unit
+cd8091a09d3 2026-11-23 fix(doctor): let no stray line set the json indent unit without an opener step
+8f14f6726f2 2026-11-23 docs(doctor): say which lines set the json indent unit
+a9d52c1087d 2026-11-23 fix(doctor): read the json indent unit only from lines that open one container
+ca4972a8f5e 2026-11-23 docs(doctor): say the json indent unit is the step into a container
+9bee9df5cc0 2026-11-23 fix(doctor): take the json indent unit from the step into each container
+d62e51af43c 2026-11-23 docs(doctor): say the json indent unit and line ending come from the whole file
+2b9a2328922 2026-11-23 fix(doctor): read a json file's indent unit and line ending from all its lines
+272253842d2 2026-11-23 docs(doctor): say how a json-entry overlay lays out what it writes
+512be46971a 2026-11-23 fix(doctor): write json-entry values at their key's depth and the file's layout
+c372da9678d 2026-11-23 docs(mcp-tooling): point browser references at the browser-use hub
+a6f5ebada28 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+670f7e9db98 2026-11-23 docs(specs): record the F6 offer session and waive the memo alias replay
+2f3ef6d9ddc 2026-11-23 docs(specs): record the acceptance closure pass of the deep-loop offers
+76f5e2dd36a 2026-11-23 feat(sk-code): prove frontend browser evidence with a live scenario
+a299bbcba42 2026-11-23 fix(system-skill-advisor): close the second and third epic review advisories
+cfbe87400ab 2026-11-23 chore(system-spec-kit): rebuild the trigger index
+4eb8597b026 2026-11-23 docs(specs): record the fourth review-fix round of the deep-loop offers
+48ad5b735bf 2026-11-23 docs(changelog): describe which prompts offer a deep loop in v4.2.0.0
+2e7396e9fc2 2026-11-23 fix(commands): list every deep-loop flag and narrow the loop-ask wording
+b53f434c5f9 2026-11-23 fix(system-skill-advisor): withhold deep-loop offers on negated or subject-only asks
+ec0e6a5a9dd 2026-11-23 docs(specs): record the second five-pass review of the pi-context-decisions epic
+a5f104ca9ae 2026-11-22 feat(sk-code): route browser inspection and page-speed claims via the hub
+c3371f46a6e 2026-11-22 fix(system-skill-advisor): forward scorer settings to the bridge and gate loop offers on intent
+d874a093b10 2026-11-22 docs(changelog): add the deep-loop offers to v4.2.0.0
+24647ac1c6a 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+6dc1960f945 2026-11-22 feat(sk-code): name the browser-use hub in frontend verification
+3395b32f6b1 2026-11-22 fix(sk-doc): accept --reports only for the skill or its hub
+8166365f613 2026-11-22 docs(specs): record the live question-tool check and the third holdout result
+e21bcbd3b65 2026-11-22 fix(system-skill-advisor): read word counts and want verbs as loop asks
+0eb270b005f 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+ad9595ee293 2026-11-22 docs(system-skill-advisor): record the dependency install decision
+2c35b2e0452 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+953e81e9b01 2026-11-22 docs(system-skill-advisor): name the deep-loop offers in the 2.0.1.0 changelog
+e4665d35026 2026-11-22 chore(sk-git): allow pushes to the system-skilled-bots branch
+ab2cec359d5 2026-11-22 docs(specs): record the second follow-up and the blind holdout result
+b447c3b8ba2 2026-11-22 fix(system-skill-advisor): route code reviews in passes to the deep loop
+0aa57427b9c 2026-11-22 docs(specs): record the routing follow-ups and the offer behaviour check
+d5f69f4e82e 2026-11-22 fix(system-skill-advisor): withhold deep-loop runs the prompt never asks for
+413d3268b8a 2026-11-22 feat(sk-doc): save mode playbook runs into the owning hub
+b4baad61b85 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+4bfae1bf464 2026-11-22 chore(sk-git): allow the system-skilled-bots branch name
+fa322487bc9 2026-11-22 docs(system-skill-advisor): record the bump and merge decisions
+027bb5ece94 2026-11-22 chore(system-spec-kit): rebuild the trigger index after merging main
+52896f8814a 2026-11-22 docs(system-skilled-bots): plan the first build as an eight-phase spec
+1504d57f45e 2026-11-22 chore(system-spec-kit): rebuild the trigger index after the deep-loop offers
+00741c4c738 2026-11-22 docs(specs): add the deep-loop command offers packet
+8e8789cd861 2026-11-22 feat(deep): offer the loop as one question with the flags composed
+314eba8c199 2026-11-22 feat(system-skill-advisor): attach deep-loop commands only on explicit loop asks
+b7f81a78643 2026-11-22 fix(system-skill-advisor): apply route exclusions in the python fallback
+2ef3895f753 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+51a99b92bd4 2026-11-22 fix(sk-doc): harden the playbook run recorder and align its docs
+98d7830402b 2026-11-22 fix(system-skill-advisor): remove dead settings and forward location keys
+f746273af58 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+e3ca4c96645 2026-11-22 docs(skilled): add the results contract to the playbooks that lacked it
+c06a73d348e 2026-11-22 feat(sk-doc): save playbook runs into the benchmark folder
+435f7719f26 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+a9654d34529 2026-11-22 chore(system-spec-kit): rebuild the trigger index after merging main
+4e02420c9dc 2026-11-22 docs(specs): record the decision to rebuild the changelog edit on the latest
+4af2c98529a 2026-11-22 chore(system-spec-kit): rebuild the trigger index after the v4.2.0.0 update
+27f112b102e 2026-11-22 docs(changelog): give the deep-loop epic its full place in v4.2.0.0
+3bde3903334 2026-11-22 docs(specs): record the Bladebro phase commits and the operator answers
+4d9c5049fca 2026-11-22 docs(specs): record the Bladebro parity and changelog phase
+a5d1912a6c2 2026-11-22 feat(mcp-browser-use): give Bladebro an install guide, manual asset and scripts
+e7b79323c6d 2026-11-22 docs(changelog): match the v4.2.0.0 note to the v4.1.0.0 layout
+193bbe015a2 2026-11-22 docs(changelog): add the lane cleanup and doctor alignment to v4.2.0.0
+12f9d314979 2026-11-22 docs(system-spec-kit): describe the native-module probe as a marker check
+a9410a7ebe0 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+359b07bfee0 2026-11-22 docs(specs): record the browser hub deep review and its follow-up fixes
+2c87a425e76 2026-11-22 docs(mcp-browser-use): record the live Bladebro run and the post-review routing pass
+a9a8a878dad 2026-11-22 fix(mcp-browser-use): route a prompt that mentions the word forbidden
+4d604ee33bb 2026-11-22 fix(system-skill-advisor): keep named MCPs and browser tests with their owners
+52723d22cef 2026-11-22 docs(specs): add the worktree goal carry packet and its review record
+12fe3abc66b 2026-11-22 fix(session-handover): carry a goal whose packet lives in a linked worktree
+ff6f5dd1d5a 2026-11-22 fix(system-spec-kit): drop the dead sharp probe and scope the doctor check notes
+0a887fb9c94 2026-11-22 fix(system-spec-kit): close the remaining rebuild, override and changelog drift
+b798c4795c3 2026-11-22 chore(system-spec-kit): rebuild the trigger index after the alignment pass
+b929863e4fc 2026-11-22 docs(specs): record the literal answer to the claude check
+79b3ea512a9 2026-11-22 docs(specs): record the operator decisions of the alignment pass
+db801dd91c5 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+403cbd415c9 2026-11-22 docs(specs): correct the second final review record in the ux pass
+3832b7fc6b5 2026-11-22 docs(specs): record the second final review's fixes in the ux pass
+0a1806a09df 2026-11-22 fix(git-hooks): print pre-push's restore paths from the tracked source root
+7961ada26d7 2026-11-22 fix(git-hooks): print pre-commit's restore paths from the tracked source root
+88032876cfb 2026-11-22 fix(doctor): refuse a replace path that became a file over a retained path
+330d75d1a54 2026-11-22 fix(git-hooks): keep pre-commit's gate pathspecs on the logical source root
+e22fda5b1e6 2026-11-22 fix(doctor): make the overlay engine's remaining remedies runnable
+d85d6e763c1 2026-11-22 fix(git-hooks): print the tracked path when the source root is a link
+6bb2b1c659d 2026-11-22 fix(doctor): refuse a replaced folder that becomes a file over a kept path
+b619b087eed 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+ec4317ab7fb 2026-11-22 docs(specs): close the absolute-source limitation of the overlay review fixes
+6e3d67828c9 2026-11-22 fix(doctor): give an absolute overlay source no layout move
+6a77a7208c1 2026-11-22 chore(system-spec-kit): rebuild the trigger index
+d4b418a5320 2026-11-22 docs(specs): record the final review fixes for the ux and alignment pass
+1d21d8466d8 2026-11-22 docs(doctor): describe the overlay refusals the final review fixes changed
+7a73d77c143 2026-11-22 fix(doctor): judge layout readiness on the path apply reads
+11f7d0cd5a0 2026-11-22 fix(doctor): keep relayout's refusal for a missing overlay source that escapes
+2bc90699714 2026-11-22 fix(doctor): leave a missing or wrong-kind overlay copy out of the layout moves
+efb78facf91 2026-11-22 fix(doctor): name an overlay source that is a folder where an entry reads a file
+aba8f76e97f 2026-11-22 fix(doctor): own a file where a folder lands only when the state spelling is that file
+1fadbc33da4 2026-11-22 docs(specs): record the accepted defaults for the 48 undecided findings
+5f2331c5a38 2026-11-22 docs(system-deep-loop): add a validation section to the coverage graph README
+7f6623d13aa 2026-11-22 docs(system-deep-loop): name the pivot scripts the tests type check covers
+bef3421748b 2026-11-22 docs(system-deep-loop): list the durability and mode-contract tests
+0c52017ed96 2026-11-22 docs(agents): let code-folder READMEs pass the markdown agent at DQI 70
+3fbc871e111 2026-11-22 docs(system-deep-loop): fix the database, rollout, playbook and benchmark docs
+992ae998d16 2026-11-22 test(system-deep-loop): add an opt-in tests type check and gate the probe
+f7f084fc914 2026-11-22 fix(system-deep-loop): record the real fail-closed cause and narrow resume
+de972038aba 2026-11-22 refactor(system-deep-loop): share durability and pivot helpers, drop any
+23da225543d 2026-11-22 docs(system-deep-loop): document per-script exit codes and stderr prefixes
+55d2531bb29 2026-11-21 fix(doctor): keep an unparsable entry set waiting on an outside layout link
+bf96e413a15 2026-11-21 fix(doctor): name a keep-aside path outside the tree at its real path
+abd8d8da74c 2026-11-21 fix(doctor): name a source problem under an outside layout link as written
+5a6f2e211c3 2026-11-21 fix(doctor): own a file recorded in other case where a directory entry writes a folder
+d8b2394c74b 2026-11-21 fix(doctor): name a keep-aside path at the target of a link apply takes back
+782260a8dbb 2026-11-21 fix(doctor): refuse a file where a directory entry at a layout link writes a folder
+719334ea54e 2026-11-21 test(doctor): describe what a refusal under a missing layout link names
+1cafc3b4aad 2026-11-21 docs(specs): close the doctor packet's second review round
+4a2f8de4ba9 2026-11-21 fix(doctor): report an entry under a missing layout link without rewriting text
+bebeb569c76 2026-11-21 fix(doctor): judge an entry under a missing layout link at its landing
+533cb420627 2026-11-21 fix(system-spec-kit): close the epic review's cleanup and record gaps
+07ffa7c2ba2 2026-11-21 docs(specs): record the approved behaviour fixes and the open proposals
+7bf4c8d755d 2026-11-21 fix(doctor): quote the rollback root and the capture path through shellPath
+4f6600784f6 2026-11-21 docs(system-deep-loop): list the new unit tests in the unit README
+f4ace7e740b 2026-11-21 fix(system-deep-loop): sort provenance by code unit and name budget errors
+0ea831c1839 2026-11-21 fix(system-deep-loop): surface gateway, graph and registry failures
+7c656e5dd79 2026-11-21 fix(system-deep-loop): surface lock restore failures and skipped delta lines
+c89d47675f9 2026-11-21 fix(system-deep-loop): guard the sandbox reset and repair stress discovery
+15fe7306bca 2026-11-21 fix(system-deep-loop): contain state-record writes and stop silent skips
+cfe004b132e 2026-11-21 fix(system-deep-loop): surface rollout and benchmark contract errors
+e7244e53648 2026-11-21 fix(doctor): print every overlay Next command so it runs as pasted
+b4164bd2ffa 2026-11-21 fix(doctor): refuse a repin rollback whose backup.json is not JSON
+8ab99ee8106 2026-11-21 fix(doctor): let a layout link replace owned output at a name with capitals
+5e41eb36d13 2026-11-21 fix(doctor): clear an empty live folder a directory source now ships as a file
+9bd1ced4948 2026-11-21 docs(specs): list every open finding for the operator in the summary
+8acaa398504 2026-11-21 docs(system-deep-loop): give the mode scripts the standard module header
+e39874156ab 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the README alignment pass
+ec8d8ea2451 2026-11-21 docs(specs): close the sk-code and README alignment packet
+fe8909a3a8e 2026-11-21 docs(system-deep-loop): align the test READMEs and add the support README
+20f63af64f6 2026-11-21 docs(system-deep-loop): align the mode script and shared READMEs with the code
+c2f09f1eb30 2026-11-21 docs(system-deep-loop): align the policy and projection READMEs with the code
+c06b523e52d 2026-11-21 docs(system-deep-loop): align the reducer and schema READMEs with the code
+af67d9d1d42 2026-11-21 docs(system-deep-loop): align the ledger and receipt READMEs with the code
+0db183b9e22 2026-11-21 docs(system-deep-loop): align the core loop READMEs with the code
+bb1744da03d 2026-11-21 docs(system-deep-loop): align the runtime and scripts READMEs with the code
+dc527e79110 2026-11-21 test(system-deep-loop): align runtime test headers and comments
+ab5bf9f2a4e 2026-11-21 docs(system-deep-loop): document the policy and projection libraries
+aa7d38cc364 2026-11-21 docs(system-deep-loop): document the reducer and schema libraries
+129ae21d3ea 2026-11-21 docs(system-deep-loop): document the ledger and receipt libraries
+b126abb8496 2026-11-21 docs(system-deep-loop): document the core loop libraries
+08c1db0137c 2026-11-21 docs(system-deep-loop): document the runtime scripts
+b0be9d96a1c 2026-11-21 docs(system-deep-loop): document the mode scripts and shared helpers
+c7f38f295d2 2026-11-21 test(mcp-browser-use): verify the browser hub end to end and close the alignment findings
+6a5e1048ea5 2026-11-21 feat(mcp-browser-use): route browser requests through the hub at both advisor stages
+bcc330cb2b5 2026-11-21 feat(mcp-browser-use): add the Bladebro stealth-browser mode
+e60f28021d1 2026-11-21 refactor(mcp-browser-use): move the Chrome DevTools and Aside modes into the browser hub
+6efbff5d094 2026-11-21 feat(mcp-browser-use): scaffold the browser-use parent hub
+e395a8699a8 2026-11-21 docs(specs): add the browser-use hub packet and its research phase
+6979ae6fb58 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the Q057-Q070 record
+41df55de595 2026-11-21 docs(specs): record the round 8-12 operator decisions as Q057 to Q070
+31f240614c4 2026-11-21 docs(specs): scaffold the sk-code and README alignment packet
+d5a077770d1 2026-11-21 chore(system-spec-kit): rebuild the trigger index
+2e4a50c5a9b 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the phase 013 push and re-pin record
+2f54f9b75a4 2026-11-21 docs(specs): record the push of 13eae0c562b and Barter's re-pin onto it
+c262476372a 2026-11-21 docs(specs): record the doctor alignment packet's closing continuity
+a49e28c9905 2026-11-21 docs(specs): close the doctor alignment packet
+092ebd6c256 2026-11-21 fix(system-skilled-doctor): connect the doctor to the four-lane advisor and release 1.3.0.0
+509e40fe03f 2026-11-21 docs(specs): plan the doctor alignment with the four-lane advisor
+4fbfe469c7b 2026-11-21 docs(mcp-click-up): register the disabled ClickUp manual on demand
+55ee0e157a5 2026-11-21 docs(specs): say which session passed the effort setting on each call
+faf6b4e1db8 2026-11-21 docs(specs): record the round 12 fixes in the dogfood log
+71ef58ec70c 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the UX and alignment pass record
+0d1725f86e5 2026-11-21 fix(system-deep-loop): forward repeated signals and describe the recursion guard
+49acac91fa8 2026-11-21 docs(specs): close the UX and alignment pass on the merged main
+09076dd4e0f 2026-11-21 fix(system-deep-loop): exit 64 without a stack on two dispatch setup refusals
+4e5216729f9 2026-11-21 fix(system-deep-loop): record the resolved model in single-dispatch audit rows
+2b76e86fdaf 2026-11-21 docs(specs): record the final review verdict for the UX and alignment pass
+db5bf1cd339 2026-11-21 fix(doctor): refuse a moved layout link that another layout link reads through
+8fc35a98984 2026-11-21 fix(system-deep-loop): mask Claude uuid and request ids in lineage logs
+1e9b8e3a6ff 2026-11-21 chore(system-spec-kit): rebuild the trigger index
+95581694a0b 2026-11-21 docs(specs): record the UX and alignment pass so far
+420f4a760f6 2026-11-21 revert(doctor): take back the free keep name and the link-chain step
+722b02207f3 2026-11-21 docs(specs): record the round 11 live replays in the dogfood log
+a34344e6a47 2026-11-21 docs(specs): close the review P2 fixes packet after its follow-up review passed
+6ce61dee0f8 2026-11-21 fix(doctor): judge a layout target through a link apply has not made
+dfdaee3a064 2026-11-21 fix(system-spec-kit): close the follow-up review's lane residue advisories
+0f282b48e6d 2026-11-21 fix(doctor): keep-aside moves never clobber, and a link to an unmade link applies
+3c8df597438 2026-11-21 feat(system-deep-loop): opt-in switch for a host-session CLI executor
+978b74e8df7 2026-11-21 fix(system-deep-loop): record a runner stop's live lineages as survivors
+a20a1d96a05 2026-11-21 fix(system-deep-loop): spare on a runner stop the members --stop spares
+61112481bc3 2026-11-21 fix(system-deep-loop): refuse an artifact dir outside the worktree pre-dispatch
+f759ad457aa 2026-11-21 docs(doctor): say when the link-alone apply reports the inner link
+0f005bce510 2026-11-21 test(doctor): prove a whole-file entry at a link to a file applies and ends in sync
+4b118208464 2026-11-21 fix(doctor): refuse a layout link to a file and name what stands at the target
+1d1bfadab67 2026-11-21 fix(system-spec-kit): close the lane removal review's P2 advisories
+e3fc34bf147 2026-11-21 docs(doctor): scope the overlay apply footers to the stop that prints each
+dcdaa8e5e13 2026-11-21 docs(doctor): describe the planning refusals for a moved or dangling layout link
+4e46316a040 2026-11-21 fix(git-hooks): drop a fallback the reinstall hint can never reach
+196fa2b1bfd 2026-11-21 fix(doctor): judge a layout link's missing target through folders apply makes
+159ae961388 2026-11-21 fix(doctor): refuse a moved layout link above an entry while it is planned
+e06143a14ce 2026-11-21 docs(specs): record the round 8-10 live verification
+3bfd5e111fc 2026-11-21 fix(hooks): quote the overlay-guard root and root the reinstall hint
+bf3bca7a8b1 2026-11-21 docs(specs): add the ten-iteration deep review of the lane removal
+88645b0150e 2026-11-21 chore(specs): redact real email addresses in deep-loop logs from before masking
+a4e2a2f2baa 2026-11-21 docs(changelog): record the layout-link fixes and the engine test count
+19f8bbb5941 2026-11-21 fix(doctor): judge every path under a moved layout link in status
+af005da53f2 2026-11-21 docs(doctor): describe layout links moved before the entries under them
+639df2f2450 2026-11-21 fix(doctor): move a retargeted layout link before the entries under it
+8708d3ee2e8 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the dropped parent docs
+56777af3240 2026-11-21 fix(system-deep-loop): mask emails in linear time and cap the live stdout copy
+c9f5051ac68 2026-11-21 docs(doctor): describe layout links made before the entries under them
+de69bd168cb 2026-11-21 fix(doctor): plan entries under a missing layout link through it
+3ca0b161dc0 2026-11-21 docs(specs): drop the expansive-depth parent's plan.md and tasks.md
+1abb77229e0 2026-11-21 fix(doctor): make a missing layout link before the entries under it
+d4dd770d76e 2026-11-21 chore(system-spec-kit): rebuild the trigger index
+3d48db9bd25 2026-11-21 fix(doctor): judge link chains where they really land in the tree
+9af2f0efc7a 2026-11-21 fix(system-deep-loop): record the sandbox mode each executor actually runs
+a45818c4402 2026-11-21 docs(doctor): show the two link refusals from two entries
+a161a1b056c 2026-11-21 docs(doctor): quote the LAYOUT line and the link refusals as the engine prints them
+71990b7a96a 2026-11-21 fix(git-hooks): name the folder to run the track-roots refresh from
+578a0c75607 2026-11-21 fix(git-hooks): name the repository an installer or allocator Next line acts on
+e85bb5e2398 2026-11-21 fix(git-hooks): say where to run every repository-relative Next line
+539d690e4d2 2026-11-21 fix(git-hooks): name the source root and the folder to run from in the remaining Next lines
+49fe267503f 2026-11-21 docs(changelog): record the overlay engine test count the suites now run
+336f7b05df7 2026-11-21 fix(deep-research): keep this session's stop reason through synthesis
+1b7fe3e1a26 2026-11-21 fix(system-deep-loop): stream single-executor stdout to a redacted iteration log
+6870685cc80 2026-11-21 fix(git-hooks): keep the rebase placeholder when a merge widens the base
+e4eb5622e21 2026-11-21 fix(doctor): name absolute paths in the re-pin linked-folder remedy
+01ffea0fa7a 2026-11-21 docs(system-spec-kit): quote the phrase-lint refusal as the hook now prints it
+408b9f476a7 2026-11-21 fix(git-hooks): name the real base commit and source root in Next lines
+d1e45c3776e 2026-11-21 fix(doctor): give the layout-link retarget refusal the absolute keep-aside remedy
+40dbd7b5610 2026-11-21 feat(deep-review): list exhausted and blocked frontier nodes in synthesis
+68fc9264d7c 2026-11-21 fix(doctor): follow a dangling link chain and spare engine-made links
+9e71013e64f 2026-11-21 docs(specs): drop the phase parent's implementation summary
+ea291bdaabc 2026-11-21 docs(specs): record the operator-machine follow-up decision
+050cfcc30f9 2026-11-21 fix(doctor): normalize replace paths and give overlay refusals a Next line
+9ed1bf9e984 2026-11-21 docs(specs): move the operator-machine follow-up out of the lane removal criteria
+51d93050e44 2026-11-21 fix(git-hooks): print every Next command so it runs as pasted
+7b58dbab3d9 2026-11-21 fix(doctor): refuse an overlay write through a link that leads outside the tree
+526cad7c438 2026-11-21 fix(doctor): name a real root in the missing --root remedy line
+6d1ea3a18b2 2026-11-21 fix(doctor): name the folder to run from in MCP and route remedy lines
+c603cc1746c 2026-11-21 docs(specs): record the lane removal's closing operator decisions
+8775a2ce9d4 2026-11-21 chore(system-spec-kit): rebuild the trigger index for this round's docs
+f6d09950d73 2026-11-21 docs(system-deep-loop): add the v2.2.0.0 changelog entry for this round
+8770a404120 2026-11-21 docs(changelog): correct the open v4.2.0.0 note and add four behaviours
+8ff0f8257bb 2026-11-21 docs(specs): refresh the frontier phases' continuity and close parent tasks
+7d9fb896e97 2026-11-21 fix(system-skill-advisor): anchor overlay README check on Skilled vocabulary
+f362ba17ed9 2026-11-21 docs(doctor): quote the keep-aside Next line as the engine prints it
+966a2bdec47 2026-11-21 docs(specs): accept the fixture proof for the lane removal's machine mode
+22cfc3131f6 2026-11-21 fix(system-spec-kit): close the gaps a second alignment pass found
+79fd6666d33 2026-11-21 docs(system-deep-loop): align the remaining docs with this round's code
+4584110cb1b 2026-11-21 test(system-deep-loop): name the one-lineage fan-out tests for what they check
+e3e885ebe50 2026-11-21 fix(git-hooks): make an unreadable kill switch readable instead of restoring it
+299bf658411 2026-11-21 fix(doctor): let a skill-root entry change a replaced path's shape in one apply
+2dd39dfe897 2026-11-21 fix(hooks): keep hook Next lines safe to paste and true outside a Skilled checkout
+9a95e0ff0f6 2026-11-21 docs(doctor): say only the example env template is exempt from the engine's secret rule
+2f188045e55 2026-11-21 fix(doctor): make every pasted Next command run, and keep refusal first lines unchanged
+0a9de51c040 2026-11-21 refactor(system-deep-loop): build claude and codex dispatch like every kind
+b196f968af5 2026-11-21 docs(system-deep-loop): describe the stop, budget and gateway changes
+373ec7de88e 2026-11-21 fix(system-skilled-doctor): narrow two routing phrases that pulled update prompts
+90fd5bd1bb4 2026-11-21 fix(system-deep-loop): report a narrowed dsh sandbox and fail stdout overflow
+534ba42b6db 2026-11-21 docs(specs): bind the last phase's goal and settle the packet's open boxes
+abe1b833b25 2026-11-21 fix(system-skill-advisor): route overlay-manifest and overlay README audit requests to the doctor
+de2fa53e0d3 2026-11-21 docs(doctor): document the REGEN status line and the root/skilled relayout remedy
+3e66f2e0303 2026-11-21 docs(system-skill-advisor): align docs and checks with the lane removal
+3076d1ec251 2026-11-21 fix(doctor): name the manifest file when it is not valid JSON
+4db1d9aaa43 2026-11-21 fix(system-deep-loop): label claude's permission mode as compensating
+f10a07afb31 2026-11-21 fix(doctor): report a pending regeneration in status and finish the relayout and capture remedies
+40db25fbd65 2026-11-21 feat(system-deep-loop): end a run the same blockers keep blocking
+dbdbb08270f 2026-11-21 docs(manual-testing-playbook): quote the doctor git and mcp prompts as they now read
+95cb6908f95 2026-11-21 docs(doctor): say what each setup answer does and why each doctor failure stopped
+725d1079108 2026-11-21 docs(system-deep-loop): correct command hints, script rows and check count
+7da86746b8a 2026-11-21 fix(doctor): add Next lines to the remaining doctor script refusals
+cbee9e6e2a9 2026-11-21 fix(doctor): finish the engine's refusal messages and refuse a linked folder cleanly
+7cdfaa4e662 2026-11-21 docs(doctor): align the overlay command assets with the engine and its Next lines
+25391f947a6 2026-11-21 docs(system-skilled-doctor): align the doctor skill, playbook and onboarding docs
+0fde65e7b69 2026-11-21 fix(system-deep-loop): judge retried lineages and claim stamps one way
+8ab5e7306d3 2026-11-21 fix(doctor): name the next command in the ci, agents-md, mirror-check and update lock refusals
+59d26c89f38 2026-11-21 fix(doctor): give the engine's refusals a why line and the exact next command
+3710b3afb22 2026-11-21 chore(specs): redact the noreply address in the docs-alignment scratch files
+7237f45bf60 2026-11-21 fix(system-deep-loop): derive a defaulted fan-out's budget from one table
+95488ee32ff 2026-11-21 fix(doctor): add a Next line to the update, setup-check, hook-wiring, ci-report and symlink refusals
+6ec426de2db 2026-11-21 fix(system-deep-loop): mint stream identity on every gateway branch
+c2c2f2ab74a 2026-11-21 fix(doctor): change a destination's shape in one apply, and stop hiding env templates
+8025a4663aa 2026-11-21 fix(git-hooks): name the exact command for the remint, recompile and staged-and-unstaged refusals
+5652a4bafe2 2026-11-21 test(system-deep-loop): keep the operator's runner switches and git variables out of test children
+31c29fe031a 2026-11-21 test(system-deep-loop): require the pi dispatch default to be enabled, not first
+0eb54a8b678 2026-11-21 fix(hooks): say what the operator runs next when a guard crashes or a contract is unreadable
+31ef87dfc7b 2026-11-21 fix(pi): put the project default model first in enabledModels again
+60478830279 2026-11-21 fix(git-hooks): give every blocking refusal a Next line with the exact command
+78f8792461a 2026-11-21 fix(doctor): judge Python caches by path and kind, and keep a stuck cache from failing apply
+614858c884c 2026-11-21 refactor(specs): move the mcp packets under the specs/mcp track
+5941ca6a23c 2026-11-21 fix(sk-git): name the next command in the rules-unreadable and overlay-guard notes
+84d61dd6edf 2026-11-21 fix(sk-code): skip archived deep-loop run scripts under specs in the drift guard
+b0b3c8d9bf1 2026-11-21 feat(system-spec-kit): allow two levels of named sub-tracks and seed the mcp track
+6820170d3b1 2026-11-21 feat(system-spec-kit): wire the lane cleanup into updates and gate its return
+65751f8d61a 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the push and re-pin record
+07df295f8ef 2026-11-21 docs(specs): record the push of 542748515e8 and Barter's re-pin onto it
+542748515e8 2026-11-21 chore(system-spec-kit): rebuild the trigger index for the archived review reports
+1f372b7f221 2026-11-21 chore(specs): commit the fan-out status ledgers of past deep-loop runs
+ae0f34d9e57 2026-11-21 docs(specs): keep the worktree scratch evidence from the plan-text and goal closeout
+c62e663ae5d 2026-11-21 docs(specs): record the overlay root-layout deep-review rerun and archive the prior run
+33191defc57 2026-11-21 chore(specs): record the two latest continuity saves for the ollama lane closeout
+01a75ebc1c1 2026-11-21 chore(specs): record the latest continuity save for the review p2 fixes
+803f64f33ef 2026-11-21 chore(config): add glm-5.3 and hy4-flash-free to the pi enabled models
+3530cacf091 2026-11-21 chore(system-spec-kit): rebuild the trigger index
+78f5867fe83 2026-11-21 docs(specs): record the operator answers on round 7 and the --stop follow-ups
+6ff8135076c 2026-11-21 fix(system-deep-loop): let the runner close a leaderless lineage --stop ends
+e758041df47 2026-11-21 chore(system-spec-kit): regenerate the surfaces that still named the lane
+29ae0d13c59 2026-11-21 docs(system-skill-advisor): describe the four-lane advisor and record the lane removal
+1f85a9dd6dd 2026-11-21 refactor(system-spec-kit): remove the shared embeddings package and model server
+cf702d3fb9e 2026-11-21 refactor(system-skill-advisor): remove the semantic lane core
+92d31ff5155 2026-11-21 docs(specs): correct the overlay follow-ups record
+f5eb417c778 2026-11-21 docs(specs): record the overlay alignment follow-ups merge
+b069a39dc3d 2026-11-21 docs(specs): record the overlay alignment follow-ups
+7332be12cd2 2026-11-21 fix(doctor): back up Python caches a repin's apply may prune
+d8b2ef4e23e 2026-11-21 fix(doctor): remove a dropped overlay folder that holds only caches
+5485069871f 2026-11-21 fix(doctor): keep Python bytecode caches out of overlay folder entries
+4c86b7c3c10 2026-11-21 refactor(system-skill-advisor): remove the semantic lane feeders
+251edb80d4c 2026-11-21 fix(sk-code): skip folder READMEs in the router-sync orphan walk
+471641ed63f 2026-11-21 docs(doctor): close the overlay folder README phase
+fcc8df4983f 2026-11-21 fix(doctor): fold the capital sharp s in layout link keys
+96f0d3a98ef 2026-11-21 docs(doctor): say that layout link case folding is full Unicode folding
+49c109910e1 2026-11-21 fix(doctor): fold layout link case the way the filesystem does
+0c2ab52b3b3 2026-11-21 refactor(system-skill-advisor): remove the embedder doctor route and setup leg
+f4a3809f70f 2026-11-21 docs(doctor): say how the plan compares nested layout links
+e29e24eb277 2026-11-21 fix(doctor): key planned layout links by one case- and form-folded path
+dc77be59331 2026-11-21 docs(specs): record the alignment command targets and upstream alignment phases
+09999719d31 2026-11-21 docs(doctor): say that layout link paths differing only in case are one path
+b4a669a6c87 2026-11-21 fix(doctor): treat layout links that differ only in case as one path
+ff969f029fb 2026-11-21 docs(skilled): correct three doc comments the alignment review flagged
+494418196cf 2026-11-21 docs(doctor): say how duplicate layout links are compared and what relayout refuses
+bcdf8d95037 2026-11-21 fix(doctor): close the review gaps in the duplicate link check and docs leg
+35983033f76 2026-11-21 feat(system-spec-kit): add the lane residue check and cleanup tool
+b872197e348 2026-11-21 docs(doctor): describe overlay folder READMEs and the duplicate layout link refusal
+e17872485b6 2026-11-21 style(skilled): align the deep-loop and spec-kit files Barter overlays with sk-code
+6928c1eabe2 2026-11-20 fix(doctor): count README.markdown and refuse a layout link listed twice
+286359e2239 2026-11-20 style(skilled): align the hooks, route guard and symlink engine with sk-code
+3a9f1567d95 2026-11-20 feat(doctor): report overlay folder READMEs in status --audit
+889fc252bee 2026-11-20 docs(specs): plan the overlay README, alignment target and upstream alignment phases
+00de47c63a1 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+4fc94bae0d3 2026-11-20 fix(system-deep-loop): stop an exited leader's group members on --stop
+c773f592bd8 2026-11-20 ci(system-deep-loop): install ripgrep before the runtime suites
+09fbd167961 2026-11-20 docs(changelog): correct the docs left outdated by the OpenCode 1 purge
+80e4ad5bec4 2026-11-20 docs(changelog): draft the v4.2.0.0 release notes
+bf6806ad4b3 2026-11-20 docs(specs): record the Ollama deprecation research and its seven decisions
+6a949b30170 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+c3c91457f9f 2026-11-20 fix(system-deep-loop): redact the logs of lineages --stop closes
+dbee9cb9a4a 2026-11-20 docs(system-deep-loop): describe fan-out stop, budget and merge trust changes
+cba81360d6e 2026-11-20 docs(system-spec-kit): say a stored required continuity field blocks the save
+47c0448a5a2 2026-11-20 fix(system-deep-loop): count review answered nodes from the reduced frontier
+62b43e03119 2026-11-20 fix(system-deep-loop): pass explicit budgets and fix fan-out workflow steps
+7bb31c31a04 2026-11-20 fix(system-deep-loop): bind an explicit iteration budget and redact every log
+7d9e93b2140 2026-11-20 fix(system-deep-loop): name the judged stamp and the blocked-stop cause
+e111720dc88 2026-11-20 fix(system-deep-loop): record running lineages as stopped on a runner signal
+2bfee12379d 2026-11-20 fix(system-deep-loop): apply lineage trust to the research fan-out merge
+86f6c584b1b 2026-11-20 fix(system-deep-loop): keep untrusted lineages out of review merge coverage
+aca3e6858b3 2026-11-20 fix(system-deep-loop): verify a lineage pid's start time before --stop
+e1788fce8e0 2026-11-20 fix(system-spec-kit): stop reading dots inside versions as sentence ends
+e58bc6b6750 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+6129a3cdd11 2026-11-20 docs(specs): record the second overlay layout review fixes
+3b7e27f3d81 2026-11-20 docs(specs): record the live fan-out review and the session's 35 decisions
+eae0c02ceaf 2026-11-20 fix(cli-opencode): stop the setup check probing the retired opencode2 name
+cf932dc7382 2026-11-20 docs(doctor): say what the dangling-parent layout link exception relies on
+93198d56023 2026-11-20 fix(doctor): let a nested layout link through a dangling parent an earlier entry rewrites
+b439bdaeb59 2026-11-20 fix(doctor): refuse a layout link when the disk or the planned links take it out
+add6e839c6f 2026-11-20 fix(doctor): judge a layout link below another planned link as the run writes it
+d5b258c32e8 2026-11-20 fix(doctor): name the staged tree root a later status can read
+555487146e2 2026-11-20 fix(system-deep-loop): keep the dry-run convergence call read-only
+44251c5befd 2026-11-20 docs(changelog): correct the docs left outdated by the OpenCode 1 purge
+709646d2e7e 2026-11-20 fix(doctor): judge layout link paths by where their parent folders resolve
+bc9ee63a82f 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+8170db46079 2026-11-20 fix(system-deep-loop): mint review row identity and refuse a reused key
+9deeb709d3d 2026-11-20 docs(changelog): draft the v4.2.0.0 release notes
+47ba2a08a85 2026-11-20 fix(system-deep-loop): withhold the blocked-stop record from a dry run
+b90024e3232 2026-11-20 docs(specs): make the overlay layout phase records reproduce
+9cac789e095 2026-11-20 docs(doctor): describe the setting refusals and relayout failures the engine prints
+8459961bbca 2026-11-20 fix(doctor): contain overlay folder and layout link paths the engine writes through
+b3470354ab7 2026-11-20 fix(doctor): keep every relayout failure inside its printed contract
+566d4408ee8 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+23fe62099e1 2026-11-20 docs(specs): record the purge answer under its captured key
+95aa07427ec 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+5eb75ef55f7 2026-11-20 docs(specs): record the overlay layout open-item phases
+725dec306a1 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+bca42526426 2026-11-20 docs(cli-opencode): drop the effort ladders measured only on OpenCode 1
+62922548e2b 2026-11-20 docs(doctor): say exactly which pins the framework-commit refusal catches
+3d1cb0b19f1 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+cc9b76596ef 2026-11-20 docs(specs): close the v1 reference purge phase with its evidence
+1ae2cd21c53 2026-11-20 docs(system-spec-kit): drop the OpenCode version refusal from the loop entry
+5ce1cd58dc3 2026-11-20 fix(doctor): record the pinned commit itself when record-base fetches a pin
+29f8e1c75db 2026-11-20 docs(specs): open the v1 reference purge phase and supersede the survivor list
+09a760a4763 2026-11-20 docs(cli-opencode): remove every OpenCode 1 observation and the removal guide
+af2dd50a102 2026-11-20 fix(cli-opencode): drop the OpenCode 1 refusal and the remove-v1 helper
+da0162af612 2026-11-20 fix(system-deep-loop): give every fan-out review lineage the run's scope
+3ddeef925dd 2026-11-20 fix(doctor): judge a pre-commit in a linked worktree against the right repository
+bf51f84b407 2026-11-20 docs(sk-git): give the large-reorg playbook a save command that runs
+91bcd050ee1 2026-11-20 fix(deep-review): record a skipped gate as unknown in the blocked stop
+040a5371fb3 2026-11-20 fix(system-deep-loop): default unset opencode sandbox mode to workspace-write
+b4799f7d547 2026-11-20 docs(specs): close the Barter re-pin onto the pushed Skilled fixes
+55e8a7c217f 2026-11-20 fix(deep-review): record a blocked stop from the convergence script
+7a1688f9b55 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+6d853802053 2026-11-20 docs(system-spec-kit): show the phase map columns the template emits
+6fd13eed0b1 2026-11-20 fix(hooks): pass opencode --completions through and explain attach and mini
+b8bc34ede88 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+3b4af3fde0d 2026-11-20 docs(specs): name the launcher pid hand-off in the phase 022 file list
+09ffdaa27d0 2026-11-20 docs(system-deep-loop): describe the minted identity of research gateway rows
+6aa7c109c28 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+57c714b6bec 2026-11-20 docs(specs): record phase 022 with its fixes and evidence
+d35466eb1d8 2026-11-20 fix(system-skill-advisor): close the epic verification findings
+3ae7a87c782 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+3101c9ed363 2026-11-20 docs(system-skilled-doctor): record the pushed target commit for the repin
+5aa1804e082 2026-11-20 docs(specs): record the OpenCode subcommand list follow-up
+d5b7e72fc8d 2026-11-20 fix(session-handover): pass through only the subcommands OpenCode 2.3.2 has
+b5a630c6efa 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+698771ea279 2026-11-20 docs(specs): record the un-anchored phase map fix as a lifecycle phase
+8ce08efd31f 2026-11-20 fix(system-spec-kit): add a row to an un-anchored parent phase map
+83847bdb5fc 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+2e295fea62a 2026-11-20 test(system-deep-loop): cover the pi sandbox mode in adapter conformance
+28aa6f9f83d 2026-11-20 docs(specs): record the blocked merge of main with origin for the overlay push
+1e2add8bab3 2026-11-20 fix(deep-research): mint identity fields for model-written gateway rows
+f7247772c85 2026-11-20 docs(specs): add the barter review fixes and push-and-repin overlay phases
+0557b1b8b43 2026-11-20 docs(specs): record the overlay review remediation continuity and workflow fix
+81f0ca4cade 2026-11-20 docs(doctor): tell the apply workflow how to read a failed relayout
+cb751e06e38 2026-11-20 docs(specs): close the overlay layout review with its remediation phase
+4ee628578ed 2026-11-20 docs(doctor): state both LAYOUT remedies and the relayout failure contract
+3aab896957e 2026-11-20 fix(doctor): roll back failed relayouts and refuse sibling folders outside git
+bbbec2ed55e 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+24749648b24 2026-11-20 docs(specs): record the phase 021 verification of the advisor epic
+25b195dbc18 2026-11-20 docs(specs): record the operator's choice of open items to fix
+a92388005bf 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+af471c253e2 2026-11-20 test(system-spec-kit): expect the leaf-first next focus in the reducer test
+0e49309a701 2026-11-20 fix(system-deep-loop): judge a lineage's timestamp window by the claimed stamp
+a30a824aeea 2026-11-20 docs(specs): record the inventory rename and critic rerun follow-up
+9cd204a87b0 2026-11-20 docs(system-spec-kit): correct the OpenCode shim and launch lines in the handover loop entry
+686de1cb4ea 2026-11-20 refactor(opencode-plugins): rename the nativeDual inventory key to selfRegistered
+3bfd7c36fe0 2026-11-20 docs(system-deep-loop): describe the capability record and pi and dsh sandbox
+b8c96116192 2026-11-20 feat(system-deep-loop): add an adapter capability record with a conformance test
+c7453b88d5f 2026-11-20 docs(deep-research): name the insufficient source-diversity status
+500ed459c99 2026-11-20 fix(system-deep-loop): judge a research pass by the stamp the model claimed
+425fa04e7d3 2026-11-20 docs(system-deep-loop): document fan-out status, stop and pass evidence
+b961eb5e2d3 2026-11-20 docs(system-deep-loop): document the gateway clock, blocked stop and sandbox
+40d7c32c20f 2026-11-20 fix(deep-research): report source diversity as insufficient on an empty graph
+87223d32b92 2026-11-20 feat(system-deep-loop): judge fan-out passes and show them live
+a4098700cda 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+ed368eb0e50 2026-11-20 docs(specs): record the doc alignment follow-up and its operator answers
+895a3f8c98e 2026-11-20 docs(opencode): match four docs to the OpenCode 2 wrapper and plugin
+e2a32d7dea2 2026-11-20 docs(deep): say the codex sandbox follows the requested mode
+0364ead58fb 2026-11-20 fix(deep-research): record a blocked stop and stage without ignored excludes
+83800c3bfa2 2026-11-20 chore(gitignore): commit the fan-out orchestration status ledger
+dfdd486fbe1 2026-11-20 fix(system-deep-loop): time review iteration rows by the gateway clock
+a29a15210e7 2026-11-20 fix(system-deep-loop): stop fan-out lineages on SIGHUP, parent death and --stop
+0139027a3fc 2026-11-20 fix(system-deep-loop): time research iterations by the gateway clock
+c05fc2c0168 2026-11-20 fix(system-deep-loop): count a folded review refinement once at closeout
+2b32f0d73c8 2026-11-20 fix(system-deep-loop): honor a requested sandbox mode for every executor kind
+b3ce85a3204 2026-11-20 fix(system-deep-loop): derive finding evidence from a pass that answered nothing
+ce9b6f25b92 2026-11-20 docs(cli-opencode): add the v2.0.1.0 changelog for the loopback battery server
+7ee80c87364 2026-11-20 docs(cli-opencode): add the v2.0.1.0 changelog for the loopback battery server
+7394aaf74af 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+17a9ddbcb68 2026-11-20 docs(specs): record the generation 4 expansive research on fan-out trust
+7d57275d9a5 2026-11-20 docs(specs): keep the two expansive dogfood logs in the packet
+10c36989450 2026-11-20 docs(specs): close phases 004 and 005 of the overlay layout packet
+b5d4b8bdf1a 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+9a08e0aa00b 2026-11-20 docs(specs): back the phase 020 checklist with evidence
+dca3fce37c0 2026-11-20 docs(specs): close phase 020 with its merge and push evidence
+fe3b7664e94 2026-11-20 docs(specs): record the 019 deep review and the phase 020 P1 fixes
+c411bcc842c 2026-11-20 fix(system-skill-advisor): keep vector coverage honest across refresh and status
+1653734af7d 2026-11-20 docs(specs): record the merged pin and refresh the overlay layout packet
+d42bafc890c 2026-11-20 docs(doctor): document the framework/root overlay layout and release 1.2.0.0
+5913aebc267 2026-11-20 feat(doctor): lay overlay sources out under framework/ and root/
+da4fdba9f11 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+30fcc0ef0c9 2026-11-20 docs(specs): record the decisions that opened the removal's fourth phase
+75ceaf669fe 2026-11-20 docs(specs): count four phases in the removal parent and name the narrowed scan
+929e00dc1af 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+55e9fecf955 2026-11-20 docs(specs): close the eight OpenCode v1 removal review advisories
+67a56c6fd40 2026-11-20 test(system-deep-loop): check parser parity over the shared version corpus
+a26b9a65ee2 2026-11-20 ci(opencode): run the setup-helper classify test in the v2 battery
+a78ba6b834a 2026-11-20 docs(sk-create-goal): state the Level 1 child fallback everywhere it reads sources
+b434346d697 2026-11-20 test(cli-opencode): retire opencode2 as a v2 launcher name
+8254108ad7e 2026-11-20 fix(doctor): pin the battery's private server to loopback
+be87565aafa 2026-11-20 refactor(opencode-plugins): rename the plugin builder to definePlugin
+07cf5f92b61 2026-11-20 fix(system-deep-loop): cover the step programs in the review contract digest
+958eb9ca1df 2026-11-20 fix(system-deep-loop): read an unreadable lineage log as unknown cost
+87de7f0fda7 2026-11-20 docs(specs): record the phase 1 test runs at its commit
+d2d2e839456 2026-11-20 feat(doctor): let the overlay engine use a sibling overlay folder
+dbc0a575c56 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+0265f3ee538 2026-11-20 docs(specs): record the third OpenCode v1 removal review
+a3b5ce327da 2026-11-20 fix(sk-create-goal): take a Level 1 child's goal criteria from its spec
+57c01fb4c11 2026-11-20 docs(specs): plan the overlay framework/root layout packet
+9ff4d22c00a 2026-11-20 test(system-deep-loop): match the pi default tests to the provider-free settings
+366ab072d1d 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+f6aa8dc052b 2026-11-20 docs(specs): list the wrapper's OpenCode 1 refusal as a justified survivor
+23b5321a362 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+03c7fb56e47 2026-11-20 docs(specs): record the two stale-test fixes on main
+3f827bf387e 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+0390556ee2b 2026-11-20 test(hooks): match two tests to the current hook source
+ad662aaea2a 2026-11-20 test(system-deep-loop): pin fan-out tests to OpenCode 2 and the native refusal
+6b4186c424c 2026-11-20 docs(specs): record the expansive depth closeout in the parent packet
+2191e6d1e62 2026-11-20 fix(deep): halt a fan-out the runner refused before start
+77520b4fbfc 2026-11-20 test(system-deep-loop): strip the expansive-only focus clause from the golden
+a72a549366c 2026-11-20 fix(system-deep-loop): refuse the whole fan-out on a finished-lineage mismatch
+60abe47a997 2026-11-20 fix(deep): keep the dry-run halt prose from reading as the fan-out spawn key
+a49ad6fe146 2026-11-20 docs(deep-review): state the finished-lineage skip and refusal rules
+b25e6466060 2026-11-20 test(system-deep-loop): carry the Next Focus persona line in the golden prompt
+11f0939697a 2026-11-20 fix(system-deep-loop): refuse a finished lineage from another topic or executor
+0bb07e14646 2026-11-20 fix(system-deep-loop): apply the stop-reason check to the finished-lineage skip
+12242aa1f66 2026-11-20 fix(system-deep-loop): count cap-stop iterations by integer iteration first
+c273a753416 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+33d4240fe23 2026-11-20 docs(specs): record the drift and changelog fixes on main
+5c91b2f3f5d 2026-11-20 docs(changelog): split the long ablation sentence in v4.1.0.0
+99e6bd31776 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+571575632a4 2026-11-20 fix(sk-doc): stop routing a bare security policy phrase to the README mode
+b18b80291d2 2026-11-20 docs(specs): mark the OpenCode v1 removal parent complete
+2394e65987a 2026-11-20 docs(deep): say which step writes the config a dry run never reaches
+3dade39983a 2026-11-20 docs(system-deep-loop): align research stop, graph and preview docs with code
+db513fe2e45 2026-11-20 docs(system-deep-loop): align deep-loop docs with fan-out and reducer fixes
+f2c356b7f32 2026-11-20 feat(system-deep-loop): emit the dry-run halt and topic digest from --preview
+b1b27fdc7c7 2026-11-20 feat(system-deep-loop): sum provider cost from lineage logs into the summary
+7bd7f18aa2d 2026-11-20 fix(system-deep-loop): report each kind's real permission flag in the preview
+aac9e434dbe 2026-11-20 fix(deep-research): feed graph stop guards from finding rows and answers
+b3fea67595e 2026-11-20 fix(deep-research): stop a fan-out lineage once its frontier share drains
+6a577bed5a9 2026-11-20 fix(deep-research): count stuck passes per frontier node under expansive depth
+74cb6e919a7 2026-11-20 feat(system-deep-loop): name each fan-out lineage's outcome and rerun command
+76c1b703657 2026-11-20 fix(system-deep-loop): require a known stop reason on a research closeout
+d943e8729ec 2026-11-20 fix(system-deep-loop): label the cost units in the fan-out budget preview
+77c596ef532 2026-11-20 fix(system-deep-loop): stop calling the opencode bypass banner fatal
+4b0f31a0f3e 2026-11-20 refactor(system-deep-loop): delete the fan-out's dead metadata refresh
+11575eaa812 2026-11-20 fix(deep): make the frontier the only question intake under expansive depth
+03211332919 2026-11-20 fix(system-deep-loop): write derived answers into the research node store
+965ce8901d3 2026-11-20 fix(system-deep-loop): skip a leaf next focus that only closes a frontier node
+a366360e192 2026-11-20 refactor(deep): call workflow-steps from the two deep-loop workflows
+d239dd6d2ae 2026-11-20 feat(system-deep-loop): add workflow-steps script for the inline step programs
+019ac7911f3 2026-11-20 fix(system-deep-loop): write the root config on the fan-out branch at spawn
+0b819da16e6 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+ec1d03bc258 2026-11-20 docs(specs): record the Vibe test fix and the green stress run
+e65b3f6ef03 2026-11-20 docs(system-deep-loop): align docs with node-cap, lineage skip and rerun
+1e29c73dc6d 2026-11-20 docs(system-deep-loop): trim research depth-mode cell and fix stale examples
+c74042fd559 2026-11-20 test(system-skill-advisor): name a tracked command in the Vibe document test
+af8fd8838c6 2026-11-20 fix(system-deep-loop): skip finished fan-out lineages and rerun one by label
+8a07b258821 2026-11-20 fix(system-deep-loop): keep a research fan-out from rewriting packet metadata
+6e40b23884d 2026-11-20 fix(deep-research): keep the single-loop resource map on the lineage dir
+c1832d283f1 2026-11-20 fix(system-deep-loop): prune past the run-wide node cap as node-cap
+1eae8fb5aed 2026-11-20 fix(system-deep-loop): resolve the Claude permission mode on review dispatch
+50b5246a7d6 2026-11-20 docs(specs): keep the depth-mode and frontier veto trigger phrases
+adade6c293e 2026-11-20 docs(specs): keep the expansive fan-out deep research of the deep loops
+d4420e9510d 2026-11-20 docs(system-deep-loop): state the narrowed node universe in two comments
+67662c5065e 2026-11-20 test(system-deep-loop): assert the zone switch in the zone-less stamp test
+e18bbc6e30c 2026-11-20 docs(system-deep-loop): state the lineage completion order rule
+1ea09919553 2026-11-20 fix(system-deep-loop): judge lineage completion order by file position
+99f288e20b1 2026-11-20 docs(system-deep-loop): align docs with the frontier and fan-out runner fixes
+b4e482bcb91 2026-11-20 docs(specs): amend the review pivot requirement to match the workflow
+bb2c229d8d9 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+b3aff32fef6 2026-11-20 docs(specs): record the main CI state and tick the vector coverage goal
+86038dfba80 2026-11-20 test(system-skill-advisor): expect the semantic lane's live weight of 0 under stress
+d098ee59fc9 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+525d55e7266 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+39681bf8415 2026-11-20 docs(specs): close the vector coverage and alignment phase
+377055592a5 2026-11-20 feat(deep): show the Claude config dir in the fan-out preview
+dc3979eb451 2026-11-20 fix(system-skill-advisor): keep the shared generation counter for a pinned daemon
+99a12d54838 2026-11-20 feat(deep): preview fan-out lineage commands on a dry run
+481695a051f 2026-11-20 test(system-deep-loop): fail a lineage that iterates after its terminal stop row
+600d84b1677 2026-11-20 fix(system-deep-loop): mask provider ids in kept and failed lineage logs
+add05aaf624 2026-11-20 fix(system-deep-loop): order frontier nodes by code unit in both reducers
+2dfae3ec532 2026-11-20 fix(system-deep-loop): classify Windows-separated source paths like POSIX ones
+e5ae5ee053f 2026-11-20 refactor(system-deep-loop): summarize merged traceability with the reducer
+ae10e9343e5 2026-11-20 fix(system-deep-loop): keep the agreed graph coverage mode a lineage omits
+eeaffa0680a 2026-11-20 chore(system-spec-kit): rebuild the trigger index
+1ccbb3283c6 2026-11-20 fix(system-skill-advisor): close the alignment findings on vector coverage
+2f6effb5bb9 2026-11-20 fix(system-deep-loop): split a commit-range target on commas for git
+691bb7bc61c 2026-11-20 fix(system-deep-loop): keep combining marks in the frontier dedupe key
+a4ca1b2dfe6 2026-11-20 test(system-deep-loop): pin the guard on the pivot attempt-2 config rewrite
+a65c81b19b3 2026-11-20 docs(deep-review): say the review stuck count is per frontier node
+4519f1eccfd 2026-11-20 refactor(deep-review): define the frontier seed decomposition once
+504a91778f9 2026-11-20 fix(deep-review): name frontier_drained in the --extend re-stop warning
+260f50e9916 2026-11-20 fix(system-deep-loop): record a commit range's touched files from git
+43de87a94cb 2026-11-20 fix(system-deep-loop): test every word of a review proposal scope
+dfbf0f0745f 2026-11-20 fix(system-deep-loop): read an open-ended git range as a range
+3e81a73f2e7 2026-11-20 fix(system-deep-loop): accept only a positive whole proposal budget
+cf9e2aa7618 2026-11-20 fix(system-deep-loop): key frontier dedupe on letters and digits of every script
+2c661d3db70 2026-11-20 fix(system-deep-loop): redact every prompt argument in the lineage preview
+df01a230055 2026-11-20 fix(system-deep-loop): name the command that prints a lineage FRONTIER block
+a42efa78fef 2026-11-20 fix(system-deep-loop): deal frontier nodes in code-unit order like the merge
+4c6a3a41f03 2026-11-20 fix(system-deep-loop): keep a fan-out review from rewriting packet metadata
+30c88ac2e2a 2026-11-20 feat(system-deep-loop): preview fan-out lineage commands without writing
+f2de4f588c5 2026-11-20 fix(system-deep-loop): announce a dead lineage and redact provider ids
+a6c1332a331 2026-11-20 fix(system-deep-loop): fulfil a fan-out lineage only on a terminal stop row
+00aa041712b 2026-11-20 fix(system-deep-loop): read a findingsNew list as new findings in node stuck
+a185d5cc95b 2026-11-20 test(system-deep-loop): pin the stop decision's read of the node store
+5e0415e6cf5 2026-11-20 fix(system-deep-loop): read fallback ledger evidence from search actions
+1a324922706 2026-11-20 docs(system-deep-loop): say what the traceability test shares with nodes
+b13df59792a 2026-11-20 fix(system-deep-loop): count stuck passes per node under expansive depth
+bcf3e2f05d4 2026-11-20 fix(system-deep-loop): count only evidence-bearing iterations as frontier visits
+a2dc927a8a3 2026-11-20 docs(specs): close the OpenCode v1 removal after the v2 battery passed on main
+aaaff7dd9df 2026-11-19 docs(specs): record operator answers ended sessions left in system-speckit
+222af54b448 2026-11-19 docs(specs): record operator answers ended sessions left in system-skilled-doctor
+f72638a3710 2026-11-19 docs(specs): record operator answers ended sessions left in system-skill-advisor
+8387ba8719b 2026-11-19 docs(specs): record operator answers ended sessions left in sk-git
+2df1515110b 2026-11-19 docs(specs): record operator answers ended sessions left in sk-doc
+9ceff26eb1c 2026-11-19 docs(specs): record operator answers ended sessions left in sk-code
+6c0bcfa4f0e 2026-11-19 docs(specs): record operator answers ended sessions left in hooks-plugins-extensions
+4a3c3d788bc 2026-11-19 docs(specs): record operator answers ended sessions left in cli-external-orchestration
+e9e0094b0d1 2026-11-19 docs(specs): record operator answers ended sessions left in agents-md
+2f5fe41bb9e 2026-11-19 docs(specs): record operator answers ended sessions left in agents
+31ffd18beab 2026-11-19 feat(system-skill-advisor): keep every skill and command vector current
+a424fb6cd8a 2026-11-19 docs(specs): keep the expansive fan-out deep review of the program range
+e8068aec7cd 2026-11-19 docs(specs): save the v1 removal continuity and operator decisions
+b1cbc62b789 2026-11-19 docs(specs): record the confirmation review and settle each phase's closure
+71c3f8be027 2026-11-19 docs(cli-opencode): correct the last v1 claims the alignment recheck found
+12dcc168817 2026-11-19 docs(cli-opencode): close the review traceability findings and two removal phases
+d857649d81c 2026-11-19 fix(cli-opencode): probe only the opencode binary and refuse an OpenCode 1 launch
+de32abbb74d 2026-11-19 docs(deep-review): align the custom-dimension docs with the narrowed universe
+caecf97801a 2026-11-19 test(system-deep-loop): pin the reducers' unreadable node store error
+edf0ed8904a 2026-11-19 docs(deep-review): say traceability leaves the node universe when unconfigured
+363c195b2b9 2026-11-19 refactor(system-deep-loop): share frontier statuses, store reader and budget
+86bb7cc3fcc 2026-11-19 fix(system-deep-loop): pass the fan-out config JSON to the runner by file
+52c15ffbb62 2026-11-19 fix(system-deep-loop): collapse line breaks in the fan-out research topic
+53252a2d13c 2026-11-19 docs(specs): record the five-iteration deep review of the OpenCode v1 removal
+49edc61c95b 2026-11-19 fix(cli-mistral-vibe): build session-cleanup hooks through the plugin factory
+bb53c55675a 2026-11-19 fix(deep-review): drop traceability from the node universe when unconfigured
+f2f03c90fb6 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+8539235a3c3 2026-11-19 docs(specs): close the Ollama lane and daemon liveness phase
+994caaeb839 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+f9f293f772c 2026-11-19 feat(system-skill-advisor): take Ollama off the prompt path and reap orphaned daemons
+82fc5df987a 2026-11-19 docs(changelog): list the remaining named deep-loop default-run fixes
+bf54212fc6c 2026-11-19 docs(specs): keep the three-iteration deep review of the program logic
+f30fcdb42f6 2026-11-19 docs(system-deep-loop): describe the dashboard refresh and operator text files
+5870b9c2241 2026-11-19 docs(changelog): add the deep-loop extension, depth mode and fixes
+7584e91edfb 2026-11-19 fix(system-deep-loop): skip extension re-stop warning when convergence is off
+136a526ac7d 2026-11-19 fix(system-deep-loop): pass operator text to fan-out and context search by file
+dfefc2879ca 2026-11-19 test(system-deep-loop): type the restart lifecycle shell helpers as utf8 results
+3c409f1263b 2026-11-19 fix(deep-research): warn about legacy questions only when they are imported
+006fd6efc5b 2026-11-19 fix(deep): rerun the reducer after a run is marked complete
+5697521e46f 2026-11-19 docs(specs): amend the proposal scope check to apply to review targets
+4c72145b752 2026-11-19 docs(specs): record the live deep-loop, plugin and Mac cleanup evidence
+3ef324c3de1 2026-11-19 refactor(cli-opencode): rename the dual-version files to version-neutral names
+96e3d8a8f24 2026-11-19 docs(specs): add the OpenCode v1 removal packet with its three phases
+af87a2aa13a 2026-11-19 docs(cli-opencode): describe OpenCode 2 as the only supported version
+fc8b3a9a241 2026-11-19 ci(opencode): run the plugin battery on OpenCode 2 only
+ba9720f2f08 2026-11-19 refactor(cli-opencode): drop OpenCode 1 support from dispatch, loop and plugin code
+62a9359e60a 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+33c898ce46d 2026-11-19 docs(deep): record observed cost for the expansive research, extension and review reruns
+ad9e5e2567f 2026-11-19 docs(specs): record the follow-up decisions and add the Ollama analysis phase
+3b23bd9e3bc 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+d5664eb20ac 2026-11-19 docs(specs): close the review-fix phase and its follow-ups
+c9beeb54cb6 2026-11-19 docs(specs): record the review-fix follow-ups and their evidence
+e35efa9196a 2026-11-19 docs(deep): owe traceability only when a review configures it
+a586422b0c7 2026-11-19 fix(deep-research): record source findings so a count-only run can close
+bf83b0b2ef0 2026-11-19 test(system-skill-advisor): keep the Vibe brief when the receipt commit throws
+4c4a90eb185 2026-11-19 fix(system-skill-advisor): build the DSH message list before storing any receipt
+36c2bc12807 2026-11-19 fix(deep-review): require traceability only when the run configures it
+1075ce80303 2026-11-19 test(system-skill-advisor): hold the playbook inventory at its 55 scenarios
+e24acef8fa5 2026-11-19 fix(system-skill-advisor): clear the floor flag when the deep routing layer raises a row
+bad703f0613 2026-11-19 fix(system-skill-advisor): store the DSH directive receipt only once the notice exists
+aa19ea18264 2026-11-19 docs(system-skill-advisor): add playbook scenarios for the strip and the receipt guard
+210d50871f7 2026-11-19 docs(system-skill-advisor): release the follow-up fixes as 1.1.1.0
+0cedd64b2f9 2026-11-19 docs(system-skill-advisor): catalog the pasted-reply strip and the route-receipt guard
+f5ed818bebf 2026-11-19 docs(system-skill-advisor): say the validate baseline slices were not met on the last run
+15e797de62f 2026-11-19 docs(system-skill-advisor): name the follow-up and receipt measures in the bench README
+0b9b14fa468 2026-11-19 docs(system-spec-kit): correct the advisor cadence, state dir, cold-start and fail-open docs
+2443f8f8b4b 2026-11-19 chore(specs): recapture the routing corpus pin after the strip and holdout changes
+1452e12ce54 2026-11-19 fix(system-skill-advisor): drop the follow-up signal that matched any "up" in a prompt
+4c7de105e2d 2026-11-19 docs(readme): qualify the advisor's 0.8 rule with the floored follow-up hold
+625d1dc3327 2026-11-19 docs(system-skill-advisor): name the strip, the floored hold and confidenceFloored in the README
+d40c33e7354 2026-11-19 docs(system-skill-advisor): describe the pasted-reply strip and the route-receipt guard
+b162e1b98f5 2026-11-19 feat(system-skill-advisor): route requests that name the new advisor features
+08497161f38 2026-11-19 fix(system-skill-advisor): commit DSH and Vibe receipts only once the brief is delivered
+6d21278e210 2026-11-19 fix(system-skill-advisor): keep the confidence floor flag through the native bridge
+b0a3b9f2edb 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+a0f0bb4b292 2026-11-19 docs(specs): list the GLM-5.3 roster packet in the model-rosters track
+66dba4840eb 2026-11-19 fix(system-skill-advisor): forward the routing thresholds to the advisor daemon
+5448a59e3a8 2026-11-19 docs(cli-external-orchestration): roster GLM-5.3 on opencode-go for cli-pi and cli-opencode
+f46b4d27c1b 2026-11-19 docs(deep): record observed live cost and the open iteration-3 dimension
+651a0cff84b 2026-11-19 chore(system-spec-kit): rebuild the trigger index
+0c4dc99b608 2026-11-19 docs(system-skill-advisor): apply the alignment runs' literal doc fixes
+a34387c6e94 2026-11-19 docs(specs): reopen the review-fix phase for every follow-up
+309942b9138 2026-11-19 docs(specs): record the parent hub check target-root fix and its evidence
+62e9beb3e25 2026-11-19 fix(doctor): read a hub's canaries, commands and guards from its own repository
+7e970a3c482 2026-11-19 docs(deep): match the expansive review scenario to what a live run records
+d451350a096 2026-11-19 docs(specs): save the review-fix closeout and record its operator answers
+6798903cff0 2026-11-19 docs(specs): close the review-fix phase with its evidence
+a7964556816 2026-11-19 docs(system-skill-advisor): correct the guard comment and the end-to-end test title
+1f668cbcc49 2026-11-19 docs(deep): use the frontier cap flags in the live scenarios and flag docs
+51bfe136031 2026-11-19 fix(deep): steer the last review iteration to traceability only when configured
+afd90f64e1e 2026-11-19 refactor(system-skill-advisor): drop the unreachable arm of the hook crash fallback
+f2c6661aa04 2026-11-19 feat(deep): add frontier cap flags for expansive depth runs
+71c920f7948 2026-11-19 fix(system-skill-advisor): commit route receipts after delivery and drop them at boundaries
+1333eba31bd 2026-11-19 fix(system-skill-advisor): keep the Python task-marker match linear too
+cfad0401138 2026-11-19 fix(system-skill-advisor): read the task, not a pasted reply, at the fire gate and the cut
+520c67809f5 2026-11-19 fix(system-skill-advisor): keep the task-marker match linear
+5f1bfa57c2d 2026-11-19 fix(system-skill-advisor): keep the confidence floor flag through the parse
+4e142666e79 2026-11-19 docs(deep): add four low-token live playbook scenarios for the upgraded loops
+3130c04ca67 2026-11-19 docs(specs): record the advisor alignment reports and the review-fix plan
+9b1425c556a 2026-11-19 docs(deep): say the fan-out inbox is written before the node store
+1483aae2c21 2026-11-19 docs(deep): describe the range rule, whole-word dimensions and inbox order
+80c008bc851 2026-11-19 fix(system-deep-loop): read slashed refs as ranges and files on disk as paths
+ab7c5d63ddc 2026-11-19 docs(deep): fix the drift found by doc run 12 and skilled run 18
+22b2f10d417 2026-11-19 fix(system-deep-loop): write a lineage inbox before its frontier store
+7c58a8d5b31 2026-11-19 fix(system-deep-loop): match a custom review dimension only as a whole word
+e643bdf44e3 2026-11-19 fix(system-deep-loop): read a file path with two dots in its name as a path
+703af8839f2 2026-11-19 chore(vibe): regenerate the deep agent profiles from their sources
+0e6bd3191d9 2026-11-19 chore(specs): keep doc alignment run 12 and skilled alignment run 18 as evidence
+32fec82b0e4 2026-11-19 docs(deep): describe the focus file, budget command and proposal limits
+0825f789039 2026-11-19 refactor(deep): run the expansive budget writer as a tested frontier-admit command
+35317d61372 2026-11-19 refactor(system-deep-loop): share the review finding id lookup in upsert
+19f3e13fb0b 2026-11-19 fix(system-deep-loop): warn when the frontier node store skips a torn row
+5f928de643e 2026-11-19 fix(system-deep-loop): bound frontier proposal text at admission
+fde45c27976 2026-11-19 fix(system-deep-loop): detect a review commit range that carries a label
+df375586b6a 2026-11-19 fix(deep): pass the research frontier focus to the block step through a file
+717347fbcba 2026-11-19 docs(specs): record the five-pass review of the pi-context-decisions work
+99f1906f9d9 2026-11-19 docs(specs): align the deep review report dimensions with the registry
+55a0baba3c6 2026-11-19 docs(specs): keep the 10-iteration deep review of the expansive-depth program
+1d2b49e4306 2026-11-19 docs(specs): close phase 014 and mark every expansive-depth phase complete
+d799a788538 2026-11-19 chore(specs): keep skilled alignment run 17 as evidence
+7cc48029f1b 2026-11-19 docs(system-deep-loop): say frontier-admit warns on stderr and keeps settled nodes
+e3ecdcb4fab 2026-11-19 docs(system-deep-loop): add the runtime changelog entry and fix runtime catalog anchors
+53b5c0d2690 2026-11-19 docs(system-deep-loop): record review --extend and real test counts in the changelog
+fb155542b14 2026-11-19 docs(system-deep-loop): align deep-research rules, state files and changelog
+3b35dcdba74 2026-11-19 docs(system-deep-loop): align deep command caps, check reasons and setup indent
+a5d63969e2d 2026-11-19 test(system-deep-loop): scope the research pack override to the lockstep case
+f29f4faceca 2026-11-19 test(system-deep-loop): type the extension helpers without any
+09dbabd73d6 2026-11-19 test(system-deep-loop): pin that a failed review visit spends no frontier depth
+ab70e099331 2026-11-19 fix(system-deep-loop): count abstained nodes on the review frontier line
+60eb4e61a6c 2026-11-19 docs(system-deep-loop): say why a closed frontier node gets no block
+6c29b2bb3aa 2026-11-19 test(system-deep-loop): pin the frontier-admit CLI's exit-2 paths
+fe2215e93dd 2026-11-19 fix(system-deep-loop): report a delta line frontier admission cannot parse
+7af5ea5a0e3 2026-11-19 fix(system-deep-loop): strip only question and node ids from a frontier question
+7da695be188 2026-11-18 chore(system-spec-kit): rebuild the trigger index
+d01d3100dcb 2026-11-18 docs(specs): close the pi-context-decisions packet on main
+4d65eced09e 2026-11-18 docs(specs): close the pi-context-decisions plan text and review
+bef794ce427 2026-11-18 docs(system-spec-kit): say when the advisor threshold variable is read
+5e5f0b3cfa2 2026-11-18 fix(system-skill-advisor): keep long pastes and route receipts honest
+9f456e735c2 2026-11-18 chore(specs): keep skilled alignment run 16 as evidence
+24f744301a3 2026-11-18 revert(system-deep-loop): keep the pivot remaining-iterations key readable
+6ebd1ee0997 2026-11-18 docs(system-deep-loop): bring hub and spec-kit changelogs to the template
+555be348b61 2026-11-18 docs(system-deep-loop): align deep-review pivot sources, caps and changelog shape
+7ebd0571fd3 2026-11-18 docs(system-deep-loop): drop the single-weak-source claim from research docs
+5886c0990a1 2026-11-18 docs(agents): say the source diversity guard holds a stop on one-source answers
+e77d559a7ff 2026-11-18 test(system-deep-loop): make the frontier budget order check order-sensitive
+826398bb032 2026-11-18 fix(system-deep-loop): stop reading the dead pivot remaining-iterations limit
+6f716fc4e31 2026-11-18 fix(system-deep-loop): restore the executable bit on upsert and convergence
+10de9274442 2026-11-18 fix(system-deep-loop): keep a budget-closed research node out of answered
+7aa731544fe 2026-11-18 fix(system-deep-loop): keep a settled frontier node from reopening on close
+7a1b0ec7a1e 2026-11-18 chore(specs): keep skilled alignment run 15 as evidence
+11edb845c84 2026-11-18 docs(system-deep-loop): describe ledger classing, diversity and the partition guard
+551b41074c3 2026-11-18 docs(system-deep-loop): fix hub and runtime scenario counts and anchors
+9ff752dc5f6 2026-11-18 docs(system-deep-loop): align deep-review docs with extend, outputs and changelog
+90ee920b915 2026-11-18 docs(system-deep-loop): align deep-research docs with the guards and extend flags
+0d87df45272 2026-11-18 chore(specs): give the archived review probes the headers the drift guard checks
+b4ce14dcbeb 2026-11-18 fix(system-deep-loop): carry the depth-capped frontier phrase in stage two
+c6d7ec6526e 2026-11-18 docs(system-deep-loop): list the dispatch and divergent pivot scripts
+3c53508f768 2026-11-18 docs(system-spec-kit): say the v2.13.5.0 depth-mode lock covers review too
+c44c8eb3ff4 2026-11-18 docs(system-deep-loop): say --extend sets the completed-continue lineage mode
+987c100badb 2026-11-18 fix(system-deep-loop): skip only path-shaped scope in the review pivot guard
+b1eaeaba4f8 2026-11-18 fix(system-deep-loop): guard the fan-in partition when no lineage has a frontier
+8c617225de4 2026-11-18 fix(system-deep-loop): name the state row's route-proof reason in the warning
+16e1a1bf9b9 2026-11-18 docs(system-deep-loop): say an unparsable review config fails closed in admit
+11e98816474 2026-11-18 test(system-deep-loop): require the lock anchor before the extend order check
+4e1654f0ab4 2026-11-18 test(system-deep-loop): cover the refusal of a partial legacy extension budget
+48a5490093c 2026-11-18 fix(system-deep-loop): stop counting unclassified sources toward diversity
+a892090d477 2026-11-18 fix(system-deep-loop): class only state files named for a ledger as ledger state
+c27addb7117 2026-11-18 feat(system-skill-advisor): hold weak follow-ups to the session's route
+83af96cb5af 2026-11-18 chore(specs): keep the full-diff skilled alignment run as evidence
+1c99b60aee0 2026-11-18 docs(system-deep-loop): select the lineage spawn cases instead of a stale count
+512954abfaa 2026-11-18 docs(system-deep-loop): pin DRV-020 to the configured review dimensions
+f0f8207ba5d 2026-11-18 docs(system-deep-loop): say a failed research quality guard writes no event
+013b52e07f1 2026-11-18 docs(system-deep-loop): cite real evidence files in the frontier-admit scenario
+1a9480d88b5 2026-11-18 docs(system-spec-kit): record the locked research depth mode in v2.13.5.0
+2c52a79c740 2026-11-18 docs(system-deep-loop): align the deep-loop docs with the frontier code
+afd125c3f46 2026-11-18 refactor(system-deep-loop): bracket the fan-out lineage budget notes
+ae44020c31c 2026-11-18 fix(system-deep-loop): match the review snapshot renderer to the shipped version
+3e8cb8aa515 2026-11-18 refactor(system-deep-loop): document frontier-admit and name the lineage default
+ddf6a3262ec 2026-11-18 test(system-deep-loop): match the depth_mode input line literally
+d40f02fdea2 2026-11-18 test(system-deep-loop): pin the review frontier band budget close and roll-down
+f094dc39048 2026-11-18 fix(system-deep-loop): report torn frontier store rows instead of dropping them
+33c7b230001 2026-11-18 fix(system-deep-loop): refuse an extension whose ceiling disagrees with its run
+4bf79332378 2026-11-18 chore(claude): turn off commit and PR attribution in project settings
+385f43c6019 2026-11-18 fix(system-deep-loop): read named lists of review scope files in admission
+4d3ce50a0ab 2026-11-18 fix(system-deep-loop): refuse to close a pruned frontier node as live
+e02523f92b1 2026-11-18 docs(specs): record the route receipts research
+102558edb44 2026-11-18 chore(specs): record the latest alignment pair and its dispositions
+563117f7216 2026-11-18 docs(system-deep-loop): align expansive depth docs with stops and budgets
+9e786e460bb 2026-11-18 fix(system-deep-loop): keep the extend step's real exit status
+613fe6e5d57 2026-11-18 fix(system-deep-loop): read root and glob review targets as paths
+cd525086034 2026-11-18 docs(specs): record the route receipts premise rerun
+18ce562e8b3 2026-11-18 docs(specs): record the crash fallback edge cases build
+98a58b6245b 2026-11-18 fix(system-skill-advisor): give a crashing advisor hook the timeout fallback
+12bd08148ce 2026-11-18 chore(system-spec-kit): rebuild the trigger index
+83b226a746e 2026-11-18 docs(specs): record the changelog skill republish fix
+fcbf9f4c935 2026-11-18 fix(sk-doc): make the release republish survive a missing local tag
+a2382a3f063 2026-11-18 test(system-deep-loop): pin the folded finding's file for a later reused id
+6660a998fc6 2026-11-18 chore(specs): record the latest alignment pair and its dispositions
+c77916b05f9 2026-11-18 chore(system-deep-loop): say which lineages fanout-run gives a store
+74a6f6891af 2026-11-18 docs(system-deep-loop): align the expansive depth docs with the code
+97c096296ad 2026-11-18 fix(system-deep-loop): stop the extend warning advising flags it ignores
+865a77094d1 2026-11-18 fix(system-deep-loop): resolve .. before the review target scope test
+cec5a403eb3 2026-11-18 fix(system-deep-loop): keep a reused review finding id on its own node
+5c5f183decf 2026-11-18 chore(system-skill-advisor): recompile the skill graph for deep-loop signals
+5ea421a35d9 2026-11-18 docs(specs): record the scored-prompt consumers build
+b8c862443b3 2026-11-18 fix(system-skill-advisor): attach commands and routes from the stripped task
+4a96a5da1e6 2026-11-18 docs(specs): record the four-plus-custom review budget ruling
+ea980b5d971 2026-11-18 docs(system-deep-loop): state the review budget count as four plus custom
+954345ac43f 2026-11-18 fix(system-deep-loop): size the expansive review budget from all four dimensions
+30ac5b51f95 2026-11-18 fix(system-deep-loop): route expansive-depth requests to the deep-loop hub
+00dc18b6000 2026-11-18 docs(specs): record the Python scorer strip parity build
+4de695d3095 2026-11-18 fix(system-skill-advisor): strip a pasted reply in the Python scorer as the native one does
+1e914b6e258 2026-11-18 chore(system-spec-kit): rebuild the trigger index
+d07eb47ed47 2026-11-18 docs(specs): record the confirming alignment pair
+8d2d6d943fc 2026-11-18 chore(system-deep-loop): recompile the review contract after the agent revert
+76023d6b789 2026-11-18 docs(agents): take the floor sentence back out of the review leaf
+f053c714a78 2026-11-18 test(system-deep-loop): pin the node cap the seed reports through the budget write
+6fc46e54edd 2026-11-18 docs(system-deep-loop): fix the confirming pair's own-text findings
+0c5c4b651bc 2026-11-18 docs(agents): name the review floor and the research frontier focus marker
+7317fc234a3 2026-11-18 docs(specs): plan the closure phases for the advisor pasted-reply and crash work
+2bc4de2fd66 2026-11-18 fix(system-skill-advisor): require an attribution header to strip a pasted reply
+30eaaa99761 2026-11-18 fix(system-deep-loop): keep frontier node ids unique past a torn store line
+7177cee3b50 2026-11-18 docs(system-deep-loop): catalog the frontier admission script
+41c00c98266 2026-11-18 docs(specs): amend 014 criterion 5 to the operator's closing rule
+b7b115543ad 2026-11-18 test(system-deep-loop): say the review budget ceiling binds from the first seed
+27c1ac4afa0 2026-11-18 fix(system-deep-loop): scope the never-modify-config rule to its writer steps
+cf5c74d769c 2026-11-18 docs(system-deep-loop): fix the second Vibe pair's own-text findings by class
+48fb491c8a4 2026-11-18 fix(system-deep-loop): deal the fan-out frontier once per run
+ac74bf3e2ae 2026-11-18 fix(system-deep-loop): prune a frontier proposal whose scope holds no path
+c52984b3044 2026-11-18 fix(system-deep-loop): keep a pivot seed whose scope path names a verb
+84a2d1eb697 2026-11-18 docs(specs): record the pi-context-decisions build results for the skill advisor
+663f6af140b 2026-11-18 test(system-skill-advisor): measure floored top-1 passes and follow-up routing in the bench
+cfad65c7c72 2026-11-18 docs(system-spec-kit): note when the advisor confidence threshold variable takes effect
+31469e5ee4e 2026-11-18 fix(system-skill-advisor): show the outage line when the prompt hook crashes
+6c4af5fb5eb 2026-11-18 feat(system-skill-advisor): strip a pasted earlier reply before scoring the prompt
+68c7f8013ef 2026-11-18 chore(specs): keep the last Vibe alignment pair as evidence
+c10bb24f3e5 2026-11-18 docs(system-deep-loop): name the node store owner without a bare path
+a0a69a6c2f3 2026-11-18 docs(agents): scope the frontier budget prune to a recorded parent budget
+fc2d1349212 2026-11-18 fix(system-deep-loop): say which budget the frontier block prunes against
+f31398ed378 2026-11-18 docs(system-deep-loop): name the name field in the source class order
+3bbb82c9d7f 2026-11-18 docs(system-deep-loop): catalog and test the expansive script changes
+9967837a390 2026-11-18 fix(system-deep-loop): date a budget close from the band's last visit
+3e6f8e7f21a 2026-11-18 fix(system-deep-loop): strip only id-shaped prefixes from a frontier question
+07425212c65 2026-11-18 docs(system-deep-loop): point the new review scenarios at their catalog entries
+96658ff1108 2026-11-18 docs(system-deep-loop): fix the own-text alignment findings by class
+340da9417a2 2026-11-18 fix(system-deep-loop): name both node store writers and the extend bindings
+195b1aec02f 2026-11-18 test(system-deep-loop): use the module header on the depth-mode golden tests
+00df3c2a88b 2026-11-18 fix(system-deep-loop): read the node cap budget the way the seed step does
+a62e5659f51 2026-11-18 fix(system-deep-loop): keep an admitted budget so the budget check can fire
+50e3be55837 2026-11-18 chore(specs): keep the blocked and first Vibe alignment runs as evidence
+70f010c9912 2026-11-18 docs(specs): log the reclassified hand-offs and the first Vibe pair
+0a845d0d8ef 2026-11-18 docs(specs): hand off the open findings of the last pair to their owners
+987fb1c1d9b 2026-11-18 docs(system-deep-loop): match the dimension and extend wording to the code
+25c27cc3cf6 2026-11-18 test(system-deep-loop): cover the review evidence input guards in upsert
+63181aef55a 2026-11-18 fix(system-deep-loop): fail loud on an unreadable frontier config
+948aa4f0cdb 2026-11-18 docs(specs): name the aborted final-pair attempt in the goal log
+2d5c0d3b5b5 2026-11-18 chore(specs): keep the second-allowance alignment runs as evidence
+8bb35ea352d 2026-11-18 docs(specs): record the second alignment allowance as not met
+1e350ae863f 2026-11-18 docs(specs): record the empty seed share ruling and the budget answers
+9149443d42c 2026-11-18 docs(system-deep-loop): document the loop default for an empty seed share
+961fd7c6e1d 2026-11-18 fix(system-deep-loop): state the zero-seed budget in the workflow text
+d5b27c8ab2e 2026-11-18 fix(system-deep-loop): name an empty seed share in the fan-out budget lines
+7862c36a9ae 2026-11-18 fix(system-deep-loop): run an unseeded expansive budget at its loop default
+4ebd925a8f8 2026-11-18 docs(system-deep-loop): settle the second alignment round's doc findings
+703245fa826 2026-11-18 fix(system-deep-loop): refuse children of pruned frontier nodes
+f9ea2631442 2026-11-18 fix(system-deep-loop): list max_iterations_source among the setup outputs
+794209bec6e 2026-11-18 docs(system-deep-loop): document the derived expansive budget and its ruling
+f7d5fb9cbf8 2026-11-18 fix(system-deep-loop): size a defaulted expansive budget from the seed
+7799a67f677 2026-11-18 docs(system-deep-loop): align expansive-depth docs with the shipped code
+8c5bb3fb0a9 2026-11-18 fix(system-deep-loop): name missing frontier fields and settle pivot prose
+22810f9ee0b 2026-11-18 docs(system-deep-loop): amend the review pilot criterion on the rerun evidence
+cee8682a6c9 2026-11-18 docs(system-deep-loop): record the review follow-ups for the frontier phases
+c22146e2543 2026-11-18 fix(system-deep-loop): settle review finding ids, refs and the drained stop
+a2dda831f2f 2026-11-18 docs(system-deep-loop): record the review evidence-edge fix and closure rows
+7c6a2d9a7e5 2026-11-18 fix(system-deep-loop): derive review evidence edges from each finding's file ref
+4b4f0448aba 2026-11-18 docs(system-deep-loop): document the drained review candidate and lineage graphs
+d68f9261a5c 2026-11-18 fix(system-deep-loop): keep lineage graphs local and stop drained review runs
+988df2cb625 2026-11-18 docs(system-deep-loop): amend the research pilot criterion
+8e4818370d7 2026-11-18 fix(system-deep-loop): derive the frontier node cap as half the budget
+cb18a5ccb9e 2026-11-18 docs(system-deep-loop): ratify the golden persona-strip decisions
+9f174a8c8df 2026-11-18 docs(system-deep-loop): record the final gate in the alignment phase
+94d246cb3bc 2026-11-18 docs(system-deep-loop): add extend-minutes steps and record the frontier pilots
+858c04bbddb 2026-11-18 fix(system-deep-loop): count frontier visits one way and scope the focus line
+294d45835de 2026-11-18 fix(deep): read the written stop policy and complete the stop-order prose
+42a28b79b4b 2026-11-18 docs(agents): fix the deep-loop persona section link and custom dimension row
+0c6b0c6a900 2026-11-18 docs(system-deep-loop): fix lane-backed alignment findings
+6675f479b64 2026-11-18 docs(system-deep-loop): record the research frontier pilot rerun
+33b6f92ac14 2026-11-18 fix(system-deep-loop): reduce the review frontier once after the seed
+70be3187a9f 2026-11-18 docs(system-deep-loop): record the first live frontier pilots
+e05ac531d21 2026-11-18 docs(system-deep-loop): refresh review frontier playbook outputs
+9e0b02c49a6 2026-11-18 fix(system-deep-loop): repair expansive review frontier defects from the pilot
+f0f08e96f3d 2026-11-18 fix(system-deep-loop): reduce once after the frontier seed
+54042891bf5 2026-11-18 fix(system-deep-loop): keep answered frontier nodes out of the budget close
+ac1d2a6b7dc 2026-11-18 fix(system-deep-loop): write frontier graph events as one JSON array
+98082bf5177 2026-11-18 docs(system-deep-loop): fix alignment findings in catalogs and READMEs
+e4c1a24b2d7 2026-11-18 docs(system-deep-loop): catalog and index the expansive-depth features
+7ab0b520296 2026-11-18 docs(system-deep-loop): add review frontier playbooks and changelog
+6a3bd4cb2f3 2026-11-18 docs(system-deep-loop): close merge-gate rows in the finished phases
+05c65977f4c 2026-11-17 docs(system-deep-loop): close the review frontier build on its branch
+81892628396 2026-11-17 docs(system-deep-loop): record the detached Claude config-dir walk
+f8c334b9c39 2026-11-17 docs(system-deep-loop): add research frontier playbooks and changelog
+18d9cccb4d4 2026-11-17 feat(system-deep-loop): partition the review frontier across fan-out lineages
+62841ed3969 2026-11-17 feat(system-deep-loop): gate the review pivot on a terminal frontier
+a687611d359 2026-11-17 docs(system-deep-loop): document the expansive review frontier
+0ed468b7659 2026-11-17 feat(deep): wire the expansive review frontier into the review workflow
+f4975f8a409 2026-11-17 feat(system-deep-loop): steer review focus and render the frontier block
+26c0321b468 2026-11-17 feat(system-deep-loop): project the review frontier and veto open nodes
+afd5929fae2 2026-11-17 docs(system-deep-loop): record the passing review extension walk
+a93e37cb283 2026-11-17 feat(system-deep-loop): add a review target mode to frontier admission
+8fda03e7135 2026-11-17 feat(deep): bind the review depth_mode flag beside convergence_mode
+6835d17e150 2026-11-17 test(system-deep-loop): pin the review default path with a golden baseline
+2c9405692a1 2026-11-17 fix(system-deep-loop): match frontier visits on a reworded focus
+7c2897f653d 2026-11-17 fix(system-deep-loop): seed the research frontier once and record the golden waiver
+600d44a4e3f 2026-11-17 docs(system-deep-loop): close the research frontier build on its branch
+6b6cda9b796 2026-11-17 docs(system-deep-loop): record the live landed-iteration redispatch walk
+6953b67c5dd 2026-11-17 fix(deep): count extended runs by iteration when run holds a run id
+6d4adc8ef41 2026-11-17 docs(system-deep-loop): document the expansive research frontier
+965b88ca150 2026-11-17 feat(system-deep-loop): merge lineage frontiers and guard the partition
+aa30dc28f77 2026-11-17 feat(system-deep-loop): partition the research frontier across fan-out lineages
+2a36d1fb16e 2026-11-17 feat(system-deep-loop): render the frontier block into the research prompt
+f122b4185ca 2026-11-17 docs(system-deep-loop): add custom review dimension playbooks and changelog
+13c893a4e5d 2026-11-17 feat(system-deep-loop): let the research leaf propose frontier questions
+6339492f774 2026-11-17 feat(deep): wire the expansive frontier steps into the research workflow
+23452e86b81 2026-11-17 test(system-deep-loop): pin focus alignment against frontier continues
+ab7312fe467 2026-11-17 feat(system-deep-loop): veto a soft research stop while frontier nodes stay open
+cfa502cd472 2026-11-17 feat(system-deep-loop): project the research frontier in the reducer
+ed3d2a7d74c 2026-11-17 docs(system-deep-loop): record the live extension walk and fix its commands
+3027e4052cd 2026-11-17 docs(system-deep-loop): add wave-two playbooks, catalog pages and changelogs
+557dc50d160 2026-11-17 feat(system-deep-loop): add the frontier admission helper and node store
+391d83fbe6e 2026-11-17 feat(deep): bind the research depth_mode flag beside convergence_mode
+7f0995f4e37 2026-11-17 docs(system-deep-loop): record the custom review dimension build
+a762572c909 2026-11-17 test(system-deep-loop): prove the review pivot honors a covered custom dimension
+8b44a506edb 2026-11-17 feat(system-deep-loop): describe and prove custom review dimensions
+0885897320a 2026-11-17 feat(system-deep-loop): render the review dimension list from the workflow
+0d41845988f 2026-11-17 feat(system-deep-loop): add the research depth-mode config keys and lock
+619821180fa 2026-11-17 test(system-deep-loop): pin the research default path with a golden baseline
+3d1dd2db673 2026-11-17 feat(deep): accept custom review dimensions in the review workflow
+45462106508 2026-11-17 fix(system-deep-loop): track configured custom review dimensions
+4be8de5d0b7 2026-11-17 docs(system-deep-loop): name playbook test suites the facts check can resolve
+dff9f386f68 2026-11-17 feat(deep): forward the configured Claude config dir on research runs
+83708e4e42a 2026-11-17 docs(system-deep-loop): scope the deferred-wording check to line-based mirrors
+510e0906284 2026-11-17 fix(system-deep-loop): honor --claude-config-dir on research Claude runs
+51cd0448c24 2026-11-17 feat(deep): re-enter the pivot prepare step once after a missed quorum
+dbeddaf20ba 2026-11-17 fix(system-deep-loop): carry research leaf fields to the state log
+d775beb7e75 2026-11-17 fix(system-deep-loop): count pivot seat outputs for the current attempt only
+29d3359f1c5 2026-11-17 docs(system-deep-loop): add wave-one playbooks, catalog line and changelogs
+df76ba090ef 2026-11-17 feat(system-deep-loop): retry a pivot council once after a missed quorum
+6201e395381 2026-11-17 test(system-deep-loop): pin the research leaf fields through the gateway
+c06f0f06831 2026-11-17 fix(system-deep-loop): scope the pivot seat cap to one council attempt
+11bc7693a27 2026-11-17 fix(system-deep-loop): stop free text from hijacking next focus
+8d7ea3630ba 2026-11-17 docs(system-deep-loop): record the landed-iteration redispatch skip
+f58d2e58872 2026-11-17 test(system-deep-loop): pin the landed-then-error row end state
+fd802c23af4 2026-11-17 fix(deep): skip the redispatch of an iteration that already landed
+7074bc1992a 2026-11-17 docs(system-deep-loop): cite file and line evidence for each acceptance row
+8f333189cbe 2026-11-17 fix(system-deep-loop): refuse non-integer extend values in the extension step
+ac4151f027f 2026-11-17 docs(system-deep-loop): document completed-run extension as a live mode
+dc00a20a8dd 2026-11-17 test(system-deep-loop): prove completed-run extension end to end
+15f0c2c268e 2026-11-17 fix(system-deep-loop): apply the minIterations floor to review runs
+2c80c64f391 2026-11-17 feat(deep): extend a completed research or review run with --extend=N
+1cb3cb0d011 2026-11-17 fix(system-deep-loop): carry review coverage through the fan-out merge
+42fdf690604 2026-11-17 fix(system-deep-loop): derive research source quality_class at upsert
+32d56a21455 2026-11-17 feat(system-deep-loop): add run_extended ledger stem and reducer handling
+f34e06123f9 2026-11-17 fix(system-deep-loop): align research prompt pack with the agent contract

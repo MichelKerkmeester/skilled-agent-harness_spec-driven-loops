@@ -1,10 +1,8 @@
 ---
 title: "Lifecycle Library: Advisor Skill State Transitions"
-description: "Age, archive, rollback, migration, status and supersession helpers for skill-advisor lifecycle metadata."
+description: "Age, archive and status helpers for skill-advisor lifecycle metadata."
 trigger_phrases:
   - "advisor lifecycle"
-  - "skill supersession"
-  - "advisor rollback"
 ---
 
 # Lifecycle Library: Advisor Skill State Transitions
@@ -13,13 +11,12 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/lifecycle/` contains helpers for advisor-facing skill lifecycle metadata. It covers age haircuts, archive handling, rollback metadata, schema migration, status values and skill supersession rules.
+`lib/lifecycle/` contains helpers for advisor-facing skill lifecycle metadata. It covers age haircuts, archive handling and status values.
 
 Current state:
 
 - Applies age and archive rules to skill metadata.
-- Supports rollback and schema migration behavior.
-- Encodes status values and supersession logic used by advisor routing.
+- Encodes lifecycle status values.
 
 ---
 
@@ -29,10 +26,7 @@ Current state:
 lifecycle/
 +-- age-haircut.ts        # Age-based ranking adjustment helpers
 +-- archive-handling.ts   # Archive state handling
-+-- rollback.ts           # Rollback metadata helpers
-+-- schema-migration.ts   # Lifecycle schema migration helpers
 +-- status-values.ts      # Lifecycle status constants
-+-- supersession.ts       # Supersession rules
 `-- README.md
 ```
 
@@ -44,10 +38,7 @@ lifecycle/
 |---|---|
 | `age-haircut.ts` | Applies age-based adjustment to lifecycle-aware ranking. |
 | `archive-handling.ts` | Handles archived skill metadata. |
-| `rollback.ts` | Tracks rollback metadata and behavior. |
-| `schema-migration.ts` | Migrates lifecycle metadata shapes. |
 | `status-values.ts` | Defines lifecycle status constants. |
-| `supersession.ts` | Encodes supersession relationships between skills. |
 
 ---
 
@@ -63,9 +54,8 @@ Main flow:
 
 ```text
 skill lifecycle metadata
-  -> migration or rollback handling
   -> archive and age adjustment
-  -> supersession and status evaluation
+  -> status evaluation
   -> advisor ranking or redirect decision
 ```
 
@@ -76,9 +66,6 @@ skill lifecycle metadata
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `status-values.ts` | TypeScript module | Lifecycle status constants. |
-| `supersession.ts` | TypeScript module | Supersession evaluation. |
-| `schema-migration.ts` | TypeScript module | Metadata migration helper. |
-| `rollback.ts` | TypeScript module | Rollback metadata helper. |
 
 ---
 

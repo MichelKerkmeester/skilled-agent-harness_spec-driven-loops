@@ -1,0 +1,67 @@
+{
+  "run_id": "1795495435655-lf6jf3",
+  "loop_type": "review",
+  "spec_folder": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub",
+  "base_artifact_dir": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 4,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "opus-1",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "opus-2",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "opus-3",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "opus-4",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": 33.848248,
+    "by_lineage": {
+      "opus-1": 7.486314,
+      "opus-2": 8.199933,
+      "opus-3": 8.867522,
+      "opus-4": 9.294479
+    }
+  }
+}

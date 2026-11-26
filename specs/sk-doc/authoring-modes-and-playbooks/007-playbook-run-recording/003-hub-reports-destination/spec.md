@@ -90,7 +90,7 @@ The first count is the recorder before this phase, which has no `--reports` flag
 - Running any scenario again. The 25 moved verdicts are the blocks as they were recorded.
 
 ### Deviation from the parent scope
-The parent's Out of Scope lists "Rewriting existing run reports into the recorder's format". This phase moved 25 existing cli-mistral-vibe blocks into recorder-written reports, which that bullet excludes. The parent scope is not edited here. See the open question in section 10.
+The parent's Out of Scope lists "Rewriting existing run reports into the recorder's format". This phase moved 25 existing cli-mistral-vibe blocks into recorder-written reports, which that bullet excluded. The operator accepted the move as an amendment on 2026-11-22, and the parent's bullet now says so (section 10).
 
 ### Files to Change
 
@@ -98,9 +98,9 @@ The parent's Out of Scope lists "Rewriting existing run reports into the recorde
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs` | Modify | `--reports DIR` and `resolveReports` |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs` | Modify | `--reports` forwarded into the printed save command |
-| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/record-playbook-run.test.cjs` | Modify | `runHubReports` (8 assertions) |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/record-playbook-run.test.cjs` | Modify | `runHubReports` (14 assertions after the review follow-up) |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs` | Modify | Passes `--reports` and asserts the printed command carries it |
-| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Modify | `--reports` paragraph under "Recording A Run"; version 1.3.0.0 |
+| `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Modify | `--reports` paragraph under "Recording A Run"; version 1.3.0.0, then 1.3.1.0 in the review follow-up |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md` | Modify | One sentence on `--reports`; version 1.0.3.0 |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.3.0.0.md` | Create | Changelog entry naming this phase's spec folder |
 | `.skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md` | Modify | Result persistence block names `--reports`; version 1.1.4.0 |
@@ -122,7 +122,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | `record-playbook-run.cjs --reports <hub>/benchmark/reports` writes the run folder under that hub, and refuses a path that does not end in `benchmark/reports` or a reports folder whose skill does not contain the playbook, with exit 1 before any write |
+| REQ-001 | `record-playbook-run.cjs --reports <hub>/benchmark/reports` writes the run folder under that hub, and refuses a path that does not end in `benchmark/reports` or a reports folder that belongs to anything other than the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json` (symlinks resolved), with exit 1 before any write |
 | REQ-002 | `run-conversation-scenario.cjs --reports DIR` prints a `save results:` command that carries `--reports` |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -169,7 +169,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 ### Security
 - **NFR-S01**: N/A. No credential or network surface.
-- **NFR-S02**: N/A. The flag accepts a local path only, and the refusal rules bound it to a skill that contains the playbook.
+- **NFR-S02**: N/A. The flag accepts a local path only, and the refusal rules bound it to the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json`.
 
 ### Reliability
 - **NFR-R01**: The recorder checks `--reports` before it writes, so a refused path is not written.
@@ -182,7 +182,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Empty input: a run without `--reports` writes into the playbook's own skill, as it did before this phase.
 - Maximum input: N/A. The flag takes one path.
-- Failure path: a `--reports` path that does not end in `benchmark/reports`, or that belongs to a skill which does not contain the playbook, is refused with exit 1 before any write. The hub-reports test asserts both refusals, and that the foreign folder is not created.
+- Failure path: a `--reports` path that does not end in `benchmark/reports`, or that belongs to anything other than the playbook's own skill or its direct parent hub, a folder holding `mode-registry.json`, is refused with exit 1 before any write. The hub-reports test asserts the refusals for a typo, a foreign folder, a folder above the hub and a folder inside the playbook, and that refused folders are not created. A hub reached through a symlink is accepted.
 <!-- /ANCHOR:edge-cases -->
 
 ---

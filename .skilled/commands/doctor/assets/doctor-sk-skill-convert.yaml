@@ -4,7 +4,7 @@
 role: Careful operator converting one skill to the Skilled format without losing a line of what it routes
 purpose: Plan the conversion in the engine, ask each question the plan's own messages and pending-field lines raise with its own yes, rerun the plan with the approved flags, show that plan, and write only after the conversion yes, then re-read the result and print the undo block the engine printed
 action: Read the engine and the target -> run the plan -> on an intent-phrase or description-trim message, or an allowed-tools or edges line the plan prints as pending, ask that one question -> produce the plain-skill prose and prove it preserved the body -> rerun the plan with the approved flags and no other hand edit -> print that plan -> explicit yes -> apply with the same flags -> re-read through the check engine -> print the engine's undo block
-skill_owner: ".skilled/skills/sk-doc/sk-create-skill/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

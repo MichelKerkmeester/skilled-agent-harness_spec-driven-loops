@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.6
+version: 1.5.1.0
 ---
 
 # Pi CLI Prompt Templates
@@ -222,6 +222,6 @@ unknowns: [unknown or none]
 
 ## 11. SOURCE AND CONFIDENCE
 
-Confirmed flags and observed failure behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+Confirmed flags and observed failure behavior: [Pi contract pin](../../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 Native prompt-template and extension discovery are confirmed for the project-local surfaces this repo actually populates (phases 012/013). Full precedence across every documented discovery location, and native skill discovery specifically, remain per Pi docs, unconfirmed. Read [native-skills-and-extensions.md](../references/native-skills-and-extensions.md) before relying on those surfaces.

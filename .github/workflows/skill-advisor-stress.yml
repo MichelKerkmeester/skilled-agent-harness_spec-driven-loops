@@ -13,6 +13,8 @@ on:
     paths:
       - '.opencode/skills/system-skill-advisor/runtime/**'
       - '.skilled/skills/system-skill-advisor/runtime/**'
+      - '.opencode/skills/system-skill-advisor/hooks/**'
+      - '.skilled/skills/system-skill-advisor/hooks/**'
       - '.opencode/bin/system-skill-advisor-launcher.cjs'
       - '.skilled/bin/system-skill-advisor-launcher.cjs'
       - '.opencode/bin/lib/launcher-*.cjs'
@@ -26,6 +28,8 @@ on:
     paths:
       - '.opencode/skills/system-skill-advisor/runtime/**'
       - '.skilled/skills/system-skill-advisor/runtime/**'
+      - '.opencode/skills/system-skill-advisor/hooks/**'
+      - '.skilled/skills/system-skill-advisor/hooks/**'
       - '.opencode/bin/system-skill-advisor-launcher.cjs'
       - '.skilled/bin/system-skill-advisor-launcher.cjs'
       - '.opencode/bin/lib/launcher-*.cjs'

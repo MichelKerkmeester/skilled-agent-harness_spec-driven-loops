@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-tooling hub-router scoring"
   - "mode-registry.json six modes"
   - "mcp-tooling smart routing"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Workflow-Vs-Transport Two-Axis Routing (mcp-tooling)
@@ -33,7 +33,7 @@ Resolution reads `hub-router.json`, scores `routerSignals` and `vocabularyClasse
 
 ### Outcomes
 
-The router resolves to `single` for one dominant signal, `orderedBundle` for multiple explicit near-tied signals, or `defer` when no signal identifies a mode. Orca CLI work left this hub, so no Orca signal remains and an Orca request defers here rather than being captured.
+The router resolves to `single` for one dominant signal, `orderedBundle` for multiple explicit near-tied signals, or `defer` when no signal identifies a mode.
 
 ---
 

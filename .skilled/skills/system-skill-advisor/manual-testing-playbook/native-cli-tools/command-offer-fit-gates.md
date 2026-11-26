@@ -1,7 +1,7 @@
 ---
 title: "NC-012 A Command the Prompt Does Not Ask For Is Not Offered"
 description: "Manual validation that advisor_recommend withholds a hub's slash command when the prompt refuses it, asks about it, rules out a change or asks for a small correction, and still names a command row's own command with its policy."
-version: 1.0.1.0
+version: 1.0.2.0
 id: NC-012
 category: native_cli_tools
 stage: routing
@@ -20,7 +20,7 @@ A hub route names the command that acts on the mode it picked. That offer is onl
 Three offer gates stand between a route and its command:
 
 1. A command the prompt refuses or asks about is a naming, not a request.
-2. A prompt that rules out a change gets no command from either path.
+2. A prompt that rules out a change gets no writing command from either path. A read-only deep-loop run, such as a deep review that changes nothing, keeps its command.
 3. A correction inside one document is not a request for a creation workflow.
 
 This scenario checks those gates with five real prompts and adds one prompt whose recommendation row is a command itself. A command row carries its own command and policy, so the reader sees `/doctor:git setup` with `run` even though the leading skill in that result names no command.

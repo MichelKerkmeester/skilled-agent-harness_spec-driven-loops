@@ -73,12 +73,18 @@ function route(snapshot, selectionKind, modes) {
 
 // A vocabulary that lists both spellings of one phrase names it once, so the
 // fold-deduped count keeps a single mention worth one hit rather than two.
+// A match inside a longer match is the same mention too: "mcp chrome devtools"
+// also contains "chrome devtools", and counting both let a mode named by its
+// full id outscore a mode named by its short alias and drop it from a bundle.
 function scoreModes(routingModel, text) {
   return routingModel.modes.map((mode) => {
-    const matched = new Set(mode.keywords
+    const matched = [...new Set(mode.keywords
       .filter((keyword) => containsSignal(text, keyword))
-      .map((keyword) => spaced(normalize(keyword))));
-    return { mode: mode.workflowMode, score: matched.size * mode.weight };
+      .map((keyword) => spaced(normalize(keyword))))];
+    const distinct = matched.filter((keyword) => !matched.some((other) => (
+      other !== keyword && other.includes(keyword)
+    )));
+    return { mode: mode.workflowMode, score: distinct.length * mode.weight };
   }).filter((entry) => entry.score > 0);
 }
 

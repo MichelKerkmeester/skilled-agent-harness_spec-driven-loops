@@ -7,6 +7,11 @@
 set -euo pipefail
 
 INSTALLER_URL="https://releases.aside.com/install.sh"
+# The installer is pinned by content, so a changed script is refused rather than
+# run. The pin covers this script only; the archive it fetches is not verified.
+# Bump this digest after reading a new installer: download it, read it, then
+# run `shasum -a 256` on it.
+readonly INSTALLER_SHA256="4e1065f50852dd44e2156bd066eb44eef2c152b961ac0d815a09e61ef949cf90"
 FORCE_INSTALL="${FORCE_INSTALL:-false}"
 
 _c_red=$'\033[31m'; _c_grn=$'\033[32m'; _c_ylw=$'\033[33m'; _c_dim=$'\033[2m'; _c_rst=$'\033[0m'
@@ -28,9 +33,12 @@ WHAT THIS SCRIPT DOES:
        Linux and Windows, so this wrapper fails fast on those platforms.
     2. No-ops when an `aside` binary is already on PATH (use --force to
        run the installer anyway).
-    3. Runs the official installer: curl -fsSL https://releases.aside.com/install.sh | bash
-       Honors the installer env overrides ASIDE_CLI_VERSION, ASIDE_CLI_BASE_URL,
-       ASIDE_CLI_INSTALL_DIR, ASIDE_CLI_BIN_DIR when set in the environment.
+    3. Downloads the official installer (https://releases.aside.com/install.sh)
+       to a temporary file, checks its sha256 against the pinned digest and
+       runs it only on a match.
+       Honors the installer env overrides ASIDE_CLI_VERSION, ASIDE_CLI_INSTALL_DIR
+       and ASIDE_CLI_BIN_DIR. Refuses ASIDE_CLI_BASE_URL, because the archive
+       the installer downloads is not verified.
     4. Verifies with `aside --version` and reports sign-in state read-only.
 
 NOTES:
@@ -71,11 +79,36 @@ if command -v aside >/dev/null 2>&1 && [ "$FORCE_INSTALL" != "true" ]; then
   exit 0
 fi
 
+# The pin covers the installer script, not the archive it downloads, so a changed
+# download source would put an unverified binary on PATH.
+if [ -n "${ASIDE_CLI_BASE_URL:-}" ]; then
+  err "ASIDE_CLI_BASE_URL is set. This wrapper verifies the installer, not the archive it downloads, so it refuses a changed download source."
+  info "Unset ASIDE_CLI_BASE_URL, or read and run the official installer yourself."
+  exit 1
+fi
+
 command -v curl >/dev/null 2>&1 || { err "curl not found — required to fetch the installer"; exit 1; }
+command -v shasum >/dev/null 2>&1 || { err "shasum not found — required to check the installer digest"; exit 1; }
+
+log "-- Fetching official installer --"
+installer_dir="$(mktemp -d)"
+trap 'rm -rf "$installer_dir"' EXIT
+installer="$installer_dir/install.sh"
+if ! curl -fsSL "$INSTALLER_URL" -o "$installer"; then
+  err "Could not download $INSTALLER_URL"
+  exit 1
+fi
+
+actual_sha256="$(shasum -a 256 "$installer" | awk '{print $1}')"
+if [ "$actual_sha256" != "$INSTALLER_SHA256" ]; then
+  err "Installer digest mismatch: expected $INSTALLER_SHA256, got $actual_sha256"
+  info "Aside changed its installer. Read the new script before bumping INSTALLER_SHA256 in this wrapper."
+  exit 1
+fi
+ok "Installer digest verified"
 
 log "-- Running official installer --"
-info "curl -fsSL $INSTALLER_URL | bash"
-if curl -fsSL "$INSTALLER_URL" | bash; then
+if bash "$installer"; then
   ok "Installer completed"
 else
   err "Installer failed — see output above"

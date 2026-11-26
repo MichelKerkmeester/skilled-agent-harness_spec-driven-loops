@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for six modes: three workflow modes and three read-only design transports routed by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.10.0.0
+version: 1.10.2.0
 metadata:
   family: mcp
 ---
@@ -38,7 +38,7 @@ Use this hub for any request that names one of its six tool-bridge surfaces. The
 
 - A quick read or edit has no MCP tool-bridge need. Use the relevant skill directly.
 - Shared MCP execution infrastructure is needed without a vendor bridge. Use `mcp-code-mode` directly.
-- Browser work, Chrome/CDP debugging and Aside runs included, belongs to the `mcp-browser-use` hub. Orca CLI work belongs to the standalone `cli-orca` skill.
+- Browser work, Chrome/CDP debugging and Aside runs included, belongs to the `mcp-browser-use` hub.
 - A measured Style Reference belongs to `sk-design-md-generator` for Figma, Refero, and Mobbin material.
 
 ---
@@ -51,7 +51,7 @@ The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 
 The advisor routes every MCP tool-bridge request to the single identity `mcp-tooling`.
-Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"`.
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-file <task-file>` (write the task there with your file tool, never a heredoc).
 Follow the decision: `route` loads `targets`, and `clarify` or `defer` asks for the missing tool identity.
 A scored route loads only the selected mode's resources, so the fallback resource is never added to it.
 

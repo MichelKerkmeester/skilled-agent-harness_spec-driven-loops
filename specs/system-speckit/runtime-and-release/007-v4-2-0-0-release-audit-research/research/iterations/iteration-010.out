@@ -1,0 +1,15 @@
+## Iteration 10 Complete
+
+**Finding:** One P2 issue: the sk-code routing example uses a fixed `TASK` heredoc delimiter. If task text contains a line exactly equal to `TASK`, the shell ends stdin there and executes subsequent lines as commands. A safe shell probe confirmed the behavior. This conflicts with the changelog’s claim that the quoted heredoc keeps task text inert. [ROUTER.md](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/sk-code/ROUTER.md:497) · [sk-doc changelog](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/sk-doc/changelog/v2.10.1.0.md:21) · [compiled-route.cjs](/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/bin/compiled-route.cjs:34)
+
+The sk-doc validator and sampled rename path, sk-code quality checks, and sampled sk-git gates showed no additional confirmed mismatch. Q5 remains open because the broader doctor, runtime-mirror, and CI surfaces were not exhaustively reviewed. Q4 also remains open.
+
+**newInfoRatio:** 1.0 · **Questions answered:** none · **Edge case:** partial success.
+
+**Files written:** [iteration-010.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-010.md), [iter-010.jsonl](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-010.jsonl), [research.md](/Users/michelkerkme/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md). The append gateway exited 0, returned receipt sequence 26, and refreshed the projection. Final checks confirmed exactly one iteration 10 record, required artifacts and fields, and removal of the temporary event file. No test suite was run.
+
+**Status:** Iteration complete; Q5 remains open. The worktree was already dirty; this pass changed only packet artifacts. Branch was not checked. A first gateway invocation used the wrong runtime and failed before the gateway ran; the corrected Node invocation succeeded. The add-file restraint rule was loaded after the first write when I caught its trigger; no extra artifacts were added.
+
+**Routing:** `SKILL ROUTING: User directed → @deep-research` · `COMMAND: [/deep:research] → started` · `REPO RULES: scope-discipline, evidence-and-proof, delegation-and-orchestration, uncertainty-and-honesty, communication, communication-handoff, prevent-overengineering`.
+
+**Recommended next focus:** Review the remaining doctor commands and runtime-mirror/CI gates end to end, then address the delimiter-safe routing transport.

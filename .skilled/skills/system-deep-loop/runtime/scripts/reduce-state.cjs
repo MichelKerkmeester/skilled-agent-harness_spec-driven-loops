@@ -35,6 +35,7 @@ const {
 const REQUIRED_DIMENSIONS = ['correctness', 'security', 'traceability', 'maintainability'];
 const SEVERITY_KEYS = ['P0', 'P1', 'P2'];
 const SEVERITY_WEIGHTS = { P0: 10.0, P1: 5.0, P2: 1.0 };
+const REPOSITORY_ROOT = path.resolve(__dirname, '../../../../..');
 
 // An extension continues a completed run in place, so its lineage mode stays live.
 const LIVE_LINEAGE_MODES = new Set(['new', 'resume', 'restart', 'completed-continue']);
@@ -219,6 +220,16 @@ function extractSection(markdown, heading) {
   return match ? match[1].trim() : '';
 }
 
+// A review iteration ends with its mandatory `Review verdict: <X>` self-report line,
+// which has no heading of its own and therefore falls inside whatever section the
+// file closed with. That verdict describes the iteration that just finished, not the
+// work the next one should do, so a section carrying it ends where the verdict begins.
+function stripReviewVerdict(sectionText) {
+  const lines = String(sectionText || '').split('\n');
+  const verdictAt = lines.findIndex((line) => /^review verdict\s*:/i.test(line.trim()));
+  return (verdictAt === -1 ? lines : lines.slice(0, verdictAt)).join('\n').trim();
+}
+
 function extractSubsection(sectionText, subheading) {
   const pattern = new RegExp(`(?:^|\\n)###\\s+${escapeRegExp(subheading)}[^\\n]*\\n([\\s\\S]*?)(?=\\n###\\s|\\n##\\s|$)`, 'i');
   const match = sectionText.match(pattern);
@@ -360,12 +371,21 @@ function parseIterationFile(iterationPath) {
   // Next Focus).
   const focusSection = extractSection(markdown, 'Focus') || extractSection(markdown, 'Dispatcher');
   const findingsSection = extractSection(markdown, 'Findings') || extractSection(markdown, 'Findings - New');
-  const ruledOutSection = extractSection(markdown, 'Ruled Out') || extractSection(markdown, 'Confirmed-Clean Surfaces') || extractSection(markdown, 'Confirmed-Clean');
+  // A clean surface is a pass, not a direction: the review looked at the area
+  // and found nothing to fix. Reading Confirmed-Clean as ruled out would write
+  // a do-not-retry prohibition over work the iteration never tried.
+  const ruledOutSection = extractSection(markdown, 'Ruled Out');
   // Traceability Checks records protocol status, which the structured
   // traceabilityChecks rollup already owns. Only an explicit Dead Ends section
   // names a direction the review ruled out.
   const deadEndsSection = extractSection(markdown, 'Dead Ends');
-  const nextFocusSection = extractSection(markdown, 'Recommended Next Focus') || extractSection(markdown, 'Next Focus (recommendation)') || extractSection(markdown, 'Next Focus');
+  // The focus block is the one section a later run reads back as its own work, so it
+  // keeps the lines it was authored in rather than being flattened into a sentence.
+  const nextFocusSection = stripReviewVerdict(
+    extractSection(markdown, 'Recommended Next Focus')
+      || extractSection(markdown, 'Next Focus (recommendation)')
+      || extractSection(markdown, 'Next Focus'),
+  );
   const assessmentSection = extractSection(markdown, 'Assessment');
   const filesReviewedSection = extractSection(markdown, 'Files Reviewed');
 
@@ -389,7 +409,7 @@ function parseIterationFile(iterationPath) {
     findings,
     ruledOut: extractListItems(ruledOutSection),
     deadEnds: extractListItems(deadEndsSection),
-    nextFocus: normalizeText(nextFocusSection),
+    nextFocus: nextFocusSection,
     dimensionsAddressed: dimensionsAddressed
       ? dimensionsAddressed.split(/[,;]/).map((value) => normalizeText(value).toLowerCase()).filter(Boolean)
       : [],
@@ -704,6 +724,11 @@ function deltaRecordToFinding(record) {
     // A refinement names the finding it sharpens. The observed producer spelling
     // refinementOf is accepted as an alias so both row shapes fold the same way.
     refines: normalizeText(record.refines || record.refinementOf || '') || null,
+    // The dimension the producer declared lets the registry tell a refinement that
+    // sharpens the same concern from one that raises it under another dimension.
+    // A registry entry stores the derived dimension instead, except for a
+    // refinement kept apart from its target, which keeps the declared one.
+    dimension: normalizeDeclaredDimension(record.dimension),
   };
 }
 
@@ -787,6 +812,7 @@ function findingDetailToFinding(detail, record, index) {
       ? detail.content_hash
       : (typeof detail.contentHash === 'string' && detail.contentHash ? detail.contentHash : null),
     refines: normalizeText(detail.refines || detail.refinementOf || '') || null,
+    dimension: normalizeDeclaredDimension(detail.dimension),
   };
 }
 
@@ -948,6 +974,54 @@ function sameFindingAtAnotherLine(existing, finding) {
   return title(existing) === title(finding);
 }
 
+function normalizeDeclaredDimension(value) {
+  return typeof value === 'string' && value.trim() ? value.trim().toLowerCase() : null;
+}
+
+function normalizeFindingPath(value) {
+  if (typeof value !== 'string') return '';
+  const withoutLocation = value.trim()
+    .replace(/\\/g, '/')
+    .replace(/:\d+(?:[:-].*)?$/, '');
+  if (!withoutLocation) return '';
+  const normalized = path.normalize(withoutLocation).replace(/\\/g, '/');
+  if (!path.isAbsolute(normalized)) {
+    return normalized.replace(/^(?:\.\/)+/, '');
+  }
+  const repositoryRelative = path.relative(REPOSITORY_ROOT, normalized);
+  if (repositoryRelative && repositoryRelative !== '..'
+    && !repositoryRelative.startsWith(`..${path.sep}`) && !path.isAbsolute(repositoryRelative)) {
+    return repositoryRelative.split(path.sep).join('/');
+  }
+  return normalized;
+}
+
+// Location identity is the full normalized path, so a bare filename cannot
+// stand in for a same-named file elsewhere in the repository.
+function sameFindingPath(left, right) {
+  return Boolean(left && right && left === right);
+}
+
+/**
+ * A refinement folds into its target only when it sharpens the same place.
+ * One that names another file, or declares another dimension, is a separate
+ * defect that happens to cite an earlier one: folding it would overwrite the
+ * target's wording and drop the refinement's own location, and the freed id
+ * could then be claimed by an unrelated finding when lineages merge. A side
+ * with no file or no declared dimension cannot prove a different place, so it
+ * folds as before.
+ */
+function refinesSameLocation(target, refinement, targetDeclaredDimension) {
+  const targetFile = normalizeFindingPath(target.file);
+  const refinementFile = normalizeFindingPath(refinement.file);
+  if (targetFile && refinementFile && !sameFindingPath(targetFile, refinementFile)) return false;
+  if (targetDeclaredDimension && refinement.dimension
+    && targetDeclaredDimension !== refinement.dimension) {
+    return false;
+  }
+  return true;
+}
+
 function dedupeDimensions(dimensions) {
   const seen = new Set();
   const out = [];
@@ -997,6 +1071,9 @@ function collapseFindingsByDedupKey(findingEntries) {
 
 function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [], universe = REQUIRED_DIMENSIONS) {
   const findingById = new Map();
+  // Producer-declared dimensions by registry key, kept beside the registry so the
+  // refinement check can compare them without adding a field to the entries.
+  const declaredDimensionByKey = new Map();
   const claimAdjudicationByFinding = buildClaimAdjudicationByFinding(iterationRecords);
 
   function upsertFinding(finding, run, iteration, initialReason, adjustmentReason) {
@@ -1004,11 +1081,15 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
     // A refinement names the finding it sharpens rather than a new finding. Fold
     // it into that target before the id-reuse split below, so the registry keeps
-    // one entry and the target carries the newer wording. An unresolved value
-    // falls through to the ordinary insert path.
+    // one entry and the target carries the newer wording. A refinement at another
+    // file or dimension stays under its own id and keeps its link to the target.
     const refinesId = normalizeText(finding.refines || '');
     const refinesTarget = refinesId ? findingById.get(refinesId) : undefined;
-    if (refinesTarget) {
+    if (refinesTarget && refinesSameLocation(
+      refinesTarget,
+      finding,
+      declaredDimensionByKey.get(refinesId),
+    )) {
       refinesTarget.lastSeen = run;
       if (finding.title) {
         refinesTarget.title = finding.title;
@@ -1036,14 +1117,22 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
       || sameFindingAtAnotherLine(existing, finding);
     if (!isSameFinding || !existing) {
       const storageKey = isSameFinding ? finding.findingId : `${finding.findingId}#${findingById.size}`;
+      if (finding.dimension) declaredDimensionByKey.set(storageKey, finding.dimension);
+      // A refinement kept apart from its target was kept for its own file or
+      // dimension, so the declared dimension is the one that split it; a derived
+      // one could name the target's dimension and undo the reason for the split.
+      const keepsDeclaredDimension = Boolean(refinesTarget)
+        && Boolean(finding.dimension) && universe.includes(finding.dimension);
       findingById.set(storageKey, {
         ...finding,
         severity: canonicalSeverity,
-        dimension: deriveDimension(
-          { ...finding, severity: canonicalSeverity },
-          iteration,
-          universe,
-        ),
+        dimension: keepsDeclaredDimension
+          ? finding.dimension
+          : deriveDimension(
+            { ...finding, severity: canonicalSeverity },
+            iteration,
+            universe,
+          ),
         firstSeen: run,
         lastSeen: run,
         status: 'active',
@@ -1497,9 +1586,12 @@ const TRACEABILITY_META_KEYS = new Set([
   'status', 'iteration', 'core', 'overlay',
 ]);
 
-// The review contract's gate class per protocol. A recorded result that omits
-// its class is classed here, so an omitted field cannot quietly turn a hard
-// protocol into an advisory one or the reverse.
+// The review contract's gate class per protocol. The contract, not the
+// reviewer, decides which protocols gate the stop, so a protocol named here
+// takes this class whatever its recorded result says: neither an omitted field
+// nor a reviewer's own `gateClass` can turn a hard protocol advisory or an
+// advisory one hard. Only a protocol the contract does not name keeps the
+// class its record carries.
 const TRACEABILITY_PROTOCOL_GATE_CLASSES = {
   spec_code: 'hard',
   checklist_evidence: 'hard',
@@ -1559,8 +1651,9 @@ function traceabilityResult(protocolId, value) {
     ...record,
     protocolId,
     status,
-    gateClass: normalizeText(record.gateClass)
-      || TRACEABILITY_PROTOCOL_GATE_CLASSES[protocolId]
+    gateClass: (Object.prototype.hasOwnProperty.call(TRACEABILITY_PROTOCOL_GATE_CLASSES, protocolId)
+      ? TRACEABILITY_PROTOCOL_GATE_CLASSES[protocolId]
+      : normalizeText(record.gateClass))
       || 'advisory',
     applicable: typeof record.applicable === 'boolean' ? record.applicable : status !== 'notApplicable',
   };
@@ -2286,6 +2379,37 @@ function renderSearchDebtSection(registry) {
   ].join('\n');
 }
 
+// A direction is exhausted only when more than one iteration's evidence confirms
+// it. A single ruling is a candidate the next iteration may reopen on new
+// evidence, so it must not be written as a permanent prohibition.
+const MIN_BLOCKED_ATTEMPTS = 2;
+
+/**
+ * Split a ruled-out entry into the direction it names and the reason it gives,
+ * for entries written as "direction -- reason". An entry that names no reason
+ * keeps its whole text as the direction, so the caller can fall back to a
+ * generic statement rather than inventing one.
+ *
+ * @param {string} entry - Normalized list item from a Dead Ends/Ruled Out section
+ * @returns {{direction: string, reason: string}} Direction alone, plus the reason or ''
+ */
+function splitRuledOutEntry(entry) {
+  // The separator is a spaced double hyphen or an em dash. An unspaced double
+  // hyphen introduces a CLI flag or a kebab-case name, so it stays part of the
+  // direction instead of cutting the text in two.
+  const separator = /\s+(?:--|—)\s+|—/.exec(entry);
+  if (!separator) {
+    return { direction: entry, reason: '' };
+  }
+  const direction = normalizeText(entry.slice(0, separator.index));
+  const reason = normalizeText(entry.slice(separator.index + separator[0].length));
+  // A separator with nothing on one side belongs to the direction's own text.
+  if (!direction || !reason) {
+    return { direction: entry, reason: '' };
+  }
+  return { direction, reason };
+}
+
 function buildExhaustedApproaches(iterationFiles) {
   const grouped = new Map();
 
@@ -2304,32 +2428,80 @@ function buildExhaustedApproaches(iterationFiles) {
   return Array.from(grouped.entries())
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([entry, runs]) => {
-      const attemptCount = runs.length;
+      // Counting distinct runs keeps one iteration that named the same direction
+      // in two sections from reading as two passes of evidence.
+      const attemptCount = new Set(runs).size;
       const lastRun = Math.max(...runs);
+      const { direction, reason } = splitRuledOutEntry(entry);
+      if (attemptCount < MIN_BLOCKED_ATTEMPTS) {
+        return [
+          `### ${direction} -- RULED OUT (iteration ${lastRun}, ${attemptCount} attempt)`,
+          `- What was tried: ${direction}`,
+          `- Why ruled out: ${reason || 'One pass of evidence did not support this direction.'}`,
+          '- Reopen when: a later iteration carries evidence that contradicts that pass.',
+        ].join('\n');
+      }
       return [
-        `### ${entry} -- BLOCKED (iteration ${lastRun}, ${attemptCount} attempts)`,
-        `- What was tried: ${entry}`,
-        `- Why blocked: Repeated iteration evidence ruled this direction out.`,
-        `- Do NOT retry: ${entry}`,
+        `### ${direction} -- BLOCKED (iteration ${lastRun}, ${attemptCount} attempts)`,
+        `- What was tried: ${direction}`,
+        `- Why blocked: ${reason || 'Repeated iteration evidence ruled this direction out.'}`,
+        `- Do NOT retry: ${direction}`,
       ].join('\n');
     })
     .join('\n\n');
 }
 
-/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. */
+/** Replaces a machine-owned strategy section, matched by anchor id and then by heading; when neither exists it appends the section under `createMissing`, and otherwise throws a MISSING_ANCHOR error. A heading authored directly above the anchor marker is absorbed into the replacement so normalizing a heading-first file never leaves two headings for one section. An existing section keeps the ordinal the file gave it, so a document that numbers its own sections never ends up with two headings sharing a number. */
 function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
+  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const pattern = new RegExp(`<!-- ANCHOR:${anchorId} -->[\\s\\S]*?<!-- \\/ANCHOR:${anchorId} -->`, 'm');
-  const replacement = [
+
+  // The template and the reducer's defaults can number the same section
+  // differently. Writing the default over a number the file already carries
+  // would leave two headings sharing it, so a reader citing "section 5" cannot
+  // tell which one is meant; the file's own numbering wins wherever it exists,
+  // and only a section created from scratch adopts the caller's number.
+  const ordinalPattern = new RegExp(`##\\s+(\\d+[A-Za-z]?)\\.\\s+${headingCore(heading)}`, 'i');
+  const firstOrdinal = (texts) => {
+    for (const text of texts) {
+      const found = text ? ordinalPattern.exec(text) : null;
+      if (found) return found[1];
+    }
+    return '';
+  };
+  const headingFor = (ordinal) => (ordinal
+    ? `${ordinal}. ${heading.replace(/^\d+[A-Za-z]?\.\s+/, '')}`
+    : heading);
+  const buildReplacement = (resolvedHeading) => [
     `<!-- ANCHOR:${anchorId} -->`,
-    `## ${heading}`,
+    `## ${resolvedHeading}`,
     body.trim() ? body.trim() : '[None yet]',
     '',
     `<!-- /ANCHOR:${anchorId} -->`,
   ].join('\n');
 
+  // A strategy seeded in the heading-first dialect carries the section heading
+  // above the marker rather than inside it, so replacing only the marker span
+  // would write a second heading beside the authored one and every later pass
+  // would keep both. Dropping the authored heading lets the replacement own it.
+  const authoredHeading = new RegExp(
+    `(^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n(?=<!-- ANCHOR:${anchorId} -->)`,
+    'i',
+  );
+
   // Function replacements keep `$`-sequences in section text literal.
-  if (pattern.test(content)) {
-    return content.replace(pattern, () => replacement);
+  const anchorMatch = pattern.exec(content);
+  if (anchorMatch) {
+    const authoredMatch = authoredHeading.exec(content);
+    const replacement = buildReplacement(headingFor(firstOrdinal([
+      anchorMatch[0],
+      authoredMatch ? authoredMatch[0] : '',
+    ])));
+    // The separator group keeps the blank line the authored heading sat under.
+    const normalized = authoredHeading.test(content)
+      ? content.replace(authoredHeading, (_match, separator) => separator)
+      : content;
+    return normalized.replace(pattern, () => replacement);
   }
 
   // The strategy template wraps machine-managed sections in a different
@@ -2337,12 +2509,14 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   // by anchor id. Fall back to matching the heading itself so a freshly
   // templated file is normalized in place instead of leaving the original
   // section untouched and appending a duplicate one alongside it.
-  const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const headingPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
-  if (headingPattern.test(content)) {
+  const headingMatch = headingPattern.exec(content);
+  if (headingMatch) {
+    const replacement = buildReplacement(headingFor(firstOrdinal([headingMatch[0]])));
     return content.replace(headingPattern, () => `\n${replacement}`);
   }
 
+  const replacement = buildReplacement(heading);
   if (options.createMissing) {
     const suffix = content.endsWith('\n') ? '' : '\n';
     return `${content}${suffix}\n${replacement}\n`;
@@ -2390,10 +2564,12 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
 }
 
 // A free-text leaf focus must not hide a required dimension the run has not covered yet.
+// The leaf is a whole focus block, so the dimension check reads it as one line while
+// the block itself is returned as authored.
 function pickReviewBaseFocus(iterationFiles, registry) {
   const leafFocus = iterationFiles.map((iteration) => iteration.nextFocus).filter(Boolean).at(-1) || '';
   const uncovered = Object.keys(registry.dimensionCoverage).filter((dimension) => !registry.dimensionCoverage[dimension]);
-  const leafKey = String(leafFocus).toLowerCase().trim();
+  const leafKey = normalizeText(leafFocus).toLowerCase();
   if (leafFocus && (uncovered.length === 0 || uncovered.some((dimension) => leafKey.includes(dimension)))) {
     return leafFocus;
   }
@@ -2478,13 +2654,16 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
   }
 
   let updated = strategyContent;
+  // These defaults carry the shipped template's numbers, so a strategy file
+  // bootstrapped with the create-missing path matches the template. A file that
+  // already numbers a section differently keeps its own number.
   updated = replaceAnchorSection(updated, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', remainingDimensions, anchorOptions);
-  updated = replaceAnchorSection(updated, 'completed-dimensions', '4. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
-  updated = replaceAnchorSection(updated, 'running-findings', '5. RUNNING FINDINGS', runningFindings, anchorOptions);
+  updated = replaceAnchorSection(updated, 'completed-dimensions', '6. COMPLETED DIMENSIONS', completedDimensions, anchorOptions);
+  updated = replaceAnchorSection(updated, 'running-findings', '7. RUNNING FINDINGS', runningFindings, anchorOptions);
   updated = replaceAnchorSection(
     updated,
     'exhausted-approaches',
-    '9. EXHAUSTED APPROACHES (do not retry)',
+    '10. EXHAUSTED APPROACHES (do not retry)',
     buildExhaustedApproaches(iterationFiles),
     anchorOptions,
   );
@@ -2513,7 +2692,7 @@ function updateStrategyContent(strategyContent, registry, iterationFiles, option
     '11. RULED OUT DIRECTIONS',
     anchorOptions,
   );
-  updated = replaceAnchorSection(updated, 'next-focus', '11. NEXT FOCUS', nextFocus, anchorOptions);
+  updated = replaceAnchorSection(updated, 'next-focus', '12. NEXT FOCUS', nextFocus, anchorOptions);
   return updated;
 }
 

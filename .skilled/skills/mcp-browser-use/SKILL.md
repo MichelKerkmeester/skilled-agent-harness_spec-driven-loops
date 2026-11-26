@@ -2,12 +2,12 @@
 name: mcp-browser-use
 description: "Parent hub for three browser modes: Chrome DevTools, Aside and Bladebro. Routes by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_chain]
-version: 1.1.1.0
+version: 1.1.5.0
 metadata:
   family: mcp
 ---
 
-<!-- Keywords: mcp-browser-use, mode-registry, hub-router, workflowMode, packetKind, mcp-chrome-devtools, mcp-aside-devtools, mcp-bladebro, chrome-devtools, cdp, aside-repl, bladebro, stealth-browser, mcp-code-mode -->
+<!-- Keywords: mcp-browser-use, mode-registry, hub-router, workflowMode, packetKind, mcp-chrome-devtools, mcp-aside-devtools, mcp-bladebro, chrome-devtools, cdp, aside-repl, bladebro, stealth-browser -->
 
 # MCP Browser Use Hub (mcp-browser-use)
 
@@ -25,9 +25,9 @@ Use this hub for a request that names one of its three browser modes. It also fi
 
 | Mode | Use it for | Packet |
 |------|------------|--------|
-| **mcp-chrome-devtools** | Chrome DevTools inspection, debugging, console evidence and performance traces | `mcp-chrome-devtools/` |
+| **mcp-chrome-devtools** | Chrome DevTools inspection, debugging, console evidence, performance traces and attaching to the user's own Chrome | `mcp-chrome-devtools/` |
 | **mcp-aside-devtools** | Deterministic signed-in REPL runs and captured REPL evidence through Aside | `mcp-aside-devtools/` |
-| **mcp-bladebro** | Stealth browsing, agentic branching and caller-owned browser attachment through Bladebro | `mcp-bladebro/` |
+| **mcp-bladebro** | Stealth browsing, agentic branching and attachment to a caller-owned or already-open browser that names no Chrome, through Bladebro | `mcp-bladebro/` |
 
 ### Capability Matrix
 
@@ -37,7 +37,7 @@ Each mode owns a distinct band. A row marked **MCP lane only** runs through Code
 |------------|---------------------|--------------------|--------------|
 | Page model and DOM reads | `bdg dom query` / `dom eval`; MCP element tools | Playwright `page` API in `aside repl` | `see` model, content, outline and find |
 | Actions | `bdg` session, `bdg cdp <Method>`, MCP clicks and forms | `aside "<task>"`, deterministic `aside repl` | `act` verbs and `run` plans with branches |
-| Console and network | `bdg console --list`, CDP network methods | `page.on(...)` events | `see logs` rings |
+| Console and network | `bdg console --list`, CDP network methods | Not offered: Aside 1.26.626.1517 rejects console and network event listeners | `see logs` rings |
 | HAR export | `bdg network har <path>` | Not offered | Not offered |
 | Raw CDP | 300+ methods across 53 domains | Not offered | Not offered |
 | Lighthouse audit | `lighthouse_audit`, **MCP lane only**; excludes performance | Not offered | Not offered |
@@ -57,9 +57,9 @@ Each mode owns a distinct band. A row marked **MCP lane only** runs through Code
 
 `hub-router.json` scores the request against its vocabulary classes. It then selects one `workflowMode`, an ordered bundle or a defer outcome. `mode-registry.json` maps that mode to its packet folder. The root [`ROUTER.md`](./ROUTER.md) maps the request to the selected mode's leaves and holds the fallback checklist, so read it before selecting a packet.
 
-Generic browser-automation phrasing defers instead of picking a mode. Debugging words go to Chrome DevTools, and so do Lighthouse and performance-trace requests. Deterministic signed-in proof goes to Aside. Agentic or stealth signed-in work goes to Bladebro.
+Generic browser-automation phrasing defers. Debugging, Lighthouse and performance-trace requests go to Chrome DevTools, and so does a request naming the user's own Chrome, through its live instance. Deterministic signed-in proof goes to Aside. Agentic or stealth signed-in work goes to Bladebro, and so does a caller-owned or already-open browser that names no Chrome.
 
-Take the mode from the compiled front door first, `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt "<task>"`, as the machine-router callout in [`ROUTER.md`](./ROUTER.md) says. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above instead. Compiled routing is the default for this hub. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide, the explicit kill-switch.
+Take the mode from the compiled front door first: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-file <task-file>`, with the task written there by your file tool. A file has no closing line, so no task line can run as shell. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above. `SPECKIT_COMPILED_ROUTING=0` forces legacy routing fleet-wide.
 
 ---
 

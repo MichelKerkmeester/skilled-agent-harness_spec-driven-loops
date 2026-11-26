@@ -1,0 +1,24 @@
+[
+ {"id":"X1p1","cat":"code-passes-pos","prompt":"give the scheduler code many passes of review","expect":"system-deep-loop + /deep:review"},
+ {"id":"X1p2","cat":"code-passes-pos","prompt":"give the parser code several passes of review","expect":"system-deep-loop + /deep:review"},
+ {"id":"X1p3","cat":"code-passes-pos","prompt":"put the billing service code through multiple passes of review","expect":"system-deep-loop + /deep:review"},
+ {"id":"X1p4","cat":"code-passes-pos","prompt":"review the auth middleware code over several passes","expect":"system-deep-loop + /deep:review"},
+ {"id":"X1p5","cat":"code-passes-pos","prompt":"do many passes of review on the cache layer code","expect":"system-deep-loop + /deep:review"},
+ {"id":"X1p6","cat":"code-passes-pos","prompt":"review the router code for 4 iterations","expect":"system-deep-loop + /deep:review"},
+
+ {"id":"X2p1","cat":"inspect-iter-pos","prompt":"inspect the queue worker for defects iteratively","expect":"system-deep-loop + /deep:review"},
+ {"id":"X2p2","cat":"inspect-iter-pos","prompt":"examine the retry handler for bugs iteratively","expect":"system-deep-loop + /deep:review"},
+ {"id":"X2p3","cat":"inspect-iter-pos","prompt":"inspect the upload service for errors over several passes","expect":"system-deep-loop + /deep:review"},
+ {"id":"X2p4","cat":"inspect-iter-pos","prompt":"inspect the rate limiter for regressions in multiple passes","expect":"system-deep-loop + /deep:review"},
+ {"id":"X2p5","cat":"inspect-iter-pos","prompt":"inspect the session cache for vulnerabilities, 5 iterations","expect":"system-deep-loop + /deep:review"},
+ {"id":"X2p6","cat":"inspect-iter-pos","prompt":"examine the cron runner for flaws iteratively","expect":"system-deep-loop + /deep:review"},
+
+ {"id":"X3n1","cat":"neg","prompt":"review the scheduler code carefully","expect":"sk-code, no deep command"},
+ {"id":"X3n2","cat":"neg","prompt":"inspect the queue worker logs","expect":"no deep command"},
+ {"id":"X3n3","cat":"neg","prompt":"give the scheduler code a quick review","expect":"sk-code, no deep command"},
+ {"id":"X3n4","cat":"neg","prompt":"inspect the queue worker for defects","expect":"no deep command"},
+ {"id":"X3n5","cat":"neg","prompt":"explain the iterations of the research loop","expect":"no deep command"},
+ {"id":"X3n6","cat":"neg","prompt":"inspect the queue worker config and explain it","expect":"no deep command"},
+ {"id":"X3n7","cat":"neg","prompt":"write a blog post about inspecting code for defects iteratively","expect":"not system-deep-loop, no command"},
+ {"id":"X3n8","cat":"neg","prompt":"inspect the network tab for errors","expect":"no deep command"}
+]

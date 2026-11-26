@@ -19,17 +19,15 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   DecisionRecordWriteError,
-  detectLevel,
-  readVerbatimAppendix,
-  writeDecisionRecord,
-  type OperatorDecisionEntry,
-} from '@spec-kit/runtime/api';
-import {
   consumedLogPath,
+  detectLevel,
   legacyConsumedLogPath,
   readConsumedRows,
+  readVerbatimAppendix,
   recordConsumedKeys,
   stateDirPath,
+  writeDecisionRecord,
+  type OperatorDecisionEntry,
 } from '../../api/index.js';
 
 const APPENDIX_CLOSE = '<!-- /ANCHOR:operator-answers-verbatim -->';
@@ -275,6 +273,27 @@ describe('writeDecisionRecord', () => {
     expect(after).toContain('| Q001 | Move the record to a shared log. |');
     expect(after.split('\n').filter((line) => line.startsWith('| Q001 |'))).toHaveLength(1);
     expect(after.slice(after.indexOf('### Q001'), after.indexOf(APPENDIX_CLOSE))).toBe(appendixItem);
+  });
+
+  it('leaves a hand-edited row alone when the caller keeps existing rows', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writeDecisionRecord(PACKET, [entry()]);
+
+    const writtenRow = '| Q001 | Keep the record inside the bound packet. | The packet stays portable. | None | plan.md |';
+    const editedRow = '| Q001 | Keep the record inside the bound packet. | The operator wanted one place to look. | None | plan.md |';
+    const before = readRecord();
+    expect(before).toContain(writtenRow);
+    const edited = before.replace(writtenRow, editedRow);
+    writePacketFile('decision-record.md', edited);
+
+    const result = writeDecisionRecord(PACKET, [entry()], { keepExistingRows: true });
+
+    const after = readRecord();
+    expect(result.ids).toEqual([{ sourceKey: 'decision:scope', id: 'Q001' }]);
+    expect(after).toContain(editedRow);
+    expect(after).not.toContain(writtenRow);
+    expect(after.split('\n').filter((line) => line.startsWith('| Q001 |'))).toHaveLength(1);
+    expect(after).toBe(edited);
   });
 
   it('replaces a same-key appendix item when the answer changes', () => {

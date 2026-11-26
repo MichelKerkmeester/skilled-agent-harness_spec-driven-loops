@@ -43,7 +43,7 @@ type FrontierProjection = {
 };
 
 const nodeRequire = createRequire(import.meta.url);
-const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
+const { reduceReviewState, parseIterationFile } = nodeRequire('../../scripts/reduce-state.cjs') as {
   reduceReviewState: (
     specFolder: string,
     options?: Record<string, unknown>,
@@ -94,6 +94,7 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
     dashboard: string;
     strategy: string;
   };
+  parseIterationFile: (iterationPath: string) => { ruledOut: string[] };
 };
 
 const scratchDirs: string[] = [];
@@ -1603,5 +1604,214 @@ describe('reduceReviewState expansive frontier', () => {
 
     expect(result.dashboard).not.toContain('10B. FRONTIER');
     expect(result.dashboard).not.toContain('ANCHOR:frontier');
+  });
+});
+
+// A direction one iteration ruled out is a candidate the next pass may reopen on
+// new evidence; only a direction that more than one iteration's evidence confirms
+// is exhausted. The strategy has to render those two evidence levels differently,
+// because a one-pass ruling written as BLOCKED / "Do NOT retry" freezes work the
+// run has not actually disproved.
+describe('reduceReviewState — exhausted approaches separate one-pass rulings from repeated evidence', () => {
+  const ONE_PASS = 'A dead export left behind by the packet: every added export has a reader.';
+  const REPEATED = 'A stale comment that contradicts its pattern: every changed comment states the grammar beside it.';
+
+  function writeStrategyScaffold(reviewDir: string, reviewTarget: string) {
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({
+      maxIterations: 7,
+      reviewTarget,
+      reviewDimensions: ['correctness', 'security', 'traceability', 'maintainability'],
+    }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    writeFileSync(join(reviewDir, 'deep-review-strategy.md'), [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] correctness',
+      '- [ ] security',
+      '- [ ] traceability',
+      '- [ ] maintainability',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+      '<!-- ANCHOR:completed-dimensions -->',
+      '## 4. COMPLETED DIMENSIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:completed-dimensions -->',
+      '',
+      '<!-- ANCHOR:running-findings -->',
+      '## 5. RUNNING FINDINGS',
+      '- P0 (Blockers): 0',
+      '<!-- /ANCHOR:running-findings -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '## 11. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'));
+    mkdirSync(join(reviewDir, 'iterations'), { recursive: true });
+  }
+
+  function writeExhaustedFixture(reviewDir: string) {
+    writeStrategyScaffold(reviewDir, 'exhausted-approach-evidence');
+    // REPEATED is named by both sections of run 1 and again by run 2, so a count
+    // of rows would read three attempts from two passes of evidence.
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Maintainability',
+      '',
+      '## Ruled Out',
+      '',
+      `- ${ONE_PASS}`,
+      `- ${REPEATED}`,
+      '',
+      '## Dead Ends',
+      '',
+      `- ${REPEATED}`,
+      '',
+    ].join('\n'));
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-002.md'), [
+      '# Iteration 2: Maintainability',
+      '',
+      '## Ruled Out',
+      '',
+      `- ${REPEATED}`,
+      '',
+    ].join('\n'));
+  }
+
+  function exhaustedEntries(strategy: string): string[] {
+    return sectionAfter(strategy, '## 9. EXHAUSTED APPROACHES (do not retry)', '<!-- /ANCHOR:exhausted-approaches -->')
+      .split('\n\n')
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+  }
+
+  function entryFor(entries: string[], direction: string): string {
+    const entry = entries.find((candidate) => candidate.startsWith(`### ${direction}`));
+    if (!entry) throw new Error(`Missing exhausted-approaches entry for: ${direction}`);
+    return entry;
+  }
+
+  it('renders a one-pass direction as ruled out with a reopen condition', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExhaustedFixture(reviewDir);
+
+    const entries = exhaustedEntries(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy);
+    const entry = entryFor(entries, ONE_PASS);
+
+    expect(entry).toContain(`### ${ONE_PASS} -- RULED OUT (iteration 1, 1 attempt)`);
+    expect(entry).toContain('- Reopen when:');
+    expect(entry).not.toContain('BLOCKED');
+    expect(entry).not.toContain('Do NOT retry');
+  });
+
+  it('still renders a direction two iterations confirmed as blocked and not to be retried', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExhaustedFixture(reviewDir);
+
+    const entries = exhaustedEntries(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy);
+    const entry = entryFor(entries, REPEATED);
+
+    expect(entry).toContain(`### ${REPEATED} -- BLOCKED (iteration 2, 2 attempts)`);
+    expect(entry).toContain(`- Do NOT retry: ${REPEATED}`);
+    expect(entry).not.toContain('Reopen when');
+  });
+
+  it('does not read a clean-surface pass as a ruled-out direction', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeExhaustedFixture(reviewDir);
+    const cleanSurface = 'The queue consumer retry budget: one attempt per delivery, no hidden second pass.';
+    const legacyCleanSurface = 'The artifact root resolver: every caller resolves through the helper.';
+    // Both Confirmed-Clean spellings the iteration schema allows.
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-003.md'), [
+      '# Iteration 3: Security',
+      '',
+      '## Confirmed-Clean Surfaces',
+      '',
+      `- ${cleanSurface}`,
+      '',
+      '## Confirmed-Clean',
+      '',
+      `- ${legacyCleanSurface}`,
+      '',
+    ].join('\n'));
+
+    const parsed = parseIterationFile(join(reviewDir, 'iterations', 'iteration-003.md'));
+    expect(parsed.ruledOut).toEqual([]);
+
+    // A clean surface is evidence the review passed over an area, not a direction
+    // the next iteration must avoid, so neither heading may reach the strategy's
+    // do-not-retry section as an exhausted approach.
+    const strategy = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy;
+    const section = sectionAfter(strategy, '## 9. EXHAUSTED APPROACHES (do not retry)', '<!-- /ANCHOR:exhausted-approaches -->');
+    expect(section).not.toContain(cleanSurface);
+    expect(section).not.toContain(legacyCleanSurface);
+  });
+
+  it('writes the reason an item carries instead of repeating the item as its own reason', () => {
+    const ONCE = 'A dead export left by the packet';
+    const ONCE_REASON = 'every export added by the packet has a reader in the same commit.';
+    const ONCE_EM_DASH = 'A duplicated retry helper';
+    const ONCE_EM_DASH_REASON = 'the second helper is a wrapper the first already exposes.';
+    const BARE = 'A stale comment that contradicts its own pattern';
+    const BLOCKED = 'A swallowed error in the artifact writer';
+    const BLOCKED_REASON = 'two passes found the same catch block discarding the failure';
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeStrategyScaffold(reviewDir, 'exhausted-approach-reason');
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-001.md'), [
+      '# Iteration 1: Maintainability',
+      '',
+      '## Ruled Out',
+      '',
+      `- ${ONCE} -- ${ONCE_REASON}`,
+      `- ${ONCE_EM_DASH} \u2014 ${ONCE_EM_DASH_REASON}`,
+      `- ${BARE}`,
+      '',
+      '## Dead Ends',
+      '',
+      `- ${BLOCKED} -- ${BLOCKED_REASON}`,
+      '',
+    ].join('\n'));
+    writeFileSync(join(reviewDir, 'iterations', 'iteration-002.md'), [
+      '# Iteration 2: Maintainability',
+      '',
+      '## Dead Ends',
+      '',
+      `- ${BLOCKED} -- ${BLOCKED_REASON}`,
+      '',
+    ].join('\n'));
+
+    const entries = exhaustedEntries(reduceReviewState(specFolder, { write: false, artifactDir: reviewDir }).strategy);
+
+    // A direction carrying its own reason states that reason, and the heading and
+    // the tried line name the direction alone so a reader can cite the heading.
+    const once = entryFor(entries, ONCE);
+    expect(once).toContain(`### ${ONCE} -- RULED OUT (iteration 1, 1 attempt)`);
+    expect(once).toContain(`- What was tried: ${ONCE}`);
+    expect(once).toContain(`- Why ruled out: ${ONCE_REASON}`);
+    expect(once).not.toContain('One pass of evidence did not support this direction.');
+
+    const emDash = entryFor(entries, ONCE_EM_DASH);
+    expect(emDash).toContain(`### ${ONCE_EM_DASH} -- RULED OUT (iteration 1, 1 attempt)`);
+    expect(emDash).toContain(`- Why ruled out: ${ONCE_EM_DASH_REASON}`);
+
+    // An item with no reason keeps the fixed sentence, which is all the evidence a
+    // single pass leaves behind.
+    expect(entryFor(entries, BARE)).toContain('- Why ruled out: One pass of evidence did not support this direction.');
+
+    const blocked = entryFor(entries, BLOCKED);
+    expect(blocked).toContain(`### ${BLOCKED} -- BLOCKED (iteration 2, 2 attempts)`);
+    expect(blocked).toContain(`- What was tried: ${BLOCKED}`);
+    expect(blocked).toContain(`- Why blocked: ${BLOCKED_REASON}`);
+    expect(blocked).toContain(`- Do NOT retry: ${BLOCKED}`);
   });
 });

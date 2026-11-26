@@ -1,6 +1,341 @@
 [
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/README.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/README.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-agents-md-block-devin-quote.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-agents-md-check.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-agents-md-check.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-agents-md-cursor-mirror-load.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-agents-md-embed-restore.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-agents-md-embed-restore.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-ci-report.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-ci-report.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-ci-scaffold.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-ci-scaffold.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-ci-toggle-conversation.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-ci-toggle-conversation.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-ci-toggle.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-deep-loop-empty-no-source.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-deep-loop-empty-no-source.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-deep-loop-scope.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-env-inspect.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-env-inspect.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-env-save-preference.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-env-save-preference.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-env-secret-and-per-invocation.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-env-secret-and-per-invocation.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-hooks-list.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate-conversation.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate-conversation.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-setup-check.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-setup-check.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule-conversation.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule-conversation.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-copy-once.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-standards-refuse-invalid.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-git-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-git-target-menu.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-helper-read-only-pick.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-helper-writing-handoff.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-helper-writing-handoff.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-install.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-install.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-debug-fix.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-debug-fix.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-debug.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-debug.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-install.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-install.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-mcp-unknown-flag.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-contested-second-line.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-env-prompt.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-no-hint-unrelated.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-python-typed-command.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-setup-hint.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-routing-setup-onboarding.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-drift.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-drift.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-in-sync.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-runtime-mirrors-in-sync.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-setup-run.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-setup-run.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-sk-code-pre-v4-checkout.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-sk-code-quality.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-sk-code-quality.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-sk-code-setup.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-sk-skill-check.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-sk-skill-check.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-sk-skill-convert.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-speckit-legacy-target.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-speckit-legacy-target.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-speckit-retrieval-healthy.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-speckit-retrieval-healthy.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-speckit-stale-index.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-speckit-stale-index.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-symlink.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-symlink.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-align.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-align.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-apply.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-check.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-check.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-compat.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-compat.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-record-base.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-record-base.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-rollback.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-rollback.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-update-test-environment.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-update-test-environment.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/adopt-an-unowned-file.md",
     "diskPath": "manual-testing-playbook/overlays/adopt-an-unowned-file.md"
   },
@@ -23,6 +358,11 @@
     "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/relayout-moves-sources.md",
     "diskPath": "manual-testing-playbook/overlays/relayout-moves-sources.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/removed-items-leave-the-file.md",
+    "diskPath": "manual-testing-playbook/overlays/removed-items-leave-the-file.md"
   },
   {
     "workflowMode": "system-skilled-doctor",

@@ -4,7 +4,7 @@
 role: Diagnostic Operator reporting how far one skill, or the whole fleet, is from the Skilled format, and which of the eleven hub integration surfaces a skill still needs
 purpose: Report rows C1 to C13 for one skill, one row per skill root for the whole fleet, or the eleven-surface hub gap table for a skill or mode headed into a hub, by running the shipped checkers in their check-only forms and naming the repair for each finding
 action: Run .skilled/commands/doctor/scripts/sk-skill-check.cjs once -> render its fleet table, deep report or hub gap report through the presentation contract
-skill_owner: ".skilled/skills/sk-doc/sk-create-skill/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

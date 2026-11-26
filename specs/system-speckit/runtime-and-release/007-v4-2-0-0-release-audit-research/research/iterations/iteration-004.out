@@ -1,0 +1,12 @@
+Iteration 4’s record was accepted by the append gateway, and the local artifacts are present. The record has status `complete`; **strict packet validation remains failed**, so I’m not claiming the packet is complete.
+
+- The iteration found why Q2 stayed open: iteration 3’s answer omitted `Q2:`, while the reducer compares the full question after whitespace normalization. This record carries Q2’s exact text for the next reducer pass.
+- The static review found no version or mode-key drift across the three current hub registry/router pairs. Q3 remains open for runtime route and executor-consumer checks; none were run here.
+
+Artifacts: [iteration-004.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-004.md), [iter-004.jsonl](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-004.jsonl), and the progressive [research.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/research.md).
+
+Verification: gateway receipt sequence 14; the projection has four iteration records; all 156 source tags resolve. Strict validation returned `RESULT: FAILED` (exit 2) for generated metadata drift/integrity and a scaffold placeholder in `implementation-summary.md`. Those files are outside this iteration’s write scope and were left untouched.
+
+The next iteration can continue Q3. Nothing is blocked on you. Work is modified but uncommitted on `main`.
+
+Skill routing: supplied `@deep-research` LEAF via `system-deep-loop`; `/deep:research` was already dispatched. Repo rules loaded: prevent-overengineering, evidence-and-proof, communication, communication-handoff, uncertainty-and-honesty, and skill-hub-routing.

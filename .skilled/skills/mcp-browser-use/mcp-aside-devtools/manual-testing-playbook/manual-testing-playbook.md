@@ -1,7 +1,7 @@
 ---
 title: "MCP Aside Devtools: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-aside-devtools skill."
-version: 1.0.3.0
+version: 1.0.5.0
 ---
 
 # MCP Aside Devtools: Manual Testing Playbook
@@ -32,7 +32,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 ## 1. OVERVIEW
 
-This playbook provides 29 deterministic scenarios across 8 categories (7 operator categories plus the routing-recall contracts) validating the `mcp-aside-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides deterministic scenarios across the operator categories plus the routing-recall contracts, validating the `mcp-aside-devtools` skill surface. The validator derives the scenario and category counts from the tree. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -45,7 +45,7 @@ This playbook provides 29 deterministic scenarios across 8 categories (7 operato
 
 - The MCP tool inventory is version-pinned evidence (one `repl` tool on `1.26.626.1517`) — scenarios assert *discovery ran*, not that the inventory matches forever.
 - Console capture (ASD-012) and network capture (ASD-013) began as guarded probes with no verified contract. ASD-018 then documented the Playwright `page.on(...)` pattern, but on Aside 1.26.626.1517 `page.on('console')`, `page.on('request')` and `page.on('response')` each throw an error that lists the supported page events and points to `page.console.logs()`, and `page.context()` does not exist. The probes and ASD-018 record that per-event outcome; live execution still needs a bound authorized session, so ASD-016..021 are SKIP-valid without one.
-- The DevTools-parity family (ASD-016..021) mirrors the Chrome DevTools capability surface through the fixture-confirmed Playwright `page` API. Two honest gaps stay flagged, never claimed: **no native HAR export** (assemble a HAR-equivalent from events) and **no Lighthouse audit** (Performance-API timing only).
+- The DevTools-parity family (ASD-016..021) mirrors the Chrome DevTools capability surface through the fixture-confirmed Playwright `page` API. Two honest gaps stay flagged, never claimed: **no native HAR export**, and on 1.26.626.1517 no HAR-equivalent either, because `page.on` rejects the network events one would be built from, and **no Lighthouse audit** (Performance-API timing only).
 - Never run the installer or `aside --update` inside a scenario; ASD-014 simulates absence with PATH manipulation only.
 
 ---
@@ -209,7 +209,7 @@ Verify a REPL screenshot writes a real PNG (existence, size > 0, magic bytes `89
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, capture a screenshot of a page opened in the same REPL evaluation through the aside REPL. Verify the file exists, is non-empty, and starts with PNG magic bytes. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: one `aside repl` evaluation opens the tab, writes `./tmp/aside-test.png` in the session folder and reads it back with `fs`; Step 2: the logged size is > 0; Step 3: the logged magic is `89504e47`. The older `examples/repl-evidence-capture.sh` chains separate calls and a `/tmp` path, so it does not hold on Aside 1.26.626.1517.
+Expected signals: Step 1: one `aside repl` evaluation opens the tab, writes `./tmp/aside-test.png` in the session folder and reads it back with `fs`; Step 2: the logged size is > 0; Step 3: the logged magic is `89504e47`. `examples/repl-evidence-capture.sh` runs the same one-evaluation form. It has not yet been run as a script against a live Aside.
 
 #### Test Execution
 > **Feature File:** [ASD-007](repl-evidence/repl-screenshot-artifact.md)
@@ -402,7 +402,7 @@ Verify the workflow reports a clear CLI_MISSING state with the official install 
 #### Scenario Contract
 Prompt summary: As a manual-testing orchestrator, simulate a missing aside binary with a restricted PATH through the doctor script against the local machine. Verify the diagnosis names the missing binary and reports the official installer as operator-invoked guidance only. Return a concise user-facing pass/fail verdict with the main reason.
 
-Expected signals: Step 1: `bash: PATH=/usr/bin:/bin bash scripts/doctor.sh` reports "aside not on PATH"; Step 2: output includes the official curl install command as guidance; Step 3: nothing was installed or modified.
+Expected signals: Step 1: `bash: PATH=/usr/bin:/bin bash .skilled/skills/mcp-browser-use/mcp-aside-devtools/scripts/doctor.sh` reports "aside not on PATH"; Step 2: output includes the official curl install command as guidance; Step 3: nothing was installed or modified.
 
 #### Test Execution
 > **Feature File:** [ASD-014](recovery-and-failure/missing-binary.md)

@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-11-21-browser-use-hub-plan"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,7 +84,7 @@ and findings belong here.
 | Install answer | Recorded before step 3 | Operator, 2026-11-21, parent decision Q011: "Yes, agent profile only (Recommended)" to installing `bladebro@4.8.2` pinned, SHA-256 checked before first run, rollback `npm uninstall -g bladebro` plus removing its data root |
 | Bladebro live run | Done | Steps 1-10 PASS on macOS arm64 in the isolated agent profile, digest matched the v4.8.2 sidecar before first run; recorded in `mcp-bladebro/benchmark/reports/2026-11-21--manual-testing-playbook--macos-live/` (12 PASS, 1 FAIL, 1 SKIP) |
 | Attach probe | Done, PASS | After the clone failure the operator asked to kill Aside so attach could be tried (2026-11-21). Aside started with `--remote-debugging-port=9333`; `bladebro see content`, `see model` and `act eval` with `--port 9333` each exit 0, `webdriver=false`. Aside quit afterwards and the port closed. Recorded in `mcp-bladebro/benchmark/reports/2026-11-21--attach-probe--aside-browser/` |
-| Mode playbook runs | Done | Chrome DevTools 4 PASS, 1 FAIL (BDG-008, example.com has no `h1`). Aside first run 2 PASS, 2 FAIL, 1 SKIP with the app closed, re-run with the app running 3 PASS |
+| Mode playbook runs | Done | Chrome DevTools 4 PASS, 1 FAIL (BDG-008, example.com has no `h1`). Aside first run 2 PASS, 2 FAIL, 1 SKIP with the app closed, re-run with the app running 3 PASS. A later Chrome DevTools run on 2026-11-22 covered the remaining scenarios: 4 PASS, 13 FAIL, in `mcp-chrome-devtools/benchmark/reports/2026-11-22--manual-testing-playbook--remaining-live/` |
 | Hub routing | Done | 7 scenarios; MT-H04 deferred against an Aside gold. Operator: "Gold to defer (Recommended)". Admission now 7 pass, 0 drift for the hub and passes for all 8 hubs |
 | Routing benchmark | Done | `benchmark/reports/compiled-routing/2026-11-21--two-stage-replay--compiled/`: 6 of 6 pass both stages, each mode 2 of 2 |
 | Uninstall | Declined | Operator: "Keep it installed (Recommended)". Rollback stays available: `npm uninstall -g bladebro` and `rm -rf ~/.local/state/blade` |

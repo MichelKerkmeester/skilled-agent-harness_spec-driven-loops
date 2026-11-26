@@ -919,6 +919,21 @@ test('a manifest source under root/skilled is a blocked overlay for its entry', 
   assert.ok(refusedLine, status.output);
 });
 
+test('a manifest source under a case variant of root/skilled is a blocked overlay', (t) => {
+  const fixture = createStrictFixture(t);
+  writeFile(fixture.overlayDir, 'root/Skilled/notes.md', 'notes\n');
+  const manifest = readJson(fixture.manifestPath);
+  manifest.overlays.push({ id: 'under-root-skilled-case', scope: 'file', source: 'root/Skilled/notes.md', destination: 'notes.md' });
+  fs.writeFileSync(fixture.manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+  const status = fixture.run(['status']);
+
+  assert.notEqual(status.code, 0, status.output);
+  const refusedLine = status.stdout.split('\n').find((line) =>
+    line.includes('under-root-skilled-case') && line.includes('root/Skilled') && !line.startsWith('LAYOUT'));
+  assert.ok(refusedLine, status.output);
+});
+
 test('a manifest fragment under root/skilled is a blocked overlay for its entry', (t) => {
   const fixture = createStrictFixture(t);
   writeFile(fixture.overlayDir, 'root/skilled/notes.md', 'notes\n');

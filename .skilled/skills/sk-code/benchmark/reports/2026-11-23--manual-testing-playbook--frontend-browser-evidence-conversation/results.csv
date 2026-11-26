@@ -1,0 +1,3 @@
+# recorded by record-playbook-run.cjs from outside the repository and not kept (live-evidence4)
+scenario_id,runtime,verdict,reason,evidence
+RD-006,claude-code,FAIL,CHECK_FAILED,outside the repository and not kept (claude-code)

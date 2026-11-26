@@ -1,27 +1,27 @@
 ---
 title: "Daemon-backed skill-advisor CLI"
-description: "CLI fallback over the advisor daemon: 9 commands with byte-identical schemas to TOOL_DEFINITIONS, a fail-closed trusted-mutation gate (--trusted / SYSTEM_SKILL_ADVISOR_CLI_TRUSTED, daemon-side SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT), warm-only no-spawn probing, dist-freshness guard, and the shared 0/1/64/69/75 exit taxonomy."
+description: "CLI fallback over the advisor daemon with 9 commands. Its schemas match TOOL_DEFINITIONS byte for byte. It has a client-side trusted-mutation gate, a daemon trust default set by the launcher, warm-only no-spawn probing, a dist-freshness guard, and exit codes 0, 1, 64, 69, and 75."
 trigger_phrases:
   - "skill-advisor cli"
   - "advisor cli fallback"
   - "trusted mutation gate"
   - "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Daemon-backed skill-advisor CLI
 
 ## 1. OVERVIEW
 
-The CLI front door `node .skilled/bin/skill-advisor.cjs` is the only surface over the advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched, and the OpenCode plugin plus the Claude/OpenCode prompt-submit hooks shell out to the CLI.
+The CLI front door `node .skilled/bin/skill-advisor.cjs` is the only surface over the advisor daemon contract. It exposes 9 commands through a hand-maintained manifest. Its schemas match the server `TOOL_DEFINITIONS` byte for byte. The parity suite at `runtime/tests/skill-advisor-cli-manifest-parity.vitest.ts` checks the two registries. Drift fails tests. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade is separate. The OpenCode plugin and the Claude and OpenCode prompt-submit hooks shell out to the CLI.
 
 ---
 
 ## 2. HOW IT WORKS
 
-### Fail-closed trusted-mutation gate
+### Client-side trusted-mutation gate
 
-Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `skill_graph_scan`, and `skill_graph_propagate_enhances` in real apply mode (`mode=apply` with `dryRun` not true; the schema defaults `dryRun` to true, keeping default apply-mode calls read-safe) — requires `--trusted` (alias `--maintainer`) or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Untrusted attempts are refused client-side with exit 64 before any IPC frame. The daemon enforces the gate independently via `_meta.callerAuthority`, defaulting untrusted unless `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the daemon's own environment.
+Calls are untrusted by default. The mutation set is `advisor_rebuild`, `skill_graph_scan`, and real apply calls to `skill_graph_propagate_enhances`. A real apply uses `mode=apply` when `dryRun` is not true. The schema defaults `dryRun` to true, so the default apply-mode call remains read-safe. These calls require `--trusted`, its `--maintainer` alias, or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Untrusted attempts are refused client-side with exit 64 before any IPC frame. The daemon also checks the caller block the CLI sends (`_meta.trusted` and `_meta.callerAuthority`). A caller can assert its own trust, so this protects cooperative callers. The owner-only IPC socket is the access boundary. A frame without a caller block gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT` from the daemon's environment. The code default is untrusted. The launcher sets the value to `trusted` when it starts the daemon and the environment leaves the value unset.
 
 ### Shim guards and exit taxonomy
 
@@ -59,6 +59,7 @@ A resident daemon started from an older build rejects the newer request options 
 | File | Type | Role |
 |---|---|---|
 | `runtime/tests/skill-advisor-cli-parity.vitest.ts` | Automated test | 10-prompt local-vs-native parity fixture (runs real python3) |
+| `runtime/tests/skill-advisor-cli-manifest-parity.vitest.ts` | Automated test | Manifest tool set, descriptions and schemas equal to `TOOL_DEFINITIONS` |
 | `runtime/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Two callers against one resident daemon |
 | `runtime/tests/skill-advisor-cli-job-semantics.vitest.ts` | Automated test | Rebuild/scan job semantics with measured wall-time under mutation |
 | `runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Automated test | Real-launcher orphan reaping (killed parent, removed worktree, warm adoption) |

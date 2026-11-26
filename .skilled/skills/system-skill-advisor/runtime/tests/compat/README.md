@@ -30,7 +30,6 @@ Current state:
 compat/
 +-- daemon-probe.vitest.ts          # Advisor daemon availability states
 +-- python-compat.vitest.ts         # Python suite runner from Vitest
-+-- redirect-metadata.vitest.ts     # Redirect metadata compatibility
 +-- shim.vitest.ts                  # Compatibility shim behavior
 `-- README.md
 ```
@@ -43,7 +42,6 @@ compat/
 |---|---|
 | `daemon-probe.vitest.ts` | Verifies live, stale, absent, unavailable and disabled daemon probe states. |
 | `python-compat.vitest.ts` | Runs `tests/python/test_skill_advisor.py` from the Vitest suite. |
-| `redirect-metadata.vitest.ts` | Checks the redirect metadata contract callers rely on. |
 | `shim.vitest.ts` | Covers the compatibility shim's behavior. |
 
 ---

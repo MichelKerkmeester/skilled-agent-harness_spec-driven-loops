@@ -33,7 +33,7 @@ if command -v aside >/dev/null 2>&1; then
 else
   warn "aside not on PATH"
   [ -x "$HOME/.local/bin/aside" ] && info "Found ~/.local/bin/aside — add ~/.local/bin to PATH"
-  info "Install (operator-invoked): curl -fsSL https://releases.aside.com/install.sh | bash"
+  info "Install (operator-invoked): bash scripts/install.sh, which verifies the pinned installer digest"
   log ""
   log "Doctor is read-only. For setup, see install.sh and INSTALL-GUIDE.md."
   exit 0

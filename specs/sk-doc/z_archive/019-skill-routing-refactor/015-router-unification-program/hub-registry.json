@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "V1",
+  "hubs": [
+    {
+      "id": "sk-code",
+      "rolloutChild": "009-parent-hub-rollout/001-sk-code",
+      "defaultOn": true
+    },
+    {
+      "id": "system-deep-loop",
+      "rolloutChild": "009-parent-hub-rollout/002-system-deep-loop",
+      "defaultOn": true
+    },
+    {
+      "id": "mcp-tooling",
+      "rolloutChild": "009-parent-hub-rollout/003-mcp-tooling",
+      "defaultOn": true
+    },
+    {
+      "id": "cli-external-orchestration",
+      "rolloutChild": "009-parent-hub-rollout/004-cli-external-orchestration",
+      "defaultOn": true
+    },
+    {
+      "id": "cli-classifier",
+      "rolloutChild": "009-parent-hub-rollout/008-cli-classifier",
+      "defaultOn": true
+    },
+    {
+      "id": "sk-doc",
+      "rolloutChild": "009-parent-hub-rollout/007-sk-doc",
+      "defaultOn": true
+    },
+    {
+      "id": "sk-design",
+      "rolloutChild": "009-parent-hub-rollout/009-sk-design",
+      "defaultOn": true
+    },
+    {
+      "id": "mcp-browser-use",
+      "rolloutChild": "009-parent-hub-rollout/010-mcp-browser-use",
+      "defaultOn": true
+    },
+    {
+      "id": "system-skilled-bots",
+      "rolloutChild": "009-parent-hub-rollout/011-system-skilled-bots",
+      "defaultOn": true
+    }
+  ]
+}

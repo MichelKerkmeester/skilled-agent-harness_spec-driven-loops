@@ -20,6 +20,7 @@ type LineageDataFixture = {
   kind?: string;
   model?: string;
   reasoningEffort?: string | null;
+  trust?: { runnerStatus: string; failureClass: string | null; unexaminedPasses: Record<number, string[]> };
 };
 
 const {
@@ -2197,6 +2198,27 @@ describe('research frontier merge', () => {
     });
     const frontier = merged.frontier as { partitionGuard?: { passed: boolean; missing: string[] } };
     expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-004'] });
+  });
+
+  it('counts no coverage for a node only an untrusted lineage reports', () => {
+    const untrustedB: LineageDataFixture = {
+      ...lineageB,
+      trust: { runnerStatus: 'failed', failureClass: 'exit', unexaminedPasses: {} },
+    };
+    const merged = mergeResearchRegistries([lineageA, untrustedB], {
+      frontierPartition: { a: ['F-1-001'], b: ['F-1-002'] },
+    });
+    const frontier = merged.frontier as {
+      nodes: Array<{ nodeId: string; _untrusted?: boolean }>;
+      stats: Record<string, number>;
+      partitionGuard?: { passed: boolean; missing: string[] };
+    };
+
+    expect(frontier.partitionGuard).toEqual({ passed: false, missing: ['F-1-002'] });
+    expect(frontier.nodes).toHaveLength(4);
+    expect(frontier.nodes.find((node) => node.nodeId === 'b:F-1-002')).toMatchObject({ _untrusted: true });
+    expect(frontier.stats.total).toBe(2);
+    expect(frontier.stats.answered).toBe(0);
   });
 });
 

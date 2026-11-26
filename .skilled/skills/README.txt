@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 16 top-level skill identities across four catalog families, with routing guidance and creation workflow."
+description: "Catalog and front door to 15 top-level skill identities across four catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,14 +21,14 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Four prefix families: `cli-*` (3), `mcp-*` (3), `sk-*` (5), `system-*` (5) |
+| **Families** | Four prefix families: `cli-*` (2), `mcp-*` (3), `sk-*` (5), `system-*` (5) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
 
 ## 2. OVERVIEW
 
-Sixteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
+Fifteen top-level skill identities live under `.skilled/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
 New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
@@ -44,7 +44,6 @@ Each skill name links to its own README. One-line descriptions reflect current b
 |---|---|
 | [`cli-classifier`](cli-classifier/README.md) | Parent hub for typed judgments from classifier models: routes by `workflowMode` to the `packetKind: "transport"` mode `cli-jev` (over the `cli-jev` packet, bridging the Jev CLI and MCP surface), returning one typed value and never mutating the workspace |
 | [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-mistral-vibe` and the experimental `cli-deepseek-harness`, whose LLM Gateway route passed a keyed run |
-| [`cli-orca`](cli-orca/README.md) | Standalone class-S skill for Orca CLI work: managed worktrees, terminals, the embedded browser, automations, artifacts, handoffs and skill sharing, plus one authored reference and one verbatim snapshot for each of the eight official Orca skills |
 
 ### mcp-*: External Tool Surfaces
 

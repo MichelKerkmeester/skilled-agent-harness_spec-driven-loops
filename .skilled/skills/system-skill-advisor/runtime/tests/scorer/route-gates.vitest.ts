@@ -57,14 +57,14 @@ describe('read-only command bridge exemption', () => {
 });
 
 describe('read-only prompt that names a cli tool', () => {
-  const orca: SkillProjection = { ...skill('cli-orca'), family: 'cli' };
+  const widget: SkillProjection = { ...skill('cli-widget'), family: 'cli' };
 
   it('lets a cli skill answer a list prompt that names its tool', () => {
-    expect(readOnlyRouteAllowed('list my orca worktrees and open a terminal in the new one', orca)).toBe(true);
+    expect(readOnlyRouteAllowed('list my widget worktrees and open a terminal in the new one', widget)).toBe(true);
   });
 
   it('keeps the floor when the prompt names no tool', () => {
-    expect(readOnlyRouteAllowed('list my worktrees and open a terminal in the new one', orca)).toBe(false);
+    expect(readOnlyRouteAllowed('list my worktrees and open a terminal in the new one', widget)).toBe(false);
   });
 
   it('keeps a non-cli skill gated on its bare suffix', () => {
@@ -87,6 +87,21 @@ describe('read-only prompt about captured decisions', () => {
 
   it('keeps spec-kit gated on a show prompt with no decision noun', () => {
     expect(readOnlyRouteAllowed('show the queue for this project.', skill('system-spec-kit'))).toBe(false);
+  });
+});
+
+describe('read-only prompt that attaches to the operator\'s own Chrome', () => {
+  it('lifts the browser hub when the prompt names the own-Chrome attach', () => {
+    expect(readOnlyRouteAllowed('attach to my own chrome and inspect the signed-in dashboard.', skill('mcp-browser-use'))).toBe(true);
+    expect(readOnlyRouteAllowed('attach with chrome_devtools_live and inspect the signed-in dashboard.', skill('mcp-browser-use'))).toBe(true);
+  });
+
+  it('keeps the browser hub floored on a signed-in page with no browser named', () => {
+    expect(readOnlyRouteAllowed('inspect the signed-in dashboard and explain the revenue drop.', skill('mcp-browser-use'))).toBe(false);
+  });
+
+  it('keeps the browser hub floored on a question about Chrome itself', () => {
+    expect(readOnlyRouteAllowed('explain what my logged-in chrome profiles sync between devices.', skill('mcp-browser-use'))).toBe(false);
   });
 });
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "mcp-browser-use"
   - "browser use hub"
   - "chrome devtools aside bladebro"
-version: 1.1.2.0
+version: 1.1.5.0
 ---
 
 # mcp-browser-use
@@ -39,9 +39,9 @@ Each mode is one packet folder with its own `SKILL.md`, `ROUTER.md` and changelo
 
 | Packet | Kind | Use it for | Pointer |
 |---|---|---|---|
-| `mcp-chrome-devtools/` | workflow | Chrome DevTools inspection, debugging, Lighthouse audits and performance traces | [`README.md`](./mcp-chrome-devtools/README.md) |
+| `mcp-chrome-devtools/` | workflow | Chrome DevTools inspection, debugging, Lighthouse audits, performance traces and attaching to the user's own Chrome | [`README.md`](./mcp-chrome-devtools/README.md) |
 | `mcp-aside-devtools/` | workflow | Deterministic signed-in REPL runs and captured REPL evidence | [`README.md`](./mcp-aside-devtools/README.md) |
-| `mcp-bladebro/` | workflow | Stealth browsing, agentic branching and caller-owned browser attachment | [`README.md`](./mcp-bladebro/README.md) |
+| `mcp-bladebro/` | workflow | Stealth browsing, agentic branching and attachment to a caller-owned or already-open browser that names no Chrome | [`README.md`](./mcp-bladebro/README.md) |
 
 The tie-break order is Chrome DevTools, then Aside, then Bladebro. It settles overlap between debugging and stealth work. It also settles overlap between signed-in proof and agentic signed-in work.
 
@@ -55,7 +55,7 @@ The tie-break order is Chrome DevTools, then Aside, then Bladebro. It settles ov
 | [`hub-router.json`](./hub-router.json) | Stage-one signals, vocabulary and tie-break order | See how a request scores against each mode |
 | [`ROUTER.md`](./ROUTER.md) | Stage-two intent and resource maps | See which leaves a selected mode loads |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the reference and asset files a mode loads |
-| [`leaf-scopes.json`](./leaf-scopes.json) | The folders and files each mode may route to, beyond its defaults | See why the Lighthouse catalog leaf is routable for Chrome DevTools |
+| [`leaf-scopes.json`](./leaf-scopes.json) | Extra folders and files a mode may route to beyond its defaults. Only Chrome DevTools has an entry | See why the Lighthouse catalog leaf is routable for Chrome DevTools |
 
 The manifest regenerates when packets change, so read it as a snapshot.
 
@@ -63,10 +63,14 @@ The manifest regenerates when packets change, so read it as a snapshot.
 
 ## 4. CHANGELOG
 
-Releases live in `changelog/` with one file per release, named `v[version].md`. Each entry opens with the release title and the reason, then lists what changed and the files changed.
+Releases live in `changelog/` with one file per release, named `v[version].md`. Each entry opens with the release title and the reason, then lists what changed and how to upgrade.
 
 | Release | Entry |
 |---|---|
+| 1.1.5.0 | [`changelog/v1.1.5.0.md`](./changelog/v1.1.5.0.md) |
+| 1.1.4.0 | [`changelog/v1.1.4.0.md`](./changelog/v1.1.4.0.md) |
+| 1.1.3.0 | [`changelog/v1.1.3.0.md`](./changelog/v1.1.3.0.md) |
+| 1.1.2.0 | [`changelog/v1.1.2.0.md`](./changelog/v1.1.2.0.md) |
 | 1.1.1.0 | [`changelog/v1.1.1.0.md`](./changelog/v1.1.1.0.md) |
 | 1.1.0.0 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) |
 | 1.0.0.0 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) |

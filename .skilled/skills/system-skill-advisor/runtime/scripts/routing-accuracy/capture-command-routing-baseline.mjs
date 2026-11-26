@@ -532,9 +532,12 @@ export async function scoreCommandCorpus() {
         const family = attachedFamilyTally(plainAttachedByFamily, expected);
         if (family) addAttachedRow(family[row.split], top1Hit, attachedHit);
         // `own` and `ownerLed` split the rows and `neither` is the remainder,
-        // while the counted stages nest from owner-led down to attached.
+        // while the counted stages nest from owner-led down to attached. A hub
+        // whose own route attached the expected command leads the row even when
+        // another skill owns that command, as the deep-loop hub does with the
+        // doctor command that diagnoses its runs.
         const owningSkill = expected === null ? undefined : commandOwner.get(expected);
-        const ownerLed = !top1Hit && owningSkill !== undefined && owningSkill === topId;
+        const ownerLed = !top1Hit && ((owningSkill !== undefined && owningSkill === topId) || attachedHit);
         const routed = ownerLed && route !== undefined;
         const withCommand = routed && attached !== undefined;
         addStageRow(plainStages[row.split], {

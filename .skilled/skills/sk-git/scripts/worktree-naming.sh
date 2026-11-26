@@ -505,6 +505,26 @@ _wn_deps_satisfied() {
   return 1
 }
 
+# _wn_npm_install_root <pkgdir> <worktree> -- print the nearest directory, from the
+# package up to the worktree root, that holds a package-lock.json. npm installs
+# into that directory, so the dependency walk must stop there: a package with its
+# own lockfile never reads an ancestor's node_modules at install time, and an
+# ancestor that happens to install a same-named dev dependency would otherwise
+# pass for this package's install and leave its own dev dependencies missing.
+# A workspace member has no lockfile, so its walk reaches the workspace root.
+# With no lockfile on the way, the worktree root bounds the walk.
+_wn_npm_install_root() {
+  local cur root="$2"
+  cur="$(cd "$1" 2>/dev/null && pwd -P)" || { printf '%s\n' "$root"; return 0; }
+  while :; do
+    [ -f "$cur/package-lock.json" ] && { printf '%s\n' "$cur"; return 0; }
+    [ "$cur" = "$root" ] && break
+    [ "$cur" = "/" ] && break
+    cur="$(dirname "$cur")"
+  done
+  printf '%s\n' "$root"
+}
+
 _wn_provision_paths_file() {
   local here
   here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)" || return 1
@@ -659,10 +679,11 @@ _wn_link_local_commands() {
 # Idempotent: existing dependencies are skipped, a listed output is built when it is
 # missing, and rebuilt when the tracked sources its list line names changed since
 # provisioning last built it. Exits non-zero if any install or build failed, so a
-# half-provisioned tree is never reported ready.
+# half-provisioned tree is never reported ready. It also builds the advisor skill-graph
+# database when the worktree has none or an empty one.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
-  local tool deps_root install_log build_reason stale_reason top built_fingerprint
+  local tool deps_root install_log scan_log build_reason stale_reason top built_fingerprint
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -692,7 +713,7 @@ provision_worktree() {
       && [ ! -f "$dir/$pkg/package-lock.json" ]; then
       tool=bun; deps_root="$dir/$pkg"
     else
-      tool=npm; deps_root="$dir"
+      tool=npm; deps_root="$(_wn_npm_install_root "$dir/$pkg" "$dir")"
     fi
 
     if _wn_deps_satisfied "$dir/$pkg" "$deps_root"; then
@@ -772,6 +793,33 @@ provision_worktree() {
     fi
   done < "$list"
 
+  # The advisor's skill-graph database is gitignored, so a new worktree has none
+  # and the advisor reports degraded health until a scan builds it. The scan runs
+  # the built advisor, so it waits until every install and build succeeded, and a
+  # non-empty database is never rescanned.
+  local graph_db="$dir/.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+  if [ "$failed" -eq 0 ] && [ -f "$dir/.skilled/bin/skill-advisor.cjs" ] && [ ! -s "$graph_db" ]; then
+    echo "  building the skill-graph database" >&2
+    # The scan's output goes to a log for the same reason the installer's does:
+    # a failure has to name its cause, and the advisor's own error line is the
+    # only place that cause appears.
+    scan_log="$(mktemp)"
+    if ! command -v node >/dev/null 2>&1; then
+      echo "  FAILED: skill-graph scan (node not found)" >&2
+      failed=$((failed + 1))
+    elif ! ( cd "$dir" && node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text >"$scan_log" 2>&1 ); then
+      echo "  FAILED: skill-graph scan" >&2
+      # A log with no error line must not end a caller running under set -e.
+      grep -i -m 4 'error' "$scan_log" | sed 's/^/    /' >&2 || true
+      failed=$((failed + 1))
+    elif [ ! -s "$graph_db" ]; then
+      echo "  FAILED: skill-graph scan left the database missing or empty" >&2
+      failed=$((failed + 1))
+    else
+      built=$((built + 1))
+    fi
+    rm -f "$scan_log"
+  fi
   _wn_link_local_commands "$dir"
   echo "provisioned: $installed installed, $built built, $skipped already present, $failed failed" >&2
   [ "$failed" -eq 0 ]

@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro mcp"
   - "bladebro code mode"
   - "bladebro call_tool_chain"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # MCP lane through Code Mode (bladebro mcp)
@@ -23,7 +23,7 @@ The MCP lane changes the transport, not the capability. It is the route when the
 
 ### The Manual
 
-`.utcp_config.json` carries one manual named `bladebro`: a stdio server that runs `bladebro mcp` with an empty `env`, because the server needs no credential. The packet states the exact JSON once, in `assets/utcp-bladebro-manual.md`, and checks it with `jq` instead of adding it again. Launching through `npx -y bladebro mcp` pulls the package at launch, which counts as an install and needs an operator yes.
+`.utcp_config.json` carries one manual named `bladebro`: a stdio server that runs `bladebro mcp` with an empty `env`, because the server needs no credential. The packet states the exact JSON once, in `assets/utcp-bladebro-manual.md`, and checks it with `jq` instead of adding it again. Launching through `npx -y bladebro@4.8.2 mcp` pulls the package at launch, which counts as an install and needs an operator yes.
 
 ### Discovery Before Invocation
 

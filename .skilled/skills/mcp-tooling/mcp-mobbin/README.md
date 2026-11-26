@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.9.0
+version: 1.1.11.0
 ---
 
 # mcp-mobbin
@@ -66,7 +66,7 @@ Expect exit 0 with `OK    'mobbin' manual registered in .utcp_config.json` and `
 **Step 2: Confirm the callable.**
 
 ```typescript
-const info = await tool_info({ tool_name: "mobbin.mobbin_search_screens" })
+const info = tool_info({ tool_name: "mobbin.mobbin_search_screens" })
 ```
 
 Expect a schema for `mobbin.mobbin_search_screens`. Discovery works before OAuth. Fail closed on any drift from the fixture baseline.
@@ -76,7 +76,7 @@ Expect a schema for `mobbin.mobbin_search_screens`. Discovery works before OAuth
 ```typescript
 call_tool_chain({
   code: `
-    const result = await mobbin.mobbin_search_screens({
+    const result = mobbin.mobbin_search_screens({
       query: "iOS banking app onboarding identity verification",
       platform: "ios",
       limit: 5
@@ -152,7 +152,7 @@ MCP starts at Pro. The Free plan has no MCP access. The exact denial payload for
 
 Reach for this packet when the request names Mobbin or asks for real app screenshots, screen examples from shipped apps, UX flow references or app design research. Reach for it when the `mobbin` manual's wiring state needs reporting, including the plan gate and the auth model.
 
-Skip it when the work is measured extraction, which is `sk-design-md-generator`'s job. Skip it for Refero research (`mcp-refero`), for Figma work (`mcp-figma`), for browser automation and previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip the Mobbin docs search too, because `docs.mobbin.com/mcp` is a separate docs-search MCP and not this packet's server. Never use it to change files. The manual and the auth state are operator-owned.
+Skip it when the work is measured extraction, which is `sk-design-md-generator`'s job. Skip it for Refero research (`mcp-refero`), for Figma work (`mcp-figma`), for browser automation and previews (the `mcp-browser-use` hub) and for generic app coding (`sk-code`). Skip the Mobbin docs search too, because `docs.mobbin.com/mcp` is a separate docs-search MCP and not this packet's server. Never use it to change files. The manual and the auth state are operator-owned.
 
 ### Related Skills
 
@@ -162,7 +162,7 @@ Skip it when the work is measured extraction, which is `sk-design-md-generator`'
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{manual}_{tool}` naming, discovery and the error envelope all come from Code Mode. |
 | `mcp-refero` | The closest sibling: another remote MCP over `mcp-remote`, read-only and OAuth-gated. It covers styles, screens and flows. This packet covers screens, flows and sections. |
 | `mcp-figma` | Figma work: inspect, tokens and render. No surface overlap with Mobbin. |
-| `mcp-chrome-devtools` | Browser inspection and preview, never a design-reference search surface. |
+| `mcp-browser-use` | Browser inspection and preview through any installed browser mode, never a design-reference search surface. |
 | `sk-code` | Owns adapting a design decision into application code and verifying it. |
 
 ---

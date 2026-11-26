@@ -1,0 +1,76 @@
+const fs = require("fs");
+const L = "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1";
+const sid = "fanout-deepseek-max-1-1795546920757-7pyjry";
+const rec = {
+  type: "iteration", iteration: 1, mode: "review", target_agent: "deep-review", agent_definition_loaded: true,
+  resolved_route: "Resolved route: mode=review target_agent=deep-review",
+  run: sid, status: "complete", focus: "traceability", dimension: "traceability",
+  dimensions: ["traceability"],
+  filesReviewed: [
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97",
+    ".skilled/commands/deep/assets/deep-review-presentation.txt:13",
+    ".skilled/commands/deep/assets/deep-research-presentation.txt:223",
+    ".skilled/commands/deep/review.md:81",
+    ".skilled/commands/deep/research.md:86",
+    ".skilled/commands/deep/assets/deep-research.yaml:663",
+    ".skilled/commands/deep/assets/deep-review.yaml:2534",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts:454",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts:546",
+    ".skilled/skills/system-skill-advisor/runtime/tests/fixtures/deep-loop-offer-cases.json:2",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl:226",
+    ".skilled/skills/system-deep-loop/hub-router.json:34",
+    ".skilled/skills/system-deep-loop/SKILL.md:20",
+    ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1",
+    "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1",
+    ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs:168",
+  ],
+  findingsCount: 2, findingsSummary: { P0: 0, P1: 1, P2: 1 },
+  findingsNew: ["R1-P1-001", "R1-P2-001"],
+  findingDetails: [
+    { id: "R1-P1-001", severity: "P1", title: "The seeded review scope omits the files four requirements change, so spec_code cannot close on them without failing the terminal scope gate", file: "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161", dimension: "traceability", findingClass: "class-of-bug", claimAdjudication: true },
+    { id: "R1-P2-001", severity: "P2", title: "AC-040 evidence pointer names the live report path that this rerun restart has already archived", file: "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97", dimension: "traceability", findingClass: "instance-only" },
+  ],
+  traceabilityChecks: { results: [
+    { protocolId: "spec_code", status: "partial", gateClass: "hard", applicable: true, evidence: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161", ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949", "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"], summary: "REQ-001 to REQ-014 resolved against code, command assets or the decision record; REQ-015 to REQ-048 pending iteration 2; the seeded scope omits twelve declared change-set surfaces" },
+    { protocolId: "checklist_evidence", status: "pending", gateClass: "hard", applicable: true, evidence: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"], summary: "Carried to iteration 3; all 56 Evidence tails parsed and 55 resolve on the cited line" },
+  ] },
+  newFindingsRatio: 1.0,
+  noveltyJustification: "Two findings against zero prior findings; the P1 is new in kind (scope definition) and the P2 is the first stale-evidence pointer located by the tail check.",
+  sessionId: sid, generation: 7, lineageMode: "new",
+  timestamp: new Date().toISOString(), durationMs: 1740000,
+  reviewDepthSchemaVersion: 2,
+  reviewDepthApplicability: { scopeClass: "complex", enforcement: "warn", reason: "54-file pre-bound scope spanning a TypeScript gate, its Python mirror, a shared fixture, two command assets and five packet docs", evidenceRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"] },
+  targetSelection: { selectedTargets: [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts", "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md", ".skilled/commands/deep/assets/deep-review-presentation.txt"], selectionReason: "spec_code part 1 needs the gate implementation, the requirement text and the offer contract", discoveryMethods: ["direct_read", "exact_search", "built_dist_probe"], omittedHighRiskTargets: ["runtime/dist/", "assets/compiled/", "hub-router.json", "command-prompts.jsonl"], graphStatus: "available", semanticSearchStatus: "unavailable", evidenceRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161"] },
+  searchCoverage: { requiredBugClasses: ["requirement_without_code", "evidence_pointer_stale", "scope_definition_gap", "stale_generated_artifact", "cross_copy_vocabulary_drift"], covered: ["requirement_without_code", "evidence_pointer_stale", "scope_definition_gap", "stale_generated_artifact", "cross_copy_vocabulary_drift"], ruledOut: ["requirement_without_code", "stale_generated_artifact", "cross_copy_vocabulary_drift"], deferred: [], blocked: [], graphCoverageMode: "graph" },
+  searchLedger: [
+    { id: "SL-001", dimension: "traceability", targetRefs: [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"], bugClass: "requirement_without_code", hypothesis: "a REQ row names no implementing symbol", searchActions: [{ method: "exact_search", queryOrPath: "LOOP_REQUEST, LOOP_WORDING, RUN_ASK_REFUSAL_LEADS, attachCommand", result: "each REQ-001..REQ-014 row mapped to a symbol or an asset line", evidenceRefs: [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:949"] }], disposition: "ruled_out", rationale: "every requirement in part 1 resolved to a symbol, an asset line or the decision record", ruledOutReason: "verified by direct read plus a built-dist probe" },
+    { id: "SL-002", dimension: "traceability", targetRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt"], bugClass: "scope_definition_gap", hypothesis: "the seeded scope does not contain the files the packet requirements change", searchActions: [{ method: "direct_read", queryOrPath: "review-scope-files.txt vs spec.md Files to Change and acceptance evidence paths", result: "12 declared change-set surfaces and 6 evidence paths sit outside the scope", evidenceRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/spec.md:161"] }], disposition: "finding", linkedFindingId: "R1-P1-001", rationale: "terminal-gates scopeGateRow turns any finding there into findings-out-of-scope" },
+    { id: "SL-003", dimension: "traceability", targetRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md"], bugClass: "evidence_pointer_stale", hypothesis: "an Evidence tail names a path the tree no longer holds at that line", searchActions: [{ method: "direct_read", queryOrPath: "all 56 Evidence tails parsed and resolved", result: "55 resolve, AC-040 points at an archived report", evidenceRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"] }], disposition: "finding", linkedFindingId: "R1-P2-001", rationale: "the cited live path is archived by the restart the row asks for" },
+    { id: "SL-004", dimension: "traceability", targetRefs: [".skilled/commands/deep/assets/compiled/deep-review.contract.markdown"], bugClass: "stale_generated_artifact", hypothesis: "the compiled contracts are older than the presentation edits", searchActions: [{ method: "direct_read", queryOrPath: "sourceDigests vs current file bytes, 31 sources", result: "0 stale", evidenceRefs: [".skilled/commands/deep/assets/compiled/deep-review.contract.markdown:1"] }], disposition: "ruled_out", rationale: "every recorded digest matches the current file", ruledOutReason: "digest comparison over both contracts" },
+    { id: "SL-005", dimension: "traceability", targetRefs: [".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"], bugClass: "cross_copy_vocabulary_drift", hypothesis: "a word list differs between the native gate and the Python fallback", searchActions: [{ method: "exact_search", queryOrPath: "20 exported lists vs their Python tuples", result: "drift 0", evidenceRefs: [".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:688"] }], disposition: "ruled_out", rationale: "all 20 lists agree entry for entry", ruledOutReason: "independent extraction and comparison" },
+  ],
+  graphEvents: [
+    { type: "node", id: "finding-R1-P1-001", kind: "FINDING", label: "seeded scope omits declared change-set surfaces" },
+    { type: "node", id: "finding-R1-P2-001", kind: "FINDING", label: "AC-040 evidence pointer archived" },
+    { type: "edge", id: "edge-R1-P1-001", source: "finding-R1-P1-001", target: "slice-012", relation: "IN_DIMENSION" },
+    { type: "edge", id: "edge-R1-P2-001", source: "finding-R1-P2-001", target: "slice-012", relation: "IN_DIMENSION" },
+  ],
+};
+const hints = [".skilled/commands/deep/assets/deep-research.yaml", ".skilled/commands/deep/assets/deep-review.yaml", ".skilled/skills/system-deep-loop/hub-router.json", ".skilled/skills/system-deep-loop/ROUTER.md", ".skilled/skills/system-deep-loop/SKILL.md", ".skilled/skills/system-deep-loop/deep-review/SKILL.md", ".skilled/skills/system-deep-loop/deep-research/SKILL.md", ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl", ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json", ".skilled/skills/system-skill-advisor/runtime/dist/", ".skilled/commands/deep/assets/compiled/", ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md"];
+const rows = [rec,
+  { type: "finding", id: "R1-P1-001", severity: "P1", title: rec.findingDetails[0].title, file: rec.findingDetails[0].file, iteration: 1, dimension: "traceability", findingClass: "class-of-bug", scopeProof: "anchored on spec.md inside the review target; the omitted surfaces are named as affected hints, not as finding files", affectedSurfaceHints: hints, claimAdjudication: { type: "traceability", claim: "the seeded scope excludes surfaces the packet requirements change, and any finding there fails the scope gate", evidenceRefs: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1", ".skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs:168"], counterevidenceSought: "read the two scope exceptions in scopeGateRow and the step_scope_discovery resolve rule; no manifest widens the list", alternativeExplanation: "a review may be meant to validate behaviour, not every touched file", finalSeverity: "P1", confidence: 0.86, downgradeTrigger: "a packet statement that evidence may be read outside reviewScopeFiles" } },
+  { type: "finding", id: "R1-P2-001", severity: "P2", title: rec.findingDetails[1].title, file: rec.findingDetails[1].file, iteration: 1, dimension: "traceability", findingClass: "instance-only", scopeProof: "acceptance-criteria.md is inside the review target folder", affectedSurfaceHints: ["tasks.md T084", "implementation-summary.md next_safe_action"] },
+  { type: "classification", iteration: 1, detail: "REQ-001, REQ-002, REQ-003, REQ-005, REQ-006, REQ-008, REQ-009, REQ-010, REQ-011, REQ-012, REQ-013 and REQ-014 resolved; REQ-004 carried to the checklist pass; REQ-007 partial (mirror and reference scripts not run from this lineage)" },
+  { type: "classification", iteration: 1, detail: "Built-dist probe of 12 prompts across REQ-001/002/023/024/025/026/027/035/040/041/043/044 returned the requirement result in every case" },
+  { type: "traceability_check", iteration: 1, protocolId: "spec_code", status: "partial", gateClass: "hard", applicable: true, evidence: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/deepseek-max-1/review-scope-files.txt:1"] },
+  { type: "traceability_check", iteration: 1, protocolId: "checklist_evidence", status: "pending", gateClass: "hard", applicable: true, evidence: ["specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/acceptance-criteria.md:97"] },
+  { type: "ruled_out", iteration: 1, direction: "offer section absent from the compiled contracts", reason: "the compiler renders named blocks, not the presentation wholesale; header digests prove regeneration" },
+  { type: "ruled_out", iteration: 1, direction: "attachTypedCommand does not exist", reason: "exported from handlers/advisor-recommend.ts:442" },
+  { type: "ruled_out", iteration: 1, direction: "council words return to the gate", reason: "explicit.ts:151 keeps them for the /speckit:ai-council cue only" },
+  { type: "ruled_out", iteration: 1, direction: "TS and Python word lists drift", reason: "both apparent drifts were single-quote extraction artifacts; 20 lists compare with drift 0" },
+];
+fs.writeFileSync(L + "/state-events/iter-001-record.json", JSON.stringify(rec));
+fs.writeFileSync(L + "/deltas/iter-001.jsonl", rows.map((r) => JSON.stringify(r)).join("\n") + "\n");
+console.log("record bytes", JSON.stringify(rec).length, "delta rows", rows.length);

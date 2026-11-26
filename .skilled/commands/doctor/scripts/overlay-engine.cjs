@@ -222,6 +222,11 @@ function jsonEntryRemedy(entry, ctx, message) {
     return '\n  an anchor has to name exactly one item, or the insert has no single place to go' +
       `\n  Next: edit the match in ${source} so it names one item of ${entry.destination}, then ${status}`;
   }
+  if (/^removeItems and \w+ at .* both name /.test(message)) {
+    return '\n  an item an entry set both removes and writes, adds or anchors on has no one state the file can hold' +
+      `\n  Next: point the before anchor at an item the entry set keeps, or drop the item from one of the two ` +
+      `operations in ${source}, then ${status}`;
+  }
   if (/^an item list without an identity key cannot hold objects/.test(message)) {
     return '\n  without an identityKey the engine cannot tell one object item from another' +
       `\n  Next: add an "identityKey" to that operation in ${source}, then ${status}`;
@@ -284,6 +289,19 @@ function isSameFile(filePath, stats) {
   try {
     const other = fs.lstatSync(filePath);
     return other.isFile() && other.dev === stats.dev && other.ino === stats.ino;
+  } catch {
+    return false;
+  }
+}
+
+// Whether two paths name one entry on disk, without following a link at either
+// end. A fold can join two names the volume keeps apart, so a record read under
+// another spelling is the engine's own only when both spellings are this entry.
+function namesSameEntry(leftPath, rightPath) {
+  try {
+    const left = fs.lstatSync(leftPath);
+    const right = fs.lstatSync(rightPath);
+    return left.dev === right.dev && left.ino === right.ino;
   } catch {
     return false;
   }
@@ -1192,6 +1210,69 @@ function indentBefore(text, offset) {
   return cursor === offset ? text.slice(lineStart, cursor) : null;
 }
 
+/**
+ * The leading whitespace of the line an offset sits on. A value written after
+ * its key on the same line nests at that line's depth, which `indentBefore`
+ * cannot report because text precedes the value.
+ * @param {string} text Document text.
+ * @param {number} offset Offset into the text.
+ * @returns {string} The line's indent, empty when it has none.
+ */
+function lineIndent(text, offset) {
+  const lineStart = text.lastIndexOf('\n', offset - 1) + 1;
+  let cursor = lineStart;
+  while (cursor < text.length && (text[cursor] === ' ' || text[cursor] === '\t')) cursor += 1;
+  return text.slice(lineStart, cursor);
+}
+
+/**
+ * How the document is laid out, so a written value matches the lines around it:
+ * the step a nested line takes in from a line that opens one container, else
+ * the shallowest indent, and the line ending most of its lines use. A document
+ * with no indented line falls back to the entry set's `style.indent`, then to
+ * two spaces.
+ * @param {string} text Document text.
+ * @param {{indent?: number|string}} style Entry-set style.
+ * @returns {{unit: string, eol: string}} Indent unit and line ending.
+ */
+function documentLayout(text, style) {
+  const crlf = (text.match(/\r\n/g) || []).length;
+  const eol = crlf > (text.match(/\n/g) || []).length - crlf ? '\r\n' : '\n';
+  // The unit is the step a nested line takes in from a line that opens one
+  // container, the most common one winning, so a stray line at an odd depth
+  // does not set it. A line such as `{"x": {` or `[{` opens two at once and
+  // nests one or two steps by habit, so such lines never set it. Without a
+  // one-container line, the shallowest indent any line carries is the unit.
+  const steps = new Map();
+  let shallowest = null;
+  const lines = text.split(/\r?\n/);
+  for (let index = 0; index < lines.length; index += 1) {
+    const lead = /^[ \t]*/.exec(lines[index])[0];
+    if (lead && lines[index].trim() !== '' && (shallowest === null || lead.length < shallowest.length)) shallowest = lead;
+    if (index + 1 >= lines.length || !/[[{]\s*$/.test(lines[index])) continue;
+    const bare = lines[index].replace(/"(?:[^"\\]|\\.)*"/g, '');
+    if ((bare.match(/[[{]/g) || []).length - (bare.match(/[\]}]/g) || []).length !== 1) continue;
+    const inner = /^[ \t]*/.exec(lines[index + 1])[0];
+    if (inner.length <= lead.length || !inner.startsWith(lead) || lines[index + 1].trim() === '') continue;
+    const step = inner.slice(lead.length);
+    steps.set(step, (steps.get(step) || 0) + 1);
+  }
+  let detected = null;
+  for (const [step, count] of steps) {
+    const best = detected === null ? 0 : steps.get(detected);
+    if (count > best || (count === best && step.length < detected.length)) detected = step;
+  }
+  if (detected === null) detected = shallowest;
+  if (detected) return { unit: detected, eol };
+  if (typeof style.indent === 'string' && /^[ \t]+$/.test(style.indent)) return { unit: style.indent, eol };
+  if (Number.isInteger(style.indent) && style.indent > 0) return { unit: ' '.repeat(style.indent), eol };
+  return { unit: '  ', eol };
+}
+
+// The layout the engine used for every value before it read the document's
+// own, kept so a value it wrote then can be recognised as its own bytes.
+const LEGACY_LAYOUT = { unit: '  ', eol: '\n' };
+
 function isPrimitive(value) {
   return value === null || typeof value !== 'object';
 }
@@ -1199,25 +1280,49 @@ function isPrimitive(value) {
 /**
  * Serialises a value the way the surrounding document is written: objects and
  * object arrays on their own lines, and short string arrays either inline or
- * expanded according to the document's own habit.
+ * expanded according to the document's own habit. Nested lines step in by the
+ * document's indent unit and end with its line ending.
  * @param {*} value Value to serialise.
  * @param {string} indent Indent of the line the value starts on.
- * @param {{primitiveArrays?: string}} style Entry-set style.
+ * @param {{primitiveArrays?: string, unit?: string, eol?: string}} style
+ *   Entry-set style, with the layout `documentLayout` read from the document.
  * @returns {string} The serialised text.
  */
 function serializeValue(value, indent, style) {
   if (isPrimitive(value)) return JSON.stringify(value);
-  const inner = indent + '  ';
+  const eol = style.eol || '\n';
+  const inner = indent + (style.unit || '  ');
   if (Array.isArray(value)) {
     if (value.length === 0) return '[]';
     const isInline = style.primitiveArrays !== 'multiline' && value.every(isPrimitive);
     if (isInline) return `[${value.map((item) => JSON.stringify(item)).join(', ')}]`;
-    return `[\n${value.map((item) => inner + serializeValue(item, inner, style)).join(',\n')}\n${indent}]`;
+    return `[${eol}${value.map((item) => inner + serializeValue(item, inner, style)).join(`,${eol}`)}${eol}${indent}]`;
   }
   const keys = Object.keys(value);
   if (keys.length === 0) return '{}';
   const members = keys.map((key) => `${inner}${JSON.stringify(key)}: ${serializeValue(value[key], inner, style)}`);
-  return `{\n${members.join(',\n')}\n${indent}}`;
+  return `{${eol}${members.join(`,${eol}`)}${eol}${indent}}`;
+}
+
+/**
+ * Whether the bytes at a value that already equals the wanted value are the
+ * ones an earlier engine wrote flush-left, because it read no indent for a
+ * value that starts after its key. Only those bytes are rewritten at the value's
+ * depth; any other layout of an equal value may be upstream's and stays. A
+ * record does not prove the engine wrote those bytes, since a set whose value
+ * already matched upstream is recorded too, so upstream bytes in exactly that
+ * flush-left shape would also move. No formatter writes a value that way.
+ * @param {string} text Document text.
+ * @param {{start: number, end: number}} node The value's node.
+ * @param {*} value The wanted value.
+ * @param {object} style Entry-set style with the document layout.
+ * @returns {boolean} Whether to rewrite the value in place.
+ */
+function isLegacyFlushLeft(text, node, value, style) {
+  if (indentBefore(text, node.start) !== null) return false;
+  const live = text.slice(node.start, node.end);
+  const legacy = serializeValue(value, '', { ...style, ...LEGACY_LAYOUT });
+  return live === legacy && live !== serializeValue(value, lineIndent(text, node.start), style);
 }
 
 function deepEqual(left, right) {
@@ -1304,13 +1409,15 @@ function isKeyRecordFor(record, operation) {
  * @param {object[]} edits Collects the text edits.
  * @param {{canReplaceExisting: boolean, recordedItems?: object[],
  *   onListed?: function, recordedSets?: object[], onSet?: function,
- *   recordedKeys?: object[], onKey?: function, onWarning?: function}} options
+ *   recordedKeys?: object[], onKey?: function, onWarning?: function,
+ *   readUpstreamText?: () => (string|null)}} options
  *   Whether a differing entry may be rewritten, the items this overlay already
  *   added to the array, where each listed item is reported so a later pass can
  *   recognise it as the engine's own work, the sets this overlay applied last
  *   time, where each `set` or inserted object key is reported so a later pass
- *   can take it back, the same two for the keys a `setKeyOnItem` wrote, and
- *   where a warning about an anchor that matched nothing is reported.
+ *   can take it back, the same two for the keys a `setKeyOnItem` wrote, where a
+ *   warning about an anchor or a removed name that matched nothing is reported,
+ *   and how the destination reads at the pin, which a `removeItems` name is judged by.
  * @returns {string} 'changed' or 'unchanged'.
  */
 function planOperation(operation, root, text, style, edits, options) {
@@ -1332,11 +1439,11 @@ function planOperation(operation, root, text, style, edits, options) {
     if (parent && parent.type === 'object' && typeof lastKey === 'string' && !findMember(parent, lastKey)) {
       const reference = parent.members[parent.members.length - 1];
       if (!reference) throw new Error(`cannot insert into the empty object at ${parentPath.join('.')}`);
-      const indent = indentBefore(text, reference.keyStart) || '';
+      const indent = lineIndent(text, reference.keyStart);
       edits.push({
         start: reference.value.end,
         end: reference.value.end,
-        text: `,\n${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
+        text: `,${style.eol}${indent}${JSON.stringify(lastKey)}: ${serializeValue(operation.value, indent, style)}`,
       });
       reportSet(true);
       return 'changed';
@@ -1344,12 +1451,18 @@ function planOperation(operation, root, text, style, edits, options) {
     const target = nodeAtPath(root, operation.path);
     const current = JSON.parse(text.slice(target.start, target.end));
     reportSet(wasAdded);
-    if (deepEqual(current, operation.value)) return 'unchanged';
-    const indent = indentBefore(text, target.start);
+    if (deepEqual(current, operation.value)) {
+      // An equal value the engine wrote flush-left before it read the key's
+      // depth is moved to that depth, while the live file is still its own work.
+      const isOwnLegacy = options.canReplaceExisting &&
+        (options.recordedSets || []).some((record) => samePath(record.path, operation.path)) &&
+        isLegacyFlushLeft(text, target, operation.value, style);
+      if (!isOwnLegacy) return 'unchanged';
+    }
     edits.push({
       start: target.start,
       end: target.end,
-      text: serializeValue(operation.value, indent === null ? '' : indent, style),
+      text: serializeValue(operation.value, lineIndent(text, target.start), style),
     });
     return 'changed';
   }
@@ -1377,21 +1490,26 @@ function planOperation(operation, root, text, style, edits, options) {
     if (member) {
       reportKey((options.recordedKeys || []).some((record) => record.added === true && isKeyRecordFor(record, operation)));
       const current = JSON.parse(text.slice(member.value.start, member.value.end));
-      if (deepEqual(current, operation.value)) return 'unchanged';
-      const indent = indentBefore(text, member.value.start);
+      if (deepEqual(current, operation.value)) {
+        // Same rule as an equal `set`: only the engine's own flush-left bytes move.
+        const isOwnLegacy = options.canReplaceExisting &&
+          (options.recordedKeys || []).some((record) => isKeyRecordFor(record, operation)) &&
+          isLegacyFlushLeft(text, member.value, operation.value, style);
+        if (!isOwnLegacy) return 'unchanged';
+      }
       edits.push({
         start: member.value.start,
         end: member.value.end,
-        text: serializeValue(operation.value, indent === null ? '' : indent, style),
+        text: serializeValue(operation.value, lineIndent(text, member.value.start), style),
       });
       return 'changed';
     }
     const last = item.members[item.members.length - 1];
-    const indent = indentBefore(text, last.keyStart) || '';
+    const indent = lineIndent(text, last.keyStart);
     edits.push({
       start: last.value.end,
       end: last.value.end,
-      text: `,\n${indent}${JSON.stringify(operation.key)}: ${serializeValue(operation.value, indent, style)}`,
+      text: `,${style.eol}${indent}${JSON.stringify(operation.key)}: ${serializeValue(operation.value, indent, style)}`,
     });
     reportKey(true);
     return 'changed';
@@ -1457,11 +1575,10 @@ function planOperation(operation, root, text, style, edits, options) {
             if (!options.canReplaceExisting) {
               throw new Error(`existing entry ${describe(item[identityKey])} differs from the canonical copy`);
             }
-            const indent = indentBefore(text, node.start);
             edits.push({
               start: node.start,
               end: node.end,
-              text: serializeValue(item, indent === null ? '' : indent, style),
+              text: serializeValue(item, lineIndent(text, node.start), style),
             });
             hasChanged = true;
           }
@@ -1479,12 +1596,12 @@ function planOperation(operation, root, text, style, edits, options) {
     const anchor = operation.before && identityKey ? matchIndex(arrayNode, operation.before, identityKey) : -1;
     const reference = anchor >= 0 ? arrayNode.items[anchor] : arrayNode.items[arrayNode.items.length - 1];
     if (!reference) throw new Error(`cannot append to the empty array at ${operation.path.join('.')}`);
-    const indent = indentBefore(text, reference.start) || '';
+    const indent = lineIndent(text, reference.start);
     if (anchor >= 0) {
-      const block = pending.map((item) => `${serializeValue(item, indent, style)},\n${indent}`).join('');
+      const block = pending.map((item) => `${serializeValue(item, indent, style)},${style.eol}${indent}`).join('');
       edits.push({ start: reference.start, end: reference.start, text: block });
     } else {
-      const block = pending.map((item) => `,\n${indent}${serializeValue(item, indent, style)}`).join('');
+      const block = pending.map((item) => `,${style.eol}${indent}${serializeValue(item, indent, style)}`).join('');
       edits.push({ start: reference.end, end: reference.end, text: block });
     }
     return 'changed';
@@ -1517,11 +1634,10 @@ function planOperation(operation, root, text, style, edits, options) {
           if (!options.canReplaceExisting) {
             throw new Error(`existing entry "${entry.key}" differs from the canonical copy`);
           }
-          const indent = indentBefore(text, existing.keyStart);
           edits.push({
             start: existing.value.start,
             end: existing.value.end,
-            text: serializeValue(entry.value, indent === null ? '' : indent, style),
+            text: serializeValue(entry.value, lineIndent(text, existing.keyStart), style),
           });
           hasRewritten = true;
         }
@@ -1533,26 +1649,140 @@ function planOperation(operation, root, text, style, edits, options) {
     const anchor = operation.beforeKey ? findMember(objectNode, operation.beforeKey) : null;
     const reference = anchor || objectNode.members[objectNode.members.length - 1];
     if (!reference) throw new Error(`cannot insert into the empty object at ${operation.path.join('.')}`);
-    const indent = indentBefore(text, reference.keyStart) || '';
+    const indent = lineIndent(text, reference.keyStart);
     const render = (entry) => `${JSON.stringify(entry.key)}: ${serializeValue(entry.value, indent, style)}`;
     if (anchor) {
       edits.push({
         start: reference.keyStart,
         end: reference.keyStart,
-        text: `${pending.map((entry) => `${render(entry)},\n${indent}`).join('')}`,
+        text: `${pending.map((entry) => `${render(entry)},${style.eol}${indent}`).join('')}`,
       });
     } else {
       edits.push({
         start: reference.value.end,
         end: reference.value.end,
-        text: pending.map((entry) => `,\n${indent}${render(entry)}`).join(''),
+        text: pending.map((entry) => `,${style.eol}${indent}${render(entry)}`).join(''),
       });
     }
     return 'changed';
   }
 
-  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems ` +
-    'and insertObjectKeys');
+  if (operation.op === 'removeItems') return planRemoveItems(operation, root, text, edits, options);
+
+  throw new Error(`unknown operation "${operation.op}"\n  the operations are set, setKeyOnItem, insertItems, appendItems, ` +
+    'insertObjectKeys and removeItems');
+}
+
+/**
+ * The indexes of the items a `removeItems` names, matched by the identity key's
+ * value, or by the value itself when the operation names no identity key.
+ * @param {object} arrayNode Parsed array node.
+ * @param {*} wanted The identity the operation lists.
+ * @param {string} [identityKey] Key naming an object item.
+ * @returns {number[]} Every index that carries the identity.
+ */
+function removalMatches(arrayNode, wanted, identityKey) {
+  const found = [];
+  arrayNode.items.forEach((node, index) => {
+    if (identityKey) {
+      // Only an object has keys to carry the identity. The live array is refused
+      // above when it holds anything else, but the pinned copy is read as found.
+      if (node.type !== 'object') return;
+      const member = findMember(node, identityKey);
+      if (member && isPrimitive(member.value.value) && member.value.value === wanted) found.push(index);
+    } else if (node.type !== 'object' && node.type !== 'array' && node.value === wanted) {
+      found.push(index);
+    }
+  });
+  return found;
+}
+
+/**
+ * Delete each item a `removeItems` names from the live array, one at a time so
+ * every removal is cut from a fresh parse and two neighbours never claim the
+ * same comma. An array left empty is written `[]`, the way JSON.stringify
+ * writes one, rather than keeping the blank lines its items stood on. A name
+ * the array no longer holds is the operation already done when the pinned copy
+ * holds it, and a note when the pin lacks it too, because then nothing upstream
+ * ever shipped matches the name. Without a readable pinned copy the absence is
+ * not judged at all, since the live file alone cannot tell the two apart.
+ * @param {object} operation One `removeItems` operation.
+ * @param {object} root Root node of the parsed document.
+ * @param {string} text Document text the nodes point into.
+ * @param {object[]} edits Collects the text edit.
+ * @param {{onWarning?: function, readUpstreamText?: () => (string|null)}} options
+ *   Where a name the pin lacks is reported, and how the destination reads at the pin.
+ * @returns {string} 'changed' or 'unchanged'.
+ */
+function planRemoveItems(operation, root, text, edits, options) {
+  const label = pathLabel(operation.path);
+  const identityKey = operation.identityKey;
+  const arrayNode = nodeAtPath(root, operation.path);
+  if (arrayNode.type !== 'array') {
+    const article = /^[aeiou]/.test(arrayNode.type) ? 'an' : 'a';
+    throw new Error(`removeItems at ${label} needs an array there, and the file holds ${article} ${arrayNode.type}`);
+  }
+  if (!Array.isArray(operation.items) || operation.items.length === 0) {
+    throw new Error(`removeItems at ${label} lists no items; name each item to remove in its items`);
+  }
+  for (const item of operation.items) {
+    if (!isPrimitive(item)) {
+      throw new Error(`removeItems at ${label} lists ${describe(item)}; its items are the ` +
+        `${identityKey ? identityKey + ' values' : 'values'} to remove, each a string, number, boolean or null`);
+    }
+  }
+  if (identityKey) {
+    // An item without keys cannot carry the identity, so an array that holds one
+    // is not the keyed list the operation describes.
+    const keyless = arrayNode.items.find((node) => node.type !== 'object');
+    if (keyless) {
+      throw new Error(`removeItems at ${label} matches by ${identityKey}, but the array holds a ${keyless.type} item, ` +
+        'which has no keys');
+    }
+  }
+  // The pinned copy is read only once a name is missing from the live file, and
+  // at most once per operation. A copy that cannot be read or parsed leaves the
+  // absence unjudged; one whose path holds no array lacks every name.
+  let pinnedArray;
+  const pinLacks = (item) => {
+    if (pinnedArray === undefined) {
+      const upstreamText = options.readUpstreamText ? options.readUpstreamText() : null;
+      try {
+        pinnedArray = upstreamText === null ? null
+          : recordedArrayAt(parseJsonSource(upstreamText), operation.path) || { items: [] };
+      } catch (error) {
+        pinnedArray = null;
+      }
+    }
+    return pinnedArray !== null && removalMatches(pinnedArray, item, identityKey).length === 0;
+  };
+  let output = text;
+  for (const item of operation.items) {
+    const live = recordedArrayAt(parseJsonSource(output), operation.path);
+    const found = removalMatches(live, item, identityKey);
+    // Two items with one identity leave no single item to remove, the same way
+    // a duplicated anchor leaves an insert no single place to go.
+    if (found.length > 1) {
+      throw new Error(`removeItems of ${describe(item)} at ${label} matches ${found.length} items; ` +
+        'it removes only an item the array holds once');
+    }
+    if (found.length === 0) {
+      if (options.onWarning && pinLacks(item)) {
+        options.onWarning(`removeItems of ${describe(item)} at ${label} finds no such item in the pinned copy, ` +
+          "so it removes nothing; drop it from the operation's items");
+      }
+      continue;
+    }
+    const edit = live.items.length === 1
+      ? { start: live.start, end: live.end, text: '[]' }
+      : removalEdit(live.items, found[0]);
+    output = applyEdits(output, [edit]);
+  }
+  if (output === text) return 'unchanged';
+  // The removals were cut one by one above, so they reach the caller as one
+  // replacement of the whole document.
+  edits.push({ start: 0, end: text.length, text: output });
+  return 'changed';
 }
 
 function applyEdits(text, edits) {
@@ -1562,6 +1792,49 @@ function applyEdits(text, edits) {
     output = output.slice(0, edit.start) + edit.text + output.slice(edit.end);
   }
   return output;
+}
+
+/**
+ * Refuse an entry set in which one operation adds or writes into an item and a
+ * `removeItems` removes it. Run in order, the pair would add the item and take
+ * it out again on every apply, so no order of the two says what the file should
+ * hold; a `setKeyOnItem` on a removed item would find no item on the next apply,
+ * and an insert anchored `before` a removed item would have no place to go.
+ * @param {object[]} operations Operations of one entry set, in order.
+ * @returns {void}
+ */
+function assertNoAddedItemRemoved(operations) {
+  for (const removal of operations) {
+    if (!removal || removal.op !== 'removeItems' || !Array.isArray(removal.items)) continue;
+    const identityKey = removal.identityKey === undefined ? null : removal.identityKey;
+    for (const writer of operations) {
+      if (!writer || writer.op !== 'setKeyOnItem' || writer.identityKey !== identityKey || identityKey === null) continue;
+      if (!Array.isArray(writer.path) || !Array.isArray(removal.path) || !samePath(writer.path, removal.path)) continue;
+      const identity = writer.match && typeof writer.match === 'object' ? writer.match[identityKey] : undefined;
+      if (!removal.items.includes(identity)) continue;
+      throw new Error(`removeItems and setKeyOnItem at ${pathLabel(removal.path)} both name ${describe(identity)}; ` +
+        'one entry set cannot write a key on an item and remove it, so drop it from one of them');
+    }
+    for (const adder of operations) {
+      if (!adder || (adder.op !== 'insertItems' && adder.op !== 'appendItems') || !Array.isArray(adder.items)) continue;
+      if ((adder.identityKey === undefined ? null : adder.identityKey) !== identityKey) continue;
+      if (!Array.isArray(adder.path) || !Array.isArray(removal.path) || !samePath(adder.path, removal.path)) continue;
+      const identityOf = (item) => (identityKey === null ? item
+        : item && typeof item === 'object' ? item[identityKey] : undefined);
+      // An anchor on a removed item names a place the same apply takes away, so
+      // the insert lands at the end on one pass and the position is never held.
+      const anchor = identityKey !== null && adder.before && typeof adder.before === 'object'
+        ? adder.before[identityKey] : undefined;
+      if (anchor !== undefined && removal.items.includes(anchor)) {
+        throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(anchor)}; ` +
+          'one entry set cannot anchor an item before one it removes, so anchor on another item');
+      }
+      const shared = removal.items.find((name) => adder.items.some((item) => identityOf(item) === name));
+      if (shared === undefined) continue;
+      throw new Error(`removeItems and ${adder.op} at ${pathLabel(removal.path)} both name ${describe(shared)}; ` +
+        'one entry set cannot add an item and remove it, so drop it from one of them');
+    }
+  }
 }
 
 /**
@@ -1862,7 +2135,8 @@ function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recorde
         locations.push([operation.key]);
       } else if (operation.op === 'insertObjectKeys' && inside(operation.path)) {
         for (const entry of operation.entries || []) locations.push([...relative(operation.path), entry.key]);
-      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems') && isInsidePath(operation.path, itemPath)) {
+      } else if ((operation.op === 'insertItems' || operation.op === 'appendItems' || operation.op === 'removeItems') &&
+        isInsidePath(operation.path, itemPath)) {
         locations.push(relative(operation.path));
       }
     }
@@ -1879,9 +2153,12 @@ function indexesMatchPin(liveDocument, pinnedDocument, path, operations, recorde
     if (!liveIsArray || !pinnedIsArray) return false;
     if (live.items.length !== pinned.items.length) return false;
     if (recordedItems.some((item) => item && samePath(item.path, container))) return false;
-    const addsItems = operations.some((operation) =>
-      (operation.op === 'insertItems' || operation.op === 'appendItems') && samePath(operation.path, container));
-    if (addsItems) return false;
+    // An item added or removed moves every index after it, so a position read
+    // against the pin no longer names the same item.
+    const movesItems = operations.some((operation) =>
+      (operation.op === 'insertItems' || operation.op === 'appendItems' || operation.op === 'removeItems') &&
+      samePath(operation.path, container));
+    if (movesItems) return false;
     const maskedItems = (index) => {
       const written = writtenInside([...container, index]);
       return [
@@ -2128,7 +2405,9 @@ function restoreDroppedKeys(text, operations, recordedKeys, readUpstreamText = (
  * @returns {string} The edited document text.
  */
 function applyJsonOperations(text, spec, options) {
-  const style = spec.style || { indent: 2, primitiveArrays: 'inline' };
+  const declared = spec.style || { indent: 2, primitiveArrays: 'inline' };
+  const style = { ...declared, ...documentLayout(text, declared) };
+  assertNoAddedItemRemoved(spec.operations);
   const operations = withLaterKeysMerged(spec.operations);
   // A dropped entry is retracted before the entry set runs, so every operation
   // addresses the array the set describes rather than the one it left behind.
@@ -2196,6 +2475,49 @@ function destinationShape(filePath, key, recordedFiles, recordedLinks = {}) {
     return { kind: 'folder', isOwned };
   }
   return { kind: 'file', isOwned: hashMatches(fs.readFileSync(filePath), acceptedHashFor(recordedFiles, key)) };
+}
+
+/**
+ * Say what stands at a destination and whether the state records it as the
+ * engine's own output, reading the record under the spelling the state keeps
+ * when the manifest now spells the path in other case. The state keeps each
+ * path as the manifest spelled it, so on a volume that folds case a record
+ * spelled with other case names this same entry; it is accepted only when that
+ * spelling is this very file or folder, since the fold can also join two names
+ * the volume keeps apart.
+ * @param {string} filePath Absolute destination path.
+ * @param {string} key The destination relative to the tree root.
+ * @param {Record<string, string>|Map<string, string>} recordedFiles Hashes the engine last applied.
+ * @param {Record<string, string>} [recordedLinks] Links the engine made that no manifest entry names now.
+ * @param {string} root Destination tree root.
+ * @returns {{kind: 'missing'|'file'|'folder'|'link', isOwned: boolean}}
+ */
+function ownedDestinationShape(filePath, key, recordedFiles, recordedLinks, root) {
+  const shape = destinationShape(filePath, key, recordedFiles, recordedLinks);
+  if (shape.isOwned || (shape.kind !== 'file' && shape.kind !== 'folder')) return shape;
+  const fold = pathFold(root);
+  const folded = fold(key);
+  const depth = key.split('/').length;
+  const recordedKeys = recordedFiles instanceof Map ? [...recordedFiles.keys()] : Object.keys(recordedFiles || {});
+  const recordedKey = recordedKeys
+    .map((candidate) => candidate.split('/').slice(0, depth).join('/'))
+    .find((prefix) => prefix !== key && fold(prefix) === folded);
+  if (recordedKey === undefined) return shape;
+  const recordedPath = path.join(root, recordedKey);
+  let stats;
+  let recordedStats;
+  try {
+    stats = fs.lstatSync(filePath);
+    recordedStats = fs.lstatSync(recordedPath);
+  } catch {
+    return shape;
+  }
+  const isSameEntry = shape.kind === 'file'
+    ? isSameFile(recordedPath, stats)
+    : recordedStats.isDirectory() && recordedStats.dev === stats.dev && recordedStats.ino === stats.ino;
+  if (!isSameEntry) return shape;
+  const recordedShape = destinationShape(filePath, recordedKey, recordedFiles, recordedLinks);
+  return recordedShape.isOwned ? recordedShape : shape;
 }
 
 /**
@@ -2301,12 +2623,15 @@ function linkLeavingTree(root, filePath, { followLeaf = false, removed = new Set
 
 // The target the engine made a link with at this path, matched the way the
 // volume matches names, so a link the manifest spells in another case is still
-// known as the engine's own.
+// known as the engine's own. The fold can also join two names the volume keeps
+// apart, so the match counts only when both spellings are this very entry.
 function engineLinkText(root, engineLinks, key) {
   if (Object.prototype.hasOwnProperty.call(engineLinks, key)) return engineLinks[key];
   const fold = pathFold(root);
   const match = Object.keys(engineLinks).find((linkKey) => fold(linkKey) === fold(key));
-  return match === undefined ? undefined : engineLinks[match];
+  if (match === undefined) return undefined;
+  if (!namesSameEntry(path.join(root, match), path.join(root, key))) return undefined;
+  return engineLinks[match];
 }
 
 // The link someone else made that takes an engine-made link's chain outside the
@@ -2411,7 +2736,7 @@ function planFileOverlay(entry, ctx, problems, acceptedSha256, { recordedLinks }
   // file is the earlier output of another shape: it goes before the write. Any
   // other link keeps the path it always had.
   const key = relativeKey(ctx.root, destinationPath);
-  const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+  const shape = ownedDestinationShape(destinationPath, key, acceptedSha256, recordedLinks, ctx.root);
   if (shape.kind === 'folder' || (shape.kind === 'link' && shape.isOwned)) {
     if (!shape.isOwned) {
       problems.push(unownedShapeProblem(entry, key, shape.kind, 'file', ctx.root));
@@ -2475,7 +2800,7 @@ function planDirectoryOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   // and the folder is never read through the old link. Any other link keeps
   // the path it always had.
   const key = relativeKey(ctx.root, destinationDir);
-  const shape = destinationShape(destinationDir, key, acceptedSha256, recordedLinks);
+  const shape = ownedDestinationShape(destinationDir, key, acceptedSha256, recordedLinks, ctx.root);
   let current;
   let isDestinationReplaced = false;
   if (shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned)) {
@@ -2928,7 +3253,7 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
   for (const rel of entry.replace.map(manifestFolderPath)) {
     const destinationPath = path.join(destinationDir, rel);
     const key = relativeKey(ctx.root, destinationPath);
-    const shape = destinationShape(destinationPath, key, acceptedSha256, recordedLinks);
+    const shape = ownedDestinationShape(destinationPath, key, acceptedSha256, recordedLinks, ctx.root);
     const wantsFolder = replacedSubtrees.has(rel);
     const inTheWay = wantsFolder ? shape.kind === 'file' || (shape.kind === 'link' && shape.isOwned) : shape.kind === 'folder';
     if (!inTheWay) continue;
@@ -2960,7 +3285,15 @@ function planSkillRootOverlay(entry, ctx, problems, acceptedSha256, { recordedLi
 
   const current = walkTree(destinationDir);
   const removedPrefixes = [...manifestFolderPaths(entry.remove), ...replacedSubtrees, ...shapeChanged];
-  const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => rel === prefix || rel.startsWith(`${prefix}/`));
+  // The walk spells a path as the tree holds it, so a path the manifest spells
+  // in other case is under the prefix only when both spellings reach one entry:
+  // the fold can also join two names the volume keeps apart.
+  const fold = pathFold(ctx.root);
+  const matchesPrefix = (prefixes, rel) => prefixes.some((prefix) => {
+    if (rel === prefix || rel.startsWith(`${prefix}/`)) return true;
+    const head = rel.split('/').slice(0, prefix.split('/').length).join('/');
+    return fold(head) === fold(prefix) && namesSameEntry(path.join(destinationDir, head), path.join(destinationDir, prefix));
+  });
   const isRemoved = (rel) => matchesPrefix(removedPrefixes, rel);
   // A replaced subtree is the overlay's to capture into; only a path the entry
   // removes without also replacing is a removal the overlay performs.
@@ -3277,12 +3610,16 @@ function isOwnedShapeForLink(manifest, root, state, link, linkPath) {
   if (destinationShape(linkPath, key, recordedFiles).isOwned) return true;
   // The state keeps each path as the manifest spelled it. Where the volume
   // folds case, a record spelled with other case names this same entry, so
-  // it is read under its recorded spelling.
+  // it is read under its recorded spelling. The fold can also join two names
+  // the volume keeps apart, so the record counts only when that spelling is
+  // this very entry.
   const depth = key.split('/').length;
   const recordedSpelling = Object.keys(recordedFiles)
     .map((recordedKey) => recordedKey.split('/').slice(0, depth).join('/'))
     .find((prefix) => prefix !== key && fold(prefix) === folded);
-  return recordedSpelling !== undefined && destinationShape(linkPath, recordedSpelling, recordedFiles).isOwned;
+  if (recordedSpelling === undefined) return false;
+  if (!namesSameEntry(path.join(root, recordedSpelling), linkPath)) return false;
+  return destinationShape(linkPath, recordedSpelling, recordedFiles).isOwned;
 }
 
 /**
@@ -4059,10 +4396,12 @@ function protectedPathProblem(ctx, entry, filePath, shownPath) {
 
 // root/skilled would read as the framework folder under its old name, so no copy
 // lives there: the framework's copies live under framework/ alone, which keeps one
-// destination from ever having two sources.
+// destination from ever having two sources. The name is compared without case,
+// because an overlay folder moves between disks and a case-insensitive one reads
+// root/Skilled as that same reserved folder.
 function isUnderRootSkilled(value) {
   if (typeof value !== 'string') return false;
-  const normalized = path.posix.normalize(value).replace(/\/+$/, '');
+  const normalized = path.posix.normalize(value).replace(/\/+$/, '').toLowerCase();
   return normalized === 'root/skilled' || normalized.startsWith('root/skilled/');
 }
 
@@ -6545,6 +6884,40 @@ function writeBackup(ctx, manifest, analysis, touched, runDir, meta) {
   return backup;
 }
 
+// The sha256 of what a path holds now: a file's bytes, a link's target, or null
+// when nothing is there. A path reached through a link, or one holding a folder,
+// has no hash a backup entry can be compared against.
+function livePathSha256(base, relativePath) {
+  if (hasLinkedAncestor(base, relativePath)) return undefined;
+  const filePath = path.join(base, relativePath);
+  let stats;
+  try {
+    stats = fs.lstatSync(filePath);
+  } catch (error) {
+    if (!error || (error.code !== 'ENOENT' && error.code !== 'ENOTDIR')) throw error;
+    return null;
+  }
+  if (stats.isSymbolicLink()) return sha256(Buffer.from(fs.readlinkSync(filePath)));
+  if (stats.isFile()) return sha256(fs.readFileSync(filePath));
+  return undefined;
+}
+
+/**
+ * Record what the run left at each backed-up path, so a rollback can tell the
+ * run's own write from a later change and refuse instead of overwriting it.
+ * @param {object} ctx Engine context.
+ * @param {string} runDir The run folder.
+ * @param {object} backup The backup record the run wrote.
+ */
+function recordAfterHashes(ctx, runDir, backup) {
+  for (const entry of backup.entries) {
+    const base = entry.area === 'overlay' ? ctx.overlayRoot : ctx.root;
+    const live = livePathSha256(base, normalizedRelative(entry.path, 'backup entry'));
+    if (live !== undefined) entry.afterSha256 = live;
+  }
+  fs.writeFileSync(path.join(runDir, 'backup.json'), JSON.stringify(backup, null, 2) + '\n');
+}
+
 function pruneEmptyParents(root, filePath) {
   for (let dir = path.dirname(filePath); dir !== root && isWithin(root, dir); dir = path.dirname(dir)) {
     if (!isDirectory(dir) || fs.readdirSync(dir).length > 0) return;
@@ -7030,8 +7403,9 @@ function repinUnderLock(ctx, job, report) {
     let isClean = false;
     let failure = null;
     let stage = 'backup';
+    let backup = null;
     try {
-      const backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
+      backup = writeBackup(ctx, manifest, analysis, touched, runDir, {
         runId,
         upstream: job.upstream,
         from: job.oldCommit,
@@ -7049,6 +7423,9 @@ function repinUnderLock(ctx, job, report) {
         : '  the re-pin failed in its write step, after the backup of every path it changes');
       if (job.isStage) console.log('  Next: fix the error above, then rerun the re-pin into an empty stage folder');
     }
+    // The tree is final here, so what the run left at each path is recorded for a
+    // rollback to compare against before it restores anything.
+    if (backup) recordAfterHashes(ctx, runDir, backup);
     if (!job.isStage && !isClean) console.log(rollbackCommand(ctx, runId));
     // A stage that printed a blocked line or a miss is not a rehearsal that
     // passed, so it gets its own word instead of the clean stage's.
@@ -7232,6 +7609,20 @@ function rollbackUnderLock(ctx, runDir, backup) {
     if (entry.area === 'overlay') return { base: ctx.overlayRoot, backupDir: path.join(runDir, 'overlay-backup') };
     throw new Error('backup entry names an unknown area: ' + String(entry.area));
   };
+  // A path the run wrote and a later change replaced is not the run's to undo:
+  // restoring it would overwrite that change, so the rollback refuses instead.
+  const changed = [];
+  for (const entry of backup.entries) {
+    if (!('afterSha256' in entry)) continue;
+    const relativePath = normalizedRelative(entry.path, 'backup entry');
+    if (livePathSha256(areaOf(entry).base, relativePath) !== entry.afterSha256) changed.push(relativePath);
+  }
+  if (changed.length > 0) {
+    return refuseRepin([...changed.map((relativePath) => `refuse: ${relativePath} changed after run ${path.basename(runDir)} wrote it`),
+      '  rollback would overwrite that later change, so it restores nothing',
+      '  Next: keep the later change and skip this rollback, or put each path above back by hand, then ' +
+      nextEngine(ctx.root, 'status').slice('Next: '.length)]);
+  }
   for (const entry of backup.entries) {
     const relativePath = normalizedRelative(entry.path, 'backup entry');
     const { base, backupDir } = areaOf(entry);
@@ -7301,8 +7692,8 @@ function rollbackUnderLock(ctx, runDir, backup) {
 }
 
 function rollbackRun(ctx, runId) {
-  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then rerun ` +
-    `${ENGINE_COMMAND} repin --rollback <run-id> from ${shellPath(ctx.root)}`;
+  const listRuns = `  Next: ls ${shellPath(path.join(ctx.overlayRoot, RUNS_FOLDER))}, then ` +
+    `from ${shellPath(ctx.root)}: ${ENGINE_COMMAND} repin --rollback <run-id>`;
   if (!RUN_ID_PATTERN.test(runId)) {
     return refuseRepin(['refuse: not a run id: ' + runId,
       '  a run id is the name of a folder a re-pin wrote under ' + ctx.overlayLabel + '/' + RUNS_FOLDER, listRuns]);
@@ -8837,7 +9228,21 @@ function relayoutUnderLock(ctx, manifest) {
   }
 
   console.log(`${plan.moves.length} moved`);
-  console.log(`run ${ENGINE_COMMAND} apply`);
+  // The backup keeps each moved copy and the manifest at its path below the base
+  // it was keyed from, so copying it back restores them.
+  const undoBase = overlayOutside ? ctx.overlayLabel : shellPath(ctx.root);
+  console.log(`undo: copy everything under ${backupLabel} back to the same paths below ${undoBase}`);
+  // The backup holds sources and the manifest, never a link this run rewrote, so
+  // each rewritten link needs its own line to put it back.
+  for (const change of done.links) {
+    console.log(`undo: point the link ${change.path} back to ${change.from}: ` +
+      `ln -sfn ${shellPath(change.from)} ${shellPath(path.join(ctx.root, change.path))}`);
+  }
+  // A skipped file was never copied, so the copy-back cannot bring it back.
+  if (backupSkipped.length > 0) {
+    console.log(`undo: the backup skipped these files, so restore them by hand: ${backupSkipped.join(', ')}`);
+  }
+  console.log(nextEngine(ctx.root, 'apply'));
   return EXIT_OK;
 }
 
@@ -8873,7 +9278,7 @@ function parseArguments(argv) {
       continue;
     }
     if (value === '--root' || value === '--capture' || value === '--adopt' || value === '--guard' ||
-        REPIN_VALUE_FLAGS.includes(value.slice(2))) {
+        (value.startsWith('--') && REPIN_VALUE_FLAGS.includes(value.slice(2)))) {
       const next = argv[index + 1];
       const field = value.slice(2);
       if (options[field] !== null || !next || next.startsWith('-')) return null;
@@ -8917,9 +9322,13 @@ function parseArguments(argv) {
  * @returns {number} Exit code.
  */
 function main(argv) {
+  // Only status and repin have a JSON mode, so a caller that named --json beside
+  // either one parses stdout; anywhere else the usage block is the whole answer.
+  const wantsJson = argv.includes('--json') && argv.some((value) => value === 'status' || value === 'repin');
   const options = parseArguments(argv);
   if (!options) {
-    console.log(USAGE);
+    if (wantsJson) console.log(JSON.stringify({ result: 'ERROR', error: 'invalid arguments', usage: USAGE }, null, 2));
+    else console.log(USAGE);
     return EXIT_ERROR;
   }
   if (options.command === 'help') {
@@ -8928,7 +9337,8 @@ function main(argv) {
   }
   const root = path.resolve(options.root || DEFAULT_ROOT);
   if (!isDirectory(root)) {
-    console.log('root is not a directory: ' + root);
+    if (options.isJson) console.log(JSON.stringify({ result: 'ERROR', error: 'root is not a directory: ' + root }, null, 2));
+    else console.log('root is not a directory: ' + root);
     return EXIT_ERROR;
   }
   try {

@@ -1,0 +1,1019 @@
+{
+  "sessionId": "fanout-deepseek-max-1-1795518961022-7ms9ak",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 7,
+    "timestamp": "2026-11-24T11:24:13.840Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "ITER1-P1-001",
+      "severity": "P1",
+      "title": "REQ-026's deferred-route guard never runs for the prompt it was built for",
+      "file": "command-attach.ts",
+      "line": 1408,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER1-P1-002",
+      "severity": "P1",
+      "title": "REQ-035 promises a command for eight plural run prompts; two carry none anywhere",
+      "file": "spec.md",
+      "line": 326,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER3-P1-001",
+      "severity": "P1",
+      "title": "A refused loop phrase still supplies the mode cue, so the gate can offer the exact command the prompt refused",
+      "file": "command-attach.ts",
+      "line": 1489,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER6-P1-001",
+      "severity": "P1",
+      "title": "A no-edit clause withholds a read-only deep-loop offer",
+      "file": "command-attach.ts",
+      "line": 1424,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER1-P2-003",
+      "severity": "P2",
+      "title": "A past-run summary carries a doctor run command",
+      "file": "command-attach.ts",
+      "line": 563,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER2-P2-001",
+      "severity": "P2",
+      "title": "AC-015's evidence line proves the question-tool convention, not the three placements it claims",
+      "file": "acceptance-criteria.md",
+      "line": 72,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER2-P2-002",
+      "severity": "P2",
+      "title": "AC-041 and T082 cite a blank line and a neighbouring line for two closure claims",
+      "file": "acceptance-criteria.md",
+      "line": 98,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER2-P2-003",
+      "severity": "P2",
+      "title": "AC-019's Then clause and its own observation disagree on the near-miss count",
+      "file": "acceptance-criteria.md",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER3-P2-002",
+      "severity": "P2",
+      "title": "Two non-command asks share the plural/cue gap and lose the offer silently",
+      "file": "command-attach.ts",
+      "line": 1489,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER4-P2-001",
+      "severity": "P2",
+      "title": "A typed /doctor:deep-loop after a comma is read as a mention, not a request",
+      "file": "command-attach.ts",
+      "line": 1401,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 6,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER5-P2-001",
+      "severity": "P2",
+      "title": "The drift guard compares vocabulary, not the grammar that carries the exceptions",
+      "file": "deep-loop-offer-cases.vitest.ts",
+      "line": 68,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "ITER5-P2-002",
+      "severity": "P2",
+      "title": "Four surfaces each carry their own mode vocabulary, and nothing checks that they agree",
+      "file": "command-attach.ts",
+      "line": 450,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [
+    {
+      "findingId": "ITER4-P2-001",
+      "severity": "P2",
+      "title": "A typed /doctor:deep-loop after a comma is read as a mention, not a request",
+      "file": "command-attach.ts",
+      "line": 1401,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 6,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "ITER4-P2-001",
+      "severity": "P2",
+      "title": "A typed /doctor:deep-loop after a comma is read as a mention, not a request",
+      "file": "command-attach.ts",
+      "line": 1401,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 6,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 8
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "drift_risk",
+      "duplication",
+      "evidence_drift",
+      "false_negative",
+      "false_offer",
+      "guard_interaction",
+      "record_inconsistency",
+      "refusal_bypass",
+      "spec_mismatch"
+    ],
+    "ruledOut": [
+      "boundary_input",
+      "command_injection",
+      "comment_hygiene",
+      "document_drift",
+      "mirror_drift",
+      "missing_evidence",
+      "redos",
+      "refusal_bypass",
+      "state_transition",
+      "window_bypass"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "false_offer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "boundary_input": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "evidence_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "record_inconsistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "missing_evidence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "refusal_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          6
+        ]
+      },
+      "false_negative": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          6
+        ]
+      },
+      "redos": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "window_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "drift_risk": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "comment_hygiene": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "guard_interaction": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "document_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "mirror_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "boundary_input",
+      "disposition": "ruled_out",
+      "rationale": "verified by direct read",
+      "evidenceRefs": [
+        "command-attach.ts:843"
+      ],
+      "reason": "the loop-name pattern excludes word, slash, dot and hyphen continuations"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "acceptance-criteria.md",
+        "tasks.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "measured across both documents",
+      "evidenceRefs": [
+        "tasks.md:309"
+      ],
+      "reason": "every citation resolves to an existing file and in-range line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        "skill_advisor.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "TypeScript-only path",
+      "evidenceRefs": [
+        "skill_advisor.py:5452"
+      ],
+      "reason": "the fallback never reads cues"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "redos",
+      "disposition": "ruled_out",
+      "rationale": "measured",
+      "evidenceRefs": [
+        "command-attach.ts:641"
+      ],
+      "reason": "bounded windows and precompiled patterns keep it linear"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "skill-advisor-cli.ts:1489"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "read and tested",
+      "evidenceRefs": [
+        "skill-advisor-cli.ts:1489"
+      ],
+      "reason": "tracked table and owner check gate the string"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "sweep",
+      "evidenceRefs": [
+        "command-attach.ts:1489"
+      ],
+      "reason": "no ticket or spec path in any changed comment"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        "hub-router.json",
+        "ROUTER.md"
+      ],
+      "bugClass": "document_drift",
+      "disposition": "ruled_out",
+      "rationale": "measured",
+      "evidenceRefs": [
+        "ROUTER.md:63"
+      ],
+      "reason": "sets are equal"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents",
+        "ROUTER.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "sweep",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md"
+      ],
+      "reason": "no depth trigger remains"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts"
+      ],
+      "bugClass": "boundary_input",
+      "disposition": "ruled_out",
+      "rationale": "verified by direct read",
+      "evidenceRefs": [
+        "command-attach.ts:843"
+      ],
+      "proof": "the loop-name pattern excludes word, slash, dot and hyphen continuations"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        "acceptance-criteria.md",
+        "tasks.md"
+      ],
+      "bugClass": "missing_evidence",
+      "disposition": "ruled_out",
+      "rationale": "measured across both documents",
+      "evidenceRefs": [
+        "tasks.md:309"
+      ],
+      "proof": "every citation resolves to an existing file and in-range line"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        "skill_advisor.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "TypeScript-only path",
+      "evidenceRefs": [
+        "skill_advisor.py:5452"
+      ],
+      "proof": "the fallback never reads cues"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "redos",
+      "disposition": "ruled_out",
+      "rationale": "measured",
+      "evidenceRefs": [
+        "command-attach.ts:641"
+      ],
+      "proof": "bounded windows and precompiled patterns keep it linear"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "security",
+      "targetRefs": [
+        "skill-advisor-cli.ts:1489"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "read and tested",
+      "evidenceRefs": [
+        "skill-advisor-cli.ts:1489"
+      ],
+      "proof": "tracked table and owner check gate the string"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "command-attach.ts"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "sweep",
+      "evidenceRefs": [
+        "command-attach.ts:1489"
+      ],
+      "proof": "no ticket or spec path in any changed comment"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-019",
+      "dimension": "traceability",
+      "targetRefs": [
+        "hub-router.json",
+        "ROUTER.md"
+      ],
+      "bugClass": "document_drift",
+      "disposition": "ruled_out",
+      "rationale": "measured",
+      "evidenceRefs": [
+        "ROUTER.md:63"
+      ],
+      "proof": "sets are equal"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-020",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/agents",
+        "ROUTER.md"
+      ],
+      "bugClass": "mirror_drift",
+      "disposition": "ruled_out",
+      "rationale": "sweep",
+      "evidenceRefs": [
+        ".skilled/agents/deep-review.md"
+      ],
+      "proof": "no depth trigger remains"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "document_drift",
+      "mirror_drift"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "document_drift",
+      "mirror_drift"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 2,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidence": [
+          "command-attach.ts:1408",
+          "command-attach.ts:1489",
+          "spec.md:293",
+          "spec.md:326",
+          "acceptance-criteria.md:113",
+          "acceptance-criteria.md:122"
+        ],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "partial",
+        "summary": "Every REQ-001..REQ-039 names a producer that exists; REQ-026 and REQ-035 state an outcome the served head does not produce, so the protocol is partial."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "acceptance-criteria.md:44-133",
+          "tasks.md:36-316",
+          "decision-record.md:33",
+          "implementation-summary.md:258"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "Every Met/Waived/Superseded row read; all path:line citations resolve and are in range (0 unresolved, 0 out-of-range); summary counts match 120 of 123 boxes; AC-040 Unmet matches T084/CHK-020/Closeable No."
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-deep-loop/SKILL.md:20",
+          ".skilled/skills/system-deep-loop/deep-review/SKILL.md:4",
+          ".skilled/skills/system-deep-loop/deep-research/SKILL.md:303",
+          ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md:74"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "summary": "Hub names /doctor:deep-loop; both packets name the advisor CLI and carry the :auto form; depth triggers absent."
+      },
+      {
+        "applicable": false,
+        "evidence": [
+          ".skilled/agents/deep-review.md",
+          ".opencode/agents/deep-review.md",
+          ".claude/agents/deep-review.md"
+        ],
+        "gateClass": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "Packet 012 changed no agent definition; canonical and .opencode are identical; .claude differs by its generated runtime header, owned by the mirror check (AC-011)."
+      }
+    ],
+    "unfinishedCoreProtocols": [
+      "spec_code"
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

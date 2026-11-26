@@ -105,13 +105,16 @@ describe('command attach for a single routed mode', () => {
 
     const modes = Object.entries(MODE_COMMANDS['system-deep-loop']);
     expect(modes.length).toBeGreaterThan(0);
-    const [effortPhrase] = LOOP_WORDING;
-    expect(effortPhrase).toBeTruthy();
+
+    // The probe names the loop without naming a mode, because a prompt that names
+    // one mode answers for that mode whichever mode the route picked, and this
+    // case is about the route's own row.
+    const modeNeutralAsk = 'run a deep loop on the parser';
 
     for (const [mode, command] of modes) {
       const route = singleRoute(mode);
       expect(attachCommand('system-deep-loop', route, PLAIN_PROMPT), mode).toBeUndefined();
-      expect(attachCommand('system-deep-loop', route, `explain the scorer ${effortPhrase}`), mode).toBe(command);
+      expect(attachCommand('system-deep-loop', route, modeNeutralAsk), mode).toBe(command);
       expect(attachCommand('system-deep-loop', route, `run ${command} for me`), mode).toBe(command);
     }
 
@@ -181,6 +184,18 @@ describe('typed command on the leading recommendation', () => {
     expect(typedCommandForTop('system-spec-kit', '/speckit:resume cache work')).toEqual(expected);
     expect(typedCommandForTop('command-speckit-resume', '/speckit:resume cache work')).toEqual(expected);
     expect(typedCommandForTop('sk-doc', '/speckit:resume cache work')).toBeUndefined();
+  });
+
+  // A doctor command that checks one skill's setup belongs to system-skilled-doctor,
+  // so its subject skill no longer carries it: the command's own bridge row leads a
+  // typed prompt on both scorer paths and delivers it.
+  it('delivers a typed skill-setup doctor command through its bridge row, not its subject skill', () => {
+    const prompt = 'please run /doctor:git hooks to turn the commit gate off';
+    const expected = { command: '/doctor:git hooks', policy: 'ask', ownerSkillId: 'system-skilled-doctor' };
+
+    expect(typedCommandForTop('command-doctor-git-hooks', prompt)).toEqual(expected);
+    expect(typedCommandForTop('system-skilled-doctor', prompt)).toEqual(expected);
+    expect(typedCommandForTop('sk-git', prompt)).toBeUndefined();
   });
 });
 

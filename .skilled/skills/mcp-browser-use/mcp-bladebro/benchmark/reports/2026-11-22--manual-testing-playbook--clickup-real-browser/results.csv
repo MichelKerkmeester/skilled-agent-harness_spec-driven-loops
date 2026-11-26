@@ -1,7 +1,7 @@
 # recorded by record-playbook-run.cjs from outside the repository and not kept (results.csv)
 scenario_id,runtime,verdict,reason,evidence
-BB-010,,PASS,,outside the repository and not kept (bb010.txt)
-BB-011,,PASS,,outside the repository and not kept (bb011.txt)
-BB-012,,FAIL,"clone mode with the Aside binary and a cookie-only profile copy, target app.clickup.com: see content, see model and act eval each exit 1 with Chrome launch failed: no page target available; not retried",outside the repository and not kept (bb012.txt)
-BB-013,,PASS,,outside the repository and not kept (bb013.txt)
-BB-015,,PASS,,outside the repository and not kept (bb015.txt)
+BB-010,,PASS,,Raw output not retained. The verdict rests on the operator-approved live run that README.md records.
+BB-011,,PASS,,Raw output not retained. The verdict rests on the operator-approved live run that README.md records.
+BB-012,,FAIL,"clone mode with the Aside binary and a cookie-only profile copy, target app.clickup.com: see content, see model and act eval each exit 1 with Chrome launch failed: no page target available; not retried",Raw output not retained. The verdict rests on the operator-approved live run that README.md records.
+BB-013,,PASS,,Raw output not retained. The verdict rests on the operator-approved live run that README.md records.
+BB-015,,PASS,,Raw output not retained. The verdict rests on the operator-approved live run that README.md records.

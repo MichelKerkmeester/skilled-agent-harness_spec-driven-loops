@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.8.9.0
+version: 0.8.10.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, jev choice, jev score -->
@@ -41,7 +41,7 @@ The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 
 The advisor routes classifier requests to the single identity `cli-classifier`.
 Today, `cli-jev` is the only registered mode.
-Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "<task>"`.
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt-file <task-file>` (write the task there with your file tool, never a heredoc).
 Follow the decision: `route` loads `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses.
 `routerPolicy.defaultMode` is `null`, so an unclear request or one naming only this hub defers for clarification rather than selecting `cli-jev`.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.

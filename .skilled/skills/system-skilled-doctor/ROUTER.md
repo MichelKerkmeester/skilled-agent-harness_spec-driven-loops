@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-skilled-doctor routing"
 importance_tier: normal
 contextType: general
-version: 1.0.10.0
+version: 1.0.11.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -22,7 +22,7 @@ link that points here. This file holds the declaration a reader parses to decide
 
 ### Purpose
 
-Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run. A request about a vendored copy's overlays or a re-pin also loads `references/overlays.md`, which says what each sync state means and what resolves it.
+Requests reach this skill when they are about Skilled inside a project: installing it, linking a checkout, updating to a newer release, checking the runtime mirrors, environment switches, `AGENTS.md` sections, trigger index or Code Mode registration, or finding which doctor command fits a problem. They also reach it when they ask for one skill's own setup check: the sk-code battery, the CI switches, the sk-git hook gates, a skill's format, the skill advisor's graph or a deep loop's convergence. Every one of them is answered by the owned-command table in the root `README.md`, which names the one doctor command to run. A request about a vendored copy's overlays or a re-pin also loads `references/overlays.md`, which says what each sync state means and what resolves it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -43,7 +43,7 @@ reader both accept. Declaring both is legal only when they mirror each other exa
 Otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
 
-- **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh` and `code mode install` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
+- **`DOCTOR_COMMANDS`** fires on `put skilled into my project`, `install skilled`, `link the skilled checkout`, `update skilled`, `runtime mirrors`, `environment switches`, `doctor setup`, `which doctor command`, `agents md sections`, `trigger index fresh`, `code mode install`, `sk-code setup`, `ci switches`, `git hook gates`, `skill format check`, `rebuild the skill advisor` and `deep-loop convergence` at weight 4. It loads `README.md`, the owned-command table, which is also the default resource.
 - **`OVERLAYS`** fires on `vendored skilled`, `skilled overlays`, `overlay status`, `apply the overlays`, `capture a live edit`, `re-pin`, `repin`, `overlay-edited`, `overlay layout path`, `relayout`, `overlay audit`, `overlay lock`, `overlay build lock`, `stale overlay lock`, `take over the overlay lock`, `reapply my overlays`, `strict overlay writes`, `no overlay owns`, `unowned vendored`, `unowned vendored files`, `my overlays back into the vendored copy`, `overlay root files drifted upstream`, `changed the root files an overlay owns`, `agents overlay stale`, `agents overlay out of sync`, `my agents overlay`, `my skilled overlay`, `overlay rebase`, `overlay no longer adds a json item`, `stage an overlay re-pin`, `staged overlay re-pin`, `overlay lock whose owner has ended`, `drifted from the pinned upstream commit`, `overlay folder beside the tree`, `sibling overlay folder`, `move my overlay folder out of the tree`, `adopt an unowned vendored file into an overlay`, `overlay folders missing a readme` and `base from a pinned framework commit` at weight 4. It loads `references/overlays.md`, the sync states and what resolves each one.
 
 ---
@@ -65,7 +65,7 @@ ROOT_RESOURCES = ("README.md",)
 DEFAULT_RESOURCE = "README.md"
 
 INTENT_SIGNALS = {
-    "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install"]},
+    "DOCTOR_COMMANDS": {"weight": 4, "keywords": ["put skilled into my project", "install skilled", "link the skilled checkout", "update skilled", "runtime mirrors", "environment switches", "doctor setup", "which doctor command", "agents md sections", "trigger index fresh", "code mode install", "sk-code setup", "ci switches", "git hook gates", "skill format check", "rebuild the skill advisor", "deep-loop convergence"]},
     "OVERLAYS": {"weight": 4, "keywords": ["vendored skilled", "skilled overlays", "overlay status", "apply the overlays", "capture a live edit", "re-pin", "repin", "overlay-edited", "overlay layout path", "relayout", "overlay audit", "overlay lock", "overlay build lock", "stale overlay lock", "take over the overlay lock", "reapply my overlays", "strict overlay writes", "no overlay owns", "unowned vendored", "unowned vendored files", "my overlays back into the vendored copy", "overlay root files drifted upstream", "changed the root files an overlay owns", "agents overlay stale", "agents overlay out of sync", "my agents overlay", "my skilled overlay", "overlay rebase", "overlay no longer adds a json item", "stage an overlay re-pin", "staged overlay re-pin", "overlay lock whose owner has ended", "drifted from the pinned upstream commit", "overlay folder beside the tree", "sibling overlay folder", "move my overlay folder out of the tree", "adopt an unowned vendored file into an overlay", "overlay folders missing a readme", "base from a pinned framework commit"]},
 }
 

@@ -1017,24 +1017,43 @@ const DEFAULT_LINEAGE_ITERATIONS = 12;
  * step --stop uses, so a leader that still answers is signalled as a group, an exited
  * leader's members one by one, and a member --stop would spare is left alone. A child with
  * no spawned row cannot be named, and only this runner can reach it, so it is signalled as
- * before.
+ * before. A held child whose row records no start time is terminated directly: this runner
+ * has not reaped it, so its pid cannot have been reused.
  *
  * @param {string} signal - The signal that is stopping the runner.
  * @param {Object[]} records - The run's status ledger rows.
  * @returns {{live: Array<{label: string, pid: number, members?: number[]}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}}
  */
+// Refusal reasons that still leave a child the runner holds as its own lineage. The child
+// was never reaped, so its pid cannot have been reused: a missing start time and a start
+// time that ps cannot read both leave nothing to prove. A mismatch can only come from a
+// ledger row the child does not own, so it stays refused.
+const HELD_CHILD_UNPROVEN_REASONS = new Set(['no_recorded_identity', 'identity_unreadable']);
+
 function stopActiveLineageProcesses(signal, records) {
   const lineages = [];
+  const heldChildren = new Map();
   for (const child of activeLineageProcesses) {
     const spawnedRow = records.filter((record) => record
       && record.event === 'spawned'
       && typeof record.label === 'string'
       && Number(record.pid) === child.pid).at(-1);
-    if (spawnedRow) lineages.push({ label: spawnedRow.label, pid: child.pid });
-    else terminateLineageProcess(child, signal);
+    if (spawnedRow) {
+      lineages.push({ label: spawnedRow.label, pid: child.pid });
+      heldChildren.set(child.pid, child);
+    } else {
+      terminateLineageProcess(child, signal);
+    }
   }
   const outcome = classifyLineagesForStop(records, lineages);
   for (const lineage of outcome.live) signalStoppingLineage(lineage, signal);
+  // The identity check guards a pid a later --stop reads from a ledger, where the number may
+  // already belong to another process. A child still held here was never reaped, so its pid
+  // is still its own and an unproven identity leaves nothing to prove.
+  for (const lineage of outcome.refused) {
+    if (!HELD_CHILD_UNPROVEN_REASONS.has(lineage.reason)) continue;
+    terminateLineageProcess(heldChildren.get(lineage.pid), signal);
+  }
   return outcome;
 }
 
@@ -1494,7 +1513,7 @@ function lineagesStillAnsweringAfterGrace(lineages, graceMs = RUNNER_STOP_GRACE_
  *
  * @param {string} ledgerPath - The run's orchestration-status.log.
  * @param {string[]} argv - The run's own argv plus --stop, which the rerun command drops.
- * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}>}
+ * @returns {Promise<{stopped: Array<{label: string, pid: number}>, survivors: Array<{label: string, pid: number}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>, remedy?: string}>}
  */
 async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
   const records = readLedgerRecords(ledgerPath);
@@ -1533,7 +1552,18 @@ async function stopLiveFanoutRun(ledgerPath, argv = process.argv.slice(2)) {
     redactTerminalLineageLogs(path.join(lineagesDir, lineage.label));
   }
   const brief = ({ label, pid }) => ({ label, pid });
-  return { stopped: stopped.map(brief), survivors: survivors.map(brief), refused, spared };
+  // A host that records no start time refuses every lineage, and nothing here can end them.
+  // The runner that spawned them still holds them, so the operator is told to stop that.
+  const remedy = refused.some((lineage) => lineage.reason === 'no_recorded_identity')
+    ? 'These lineages recorded no process start time, so --stop cannot prove each pid is still the lineage and signals none of them. Stop the runner that spawned them, with Ctrl+C in its console or a signal to its pid, and it ends the lineages it holds.'
+    : undefined;
+  return {
+    stopped: stopped.map(brief),
+    survivors: survivors.map(brief),
+    refused,
+    spared,
+    ...(remedy ? { remedy } : {}),
+  };
 }
 
 /**
@@ -4178,6 +4208,7 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // gpt-6-luna-max-priority is dispatch-verified on 3000.11.1; gpt-6-luna-max is
 // list-verified only.
 const DEVIN_ALLOWED_MODELS = new Set([
+  'deepseek-v4-1-flash-1017-max',
   'deepseek-v4-1-flash-high',
   'deepseek-v4-1-flash-max',
   'deepseek-v4-flash-max',
@@ -5418,12 +5449,12 @@ async function main() {
     stoppedSummaryWritten = true;
     const ledgerRecords = readLedgerRecords(ledgerPath);
     const { live, refused } = stopActiveLineageProcesses(signal, ledgerRecords);
-    // A refused lineage was not signalled. Only one with no recorded start can still own its
-    // group; for the others the pid has exited or now belongs to another process, so what
-    // answers there is not the lineage and must not keep it open.
+    // A held child refused for an unproven identity was still terminated above and still
+    // owns its group, so it can survive the grace period like a live one. A mismatch means
+    // what answers at that pid is not the lineage and must not keep it open.
     const survivors = lineagesStillAnsweringAfterGrace([
       ...live,
-      ...refused.filter((lineage) => lineage.reason === 'no_recorded_identity')
+      ...refused.filter((lineage) => HELD_CHILD_UNPROVEN_REASONS.has(lineage.reason))
         .map(({ label, pid }) => ({ label, pid })),
     ]).map(({ label, pid }) => ({ label, pid }));
     const survivorLabels = new Set(survivors.map((survivor) => survivor.label));

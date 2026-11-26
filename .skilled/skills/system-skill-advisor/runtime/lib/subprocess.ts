@@ -12,6 +12,9 @@ import { join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
 import { isRecord } from './utils/json-guard.js';
+import { typedCommandForTop, type TypedCommand } from './command-attach.js';
+import { stripLeadingPastedReply } from './prompt-policy.js';
+import { mergedSkillForAlias } from './scorer/aliases.js';
 
 import type { ChildProcess } from 'node:child_process';
 import type { AdvisorThresholds } from './prompt-cache.js';
@@ -44,6 +47,8 @@ export interface AdvisorRecommendation {
   readonly ownerSkillId?: string;
   // True when a hub held back its command because the prompt names no single mode.
   readonly needsMode?: boolean;
+  // True when the command is one the prompt typed, so the head offers no choice.
+  readonly typed?: true;
   // True when the confidence sits on the task-intent floor rather than the
   // recommendation's own evidence.
   readonly confidenceFloored?: true;
@@ -155,6 +160,10 @@ function capOutput(current: string, chunk: string): string {
   return (current + chunk).slice(0, MAX_OUTPUT_CHARS);
 }
 
+function isNonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
 function coerceCompiledRouteSummary(value: unknown): CompiledRouteSummary | undefined {
   if (!isRecord(value)) return undefined;
   if (typeof value.outcome !== 'string' || value.outcome.length === 0) return undefined;
@@ -198,6 +207,17 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
     return {
       skill: item.skill,
       ...(typeof item.kind === 'string' ? { kind: item.kind } : {}),
+      // The command fields are what the brief head prints, so dropping them here
+      // leaves the head naming a different form than the Python advisor chose.
+      // A blank value would print as an empty command or owner, so only a
+      // non-empty string survives.
+      ...(isNonEmptyString(item.command) ? { command: item.command } : {}),
+      ...(isNonEmptyString(item.policy) ? { policy: item.policy } : {}),
+      ...(isNonEmptyString(item.ownerSkillId) ? { ownerSkillId: item.ownerSkillId } : {}),
+      // A typed command already carries the reader's choice of mode, so the head
+      // must leave the offer options off. Only a literal true counts, because a
+      // truthy string or number would hide options the reader never declined.
+      ...(item.typed === true ? { typed: true as const } : {}),
       confidence: item.confidence,
       uncertainty: item.uncertainty,
       ...(typeof item.passes_threshold === 'boolean' ? { passes_threshold: item.passes_threshold } : {}),
@@ -206,6 +226,40 @@ function parseRecommendations(stdout: string): AdvisorRecommendation[] {
       ...(compiledRouteSummary ? { compiledRouteSummary } : {}),
     };
   });
+}
+
+// The Python advisor scores a typed deep command under its legacy mode id, such
+// as `deep-review`, and never names the command it saw. The native path attaches
+// the typed command to its top row, so the Python path must work it out here or
+// the head offers a mode choice the reader already made. A legacy mode id stands
+// for the hub that owns it now, which is the row a typed command belongs to.
+export function typedCommandForRecommendation(skill: string, prompt: string): TypedCommand | undefined {
+  const typed = typedCommandForTop(skill, prompt);
+  if (typed !== undefined) return typed;
+  const merged = mergedSkillForAlias(skill);
+  return merged === skill ? undefined : typedCommandForTop(merged, prompt);
+}
+
+// Only the row a reader acts on carries the typed command, matching the native
+// path, and a command named only in a pasted earlier reply is not one they typed.
+function withTypedCommand(
+  recommendations: AdvisorRecommendation[],
+  prompt: string,
+): AdvisorRecommendation[] {
+  const [top, ...rest] = recommendations;
+  if (!top) return recommendations;
+  const typed = typedCommandForRecommendation(top.skill, stripLeadingPastedReply(prompt));
+  if (!typed) return recommendations;
+  return [
+    {
+      ...top,
+      command: typed.command,
+      policy: typed.policy,
+      ownerSkillId: typed.ownerSkillId,
+      typed: true,
+    },
+    ...rest,
+  ];
 }
 
 function runSpawnAttempt(args: {
@@ -245,6 +299,10 @@ function runSpawnAttempt(args: {
       return;
     }
 
+    // A child that exits before it reads the prompt closes the pipe, and the
+    // write then fails with EPIPE. Without a listener that error is thrown out of
+    // the caller; the close handler below already reports the failed exit.
+    child.stdin?.on('error', () => undefined);
     child.stdin?.write(args.prompt);
     child.stdin?.end();
     const timer = setTimeout(() => {
@@ -394,7 +452,7 @@ export async function runAdvisorSubprocess(
     try {
       return {
         ok: true,
-        recommendations: parseRecommendations(attemptResult.stdout),
+        recommendations: withTypedCommand(parseRecommendations(attemptResult.stdout), prompt),
         errorCode: null,
         exitCode: attemptResult.exitCode,
         signal: attemptResult.signal,

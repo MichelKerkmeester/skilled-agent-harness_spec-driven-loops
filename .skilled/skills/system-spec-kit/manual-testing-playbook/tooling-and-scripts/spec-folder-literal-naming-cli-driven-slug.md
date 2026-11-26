@@ -1,7 +1,7 @@
 ---
 title: "PHASE-008 -- Spec-folder literal naming (CLI-driven slug proposal)"
 description: "Verify that external CLI agents presented with an ambiguous spec task propose phase names containing specific subject tokens, not generic placeholders, per the YAML 'Generate LITERAL phase names' activity in Packet 012 REQ-001 and REQ-002."
-version: 1.6.2.0
+version: 1.6.3.0
 id: tooling-and-scripts-spec-folder-literal-naming-cli-driven-slug
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -211,7 +211,7 @@ Capture, for every step in the Commands sequence above:
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Originating spec packet: [Spec-folder naming guard](../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
+- Originating spec packet: [Spec-folder naming guard](../../../../../specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/007-spec-folder-naming-guard/)
 
 Provenance: manual only - claude
 

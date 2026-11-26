@@ -169,7 +169,9 @@ function testTraceabilityChecksDoNotBecomeBlockedDeadEnds() {
     .filter((line) => /^### .*(checklist_evidence|feature_catalog_code|agent_cross_runtime|playbook_capability).*BLOCKED/.test(line));
   assert.deepEqual(blockedTraceability, []);
 
-  assert.match(result.strategy, /^### keyword scan for unsafe casts -- BLOCKED/m);
+  // One pass of evidence rules a direction out rather than freezing it, so the
+  // dead end reaching the section is recorded as reopenable, not prohibited.
+  assert.match(result.strategy, /^### keyword scan for unsafe casts -- RULED OUT \(iteration 2, 1 attempt\)$/m);
 }
 
 function testRefinesRowFoldsIntoItsTarget() {

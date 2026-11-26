@@ -1,7 +1,7 @@
 ---
 title: "ASD-007 -- Screenshot artifact verification"
 description: "This scenario validates REPL screenshot evidence for `ASD-007`. It focuses on writing a real PNG via `page.screenshot` into the session folder and verifying it by existence, size, and magic bytes inside the same REPL process."
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # ASD-007 -- Screenshot artifact verification
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `ASD-007` and confirm th
 ### Expected
 
 - Step 2: prints one JSON line with `size` > 0 and `magic` equal to `89504e47`, plus the session folder in `dir`; no error line and no `[WARN] Use <session>/tmp instead of /tmp` line. Exit 0 alone is not a pass signal, because an `aside repl` error still exits 0.
-- The `./tmp/` path is the form the REPL tool description and the redirect warning point to; it has not yet passed a live run on Aside 1.26.626.1517, so record the outcome as installed-version evidence.
+- The `./tmp/` path is the form the REPL tool description and the redirect warning point to; it holds on Aside 1.26.626.1517, where ASD-007 verified the PNG by magic bytes.
 
 ### Evidence
 
@@ -86,7 +86,7 @@ The full step 2 output, which carries the session folder, file size and magic by
 | File | Role |
 |---|---|
 | `.skilled/skills/mcp-browser-use/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json` | REPL globals: `fs`, `pwd` as the session directory, `page.screenshot` options and the `./tmp/` example path |
-| `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Older scripted equivalent; it chains separate `aside repl` calls and checks a shell path afterwards, so it does not hold on Aside 1.26.626.1517 |
+| `.skilled/skills/mcp-browser-use/mcp-aside-devtools/examples/repl-evidence-capture.sh` | Scripted equivalent that runs this same one-evaluation form and gates on its logged JSON. It has not yet been run as a script against a live Aside. |
 
 ---
 

@@ -8,13 +8,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp/mcp-browser-use/001-mcp-browser-use-hub/003-mode-relocation"
-    last_updated_at: "2026-11-21T13:24:39Z"
-    last_updated_by: "generate-context"
-    recent_action: "Moved both packets, widened guard, rewrote paths; review APPROVED"
-    next_safe_action: "Await operator choice on AC-002, then commit and regenerate cite-drift"
+    last_updated_at: "2026-11-24T05:32:33Z"
+    last_updated_by: "claude-code"
+    recent_action: "Recorded AC-002 as Met and reran the goal criteria"
+    next_safe_action: "None; every goal criterion holds"
     packet_purpose: "Purpose: Both modes resolve from the new hub, `mcp-tooling` lists its six remaining modes, and no live file points at the old paths."
-    blockers:
-      - "AC-002 unmet: three residual old-path files"
+    blockers: []
     key_files:
       - ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml"
       - ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh"
@@ -32,10 +31,10 @@ _memory:
       savedAt: "2026-11-21T13:24:39Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 90
-    open_questions:
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
       - "Q1"
-    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -113,7 +112,7 @@ The work followed `/speckit:implement:auto` in this worktree. Nothing was commit
 |----------|-----|
 | Stage only the pure renames; keep in-packet edits unstaged | NFR-S01 asks for pure renames, and REQ-002 needs the in-packet path strings rewritten. Splitting index from worktree keeps both provable |
 | Rewrite hub-name prose inside the packets | After the move, "the `mcp-tooling` hub picks this mode" is false |
-| Leave the `mcp-figma` path reference | The operator fenced off the four sibling packets |
+| Fix the `mcp-figma` path reference | First left alone because the operator fenced off the sibling packets. Superseded by the operator's AC-002 answer: the fence covers bare-id cross-references, not this broken old path |
 | Leave the old hub's version and changelog | Not named in this phase's scope |
 <!-- /ANCHOR:decisions -->
 
@@ -128,7 +127,7 @@ Acceptance: 8 criteria, 8 Met, none waived. Checklist P0 7/7, P1 10/10. See [`ac
 |-------|--------|
 | `jq '.modes \| length' .skilled/skills/mcp-tooling/mode-registry.json` | `6` |
 | `rg -l 'mcp-(chrome\|aside)-devtools'` on the six old-hub files | no match, exit 1 |
-| `rg -l 'mcp-tooling/mcp-(chrome\|aside)-devtools' .skilled` excluding changelog and benchmark reports | 3 files, see Known Limitations |
+| `rg -l 'mcp-tooling/mcp-(chrome\|aside)-devtools' .skilled` excluding changelog and benchmark reports | no match, exit 1, rerun 2026-11-24. See Known Limitations item 1 |
 | `parent-skill-check.cjs` on both hubs | exit 0, `OK: parent-skill-check — all hard invariants passed, 0 warnings` |
 | `check-mcp-mutation-class.test.sh` | exit 0, `Results: 37 passed, 0 failed` |
 | `check-mcp-mutation-class.sh .` | exit 0, both packets' scripts PASS under `mcp-browser-use/` |

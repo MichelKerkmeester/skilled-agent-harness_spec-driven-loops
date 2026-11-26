@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts,.skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts,.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts,.skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs,.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts,.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts,.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts,.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts,.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts,.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts,.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts,.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py,.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts,.skilled/skills/system-skill-advisor/hooks/tests/dsh-prompt-advisor.test.mjs,.skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/skill-advisor-cli-fallback-no-match.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/cli-degraded-command-contract.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-brief-producer.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts,.skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py,.skilled/skills/system-skill-advisor/runtime/tests/fixtures/pasted-reply-strip-cases.json"
+title: "Resource Map — .skilled/skills/system-skill-advisor"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map
@@ -10,25 +10,14 @@ description: "Auto-generated review resource map from convergence evidence."
 
 ## Summary
 
-- **Total references**: 6
-- **By category**: READMEs=0, Documents=2, Commands=0, Agents=0, Skills=4, Specs=0, Scripts=0, Tests=0, Config=0, Meta=0
-- **Missing on disk**: 2
+- **Total references**: 14
+- **By category**: READMEs=0, Documents=0, Commands=0, Agents=0, Skills=13, Specs=0, Scripts=1, Tests=0, Config=0, Meta=0
+- **Missing on disk**: 1
 - **Scope**: review convergence output for 016-pi-context-decisions-based-research-refinement
-- **Generated**: 2026-11-19T04:45:53.054Z
+- **Generated**: 2026-11-24T05:08:25.288Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
 > **Status vocabulary**: `OK` · `MISSING` · `PLANNED`.
-
-## 2. Documents
-
-> Long-form markdown artifacts that are not READMEs: guides, specs, references, install docs, catalogs, playbooks.
-
-| Path | Action | Status | Note |
-|------|--------|--------|------|
-| dim-correctness | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-| file-subprocess | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
-
----
 
 ## 5. Skills
 
@@ -36,9 +25,28 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=4 |
-| .skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=3 |
-| .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=2 |
-| .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/advisor-server.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
+| .skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts | Analyzed | OK | Findings P0=0 P1=0 P2=6; Iterations=3 |
+| .skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py | Analyzed | OK | Findings P0=0 P1=0 P2=2; Iterations=2 |
+| .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=1 |
+| .skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+
+---
+
+## 7. Scripts
+
+> Executable or build/test scripts: `.sh`, `.js`, `.ts`, `.mjs`, `.cjs`, `.py`.
+
+| Path | Action | Status | Note |
+|------|--------|--------|------|
+| file:fusion.ts | Validated | MISSING | Findings P0=0 P1=0 P2=0; Iterations=1 |
 
 ---

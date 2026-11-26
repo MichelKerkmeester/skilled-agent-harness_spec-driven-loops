@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside setup"
   - "aside doctor"
   - "aside not found"
-version: 1.0.0.0
+version: 1.0.2.0
 ---
 
 # Install (setup and diagnostics for the aside binary)
@@ -21,7 +21,7 @@ Installation is MUTATING on the host and strictly operator-invoked: the skill ne
 
 ## 2. HOW IT WORKS
 
-Install with `curl -fsSL https://releases.aside.com/install.sh | bash` or the packaged wrapper `bash scripts/install.sh` (platform gate + no-op when already installed; honors `ASIDE_CLI_VERSION`, `ASIDE_CLI_BASE_URL`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR`). Sign-in happens through the Aside app; verify with `aside account list` / `aside account status`. The preflight discipline applies before every use: `command -v aside`, then `aside --version 2>&1`, then `aside --help 2>&1` saved as a version-pinned fixture — never freeze flag spellings from memory.
+Install with the packaged wrapper `bash scripts/install.sh`, which downloads the official installer, checks its pinned sha256 and runs it only on a match (platform gate + no-op when already installed; honors `ASIDE_CLI_VERSION`, `ASIDE_CLI_INSTALL_DIR`, `ASIDE_CLI_BIN_DIR` and refuses `ASIDE_CLI_BASE_URL`, since the downloaded archive is not verified). Sign-in happens through the Aside app; verify with `aside account list` / `aside account status`. The preflight discipline applies before every use: `command -v aside`, then `aside --version 2>&1`, then `aside --help 2>&1` saved as a version-pinned fixture — never freeze flag spellings from memory.
 
 `bash scripts/doctor.sh` checks platform, binary, version, account state, runs a watchdog-guarded MCP stdio handshake probe, and verifies the registered `aside` manual in `.utcp_config.json` — manual absence is an error (registration regressed), and the doctor reports it without writing anything.
 

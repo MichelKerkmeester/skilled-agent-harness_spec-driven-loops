@@ -70,7 +70,7 @@ command/
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   └── assets/               # YAML workflow definitions
-├── doctor/                   # Diagnostic commands, one per owner
+├── doctor/                   # Diagnostic commands, one per area
 │   ├── speckit.md            # Spec-kit retrieval diagnostics
 │   ├── skill-advisor.md      # Skill advisor tune, rebuild and audits
 │   ├── deep-loop.md          # Deep-loop graph and convergence diagnostics
@@ -138,7 +138,7 @@ Drive the `system-skilled-bots` hub, one command per mode. Each supports `:auto`
 
 ### Doctor Commands
 
-Eighteen command files cover the diagnostic surface, one per owner, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Eighteen command files cover the diagnostic surface, one per area, with one entry point that names the others. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|

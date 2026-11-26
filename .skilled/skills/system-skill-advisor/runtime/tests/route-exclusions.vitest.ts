@@ -3,10 +3,10 @@
 // ───────────────────────────────────────────────────────────────
 //
 // Proves the operator-adjustable routing-exclusion denylist: an excluded id is
-// non-routable at both wired seams (the id predicate the fusion loop consults
-// and the path-based filterDefaultRoutable), a non-excluded id is unaffected,
-// missing/empty/malformed config is fail-safe (empty set, no throw), and a
-// present local override fully replaces the committed list.
+// non-routable at the wired seam (the id predicate the fusion loop consults),
+// a non-excluded id is unaffected, missing/empty/malformed config is fail-safe
+// (empty set, no throw), and a present local override fully replaces the
+// committed list.
 
 import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -17,8 +17,8 @@ import {
   isRouteExcludedSkillId,
   loadRouteExclusionsFromDir,
   resetRouteExclusionsCache,
+  routeExclusionsStamp,
 } from '../lib/route-exclusions.js';
-import { filterDefaultRoutable } from '../lib/lifecycle/archive-handling.js';
 
 const COMMITTED_FILE = 'route-exclusions.json';
 const LOCAL_FILE = 'route-exclusions.local.json';
@@ -57,20 +57,6 @@ describe('route-exclusions loader', () => {
     // A representative active skill is untouched by the denylist.
     expect(isRouteExcludedSkillId('sk-code')).toBe(false);
     expect(isRouteExcludedSkillId('sk-design')).toBe(false);
-  });
-
-  it('drops an excluded id at the path-based route-policy seam and keeps others', () => {
-    const dir = scratchDir();
-    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example'] }), 'utf8');
-    process.env.SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR = dir;
-    resetRouteExclusionsCache();
-    const entries = [
-      { sourcePath: '.skilled/skills/sk-code/graph-metadata.json', skillId: 'sk-code' },
-      { sourcePath: '.skilled/skills/sk-example/graph-metadata.json', skillId: 'sk-example' },
-      { sourcePath: '.skilled/skills/z_archive/old/graph-metadata.json', skillId: 'old' },
-    ];
-    // The explicit exclusion and lifecycle filter remove their respective entries.
-    expect(filterDefaultRoutable(entries).map((entry) => entry.skillId)).toEqual(['sk-code']);
   });
 
   it('returns an empty set for a directory with no config files (missing is safe)', () => {
@@ -130,5 +116,24 @@ describe('route-exclusions loader', () => {
     resetRouteExclusionsCache();
     expect(isRouteExcludedSkillId('sk-example-env')).toBe(true);
     expect(isRouteExcludedSkillId('sk-code')).toBe(false);
+  });
+
+  // The daemon keeps one process for hours, so an edit has to land without a
+  // cache reset. Each write changes the file's size, so the stamp moves even
+  // when two writes share a modification time.
+  it('picks up an edit to the list in a running process without a reset', () => {
+    const dir = scratchDir();
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-a'] }), 'utf8');
+    process.env.SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR = dir;
+    resetRouteExclusionsCache();
+    expect(isRouteExcludedSkillId('sk-a')).toBe(true);
+    const before = routeExclusionsStamp();
+
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-a', 'sk-bb'] }), 'utf8');
+    expect(routeExclusionsStamp()).not.toBe(before);
+    expect(isRouteExcludedSkillId('sk-bb')).toBe(true);
+
+    writeFileSync(join(dir, LOCAL_FILE), JSON.stringify({ excludedSkillIds: [] }), 'utf8');
+    expect(isRouteExcludedSkillId('sk-a')).toBe(false);
   });
 });

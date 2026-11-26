@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro code mode manual"
 importance_tier: normal
 contextType: reference
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Bladebro MCP Wiring
@@ -41,7 +41,7 @@ Confirm it is registered rather than adding a second one:
 jq -c '.manual_call_templates[] | select(.name=="bladebro")' .utcp_config.json
 ```
 
-The manual launches the installed binary. Without a global install, an MCP client can launch it through npm with `"command": "npx"` and `"args": ["-y", "bladebro", "mcp"]`, but that pulls the package at launch, which is an install under R-SEC-3 and needs an operator yes. Set `BLADE_HOME` or `BLADE_FRESH` in `env` when a task needs isolation.
+The manual launches the installed binary. Without a global install, an MCP client can launch it through npm with `"command": "npx"` and `"args": ["-y", "bladebro@4.8.2", "mcp"]`, pinned to the exact release, but that pulls the package at launch, which is an install under R-SEC-3 and needs an operator yes. Set `BLADE_HOME` or `BLADE_FRESH` in `env` when a task needs isolation.
 
 ---
 

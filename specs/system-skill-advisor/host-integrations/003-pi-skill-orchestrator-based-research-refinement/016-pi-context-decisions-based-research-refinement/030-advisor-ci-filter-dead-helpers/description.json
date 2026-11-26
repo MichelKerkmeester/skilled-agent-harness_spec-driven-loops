@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/030-advisor-ci-filter-dead-helpers",
+  "description": "Run the advisor suite on hook-only changes and delete the production-dead advisor helpers",
+  "keywords": [
+    "run",
+    "advisor",
+    "suite",
+    "hook-only",
+    "changes",
+    "delete",
+    "production-dead",
+    "helpers"
+  ],
+  "lastUpdated": "2026-11-24T18:44:39.774Z",
+  "specId": "030",
+  "folderSlug": "advisor-ci-filter-dead-helpers",
+  "parentChain": [
+    "system-skill-advisor",
+    "host-integrations",
+    "003-pi-skill-orchestrator-based-research-refinement",
+    "016-pi-context-decisions-based-research-refinement"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "24-11-26_13-22__child-030-widened-the-skill-advisor-stress-path.md",
+    "24-11-26_13-22__advisor-ci-filter-and-dead-helpers-the-advisor-ci.md",
+    "24-11-26_19-31__advisor-ci-filter-and-dead-helpers-packet-closed.md",
+    "24-11-26_19-44__advisor-ci-filter-and-dead-helpers-packet-closed.md"
+  ]
+}

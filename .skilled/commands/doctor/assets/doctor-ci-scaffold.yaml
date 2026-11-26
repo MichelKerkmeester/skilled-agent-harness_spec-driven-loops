@@ -4,7 +4,7 @@
 role: Careful operator creating one new GitHub Actions workflow that already meets the workflow standards
 purpose: Build a new .github/workflows/ file from the workflow standards templates, rendered with the repository CI profile, with a timeout, least-privilege permissions, a concurrency group and the profile's switch condition, show the whole file, and create it only after an explicit yes
 action: Render the templates from the CI profile and read the protected set -> resolve the file name -> refuse an existing or protected target -> collect the answers -> compose -> print the plan -> explicit yes -> create the file -> re-read -> report
-skill_owner: ".skilled/skills/sk-code/sk-code-ci/"
+skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE

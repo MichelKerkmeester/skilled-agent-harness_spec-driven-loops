@@ -11,39 +11,56 @@ contextType: "general"
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-> [One line: what this timeline tracks.]
+> Tracks the deep-loop command offer packet from its first build through each review and fix round.
 
 ---
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the timeline id, the date and the owner. GOOD: TL-001, 2026-10-24, conductor. WEAK: TBD. -->
 
-**Subject:** [SUBJECT]
-**Status:** [Draft/In Progress/Complete/Archived]
+**Subject:** Offering `/deep:research`, `/deep:review` and `/doctor:deep-loop` only when the request asks for the loop
+**Status:** Complete
 **Started:** 2026-11-22
-**Last updated:** 2026-11-22
-**Owner:** [NAME OR ROLE]
+**Last updated:** 2026-11-25
+**Owner:** the session building this packet, with the operator deciding each open question
 <!-- /ANCHOR:metadata -->
 
 ---
 
 <!-- ANCHOR:timeline -->
 ## 2. TIMELINE
-<!-- FILL: Put each event in date order with its evidence. GOOD: 2026-10-24: `--keep` merged. `ls logs/archive | wc -l` printed 3. WEAK: Events happened. -->
 
-List events in order. For each, give the date, what happened, then what it led to. Use prose, not a table.
+**2026-11-22:** The packet was written and the first build landed, then two routing follow-ups and a live question-tool check (`00741c4c738` to `8166365f613`). Outcome: the gate offered a deep-loop command on explicit loop wording, and the v4.2.0.0 changelog gained the offers (`d874a093b10`).
 
-**2026-11-22:** [EVENT OR CHANGE]. Outcome: [RESULTING STATE OR DECISION].
+**2026-11-23:** A fourth review-fix round, the acceptance closure pass and the F6 offer sessions ran (`4eb8597b026` to `069b73578fb`). Outcome: AC-008 was settled on the sampled sessions and the packet was marked Complete (`77cb1e64a53`).
 
-**2026-11-22:** [EVENT OR CHANGE]. Outcome: [RESULTING STATE OR DECISION].
+**2026-11-23:** A fresh review reopened the packet for gate fixes, built in worktree 529 and merged (`587a50974cc` to `e53bec2092a`). Outcome: the packet closed again with both offer packets on main.
+
+**2026-11-24:** A three-lineage deep review returned FAIL on its coverage gate (`bd771c9cbae`), and the sixth fix round answered it (`f2217f9ad60`). Outcome: the traceability rerun (T084, AC-040) was left open.
+
+**2026-11-24:** Four traceability reruns alternated with fix rounds seven to ten (`5792298078d` to `e7da77b240e`). Outcome: the reruns found 2, 1, 4 and 4 P1s. The fourth found no new word-rule gap in the gate, and its findings were a fallback parity gap and evidence cells cited by line number. The tenth round moved closure evidence to name-based citations.
+
+**2026-11-24:** The fifth traceability rerun, review generation 7, ran after the tenth round (`3287685dd7a`). Outcome: 3 P1s and 14 P2s, and the first rerun in which two of three lineages read `coverage-complete`.
+
+**2026-11-24:** The eleventh fix round answered generation 7 (`4edba5ad264`, `6e48734eeca`), and the sixth rerun, review generation 8, ran on its tree (`bfd30f8195f`). Outcome: no P0 or P1 and 9 P2s on closure records, the doctor command string and one research alias. Each lineage still failed one terminal gate, so AC-040 stayed open and the twelfth fix round answered the nine P2s (`257bda24512`, `4b3258e754d`).
+
+**2026-11-24:** The seventh rerun, review generation 9, ran on the twelfth round's tree with a focus that names all four dimensions (`6fa766254f6`). Outcome: two lineages of three passed every gate for the first time, and the run found one P1 and 15 P2s. The thirteenth fix round answers them.
+
+**2026-11-24:** The thirteenth fix round answered generation 9 (`c5c97b12dfc` to `335720592ca`), and the eighth rerun, review generation 10, ran on its tree (`766dcef90f4`). Outcome: every lineage passed evidence and scope and covered all four dimensions, and each failed coverage on findings of its own, with 4 P1s, two of them in the thirteenth round's code.
+
+**2026-11-25:** An independent review found the closure criterion could not be met: the gate reads open-ended wording, and the closure docs quoted counts each round made stale. It fixed the reducer's gate-class trust and the hook-brief P1 and pinned every closure count (`87f1cb952c7` to `1dae1408f08`). Outcome: the operator accepted ADR-010, AC-040 closed on generation 10 and the packet was marked Complete.
+
+**2026-11-25:** The operator reopened the packet to remove the Python copy of the offer gate (`73d98332fff`, worktree 543). Outcome: the fallback keeps a deep-loop row only when its command is typed, ADR-011 records the rule, and the packet closed again.
 <!-- /ANCHOR:timeline -->
 
 ---
 
 <!-- ANCHOR:milestones -->
 ## 3. MILESTONES
-<!-- FILL: Name each milestone and whether it passed. GOOD: M1 passed. 3 archives left. WEAK: Milestones met. -->
 
-**[MILESTONE]:** target [YYYY-MM-DD OR CONDITION]. Status: [Planned/In Progress/Done]. Evidence: [LINK, PATH OR NOTE].
+**First build on main:** target 2026-11-22. Status: Done. Evidence: `d874a093b10`.
+
+**Packet Complete after the closure pass:** target 2026-11-23. Status: Done, later reopened. Evidence: `77cb1e64a53`.
+
+**Traceability rerun passes its coverage gate (AC-040):** target a rerun after the thirteenth fix round. Status: Done under ADR-010 on 2026-11-25. Evidence: `review/review-report.md`.
 <!-- /ANCHOR:milestones -->

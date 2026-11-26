@@ -1,11 +1,11 @@
 ---
 title: "Console Logs"
-description: "bdg console --list — JSON array of console messages from the active page."
+description: "bdg console --list --json: console messages from the active page under .messages."
 trigger_phrases:
   - "bdg console"
   - "get console logs cli"
   - "browser console errors"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Console Logs
@@ -14,13 +14,13 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`bdg console --list 2>&1` returns a JSON array of console messages from the active page. Filter with `jq '.[] | select(.level == "error")'` to isolate errors; retrieval target is under 1 second.
+`bdg console --list --json 2>&1` returns a JSON object from the active page. It holds `success`, `summary`, `errors`, `warnings` and, with `--list`, `messages`. Each message carries `type` and `text`, not `level`. Without `--json` the command prints human-readable text. Filter errors with `jq '.messages[] | select(.type == "error")'`, or read the deduplicated `.errors`. The retrieval target is under 1 second.
 
 ---
 
 ## 2. HOW IT WORKS
 
-Enable the Runtime domain first (`bdg cdp Runtime.enable`) for full coverage, then list and filter. The console-log-analysis workflow counts errors and extracts `level: text` pairs for reports. On the MCP path the equivalent tool is `list_console_messages`.
+Enable the Runtime domain first (`bdg cdp Runtime.enable`) for full coverage, then list and filter. The console-log-analysis workflow counts errors and extracts `type: text` pairs for reports. On the MCP path the equivalent tool is `list_console_messages`.
 
 ---
 

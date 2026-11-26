@@ -5,7 +5,7 @@ trigger_phrases:
   - "bdg cli install"
   - "browser-debugger-cli"
   - "install bdg"
-version: 1.0.2.0
+version: 1.0.4.0
 ---
 
 # bdg-cli
@@ -21,8 +21,8 @@ version: 1.0.2.0
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Installing and verifying `bdg`, the token-efficient terminal interface to the Chrome DevTools Protocol (300+ methods across 53 domains). |
-| **Invoke with** | `npm install -g browser-debugger-cli@alpha`, then `bdg --version` and `bdg <url>`. |
-| **Works on** | Node.js 18+ with Chrome/Chromium/Edge. macOS and Linux native; Windows via WSL only. |
+| **Invoke with** | `npm install -g browser-debugger-cli@0.6.10`, then `bdg --version` and `bdg <url>`. |
+| **Works on** | Node.js 20+ with Chrome/Chromium/Edge. macOS and Linux native; Windows via WSL only. |
 | **Produces** | A working `bdg` binary on `PATH` able to start sessions, capture screenshots, read console logs, and export HAR files. |
 
 ### Why This Package Exists
@@ -31,7 +31,7 @@ mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party C
 
 ### What It Does
 
-`bdg` (browser-debugger-cli, MIT, [szymdzum/browser-debugger-cli](https://github.com/szymdzum/browser-debugger-cli)) opens a CDP session against a URL and exposes session commands (`bdg <url>` / `status` / `stop`), helper commands (screenshot, console, dom query/eval, network cookies, HAR export), discovery commands (`--list` / `--describe` / `--search`), and raw CDP execution (`bdg cdp <Method> ['<json>']`). One session is active at a time; there is no session selector.
+`bdg` (browser-debugger-cli, MIT, [szymdzum/browser-debugger-cli](https://github.com/szymdzum/browser-debugger-cli)) opens a CDP session against a URL and exposes session commands (`bdg <url>` / `status` / `stop`), helper commands (`dom screenshot`, `console`, `dom query` and `dom eval`, `network getCookies`, `network har`), CDP discovery through `bdg cdp` flags (`bdg cdp --list`, `bdg cdp <Method> --describe`, `bdg cdp --search <query>`) and raw CDP execution (`bdg cdp <Method> --params '<json>'`). One session is active at a time; there is no session selector.
 
 ---
 
@@ -40,7 +40,7 @@ mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party C
 **Step 1: Install.**
 
 ```bash
-npm install -g browser-debugger-cli@alpha
+npm install -g browser-debugger-cli@0.6.10
 ```
 
 Alternatively run the skill's embedded installer: `bash ../../scripts/install.sh`.
@@ -53,7 +53,7 @@ bdg --version
 bdg cdp --list | head -5
 ```
 
-Expected: a path to the binary, a version string, and CDP domains (`Page, DOM, Network...`).
+Expected: a path to the binary, a bare version such as `0.6.10` and the start of a JSON object (`{`, `"count": 53,`, `"domains": [` and so on). `bdg cdp --list | jq '.count'` prints `53`.
 
 **Step 3: Smoke test.**
 
@@ -70,7 +70,7 @@ ls -la /tmp/verify.png
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: bdg` | Not installed or npm bin not on `PATH` | `npm install -g browser-debugger-cli@alpha`; check `npm config get prefix` and add its `bin` to `PATH` |
+| `command not found: bdg` | Not installed or npm bin not on `PATH` | `npm install -g browser-debugger-cli@0.6.10`; check `npm config get prefix` and add its `bin` to `PATH` |
 | `Error: Could not find Chrome` | No resolvable browser binary | Set `CHROME_PATH` (see [`../../references/troubleshooting.md`](../../references/troubleshooting.md)) |
 | Fails on native Windows | Windows is WSL-only | `wsl --install`, then install bdg inside WSL |
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "system-skilled-doctor readme"
   - "skilled doctor commands"
   - "put skilled into my project"
-version: 1.0.12.0
+version: 1.0.14.0
 ---
 
 # system-skilled-doctor
@@ -27,9 +27,7 @@ version: 1.0.12.0
 
 ### What It Does
 
-This skill owns eleven doctor commands about Skilled inside a project. Each one is a router in `.skilled/commands/doctor/` that runs its own workflow, so the skill names the command that fits and runs it. `/doctor:setup` checks a project and names the command that repairs each failing leg. When no command is obvious, `/doctor:helper` reads the problem in your words and ranks the commands that fit.
-
-A check of one skill's own surface stays with that skill. `/doctor:git` belongs to `sk-git` and `/doctor:sk-skill` to `sk-doc`.
+This skill owns all seventeen doctor commands. Eleven are about Skilled inside a project, and six check one skill's own setup. Each one is a router in `.skilled/commands/doctor/` that runs its own workflow, so the skill names the command that fits and runs it. `/doctor:setup` checks a project and names the command that repairs each failing leg. When no command is obvious, `/doctor:helper` reads the problem in your words and ranks the commands that fit.
 
 ### The Owned Commands
 
@@ -48,6 +46,12 @@ Each command below has its own router and workflow. The table says what each one
 | `/doctor:speckit` | Checks that the trigger index is fresh and that its lookup and the ripgrep recipes return results. A stale index is reported with its regeneration command |
 | `/doctor:mcp` | Installs or debugs Code Mode with its UTCP configuration and runtime registration. Every repair asks for approval first |
 | `/doctor:overlay` | Checks a vendored copy's overlays and puts them back, with a re-pin that moves the copy to a newer upstream commit. `status --audit` adds each vendored path that drifted with no overlay owning it, then one advisory `DOCS` line per overlay-folder README that is missing or fails sk-doc's validator. `apply --relayout` moves overlay copies onto their layout paths |
+| `/doctor:sk-code` | Runs the sk-code setup battery, or checks and creates the repository quality config, naming each repair |
+| `/doctor:ci` | Lists the GitHub Actions workflows with their switch state, scaffolds a new workflow or toggles one CI switch |
+| `/doctor:git` | Switches the sk-git hook gates, edits the commit, PR and branch rules in `.sk-git/` and checks which settings are live |
+| `/doctor:sk-skill` | Checks a skill against the Skilled format, or converts one to it, plan first |
+| `/doctor:skill-advisor` | Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs |
+| `/doctor:deep-loop` | Reads the coverage graphs and convergence of research and review runs |
 
 ---
 
@@ -75,7 +79,7 @@ It prints one line per setup leg and names the command that repairs each failing
 
 ## 3. HOW IT WORKS
 
-A request about Skilled inside a project selects this skill. The skill matches it to one command from the table. When nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that changes a project prints its plan first and changes nothing until you approve it. Read the command's output and its exit status before you report what it found.
+A request about Skilled inside a project, or about one skill's own setup checks, selects this skill. The skill matches it to one command from the table. When nothing matches clearly, `/doctor:helper` ranks the commands that fit. That command runs its own workflow and shows its result. A command that changes a project prints its plan first and changes nothing until you approve it. Read the command's output and its exit status before you report what it found.
 
 ```text
 ┌──────────────────────────────┐
@@ -117,13 +121,13 @@ Each overlay copy has a layout path in the overlay folder. A copy of a `.skilled
 
 ### When To Use This Skill
 
-Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release, embed the shipped `AGENTS.md` sections or carry a vendored copy's own changes across a new copy. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair.
+Reach for it when you add Skilled to a project, link a local checkout into another repository, move a project to a newer release, embed the shipped `AGENTS.md` sections or carry a vendored copy's own changes across a new copy. It also fits when something about Skilled in a project looks wrong and you want the check that names the repair, and when you want one skill's own setup checked: the sk-code battery, the CI switches, the sk-git hook gates, a skill's format, the skill advisor or a deep-loop run.
 
 ### Related Skills
 
-A doctor command about one skill's own checks stays with that skill.
+Six doctor commands check the setup of one skill. The skill keeps its own work, and this skill owns the command that checks it.
 
-| Skill | Doctor commands it owns |
+| Skill | Doctor commands that check it |
 |---|---|
 | `sk-code` | `/doctor:sk-code` and `/doctor:ci` |
 | `sk-git` | `/doctor:git` |
@@ -156,7 +160,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-skilled-doctor/README.md --type readme` prints `✅ VALID` and `Total issues: 0` |
 | Doctor command contracts | `node --test .skilled/commands/doctor/scripts/tests/*.test.cjs` reports `fail 0` in its summary |
 | Advisor command bridges | `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"changed": []` |
-| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds 13 scenarios, `SKD-001` to `SKD-013` |
+| Operator scenarios | [The manual playbook](./manual-testing-playbook/manual-testing-playbook.md) holds the routing and overlay scenarios `SKD-001` to `SKD-013` and the `DOC` scenarios of every doctor command in its `doctor-commands/` category |
 
 ---
 
@@ -167,7 +171,7 @@ Run the checks below from the repository root. The manual playbook covers what a
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, rules and the boundary with other skills |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: the intent map and the resource map |
 | [`references/overlays.md`](./references/overlays.md) | The overlay sync states, what the engine refuses and the re-pin steps |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The 13 operator scenarios and where each verdict is recorded |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The routing, overlay and doctor command scenarios and where each verdict is recorded |
 | [`INSTALL-SKILLED.md`](../../../INSTALL-SKILLED.md) | The step-by-step guide to linking Skilled into a project or copying it in with overlays |
 | [`.skilled/commands/doctor/`](../../commands/doctor/) | The command routers and the workflows they load |
 

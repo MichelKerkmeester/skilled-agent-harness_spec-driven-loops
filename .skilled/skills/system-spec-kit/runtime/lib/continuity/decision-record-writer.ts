@@ -743,11 +743,13 @@ function readUnkeyedExchangeIds(lines: string[]): Map<string, string> {
  *
  * @param folder - The packet folder that owns the record
  * @param entries - Decisions to upsert by source key
+ * @param options - keepExistingRows leaves a row that already exists untouched, because a person may have edited it
  * @returns What the write changed and the id each source key now carries
  */
 export function writeDecisionRecord(
   folder: string,
   entries: OperatorDecisionEntry[],
+  options: { keepExistingRows?: boolean } = {},
 ): DecisionRecordWriteResult {
   const accepted = assertSourceKeys(entries);
   const recordPath = path.join(folder, 'decision-record.md');
@@ -803,13 +805,16 @@ export function writeDecisionRecord(
   const ids: Array<{ sourceKey: string; id: string }> = [];
 
   for (const entry of accepted) {
-    let id = existing.keyToId.get(entry.sourceKey) ?? unkeyed.get(exchangeKey(entry.question, entry.answer));
+    const knownId = existing.keyToId.get(entry.sourceKey);
+    let id = knownId ?? unkeyed.get(exchangeKey(entry.question, entry.answer));
     if (!id) {
       nextNumber += 1;
       id = formatId(nextNumber);
     }
     ids.push({ sourceKey: entry.sourceKey, id });
-    lines = insertDecisionRow(lines, id, formatDecisionRow(id, entry));
+    if (!options.keepExistingRows || knownId === undefined) {
+      lines = insertDecisionRow(lines, id, formatDecisionRow(id, entry));
+    }
     lines = insertAppendixItem(lines, id, formatAppendixItem(id, entry), entry);
   }
 

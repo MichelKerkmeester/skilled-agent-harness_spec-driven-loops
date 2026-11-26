@@ -29,9 +29,10 @@ import re
 import sqlite3
 import subprocess
 import sys
+import unicodedata
 from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -49,6 +50,7 @@ NATIVE_TIMEOUT_SECONDS = 2.5
 # advisor_recommend routes on at most this many prompt characters, counted in the UTF-16
 # code units JavaScript measures. A longer prompt is sent as its head, so it is routed
 # rather than refused.
+# Keep this aligned with tests/parity/python-ts-constant-parity.vitest.ts.
 ADVISOR_PROMPT_MAX_CHARS = 10_000
 NATIVE_ADVISOR_STATUS = os.path.join(
     REPO_ROOT,
@@ -236,6 +238,34 @@ NATIVE_BRIDGE_ENV_ALLOWLIST = {
     # falls back to the packaged defaults and ignores the operator's setting.
     "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_PATH",
     "SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR",
+    # The bridge child scores in its own process, so every scorer setting the
+    # launcher hands the daemon has to reach it too, or the fallback answer
+    # quietly differs from the daemon's.
+    "SPECKIT_ADVISOR_LANE_WEIGHTS_JSON",
+    "SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON",
+    "SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW",
+    "SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW",
+    "SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED",
+    "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD",
+    "SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD",
+    "SPECKIT_ADVISOR_DOC_TRIGGERS",
+    "SPECKIT_COMPILED_ROUTING",
+    "SPECKIT_PRIVATE_SKILL_ROOTS",
+}
+# Keys the launcher forwards that only the launcher or the long-lived daemon
+# reads. The bridge child is neither, so it leaves them out.
+LAUNCHER_ONLY_ENV_KEYS = {
+    "SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT",
+    "SPECKIT_CODEX_HOOK_TIMEOUT_MS",
+    "SPECKIT_IPC_SOCKET_DIR",
+    "SPECKIT_LAUNCHER_BRIDGE_DISABLED",
+    "SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN",
+    "SPECKIT_MAX_SECONDARY_CLIENTS",
+}
+# The repository opts into doc-frontmatter triggers in the launcher, so the bridge
+# child gets the same default when the environment says nothing.
+NATIVE_BRIDGE_ENV_DEFAULTS = {
+    "SPECKIT_ADVISOR_DOC_TRIGGERS": "true",
 }
 _RUNTIME_SPEC = None
 _runtime_module = None
@@ -667,11 +697,14 @@ def _native_bridge_available() -> bool:
 def _native_bridge_env(source_env: Optional[Dict[str, str]] = None) -> Dict[str, str]:
     """Return the explicit environment passed to the Node native bridge."""
     source = source_env if source_env is not None else dict(os.environ)
-    return {
+    env = {
         key: value
         for key, value in source.items()
         if key in NATIVE_BRIDGE_ENV_ALLOWLIST and isinstance(value, str)
     }
+    for key, value in NATIVE_BRIDGE_ENV_DEFAULTS.items():
+        env.setdefault(key, value)
+    return env
 
 
 def _sanitize_native_label(value: Any) -> Optional[str]:
@@ -2306,8 +2339,29 @@ PHRASE_INTENT_BOOSTERS = {
     "hierarchy and spacing": [("sk-design", 1.8)],
 }
 
-DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
-DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
+
+def _resolved_threshold(env_key: str, default: float) -> float:
+    """Read a threshold setting the way the native contract does.
+
+    A value inside 0 to 1 wins, and anything else keeps the default, so a typo can
+    never route every prompt or none.
+    """
+    raw = os.environ.get(env_key)
+    if raw is None:
+        return default
+    try:
+        value = float(raw)
+    except ValueError:
+        return default
+    return value if 0 <= value <= 1 else default
+
+
+DEFAULT_CONFIDENCE_THRESHOLD = _resolved_threshold(
+    "SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD", NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
+)
+DEFAULT_UNCERTAINTY_THRESHOLD = _resolved_threshold(
+    "SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD", NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
+)
 
 # BEGIN GENERATED COMMAND BRIDGES
 GENERATED_COMMAND_BRIDGES = {
@@ -2451,8 +2505,8 @@ GENERATED_COMMAND_BRIDGES = {
         "lead_phrases": ["disable comment hygiene gate"],
         "inventory_id": "command-doctor-git-hooks",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-runtime-mirrors": {
@@ -2469,8 +2523,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor skill-budget"],
         "inventory_id": "command-doctor-skill-advisor-skill-budget",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-git-setup": {
@@ -2478,8 +2532,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:git setup", "/doctor:git"],
         "inventory_id": "command-doctor-git-setup",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-git-standards": {
@@ -2487,8 +2541,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:git standards"],
         "inventory_id": "command-doctor-git-standards",
         "command": "/doctor:git",
-        "skill_id": "sk-git",
-        "owner_mode": "sk-git",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-code-setup": {
@@ -2496,8 +2550,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-code setup", "/doctor:sk-code"],
         "inventory_id": "command-doctor-sk-code-setup",
         "command": "/doctor:sk-code",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-tune": {
@@ -2505,8 +2559,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor tune"],
         "inventory_id": "command-doctor-skill-advisor-tune",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-rebuild": {
@@ -2514,8 +2568,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor rebuild"],
         "inventory_id": "command-doctor-skill-advisor-rebuild",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-parent-skill": {
@@ -2523,8 +2577,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor parent-skill"],
         "inventory_id": "command-doctor-skill-advisor-parent-skill",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-skill-graph-freshness": {
@@ -2532,8 +2586,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor skill-graph-freshness"],
         "inventory_id": "command-doctor-skill-advisor-skill-graph-freshness",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-skill-advisor-router-reach": {
@@ -2541,8 +2595,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:skill-advisor router-reach"],
         "inventory_id": "command-doctor-skill-advisor-router-reach",
         "command": "/doctor:skill-advisor",
-        "skill_id": "system-skill-advisor",
-        "owner_mode": "system-skill-advisor",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-speckit": {
@@ -2568,8 +2622,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:deep-loop"],
         "inventory_id": "command-doctor-deep-loop",
         "command": "/doctor:deep-loop",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "system-deep-loop",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-mcp-debug": {
@@ -2596,8 +2650,8 @@ GENERATED_COMMAND_BRIDGES = {
         "lead_phrases": ["which ci workflow switches are off", "ci workflow switch state", "ci switch report"],
         "inventory_id": "command-doctor-ci-report",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-ci-scaffold": {
@@ -2605,8 +2659,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:ci scaffold"],
         "inventory_id": "command-doctor-ci-scaffold",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-ci-toggle": {
@@ -2614,8 +2668,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:ci toggle"],
         "inventory_id": "command-doctor-ci-toggle",
         "command": "/doctor:ci",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-code-quality": {
@@ -2623,8 +2677,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-code quality"],
         "inventory_id": "command-doctor-sk-code-quality",
         "command": "/doctor:sk-code",
-        "skill_id": "sk-code",
-        "owner_mode": "sk-code",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-skill-check": {
@@ -2632,8 +2686,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-skill check", "/doctor:sk-skill"],
         "inventory_id": "command-doctor-sk-skill-check",
         "command": "/doctor:sk-skill",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-doc",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-sk-skill-convert": {
@@ -2641,8 +2695,8 @@ GENERATED_COMMAND_BRIDGES = {
         "slash_markers": ["/doctor:sk-skill convert"],
         "inventory_id": "command-doctor-sk-skill-convert",
         "command": "/doctor:sk-skill",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-doc",
+        "skill_id": "system-skilled-doctor",
+        "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
     "command-doctor-helper": {
@@ -4078,8 +4132,81 @@ CODE_MODE_TOOLCHAIN_RE = re.compile(r"\b(call_tool_chain|code mode|tool ?chain|a
 # prompt for abstention purposes.
 TASK_INTENT_RE = re.compile(
     r"\b(add|append|build|change|configure|create|edit|fix|generate|implement"
-    r"|modify|move|patch|refactor|rename|replace|run|start|sweep|update|write)\b"
+    r"|modify|move|patch|refactor|rename|replace|review|run|start|sweep|update|write)\b"
 )
+
+PROMPT_POLICY_PATH = os.environ.get("SPECKIT_ADVISOR_PROMPT_POLICY_PATH") or os.path.join(
+    SCRIPT_DIR, "..", "data", "prompt-policy.default.json"
+)
+_HIDDEN_PROMPT_CHARS_RE = re.compile("[\\u00ad\\u200b-\\u200f\\ufeff]")
+_PROMPT_TOKEN_RE = re.compile(r"[a-z0-9][a-z0-9_-]*")
+_TYPED_SLASH_COMMAND_RE = re.compile(
+    r"(?:^|[\s`'\"(\[])(?:/[a-z][a-z0-9_-]*:[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)*|/(?:doctor|autoresearch))(?=$|[\s).,!?;`'\"])"
+)
+_CONFUSABLE_PROMPT_REPLACEMENTS = (
+    (re.compile("[\\u0410\\u0391]"), "A"), (re.compile("[\\u0430\\u03b1]"), "a"),
+    (re.compile("[\\u0412\\u0392]"), "B"), (re.compile("\\u0432"), "v"),
+    (re.compile("\\u0421"), "C"), (re.compile("[\\u0441\\u03f2]"), "c"),
+    (re.compile("[\\u0395\\u0415]"), "E"), (re.compile("[\\u03b5\\u0435]"), "e"),
+    (re.compile("[\\u041d\\u0397]"), "H"), (re.compile("\\u043d"), "h"),
+    (re.compile("[\\u0406\\u0399]"), "I"), (re.compile("[\\u0456\\u03b9]"), "i"),
+    (re.compile("[\\u041a\\u039a]"), "K"), (re.compile("[\\u043a\\u03ba]"), "k"),
+    (re.compile("[\\u041c\\u039c]"), "M"), (re.compile("[\\u043c\\u03bc]"), "m"),
+    (re.compile("[\\u041e\\u039f]"), "O"), (re.compile("[\\u043e\\u03bf]"), "o"),
+    (re.compile("[\\u0420\\u03a1]"), "P"), (re.compile("[\\u0440\\u03c1]"), "p"),
+    (re.compile("[\\u0405\\u03a3]"), "S"), (re.compile("[\\u0455\\u03c3\\u03c2]"), "s"),
+    (re.compile("[\\u0422\\u03a4]"), "T"), (re.compile("[\\u0442\\u03c4]"), "t"),
+    (re.compile("[\\u0425\\u03a7]"), "X"), (re.compile("[\\u0445\\u03c7]"), "x"),
+    (re.compile("[\\u0423\\u03a5]"), "Y"), (re.compile("[\\u0443\\u03c5]"), "y"),
+)
+
+
+def _load_prompt_policy_stop_words(path: str) -> Set[str]:
+    """Load prompt-policy stop words, degrading to an empty set on a bad file."""
+    # The fallback runs when the daemon is down, so a bad policy file must degrade
+    # stop-word filtering rather than stop routing.
+    try:
+        with open(path, "r", encoding="utf-8") as policy_file:
+            return set(json.load(policy_file)["sets"]["STOP_WORDS"])
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        print(f"skill_advisor: unusable prompt policy {path}: {exc}", file=sys.stderr)
+        return set()
+
+
+PROMPT_POLICY_STOP_WORDS: Set[str] = _load_prompt_policy_stop_words(PROMPT_POLICY_PATH)
+
+
+def _canonical_prompt_fold(prompt: str) -> str:
+    normalized = unicodedata.normalize("NFKC", prompt)
+    normalized = _HIDDEN_PROMPT_CHARS_RE.sub("", normalized)
+    normalized = "".join(
+        character for character in unicodedata.normalize("NFD", normalized)
+        if not unicodedata.category(character).startswith("M")
+    )
+    for pattern, replacement in _CONFUSABLE_PROMPT_REPLACEMENTS:
+        normalized = pattern.sub(replacement, normalized)
+    return normalized
+
+
+def meaningful_token_count(prompt: str) -> int:
+    """Count normalized prompt-policy tokens that are not stop words."""
+    tokens = _PROMPT_TOKEN_RE.findall(_canonical_prompt_fold(prompt).lower())
+    return sum(1 for token in tokens if token not in PROMPT_POLICY_STOP_WORDS)
+
+
+def has_typed_slash_command(prompt_lower: str) -> bool:
+    """Return whether the prompt contains a typed slash command."""
+    return _TYPED_SLASH_COMMAND_RE.search(prompt_lower) is not None
+
+
+def is_low_information_prompt(prompt: str) -> bool:
+    """Return whether a prompt is short, intentless and lacks a typed command."""
+    prompt_lower = prompt.lower()
+    return (
+        meaningful_token_count(prompt) <= 3
+        and not TASK_INTENT_RE.search(prompt_lower)
+        and not has_typed_slash_command(prompt_lower)
+    )
 
 # Uncertainty floor applied to every member of a low-information ambiguity
 # cluster: above the default strict threshold so strict callers abstain, but
@@ -4142,15 +4269,16 @@ _WORKFLOW_OWNER_EVIDENCE_SUFFIXES = ("(signal)", "(phrase)", "(keyword)", "(expl
 # A loop word beside "research" or "review" asks for the deep-loop workflow; the
 # same research-loop and review-loop checks the native explicit lane runs.
 _RESEARCH_LOOP_RE = re.compile(
-    r"\b(continue|resume|launch|kick off|overnight|convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+    r"\b(continue|resume|launch|kick off|overnight|convergence|iteratively|multi-pass|loops?)\b"
 )
 _REVIEW_LOOP_RE = re.compile(
     r"\b(continue|resume|launch|start)(?:\s+[\w-]+){0,3}?\s+(?:deep[- ])?review\b"
-    r"|\b(convergence|iterations?|iterative(?:ly)?|multi-pass|loop)\b"
+    r"|\b(convergence|iteratively|multi-pass|loops?)\b"
 )
 # The native scorer floors a skill with that explicit evidence at this
 # confidence, so a loop request lifts the deep-loop owner to the same value. Its
 # uncertainty gets the same relief a verbatim skill-name mention gets here.
+# Keep this aligned with tests/parity/python-ts-constant-parity.vitest.ts.
 _LOOP_OWNER_CONFIDENCE_FLOOR = 0.82
 _LOOP_OWNER_UNCERTAINTY_CAP = 0.30
 # Generic single tokens that appear in executor metadata as domain labels rather
@@ -4468,8 +4596,162 @@ def _executor_lift_id(executor_id: str) -> str:
     return executor_id
 
 
+# A mode suffix chains, as in `:auto:with-research`, so the alternation over
+# these words is the unit a typed command repeats.
+_MODE_SUFFIX_LIST = (
+    "auto",
+    "confirm",
+    "autopilot",
+    "unattended",
+    "with-context",
+    "with-phases",
+    "with-research",
+)
+
+
+# A typed command starts where a word, a quote or a bracket ends it, and ends at
+# a mode suffix or where its name stops, so `/deep:review.md` names a file.
+_TYPED_DEEP_COMMAND_RE = re.compile(
+    r"(?:^|(?<=[\s`'\"(*\[~>“‘«′‹]))/deep:(research|review)"
+    r"(?=(?::(?:"
+    + "|".join(re.escape(word) for word in _MODE_SUFFIX_LIST)
+    + r"))+(?![a-z0-9_:-])"
+    + r"|(?![a-z0-9_:-]|[/.][a-z0-9_]))"
+)
+# Each loop command's row id before and after the command-bridge rename. The
+# gate sees the bridge id, and the renamed row carries the typed mark on to the
+# owning skill, so a typed command is looked up by either id.
+_DEEP_LOOP_COMMAND_ROWS = {
+    "/deep:research": ("command-spec-kit-deep-research", "deep-research"),
+    "/deep:review": ("command-spec-kit-deep-review", "deep-review"),
+}
+_DEEP_LOOP_RUN_ROWS = {
+    bridge_id: command for command, (bridge_id, _) in _DEEP_LOOP_COMMAND_ROWS.items()
+}
+_DEEP_LOOP_RUN_ROW_IDS = frozenset(
+    row_id for row_ids in _DEEP_LOOP_COMMAND_ROWS.values() for row_id in row_ids
+)
+
+
+def _typed_deep_commands_in_order(prompt_lower: str) -> List[str]:
+    """Every /deep:* command the prompt types, in the order it typed them.
+
+    A prompt can type both loops, as in "/deep:research caching then /deep:review
+    the parser", and each typed command keeps its own row, so the set is read
+    whole rather than narrowed to one command that would hide the other. The
+    order is kept because the command typed first is the one asked for first.
+    """
+    ordered: List[str] = []
+    for match in _TYPED_DEEP_COMMAND_RE.finditer(prompt_lower):
+        command = f"/deep:{match.group(1)}"
+        if command not in ordered:
+            ordered.append(command)
+    return ordered
+
+
+def _typed_deep_commands(prompt_lower: str) -> Set[str]:
+    """Every /deep:* command the prompt types, whichever loop it belongs to."""
+    return set(_typed_deep_commands_in_order(prompt_lower))
+
+
+_TYPED_DOCTOR_RE = re.compile(
+    r"(?:^|(?<=[\s`'\"(*\[~>“‘«′‹]))/doctor:deep-loop(?![a-z0-9_:-]|[/.][a-z0-9_])"
+)
+
+
+def _apply_deep_loop_offer_gate(ranked: List[Dict[str, Any]], prompt_lower: str) -> List[Dict[str, Any]]:
+    """Keep a deep-loop command row only when the prompt types that command.
+
+    The fallback serves only when the native advisor is unavailable, and the
+    offer it would make is an ``ask`` the reader can decline. Reading English for
+    a loop ask, a refusal, a question or a stuck run takes a grammar that no
+    finite pattern set closes, so this path does not try: a run row or the
+    doctor row stays only when the reader typed its command, and the row of a
+    typed run command is marked ``typed``. A doc path such as ``/deep:review.md``
+    is not a typed command, so it keeps no row.
+    """
+    typed = _typed_deep_commands(prompt_lower)
+    doctor_typed = bool(_TYPED_DOCTOR_RE.search(prompt_lower))
+    gated: List[Dict[str, Any]] = []
+    for rec in ranked:
+        skill = rec.get("skill")
+        if skill == "command-doctor-deep-loop" and not doctor_typed:
+            continue
+        command = _DEEP_LOOP_RUN_ROWS.get(skill)
+        if command is not None:
+            if command not in typed:
+                continue
+            rec["typed"] = True
+        gated.append(rec)
+    return gated
+
+
+def _deep_loop_command_named(prompt_lower: str) -> bool:
+    """True when the prompt names a loop command, in any form it is named.
+
+    A question about the command, a refusal of it and a doc path such as
+    ``/deep:review.md`` all name it without the name being an invocation, so the
+    same reading answers for both the offer below and the order after it.
+    """
+    return any(command in prompt_lower for command in _DEEP_LOOP_COMMAND_ROWS)
+
+
+def _keep_deep_loop_hub_on_command_mention(
+    ranked: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Serve the hub when the prompt names a loop command but keeps no run row.
+
+    A doc path such as ``/deep:review.md`` names the workflow without typing its
+    command, so no run row survives the gate. The hub's row scores under the
+    confidence threshold on a prompt that never repeats the loop's wording, so
+    without the lift the fallback serves nothing at all.
+    """
+    if not _deep_loop_command_named(prompt_lower):
+        return ranked
+    if any(rec.get("skill") in _DEEP_LOOP_RUN_ROW_IDS for rec in ranked):
+        return ranked
+
+    for rec in ranked:
+        if rec.get("skill") == MERGED_DEEP_SKILL_ID:
+            rec["confidence"] = max(float(rec.get("confidence", 0.0)), _LOOP_OWNER_CONFIDENCE_FLOOR)
+            rec["uncertainty"] = min(float(rec.get("uncertainty", 1.0)), _LOOP_OWNER_UNCERTAINTY_CAP)
+            _append_reason_note(rec, "[deep-loop offer: command only named, hub served without it]")
+    return ranked
+
+
+def _order_deep_loop_rows(
+    ranked: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Lead with the run row of the command the reader typed first.
+
+    A prompt that types both loops asks for the one it typed first, and the native
+    path serves that command's row whatever the other one scores. The remaining
+    rows follow by confidence, so a row the caller can act on never sits below one
+    that only scores higher on a lane the reader never mentioned.
+    """
+    leading: Optional[Dict[str, Any]] = None
+    for command in _typed_deep_commands_in_order(prompt_lower):
+        row_ids = _DEEP_LOOP_COMMAND_ROWS.get(command, ())
+        leading = next((rec for rec in ranked if rec.get("skill") in row_ids), None)
+        if leading is not None:
+            break
+    ordered = sorted(
+        (rec for rec in ranked if rec is not leading),
+        key=lambda rec: float(rec.get("confidence", 0.0)),
+        reverse=True,
+    )
+    return [leading, *ordered] if leading is not None else ordered
+
+
 def _is_loop_workflow_request(prompt_lower: str) -> bool:
-    """True when a loop word sits beside "research" or "review"."""
+    """True when a loop word sits beside "research" or "review".
+
+    `iterative` and `iterations` also describe a subject, as in "the iterative
+    solver", so neither counts as a loop word here. The adverb `iteratively` says
+    how the work runs, so it does.
+    """
     if _RESEARCH_LOOP_RE.search(prompt_lower) and re.search(r"\bresearch\b", prompt_lower):
         return True
     return bool(_REVIEW_LOOP_RE.search(prompt_lower) and re.search(r"\breview\b", prompt_lower))
@@ -4641,8 +4923,7 @@ def _apply_low_info_ambiguity_abstention(
     """
     if not recommendations:
         return
-    meaningful = [token for token in re.findall(r"\b\w+\b", prompt_lower) if len(token) > 1]
-    if len(meaningful) > 3 or TASK_INTENT_RE.search(prompt_lower) or "/" in prompt_lower:
+    if not is_low_information_prompt(prompt_lower):
         return
     # Confidence-only membership on purpose: a candidate whose uncertainty
     # already fails the strict threshold still belongs in the cluster — it is
@@ -4708,7 +4989,7 @@ def _apply_breadth_abstention(
     bypass the broad-build branch; multi-concern requires two concern classes,
     so a file plus a single concern still routes.
     """
-    if not prompt_lower or "/" in prompt_lower:
+    if not prompt_lower or has_typed_slash_command(prompt_lower):
         return
     concern_classes = (1 if CONCERN_PERF_RE.search(prompt_lower) else 0) + (
         1 if CONCERN_QUALITY_RE.search(prompt_lower) else 0
@@ -5192,6 +5473,18 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
         ),
         reverse=True,
     )
+    # The offer gate reads the deep-loop run rows by their command names, and the
+    # bridge rename below turns a top run row into its owner skill. Gating after
+    # the rename would let a refused, questioned or merely cited /deep:* command
+    # reach the head under the owner's name, and would drop the typed mark.
+    # The gate reads the same head the native advisor accepts, so a loop ask or a
+    # refusal past that head counts in neither, and a pasted prompt cannot make
+    # the fallback's per-phrase reads outrun its time budget.
+    prompt_head = _advisor_prompt_head(prompt_lower)
+    ranked = _apply_deep_loop_offer_gate(ranked, prompt_head)
+    # Refusing or questioning a command is not refusing the workflow that serves it,
+    # so the hub stays the answer while every run row stays withheld.
+    ranked = _keep_deep_loop_hub_on_command_mention(ranked, prompt_head)
     ranked = normalize_command_bridge_recommendations(ranked, prompt_lower)
     refresh_passes_threshold(ranked)
     ranked = _apply_workflow_owner_guard(ranked, prompt_lower)
@@ -5199,6 +5492,13 @@ def analyze_request(prompt: str) -> List[Dict[str, Any]]:
     # candidate loop skipped, so the exclusion is applied once more at the end.
     if excluded_skill_ids:
         ranked = [rec for rec in ranked if rec.get("skill") not in excluded_skill_ids]
+
+    # A prompt that names a loop command is served in the order the reader asked
+    # for, which the kind-priority sort above cannot know. The naming is read from
+    # the same head the gate reads, so the offer and the order agree on what the
+    # prompt asked.
+    if _deep_loop_command_named(prompt_head):
+        ranked = _order_deep_loop_rows(ranked, prompt_head)
 
     # Internal sort metadata should not leak in advisor output.
     for rec in ranked:

@@ -1,7 +1,7 @@
 ---
 title: "431 -- skill-advisor CLI Trusted-Gate Refusal"
 description: "Manual check that the skill-advisor CLI fail-closed trusted-mutation gate refuses untrusted mutation commands with exit 64 before any daemon contact, and that --trusted / SYSTEM_SKILL_ADVISOR_CLI_TRUSTED grant passage."
-version: 1.6.0.1
+version: 1.6.1.0
 id: tooling-and-scripts-cli-trusted-gate-refusal
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario verifies the fail-closed trusted-mutation gate in the skill-advisor CLI. Calls are sent untrusted by default; the mutation set — `advisor_rebuild`, `skill_graph_scan`, and `skill_graph_propagate_enhances` in real apply mode (`mode=apply` with `dryRun` not true) — requires `--trusted` (alias `--maintainer`) or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. An untrusted attempt is refused client-side with exit 64 (`EXIT_USAGE`) before any IPC frame is sent, which is observable in a sandbox with no daemon: the refusal returns 64 where a gate bypass would have surfaced as exit 75 (backend unavailable).
 
-The daemon enforces the gate independently: callers carry `_meta.callerAuthority`, and the daemon's own default is untrusted unless `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the daemon's environment, so a hand-rolled IPC client cannot skip the check.
+The daemon checks the caller block. An explicit `_meta.trusted` or `_meta.callerAuthority` value wins. A frame without either gets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT`, which the launcher sets to `trusted` when it starts the daemon. A hand-rolled IPC client can assert its own trust. The client-side refusal in this scenario guards cooperative callers. The owner-only socket is the access boundary.
 
 ---
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "bladebro utcp manual"
   - "bladebro code mode setup"
   - "register bladebro mcp"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # bladebro-mcp
@@ -32,7 +32,7 @@ mcp-bladebro routes composition work through the Bladebro MCP server. That serve
 
 ### What It Does
 
-The registered manual is a stdio server that runs `bladebro mcp` with an empty `env`, because the server needs no credential. `BLADE_HOME` or `BLADE_FRESH` go in that `env` only for a task that needs an isolated data root, as a reviewed configuration change. Launching through `npx -y bladebro mcp` instead pulls the package at launch, which counts as an install and needs an operator yes.
+The registered manual is a stdio server that runs `bladebro mcp` with an empty `env`, because the server needs no credential. `BLADE_HOME` or `BLADE_FRESH` go in that `env` only for a task that needs an isolated data root, as a reviewed configuration change. Launching through `npx -y bladebro@4.8.2 mcp` instead pulls the package at launch, which counts as an install and needs an operator yes.
 
 ---
 

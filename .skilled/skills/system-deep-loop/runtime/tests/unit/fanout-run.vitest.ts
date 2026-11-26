@@ -1735,7 +1735,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
-      'deepseek-v4-1-flash-high', 'deepseek-v4-1-flash-max', 'deepseek-v4-flash-max',
+      'deepseek-v4-1-flash-1017-max', 'deepseek-v4-1-flash-high', 'deepseek-v4-1-flash-max', 'deepseek-v4-flash-max',
       'gemini-3-8-flash-high',
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'glm-5-3-flash-high', 'glm-5-3-flash-max',

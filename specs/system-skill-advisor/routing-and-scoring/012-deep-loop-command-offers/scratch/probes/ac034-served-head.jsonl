@@ -1,0 +1,2 @@
+{"prompt":"several passes of the linter failed, review the config","recommendations":[{"skill":"sk-code","confidence":0.8753,"command":null},{"skill":"sk-doc","confidence":0.82,"command":null}]}
+{"prompt":"review the parser in several passes","recommendations":[{"skill":"system-deep-loop","confidence":0.8763,"command":"/deep:review"},{"skill":"sk-code","confidence":0.82,"command":null}]}

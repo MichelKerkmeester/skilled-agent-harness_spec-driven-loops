@@ -1,18 +1,23 @@
 {
-  "sessionId": "2026-11-19T04:18:26.591Z",
-  "parentSessionId": null,
-  "generation": 1,
-  "lineageMode": "new",
+  "sessionId": "2026-11-23T21:41:17.101Z",
+  "parentSessionId": "2026-11-23T21:02:32.908Z",
+  "generation": 5,
+  "lineageMode": "completed-continue",
   "continuedFromRun": null,
-  "terminalStop": null,
-  "status": "INITIALIZED",
-  "openFindings": [
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 11,
+    "timestamp": "2026-11-24T09:39:00.464Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [],
+  "resolvedFindings": [
     {
-      "findingId": "R1-P2-001",
-      "severity": "P2",
-      "title": "The hook's 64 KiB head cut runs before the pasted-reply strip, so a paste longer than that routes on the paste alone",
-      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "line": 200,
+      "findingId": "G5-I1-P1-001",
+      "severity": "P1",
+      "title": "Scoped skill_graph_scan deletes every skill outside the scanned root and publishes the shrunken graph as live",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      "line": 976,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -23,12 +28,12 @@
       "dimension": "correctness",
       "firstSeen": 1,
       "lastSeen": 1,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 1,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
@@ -38,11 +43,11 @@
       "mergedFindingIds": []
     },
     {
-      "findingId": "R1-P2-002",
-      "severity": "P2",
-      "title": "The route-receipt guard ignores a lifecycle event carried on the prompt input, which the directive dedup treats as a boundary",
-      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "line": 376,
+      "findingId": "G5-I2-P1-001",
+      "severity": "P1",
+      "title": "CLI and hook fallback connect to a fixed /tmp socket without checking directory or socket ownership",
+      "file": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      "line": 1097,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -51,99 +56,189 @@
       "contentHash": null,
       "refines": null,
       "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-003",
-      "severity": "P2",
-      "title": "A route receipt is written before the hook output reaches the host, unlike the directive receipt that waits for the write",
-      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "line": 604,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R1-P2-004",
-      "severity": "P2",
-      "title": "Last-marker-wins drops the first half of a user task that has two markers",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-      "line": 253,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "correctness",
-      "firstSeen": 1,
-      "lastSeen": 1,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 1,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "correctness"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "R2-P2-001",
-      "severity": "P2",
-      "title": "The task-marker regex backtracks quadratically on a long whitespace run that holds newlines, and the Python strip runs it on unbounded input",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-      "line": 246,
-      "description": "",
-      "findingClass": null,
-      "deltaStatus": null,
-      "scopeProof": null,
-      "affectedSurfaceHints": [],
-      "contentHash": null,
-      "refines": null,
-      "dimension": "security",
       "firstSeen": 2,
       "lastSeen": 2,
-      "status": "active",
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I6-P1-001",
+      "severity": "P1",
+      "title": "Hook metrics store writes on every prompt into a shared temp folder with no owner, mode or symlink check, so another local user can redirect the append and chmod onto any victim-owned file",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts",
+      "line": 171,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I1-P2-001",
+      "severity": "P2",
+      "title": "RRF fusion scores used as weighted sums in confidence and command penalty",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1190,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I1-P2-002",
+      "severity": "P2",
+      "title": "Any slash in the prompt disables the skill-versus-command tie-break and breadth abstention",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1254,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I1-P2-003",
+      "severity": "P2",
+      "title": "Returned ambiguous flag recomputed on the doctor-inclusive list",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1462,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I1-P2-004",
+      "severity": "P2",
+      "title": "Low-information abstention counts stop words as meaningful tokens",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1303,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I2-P2-001",
+      "severity": "P2",
+      "title": "Daemon trust gate is a caller assertion; shipped launcher makes missing assertion trusted against the server comment",
+      "file": ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+      "line": 324,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 2,
@@ -153,16 +248,16 @@
         }
       ],
       "dimensions": [
-        "security"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "R3-P2-001",
+      "findingId": "G5-I2-P2-002",
       "severity": "P2",
-      "title": "The hook decides whether to fire on the unstripped prompt, so a pasted reply turns a skipped follow-up into a routed one",
-      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "line": 580,
+      "title": "Opt-in shadow sink appends raw prompts to a non-gitignored path without mode or symlink guard",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts",
+      "line": 136,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -170,10 +265,40 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "traceability",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I3-P2-001",
+      "severity": "P2",
+      "title": "Low-information and slash predicates hand-copied into the Python fallback with no shared fixture pinning them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      "line": 5038,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
       "firstSeen": 3,
       "lastSeen": 3,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 3,
@@ -183,16 +308,16 @@
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "R4-P2-001",
+      "findingId": "G5-I3-P2-002",
       "severity": "P2",
-      "title": "The fire decision is computed at five call sites on two different inputs, so changing which text the gate reads means editing several sites in step",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts",
-      "line": 473,
+      "title": "Feature catalog presents supersession routing, rollback and v2 backfill as live behaviour, but only a stress test calls them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts",
+      "line": 39,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -200,10 +325,40 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I4-P2-001",
+      "severity": "P2",
+      "title": "Contract-key header names consumers that do not exist",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tools/advisor-contract-keys.ts",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
       "firstSeen": 4,
       "lastSeen": 4,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 4,
@@ -213,16 +368,16 @@
         }
       ],
       "dimensions": [
-        "maintainability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "R4-P2-002",
+      "findingId": "G5-I4-P2-002",
       "severity": "P2",
-      "title": "The crash catch keeps a null-input branch that the line above it already returns from",
-      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
-      "line": 651,
+      "title": "scoreAdvisorPrompt is a 366-line pipeline with no stage seam or ordering test",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1108,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -230,10 +385,10 @@
       "affectedSurfaceHints": [],
       "contentHash": null,
       "refines": null,
-      "dimension": "maintainability",
+      "dimension": "correctness",
       "firstSeen": 4,
       "lastSeen": 4,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 4,
@@ -243,16 +398,136 @@
         }
       ],
       "dimensions": [
-        "maintainability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "R5-P2-001",
+      "findingId": "G5-I4-P2-003",
       "severity": "P2",
-      "title": "The floor flag reaches the hook only on the CLI path: the subprocess parser and the Python scorer never carry it, so the in-process brief path records every floored route as an earned one",
-      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
-      "line": 198,
+      "title": "Pi adapter hard-copies the Claude hook budget with no guard test",
+      "file": ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I4-P2-004",
+      "severity": "P2",
+      "title": "Prompt cap and 0.82 confidence floors hard-coded in both TypeScript and Python",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      "line": 52,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I4-P2-005",
+      "severity": "P2",
+      "title": "Gate-3 question lookup swallows a load failure",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/policy-plan.ts",
+      "line": 203,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I4-P2-006",
+      "severity": "P2",
+      "title": "Corrupt-lock reclaim deletes a lock still being acquired",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts",
+      "line": 186,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I5-P2-001",
+      "severity": "P2",
+      "title": "heldBelow names only the lowest holder, so a withheld holder leaves the held target free to make the top a coin flip",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 545,
       "description": "",
       "findingClass": null,
       "deltaStatus": null,
@@ -263,7 +538,7 @@
       "dimension": "correctness",
       "firstSeen": 5,
       "lastSeen": 5,
-      "status": "active",
+      "status": "resolved",
       "transitions": [
         {
           "iteration": 5,
@@ -276,16 +551,133 @@
         "correctness"
       ],
       "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I7-P2-001",
+      "severity": "P2",
+      "title": "Local shared-payload copy names a drift watcher that does not exist, and the copies have already drifted",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts",
+      "line": 6,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I8-P2-001",
+      "severity": "P2",
+      "title": "Python fallback hard-fails at import when the shared prompt-policy file is missing or malformed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
+      "line": 4085,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I9-P2-001",
+      "severity": "P2",
+      "title": "A hardened writer turns silent on a platform where mode bits carry no meaning",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/owned-private-dir.ts",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "G5-I9-P2-002",
+      "severity": "P2",
+      "title": "A tracked module imports a file that git does not yet contain",
+      "file": ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
     }
   ],
-  "resolvedFindings": [],
   "blockedStopHistory": [],
   "terminalGates": {
-    "run": 6,
+    "run": 11,
     "stopReason": "maxIterationsReached",
-    "failedRequiredGateIds": [
-      "coverage"
-    ]
+    "failedRequiredGateIds": []
   },
   "persistentSameSeverity": [],
   "severityChanged": [],
@@ -299,53 +691,79 @@
   "findingsBySeverity": {
     "P0": 0,
     "P1": 0,
-    "P2": 9
+    "P2": 0
   },
-  "openFindingsCount": 9,
-  "resolvedFindingsCount": 0,
-  "convergenceScore": 0.89,
-  "graphConvergenceScore": 0.85,
-  "graphDecision": "CONTINUE",
+  "openFindingsCount": 0,
+  "resolvedFindingsCount": 22,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
   "graphBlockers": [],
   "graphSignals": {
     "dimensionCoverage": 1,
-    "evidenceDensity": 0,
+    "evidenceDensity": 1,
     "findingStability": 1,
     "hotspotSaturation": 1,
     "p0ResolutionRate": 1,
-    "score": 0.85
+    "score": 1
   },
   "candidateCoverage": {
     "covered": [
-      "commit_ordering",
-      "contract_drift",
-      "dead_code",
-      "duplicated_logic",
-      "heuristic_boundary",
-      "regex_backtracking_cost",
-      "spec_code_drift",
+      "boundary_defect",
+      "comment_doc_drift",
+      "dead_feature",
+      "duplication",
+      "gen4_p2_recheck",
+      "invariant_violation",
+      "miscount",
+      "over_broad_predicate",
+      "parity_drift",
+      "path_traversal",
+      "permission_boundary",
+      "resource_lifecycle",
+      "scale_mismatch",
+      "sensitive_data_at_rest",
+      "silent_failure_regression",
+      "socket_hijack",
+      "stale_state_on_rebuild",
       "state_transition",
-      "truncate_before_normalize"
+      "trust_boundary_scan",
+      "trust_default",
+      "unread_module_sweep",
+      "unshipped_dependency"
     ],
     "ruledOut": [
-      "crash_path_double_dedup",
-      "error_detail_leak",
-      "idempotence",
-      "parity_drift",
-      "prompt_injection_routing",
-      "race",
-      "shared_temp_dir_trust",
-      "spec_code_drift",
+      "attribution",
+      "comment_doc_drift",
+      "constant_parity_drift",
+      "contract_drift",
+      "crash_on_missing_config",
+      "gate_baseline_regression",
+      "handler_defect_scan",
+      "lifecycle_and_derived_defect_scan",
+      "nan_propagation",
+      "p1_recheck_mitigation",
+      "path_traversal",
+      "permission_boundary",
+      "playbook_capability",
+      "python_ts_parity",
+      "python_twin_held_below",
+      "sensitive_data_at_rest",
+      "severity_recheck",
+      "silent_failure_regression",
+      "spec_code_contradiction",
+      "stage_order_regression",
       "state_transition",
-      "subprocess_argv_exposure",
-      "twin_drift",
-      "unreached_contract_field",
-      "weak_test"
+      "toctou",
+      "trust_predicate",
+      "unshipped_dependency"
     ],
-    "deferred": [],
+    "deferred": [
+      "state_transition"
+    ],
     "blocked": [],
     "byBugClass": {
-      "truncate_before_normalize": {
+      "stale_state_on_rebuild": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -354,53 +772,71 @@
           1
         ]
       },
-      "state_transition": {
+      "scale_mismatch": {
         "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "over_broad_predicate": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "invariant_violation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "miscount": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "attribution": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "nan_propagation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "lifecycle_and_derived_defect_scan": {
+        "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
           1,
-          5
+          4
         ]
       },
-      "commit_ordering": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "heuristic_boundary": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "parity_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "crash_path_double_dedup": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "regex_backtracking_cost": {
+      "socket_hijack": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -409,97 +845,112 @@
           2
         ]
       },
-      "shared_temp_dir_trust": {
-        "covered": false,
-        "ruledOut": true,
+      "trust_default": {
+        "covered": true,
+        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
           2
         ]
       },
-      "subprocess_argv_exposure": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "error_detail_leak": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "prompt_injection_routing": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "spec_code_drift": {
+      "sensitive_data_at_rest": {
         "covered": true,
         "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          9
+        ]
+      },
+      "python_ts_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          7
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          8
+        ]
+      },
+      "handler_defect_scan": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          4
+        ]
+      },
+      "duplication": {
+        "covered": true,
+        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
           3
         ]
       },
-      "unreached_contract_field": {
-        "covered": false,
-        "ruledOut": true,
+      "dead_feature": {
+        "covered": true,
+        "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
           3
-        ]
-      },
-      "duplicated_logic": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "dead_code": {
-        "covered": true,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "twin_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "weak_test": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
         ]
       },
       "contract_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          11
+        ]
+      },
+      "trust_predicate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "gen4_p2_recheck": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "boundary_defect": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -508,7 +959,7 @@
           5
         ]
       },
-      "idempotence": {
+      "spec_code_contradiction": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
@@ -517,486 +968,1250 @@
           5
         ]
       },
-      "race": {
+      "trust_boundary_scan": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "python_twin_held_below": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          5
+          6
+        ]
+      },
+      "p1_recheck_mitigation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "unread_module_sweep": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "severity_recheck": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "permission_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8,
+          9,
+          10
+        ]
+      },
+      "parity_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "comment_doc_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          8,
+          10,
+          11
+        ]
+      },
+      "resource_lifecycle": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "silent_failure_regression": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "unshipped_dependency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "toctou": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "crash_on_missing_config": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "constant_parity_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "stage_order_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
+        ]
+      },
+      "gate_baseline_regression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          11
         ]
       }
     }
   },
-  "searchDebt": [],
-  "ruledOutCandidates": [
+  "searchDebt": [
     {
-      "iteration": 1,
-      "id": "SL-005",
-      "dimension": "correctness",
+      "iteration": 11,
+      "id": "SL-011-05",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
       ],
-      "bugClass": "parity_drift",
-      "disposition": "ruled_out",
-      "rationale": "regexes and trim sets match; 143 vitest tests pass",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803",
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
-      ],
-      "reason": "verified by direct read and passing parity tests"
-    },
+      "bugClass": "state_transition",
+      "disposition": "deferred",
+      "rationale": "carried forward from iteration 8 as SL-004; the final pass spends its budget on closing the traceability evidence gap",
+      "evidenceRefs": [],
+      "reason": "no budget in the final max-iterations pass"
+    }
+  ],
+  "ruledOutCandidates": [
     {
       "iteration": 1,
       "id": "SL-006",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
       ],
-      "bugClass": "crash_path_double_dedup",
+      "bugClass": "attribution",
       "disposition": "ruled_out",
-      "rationale": "no throw possible after line 607",
+      "rationale": "documented and correct",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277",
-        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:469"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:545"
       ],
-      "reason": "emitDiagnostic and observeEmittedAdvisorPolicy swallow errors"
+      "reason": "lowest-scored holder is the binding ceiling"
     },
     {
-      "iteration": 2,
-      "id": "SL-202",
-      "dimension": "security",
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts"
       ],
-      "bugClass": "shared_temp_dir_trust",
+      "bugClass": "nan_propagation",
       "disposition": "ruled_out",
-      "rationale": "store refuses foreign or loose folders and fails open",
+      "rationale": "caller validates",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283",
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1334"
       ],
-      "reason": "verified by direct read and existing tests"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-203",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "subprocess_argv_exposure",
-      "disposition": "ruled_out",
-      "rationale": "no prompt in argv",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233"
-      ],
-      "reason": "verified by direct read"
+      "reason": "not reachable on live path"
     },
     {
       "iteration": 2,
       "id": "SL-204",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "error_detail_leak",
+      "bugClass": "python_ts_parity",
       "disposition": "ruled_out",
-      "rationale": "no error text reaches additionalContext",
+      "rationale": "both suites pass",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1"
       ],
-      "reason": "verified by direct read"
+      "reason": "no disagreement within the shared corpus"
     },
     {
       "iteration": 2,
       "id": "SL-205",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/apply-graph-metadata-patch.ts"
       ],
-      "bugClass": "prompt_injection_routing",
+      "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "user text above a paste is never dropped; brief carries skill names only",
+      "rationale": "discovery never yields a symlink",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts:42",
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/index.ts:62"
       ],
       "reason": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-302",
+      "id": "SL-301",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/validate.ts"
       ],
-      "bugClass": "unreached_contract_field",
+      "bugClass": "contract_drift",
       "disposition": "ruled_out",
-      "rationale": "no production producer",
+      "rationale": "handlers match descriptors",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249",
-        ".opencode/plugins/system-skill-advisor.js:890"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts:142"
       ],
-      "reason": "only tests set the field"
+      "reason": "verified by direct read and manifest parity test"
     },
     {
       "iteration": 3,
-      "id": "SL-303",
+      "id": "SL-304",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/propagate-enhances.ts"
+      ],
+      "bugClass": "trust_predicate",
+      "disposition": "ruled_out",
+      "rationale": "fails closed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/index.ts:39"
+      ],
+      "reason": "untrusted no-op refused, no unguarded write"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/",
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/"
+      ],
+      "bugClass": "lifecycle_and_derived_defect_scan",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: no defect reachable on the serving path; off-path weak spots fold into G5-I3-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts:48",
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/anti-stuffing.ts:58",
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts:33",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1275",
+        ".skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:155",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts:94"
+      ],
+      "reason": "verified by full read of all 12 files plus caller sweep; z_archive precedence edge unreachable at HEAD (no such folder)"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/"
+      ],
+      "bugClass": "handler_defect_scan",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: rebuild and scan read in full; other handlers covered by error-site grep and targeted reads, not line by line",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:65",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:67",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:370",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:87"
+      ],
+      "reason": "no success-on-failure path and no unvalidated input found; the only half-write does not stale the cache"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
       "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/",
+        ".skilled/skills/system-skill-advisor/hooks/"
+      ],
+      "bugClass": "playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: every named capability resolves to code",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138",
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:74",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:603"
+      ],
+      "reason": "searched-clean by name-existence sweep plus spot reads; degraded-daemon.md:139 stale fixture path is out-of-scope doc drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "spec_code_contradiction",
+      "disposition": "ruled_out",
+      "rationale": "no new contradiction; existing ones already registered as G5-I2-P2-001 and G5-I1-P1-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:324",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976"
+      ],
+      "reason": "already covered by registered findings"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "python_twin_held_below",
+      "disposition": "ruled_out",
+      "rationale": "neither precondition (cap plus withheld holder) exists in Python",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1607-1652",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4848-4855"
+      ],
+      "reason": "_apply_graph_boosts is additive only and the gate drops rows; ambiguity cluster at :5056-5065 has no held-below exception"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "p1_recheck_mitigation",
+      "disposition": "ruled_out",
+      "rationale": "both P1s still hold at HEAD 52f0bcb9a98",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:35",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1095"
+      ],
+      "reason": "trust gate passes every caller; socket scope subfolder is computable and no level checks uid"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-I7-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "severity_recheck",
+      "disposition": "ruled_out",
+      "rationale": "Linux /tmp reach is named and in contract; integrity impact does not depend on record content",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:259-266",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:422-428"
+      ],
+      "reason": "downgrade rejected; P1 kept at confidence 0.7"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-I7-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "python_ts_parity",
+      "disposition": "ruled_out",
+      "rationale": "the ratchet catches any routed effect on the corpus; the residual coverage gap is G5-I3-P2-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:204-207",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-routing.vitest.ts:59-70"
+      ],
+      "reason": "intentional TS-only behaviour; outcome parity is enforced by the ratchet"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "the G5-I1-P1-001 harm is unreachable in the current code",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:770"
+      ],
+      "reason": "containment is checked on the resolved path and on the realpath, so a linked root cannot widen the delete"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs",
+        "runtime/skill-advisor-cli.ts",
+        ".skilled/bin/lib/launcher-session-proxy.cjs"
+      ],
+      "bugClass": "permission_boundary",
+      "disposition": "ruled_out",
+      "rationale": "no unguarded connect remains in scope",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1368",
+        ".skilled/bin/lib/launcher-session-proxy.cjs:674"
+      ],
+      "reason": "every in-repo client path calls the shared check before handing over a prompt"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/shared/shared-payload.ts",
+        "runtime/advisor-server.ts",
+        "runtime/tools/advisor-contract-keys.ts"
+      ],
+      "bugClass": "comment_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "the drift findings close at the cause",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts:4"
+      ],
+      "reason": "all three corrected comments match the reviewed code and the removed watcher"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-903",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs"
+      ],
+      "bugClass": "toctou",
+      "disposition": "ruled_out",
+      "rationale": "checked dir precedes connect",
+      "evidenceRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:205",
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:228"
+      ],
+      "reason": "the private owned directory removes the swap window"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "crash_on_missing_config",
+      "disposition": "ruled_out",
+      "rationale": "G5-I8-P2-001 closed",
+      "evidenceRefs": [
+        "runtime/scripts/skill_advisor.py:4085",
+        "runtime/tests/python/test_skill_advisor.py:2944"
+      ],
+      "reason": "probe returned a recommendation with a warning, not a traceback"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-905",
+      "dimension": "security",
+      "targetRefs": [
+        ".gitignore",
+        "runtime/lib/shadow/shadow-sink.ts"
+      ],
+      "bugClass": "sensitive_data_at_rest",
+      "disposition": "ruled_out",
+      "rationale": "G5-I2-P2-002 closed",
+      "evidenceRefs": [
+        ".gitignore:212",
+        ".gitignore:214"
+      ],
+      "reason": "both the default path and its rotations resolve to ignore rules"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "silent_failure_regression",
+      "disposition": "ruled_out",
+      "rationale": "the degradation is now a warning and the run completes",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4085"
+      ],
+      "reason": "probe at HEAD exits 0 with a usable payload"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts"
+      ],
+      "bugClass": "permission_boundary",
+      "disposition": "ruled_out",
+      "rationale": "guard present and both paths ignored",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:151",
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:214",
+        ".gitignore:212"
+      ],
+      "reason": "read plus two check-ignore probes"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1003",
+      "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
       ],
-      "bugClass": "spec_code_drift",
+      "bugClass": "unshipped_dependency",
       "disposition": "ruled_out",
-      "rationale": "all REQ predicates present",
+      "rationale": "the module is tracked at HEAD",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77",
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116",
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305"
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:29"
       ],
-      "reason": "verified by direct read"
+      "reason": "git ls-files --error-unmatch exit 0"
     },
     {
-      "iteration": 4,
-      "id": "SL-403",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4801"
-      ],
-      "bugClass": "twin_drift",
-      "disposition": "ruled_out",
-      "rationale": "shared fixture guards both twins",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25",
-        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538"
-      ],
-      "reason": "shared fixture read by vitest and Python suites"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-404",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
-      ],
-      "bugClass": "weak_test",
-      "disposition": "ruled_out",
-      "rationale": "guard exercised",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
-      ],
-      "reason": "measured on shipped dist"
-    },
-    {
-      "iteration": 5,
-      "id": "SL5-002",
+      "iteration": 10,
+      "id": "SL-1004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
       ],
       "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "no confidence rewrite",
+      "rationale": "the scoping is correct in both directions",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481"
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:748"
       ],
-      "reason": "verified by direct read"
+      "reason": "direct read of the delete predicate and its caller"
     },
     {
-      "iteration": 5,
-      "id": "SL5-003",
-      "dimension": "correctness",
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs"
       ],
-      "bugClass": "idempotence",
+      "bugClass": "toctou",
       "disposition": "ruled_out",
-      "rationale": "fixed-point loop plus fold only removes markers",
+      "rationale": "the folder set and the refusal order are correct",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265"
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:202"
       ],
-      "reason": "probed on dist"
+      "reason": "direct read of the predicate and its call site"
     },
     {
-      "iteration": 5,
-      "id": "SL5-004",
-      "dimension": "correctness",
+      "iteration": 11,
+      "id": "SL-011-01",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/scorer-predicate-cases.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts"
       ],
-      "bugClass": "race",
+      "bugClass": "contract_drift",
       "disposition": "ruled_out",
-      "rationale": "window is microtasks",
+      "rationale": "both languages agree on the shared corpus and the sweep vocabulary stays green",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187"
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts:1"
       ],
-      "reason": "inference only, negligible window"
+      "reason": "verified by executing the AC-006 command pair at HEAD 5c5b9fe3e5b"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-constant-parity.vitest.ts"
+      ],
+      "bugClass": "constant_parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "constant parity holds with no drift between the two languages",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-constant-parity.vitest.ts:43"
+      ],
+      "reason": "verified by executing AC-007"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/score-stage-order.vitest.ts"
+      ],
+      "bugClass": "stage_order_regression",
+      "disposition": "ruled_out",
+      "rationale": "the stage-order mutation proofs are present and green",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/score-stage-order.vitest.ts:82"
+      ],
+      "reason": "verified by executing AC-008"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-04",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+      ],
+      "bugClass": "gate_baseline_regression",
+      "disposition": "ruled_out",
+      "rationale": "no regression against the baseline, and the four skips sit on named spec-folder lineage cases",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:175",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:66"
+      ],
+      "reason": "verified by executing AC-013 and a skip probe over the skip-bearing suites"
     }
   ],
   "cleanSearchProof": [
     {
       "iteration": 1,
-      "id": "SL-005",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py",
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
-      ],
-      "bugClass": "parity_drift",
-      "disposition": "ruled_out",
-      "rationale": "regexes and trim sets match; 143 vitest tests pass",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4803",
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
-      ],
-      "proof": "verified by direct read and passing parity tests"
-    },
-    {
-      "iteration": 1,
       "id": "SL-006",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
       ],
-      "bugClass": "crash_path_double_dedup",
+      "bugClass": "attribution",
       "disposition": "ruled_out",
-      "rationale": "no throw possible after line 607",
+      "rationale": "documented and correct",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:277",
-        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:469"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:545"
       ],
-      "proof": "emitDiagnostic and observeEmittedAdvisorPolicy swallow errors"
+      "proof": "lowest-scored holder is the binding ceiling"
     },
     {
-      "iteration": 2,
-      "id": "SL-202",
-      "dimension": "security",
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/age-haircut.ts"
       ],
-      "bugClass": "shared_temp_dir_trust",
+      "bugClass": "nan_propagation",
       "disposition": "ruled_out",
-      "rationale": "store refuses foreign or loose folders and fails open",
+      "rationale": "caller validates",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:283",
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/route-receipt.vitest.ts:230"
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1334"
       ],
-      "proof": "verified by direct read and existing tests"
-    },
-    {
-      "iteration": 2,
-      "id": "SL-203",
-      "dimension": "security",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts"
-      ],
-      "bugClass": "subprocess_argv_exposure",
-      "disposition": "ruled_out",
-      "rationale": "no prompt in argv",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:233"
-      ],
-      "proof": "verified by direct read"
+      "proof": "not reachable on live path"
     },
     {
       "iteration": 2,
       "id": "SL-204",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
       ],
-      "bugClass": "error_detail_leak",
+      "bugClass": "python_ts_parity",
       "disposition": "ruled_out",
-      "rationale": "no error text reaches additionalContext",
+      "rationale": "both suites pass",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:624"
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1"
       ],
-      "proof": "verified by direct read"
+      "proof": "no disagreement within the shared corpus"
     },
     {
       "iteration": 2,
       "id": "SL-205",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/apply-graph-metadata-patch.ts"
       ],
-      "bugClass": "prompt_injection_routing",
+      "bugClass": "path_traversal",
       "disposition": "ruled_out",
-      "rationale": "user text above a paste is never dropped; brief carries skill names only",
+      "rationale": "discovery never yields a symlink",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245"
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/metadata-loader.ts:42",
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/index.ts:62"
       ],
       "proof": "verified by direct read"
     },
     {
       "iteration": 3,
-      "id": "SL-302",
+      "id": "SL-301",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+        ".skilled/skills/system-skill-advisor/runtime/tools/skill-graph-tools.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/validate.ts"
       ],
-      "bugClass": "unreached_contract_field",
+      "bugClass": "contract_drift",
       "disposition": "ruled_out",
-      "rationale": "no production producer",
+      "rationale": "handlers match descriptors",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:249",
-        ".opencode/plugins/system-skill-advisor.js:890"
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts:142"
       ],
-      "proof": "only tests set the field"
+      "proof": "verified by direct read and manifest parity test"
     },
     {
       "iteration": 3,
-      "id": "SL-303",
+      "id": "SL-304",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/propagate-enhances.ts"
+      ],
+      "bugClass": "trust_predicate",
+      "disposition": "ruled_out",
+      "rationale": "fails closed",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/cross-skill-edges/index.ts:39"
+      ],
+      "proof": "untrusted no-op refused, no unguarded write"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-401",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/",
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/"
+      ],
+      "bugClass": "lifecycle_and_derived_defect_scan",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: no defect reachable on the serving path; off-path weak spots fold into G5-I3-P2-002",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts:48",
+        ".skilled/skills/system-skill-advisor/runtime/lib/derived/anti-stuffing.ts:58",
+        ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts:33",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts:1275",
+        ".skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts:155",
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/derived.ts:94"
+      ],
+      "proof": "verified by full read of all 12 files plus caller sweep; z_archive precedence edge unreachable at HEAD (no such folder)"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-402",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/"
+      ],
+      "bugClass": "handler_defect_scan",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: rebuild and scan read in full; other handlers covered by error-site grep and targeted reads, not line by line",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-rebuild.ts:65",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:67",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:370",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:87"
+      ],
+      "proof": "no success-on-failure path and no unvalidated input found; the only half-write does not stale the cache"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-501",
       "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/",
+        ".skilled/skills/system-skill-advisor/hooks/"
+      ],
+      "bugClass": "playbook_capability",
+      "disposition": "ruled_out",
+      "rationale": "searched-clean: every named capability resolves to code",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138",
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:74",
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:603"
+      ],
+      "proof": "searched-clean by name-existence sweep plus spot reads; degraded-daemon.md:139 stale fixture path is out-of-scope doc drift"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "spec_code_contradiction",
+      "disposition": "ruled_out",
+      "rationale": "no new contradiction; existing ones already registered as G5-I2-P2-001 and G5-I1-P1-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:324",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976"
+      ],
+      "proof": "already covered by registered findings"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-602",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "python_twin_held_below",
+      "disposition": "ruled_out",
+      "rationale": "neither precondition (cap plus withheld holder) exists in Python",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:1607-1652",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4848-4855"
+      ],
+      "proof": "_apply_graph_boosts is additive only and the gate drops rows; ambiguity cluster at :5056-5065 has no held-below exception"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-603",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts",
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "p1_recheck_mitigation",
+      "disposition": "ruled_out",
+      "rationale": "both P1s still hold at HEAD 52f0bcb9a98",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:35",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1095"
+      ],
+      "proof": "trust gate passes every caller; socket scope subfolder is computable and no level checks uid"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-I7-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "severity_recheck",
+      "disposition": "ruled_out",
+      "rationale": "Linux /tmp reach is named and in contract; integrity impact does not depend on record content",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:259-266",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:422-428"
+      ],
+      "proof": "downgrade rejected; P1 kept at confidence 0.7"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-I7-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "python_ts_parity",
+      "disposition": "ruled_out",
+      "rationale": "the ratchet catches any routed effect on the corpus; the residual coverage gap is G5-I3-P2-001",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts:204-207",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-routing.vitest.ts:59-70"
+      ],
+      "proof": "intentional TS-only behaviour; outcome parity is enforced by the ratchet"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/skill-graph/skill-graph-db.ts"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "the G5-I1-P1-001 harm is unreachable in the current code",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:770"
+      ],
+      "proof": "containment is checked on the resolved path and on the realpath, so a linked root cannot widen the delete"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs",
+        "runtime/skill-advisor-cli.ts",
+        ".skilled/bin/lib/launcher-session-proxy.cjs"
+      ],
+      "bugClass": "permission_boundary",
+      "disposition": "ruled_out",
+      "rationale": "no unguarded connect remains in scope",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1368",
+        ".skilled/bin/lib/launcher-session-proxy.cjs:674"
+      ],
+      "proof": "every in-repo client path calls the shared check before handing over a prompt"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runtime/lib/shared/shared-payload.ts",
+        "runtime/advisor-server.ts",
+        "runtime/tools/advisor-contract-keys.ts"
+      ],
+      "bugClass": "comment_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "the drift findings close at the cause",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts:4"
+      ],
+      "proof": "all three corrected comments match the reviewed code and the removed watcher"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-903",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs"
+      ],
+      "bugClass": "toctou",
+      "disposition": "ruled_out",
+      "rationale": "checked dir precedes connect",
+      "evidenceRefs": [
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:205",
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:228"
+      ],
+      "proof": "the private owned directory removes the swap window"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-904",
+      "dimension": "security",
+      "targetRefs": [
+        "runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "crash_on_missing_config",
+      "disposition": "ruled_out",
+      "rationale": "G5-I8-P2-001 closed",
+      "evidenceRefs": [
+        "runtime/scripts/skill_advisor.py:4085",
+        "runtime/tests/python/test_skill_advisor.py:2944"
+      ],
+      "proof": "probe returned a recommendation with a warning, not a traceback"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-905",
+      "dimension": "security",
+      "targetRefs": [
+        ".gitignore",
+        "runtime/lib/shadow/shadow-sink.ts"
+      ],
+      "bugClass": "sensitive_data_at_rest",
+      "disposition": "ruled_out",
+      "rationale": "G5-I2-P2-002 closed",
+      "evidenceRefs": [
+        ".gitignore:212",
+        ".gitignore:214"
+      ],
+      "proof": "both the default path and its rotations resolve to ignore rules"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py"
+      ],
+      "bugClass": "silent_failure_regression",
+      "disposition": "ruled_out",
+      "rationale": "the degradation is now a warning and the run completes",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4085"
+      ],
+      "proof": "probe at HEAD exits 0 with a usable payload"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts"
+      ],
+      "bugClass": "permission_boundary",
+      "disposition": "ruled_out",
+      "rationale": "guard present and both paths ignored",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:151",
+        ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:214",
+        ".gitignore:212"
+      ],
+      "proof": "read plus two check-ignore probes"
+    },
+    {
+      "iteration": 10,
+      "id": "SL-1003",
+      "dimension": "security",
       "targetRefs": [
         ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts"
       ],
-      "bugClass": "spec_code_drift",
+      "bugClass": "unshipped_dependency",
       "disposition": "ruled_out",
-      "rationale": "all REQ predicates present",
+      "rationale": "the module is tracked at HEAD",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:77",
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:116",
-        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:305"
+        ".skilled/skills/system-skill-advisor/hooks/lib/route-receipt.ts:29"
       ],
-      "proof": "verified by direct read"
+      "proof": "git ls-files --error-unmatch exit 0"
     },
     {
-      "iteration": 4,
-      "id": "SL-403",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:245",
-        ".skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py:4801"
-      ],
-      "bugClass": "twin_drift",
-      "disposition": "ruled_out",
-      "rationale": "shared fixture guards both twins",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-prompt-policy.vitest.ts:25",
-        ".skilled/skills/system-skill-advisor/runtime/tests/python/test_skill_advisor.py:2538"
-      ],
-      "proof": "shared fixture read by vitest and Python suites"
-    },
-    {
-      "iteration": 4,
-      "id": "SL-404",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
-      ],
-      "bugClass": "weak_test",
-      "disposition": "ruled_out",
-      "rationale": "guard exercised",
-      "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:1116"
-      ],
-      "proof": "measured on shipped dist"
-    },
-    {
-      "iteration": 5,
-      "id": "SL5-002",
+      "iteration": 10,
+      "id": "SL-1004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts"
       ],
       "bugClass": "state_transition",
       "disposition": "ruled_out",
-      "rationale": "no confidence rewrite",
+      "rationale": "the scoping is correct in both directions",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1481"
+        ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:748"
       ],
-      "proof": "verified by direct read"
+      "proof": "direct read of the delete predicate and its caller"
     },
     {
-      "iteration": 5,
-      "id": "SL5-003",
-      "dimension": "correctness",
+      "iteration": 10,
+      "id": "SL-1005",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts",
-        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts"
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs"
       ],
-      "bugClass": "idempotence",
+      "bugClass": "toctou",
       "disposition": "ruled_out",
-      "rationale": "fixed-point loop plus fold only removes markers",
+      "rationale": "the folder set and the refusal order are correct",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts:265"
+        ".skilled/bin/lib/launcher-ipc-bridge.cjs:202"
       ],
-      "proof": "probed on dist"
+      "proof": "direct read of the predicate and its call site"
     },
     {
-      "iteration": 5,
-      "id": "SL5-004",
-      "dimension": "correctness",
+      "iteration": 11,
+      "id": "SL-011-01",
+      "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs"
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/scorer-predicate-cases.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts"
       ],
-      "bugClass": "race",
+      "bugClass": "contract_drift",
       "disposition": "ruled_out",
-      "rationale": "window is microtasks",
+      "rationale": "both languages agree on the shared corpus and the sweep vocabulary stays green",
       "evidenceRefs": [
-        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187"
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts:1"
       ],
-      "proof": "inference only, negligible window"
+      "proof": "verified by executing the AC-006 command pair at HEAD 5c5b9fe3e5b"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-02",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-constant-parity.vitest.ts"
+      ],
+      "bugClass": "constant_parity_drift",
+      "disposition": "ruled_out",
+      "rationale": "constant parity holds with no drift between the two languages",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-constant-parity.vitest.ts:43"
+      ],
+      "proof": "verified by executing AC-007"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-03",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/score-stage-order.vitest.ts"
+      ],
+      "bugClass": "stage_order_regression",
+      "disposition": "ruled_out",
+      "rationale": "the stage-order mutation proofs are present and green",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/scorer/score-stage-order.vitest.ts:82"
+      ],
+      "proof": "verified by executing AC-008"
+    },
+    {
+      "iteration": 11,
+      "id": "SL-011-04",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/local-native-divergence-ratchet.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/holdout-independent.vitest.ts",
+        ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts"
+      ],
+      "bugClass": "gate_baseline_regression",
+      "disposition": "ruled_out",
+      "rationale": "no regression against the baseline, and the four skips sit on named spec-folder lineage cases",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:175",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:66"
+      ],
+      "proof": "verified by executing AC-013 and a skip probe over the skip-bearing suites"
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
       "contract_drift",
-      "state_transition",
-      "idempotence",
-      "race"
+      "constant_parity_drift",
+      "stage_order_regression",
+      "gate_baseline_regression",
+      "state_transition"
     ],
-    "covered": [
-      "contract_drift"
-    ],
+    "covered": [],
     "ruledOut": [
-      "state_transition",
-      "idempotence",
-      "race"
+      "contract_drift",
+      "constant_parity_drift",
+      "stage_order_regression",
+      "gate_baseline_regression"
     ],
-    "deferred": [],
+    "deferred": [
+      "state_transition"
+    ],
     "blocked": [],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 1,
-      "executed": 1,
-      "pass": 0,
+      "required": 4,
+      "executed": 4,
+      "pass": 3,
       "partial": 1,
       "fail": 0,
       "blocked": 0,
-      "notApplicable": 1,
-      "gatingFailures": 1
+      "notApplicable": 2,
+      "gatingFailures": 0
     },
     "results": [
       {
         "applicable": true,
         "evidence": [
-          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:539",
-          ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1277"
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:59",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:60",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:61",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:66",
+          ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sk-git-worktree-sweep-vocabulary.vitest.ts:1",
+          ".skilled/skills/system-skill-advisor/runtime/tests/parity/scorer-eval-baseline-ratchet.vitest.ts:175"
         ],
         "gateClass": "hard",
         "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "AC-006 (32 vitest, python 132 pass / 0 fail), AC-007 (3), AC-008 (4), AC-013 (186 files 2819 pass; ratchets 34) all exit 0 at HEAD 5c5b9fe3e5b under set -o pipefail"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:59",
+          "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/016-pi-context-decisions-based-research-refinement/029-advisor-logic-review-fixes/acceptance-criteria.md:67"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "every Met row touched this pass reproduces its named evidence; AC-014 stays honestly Unmet because it is a two-pass process criterion, not a code claim"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts:39",
+          ".skilled/skills/system-skill-advisor/runtime/advisor-server.ts:248",
+          ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts:41"
+        ],
+        "evidenceRefs": [
+          ".skilled/skills/system-skill-advisor/runtime/lib/lifecycle/supersession.ts:39"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
         "status": "partial",
-        "summary": "MCP path strips once before cache, embedding, scorer; hook-side gaps R1-P2-001 and R3-P2-001 remain"
+        "summary": "123/123 catalog source paths exist; supersession/rollback and fail-closed gate claims contradicted by code"
       },
       {
         "applicable": false,
         "evidence": [],
-        "gateClass": "hard",
-        "protocolId": "checklist_evidence",
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
         "status": "notApplicable",
-        "summary": "evidence folders out of bounds by operator direction"
+        "summary": "no agent definition in reviewScopeFiles; focus limited to runtime/ and hooks/ code"
+      },
+      {
+        "applicable": false,
+        "evidence": [],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "summary": "no agent file or runtime agent mirror in the declared target"
+      },
+      {
+        "applicable": true,
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138",
+          ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:495",
+          ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:74",
+          ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:603",
+          ".skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:135",
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:370"
+        ],
+        "evidenceRefs": [
+          ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138",
+          ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:74"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "pass",
+        "summary": "55 scenarios name-existence sweep: 45 clean, 10 hits triaged as regex false positives, non-advisor goal paths, or out-of-scope doc drift; spot reads confirm; not a scenario run"
       }
     ],
-    "unfinishedCoreProtocols": [
-      "spec_code"
-    ]
+    "unfinishedCoreProtocols": []
   },
   "divergence": {
     "started": [],

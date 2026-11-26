@@ -1,7 +1,7 @@
 ---
 title: "CM-015 -- Chrome navigate + screenshot"
 description: "This scenario validates Chrome DevTools navigation and screenshot capture via Code Mode for `CM-015`. It focuses on confirming a chain can navigate Chrome to a URL then take a screenshot through `chrome_devtools_1` MCP."
-version: 1.0.1.0
+version: 1.0.2.0
 id: CM-015
 category: clickup_and_chrome_via_cm
 stage: routing
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `CM-015` and confirm the
 
 ### Commands
 
-1. `call_tool_chain({ code: "await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' }); const shot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({}); return { length: (shot.data || shot).length, head: (shot.data || shot).slice(0, 16) };" })`
+1. `call_tool_chain({ code: "chrome_devtools_1.chrome_devtools_1_navigate_page({ url: 'https://example.com' }); const shot = chrome_devtools_1.chrome_devtools_1_take_screenshot({}); return { length: (shot.data || shot).length, head: (shot.data || shot).slice(0, 16) };" })`
 2. Inspect the returned object
 3. Optional: `bash: echo '<base64-head>' | base64 -d | xxd | head -1` — verify PNG magic `89 50 4e 47`
 
@@ -68,7 +68,7 @@ Capture the chain response (with full base64 truncated for brevity, just length 
 
 ### Failure Triage
 
-1. If navigate errors: check `chrome_devtools_1` is configured in `.utcp_config.json`; verify Chrome/Chromium is installed (`which google-chrome chromium-browser`); restart Code Mode.
+1. If navigate errors: check `chrome_devtools_1` is configured in `.utcp_config.json`; verify Chrome is installed (on macOS: `test -d "/Applications/Google Chrome.app" && echo present`, since the app bundle puts no `google-chrome` on PATH. On Linux: `command -v google-chrome chromium-browser`); restart Code Mode.
 2. If screenshot is empty: try `wait_for({selector: "h1"})` between navigate and screenshot; some pages need extra time to render.
 3. If magic bytes wrong: response shape may have changed — `tool_info({tool_name: "chrome_devtools_1.chrome_devtools_1_take_screenshot"})` to confirm format (some versions return JPEG instead of PNG).
 

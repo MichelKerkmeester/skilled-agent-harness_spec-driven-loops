@@ -1,89 +1,109 @@
-# Iteration 5: Correctness stabilization pass
+# Iteration 5: traceability, playbook overlay, spec_code rerun and R1-P2-005
 
 ## Dispatcher
-- Run: 5 of 5 (final, max-iterations stop policy). Session 2026-11-19T04:18:26.591Z, generation 1, lineageMode new.
-- Dimension: correctness (stabilization). All four dimensions were already covered.
-- Jobs: (1) reread each of the 8 active P2s at its cited file:line and settle its severity; (2) look for correctness defects in the files the earlier passes read least.
-- Operator focus: judged from the range `git diff 538d2f789ec 57d3f5d9159^2` and the shipped dist only. No `evidence/` folder and no implementation-summary verdict table was read.
-- Iteration number: JSONL holds 4 iteration records, so this is iteration 5; it matches the dispatch.
+
+- Run 5 of 7 (extended run, generation 5, lineageMode completed-continue, session 2026-11-23T21:41:17.101Z). Native executor, LEAF.
+- Prompt pack: `review/prompts/iteration-5.md`. Worktree HEAD `52f0bcb9a98`. The built `dist/` scorer files are newer than their sources (05:27:46 against 05:27:17), so the probe ran current code.
+- Operator focus: the advisor logic in `runtime/` and `hooks/`. This pass covered it through the scorer's seed bound and ambiguity cluster, the daemon trust gate, the skill-graph scan, the disable switch and the hook fallback, all reached from the playbook claims.
+- The strategy's Exhausted Approaches listed the heldBelow direction as BLOCKED after iteration 1. This pack reopened it with a new method, a probe of generation 4's case, so the entry was rewritten instead of retried as before.
+
+## Dimension
+
+Traceability. Three jobs: (1) the `playbook_capability` overlay, never run before; (2) a rerun of core `spec_code` on its two open contradictions; (3) settling the contested generation-4 finding R1-P2-005 with a probe.
 
 ## Files Reviewed
-All under `.skilled/skills/system-skill-advisor/`.
-- `hooks/dsh/prompt-advisor.mjs` (range diff, lines 120-240)
-- `runtime/handlers/advisor-recommend.ts` (range diff; strip at 539, prompt uses 541-647)
-- `runtime/lib/scorer/fusion.ts` (range diff; floor flag 1385-1418, post-floor rewrites 1470-1585)
-- `runtime/skill-advisor-cli.ts` (range diff; `degradedRecommendations` 1486-1505)
-- `hooks/lib/skill-advisor-cli-fallback.ts` (range diff; 227-235, 390-396)
-- `runtime/lib/subprocess.ts` (interface 44-52, `parseRecommendations` 178-207)
-- `runtime/schemas/advisor-tool-schemas.ts` (range diff)
-- `runtime/bench/scorer-calibration.bench.ts` (range diff)
-- `runtime/scripts/skill_advisor.py` (strip twin 4790-4835, callers 1014 and 4845)
-- Rereads for the 8 active P2s: `hooks/claude/user-prompt-submit.ts` 192-206, 336-425, 570-660; `runtime/lib/prompt-policy.ts` 243-272; `runtime/lib/skill-advisor-brief.ts` 466-492; `hooks/lib/route-receipt.ts` 147-185.
+
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:448,493-559,776-786,1014-1026,1194-1240`
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:8-9,46-130`
+- `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:283,301,600-610`
+- `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:246-248,318-332`
+- `.skilled/bin/system-skill-advisor-launcher.cjs:68-80` (context, outside the target)
+- `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:912-926,970-980`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:40-62`
+- `.skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:60-90`
+- `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138-140`
+- `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:495`
+- `.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:135-136`, `.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts:117-119,453`
+- All 55 scenario files under `.skilled/skills/system-skill-advisor/manual-testing-playbook/` (context; the playbook sits outside reviewScopeFiles).
 
 ## Findings - New
 
 ### P0 Findings
+
 None.
 
 ### P1 Findings
+
 None.
 
 ### P2 Findings
-1. **The floor flag reaches the hook only on the CLI path: the subprocess parser and the Python scorer never carry it, so the in-process brief path records every floored route as an earned one** -- .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:198 -- The range added `confidenceFloored` to `AdvisorRecommendation` [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:49], and the CLI fallback forwards it [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:395]. `parseRecommendations` builds each recommendation from an explicit field list that omits it [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts:198], and `skill_advisor.py` has no `confidenceFloored` key at all (exact search, no hit). `buildSkillAdvisorBrief` routes through that parser [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts:539]. The hook keys both the guard [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:369] and the receipt-write exclusion [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:406] on that flag. On the brief-producer path the guard never fires and a floored route is written as a receipt. Reach today: only `dependencies.buildBrief` uses that producer, and only tests inject it [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:580]. It is a latent gap, so P2.
-   Finding class: producer-contract gap (field declared on a shared type, filled by one of two producers).
-   Scope proof: the field and the hook readers are in the range diff; the parser omission is in the same file as the new field.
-   Affected surface hints: runtime/lib/subprocess.ts parseRecommendations; runtime/scripts/skill_advisor.py JSON output; hooks/claude/user-prompt-submit.ts guardWeakFollowUp and recordRouteReceipt.
-   Case: a host that injects `buildSkillAdvisorBrief` as `buildBrief` with a confirmed session id gets a floored work-intent top, and the hook writes a receipt for it instead of skipping, then never suppresses a later weak follow-up.
 
-## Severity Stabilization of Active Findings
-Each was reread at its cited line on current main.
+1. **heldBelow names only the lowest holder, so a withheld holder leaves the held target free to make the top a coin flip** -- .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:545 -- A target held by two typed-command seeds is capped at the lower seed's score minus 1e-6 (`fusion.ts:529-541`). `heldBelow` then records only that lower seed (`fusion.ts:545-557`). The cluster exception at `ambiguity.ts:68` drops the target only when `heldBelow` names the passing top. When the lower holder is itself withheld from passing, the higher holder is the top, and the target sits within `AMBIGUITY_MARGIN` (0.05, `ambiguity.ts:8`) of it only because of the cap. The pair is then reported as a coin flip, which is the case the exception exists to stop. The withhold that makes this reachable is `withholdMentionedCommands` (`fusion.ts:1014-1026`). It sets `passes_threshold: false` on a command the prompt only mentions, and leaves its score and its cap on other rows unchanged. This settles R1-P2-005: generation 4's literal case does not misfire, but this narrower case does.
+   - Finding class: boundary-defect (single-valued binding where the guard needs the holder set).
+   - Scope proof: `fusion.ts` and `ambiguity.ts` are in reviewScopeFiles. The probe imported the built `dist/runtime/lib/scorer/fusion.js` and `ambiguity.js` with no change to the target.
+   - Affected surface hints: `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:545-557`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/ambiguity.ts:68`, `.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts:153`, `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:301`, plus the Python twin if it mirrors the exception.
+   - Case: a prompt runs typed command A and only mentions typed command B. Both seed graph support into a skill T that neither owns. B is withheld, A is the top at 0.80, and T is capped to 0.789999 with heldBelow B. `isAmbiguousTopTwo` returns true on A and T alone. The probe gives `ambiguous:true` against `ambiguousIfTargetExcluded:false`. The end-to-end prompt was not run, so reachability past the withhold is inferred from `fusion.ts:1014-1026`.
 
-| Finding | Reread | Outcome | Reason |
-|---|---|---|---|
-| R1-P2-001 | user-prompt-submit.ts:200 (head cut), brief.ts:478 and cli-fallback.ts:233 (strip after it) | Confirmed P2 | Needs a paste over 64 KiB. The turn still routes, only on the wrong text, and it fails open. |
-| R1-P2-002 | user-prompt-submit.ts:369-376 | Confirmed P2 | No production producer sets `lifecycle_event` on UserPromptSubmit (iteration 3), so there is no named reach for P1. |
-| R1-P2-003 | user-prompt-submit.ts:604 vs 623 | Confirmed P2 | The receipt is written before `finishAdvisorDelivery`. A wrong suppression needs a failed host write and then a floored weak follow-up on a different skill, and its cost is one skipped brief. |
-| R1-P2-004 | prompt-policy.ts:253 | Confirmed P2 | Reproduced on the dist: `Claude replied: ok. Task: update readme. Now: commit it` strips to `commit it`. Routing quality only. |
-| R2-P2-001 | prompt-policy.ts:246; skill_advisor.py:4807, callers 1014 and 4845 | Confirmed P2 | The quadratic scan is real. The hook bounds it at 64 KiB and the MCP schema at 10,000 chars. The unbounded Python input is a local CLI the user runs on their own prompt, so the blast radius is self-inflicted CPU time. |
-| R3-P2-001 | user-prompt-submit.ts:580 | Confirmed P2 | The fire gate reads the raw prompt. The effect is a routed turn where a skip was intended, which is advisory output. |
-| R4-P2-001 | skill-advisor-brief.ts:473-478 | Confirmed P2 | The two inputs are still in place, including the raw-prompt `policy` that feeds `metalinguisticMentions`. That is the same root and gets no new id. |
-| R4-P2-002 | user-prompt-submit.ts:643 and 651 | Confirmed P2 | `input` is non-null after the 643 return, so the `: { effectiveEmitted: emitted }` arm cannot run. |
+## R1-P2-005 Probe
 
-No escalation and no false positive. The R1-P2-001 plus R2-P2-001 ordering constraint is a note on the order of fixes, not a live defect: the shipped order keeps the 64 KiB bound. No P1 is hidden there.
+`/private/tmp/dr532-iter5/probe-heldbelow.mjs` called `boundGraphSupportBySeedWithHolders` with two slash-anchored seeds, `cmd-a` and `cmd-b`, that both hold `sk-target`. Graph support was 0.3 each, graphWeight was 1, and confidence was set equal to the bounded score. It then ran `isAmbiguousTopTwo` and `applyAmbiguity` on the result. Exit 0.
+
+| Case | Scores A / B / T (unbounded) | heldBelow T | Ambiguous | Ambiguous with T removed | Reading |
+|---|---|---|---|---|---|
+| C1 gen-4 exact | 0.80 / 0.79 / 0.85 | cmd-b | true | true | The flag is unchanged. B ties A on its own. T only joins `ambiguousWith`. |
+| C2 far apart | 0.90 / 0.70 / 0.95 | cmd-b | false | false | No effect. |
+| C3 tie | 0.80 / 0.80 / 0.85 | cmd-a | true | true | Binding equals the top, so the exception drops T. |
+| C4 margin edge | 0.80 / 0.7500005 / 0.85 | cmd-b | true | true | T falls outside the margin when B is inside it. |
+| C5 B withheld | 0.80 / 0.79 / 0.85 | cmd-b | true | false | The flag flips on T alone. |
+
+Generation 4's claim says the target's 1e-6 gap falls inside the margin. That gap is to the lower holder. The gap to the top is the A–B gap plus 1e-6, so whenever T clusters on score, B does too (C1, C4). In generation 4's literal case the coin flip is real, between A and B. The only extra in that case is T listed in the wire `ambiguousWith`, and the rendered partner still picks B, because B sorts first (`render.ts:603-607`). Confidence follows the bounded score (`fusion.ts:1196,1212-1213`), so the confidence path at `ambiguity.ts:74-76` gives no second route in C2. C5 is the reachable misfire, recorded above.
 
 ## Traceability Checks
-- `spec_code` (core): partial. The pasted-reply strip is applied once before the cache key, embedding, scorer and compiled-route enrichment in the MCP handler [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:539], and again idempotently inside the scorer [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1277]. That matches the "routes the same as without the paste" claim on the MCP path. The hook-side gaps are still R1-P2-001 and R3-P2-001.
-- `checklist_evidence` (core): notApplicable. The evidence folders are out of bounds by operator direction.
+
+- `spec_code` (core, hard): **partial**, rerun on both contradictions, which still hold at HEAD.
+  - Trust default: the comment at `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:324-326` says a call with no caller block sees an untrusted caller. `.skilled/bin/system-skill-advisor-launcher.cjs:74-75` sets `SYSTEM_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted'` when the environment does not, and `.skilled/skills/system-skill-advisor/runtime/advisor-server.ts:248` honors that value. So the default is consumed, not just declared (G5-I2-P2-001).
+  - Graph wipe: the empty-root guard at `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:921-922` states the intent to preserve the graph. A one-skill root still passes the non-empty check and reaches `deleteMissingNodes` at `.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts:976`. `.skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/scan.ts:45-60` guards only workspace escape (G5-I1-P1-001).
+- `checklist_evidence` (core, hard): notApplicable. The target has no checklist rows.
+- `playbook_capability` (overlay, advisory): **pass**, with method limits. The sweep (`/private/tmp/dr532-iter5/playbook-sweep.sh`) extracted every code path, env var and tool name from the 55 scenarios and checked each against `runtime/`, `hooks/` and `.skilled/bin/`. 45 scenarios came back clean. The 10 flagged scenarios were triaged:
+  - False positives from the regex: `advisor_runtime`, `advisor_bench` and `advisor_regression` are substrings of the `skill_advisor_*.py` names, and `advisor_running` is a shell function in the scenario.
+  - `advisor_unavailable` is emitted at `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:138-140` and `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:495`.
+  - The disable switch names the scenario sets are read through `.skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:74-80`. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is listed in `.skilled/hooks/shared/hook-flags.cjs:76`. `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED` is only unset, never claimed.
+  - The goal-plugin paths exist under `.skilled/hooks/goal/lib/`, and they are not advisor capabilities.
+  - Spot reads: the ambiguity-partner rendering is at `.skilled/skills/system-skill-advisor/runtime/lib/render.ts:603-607`, and the shadow sink appends at `.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts:135-136`.
+  - This was a name-existence sweep plus spot reads, not a run of each scenario, so `pass` means no scenario names a capability the code lacks.
 
 ## Integration Evidence
-- DSH host `hooks/dsh/prompt-advisor.mjs` -> `runtime/dist/hooks/claude/user-prompt-submit.js` (`handleClaudeUserPromptSubmit`) with `session_id` and no `transcript_path`. Receipt staleness on DSH therefore rests on the lifecycle clock alone, which the new `advanceBoundary` rotates on `agent/created` and on a successful `compaction/end` [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:187].
-- Both DSH URLs resolve `dist/hooks/lib/directive-lifecycle.js`, so the rotation and the hook share one module instance and one default store.
+
+- `.skilled/bin/system-skill-advisor-launcher.cjs:74-75` (the launcher that starts the daemon) is the surface that consumes the trust default. It was read as context for `spec_code`.
+- `.skilled/hooks/shared/hook-flags.cjs:76` (the shared flag registry) is where `advisor-disabled.ts` gets its switch names.
 
 ## Edge Cases
-- Strip idempotence across folding: the brief strips, then folds to one line, then slices, and the handler strips again. Probed on the dist (`runtime/dist/runtime/lib/prompt-policy.js`) with 4 cases: `strip(fold(strip(x))) === fold(strip(x))` held every time. Folding can only remove newline markers and never create a cue.
-- The empty task after the marker (`Assistant response: ... now:   `) returns the whole prompt, so the paste is scored. That is documented fallback behavior, not a defect.
-- The DSH compaction rotation runs detached (`void rotateSessionClock`). A pre-step that lands before the microtask chain settles would read the old clock. This is inferred and not measured, and the window is microtasks long, so it is ruled out rather than reported.
+
+- `.skilled/skills/system-skill-advisor/manual-testing-playbook/operator-h5/degraded-daemon.md:139` cites `.opencode/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts`, which does not exist. Its line 151 quotes an old error naming a `z_archive` path. This is doc drift outside reviewScopeFiles, the same kind as R3-P2-002, so it is not registered. The capability it tests, degraded status reported as `freshness: 'unavailable'`, is backed at `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:370-391`.
+- In generation 4's literal case (C1), the held target joins the wire `ambiguousWith` of both holders while the flag is unchanged. That is a payload detail, folded into the finding above.
+- Generation 4's literal example (`/deep:review` against `/deep:research`) has `system-deep-loop` as the owner of both commands. `answersSameRoute` (`ambiguity.ts:50-60`) would drop that owner from the cluster anyway. The finding therefore needs a target that neither holder owns (inferred, not probed).
 
 ## Confirmed-Clean Surfaces
-- `fusion.ts`: no step after 1418 rewrites `confidence`. The later passes (1481, 1534, 1575) change only `uncertainty` and `passes_threshold`, so `confidenceFloored` cannot go stale on a raised confidence.
-- `advisor-recommend.ts`: every downstream prompt use after 539 reads `scoredPrompt`, on the cached path and the fresh path alike. The cache key folds paste variants together on purpose.
-- `skill-advisor-cli.ts` `degradedRecommendations`: a command named only in the paste no longer attaches. The substring match is unchanged from before the range.
-- `skill-advisor-cli-fallback.ts`: strip, then cut. The handler re-strip is a no-op by idempotence.
-- `scorer-calibration.bench.ts`: the new measurements only log. They assert nothing and change no gate.
-- Python twin: the `^` cue anchor without MULTILINE, `.strip(_JS_SPACE_CHARS)` and the fixed-point loop match the TS twin.
+
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:529-541`: the cap loop only lowers scores and settles chains in at most one pass per held target, as its comment says (C1-C5 are all consistent).
+- `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:1196,1212-1213`: confidence derives from the bounded score, so a cap cannot leave a stale confidence behind.
 
 ## Ruled Out
-- A stale floor flag after a confidence rewrite in fusion: no rewrite exists.
-- A double strip changing the scored text between the handler and the scorer: proven idempotent.
-- The DSH detached-rotation race: microtask window, inference only.
-- Brief-path metalinguistic diagnostics read from the raw prompt: same root as R4-P2-001, not a new finding.
+
+- R1-P2-005 as generation 4 stated it: whenever the target clusters on score, the lower holder is already in the cluster, so the ambiguity flag is unchanged. Probe rows C1 and C4 show this. The defect that remains is narrower and is recorded as G5-I5-P2-001.
+- The `playbook_capability` drift: no scenario names a runtime or hooks capability that the code no longer provides.
 
 ## Next Focus
-- Dimension: none. This is the last iteration; synthesis follows.
-- Focus area: synthesis over 9 active P2s (R1-P2-001..004, R2-P2-001, R3-P2-001, R4-P2-001/002, R5-P2-001).
-- Reason: max-iterations stop policy reached.
-- Rotation status: all four dimensions covered, plus one stabilization pass.
-- Blocked/productive carry-forward: probing on the dist stayed productive. Do not retry strip idempotence or the floor-staleness check.
-- Required evidence: none outstanding. Fix ordering: make TASK_MARKER linear (R2-P2-001) before moving the 64 KiB cut (R1-P2-001).
 
-Review verdict: PASS
+- Dimension: maintainability.
+- Focus area: the Python fallback's mirror of the seed bound and the ambiguity exception in `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`. Check whether G5-I5-P2-001 has a twin there, and compare INTENT_BOOSTERS against PHRASE_BOOSTS table by table, which iteration 3 left undone.
+- Reason: G5-I3-P2-001 already shows hand-copied predicates, and a fix to `fusion.ts:545-557` must land in both languages.
+- Rotation status: all four dimensions covered. The extension passes clear debt.
+- Blocked/productive carry-forward: do not reopen parity suites, the playbook sweep, the handler or lifecycle scans, or the symlink path. Productive: probes on `dist/` exports with constructed inputs.
+- Required evidence: the Python line numbers for the bound and the exception, and a constructed case run through both languages if budget allows.
+
+## Verdict
+
+Two P1s remain active (G5-I1-P1-001, G5-I2-P1-001). This pass added one P2 and no P0 or P1.
+
+Review verdict: CONDITIONAL

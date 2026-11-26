@@ -1,0 +1,43 @@
+{
+  "run_id": "1795547880726-3ycc74",
+  "loop_type": "review",
+  "spec_folder": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/535-deep-loop-offers-traceability-review/specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "deepseek-max-3",
+      "status": "skipped_complete",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "deepseek-max-3": null
+    }
+  }
+}
