@@ -354,7 +354,7 @@ else FAIL=$((FAIL+1)); echo "FAIL: a real push from a worktree with an unlisted 
 
 # ── Commit-Id gate: every non-merge commit a push adds carries an id ──────
 CID="$TMP-cid"; rm -rf "$CID"
-git -C "$TMP" init -q "$CID"
+git -C "$TMP" init -q -b main "$CID"
 git -C "$CID" config core.hooksPath "$TMP/.nohooks"
 git -C "$CID" config user.email t@t.t
 git -C "$CID" config user.name t

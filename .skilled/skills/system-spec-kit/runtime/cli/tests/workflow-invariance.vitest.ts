@@ -4,6 +4,7 @@
 
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
@@ -207,7 +208,11 @@ describe('workflow vocabulary invariance', () => {
   });
 
   it('reports leaks from extra-path sentinels', () => {
-    const tempDir = fs.mkdtempSync(path.join(process.cwd(), 'workflow-invariance-'));
+    // The sentinel is scratch data, so it lives in the OS temp directory. A
+    // directory created inside the checked-in tree is visible to every other
+    // test file running in parallel, and the suites that copy this tree fail
+    // when an entry disappears mid-copy.
+    const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'workflow-invariance-'));
     try {
       const sentinel = path.join(tempDir, 'sentinel.md');
       fs.writeFileSync(sentinel, 'This public surface leaks preset vocabulary.\n', 'utf8');

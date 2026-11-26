@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 869,
+  "derived_count": 870,
   "directories": [
     ".",
     ".claude",
@@ -151,7 +151,6 @@
     ".skilled/hooks/subagent-dispatch-guard/pi",
     ".skilled/hooks/subagent-dispatch-guard/tests",
     ".skilled/logs",
-    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands",
     ".skilled/repo-rules",
     ".skilled/scripts",
     ".skilled/scripts/git-hooks",
@@ -477,6 +476,9 @@
     ".skilled/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--live-mode-b--live",
     ".skilled/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-after-skill-rule",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-conversation",
+    ".skilled/skills/sk-code/benchmark/reports/2026-11-23--manual-testing-playbook--frontend-browser-evidence-pass",
     ".skilled/skills/sk-code/benchmark/reports/baseline",
     ".skilled/skills/sk-code/shared",
     ".skilled/skills/sk-code/sk-code-ci",
@@ -736,6 +738,7 @@
     ".skilled/skills/system-skilled-doctor",
     ".skilled/skills/system-skilled-doctor/benchmark",
     ".skilled/skills/system-skilled-doctor/benchmark/reports",
+    ".skilled/skills/system-skilled-doctor/manual-testing-playbook/doctor-commands",
     ".skilled/skills/system-spec-kit",
     ".skilled/skills/system-spec-kit/benchmark/reports",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--claude-adapter",

@@ -94,7 +94,9 @@ describe('deep-review auto restart command contract', () => {
     const completedAt = autoWorkflow.indexOf('        on_completed_session:\n');
     const completedBranch = autoWorkflow.slice(completedAt, autoWorkflow.indexOf('        on_invalid_state:\n', completedAt));
     expect(completedBranch).toContain('skip_to: phase_synthesis');
-    expect(completedBranch).not.toContain('extend');
+    // The branch may advise the operator to rerun with --extend; it must not route to the step.
+    expect(completedBranch).not.toContain('step_extend_completed_run');
+    expect(completedBranch).not.toMatch(/^\s*(?:proceed_to|skip_to):.*extend/m);
 
     const guardIndex = autoWorkflow.indexOf('\n  step_reject_extend_with_fanout:\n');
     expect(guardIndex).toBeGreaterThan(-1);
