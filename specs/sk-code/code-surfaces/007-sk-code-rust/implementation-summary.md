@@ -8,26 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/code-surfaces/007-sk-code-rust"
-    last_updated_at: "2026-11-26T20:52:00Z"
+    last_updated_at: "2026-11-26T21:36:59Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged to main, pushed, fixed the sk-doc CI failure"
-    next_safe_action: "Review the bots rerun, then move the v4.2.0.0 tag"
+    recent_action: "Fixed the bots checker hang and moved the v4.2.0.0 tag to a green main"
+    next_safe_action: "None: packet complete and v4.2.0.0 republished"
     packet_purpose: "Purpose: The Rust set covers a Rust app as well as a Rust binding, with every new rule traced to a line of the rust-anything repository or to an existing sk-code rule."
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs"
-      - ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/rust-language-vocabulary.test.cjs"
-      - ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md"
-      - ".skilled/skills/sk-code/shared/references/stack-detection.md"
+      - ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs"
+      - ".skilled/changelog/skilled/v4.2.0.0.md"
     session_dedup:
-      fingerprint: "sha256:c1ab57f6f975ae55ef768f6d3233125e46229c55ff542e0a0072c550c422b9bc"
+      fingerprint: "sha256:56903ae27c1a1b2c98f8b198482101d82ae4245f954c57fc82788566adfc945d"
       session_id: "scaffold-007-sk-code-rust"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "18b5b122-c5b4-40c0-ac3e-13860897d68b"
+      sessionId: "898906b1-abe5-411a-9d60-305d89889d36"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T20:52:00Z"
+      savedAt: "2026-11-26T21:36:59Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

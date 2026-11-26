@@ -89,6 +89,7 @@ and findings belong here.
 | LS-006 replay rerun | Done | Run 4 after the loading fix loaded both trios and 7 of 7 TypeScript parts, scratch/ls006-replay.txt |
 | Follow-up after the first commit | Done | Review fixes, open-every-file rule, app-crate keywords, LS-007 run 3 meets its criteria, packet docs closed |
 | Alignment fix pass | Done | Every finding from both alignment runs fixed. The --recheck resolved 3 rows, found 0 new, and left 4 open rows that pass on main |
+| Bots timeout fix and v4.2.0.0 republish | Done | bot-check.cjs loads through one tsx namespace, 17 of 17 workflows green on 82fde07afe1, tag moved and release body updated |
 
 ### Deviations and findings
 

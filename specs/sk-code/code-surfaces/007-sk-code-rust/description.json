@@ -12,14 +12,14 @@
     "checklist",
     "teaches"
   ],
-  "lastUpdated": "2026-11-26T20:52:00.125Z",
+  "lastUpdated": "2026-11-26T21:36:59.670Z",
   "specId": "007",
   "folderSlug": "sk-code-rust",
   "parentChain": [
     "sk-code",
     "code-surfaces"
   ],
-  "memorySequence": 14,
+  "memorySequence": 15,
   "memoryNameHistory": [
     "26-11-26_13-36__ran-the-three-lineage-vibe-deep-research-over.md",
     "26-11-26_13-52__applied-research-md-ranked-edits-6-to-18-to-sk.md",
@@ -34,6 +34,7 @@
     "26-11-26_20-40__fixed-every-finding-from-the-local-skilled.md",
     "26-11-26_20-44__fixed-every-finding-from-the-local-skilled.md",
     "26-11-26_20-46__fixed-every-finding-from-the-local-skilled.md",
-    "26-11-26_21-51__fixed-every-finding-from-the-local-skilled.md"
+    "26-11-26_21-51__fixed-every-finding-from-the-local-skilled.md",
+    "26-11-26_22-36__fixed-the-bots-runtime-tests-timeout-and.md"
   ]
 }
