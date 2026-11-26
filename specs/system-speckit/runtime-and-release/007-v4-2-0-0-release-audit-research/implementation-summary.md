@@ -8,29 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T07:21:48Z"
+    last_updated_at: "2026-11-26T18:09:30Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed Dependabot alerts and main CI"
-    next_safe_action: "Verify green CI, then move the v4.2.0.0 tag"
+    recent_action: "Republished v4.2.0.0 on c530dbea1aa after main went fully green"
+    next_safe_action: "Close the session, since the packet and the release are complete"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/cli/tests/helpers/upgrade-legacy-harness.ts"
-      - ".skilled/scripts/git-hooks/tests/pre-push.test.sh"
-      - ".skilled/skills/system-spec-kit/package-lock.json"
-      - "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/acceptance-criteria.md"
+      - "acceptance-criteria.md"
+      - "implementation-summary.md"
+      - "spec.md"
+      - "tasks.md"
+      - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:c7c16c56526e8f8b61900bced8a8b4f42d0d8fbad9122aab9f21ae1f7e1f9094"
+      fingerprint: "sha256:f4f407551239ab18fdb8a6228b79722d506dc30aede2fdf2690552c737a48dbb"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "1cf09172-5a54-4491-b11f-0d1deee0fd05"
+      sessionId: "2e5ce85f-4d66-468e-98a7-a671d4e5d012"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T07:21:48Z"
+      savedAt: "2026-11-26T18:09:30Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -68,7 +69,7 @@ Two lineages, cli-codex and cli-devin, read the same window and packet list and 
 
 ### The fixes
 
-The second audit, `research/research.md`, found 3 P2 and 14 P3 defects in the v4.2.0.0 logic, four more from its independent verifier and six older ones. On the operator's "fix all", every one of them except the two REQ-004 names was fixed in worktree `545-v4-2-audit-fixes`, along with three nearby defects the operator chose. `acceptance-criteria.md` maps each finding to its regression test. Workers ran on cli-mistral-vibe with `deepseek-flash`, three at a time. The orchestrator reviewed each diff and reran each suite.
+The second audit, `research_archive/20261126T112816Z/research.md`, found 3 P2 and 14 P3 defects in the v4.2.0.0 logic, four more from its independent verifier and six older ones. On the operator's "fix all", every one of them except the two REQ-004 names was fixed in worktree `545-v4-2-audit-fixes`, along with three nearby defects the operator chose. `acceptance-criteria.md` maps each finding to its regression test. Workers ran on cli-mistral-vibe with `deepseek-flash`, three at a time. The orchestrator reviewed each diff and reran each suite.
 
 - **Deep-loop runtime:** a runner stopped by a signal now ends a child whose row has no start time, and `--stop` on win32 names its remedy. An untrusted lineage's frontier nodes claim no coverage, in the merge and in the stop decision. The `--extend` warning counts only open questions. Option B of the pre-synthesis gate ends a fan-out run in both `deep-research.yaml` and `deep-review.yaml`.
 - **Claude Stop hook:** a path that ends at a JSON escape resolves to the child packet. The write takes the canonical save lock and leaves answers pending while a save holds it. A written row is never reported as skipped, a hand-edited row survives a later Stop, and one `systemMessage` line tells the operator the outcome.
@@ -186,6 +187,82 @@ The operator asked to fix Dependabot before the tag moved again. That covered th
 | Spec-kit CLI shard 3 | The upgrade-legacy copies stamped their dist with a whole-millisecond `Date`, while mtimes are finer, so a source written in the same millisecond read newer and the validator exited 3. The dist keeps `now` and the copied sources are dated one second back. 20000 of 20000 trials stay fresh, and an edit afterwards still reads stale |
 | Spec-kit CLI project | 210 files passed, 2725 tests passed, 0 failed. One file first failed only because the packet docs were edited during the run, and it passes 4 of 4 on its own |
 | Quality gate | `quality-gate.cjs --files` on the six changed test files: `NO_BLOCKER_FOUND`, 0 open findings |
+### Generation-3 fix pass
+
+The operator said "FIX ALL" for the seven generation-3 findings. The fixes landed in worktree `547-v4-2-gen3-audit-fixes`. Each suite ran on `main` at `1bbebef885e` for the before count and in the worktree for the after count.
+
+| Suite | Before, on `main` | After, in the worktree |
+|-------|-------------------|------------------------|
+| Bin tests, `node --test .skilled/bin/tests/*.test.cjs` | 219 passed | 221 passed, 1 skipped, 0 failed. The skip is the runtime-written `.gitignore` a fresh worktree lacks |
+| sk-create-skill tests | 112 of 112 | 112 of 112 |
+| sk-doc Python tests | 462 passed | 462 passed |
+| Deep-loop runtime | 4064 passed, 3 failed, 11 skipped | 4066 passed, the same 3 failed, 11 skipped |
+| Skill advisor runtime | 3546 passed, 1 failed, 4 skipped | 3548 passed, 0 failed, 4 skipped |
+| Spec-kit runtime core | 1377 passed, 11 skipped | 1378 passed, 11 skipped |
+| Spec-kit runtime CLI | 2724 passed, 1 failed, 20 skipped | 2724 passed, the same 1 failed, 20 skipped |
+| Spec-kit spec validation | passed | passed |
+| `pre-commit.test.sh` | not run | exit 0 |
+
+The failures on both sides predate this pass. The three deep-loop failures read `.skilled/specs/...` paths that commit `035c9dd6bdd` removed. The advisor failure on `main` is a local `system-skilled-bots` skill with an empty description, which the worktree does not hold. The spec-kit CLI failure is `canonical-save-validation.vitest.ts:220`, exit 3 on both sides.
+
+| Check | Result |
+|-------|--------|
+| Negative controls | Each new test failed with its fix taken out: the front-door file tests 3 of 4, the stop test, the Pi test, the continuity test and the reducer test |
+| Compiled routing | All eight hub manifests re-minted with `compiled-route-manifest.cjs refresh` and copied to their authored copies. `compiled-route-guard.cjs` reads all hubs fresh, and `compiled-route-status.cjs --all` reads `compiled-serving` for all eight. A `--prompt-file` replay routes `sk-code`, `sk-doc`, `system-deep-loop` and `sk-design` |
+| Deep command contracts | Recompiled after the `system-deep-loop/SKILL.md` edit. `check-contract-drift.cjs` prints `OK commands=2` |
+| Hub checks | `parent-skill-check.cjs` and `generate-leaf-manifest.cjs --check` pass for all eight hubs. Two hubs first went past the 180-word SMART ROUTING limit, and the wording was cut |
+| sk-code drift guards | The same 2 errors as on `main`, both in a review lineage under `specs/` |
+| Quality gate | `quality-gate.cjs --worktree --lines changed`: 0 P0, 0 P1, 0 P2 |
+| Docs | `check_changelog_shape.py` PASS and `validate_document.py` VALID for both changelogs. Every other changed `.md` validates the same as on `main` |
+| Builds | The advisor and spec-kit runtime dists were rebuilt in the worktree. Both are gitignored, so `main` needs the same rebuild after the merge |
+
+### Alias fallout fix
+
+Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and three workflows on `main` went red because 24 links in 20 skill docs and three test paths still reached `specs/` through it. Each now climbs one more level to the repository root. The `cli-pi/SKILL.md` link edit re-minted the `cli-external-orchestration` manifest.
+
+| Check | Before | After |
+|-------|--------|-------|
+| `check-markdown-links.cjs` | 24 broken, exit 1 | 0 broken, exit 0 |
+| `validate-playbook-package.cjs --strict` | 1 FAIL, exit 1 | 53 PASS, exit 0 |
+| Deep-loop runtime | 4066 passed, 3 failed | 4069 passed, 0 failed |
+| Spec-kit runtime CLI | 2724 passed, 1 failed | 2725 passed, 0 failed, exit 0 |
+| Compiled routing | `cli-external-orchestration` stale after the edit | All eight hubs `compiled-serving`, and a cli-pi request routes to `cli-pi` |
+
+One CLI run listed packet docs under its guard for changed paths. Those were edits made while it ran, and the rerun on a still tree passed. A frozen benchmark report still holds a `.skilled/specs` path inside captured command output, and it stays as recorded.
+
+CI on the pushed merge found one more reader the scan of `.skilled/` could not see. A step in `.github/workflows/routing-registry-drift.yml` runs under `.opencode/skills/system-skill-advisor/runtime`, where `.opencode/skills` links to `.skilled/skills`, so its `../../../specs/` landed on the removed alias. It now climbs four levels. Run locally, the old path raises the same FileNotFoundError as CI, and the new one reaches the file and stops at the corpus pin check that already failed on `31821cee5d7`.
+
+### Pre-existing red workflows
+
+Two workflows had failed on every `main` run since `98b712cd248`, and the operator chose to fix them here, on `main`. Each cause was reproduced before its fix.
+
+| Cause | Fix | Check |
+|-------|-----|-------|
+| The `--claude-config-dir` research cases put the artifact folder outside any git worktree, so the dispatcher's containment refusal exited 64. The cases skip under Claude Code, so only CI ran them | The fixture builds its own git worktree with the packet inside it | Run detached from Claude: 2 failed before, 48 of 48 after. The whole suite passes 4071, 0 failed |
+| `system-skilled-doctor/leaf-aliases.json` missed the alias for a playbook file added in `85e9f28d788` | `ci-skill-root-metadata.cjs --fix` | The three skill-root checks exit 0 |
+| The `mcp-browser-use` relabel in `6a5e1048ea5` left both corpus pins stale | Recaptured the six baseline files with their own scripts at `0d0f0b4b9d1` | Pins match and every CI floor holds. Advisor accuracy moved from 114 to 113 of 196, TT from 111 to 110 and holdout top-3 from 50 to 48 of 63 |
+| The compiled `skill-graph.json` lacked the `in aside` signal from `1ad6a392b3d`. CI never reached this step | The operator approved the reindex, `skill_graph_compiler.py --export-json` | `skill-graph-freshness.cjs --strict` exits 0 |
+
+Every other step of the routing guard passes locally. The skill advisor suite passes 3547 with 1 failure, a local `system-skilled-bots` skill with an empty description that has no tracked files.
+
+### Unsaved operator answers
+
+`match-decision-table.js --scan-orphans` lists 23 earlier sessions whose 120 captured answers reached no decision record, because each session ended without a save. The operator chose to report them, not record them. The likely packet comes from a `session_ref` or handoff note that names the session. Each packet owner records its answers on that packet's next `/speckit:save`.
+
+| Likely packet | Sessions | Answers |
+|---------------|----------|---------|
+| `specs/system-skilled-bots/001-headless-bots-first-build` | 5 | 51 |
+| `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` and its children 013 and 014 | 3 | 31 |
+| `specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill` | 1 | 9 |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal` | 1 | 5 |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` | 3 | 4 |
+| `specs/sk-code/code-surfaces/007-sk-code-rust` | 2 | 3 |
+| `specs/system-skilled-doctor/008-own-all-doctor-commands` | 1 | 2 |
+| This packet, session `d72bb3f6` | 1 | 2 |
+| `specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards` | 1 | 1 |
+| Not traceable: `0352ae70`, `15b479d3`, `34470899`, `5704bf0b`, `617b2600` | 5 | 12 |
+
+The open items left by the fix pass are closed. The `mcp-browser-use` v1.1.4.0 changelog carries the same "Correction, added later" lines as `sk-doc` v2.10.1.0. The `sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout` continuity record was rewritten through the writer and now reads `ok`. An older copy of that block in its `spec.md` frontmatter, which the writer no longer maintains, is left as recorded. The active `gh` account was switched to `MichelKerkmeester` on the operator's instruction, and `gh auth switch --user michelkerkmeester-barter` restores it.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -198,6 +275,8 @@ The operator asked to fix Dependabot before the tag moved again. That covered th
 2. **Every other checkout rebuilds its own dists.** `runtime/cli/dist` and the runtime `dist` are gitignored. The primary checkout was rebuilt after the merge, and the compiled Stop hook loads `acquireCanonicalSaveLock` from it. Another checkout runs the old Stop hook until both dists are rebuilt there: `npm run build` in `runtime/cli`, then in `runtime`.
 3. **One timing test can flake.** `fanout-pool.vitest.ts:679` failed once for a worker under load and passed on rerun. No change was made to it.
 4. **Not fixed on purpose.** f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence.
+5. **Three pre-existing failures stay open.** The deep-loop suite reads three fixtures under `.skilled/specs/`, which commit `035c9dd6bdd` removed, and `canonical-save-validation.vitest.ts:220` fails on `main` too. Neither belongs to this pass.
+6. **Without `ps`, a stopped lineage reads as a survivor.** The runner signals it but cannot confirm the exit, so the next run sees it as open until its pid is gone.
 <!-- /ANCHOR:limitations -->
 
 ---

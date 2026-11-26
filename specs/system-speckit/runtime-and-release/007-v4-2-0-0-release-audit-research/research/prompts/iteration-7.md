@@ -9,19 +9,20 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 7 of 10
-Questions: 4/5 answered | Last focus: Q4 session hooks and spec tooling, diff-first: in-window hunks for the Claude Stop decision auto-record (autoRecordDecisions), tail packet detection (collectTailSpecFolders), and nested sub-tracks in create, validate and relocate
-Last 2 ratios: 0.83 -> 1 | Stuck count: see convergence
+Questions: 3/5 answered | Last focus: Q4: inspect the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) for logic bugs or doc drift against what v4.2.0.0 claims.
+Last 2 ratios: 1 -> 1 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Lineage context refresh: Prior run archived at research_archive/20261125T162358Z; its 16 confirmed findings are fixed or documented, do not re-report them.
-Next focus: Q5 operator UX, diff-first: read the messages the new v4.2.0.0 commands and hooks show operators and judge each for silent failure, misleading text, unsafe defaults or dead ends: the Claude Stop nudge and the auto-record failure that only reaches the hook log, doctor overlay refusals and remedies, the --extend and fan-out stop messages, the create.sh sub-track errors, and the sk-git worktree-naming and goal hop messages. Run each where cheap and quote the exact text.
+Lineage context refresh: 6 iterations, 7 key findings, 2 open / 3 resolved questions.
+Next focus: Continue Q4 by auditing the remaining changed session-handover and system-spec-kit runtime paths, then review the git hook gate behavior beyond the uninstall instructions.
 
-Research Topic: v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0
+Research Topic: Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 Iteration: 7 of 10
-Focus Area: Q5 operator UX, diff-first: read the messages the new v4.2.0.0 commands and hooks show operators and judge each for silent failure, misleading text, unsafe defaults or dead ends: the Claude Stop nudge and the auto-record failure that only reaches the hook log, doctor overlay refusals and remedies, the --extend and fan-out stop messages, the create.sh sub-track errors, and the sk-git worktree-naming and goal hop messages. Run each where cheap and quote the exact text.
-Remaining Key Questions: - [ ] Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+Focus Area: Continue Q4 by auditing the remaining changed session-handover and system-spec-kit runtime paths, then review the git hook gate behavior beyond the uninstall instructions.
+Remaining Key Questions: - [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 Carried-Forward Open Questions:
 [None yet]
-Last 3 Iterations Summary: run 4: Q2 fan-out, diff-first: read only the in-window trust and stop hunks of fanout-run.cjs and fanout-merge.cjs (git show 2bfee12379d 86f6c584b1b 4fc94bae0d3 e111720dc88 978b74e8df7), checking for logic bugs and drift from the fan-out docs. Settle the run_extended lineageId lead (workflow-steps.cjs:166 sets lineageId to parentSessionId while iteration rows use sessionId): does any reader filter on it? Then close Q2 with a verdict. (1); run 5: Q3 skill advisor, diff-first: in-window hunks for loop offers, typed-only Python fallback, common-words floor, native versus Python parity; misroute probes and doc drift (0.83); run 6: Q4 session hooks and spec tooling, diff-first: in-window hunks for the Claude Stop decision auto-record (autoRecordDecisions), tail packet detection (collectTailSpecFolders), and nested sub-tracks in create, validate and relocate (1)
+Last 3 Iterations Summary: run 4: Proceed to Q3: inspect the changed mcp-browser-use, mcp-tooling, cli-external-orchestratio (0.5); run 5: Q3 follow-up: inspect stage-one hub metadata and the executor-registry consumer, then conf (1); run 6: Q4: inspect the changed system-spec-kit runtime and hooks (decision-capture, session-hando (1)
 Pivot Lineage: none yet
 Saturated Directions: none yet
 

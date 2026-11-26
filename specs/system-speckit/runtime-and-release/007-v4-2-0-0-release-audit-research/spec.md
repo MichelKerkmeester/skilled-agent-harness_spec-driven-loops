@@ -61,9 +61,14 @@ HEAD was `c75200c504a` when this was measured.
 - Classify each finding as missing, drift or bug, with a commit hash, a `file:line` and the changelog line it concerns.
 - Verify every finding the synthesis repeats against the repository, and settle disagreements between the two lineages by reading the code.
 - Amended 2026-11-25 on the operator's instruction: fix the confirmed bugs first, then update the release notes.
-- Amended 2026-11-25 on the operator's instruction: a second, native deep-research run of ten iterations audits the v4.2.0.0 logic and features for bugs, drift and bad UX. The first run's state is archived under `research_archive/20261125T162358Z/`, and `research/research.md` is the second run's synthesis.
-- Amended 2026-11-25 on the operator's instruction ("fix all", scope "Everything"): fix every defect in `research/research.md` sections 2, 4 and 12 in worktree `545-v4-2-audit-fixes`, with a regression test for each behavior change. Two items stay unchanged on purpose: f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence. The `run_extended` lineageId is checked and changed only if a reader breaks on it.
+- Amended 2026-11-25 on the operator's instruction: a second, native deep-research run of ten iterations audits the v4.2.0.0 logic and features for bugs, drift and bad UX. The first run's state is archived under `research_archive/20261125T162358Z/`, and the second run's synthesis is now archived at `research_archive/20261126T112816Z/research.md`.
+- Amended 2026-11-25 on the operator's instruction ("fix all", scope "Everything"): fix every defect in `research_archive/20261126T112816Z/research.md` sections 2, 4 and 12 in worktree `545-v4-2-audit-fixes`, with a regression test for each behavior change. Two items stay unchanged on purpose: f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence. The `run_extended` lineageId is checked and changed only if a reader breaks on it.
 - Amended 2026-11-26 on the operator's instruction ("After fixing dependabot", then "Fix all three groups", "Fix it and merge", "Dismiss as not used" and "Fix all three, then re-tag"): before the tag moves again, close every open Dependabot alert on `main`, merge Dependabot PR 108, and fix the three CI checks that already failed on `main`. Work on `main`.
+- Amended 2026-11-26 on the operator's instruction ("Run 10 iters of deep research with luna xhigh fast to find bugs / drift / issues in all logic / skills / work done since v4.1.0.0 skilled"): a third run, generation 3, restarts the research with one cli-codex `gpt-6-luna` lineage at `xhigh` on the `fast` tier for ten iterations under a max-iterations stop. The second run's state is archived under `research_archive/20261126T112816Z/`. This run reports findings and fixes nothing.
+- Amended 2026-11-26 on the operator's instruction ("FIX ALL"): fix every generation-3 finding in `research/research.md` sections 2 and 4 in a new worktree, with a regression test for each behavior change. The operator chose four things: a new sk-git worktree, a task file argument to `.skilled/bin/compiled-route.cjs` in place of the fixed `TASK` heredoc, answer evidence as the only way a default-depth question resolves, and a README sentence that documents the pre-push fail-open with no behavior change. The packet state is committed on `main` first, and a v4.2.0.0 release-notes entry follows the fixes. Merging and pushing stay the operator's to approve.
+- Amended 2026-11-26 on the operator's instruction ("Amend, fix in 547" and "Merge and push"): main's three red workflows, Spec-Kit Check, Markdown Link Integrity and Playbook Operator Contract, share one cause. Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and 24 links in 20 skill docs plus three test paths still reach the packet tree through it. Repoint each of them at the repo-root `specs/` in worktree `547-v4-2-gen3-audit-fixes`, then merge the worktree into `main` with a merge commit and push `main`. Moving the v4.2.0.0 tag stays the operator's to approve once every workflow on the pushed commit is green.
+- Amended 2026-11-26 on the operator's instruction ("Amend, fix both here" and "Work on main"): two workflows were already red on `main` before this pass and still block an all-green `main`. Fix their three causes on `main`. The `dispatch-iteration` `--claude-config-dir` test fixture keeps its artifact folder inside a git worktree. `system-skilled-doctor/leaf-aliases.json` is regenerated from its leaf manifest. The routing-accuracy baseline is recaptured after the intended `mcp-browser-use` relabel in `6a5e1048ea5`.
+- Amended 2026-11-26 on the operator's instruction ("Fix open", "Report them only" and "Switch to MichelKerkmeester"): correct the `mcp-browser-use` v1.1.4.0 changelog's heredoc claim, rewrite the invalid `sk-prompt` 008 continuity record through the writer, report the unsaved operator answers without recording them, and make `MichelKerkmeester` the active `gh` account.
 
 ### Out of Scope
 - Release-note edits beyond the confirmed findings, the reorder and the section openings the operator asked for.
@@ -101,6 +106,12 @@ HEAD was `c75200c504a` when this was measured.
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Modify | The completed-session check asserts no routing to the extend step, not the absence of the word |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/helpers/upgrade-legacy-harness.ts`, `upgrade-legacy-refresh-markers.vitest.ts`, `upgrade-legacy-host-root.vitest.ts` | Modify | The copied dist is stamped strictly newer than its backdated sources, and the refresh-markers copy skips `.workflow-lock` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts` | Modify | The sentinel's temp folder moves out of the checked-in tree |
+| `.skilled/bin/compiled-route.cjs` and every `<<'TASK'` front-door example, the hub scaffold and its lockstep parity test | Modify | The front door reads the task from a file argument, so no task line can close a heredoc and reach the shell |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | A held child whose start time cannot be read is signalled and tracked as a survivor |
+| `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` | Modify | Pi passes its session id, so the weak-follow-up route receipt applies there |
+| `.skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts` | Modify | A lowercase second sentence counts as a second sentence |
+| `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Modify | In default depth mode only answer evidence resolves a question |
+| `.skilled/scripts/git-hooks/README.md`, `.skilled/scripts/git-hooks/pre-commit` | Modify | The README names the pre-push fail-open, and the header's uninstall command uses the installer |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,9 +132,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | Every finding reported to the operator was re-checked in the repository | Each reported finding names the command or file read that confirmed it, or it is marked unconfirmed |
-| REQ-004 | Every defect in scope is fixed at its source | Each finding id in `research/research.md` sections 2, 4 and 12, except the two left on purpose, has a `Met` row in `acceptance-criteria.md` that names its test or reproduction |
+| REQ-004 | Every defect in scope is fixed at its source | Each finding id in `research_archive/20261126T112816Z/research.md` sections 2, 4 and 12, except the two left on purpose, has a `Met` row in `acceptance-criteria.md` that names its test or reproduction |
 | REQ-005 | No regression in the suites the fixes touch | Each touched suite passes in full, with the before and after counts recorded in `implementation-summary.md` |
 | REQ-006 | The tag moves only onto a `main` with no open Dependabot alert and green CI | The Dependabot alerts API lists no open alert, PR 108 reads MERGED, and every workflow run on the tagged commit concludes `success` |
+| REQ-007 | Every generation-3 finding is fixed at its source | Each of F1 to F4 and P1-pre to P3-pre in `research/research.md` sections 2 and 4 has a `Met` row in `acceptance-criteria.md` that names its test, or for a doc-only change the line that now holds |
+| REQ-008 | No reader still reaches the packet tree through the removed `.skilled/specs` alias | `check-markdown-links.cjs` reports 0 broken links, the playbook contract passes in strict mode, and the deep-loop runtime and spec-kit CLI suites pass with no failure |
+| REQ-009 | The two workflows that were already red on `main` pass | Deep-Loop Runtime Tests and Routing Registry Drift Guard conclude `success` on the pushed commit, and each fixed check also passes locally first |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -179,16 +193,19 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 Research context: deep-research ran to completion on "v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0". `research/research.md` stays canonical.
 
+Research context: deep-research generation 3 ran to completion on "find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)": ten iterations on cli-codex `gpt-6-luna` at `xhigh` on the `fast` tier. Generation 2's state is archived under `research_archive/20261126T112816Z/`, and `research/research.md` stays canonical.
+
+- Open: find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD).
+
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
-The canonical source is `research/research.md`, generation 2: a ten-iteration native audit of the v4.2.0.0 logic and features. It found no P0 or P1. It confirmed 3 P2 and 14 P3 defects, one by-design behavior and one note without severity. Generation 1, the changelog audit, is archived at `research_archive/20261125T162358Z/`.
+The canonical source is `research/research.md`, generation 3: ten cli-codex `gpt-6-luna` iterations at `xhigh` on the `fast` tier over `v4.1.0.0..HEAD`, stopped at the iteration cap. It found no P0 or P1. In the window it confirmed 2 P2 and 2 P3 defects, and it surfaced 3 pre-existing issues and rejected 2 candidates. Nothing was fixed in this run. Generation 2 is archived at `research_archive/20261126T112816Z/`.
 
-Every confirmed defect is now fixed, and `acceptance-criteria.md` maps each one to its regression test. The two left out by name are f-iter005-003, pinned by design, and f-iter009-003, which has no shown consequence.
-
-- Fixed, P2: a signal-stopped fan-out runner now ends a win32 lineage that has no recorded `process_start` (`9f332867143`, AC-004).
-- Fixed, P2: the Claude Stop auto-record resolves a packet path that ends at a JSON escape to the phase child (`980166a59a1`, AC-005).
-- Fixed, P2: the decision-record write takes the canonical save lock and leaves answers pending while a save holds it (`980166a59a1`, AC-006).
-- Answered: confirm-mode B on a fan-out run did not work. Option B now ends the run PARTIAL and names the rerun, in both research and review (AC-025, AC-028).
-- Answered: frontier ids at depth 2 and below can collide across lineages, but nothing reads them as unique. Merged nodes keep their lineage label, and the partition guard checks only the dealt depth-1 ids.
+- P2: a held fan-out child whose start time cannot be read is never signalled, and its lineage is closed as stopped (`fanout-run.cjs:1048`, `:5288`, `9f332867143`, `978b74e8df7`).
+- P2: the fixed `<<'TASK'` heredoc in every hub's compiled-route example lets task text after a bare `TASK` line run as shell, against the v2.10.1.0 claim (`sk-code/ROUTER.md:497` and 44 more lines, including the new-hub scaffold, `991fe6d127a`).
+- P3: Pi never passes `session_id` to the shared advisor handler, so its route receipts never apply (`pi/prompt-advisor.ts:290`, `c27addb7117`).
+- P3: a lowercase second sentence passes the compact-field narrative check (`thin-continuity-record.ts:350`, `e1788fce8e0`).
+- Pre-existing: the reducer resolves a question when an iteration's focus equals its text, a documented rule (`reduce-state.cjs:2751`), pre-push fails open on a track-root sweep error that the README omits, and the pre-commit uninstall header ignores `core.hooksPath`.
+- Open: Q4 and Q5 were sampled, not exhausted.
 <!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 

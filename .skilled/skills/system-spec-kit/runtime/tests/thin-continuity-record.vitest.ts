@@ -148,6 +148,34 @@ describe('thin continuity record', () => {
     );
   });
 
+  it('rejects a two-sentence compact field whose second sentence starts lowercase', () => {
+    for (const [field, value, code] of [
+      ['recent_action', 'Ready. fine.', 'MEMORY_006'],
+      ['next_safe_action', 'Review the diff. then commit.', 'MEMORY_007'],
+    ] as const) {
+      const result = validateThinContinuityRecord({
+        packet_pointer: '026-graph-and-context-optimization/006-canonical-continuity-refactor',
+        last_updated_at: '2026-04-11T16:48:00Z',
+        last_updated_by: 'gate-c-worker',
+        recent_action: 'Completed canonical continuity budget verification',
+        next_safe_action: 'Review parity fixtures',
+        [field]: value,
+        blockers: [],
+        key_files: [],
+        completion_pct: 10,
+        open_questions: [],
+        answered_questions: [],
+      });
+
+      expect(result.ok).toBe(false);
+      expect(result.errors).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ code, field }),
+        ]),
+      );
+    }
+  });
+
   it('fails budget enforcement after normalization when the fragment remains oversized', () => {
     const packetPointer = Array.from({ length: 60 }, (_, index) => `segment-${index.toString().padStart(2, '0')}-canonical-continuity`)
       .join('/');

@@ -1024,6 +1024,12 @@ const DEFAULT_LINEAGE_ITERATIONS = 12;
  * @param {Object[]} records - The run's status ledger rows.
  * @returns {{live: Array<{label: string, pid: number, members?: number[]}>, refused: Array<{label: string, pid: number, reason: string}>, spared: Array<{label: string, pid: number, process_start: string}>}}
  */
+// Refusal reasons that still leave a child the runner holds as its own lineage. The child
+// was never reaped, so its pid cannot have been reused: a missing start time and a start
+// time that ps cannot read both leave nothing to prove. A mismatch can only come from a
+// ledger row the child does not own, so it stays refused.
+const HELD_CHILD_UNPROVEN_REASONS = new Set(['no_recorded_identity', 'identity_unreadable']);
+
 function stopActiveLineageProcesses(signal, records) {
   const lineages = [];
   const heldChildren = new Map();
@@ -1043,9 +1049,9 @@ function stopActiveLineageProcesses(signal, records) {
   for (const lineage of outcome.live) signalStoppingLineage(lineage, signal);
   // The identity check guards a pid a later --stop reads from a ledger, where the number may
   // already belong to another process. A child still held here was never reaped, so its pid
-  // is still its own and the missing start time leaves nothing to prove.
+  // is still its own and an unproven identity leaves nothing to prove.
   for (const lineage of outcome.refused) {
-    if (lineage.reason !== 'no_recorded_identity') continue;
+    if (!HELD_CHILD_UNPROVEN_REASONS.has(lineage.reason)) continue;
     terminateLineageProcess(heldChildren.get(lineage.pid), signal);
   }
   return outcome;
@@ -5280,12 +5286,12 @@ async function main() {
     stoppedSummaryWritten = true;
     const ledgerRecords = readLedgerRecords(ledgerPath);
     const { live, refused } = stopActiveLineageProcesses(signal, ledgerRecords);
-    // A refused lineage was not signalled. Only one with no recorded start can still own its
-    // group; for the others the pid has exited or now belongs to another process, so what
-    // answers there is not the lineage and must not keep it open.
+    // A held child refused for an unproven identity was still terminated above and still
+    // owns its group, so it can survive the grace period like a live one. A mismatch means
+    // what answers at that pid is not the lineage and must not keep it open.
     const survivors = lineagesStillAnsweringAfterGrace([
       ...live,
-      ...refused.filter((lineage) => lineage.reason === 'no_recorded_identity')
+      ...refused.filter((lineage) => HELD_CHILD_UNPROVEN_REASONS.has(lineage.reason))
         .map(({ label, pid }) => ({ label, pid })),
     ]).map(({ label, pid }) => ({ label, pid }));
     const survivorLabels = new Set(survivors.map((survivor) => survivor.label));

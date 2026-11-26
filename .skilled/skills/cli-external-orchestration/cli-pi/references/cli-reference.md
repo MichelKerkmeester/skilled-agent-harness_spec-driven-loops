@@ -10,14 +10,14 @@ trigger_phrases:
   - "pi api key"
 importance_tier: important
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Pi CLI - Complete Command Reference
 
 This reference records the Pi contract observed in the local live pin. It is the baseline for cli-pi dispatch composition.
 
-Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The exact option names below were also checked against the installed pi --help output.
+Source of confirmed behavior: [Pi contract pin](../../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The exact option names below were also checked against the installed pi --help output.
 
 ## 1. OVERVIEW
 

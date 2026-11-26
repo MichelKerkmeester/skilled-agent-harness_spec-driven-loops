@@ -9,20 +9,20 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 10 of 10
-Questions: 5/5 answered | Last focus: Confirmation pass on open severity questions: advisor self-heal of an empty or corrupt skill-graph.sqlite, failed skill_graph_scan exit code, cross-lineage frontier id collisions and merged-frontier readers, Claude Code Stop-hook stderr visibility, win32 signal-stop P2
-Last 2 ratios: 0.83 -> 0.67 | Stuck count: see convergence
+Questions: 3/5 answered | Last focus: Audit Q5 across the doctor commands, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows, and the v4.2.0.0 changelog; prioritize claims that cross multiple mirrored entrypoints.
+Last 2 ratios: 1 -> 0 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Lineage context refresh: Prior run archived at research_archive/20261125T162358Z; its 16 confirmed findings are fixed or documented, do not re-report them.
-Next focus: Last iteration. Settle whether any step that runs in the fan-out base directory after a merge (for example --extend, step_frontier_*, convergence.cjs, reduce-state.cjs or the expansive frontier gates in deep-research.yaml) reads registry.frontier from the merged findings-registry.json written by fanout-merge.cjs:1732; if one does, re-grade the untrusted-lineage frontier finding as a logic defect. If budget remains, run the pinned stop-identity test (.skilled/skills/system-deep-loop/runtime tests/unit/fanout-stop-identity.vitest.ts) and record its output. Then write a closing summary of every confirmed finding in this run, ranked by severity, in the iteration narrative.
+Lineage context refresh: 9 iterations, 10 key findings, 2 open / 3 resolved questions.
+Next focus: Finish Q5 by auditing the changed sk-doc validator and rename paths, sk-code routing and quality surfaces, and the remaining sk-git gates against the v4.2.0.0 changelog. Keep Q5 open unless that cross-surface review s...
 
-Research Topic: v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0
+Research Topic: Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 Iteration: 10 of 10
-Focus Area: Last iteration. Settle whether any step that runs in the fan-out base directory after a merge (for example --extend, step_frontier_*, convergence.cjs, reduce-state.cjs or the expansive frontier gates in deep-research.yaml) reads registry.frontier from the merged findings-registry.json written by fanout-merge.cjs:1732; if one does, re-grade the untrusted-lineage frontier finding as a logic defect. If budget remains, run the pinned stop-identity test (.skilled/skills/system-deep-loop/runtime tests/unit/fanout-stop-identity.vitest.ts) and record its output. Then write a closing summary of every confirmed finding in this run, ranked by severity, in the iteration narrative.
-Remaining Key Questions: none
+Focus Area: Finish Q5 by auditing the changed sk-doc validator and rename paths, sk-code routing and quality surfaces, and the remaining sk-git gates against the v4.2.0.0 changelog. Keep Q5 open unless that cross-surface review s...
+Remaining Key Questions: - [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 Carried-Forward Open Questions:
-- Can a lineage dealt zero frontier nodes seed its own `F-1-*` ids? (iteration 9)
-- Does any base-directory step after a fan-out merge read `registry.frontier` from the merged `findings-registry.json`? (iteration 9)
-Last 3 Iterations Summary: run 7: Q5 operator UX, diff-first: read the messages the new v4.2.0.0 commands and hooks show operators and judge each for silent failure, misleading text, unsafe defaults or dead ends: the Claude Stop nudge and the auto-record failure that only reaches the hook log, doctor overlay refusals and remedies, the --extend and fan-out stop messages, the create.sh sub-track errors, and the sk-git worktree-naming and goal hop messages. Run each where cheap and quote the exact text. (0.83); run 8: Finish the operator UX question: read the worktree-naming.sh hunks from 957f47570f3 and 16f83331276 (.skilled/skills/sk-git/scripts/), run its provisioning and refusal messages in a scratch worktree or scratch repo, then give the operator UX verdict. If budget remains, settle the open side lead: mergeResearchFrontier (.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:786) has no trust gate while fanout-merge.md:50 says an untrusted lineage claims no coverage. (0.83); run 9: Confirmation pass on open severity questions: advisor self-heal of an empty or corrupt skill-graph.sqlite, failed skill_graph_scan exit code, cross-lineage frontier id collisions and merged-frontier readers, Claude Code Stop-hook stderr visibility, win32 signal-stop P2 (0.67)
+[None yet]
+Last 3 Iterations Summary: run 7: Continue Q4 by auditing the remaining changed session-handover and system-spec-kit runtime (1); run 8: Continue Q4 with the remaining session-handover runtime adapters and the changed commit-ms (1); run 9: Audit Q5 across the doctor commands, sk-doc, sk-code, sk-git, runtime mirrors, CI workflow (0)
 Pivot Lineage: none yet
 Saturated Directions: none yet
 

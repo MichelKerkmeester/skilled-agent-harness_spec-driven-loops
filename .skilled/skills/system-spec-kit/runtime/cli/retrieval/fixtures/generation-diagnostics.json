@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7345,
-    "ok": 20662,
+    "missing-frontmatter": 7368,
+    "ok": 20663,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29635,
+  "documentsScanned": 29659,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7cbf58b794e8b8b00181cb3c0f3bc9962500ee62aa1418a8232ac2932a76613e",
+  "manifestHash": "262ad2c81142aff2819f7291c479c486babea13e9069dfad43323f2c6251ba6f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -54882,6 +54882,144 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
@@ -68399,6 +68537,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/dispatch-receipts",
       "reason": "excluded directory"
     },
     {

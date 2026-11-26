@@ -9,20 +9,20 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 6 of 10
-Questions: 3/5 answered | Last focus: Q3 skill advisor, diff-first: in-window hunks for loop offers, typed-only Python fallback, common-words floor, native versus Python parity; misroute probes and doc drift
-Last 2 ratios: 1 -> 0.83 | Stuck count: see convergence
+Questions: 3/5 answered | Last focus: Q3 follow-up: inspect stage-one hub metadata and the executor-registry consumer, then confirm every declared hub-router resource path resolves. Keep Q4 and Q5 for later iterations.
+Last 2 ratios: 0.5 -> 1 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Lineage context refresh: Prior run archived at research_archive/20261125T162358Z; its 16 confirmed findings are fixed or documented, do not re-report them.
-Next focus: Q4 session hooks and spec tooling, diff-first: read the in-window hunks for the Claude Stop decision auto-record (.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts autoRecordDecisions, .skilled/hooks/decision-capture/), tail packet detection (collectTailSpecFolders), and nested sub-tracks in create, validate and relocate (system-spec-kit spec-folder tooling). The documented limits (Claude only, exactly one tail packet, late-switch misfiling, rows with no reason) are known; look for bugs beyond them: duplicate rows, consumed keys lost on failure, races with a concurrent save, paths that break at two sub-track levels.
+Lineage context refresh: 5 iterations, 6 key findings, 2 open / 3 resolved questions.
+Next focus: Q4: inspect the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) for logic bugs or doc drift against what v4.2.0.0 claims.
 
-Research Topic: v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0
+Research Topic: Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 Iteration: 6 of 10
-Focus Area: Q4 session hooks and spec tooling, diff-first: read the in-window hunks for the Claude Stop decision auto-record (.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts autoRecordDecisions, .skilled/hooks/decision-capture/), tail packet detection (collectTailSpecFolders), and nested sub-tracks in create, validate and relocate (system-spec-kit spec-folder tooling). The documented limits (Claude only, exactly one tail packet, late-switch misfiling, rows with no reason) are known; look for bugs beyond them: duplicate rows, consumed keys lost on failure, races with a concurrent save, paths that break at two sub-track levels.
-Remaining Key Questions: - [ ] Do the session hooks and spec tooling (Stop decision auto-record, tail packet detection, nested sub-tracks in create, validate and relocate) carry bugs or UX friction?
-- [ ] Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+Focus Area: Q4: inspect the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) for logic bugs or doc drift against what v4.2.0.0 claims.
+Remaining Key Questions: - [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 Carried-Forward Open Questions:
 [None yet]
-Last 3 Iterations Summary: run 3: Q2, the deep-loop runtime, diff-driven: list git log v4.1.0.0..v4.2.0.0 for .skilled/skills/system-deep-loop/ and .skilled/commands/deep/, then read the hunks for fan-out (fanout-run.cjs, fanout-merge.cjs), the expansive frontier and frontier_drained (frontier-admit.cjs, convergence.cjs), --extend (workflow-steps.cjs extend-research), and the append gateway. Check each against its doc (deep-research.md flag table, loop-protocol.md, convergence.md) for logic bugs and drift. (1); run 4: Q2 fan-out, diff-first: read only the in-window trust and stop hunks of fanout-run.cjs and fanout-merge.cjs (git show 2bfee12379d 86f6c584b1b 4fc94bae0d3 e111720dc88 978b74e8df7), checking for logic bugs and drift from the fan-out docs. Settle the run_extended lineageId lead (workflow-steps.cjs:166 sets lineageId to parentSessionId while iteration rows use sessionId): does any reader filter on it? Then close Q2 with a verdict. (1); run 5: Q3 skill advisor, diff-first: in-window hunks for loop offers, typed-only Python fallback, common-words floor, native versus Python parity; misroute probes and doc drift (0.83)
+Last 3 Iterations Summary: run 3: Proceed to Q2, the system-skill-advisor audit. Also trace the legacy-import source for Q1  (1); run 4: Proceed to Q3: inspect the changed mcp-browser-use, mcp-tooling, cli-external-orchestratio (0.5); run 5: Q3 follow-up: inspect stage-one hub metadata and the executor-registry consumer, then conf (1)
 Pivot Lineage: none yet
 Saturated Directions: none yet
 

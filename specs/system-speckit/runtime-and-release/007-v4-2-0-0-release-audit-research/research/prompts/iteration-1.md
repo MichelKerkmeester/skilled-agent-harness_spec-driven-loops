@@ -10,21 +10,21 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 1 of 10
 Questions: 0/5 answered | Last focus: none yet
-Last 2 ratios: N/A -> N/A | Stuck count: see convergence
+Last 2 ratios: N/A -> N/A | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Lineage context refresh: Prior run archived at research_archive/20261125T162358Z; its 16 confirmed findings are fixed or documented, do not re-report them.
-Next focus: Overlay engine and doctor overlay commands: relayout, rollback, repin, json-entry merge, path and case handling in .skilled/commands/doctor/scripts/overlay-engine.cjs and its callers.
+Lineage context refresh: none loaded yet.
+Next focus: Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?
 
-Research Topic: v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0
+Research Topic: Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 Iteration: 1 of 10
-Focus Area: Overlay engine and doctor overlay commands: relayout, rollback, repin, json-entry merge, path and case handling in .skilled/commands/doctor/scripts/overlay-engine.cjs and its callers.
-Remaining Key Questions: - [ ] Does the overlay engine and its doctor commands (relayout, rollback, repin, json-entry merge, path and case handling) carry logic bugs in v4.2.0.0?
-- [ ] Do the deep-loop runtime changes (fan-out, expansive frontier, frontier_drained, --extend, convergence and the append gateway) carry logic bugs or drift from their docs?
-- [ ] Does the skill advisor (loop offers, the typed-only Python fallback, the common-words floor, native versus Python parity) misroute or drift from its docs?
-- [ ] Do the session hooks and spec tooling (Stop decision auto-record, tail packet detection, nested sub-tracks in create, validate and relocate) carry bugs or UX friction?
-- [ ] Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+Focus Area: Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?
+Remaining Key Questions: - [ ] Q1: Does the changed system-deep-loop runtime (dispatch, fan-out, convergence, append gateway, lock, reducer) hold logic bugs, or disagree with its workflow YAML and reference docs?
+- [ ] Q2: Does the changed system-skill-advisor (scorer, hooks, brief policy, embedding-lane removal) hold routing bugs or drift between code, hook docs and AGENTS.md Gate 2?
+- [ ] Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?
+- [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 Carried-Forward Open Questions:
-[None yet]
+[Self-owned open questions from iteration write-back -- populated after iteration 1 completes]
 Last 3 Iterations Summary: none yet
 Pivot Lineage: none yet
 Saturated Directions: none yet

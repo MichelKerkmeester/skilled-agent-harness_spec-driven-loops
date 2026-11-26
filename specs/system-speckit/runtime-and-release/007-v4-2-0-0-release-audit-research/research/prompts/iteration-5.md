@@ -9,21 +9,21 @@ This prompt pack renders the per-iteration context for the `@deep-research` LEAF
 
 STATE SUMMARY (auto-generated):
 Segment: 1 | Iteration: 5 of 10
-Questions: 2/5 answered | Last focus: Q2 fan-out, diff-first: read only the in-window trust and stop hunks of fanout-run.cjs and fanout-merge.cjs (git show 2bfee12379d 86f6c584b1b 4fc94bae0d3 e111720dc88 978b74e8df7), checking for logic bugs and drift from the fan-out docs. Settle the run_extended lineageId lead (workflow-steps.cjs:166 sets lineageId to parentSessionId while iteration rows use sessionId): does any reader filter on it? Then close Q2 with a verdict.
-Last 2 ratios: 1 -> 1 | Stuck count: see convergence
+Questions: 2/5 answered | Last focus: Proceed to Q3: inspect the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes for broken paths, registry or hub-router drift and executor-builder bugs.
+Last 2 ratios: 1 -> 0.5 | Stuck count: 0
 Resource map: resource-map.md not present; skipping coverage gate.
-Lineage context refresh: Prior run archived at research_archive/20261125T162358Z; its 16 confirmed findings are fixed or documented, do not re-report them.
-Next focus: Q3 skill advisor, diff-first: read the in-window hunks (git log v4.1.0.0..v4.2.0.0) under .skilled/skills/system-skill-advisor/ and .skilled/bin/skill-advisor.cjs for the deep-loop loop offers, the typed-only Python fallback, the common-words floor and native-versus-Python parity. Check routing logic for misroutes and the advisor docs and hook brief for drift. Side lead to settle if budget remains: mergeResearchFrontier (fanout-merge.cjs:786) shows no trust gate while fanout-merge.md:50 says an untrusted lineage claims no coverage.
+Lineage context refresh: 4 iterations, 4 key findings, 3 open / 2 resolved questions.
+Next focus: Q3 follow-up: inspect stage-one hub metadata and the executor-registry consumer, then confirm every declared hub-router resource path resolves. Keep Q4 and Q5 for later iterations.
 
-Research Topic: v4.2.0.0 logic and features: remaining bugs, docs that drifted from the code, and bad UX in what shipped since v4.1.0.0
+Research Topic: Find bugs, drift and issues in all logic, skills and work changed since v4.1.0.0 (git range v4.1.0.0..HEAD)
 Iteration: 5 of 10
-Focus Area: Q3 skill advisor, diff-first: read the in-window hunks (git log v4.1.0.0..v4.2.0.0) under .skilled/skills/system-skill-advisor/ and .skilled/bin/skill-advisor.cjs for the deep-loop loop offers, the typed-only Python fallback, the common-words floor and native-versus-Python parity. Check routing logic for misroutes and the advisor docs and hook brief for drift. Side lead to settle if budget remains: mergeResearchFrontier (fanout-merge.cjs:786) shows no trust gate while fanout-merge.md:50 says an untrusted lineage claims no coverage.
-Remaining Key Questions: - [ ] Does the skill advisor (loop offers, the typed-only Python fallback, the common-words floor, native versus Python parity) misroute or drift from its docs?
-- [ ] Do the session hooks and spec tooling (Stop decision auto-record, tail packet detection, nested sub-tracks in create, validate and relocate) carry bugs or UX friction?
-- [ ] Where do the new v4.2.0.0 commands and hooks give operators bad UX: silent failures, misleading messages, unsafe defaults or dead ends?
+Focus Area: Q3 follow-up: inspect stage-one hub metadata and the executor-registry consumer, then confirm every declared hub-router resource path resolves. Keep Q4 and Q5 for later iterations.
+Remaining Key Questions: - [ ] Q3: Do the changed mcp-browser-use, mcp-tooling, cli-external-orchestration and cli-orca modes hold broken paths, registry or hub-router drift, or executor builder bugs?
+- [ ] Q4: Do the changed system-spec-kit runtime and hooks (decision-capture, session-handover, cli-dispatch, overlay-guard, git hooks) hold logic bugs or doc drift against what v4.2.0.0 claims?
+- [ ] Q5: Do the doctor commands and skill, sk-doc, sk-code, sk-git, runtime mirrors, CI workflows and the v4.2.0.0 changelog agree with the code they describe?
 Carried-Forward Open Questions:
 [None yet]
-Last 3 Iterations Summary: run 2: Overlay engine, diff-driven: sibling call sites of the json-entry fixes (512be46971a 2b9a2328922 9bee9df5cc0 a9d52c1087d cd8091a09d3 5f1af6159d0) and the layout-link letter-case fixes (8ab99ee8106 5a6f2e211c3 aba8f76e97f); close Q1. (1); run 3: Q2, the deep-loop runtime, diff-driven: list git log v4.1.0.0..v4.2.0.0 for .skilled/skills/system-deep-loop/ and .skilled/commands/deep/, then read the hunks for fan-out (fanout-run.cjs, fanout-merge.cjs), the expansive frontier and frontier_drained (frontier-admit.cjs, convergence.cjs), --extend (workflow-steps.cjs extend-research), and the append gateway. Check each against its doc (deep-research.md flag table, loop-protocol.md, convergence.md) for logic bugs and drift. (1); run 4: Q2 fan-out, diff-first: read only the in-window trust and stop hunks of fanout-run.cjs and fanout-merge.cjs (git show 2bfee12379d 86f6c584b1b 4fc94bae0d3 e111720dc88 978b74e8df7), checking for logic bugs and drift from the fan-out docs. Settle the run_extended lineageId lead (workflow-steps.cjs:166 sets lineageId to parentSessionId while iteration rows use sessionId): does any reader filter on it? Then close Q2 with a verdict. (1)
+Last 3 Iterations Summary: run 2: Q1 follow-up: fan-out stop/retry transitions, dispatch boundary, and append-gateway replay (1); run 3: Proceed to Q2, the system-skill-advisor audit. Also trace the legacy-import source for Q1  (1); run 4: Proceed to Q3: inspect the changed mcp-browser-use, mcp-tooling, cli-external-orchestratio (0.5)
 Pivot Lineage: none yet
 Saturated Directions: none yet
 

@@ -1,0 +1,19 @@
+## Iteration 9 Recorded
+
+The reviewed Q5 slice found no defect. Q5 remains open because sk-doc and sk-code implementation paths were not audited.
+
+- **Findings:** 0 defect findings
+- **newInfoRatio:** 0.0
+- **Questions answered:** None
+- **Questions remaining:** Q4 and Q5
+- **Next focus:** Audit the remaining sk-doc, sk-code and sk-git paths against the v4.2.0.0 changelog.
+
+The narrative is in [iteration-009.md](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/iterations/iteration-009.md), and the delta is in [iter-009.jsonl](/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas/iter-009.jsonl).
+
+**Verification:** The gateway returned exit 0 with receipt sequence 24. The projection contains one iteration-9 record, and the ledger retains its stable identity. The narrative headings and citations passed the content check, both delta rows parsed, and the temporary event file was removed. No tests or CI workflows were run.
+
+**Status:** `insight`, partial Q5 review. The research packet already had other dirty files before this iteration; this pass wrote only its narrative and delta, with the gateway updating its ledger and projection.
+
+**Skill routing:** User directed → `deep-research`. `/deep:research` was not run because this was a direct single-iteration dispatch. Repository rules loaded: scope, overengineering, evidence, uncertainty, communication, handoff and delegation.
+
+Nothing is blocked on the operator.

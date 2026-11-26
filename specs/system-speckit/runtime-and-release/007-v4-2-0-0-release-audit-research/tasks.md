@@ -72,6 +72,19 @@ contextType: "general"
 - [x] T023 Merge Dependabot PR 108 into `main`. Verify: `gh pr view 108` prints MERGED, and the provisioning walk prints `0 failed`.
 - [x] T024 Dismiss the 12 pip alerts whose `uv.lock` files are no longer tracked. Verify: each of alerts 1448 to 1459 reads `dismissed not_used`.
 - [x] T025 Fix the three CI checks already failing on `main` (`pre-push.test.sh`, the README manifest, the spec-kit CLI shards). Verify: `pre-push.test.sh` passes 59 of 59 with `init.defaultBranch=master`, both sk-doc walk tests pass, and the spec-kit CLI project passes in full. The tag moves only after every workflow run on the pushed commit concludes `success`.
+- [x] T026 Commit the packet state on `main` and create the fix worktree through `worktree-naming.sh create`. Verify: `git worktree list` shows the new `worktrees/NNN-` branch and provisioning prints `0 failed`.
+- [x] T027 Give `compiled-route.cjs` a task file argument and replace every `<<'TASK'` example, the scaffold and the lockstep parity test. Verify: `rg -n --hidden "<<\s*['\"]?TASK" .skilled` prints nothing and the new CLI test passes.
+- [x] T028 Signal and track a held fan-out child refused as `identity_unreadable` (`fanout-run.cjs`). Verify: the new test with `ps` stubbed to fail passes and fails with the old file.
+- [x] T029 Pass the session id from the Pi advisor hook (`prompt-advisor.ts`). Verify: the new Pi hook test sees the receipt written.
+- [x] T030 Count a terminator before a lowercase word as a sentence end (`thin-continuity-record.ts`). Verify: a `Ready. fine.` test is rejected and the version, filename and "e.g." cases still pass.
+- [x] T031 Resolve a default-depth question only on answer evidence (`reduce-state.cjs`). Verify: the new reducer test leaves a focused but unanswered question open.
+- [x] T032 Document the pre-push fail-open and fix the pre-commit uninstall line. Verify: `grep -n 'fail' .skilled/scripts/git-hooks/README.md` shows the sentence and `sed -n 13p .skilled/scripts/git-hooks/pre-commit` shows the installer command.
+- [x] T033 Rerun every touched suite, add the fix pass to `C` and validate the packet. Verify: before and after counts are in `$P/implementation-summary.md` and `validate.sh $P --strict` prints `RESULT: PASSED`.
+- [x] T034 Repoint the 24 skill-doc links and the three test paths that reach `specs/` through the removed `.skilled/specs` alias. Verify: `check-markdown-links.cjs` prints `0 broken`, `validate-playbook-package.cjs --strict` exits 0, and the deep-loop runtime and spec-kit CLI suites pass with no failure.
+- [x] T035 Merge worktree 547 into `main` with a merge commit, rebuild the gitignored dists, save continuity and push `main`. Verify: `git log origin/main -1` shows the merge and every workflow run on it concludes `success`.
+- [x] T036 Keep the `--claude-config-dir` fixture's artifact folder inside a git worktree (`dispatch-iteration.vitest.ts`). Verify: both research cases pass when the suite runs outside a Claude Code process tree, and fail there without the fix.
+- [x] T037 Regenerate `system-skilled-doctor/leaf-aliases.json` from its leaf manifest. Verify: `ci-skill-root-metadata.cjs` reports `failed=0`, and the leaf-manifest and derived freshness checks pass.
+- [x] T038 Recapture the routing-accuracy baseline with its own capture scripts. Verify: the corpus pin check prints that the corpus matches, and `score-routing-corpus.py` with the CI floors reports `overall_pass: true`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

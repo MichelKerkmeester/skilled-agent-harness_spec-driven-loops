@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.27.0
+version: 2.3.28.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -495,10 +495,9 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-stdin <<'TASK'
-> <task>
-> TASK
+> node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-file <task-file>
 > ```
+> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.
 > Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate) or `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-code`. Set `SPECKIT_COMPILED_ROUTING=0`, the explicit kill-switch, to force legacy routing fleet-wide.
 
 **Session surface hint.** Before you call the front door, run the surface detection in [`stack-detection.md`](shared/references/stack-detection.md) on the session's working directory and the files it is editing.

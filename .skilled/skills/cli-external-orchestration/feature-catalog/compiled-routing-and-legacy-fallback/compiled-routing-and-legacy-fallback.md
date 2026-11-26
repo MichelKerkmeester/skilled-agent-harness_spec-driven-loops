@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPILED_ROUTING"
   - "compiled route front door"
   - "cli-external-orchestration compiled routing"
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Compiled Routing And Legacy Fallback (compiled-route.cjs)
@@ -23,7 +23,7 @@ The directive is on by default for `cli-external-orchestration` (a member of the
 
 ### Resolution Order
 
-By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `cli-external-orchestration`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `cli-external-orchestration` routes unchanged. As of this writing, `cli-external-orchestration`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `cli-external-orchestration` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
+By default (and always when `SPECKIT_COMPILED_ROUTING=1`), the directive shells out to `node .skilled/bin/compiled-route.cjs --hub cli-external-orchestration --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) before running the registry-driven routing above. The front door is a thin, promoted delegate: it resolves `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs` and calls `resolveRoute(hubId, taskText)`, which authorizes a compiled decision only when BOTH the tri-state runtime flag permits it AND `cli-external-orchestration`'s promoted activation manifest (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json`) reports `servingAuthority: "compiled"`. Any other combination, or any error while resolving, prints the legacy sentinel and `cli-external-orchestration` routes unchanged. As of this writing, `cli-external-orchestration`'s promoted manifest already reports `servingAuthority: "compiled"` and `shadowOnly: false`, and `cli-external-orchestration` is a member of the per-hub default-on cohort — so with the flag unset, compiled routing serves by default; `SPECKIT_COMPILED_ROUTING=0` is the only way to withhold it.
 
 ### Tri-State Flag
 

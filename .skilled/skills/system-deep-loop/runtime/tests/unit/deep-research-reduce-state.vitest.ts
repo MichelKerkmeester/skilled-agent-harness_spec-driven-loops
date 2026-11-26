@@ -1327,6 +1327,30 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(existsSync(join(specFolder, 'research', 'findings-registry.json'))).toBe(false);
   });
 
+  it('keeps a question open when an iteration only took it as its focus, and resolves it on answer evidence', () => {
+    const specFolder = makeTempSpec();
+    const question = 'What should be checked?';
+    const focusOnly = {
+      type: 'iteration', run: 1, iteration: 1, status: 'complete', focus: question,
+      answeredQuestions: [], findingsCount: 1, newInfoRatio: 0.4,
+    };
+    writeState(specFolder, `${JSON.stringify(focusOnly)}\n`);
+
+    const focused = reduceResearchState(specFolder, { write: false });
+    expect(focused.registry.openQuestions).toEqual([expect.objectContaining({ text: question })]);
+    expect(focused.registry.resolvedQuestions ?? []).toEqual([]);
+
+    const answered = {
+      type: 'iteration', run: 2, iteration: 2, status: 'complete', focus: 'a different angle',
+      answeredQuestions: [question], findingsCount: 1, newInfoRatio: 0.3,
+    };
+    writeState(specFolder, `${JSON.stringify(focusOnly)}\n${JSON.stringify(answered)}\n`);
+
+    const resolved = reduceResearchState(specFolder, { write: false });
+    expect(resolved.registry.openQuestions).toEqual([]);
+    expect(resolved.registry.resolvedQuestions).toEqual([expect.objectContaining({ text: question })]);
+  });
+
   it('seeds the topic question into a lineage strategy that initialized without key questions', () => {
     const specFolder = makeTempSpec();
     const lineageDir = join(specFolder, 'research', 'lineages', 'gamma');

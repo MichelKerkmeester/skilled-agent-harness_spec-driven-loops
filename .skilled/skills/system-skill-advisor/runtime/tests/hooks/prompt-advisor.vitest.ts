@@ -14,7 +14,7 @@ import { DEFAULT_CLAUDE_HOOK_TIMEOUT_MS } from '../../../hooks/claude/user-promp
 
 type InputHandler = (
   event: { text: string },
-  ctx: { cwd: string },
+  ctx: { cwd: string; sessionManager?: { getSessionId: () => unknown } },
 ) => Promise<unknown>;
 
 function registeredInputHandler(): InputHandler {
@@ -152,6 +152,26 @@ describe('Pi prompt advisor bridge', () => {
         hook_event_name: 'UserPromptSubmit',
       },
       { runtime: 'pi', writeDiagnostic: expect.any(Function) },
+    );
+  });
+
+  it('passes the Pi session id to the shared handler, which keys the route receipt on it', async () => {
+    const handleClaudeUserPromptSubmit = vi.fn(async () => ({}));
+    vi.doMock('../../dist/hooks/claude/user-prompt-submit.js', () => ({
+      handleClaudeUserPromptSubmit,
+      renderAdvisorFallbackDirective: () => 'Directives:\n- stub',
+      SETUP_WORDING: /\bset\s?up\b/i,
+    }));
+
+    const handler = registeredInputHandler();
+    await handler(
+      { text: 'Inspect the hook' },
+      { cwd: process.cwd(), sessionManager: { getSessionId: () => 'pi-session-1' } },
+    );
+
+    expect(handleClaudeUserPromptSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({ prompt: 'Inspect the hook', session_id: 'pi-session-1' }),
+      expect.objectContaining({ runtime: 'pi' }),
     );
   });
 

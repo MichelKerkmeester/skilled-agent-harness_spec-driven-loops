@@ -48,6 +48,18 @@ _memory:
 | Q012 | Make Dependabot PR 108 pass and merge it into `main` before the tag moves. | Not stated. | None | REQ-006, T023 |
 | Q013 | Dismiss the 12 pip alerts as not used, since their `uv.lock` files are no longer tracked and no commit can fix them. | Not stated. | Q011, for the aiohttp and vendored snapshot groups | REQ-006, T024 |
 | Q014 | Fix the three CI checks already failing on `main`, then move the tag. | Not stated. | None | REQ-006, T025 |
+| Q015 | Recorded automatically: Delete and update docs | Not stated. | None | Not linked to a requirement yet. |
+| Q016 | Recorded automatically: Yes, delete it | Not stated. | None | Not linked to a requirement yet. |
+| Q017 | Recorded automatically: A) Run it (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q018 | Recorded automatically: Raise to 180 min (Recommended) | Not stated. | None | Not linked to a requirement yet. |
+| Q019 | Replace the fixed TASK heredoc in every hub front-door example with a task file argument to compiled-route.cjs. | Not stated. | none | Remaining work F2, research/research.md section 8 |
+| Q020 | Require answeredQuestions evidence to resolve a question in default depth mode, dropping the focus-equality rule there. | Not stated. | none | Remaining work P1-pre, reduce-state.cjs |
+| Q021 | Keep the pre-push track-root fail-open on sweep errors and document it in the git-hooks README. | Not stated. | none | Remaining work P2-pre, git-hooks README |
+| Q022 | Add a v4.2.0.0 release-notes entry for the generation-3 fix pass, including the clause that named stdin as the front-door input. | Not stated by the operator. The question cited goal.md decision D3, which updates the release notes after the fixes. | none | REQ-007, `.skilled/changelog/skilled/v4.2.0.0.md` |
+| Q023 | Fix the .skilled/specs alias fallout in worktree 547 under a scope amendment before the merge, so one push lands main green. | Not stated. | None | REQ-008, T034, AC-046, AC-047 |
+| Q024 | Merge worktree 547 into main with a merge commit and push main. | Not stated. | None | T035, AC-048 |
+| Q025 | Fix the two workflows that were already red on main under a new amendment to this packet. | Not stated. | None | REQ-009, T036, T037, T038, AC-049, AC-050, AC-051 |
+| Q026 | Run the skill-graph reindex so skill-graph.json carries the in aside signal. | Not stated. | None | REQ-009, AC-050 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -332,6 +344,238 @@ Fix all three, then re-tag
 Answer:
 ```text
 Fix all three, then re-tag
+```
+
+### Q015
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01TqRnTndtYfb1nHMdwYsRN1:1 -->
+
+Question:
+```text
+INSTALL-SKILLED.md (:145, :167) and .skilled/commands/doctor/symlink.md (:60) describe the .skilled/specs link and how the doctor's auto mode treats it. Without the link, auto links .skilled as one folder in a project that has none. Should those docs change along with the deletion?
+```
+
+Options:
+```text
+Delete the link only (Recommended)
+Delete and update docs
+```
+
+Answer:
+```text
+Delete and update docs
+```
+
+### Q016
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_017YST9DW2Rmy75Ny2JtYFiZ:0 -->
+
+Question:
+```text
+specs/mcp-tooling is not on the remote (GitHub returns 404; its packets moved to specs/mcp in 614858c884c). Locally it holds only 4 ignored leftovers: three website-link.md files and one fanout.log under z_archive. Git cannot restore them once deleted. Delete the folder?
+```
+
+Options:
+```text
+Yes, delete it
+No, keep it
+```
+
+Answer:
+```text
+Yes, delete it
+```
+
+### Q017
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01ASn1nNxD6Ygr4B39ZMeL5x:1 -->
+
+Question:
+```text
+Run a deep research loop on bugs, drift and issues in everything changed since v4.1.0.0 (1239 commits)?
+```
+
+Options:
+```text
+A) Run it (Recommended)
+B) Step through setup
+C) No loop
+```
+
+Answer:
+```text
+A) Run it (Recommended)
+```
+
+### Q018
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_019FCupFaSkNheMYh1g4CyRA:0 -->
+
+Question:
+```text
+Deep-research iteration 1 took about 15 minutes, not the 3 to 10 I estimated earlier. At that pace the run's 120-minute budget (the YAML default; your invocation didn't set it) stops the loop after about 8 of the 10 iterations you asked for. Iterations 2 onward are already running in the background. Should I raise the duration budget so all 10 iterations start? (Separately: the per-iteration timeout is already 1,800 s instead of 900 s, a change the previous session made for xhigh.)
+```
+
+Options:
+```text
+Raise to 180 min (Recommended)
+Keep 120 min
+```
+
+Answer:
+```text
+Raise to 180 min (Recommended)
+```
+
+### Q019
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:1 -->
+
+Question:
+```text
+How should the heredoc fix stop task text from escaping into the shell? Right now every hub's compiled-route example closes stdin at a fixed `TASK` line.
+```
+
+Options:
+```text
+Task file argument (Recommended)
+Per-call random delimiter
+```
+
+Answer:
+```text
+Task file argument (Recommended)
+```
+
+### Q020
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:2 -->
+
+Question:
+```text
+The reducer marks a research question resolved when an iteration's focus text equals it, even when that iteration's answeredQuestions is empty. The rule is documented on purpose at reduce-state.cjs:2580, and it closed Q1 after iteration 1 in this run. What should change?
+```
+
+Options:
+```text
+Require answer evidence (Recommended)
+Keep the rule, document it
+```
+
+Answer:
+```text
+Require answer evidence (Recommended)
+```
+
+### Q021
+<!-- source: claude:012507d7-ddbb-4b4f-9a7c-222cd8523a30:toolu_01HCoX4b7JxXDXJySRcM3UJ8:3 -->
+
+Question:
+```text
+Pre-push lets the push through, with a warning, when the track-root sweep itself errors (exit 2), but the README calls the gate blocking. How should that be resolved?
+```
+
+Options:
+```text
+Document fail-open (Recommended)
+Fail closed with bypass
+```
+
+Answer:
+```text
+Document fail-open (Recommended)
+```
+
+### Q022
+<!-- source: claude:61d64df6-a89b-487a-b5bb-616d0e90398f:toolu_01AuvbJhmnJ2KqMnrLYhpij2:1 -->
+
+Question:
+```text
+goal.md decision D3 says the bugs are fixed first and then the release notes are updated. Should this fix pass also get a v4.2.0.0 release-notes entry (including a clause at v4.2.0.0.md:800, which names stdin as the front-door input)?
+```
+
+Options:
+```text
+Yes, add an entry (Recommended)
+No, fixes only
+```
+
+Answer:
+```text
+Yes, add an entry (Recommended)
+```
+
+### Q023
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01Y471suAqggTawTSwNddVgT:0 -->
+
+Question:
+```text
+Main's CI has 3 red workflows, all caused by 035c9dd6bdd removing the .skilled/specs alias: Spec-Kit Check (canonical-save-validation.vitest.ts:16 builds .skilled/specs/..., validate exits 3), Markdown Link Integrity (24 links in 20 skill docs written ../../../../specs/ that land on .skilled/specs, every target exists at repo-root specs/), and Playbook Operator Contract (4 of those same links). Three deep-loop tests also read .skilled/specs and fail locally (ENOENT). Deep-Loop Runtime CI did not run on that commit, but 547 touches deep-loop code, so it will run after the merge and fail too. REQ-006 moves the v4.2.0.0 tag only onto a green main. How should this be fixed?
+```
+
+Options:
+```text
+Amend, fix in 547 (Recommended)
+Fix on main after merge
+Leave red, no re-tag now
+```
+
+Answer:
+```text
+Amend, fix in 547 (Recommended)
+```
+
+### Q024
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01Y471suAqggTawTSwNddVgT:1 -->
+
+Question:
+```text
+Merge worktree 547 (10 commits on 1bbebef885e, strict validate RESULT: PASSED) into main with a merge commit, like the 545 precedent, then push main (on the allowlist)? Things to know before you answer: (1) the old per-skill changelog heredoc lines and the three deep-review playbook `cat > file <<'TASK'` lines stay as they are, because they write fixed text and are not front-door calls. (2) mcp-browser-use/changelog/v1.1.4.0.md:26 still says a $() is "never run". (3) With the F1 fan-out fix, when ps fails, a killed child is listed under survivors, so the next run treats it as open until its pid is gone. (4) The stricter sentence count adds a second error to one saved record, sk-prompt/007/008 spec.md, which already fails validation on main with MEMORY_016.
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Merge, don't push
+Hold the merge
+```
+
+Answer:
+```text
+Merge and push (Recommended)
+```
+
+### Q025
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_016VnyEcp4a4cYEkduUbabYq:0 -->
+
+Question:
+```text
+Two workflows on main are still red, and both failed for the same causes on 31821cee5d7, before this pass, and on every main run since 98b712cd248. (1) Deep-Loop Runtime Tests: two dispatch-iteration --claude-config-dir tests exit 64, a usage error, on the CI runner only. Locally the whole suite passes 4069/0, cause not yet known. (2) Routing Registry Drift Guard: system-skilled-doctor/leaf-aliases.json is stale against its leaf-manifest.json, and the routing-accuracy corpus files changed on 2026-11-21 without their sha256 pins in the baseline being recaptured. REQ-006 moves the v4.2.0.0 tag only onto an all-green main. What should happen?
+```
+
+Options:
+```text
+Amend, fix both here (Recommended)
+Fix in a new packet
+Leave red, hold the tag
+```
+
+Answer:
+```text
+Amend, fix both here (Recommended)
+```
+
+### Q026
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01W5yHCLJGFyGLZaEmWcaNQ1:0 -->
+
+Question:
+```text
+Fixing the routing guard exposed one more check that CI never reached: skill-graph-freshness.cjs --strict exits 1 because the compiled skill-graph.json lacks one mcp-browser-use signal, "in aside", added in 1ad6a392b3d on 2026-11-24. Regenerating it with skill_graph_compiler.py --export-json is the skill-graph reindex, and that tool's header says "the reindex stays operator-owned". A scratch compile changes only that one signal and the generated_at stamp. Should I run the reindex into the repo?
+```
+
+Options:
+```text
+Run the reindex (Recommended)
+Leave the graph as is
+```
+
+Answer:
+```text
+Run the reindex (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

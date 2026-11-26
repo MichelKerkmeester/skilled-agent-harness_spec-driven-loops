@@ -7,7 +7,7 @@ trigger_phrases:
   - "workflow vs transport routing"
   - "mcp-tooling compiled routing"
 last_updated: "2026-09-20"
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # mcp-tooling: Feature Catalog
@@ -43,7 +43,7 @@ See [`workflow-vs-transport-routing/workflow-vs-transport-routing.md`](workflow-
 
 ### Conditional Compiled Front Door And Legacy Fallback
 
-`node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) is the conditional front door. It may serve a compiled decision only when the runtime flag and the promoted activation manifest both authorize it. A legacy sentinel, stale-manifest status, or resolver error leaves registry-driven routing authoritative.
+`node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) is the conditional front door. It may serve a compiled decision only when the runtime flag and the promoted activation manifest both authorize it. A legacy sentinel, stale-manifest status, or resolver error leaves registry-driven routing authoritative.
 
 The activation manifest is not promoted by adding an ordinary packet. After a hub registry or router change, run the status command and record its `causeCode`; do not call a legacy result compiled-serving evidence.
 

@@ -80,6 +80,11 @@ and findings belong here.
 | Follow-up on main | Done | stop-decision frontier fix 4067 passed, dists rebuilt, release notes PASS/VALID |
 | Save | Done | tasks.md verification counts set to 12/12, 13/13, 1/1 |
 | Dependabot and main CI | Done | hono 4.13.22, PR 108 merged, 12 pip alerts dismissed, 3 failing main checks fixed |
+| Generation 3 deep research (codex luna xhigh, 10 iters) | initialized, loop pending | research/deep-research-config.json |
+| Generation 3 deep research (codex luna xhigh, 10 iters) | Done | maxIterationsReached; research.md: 2 P2 + 2 P3 in window, 3 pre-existing, 2 rejected; no fixes |
+| Alias fallout fix and merge of worktree 547 | done | main 76dde2351f8, link guard 0 broken, deep-loop 4069/0, spec-kit CLI 2725/0 |
+| Fixed the two pre-existing red workflows on main | done | deep-loop 4071/0 detached, skill-root and graph checks 0, corpus pins match and floors hold |
+| Republished v4.2.0.0 on the all-green c530dbea1aa | done | 19/19 runs success, tag object 4f74bf94758, release body matches the notes |
 
 ### Deviations and findings
 
@@ -89,5 +94,6 @@ and findings belong here.
 | Stop reason | Both lineages hit the iteration cap, not convergence, so the audit is not exhaustive. |
 | Release notes updated | Shape, voice and document checks pass on `v4.2.0.0.md`. |
 | D3 amendment | The operator asked for the bug fixes, then the changelog update. B2 fixed in `overlay-engine.cjs`, and the executable bit restored on three files. |
+| Generation 3 budget | Iteration 1 took 887 s, so the YAML-default 120-minute budget would have stopped the loop near iteration 8. The operator chose to raise `maxDurationMinutes` to 180 on 2026-11-26. The per-iteration timeout stays at 1,800 s, not the 900 s the invocation implied. |
 | Stop-hook write | The Claude Stop hook wrote `decision-record.md` into this packet unasked at 08:05:05Z. Kept, and cited as live evidence for finding M1. |
 <!-- /ANCHOR:log -->

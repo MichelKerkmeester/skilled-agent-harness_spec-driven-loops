@@ -27,14 +27,14 @@ function main() {
   const args = process.argv.slice(2);
   // A misspelled option must fail loudly: silently ignoring it would route with a
   // hub or prompt the caller never supplied.
-  const takesValue = ['--hub', '--prompt', '--surface-hint'];
+  const takesValue = ['--hub', '--prompt', '--prompt-file', '--surface-hint'];
   for (let i = 0; i < args.length; i += 1) {
     const token = args[i];
     if (takesValue.includes(token)) { i += 1; continue; }
     if (token === '--prompt-stdin') continue;
     if (token.startsWith('-')) {
       process.stderr.write(`compiled-route.cjs: unknown option: ${token}\n`);
-      process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
+      process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-file <path> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
       process.exit(2);
     }
   }
@@ -43,14 +43,29 @@ function main() {
   // A caller routing a user's prompt passes --prompt-stdin and sends the prompt on
   // stdin, which keeps it out of argv where any local user can read it.
   const promptFromStdin = args.includes('--prompt-stdin');
-  const prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
+  // --prompt-file reads the prompt from a file the caller wrote with its own
+  // file tool. Unlike a heredoc on stdin, no line of the prompt can end the input
+  // early and run the rest as shell commands.
+  const fileIdx = args.indexOf('--prompt-file');
+  const promptFile = fileIdx >= 0 ? args[fileIdx + 1] : undefined;
+  let prompt = promptIdx >= 0 ? args[promptIdx + 1] : '';
   // The surface the caller's session works in. It only reorders surfaces the
   // prompt already matched, and a value that names no surface is ignored.
   const hintIdx = args.indexOf('--surface-hint');
   const surfaceHint = hintIdx >= 0 ? args[hintIdx + 1] : undefined;
   if (!hub) {
-    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
+    process.stderr.write('usage: compiled-route.cjs --hub <hubId> (--prompt <text> | --prompt-file <path> | --prompt-stdin) [--surface-hint <SURFACE>]\n');
     process.exit(2);
+  }
+  if (fileIdx >= 0) {
+    // An unreadable prompt file is a caller error, so it fails loudly rather than
+    // routing an empty prompt.
+    try {
+      prompt = fs.readFileSync(promptFile, 'utf8');
+    } catch (err) {
+      process.stderr.write(`compiled-route.cjs: cannot read --prompt-file ${promptFile}: ${err && err.message}\n`);
+      process.exit(2);
+    }
   }
   let route = null;
   try {
