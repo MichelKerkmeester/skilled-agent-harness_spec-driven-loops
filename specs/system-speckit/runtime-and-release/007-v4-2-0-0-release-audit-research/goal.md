@@ -78,6 +78,7 @@ and findings belong here.
 | Fan-out run | Done | run `1795593886068-na5znl` exit 0, codex and devin 10 iterations each, both `maxIterationsReached` |
 | Synthesis and verification | Done | `research/research.md`: 16 of 26 candidates confirmed (9 missing, 5 drift, 2 bug), 10 rejected |
 | Follow-up on main | Done | stop-decision frontier fix 4067 passed, dists rebuilt, release notes PASS/VALID |
+| Save | Done | tasks.md verification counts set to 12/12, 13/13, 1/1 |
 
 ### Deviations and findings
 

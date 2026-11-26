@@ -185,9 +185,9 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 2/12 |
-| P1 Items | 13 | 1/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-25
+**Verification Date**: 2026-11-26
 <!-- /ANCHOR:summary -->
