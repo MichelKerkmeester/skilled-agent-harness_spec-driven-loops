@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.15.0
+version: 2.4.16.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -505,10 +505,9 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin <<'TASK'
-> <task>
-> TASK
+> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-file <task-file>
 > ```
+> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.
 > Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
 ### Surface Router — per-intent leaf sets

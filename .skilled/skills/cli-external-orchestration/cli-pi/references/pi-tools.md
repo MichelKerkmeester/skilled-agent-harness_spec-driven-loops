@@ -9,12 +9,12 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.5.6.0
+version: 1.5.7.0
 ---
 
 # Pi CLI Unique Capabilities
 
-Reference for the Pi CLI surfaces that have **no analog**, or only a partial analog, in `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, or `cli-devin`. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only for this packet. The local contract pin is the authority for live observations: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+Reference for the Pi CLI surfaces that have **no analog**, or only a partial analog, in `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor`, or `cli-devin`. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only for this packet. The local contract pin is the authority for live observations: [Pi contract pin](../../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 
 ---
 

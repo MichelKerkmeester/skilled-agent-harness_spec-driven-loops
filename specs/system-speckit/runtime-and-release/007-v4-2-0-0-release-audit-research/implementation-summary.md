@@ -184,6 +184,48 @@ The operator asked to fix Dependabot before the tag moved again. That covered th
 | Spec-kit CLI shard 3 | The upgrade-legacy copies stamped their dist with a whole-millisecond `Date`, while mtimes are finer, so a source written in the same millisecond read newer and the validator exited 3. The dist keeps `now` and the copied sources are dated one second back. 20000 of 20000 trials stay fresh, and an edit afterwards still reads stale |
 | Spec-kit CLI project | 210 files passed, 2725 tests passed, 0 failed. One file first failed only because the packet docs were edited during the run, and it passes 4 of 4 on its own |
 | Quality gate | `quality-gate.cjs --files` on the six changed test files: `NO_BLOCKER_FOUND`, 0 open findings |
+### Generation-3 fix pass
+
+The operator said "FIX ALL" for the seven generation-3 findings. The fixes landed in worktree `547-v4-2-gen3-audit-fixes`. Each suite ran on `main` at `1bbebef885e` for the before count and in the worktree for the after count.
+
+| Suite | Before, on `main` | After, in the worktree |
+|-------|-------------------|------------------------|
+| Bin tests, `node --test .skilled/bin/tests/*.test.cjs` | 219 passed | 221 passed, 1 skipped, 0 failed. The skip is the runtime-written `.gitignore` a fresh worktree lacks |
+| sk-create-skill tests | 112 of 112 | 112 of 112 |
+| sk-doc Python tests | 462 passed | 462 passed |
+| Deep-loop runtime | 4064 passed, 3 failed, 11 skipped | 4066 passed, the same 3 failed, 11 skipped |
+| Skill advisor runtime | 3546 passed, 1 failed, 4 skipped | 3548 passed, 0 failed, 4 skipped |
+| Spec-kit runtime core | 1377 passed, 11 skipped | 1378 passed, 11 skipped |
+| Spec-kit runtime CLI | 2724 passed, 1 failed, 20 skipped | 2724 passed, the same 1 failed, 20 skipped |
+| Spec-kit spec validation | passed | passed |
+| `pre-commit.test.sh` | not run | exit 0 |
+
+The failures on both sides predate this pass. The three deep-loop failures read `.skilled/specs/...` paths that commit `035c9dd6bdd` removed. The advisor failure on `main` is a local `system-skilled-bots` skill with an empty description, which the worktree does not hold. The spec-kit CLI failure is `canonical-save-validation.vitest.ts:220`, exit 3 on both sides.
+
+| Check | Result |
+|-------|--------|
+| Negative controls | Each new test failed with its fix taken out: the front-door file tests 3 of 4, the stop test, the Pi test, the continuity test and the reducer test |
+| Compiled routing | All eight hub manifests re-minted with `compiled-route-manifest.cjs refresh` and copied to their authored copies. `compiled-route-guard.cjs` reads all hubs fresh, and `compiled-route-status.cjs --all` reads `compiled-serving` for all eight. A `--prompt-file` replay routes `sk-code`, `sk-doc`, `system-deep-loop` and `sk-design` |
+| Deep command contracts | Recompiled after the `system-deep-loop/SKILL.md` edit. `check-contract-drift.cjs` prints `OK commands=2` |
+| Hub checks | `parent-skill-check.cjs` and `generate-leaf-manifest.cjs --check` pass for all eight hubs. Two hubs first went past the 180-word SMART ROUTING limit, and the wording was cut |
+| sk-code drift guards | The same 2 errors as on `main`, both in a review lineage under `specs/` |
+| Quality gate | `quality-gate.cjs --worktree --lines changed`: 0 P0, 0 P1, 0 P2 |
+| Docs | `check_changelog_shape.py` PASS and `validate_document.py` VALID for both changelogs. Every other changed `.md` validates the same as on `main` |
+| Builds | The advisor and spec-kit runtime dists were rebuilt in the worktree. Both are gitignored, so `main` needs the same rebuild after the merge |
+
+### Alias fallout fix
+
+Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and three workflows on `main` went red because 24 links in 20 skill docs and three test paths still reached `specs/` through it. Each now climbs one more level to the repository root. The `cli-pi/SKILL.md` link edit re-minted the `cli-external-orchestration` manifest.
+
+| Check | Before | After |
+|-------|--------|-------|
+| `check-markdown-links.cjs` | 24 broken, exit 1 | 0 broken, exit 0 |
+| `validate-playbook-package.cjs --strict` | 1 FAIL, exit 1 | 53 PASS, exit 0 |
+| Deep-loop runtime | 4066 passed, 3 failed | 4069 passed, 0 failed |
+| Spec-kit runtime CLI | 2724 passed, 1 failed | 2725 passed, 0 failed, exit 0 |
+| Compiled routing | `cli-external-orchestration` stale after the edit | All eight hubs `compiled-serving`, and a cli-pi request routes to `cli-pi` |
+
+One CLI run listed packet docs under its guard for changed paths. Those were edits made while it ran, and the rerun on a still tree passed. A frozen benchmark report still holds a `.skilled/specs` path inside captured command output, and it stays as recorded.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -196,6 +238,8 @@ The operator asked to fix Dependabot before the tag moved again. That covered th
 2. **Every other checkout rebuilds its own dists.** `runtime/cli/dist` and the runtime `dist` are gitignored. The primary checkout was rebuilt after the merge, and the compiled Stop hook loads `acquireCanonicalSaveLock` from it. Another checkout runs the old Stop hook until both dists are rebuilt there: `npm run build` in `runtime/cli`, then in `runtime`.
 3. **One timing test can flake.** `fanout-pool.vitest.ts:679` failed once for a worker under load and passed on rerun. No change was made to it.
 4. **Not fixed on purpose.** f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence.
+5. **Three pre-existing failures stay open.** The deep-loop suite reads three fixtures under `.skilled/specs/`, which commit `035c9dd6bdd` removed, and `canonical-save-validation.vitest.ts:220` fails on `main` too. Neither belongs to this pass.
+6. **Without `ps`, a stopped lineage reads as a survivor.** The runner signals it but cannot confirm the exit, so the next run sees it as open until its pid is gone.
 <!-- /ANCHOR:limitations -->
 
 ---

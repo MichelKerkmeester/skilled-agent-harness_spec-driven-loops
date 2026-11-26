@@ -1,7 +1,7 @@
 ---
 title: "mcp-browser-use: Manual Testing Playbook"
 description: "Operator index for mcp-browser-use hub routing across its three browser modes, two blind holdouts and the defer contract."
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-browser-use: Manual Testing Playbook
@@ -46,7 +46,7 @@ The playbook holds 7 routing scenarios in one category. Five came over from the 
 
 ## 4. DETERMINISTIC COMMAND NOTATION
 
-- Each scenario runs one command: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-stdin <<'TASK'`, with the scenario prompt on the next line and `TASK` after it. The quoted heredoc keeps the shell from expanding anything in the prompt.
+- Each scenario runs one command: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-file <task-file>`, after the scenario prompt is written to that file with the file-write tool. A file has no closing line, so nothing in the prompt reaches the shell.
 - The prompt is quoted exactly as the scenario gives it.
 
 ---

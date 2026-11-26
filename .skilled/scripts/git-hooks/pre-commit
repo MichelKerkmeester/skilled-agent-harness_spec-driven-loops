@@ -10,7 +10,7 @@
 # Each gate below documents its own bypass.
 #
 # Install: bash .opencode/scripts/install-git-hooks.sh
-# Uninstall: rm .git/hooks/pre-commit
+# Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall
 #
 # Exit Codes:
 #   0 - every gate passed, or the ones that would block were skipped or bypassed

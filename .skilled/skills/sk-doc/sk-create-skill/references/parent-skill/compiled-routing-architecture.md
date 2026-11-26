@@ -9,7 +9,7 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.9.0
+version: 1.2.11.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
@@ -68,7 +68,7 @@ A compiled-serving hub's routing decision passes through four layers on disk, in
 1. **Shadow-child engine** — `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/`, holding that hub's own `lib/registry-compiler.cjs` (compiles the hub's `hub-router.json` + `mode-registry.json` + `SKILL.md` into a policy snapshot), `lib/router.cjs` or `lib/canary-router.cjs` (evaluates a prompt against that snapshot), and `fixtures/canary-cases.v1.json` (the hub's own scenario set). Each hub's compiler is hand-built and hand-sized to that hub's real vocabulary — line counts range from 338 (`mcp-browser-use`) to 682 (`system-deep-loop`); there is no one-size-fits-all compiler.
 2. **Activation manifest** — `.../013-live-activation/activation/<hub>/manifest.json`: `{schemaVersion, selectedPolicy: {effectivePolicyHash, generation}, servingAuthority, shadowOnly}`. `servingAuthority` is the per-hub switch between `"legacy"` and `"compiled"`.
 3. **Resolver** — `.../014-runtime-engine/lib/resolve.cjs`. Serves the compiled decision for a hub only when **both** hold: the runtime flag `SPECKIT_COMPILED_ROUTING` permits it (forced to `1`, or unset/default with the hub listed in `DEFAULT_ON_HUBS`), **and** that hub's manifest reads `servingAuthority: "compiled"`. Any other case, or any error resolving the route, returns `null` and the caller falls back to the prose router. `SPECKIT_COMPILED_ROUTING=0` is the explicit fleet-wide kill-switch.
-4. **Front door** — `.skilled/bin/compiled-route.cjs --hub <hub> --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`). This is the literal command a compiled-serving hub's `SKILL.md` directive invokes; it delegates to the resolver and prints either the compiled decision or a `{"servingAuthority":"legacy"}` sentinel, never throwing into the routing path.
+4. **Front door** — `.skilled/bin/compiled-route.cjs --hub <hub> --prompt-file <task-file>` (write the task there with your file tool, never a heredoc). This is the literal command a compiled-serving hub's `SKILL.md` directive invokes; it delegates to the resolver and prints either the compiled decision or a `{"servingAuthority":"legacy"}` sentinel, never throwing into the routing path.
 
 **Freshness** ties layers 1 and 2 together: a manifest's `selectedPolicy.effectivePolicyHash` must equal the shadow-child's own current snapshot hash (what `loadHubEngine(hub).snapshot.policy.effectivePolicyHash` computes right now, not a generic recompile). Any change to a hub's shadow-child compiler invalidates that hash, so the manifest must be re-minted afterward — preserving `servingAuthority` and `shadowOnly` — or the hub reads as stale and drops to legacy.
 
@@ -127,5 +127,5 @@ A freshly minted `ready` manifest is inert onboarding evidence — safe, reversi
 
 - [parent-skills-nested-packets.md](parent-skills-nested-packets.md) - the `modes[]`/`packetKind` contract the compiled router compiles.
 - [parent-hub-router-schema.md](parent-hub-router-schema.md) - the `hub-router.json` schema the shadow-child compiler consumes.
-- [goal-coverage-buildout.md](../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md) - the program goal and per-hub coverage recipe (worked example, spec history).
-- [handover.md](../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md) - the verified final state at cutover, when the cohort was seven hubs, and the exact recipe that fixed under-routing (spec history).
+- [goal-coverage-buildout.md](../../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/goal-coverage-buildout.md) - the program goal and per-hub coverage recipe (worked example, spec history).
+- [handover.md](../../../../../../specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/handover.md) - the verified final state at cutover, when the cohort was seven hubs, and the exact recipe that fixed under-routing (spec history).

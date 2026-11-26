@@ -2579,9 +2579,8 @@ function writeAnsweredFrontierCloses(researchDir, frontier, keyQuestions) {
 }
 
 // The frontier focus leads with a `Frontier node <id>` marker before the question
-// text, so it never equals the question text alone. An iteration whose focus
-// equals a question's text resolves that question, so the marker keeps a visit
-// by itself from closing the node; only answeredQuestions evidence does.
+// text. A focus never resolves a question in any mode, so a visit by itself never
+// closes the node; only answeredQuestions evidence does.
 // The leaf writes its own focus line and may reword it, so the node marker counts
 // wherever it appears; the id must end there, so F-1-001 never matches F-1-0010.
 // Only an attempt that produced evidence counts as a visit: an errored or timed
@@ -2746,9 +2745,11 @@ function buildRegistry(strategyQuestions, iterationFiles, iterationRecords, even
       const keyQuestions = Array.isArray(record.keyQuestions)
         ? record.keyQuestions.map(normalizeText)
         : [];
+      // Only answer evidence resolves a question. An iteration that took a question as its
+      // focus may still report it open, and counting that focus as an answer would let a
+      // convergence stop read coverage the evidence does not show.
       return answeredQuestions.includes(normalized)
-        || (answeredQuestions.length > 0 && keyQuestions.length === 1 && keyQuestions[0] === normalized)
-        || normalizeOptionalText(record.focus) === normalized;
+        || (answeredQuestions.length > 0 && keyQuestions.length === 1 && keyQuestions[0] === normalized);
     });
   });
 

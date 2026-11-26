@@ -115,6 +115,17 @@ function makeSleepingRun(
   };
 }
 
+// A ps on the fixture's PATH that answers until the marker exists and then fails, as a
+// sandbox that blocks ps or a transient ps failure leaves it. The spawn row still records
+// a start time, so the runner's own stop later reads that start time as unreadable.
+function failPsAfterMarker(fixture: RunFixture): string {
+  const marker = join(fixture.hermetic.tmpDir, 'ps-fails');
+  const realPs = spawnSync('sh', ['-c', 'command -v ps'], { encoding: 'utf8' }).stdout.trim();
+  writeFileSync(join(fixture.hermetic.tmpDir, 'bin', 'ps'),
+    `#!/bin/sh\nif [ -e "${marker}" ]; then exit 1; fi\nexec ${realPs} "$@"\n`, { mode: 0o755 });
+  return marker;
+}
+
 function startRun(fixture: RunFixture): ChildProcess {
   const child = spawn(process.execPath, [fanoutRunScript, ...fixture.args], {
     cwd: fixture.hermetic.tmpDir,
@@ -419,5 +430,31 @@ describe('fanout-run.cjs --stop — lineage identity', () => {
       results: Array<{ label: string; status: string }>;
     };
     expect(summary.results.find((result) => result.label === stubborn.label)?.status).not.toBe('stopped');
+  }, 40_000);
+
+  it('a runner stopped by a signal terminates a held child whose start time ps cannot read, and never records it stopped', async () => {
+    const fixture = makeSleepingRun('fanout-stop-identity-runner-unreadable');
+    const marker = failPsAfterMarker(fixture);
+    const run = startRun(fixture);
+    const runExited = new Promise<number | null>((resolvePromise) => run.on('exit', (code) => resolvePromise(code)));
+    const spawned = await waitFor(() => readLedger(fixture.baseDir).find((row) => row.event === 'spawned'));
+    const lineagePid = spawned.pid as number;
+    ownedGroups.push(lineagePid);
+    expect(spawned.process_start).toBeTruthy();
+    expect(groupAlive(lineagePid)).toBe(true);
+
+    writeFileSync(marker, '');
+    run.kill('SIGTERM');
+    expect(await runExited).toBe(143);
+
+    // The child is signalled even though ps cannot prove its identity. Without ps the
+    // runner cannot tell the child it has not reaped yet from a live one, so it names the
+    // lineage a survivor rather than writing a stopped row it cannot verify.
+    expect(groupAlive(lineagePid)).toBe(false);
+    const ledger = readLedger(fixture.baseDir);
+    expect(ledger.filter((row) => row.event === 'stopped')).toEqual([]);
+    expect(ledger.find((row) => row.event === 'run_stopped')?.survivors).toEqual([
+      { label: 'slow', pid: lineagePid },
+    ]);
   }, 40_000);
 });

@@ -15,7 +15,7 @@ version: 1.5.22.0
 > unchanged. The sibling cli-X packets keep their own guards; this carve-out is Pi's alone.
 
 Orchestrate Pi's terminal coding agent for headless coding, read-only tool-constrained reviews, JSON event-stream integrations, RPC clients, and Pi-native resource discovery.
-The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+The pinned contract is the source for confirmed command behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 Pi-native skills, prompt templates, and some package surfaces remain documented but unconfirmed unless a source says otherwise.
 
 **Core principle**: use Pi for the surfaces it exposes, delegate research and review lineages to the shared runtime, validate the returned output, and keep the calling AI as conductor.
@@ -211,7 +211,7 @@ The caller remains responsible for task scope, files, acceptance criteria, and v
 
 ### External Sources
 
-- [Pi contract pin](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md) - Local live-verification evidence
+- [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md) - Local live-verification evidence
 - [Pi skills documentation](https://pi.dev/docs/latest/skills) - Documentation-only native skill surface
 - [Pi RPC documentation](https://pi.dev/docs/latest/rpc) - Documentation-only RPC surface
 - [Pi JSON documentation](https://pi.dev/docs/latest/json) - Documentation-only JSON event stream
