@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Rust/TypeScript Interop — Model & Boundary Types
@@ -34,7 +34,7 @@ Draws the line between TypeScript ownership and Rust compute, then fixes the bou
 
 ## 2. RUST/TYPESCRIPT INTEROP AND COEXISTENCE
 
-Rust supplements the existing TypeScript/Node backend. It does not replace transport ownership or redefine public MCP behavior.
+Where Rust supplements an existing TypeScript/Node backend, it does not replace transport ownership or redefine public MCP behavior, and the split below applies. An app-style Rust binary with no TypeScript oracle owns its own entry point and CLI wiring.
 
 ### Responsibility Split
 

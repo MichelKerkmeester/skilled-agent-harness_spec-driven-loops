@@ -280,7 +280,7 @@ Fifteen skills ship with Skilled. Gate 2 loads one when the advisor matches it t
 
 ### Parent Hubs
 
-**[sk-code](.skilled/skills/sk-code/README.md)** writes, reviews and verifies code in the stack you are in. Its five modes are quality, for the checks after implementation, and review, for findings-first code review. CI covers GitHub Actions workflows and frontend covers CSS, HTML and browser work. The skilled mode holds the standards for this repository's own TypeScript, Python, shell and config code.
+**[sk-code](.skilled/skills/sk-code/README.md)** writes, reviews and verifies code in the stack you are in. Its five modes are quality, for the checks after implementation, and review, for findings-first code review. CI covers GitHub Actions workflows and frontend covers CSS, HTML and browser work. The skilled mode holds the standards for this repository's own TypeScript, Python, shell, Rust and config code, Rust CLIs and terminal apps included.
 
 **[sk-doc](.skilled/skills/sk-doc/README.md)** authors documentation and components. Its fifteen modes create skills, parent hubs, READMEs, agents, commands, feature catalogs, manual testing playbooks, benchmarks, changelogs, diffs, frontmatter, repo rules and goals. Two more run quality control and apply the human voice rules.
 

@@ -38,7 +38,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -183,12 +183,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,11 +199,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The v4.2.0.0 release notes at `.skilled/changelog/skilled/v4.2.0.0.md` describe a release that is not tagged yet, while work kept landing after the notes were drafted",
     "created_at": "2026-11-25T07:59:08Z",
-    "last_save_at": "2026-11-26T17:53:11.009Z",
+    "last_save_at": "2026-11-26T18:51:16.845Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:375d82fd460b458ffe785b5abb6752e6810bdd66c1a94f601ff4bec46d284df6",
+    "source_fingerprint": "sha256:f361dc7f08ed8d6d8b900cb855db9a285b062ac0c72e97101ca88edbf8d4f9f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c614f70847ff5f50c0e611100e1f5cd612df13dbcdff413d2453280c1e837cfa",
+      "spec.md": "c9ce910389d6202bf39e92cae3921de444a34da770071770432ac3146d40b85d",
       "plan.md": "f9cbb06ccdacf61d0d03174e012ed05f29c6020da573461779e6e422441b9fef",
-      "tasks.md": "8f22c8821fb58ab45e57f1e5586145563b4e9385132ea29ea0d3019e5723b2bc",
+      "tasks.md": "cdc651abec99828c231214004b4f6aeeee1708cc990bd77ee88112e479f4a9b9",
       "decision-record.md": "70d6636c211d7236bd8b77aa197320b98181f165add6dc79f4e847f083e4ba5f",
-      "implementation-summary.md": "228d3aa2d05cafbf81eccd68c38904e88d83c8eb767ec8384d3d13c8f0da23a5",
+      "implementation-summary.md": "fbd5138ea34e33e57ede0e0e604307cc3ee53b86fc123119dc6a604d84a5cbb5",
       "research/research.md": "0e85dde35ec7c432850535cafba932f43314931585c4b2fb2700ecc71ced73d6"
     },
     "last_active_at": null

@@ -1,0 +1,1 @@
+{"executors":[{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":3}],"concurrency":3}

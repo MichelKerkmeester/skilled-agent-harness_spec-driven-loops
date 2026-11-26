@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.5.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts
@@ -132,6 +132,7 @@ pub fn connection_summary(state: &ConnectionState) -> String {
 - **[P2]** Use builders only for genuinely complex internal construction.
 - **[P2]** Use type-state only when it prevents a real invalid transition.
 - **[P0]** Keep builders and type-state representations out of the exported ABI.
+- **[P1]** Do not map a Java `char` or `Character` to Rust `char`. A Java `char` is a UTF-16 code unit and a Rust `char` is a Unicode scalar value, so the two disagree on every character outside the Basic Multilingual Plane (rust-anything, `docs/types.md:188`).
 
 ---
 
@@ -150,6 +151,11 @@ pub fn connection_summary(state: &ConnectionState) -> String {
 | Internal unordered lookup | `HashMap<K, V>` | P1 | Never leak iteration order |
 | Internal unordered membership | `HashSet<T>` | P1 | Never leak iteration order |
 | FIFO work queue | `VecDeque<T>` | P2 | Use when queue operations are material |
+
+**[P1] Match the original's regex engine, not only its pattern.**
+
+- **[P1]** Use `fancy-regex` when a pattern needs lookaround or backreferences, which the `regex` crate does not support (rust-anything, `skills/rust-anything/SKILL.md:142`).
+- **[P1]** `\w`, `\b`, `\d` and case-insensitive matching treat non-ASCII text differently from engine to engine, so passing the recorded cases is not enough. Where the original's classes are ASCII-only, as in JavaScript without the `u` flag or in Java, scope Unicode off for that class, as in `(?-u:\w)`, or spell the class out as `[A-Za-z0-9_]`. With `regex::Regex`, a whole-pattern `unicode(false)` rejects `.`, `\W` and negated classes such as `[^a]`, because they could match invalid UTF-8 (rust-anything, `skills/rust-anything/SKILL.md:142-147`).
 
 ### Observable Hash Iteration
 

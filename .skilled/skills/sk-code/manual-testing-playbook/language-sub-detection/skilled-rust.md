@@ -1,14 +1,14 @@
 ---
 title: "LS-006: SKILLED Rust Sub-Detection"
 description: "Verify that within SKILLED surface, Rust evidence (.rs, then the Cargo markers and napi-rs or wasm-bindgen vocabulary) loads the rust/* references, and that Rust never displaces the TypeScript trio on a parity task that touches both languages."
-version: 1.5.1.0
+version: 1.5.3.0
 ---
 
 # LS-006: SKILLED Rust Sub-Detection
 
 ## 1. OVERVIEW
 
-Verify the last two rules in the sub-detection table of section 3 of `shared/references/stack-detection.md`. The RUST row resolves on `.rs` first, then on the `Cargo.toml` or `Cargo.lock` markers and napi-rs or wasm-bindgen vocabulary. The paragraph below the table adds the rule this scenario exists for: Rust never overrides another language, so a napi-rs or WASM parity task touching `.rs` and `.ts` loads both trios plus the shared guidance, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
+Verify the last two rules in the sub-detection table of section 3 of `shared/references/stack-detection.md`. The RUST row resolves on `.rs` first, then on the `Cargo.toml` or `Cargo.lock` markers and napi-rs or wasm-bindgen vocabulary. The paragraph below the table adds the rule this scenario exists for: Rust never overrides another language, so a napi-rs or WASM parity task touching `.rs` and `.ts` loads both trios, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
 
 This repository ships no `.rs` source and no `Cargo.toml`, so the language evidence is a fixture the operator creates in a sandbox. The Rust reference set is three split folders rather than three files, and the Rust checklist is a folder of parts, so both are graded per path.
 
@@ -20,10 +20,10 @@ This repository ships no `.rs` source and no `Cargo.toml`, so the language evide
 
 **Exact prompt**:
 ```
-In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.
+In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.
 ```
 
-Prompt: `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.`
+Prompt: `In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each.`
 
 **Expected detection**:
 - Surface: `SKILLED`
@@ -36,7 +36,8 @@ Prompt: `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs bindin
 - `sk-code-skilled/references/typescript/style-guide/`
 - `sk-code-skilled/references/typescript/quality-standards/`
 - `sk-code-skilled/references/typescript/quick-reference/`
-- `sk-code-skilled/references/shared/`
+
+The language-shared folder `sk-code-skilled/references/shared/` is not expected. The hub route adds a doc from it only for an intent that maps it, IMPLEMENTATION, VERIFICATION or HOOKS, and this prompt scores none of them.
 
 **Expected assets loaded**:
 - `sk-code-skilled/assets/checklists/rust-checklist/`
@@ -53,7 +54,7 @@ Prompt: `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs bindin
 
 1. The sandbox fixture exists:
    ```
-   bash: mkdir -p /tmp/skc-LS006-sandbox && printf 'pub fn normalize(input: &str) -> String { input.trim().to_string() }\n' > /tmp/skc-LS006-sandbox/lib.rs && printf 'export function normalize(input: string): string { return input.trim(); }\n' > /tmp/skc-LS006-sandbox/client.ts
+   bash: mkdir -p .skilled/skills/.state/skc-LS006-sandbox && printf 'pub fn normalize(input: &str) -> String { input.trim().to_string() }\n' > .skilled/skills/.state/skc-LS006-sandbox/lib.rs && printf 'export function normalize(input: string): string { return input.trim(); }\n' > .skilled/skills/.state/skc-LS006-sandbox/client.ts
    ```
 2. The Rust and TypeScript reference sets are intact: `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/rust/` and `bash: ls .skilled/skills/sk-code/sk-code-skilled/references/typescript/` each list `quality-standards`, `quick-reference` and `style-guide`.
 3. Skill advisor callable.
@@ -62,21 +63,21 @@ Prompt: `In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs bindin
 
 1. **Advisor probe**:
    ```
-   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "In /tmp/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each." --threshold 0.8 > /tmp/skc-LS006-advisor.txt
+   bash: python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "In .skilled/skills/.state/skc-LS006-sandbox I have lib.rs and client.ts, a napi-rs binding and the TypeScript client it has to match byte for byte. Review both together and tell me which standards you applied to each." --threshold 0.8 > /tmp/skc-LS006-advisor.txt
    ```
 2. **Verify**: sk-code is the top-1 candidate and its `passes_threshold` is true.
 3. **Invoke sk-code** with the exact prompt.
 4. **Capture loaded refs** to `/tmp/skc-LS006-loaded-refs.txt`.
-5. **Verify**: all three rust folders, all three typescript folders and `sk-code-skilled/references/shared/` loaded; 0 python/shell/config paths loaded.
-6. **Remove the fixture**: `bash: rm -rf /tmp/skc-LS006-sandbox`.
+5. **Verify**: all three rust folders and all three typescript folders loaded; 0 python/shell/config paths loaded.
+6. **Remove the fixture**: `bash: rm -rf .skilled/skills/.state/skc-LS006-sandbox`.
 
 ### Expected Signals
 
-Expected signals: `LANGUAGE: RUST` and `LANGUAGE: TYPESCRIPT` both reported for the same prompt; each trio represented by its folder rather than a single file; `sk-code-skilled/references/shared/` present; 0 python/shell/config refs.
+Expected signals: `LANGUAGE: RUST` and `LANGUAGE: TYPESCRIPT` both reported for the same prompt; each trio represented by its folder rather than a single file; 0 python/shell/config refs.
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: RUST is detected for the `.rs` side AND TYPESCRIPT stays detected for the `.ts` side AND both trios plus `sk-code-skilled/references/shared/` are in the load set AND 0 python/shell/config refs are loaded.
+- **PASS** iff: RUST is detected for the `.rs` side AND TYPESCRIPT stays detected for the `.ts` side AND both trios are in the load set AND 0 python/shell/config refs are loaded.
 - **FAIL** iff: RUST displaces TYPESCRIPT (only the rust trio loads), TYPESCRIPT displaces RUST, either trio is missing, the Cargo-marker rule fires on the sandbox path alone with no `.rs` or vocabulary evidence, or any python/shell/config ref is loaded.
 
 Evidence: `/tmp/skc-LS006-advisor.txt` (advisor probe output) and `/tmp/skc-LS006-loaded-refs.txt` (loaded-refs transcript).
@@ -84,7 +85,7 @@ Evidence: `/tmp/skc-LS006-advisor.txt` (advisor probe output) and `/tmp/skc-LS00
 ### Failure Triage
 
 1. If only one trio loads: read the never-overrides paragraph in `shared/references/stack-detection.md` section 3 and confirm the route applied it, because the parity case is explicitly a two-language load.
-2. If RUST is not detected at all: confirm the `.rs` extension and the napi-rs vocabulary both appear in the prompt, and that the RUST row still lists them.
+2. If RUST is not detected at all: confirm SKILLED was detected and that at least one Rust marker, such as the `.rs` extension or the napi-rs vocabulary, appears in the prompt. The detector takes any one of them, so confirm the RUST row still lists the marker the prompt uses.
 3. If RUST is detected for a path with no `.rs`: the Cargo-marker branch fired too early. It counts only after SKILLED is detected, so confirm the surface was SKILLED first.
 4. If `rust-checklist/` is empty in the load set: the Rust checklist is a folder of parts, so there is no single `rust-checklist.md` to load.
 
@@ -109,7 +110,7 @@ Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-dri
 - Playbook ID: LS-006
 - **Created**: 2026-10-28
 - **Critical path**: No
-- **Destructive**: No (the only writes are two fixture files under `/tmp/skc-LS006-sandbox/`, removed in step 6)
-- **Sandbox**: the language evidence lives in `/tmp/skc-LS006-sandbox/`, because the repository ships no `.rs` source and no Cargo markers.
+- **Destructive**: No (the only writes are two gitignored fixture files under `.skilled/skills/.state/skc-LS006-sandbox/`, removed in step 6)
+- **Sandbox**: the language evidence lives in `.skilled/skills/.state/skc-LS006-sandbox/`, which git ignores, because the repository ships no `.rs` source and no Cargo markers. A `/tmp` path would leave the quality selector reporting `UNKNOWN`, so it could not select `universal-checklist.md`.
 - **Concurrent-safe**: Yes
 - **Last validated**: pending first manual run

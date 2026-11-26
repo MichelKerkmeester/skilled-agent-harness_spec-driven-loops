@@ -1,0 +1,38 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/code-surfaces/007-sk-code-rust",
+  "description": "Research the rust-anything repository and update the sk-code Rust references and checklist with what it teaches",
+  "keywords": [
+    "research",
+    "rust-anything",
+    "repository",
+    "sk-code",
+    "rust",
+    "references",
+    "checklist",
+    "teaches"
+  ],
+  "lastUpdated": "2026-11-26T19:46:27.160Z",
+  "specId": "007",
+  "folderSlug": "sk-code-rust",
+  "parentChain": [
+    "sk-code",
+    "code-surfaces"
+  ],
+  "memorySequence": 13,
+  "memoryNameHistory": [
+    "26-11-26_13-36__ran-the-three-lineage-vibe-deep-research-over.md",
+    "26-11-26_13-52__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_13-54__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_14-05__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_14-08__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_15-47__applied-research-md-ranked-edits-6-to-18-to-sk.md",
+    "26-11-26_16-15__wrote-ls-007-amended-goal-d1-bumped-sk-code-to-3.md",
+    "26-11-26_16-20__closed-the-rust-packet-follow-up-recorded-the-ls.md",
+    "26-11-26_19-30__ran-local-skilled-alignment-and-local-doc.md",
+    "26-11-26_20-39__fixed-every-finding-from-the-local-skilled.md",
+    "26-11-26_20-40__fixed-every-finding-from-the-local-skilled.md",
+    "26-11-26_20-44__fixed-every-finding-from-the-local-skilled.md",
+    "26-11-26_20-46__fixed-every-finding-from-the-local-skilled.md"
+  ]
+}

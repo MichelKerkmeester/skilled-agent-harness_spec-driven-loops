@@ -9,7 +9,8 @@
     "sk-code/code-surfaces/003-sk-code-obsidian-surface",
     "sk-code/code-surfaces/004-sk-code-mobile-cli-mode",
     "sk-code/code-surfaces/005-sk-code-mobile-cli-deprecation",
-    "sk-code/code-surfaces/006-frontend-upstream-proposals"
+    "sk-code/code-surfaces/006-frontend-upstream-proposals",
+    "sk-code/code-surfaces/007-sk-code-rust"
   ],
   "manual": {
     "depends_on": [],

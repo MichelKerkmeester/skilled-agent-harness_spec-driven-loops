@@ -8,7 +8,7 @@ trigger_phrases:
   - "rust determinism recipes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rust Quick Reference
@@ -23,7 +23,7 @@ Open this when you are starting a Rust kernel or an adapter and want the whole b
 
 Quick-access reference card for Rust compute kernels and their JavaScript boundaries.
 
-Rust supplements the existing TypeScript/Node MCP backend. Keep MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection in TypeScript. Move only measured compute kernels behind narrow napi-rs, WASM/WASI, or sidecar adapters.
+Where Rust supplements an existing TypeScript/Node MCP backend, keep MCP transport, public tool schemas, daemon and CLI wiring, feature flags and fallback selection in TypeScript. An app-style Rust binary with no TypeScript oracle owns its own entry point, per `quality-standards/docs-errors-and-async.md` §Application Entry Point. Move only measured compute kernels behind narrow napi-rs, WASM/WASI, or sidecar adapters.
 
 ### When to Use
 

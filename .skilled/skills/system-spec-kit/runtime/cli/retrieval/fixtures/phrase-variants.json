@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f07eefd0836baf4faba9ef1a5a12e1d465e5c4b3988102a97faf054b6e16be5e",
+  "manifestHash": "16d1860bd458353bf433db9a46971ab1422faf41c615e279ea3704531ced3265",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2073,6 +2073,9 @@
     ],
     "007 shared blocks and retired mechanisms operator decisions": [
       "007-shared-blocks-and-retired-mechanisms operator decisions"
+    ],
+    "007 sk code rust operator decisions": [
+      "007-sk-code-rust operator decisions"
     ],
     "007 sk prompt parent": [
       "007-sk-prompt-parent"
@@ -81638,6 +81641,9 @@
     "open ends research phase parent spec": [
       "open ends research phase parent spec"
     ],
+    "open every routed file": [
+      "open every routed file"
+    ],
     "open findings follow up": [
       "open findings follow up"
     ],
@@ -105067,6 +105073,9 @@
     "review next focus hijack": [
       "review next focus hijack"
     ],
+    "review opens every routed file": [
+      "review opens every routed file"
+    ],
     "review output additions": [
       "review output additions"
     ],
@@ -108520,6 +108529,21 @@
     "rust adapter boundary review": [
       "rust adapter boundary review"
     ],
+    "rust anything research": [
+      "rust anything research"
+    ],
+    "rust anything research synthesis": [
+      "rust anything research synthesis"
+    ],
+    "rust anything source commit": [
+      "rust-anything source commit"
+    ],
+    "rust app routing keywords": [
+      "rust app routing keywords"
+    ],
+    "rust app standards": [
+      "rust app standards"
+    ],
     "rust best practices deep research": [
       "rust best practices deep research"
     ],
@@ -108537,6 +108561,12 @@
     ],
     "rust checklist and playbook authoring": [
       "rust checklist and playbook authoring"
+    ],
+    "rust checklist update": [
+      "rust checklist update"
+    ],
+    "rust cli standards": [
+      "rust cli standards"
     ],
     "rust collections imports and errors": [
       "rust collections imports and errors"
@@ -108586,6 +108616,9 @@
     "rust interop quality gate": [
       "rust interop quality gate"
     ],
+    "rust keyword parser bracket": [
+      "rust keyword parser bracket"
+    ],
     "rust known languages router replay fixtures": [
       "rust known_languages router-replay fixtures"
     ],
@@ -108619,11 +108652,17 @@
     "rust reference purpose": [
       "Rust reference purpose"
     ],
+    "rust references update": [
+      "rust references update"
+    ],
     "rust registration touchpoints outcome": [
       "rust registration touchpoints outcome"
     ],
     "rust review resources": [
       "rust review resources"
+    ],
+    "rust route doc alignment": [
+      "rust route doc alignment"
     ],
     "rust rustdoc and cargo": [
       "rust rustdoc and cargo"
@@ -112346,6 +112385,9 @@
     "shared feedback aggregation": [
       "shared feedback aggregation"
     ],
+    "shared folder by intent": [
+      "shared folder by intent"
+    ],
     "shared frontmatter parser": [
       "shared frontmatter parser"
     ],
@@ -113787,6 +113829,12 @@
     ],
     "sk code 3 12 5 0": [
       "sk-code 3.12.5.0"
+    ],
+    "sk code 3 12 6 0": [
+      "sk-code 3.12.6.0"
+    ],
+    "sk code 3 12 7 0": [
+      "sk-code 3.12.7.0"
     ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
@@ -115246,6 +115294,9 @@
     "sk code review 1 9 18 0": [
       "sk-code-review 1.9.18.0"
     ],
+    "sk code review 1 9 19 0": [
+      "sk-code-review 1.9.19.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -115399,6 +115450,9 @@
     "sk code review v1 9 18 0": [
       "sk-code-review v1.9.18.0"
     ],
+    "sk code review v1 9 19 0": [
+      "sk-code-review v1.9.19.0"
+    ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
     ],
@@ -115459,8 +115513,29 @@
     "sk code routing vocabulary plan": [
       "sk-code routing vocabulary plan"
     ],
+    "sk code rust acceptance criteria": [
+      "sk code rust acceptance criteria"
+    ],
+    "sk code rust goal": [
+      "sk code rust goal"
+    ],
+    "sk code rust implementation summary": [
+      "sk code rust implementation summary"
+    ],
     "sk code rust language support": [
       "sk-code rust language support"
+    ],
+    "sk code rust plan": [
+      "sk code rust plan"
+    ],
+    "sk code rust ranked edits": [
+      "sk code rust ranked edits"
+    ],
+    "sk code rust standards": [
+      "sk code rust standards"
+    ],
+    "sk code rust tasks": [
+      "sk code rust tasks"
     ],
     "sk code scaffold hub": [
       "sk-code scaffold hub"
@@ -115632,6 +115707,12 @@
     ],
     "sk code skilled 2 2 3 0": [
       "sk-code-skilled 2.2.3.0"
+    ],
+    "sk code skilled 2 3 0 0": [
+      "sk-code-skilled 2.3.0.0"
+    ],
+    "sk code skilled 2 3 1 0": [
+      "sk-code-skilled 2.3.1.0"
     ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
@@ -115824,6 +115905,12 @@
     ],
     "sk code skilled v2 2 3 0": [
       "sk-code-skilled v2.2.3.0"
+    ],
+    "sk code skilled v2 3 0 0": [
+      "sk-code-skilled v2.3.0.0"
+    ],
+    "sk code skilled v2 3 1 0": [
+      "sk-code-skilled v2.3.1.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -116040,6 +116127,12 @@
     ],
     "sk code v3 12 5 0": [
       "sk-code v3.12.5.0"
+    ],
+    "sk code v3 12 6 0": [
+      "sk-code v3.12.6.0"
+    ],
+    "sk code v3 12 7 0": [
+      "sk-code v3.12.7.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"

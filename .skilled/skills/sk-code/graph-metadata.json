@@ -89,6 +89,11 @@
     "python",
     "shell",
     "jsonc",
+    "rust",
+    "napi-rs",
+    "ratatui",
+    "crossterm",
+    "clap cli",
     "alignment verifier",
     "add set -euo pipefail",
     "console.error fallback",
@@ -371,7 +376,9 @@
     "ruleset context",
     "trigger-index rebuild",
     "actions concurrency group",
-    "actions cache key"
+    "actions cache key",
+    "clap crate",
+    "clap derive"
   ],
   "derived": {
     "trigger_phrases": [
@@ -679,6 +686,8 @@
     "ruleset context",
     "trigger-index rebuild",
     "actions concurrency group",
-    "actions cache key"
+    "actions cache key",
+    "clap crate",
+    "clap derive"
   ]
 }

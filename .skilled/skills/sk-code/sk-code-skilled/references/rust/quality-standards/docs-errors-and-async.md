@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rustdoc, Error/Panic Translation & Async Patterns
@@ -146,6 +146,7 @@ pub enum RankError {
 - **[P0]** Do not expose unstable debug formatting as a JavaScript error message.
 - **[P0]** Do not use `anyhow` in pure-core public APIs or exported functions.
 - **[P2]** `anyhow` may be used in a sidecar `main`, build tool, or outermost non-ABI application shell.
+- **[P2]** An app-style crate with no ABI boundary, a CLI or a terminal screen whose only consumer is its own binary, may use `anyhow` in every layer. The typed-error rules above govern a public API that adapters or other crates consume (rust-anything uses `anyhow` throughout its library and binary, `Cargo.toml:15`, `src/bridge.rs:11`).
 
 ### Exhaustive Adapter Mapping
 
@@ -214,6 +215,42 @@ pub fn candidate_at(
 - **[P0]** Test native and WASM error parity independently.
 - **[P1]** Test boundary limits and integer conversion failures.
 - **[P0]** Verify that failures return errors instead of aborting, trapping, or terminating the process.
+
+### Application Entry Point
+
+**[P1] An app-style binary maps every outcome to an exit code in one place.** `main` returns `ExitCode` and wraps a fallible `run`. The error path prints the whole context chain to stderr and returns one fixed failure code, so a caller can tell a failure from a success by the code alone (rust-anything, `src/main.rs:824-834`).
+
+```rust
+use std::io::{self, Write};
+use std::process::ExitCode;
+
+/// Prints a line and ignores a closed stdout, as in `app ... | head`.
+macro_rules! say {
+    ($($arg:tt)*) => {{
+        let mut out = io::stdout().lock();
+        let _ = writeln!(out, $($arg)*);
+    }};
+}
+
+fn main() -> ExitCode {
+    match run() {
+        Ok(code) => code,
+        Err(error) => {
+            eprintln!("error: {error:#}");
+            ExitCode::from(2)
+        }
+    }
+}
+
+fn run() -> anyhow::Result<ExitCode> {
+    say!("ready");
+    Ok(ExitCode::SUCCESS)
+}
+```
+
+- **[P1]** Print the error with `{error:#}`, the alternate form, so every `context` layer reaches the reader.
+- **[P1]** Route every stdout print through one macro that discards the write error. `println!` panics when the reader closes the pipe, and a closed pipe is not a failure (rust-anything, `src/main.rs:6-11`).
+- **[P1]** Keep the success and failure codes in the documented process contract, and assert them in the binary's tests.
 
 ---
 

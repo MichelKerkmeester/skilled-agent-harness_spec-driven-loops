@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.2.3.0
+version: 2.3.1.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -23,8 +23,8 @@ Detection has two steps:
   - `.rs` -> Rust
   - `.json`/`.jsonc`/`.yaml`/`.yml` plus `graph-metadata` or `spec-folder` -> config
 
-For Rust, when no `.rs` file is present, local `Cargo.toml`/`Cargo.lock` markers select it after the Skilled surface is established.
-napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-project surface detectors.
+The Rust language selector reads the task text, after the Skilled surface is established. A mention of `.rs`, `Cargo.toml` or `Cargo.lock` selects it.
+So does the binding vocabulary (`napi-rs`, `napi_rs`, `#[napi]`, `wasm-bindgen`, `wasm_bindgen`, `#[wasm_bindgen]`, `wasi`, `cdylib`) or the app-crate vocabulary (`clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui`, `crossterm`). None of these words detects a surface for another project.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
@@ -36,7 +36,7 @@ napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-pro
 
 ## 2. SMART ROUTING
 
-The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
+The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. Through the hub, a doc from the shared tier under `references/shared/` joins only when the matched intent maps it: IMPLEMENTATION loads the five pattern and organization docs, VERIFICATION loads `alignment-verification-automation.md` and HOOKS loads `hooks.md`. A reader who routes inside this packet through [`ROUTER.md`](./ROUTER.md) opens the five pattern and organization docs and `references/shared/workflow-guardrails.md` first, as its `DEFAULT_RESOURCE`.
 
 The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
 
@@ -87,7 +87,7 @@ Language standards — after `.skilled/` selects this surface, load the exact sp
 - Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/style-guide.md`, `references/config/quality-standards.md`, `references/config/quick-reference.md`, `assets/checklists/config-checklist.md`
 - JavaScript (CommonJS/ESM plugins) — `references/javascript/style-guide.md`, `references/javascript/quality-standards/overview-modules-and-docs.md`, `references/javascript/quality-standards/security-testing-and-exemptions.md`, `references/javascript/quick-reference.md`
 
-Language-agnostic shared tier (`references/shared/`, always kept within SKILLED regardless of language):
+Language-agnostic shared tier (`references/shared/`, exempt from the language slice and loaded by the intent that maps each doc):
 - `references/shared/universal-patterns/naming-and-commenting.md`, `references/shared/universal-patterns/organization-security-and-examples.md`, `references/shared/code-organization/overview-and-module-organization.md`, `references/shared/code-organization/imports-and-exports.md`, `references/shared/code-organization/directory-and-test-conventions.md`
 - `hooks.md` — runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability; defer to that file for current hook infrastructure instead of duplicating it here
 - `alignment-verification-automation.md` — the alignment-drift verifier
@@ -136,7 +136,7 @@ Workflow: `references/workflow-implement.md`, `references/workflow-debug.md` and
     It also checks that every surface count matches the surface modes in `mode-registry.json`, and that every file the `ROUTER.md` load-tier prose says loads on every route is in `DEFAULT_RESOURCE`.
     Lines that keep a legacy name on purpose sit in its allowlist with a reason. See `references/shared/alignment-verification-automation.md`.
   The wrapper scans repository content only: the files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. When Git is missing or the hub is not a repository, the orphan-doc walk keeps the full walked list. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
-- **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
+- **Rust preserves the TypeScript contract where there is one.** Rust napi-rs, WASM/WASI and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs and error shapes must remain identical to the TypeScript oracle. An app-style Rust binary with no TypeScript oracle, such as a CLI or a terminal screen, is the authority for its own behavior: its contract is its output and exit code, and the parity rules apply only where it is checked against an original.
 - **Touched-language set, not one-per-task.** Most `.skilled/` tasks touch a single language. Keep that slice tight and use the shared tier for cross-language rules.
 
 An interop task that spans a language pair, such as a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle, legitimately touches both languages.

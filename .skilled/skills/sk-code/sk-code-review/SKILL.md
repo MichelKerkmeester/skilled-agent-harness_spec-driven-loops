@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.18.0
+version: 1.9.19.0
 metadata:
   family: sk-code
 ---
@@ -271,7 +271,7 @@ The `Write` entry in this file's `allowed-tools` exists for that cache file alon
 
 ### Reference Loading Notes
 
-- Load only the references needed for the selected intents.
+- Load only the references needed for the selected intents, then open every file the hub route selects for the surface and each detected language, `quick-reference` parts included. A review that touches two languages, such as a Rust binding and its TypeScript client, applies both sets.
 - Routing authority: the hub's `SKILL.md` section 2 names `hub-router.json` as the mode vocabulary and `ROUTER.md` as the leaf-set router. This packet's `INTENT_SIGNALS`, `RESOURCE_MAP` and `DEFAULT_RESOURCES` live in its [`ROUTER.md`](./ROUTER.md) section 3.
 
 ---

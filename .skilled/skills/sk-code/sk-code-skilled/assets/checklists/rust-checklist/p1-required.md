@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust interop quality gate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # P1 — Required
@@ -187,18 +187,22 @@ indexing_slicing = "deny"
 
 Use `deny`, not `forbid`, so an exceptional local suppression remains possible after review.
 
+A state the original also treats as impossible is reviewed the same way. Keep the call and suppress the lint on the smallest item with `#[expect(clippy::expect_used, reason = "infallible: <why>")]`, so the reason sits where a reviewer reads it (rust-anything marks the same case with a `// INFALLIBLE: <why>` comment, `skills/rust-anything/SKILL.md:245-246`).
+
 ### Narrow Lint Suppressions
 
 ```markdown
-- [ ] Every lint suppression is narrow and includes a durable reason
+- [ ] Every lint suppression is narrow, prefers `#[expect]` and includes a durable reason
 ```
 
-**Evidence**: List all new or changed `allow` attributes and the contract-specific reason for each.
+**Evidence**: List all new or changed `expect` and `allow` attributes and the contract-specific reason for each.
+
+Prefer `#[expect]` over `#[allow]`. The compiler reports an expectation that no longer fires, so a stale suppression cannot outlive its reason (rust-anything, `skills/rust-anything/SKILL.md:151-152`). Keep `#[allow]` for a lint that fires on only some targets or feature sets, where an expectation would go unfulfilled on the others.
 
 **Approved pattern**:
 
 ```rust
-#[allow(
+#[expect(
     clippy::float_cmp,
     reason = "Exact equality is required by the serialized parity fixture"
 )]

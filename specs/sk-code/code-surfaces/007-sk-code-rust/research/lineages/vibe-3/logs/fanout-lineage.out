@@ -1,0 +1,15 @@
+Lineage complete. Eight iterations, all recorded through the append gateway (ledger sequences 2-9) with the reducer run after each; 109 findings, 5 of 5 key questions resolved, 0 open, 0 corruption warnings.
+
+**What the research established**
+
+- **Root cause is a scope statement, not an omission.** `overview-and-p0-parity.md:42` assigns "daemon and CLI wiring" to TypeScript by name, which is why `clap`, `ratatui` and `crossterm` are absent from a 6,642-line Rust set. Every other app-style gap follows from that sentence.
+- **The app rules exist in rust-anything** — in `whole-app.md` (the whole-app workflow), not `SKILL.md` (the per-function rules). Reading the two as one document is what produced an earlier wrong conclusion, corrected in iteration 5.
+- **Seventeen ranked edits in four tiers**, each naming a target section verified to exist and a rust-anything line verified to say what the row claims. Rank 1 unblocks the app case, rank 2 is correctness risk, rank 3 is app mechanics.
+- **One row cannot be traced to rust-anything.** The five ratatui/crossterm rules have no source — `grep -rl` over the whole repository returns zero files. Row 17 is marked unsourced with the reason named, which is what the packet's completion criterion allows.
+- **Four places sk-code is already stronger** than rust-anything: the six-lint deny list, `--locked`, the supply-chain gate, the golden-provenance record. The work is additive.
+
+Four self-corrections are recorded in `research.md` §5 so no applied edit inherits an overstated claim. The one condition that touched every iteration — the canonical rust-anything path being gitignored and absent — is recorded as a missing-dependency edge case and prevented no finding.
+
+Files: `research.md`, `iterations/iteration-001.md` … `iteration-008.md`, `deltas/iter-001.jsonl` … `iter-008.jsonl`, plus gateway-owned state and reducer-owned strategy, registry and dashboard. No write escaped the lineage directory; `graph-metadata.json` was modified at 12:53, before this session started.
+
+FANOUT_LINEAGE_COMPLETE:vibe-3

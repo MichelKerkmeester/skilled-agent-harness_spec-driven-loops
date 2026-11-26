@@ -1,0 +1,59 @@
+{
+  "run_id": "1795694320828-so5yva",
+  "loop_type": "research",
+  "spec_folder": "specs/sk-code/code-surfaces/007-sk-code-rust",
+  "base_artifact_dir": "specs/sk-code/code-surfaces/007-sk-code-rust/research",
+  "total_cli_lineages": 3,
+  "orphaned_lineages": [],
+  "total": 3,
+  "succeeded": 1,
+  "failed": 2,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 2
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 2,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "lineages": [
+    {
+      "label": "vibe-1",
+      "status": "succeeded",
+      "failure_class": null,
+      "exit_code": 0,
+      "rerun_command": null
+    },
+    {
+      "label": "vibe-2",
+      "status": "failed",
+      "failure_class": "exit",
+      "exit_code": 3,
+      "rerun_command": "/Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/sk-code/code-surfaces/007-sk-code-rust --loop-type research --research-topic-file /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research/fanout-research-topic.txt --fanout-config-json-file /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research --convergence-threshold 0.05 --stop-policy convergence --convergence-mode default --depth-mode default --max-iterations 8 --only-lineage vibe-2"
+    },
+    {
+      "label": "vibe-3",
+      "status": "failed",
+      "failure_class": "exit",
+      "exit_code": 0,
+      "rerun_command": "/Users/michelkerkmeester/.nvm/versions/node/v26.13.0/bin/node /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder specs/sk-code/code-surfaces/007-sk-code-rust --loop-type research --research-topic-file /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research/fanout-research-topic.txt --fanout-config-json-file /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research/fanout-config.json --base-artifact-dir /Users/michelkerkmeester/worktrees/public/546-sk-code-rust/specs/sk-code/code-surfaces/007-sk-code-rust/research --convergence-threshold 0.05 --stop-policy convergence --convergence-mode default --depth-mode default --max-iterations 8 --only-lineage vibe-3"
+    }
+  ],
+  "provider_cost_usd": {
+    "total": null,
+    "by_lineage": {
+      "vibe-1": null,
+      "vibe-2": null,
+      "vibe-3": null
+    }
+  }
+}

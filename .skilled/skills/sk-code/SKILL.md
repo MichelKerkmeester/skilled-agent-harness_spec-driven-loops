@@ -1,8 +1,8 @@
 ---
 name: sk-code
-description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
+description: "Implement, debug and verify code: TypeScript, Python, shell, Rust, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.12.5.0
+version: 3.12.7.0
 metadata:
   family: sk-code
 ---
@@ -42,7 +42,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 |---------|---------|--------|
 | **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates, with the repository-specific values read from a CI profile. Read-only. | `sk-code/sk-code-ci/` |
 | **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, web layout and accessibility, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
-| **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
+| **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/Rust/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 
 **Surface list.** The hub has exactly three surfaces:
 - SKILLED (`sk-code-skilled`): the native surface for this framework's own code.

@@ -84,6 +84,7 @@ and findings belong here.
 | Generation 3 deep research (codex luna xhigh, 10 iters) | Done | maxIterationsReached; research.md: 2 P2 + 2 P3 in window, 3 pre-existing, 2 rejected; no fixes |
 | Alias fallout fix and merge of worktree 547 | done | main 76dde2351f8, link guard 0 broken, deep-loop 4069/0, spec-kit CLI 2725/0 |
 | Fixed the two pre-existing red workflows on main | done | deep-loop 4071/0 detached, skill-root and graph checks 0, corpus pins match and floors hold |
+| Republished v4.2.0.0 on the all-green c530dbea1aa | done | 19/19 runs success, tag object 4f74bf94758, release body matches the notes |
 
 ### Deviations and findings
 

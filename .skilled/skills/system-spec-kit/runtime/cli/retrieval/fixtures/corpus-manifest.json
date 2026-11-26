@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d92e812f3c13d23b0d88b883a3087ee0974b4248ef698508918e27d44a1907a3",
+  "corpusHash": "26cdd150dd5484d1aec50ab34d8a583e63cdd65e97acd4c83c27ced56a7df1a2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 30078,
+  "includedPathCount": 30092,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3124,6 +3124,8 @@
     ".skilled/skills/sk-code/changelog/v3.12.3.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.12.5.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.6.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.7.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3183,6 +3185,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-javascript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-shell.md",
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
@@ -3416,6 +3419,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.16.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.17.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.19.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -3549,6 +3553,8 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.3.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.3.0.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.3.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -13870,6 +13876,14 @@
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/decision-record.md",
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/goal.md",
     "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/spec.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/acceptance-criteria.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/decision-record.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/goal.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/implementation-summary.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/plan.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/research/research.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/spec.md",
+    "specs/sk-code/code-surfaces/007-sk-code-rust/tasks.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/hub-architecture/001-sk-code-parent/001-research-and-context/research/research.md",
@@ -30110,7 +30124,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f07eefd0836baf4faba9ef1a5a12e1d465e5c4b3988102a97faf054b6e16be5e",
+  "manifestHash": "16d1860bd458353bf433db9a46971ab1422faf41c615e279ea3704531ced3265",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34894,6 +34908,14 @@
     },
     {
       "path": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/010-reference-readability-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/code-surfaces/007-sk-code-rust/scratch",
       "reason": "excluded directory"
     },
     {

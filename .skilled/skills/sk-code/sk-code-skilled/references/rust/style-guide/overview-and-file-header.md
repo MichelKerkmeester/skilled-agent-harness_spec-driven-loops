@@ -8,7 +8,7 @@ trigger_phrases:
   - "rust typescript interop style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rust Style Guide
@@ -39,7 +39,7 @@ The primary requirement is not merely idiomatic Rust. Rust implementations MUST 
 1. **The interop boundary is a stability contract.**
    - Exported names, DTO fields, optionality, discriminants, numeric representations, buffer ownership, generated declarations, error codes, messages, and throw-versus-rejection behavior are versioned contracts.
    - Contract protected: **DTO/ABI and JavaScript error-shape parity**.
-   - Keep MCP transport, public tool schemas, daemon wiring, feature flags, and fallback selection in TypeScript.
+   - Where a TypeScript backend owns the process, keep MCP transport, public tool schemas, daemon wiring, feature flags and fallback selection in TypeScript.
    - Keep napi-rs, wasm-bindgen, Node handles, and runtime values out of the pure core.
 
 2. **Determinism means byte-for-byte TypeScript parity.**

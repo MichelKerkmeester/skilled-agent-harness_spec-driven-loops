@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.26.0
+version: 2.3.28.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -86,7 +86,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 | Tier | When | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | The §8 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-implement.md` with IMPLEMENTATION, `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
-| SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
+| SURFACE | After SKILLED detection | The matched intents' `sk-code-skilled/` resources. A doc from `sk-code-skilled/references/shared/` joins only when IMPLEMENTATION, VERIFICATION or HOOKS maps it |
 | SURFACE | When the hub bundles `sk-code-ci` | The four rule references under `sk-code-ci/references/`, as the CI Workflow Map in §4 lists |
 | SURFACE | When the hub bundles `sk-code-frontend` | `sk-code-frontend/references/frontend-practice.md` plus the topic references the matched frontend intent maps, as the Frontend Map in §4 lists |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
@@ -222,6 +222,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 ### DO
 
 - Load only references needed for current intent + surface
+- Open every file the route selects before naming the standards you applied. "Needed" decides what the route selects, never which selected files you skip. A task that touches two languages opens every routed part of both sets, each `quick-reference` part included
 - Use exact canonical file paths in playbook result YAML (never directory placeholders)
 - Cite surface + top-1 intent + loaded resource paths + verification command in your final answer
 
@@ -263,7 +264,7 @@ INTENT_SIGNALS = {
     "TYPESCRIPT":         {"weight": 1, "keywords": ["typescript", ".ts", ".tsx"]},
     "PYTHON":             {"weight": 1, "keywords": ["python", ".py", "docstring"]},
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
-    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
+    "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "clap cli", "clap crate", "clap derive", "clap::", "ratatui", "crossterm", "#[napi]", "#[wasm_bindgen]"]},
     "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow", "runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key", "ci job", "action to a sha", "sha-pinned action"]},
     "FRONTEND_WEB":        {"weight": 4, "keywords": ["semantic html markup", "with css", "the stylesheet", "css file", "ui component", "frontend component", "form inputs", "form styling", "style the form"]},
     "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute", "modal dialog"]},
@@ -464,7 +465,7 @@ The router does NOT load the whole matched-intent union. After surface detection
 
 - It does not load another surface's resources.
 - It defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice.
-- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders.
+- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*`, not the Python, shell, config, or JavaScript folders. The language-agnostic `sk-code-skilled/references/shared/*` docs are exempt from this slice and join only when a matched intent maps them.
 - An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map.
 
 This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.

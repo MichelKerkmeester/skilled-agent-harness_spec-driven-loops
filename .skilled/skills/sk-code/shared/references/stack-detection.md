@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.17.0
+version: 2.2.19.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -154,12 +154,12 @@ Whenever SKILLED is detected, as the leading surface or as second evidence, sele
 | TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `sk-code-skilled/references/typescript/` |
 | PYTHON | `.py` | `sk-code-skilled/references/python/` |
 | SHELL | `.sh`, `.bash` | `sk-code-skilled/references/shell/` |
-| RUST | `.rs`, then the `Cargo.toml` or `Cargo.lock` markers and napi-rs or wasm-bindgen vocabulary | `sk-code-skilled/references/rust/` |
+| RUST | `.rs`, then the `Cargo.toml` or `Cargo.lock` markers, the binding vocabulary (`napi-rs`, `napi_rs`, `#[napi]`, `wasm-bindgen`, `wasm_bindgen`, `#[wasm_bindgen]`, `wasi`, `cdylib`) and the app-crate vocabulary (`clap cli`, `clap crate`, `clap derive`, `clap::`, `ratatui`, `crossterm`). Any one of them is enough | `sk-code-skilled/references/rust/` |
 | CONFIG | `.json`, `.jsonc`, `.yaml`, `.yml` | `sk-code-skilled/references/config/` |
 
-When a task touches more than one language, load the shared guidance in `sk-code-skilled/references/shared/` plus the quick reference and checklist of each touched language.
+When a task touches more than one language, each touched language keeps its routed reference folders and every untouched language folder drops out. The language count never selects `sk-code-skilled/references/shared/`: the hub route adds a doc from that folder only for an intent that maps it, IMPLEMENTATION, VERIFICATION or HOOKS. Checklists load through the quality selector for the files under review.
 
-Rust never overrides another language. A napi-rs or WASM parity task that touches `.rs` and `.ts` loads both trios plus the shared guidance, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
+Rust never overrides another language. A napi-rs or WASM parity task that touches `.rs` and `.ts` loads both trios, every routed part of each, `quick-reference` included, because the Rust module must match its TypeScript oracle byte for byte. The Cargo markers count only after SKILLED is detected, never as a signal for another project's surface.
 
 YAML is live hub config: command routers, workflow contracts and each command's auto and confirm assets.
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Byte-for-Byte Determinism & Parity
@@ -28,6 +28,7 @@ Defines byte-for-byte parity as the acceptance standard and enumerates the numer
 - Reviewing numeric rounding, sorting, identifier or map-order behavior
 - Adding the parity test inventory for a new boundary
 - Checking a cross-target release matrix
+- Proving a port of a non-TypeScript program against its recorded behavior
 
 ---
 
@@ -47,6 +48,8 @@ pub fn assert_byte_parity(
 ```
 
 Semantic comparisons may help diagnose a mismatch, but they do not satisfy parity.
+
+A port of a program that has no TypeScript oracle is held to the original's recorded behavior instead, per §Porting Against a Recorded Original.
 
 ### Numeric Contracts
 
@@ -211,6 +214,11 @@ pub fn deterministic_id(
 - **[P0]** Do not accept semantic JSON equality as release evidence.
 - **[P1]** Provide diagnostic structural diffs in addition to the authoritative byte diff.
 
+**`serde_json` features:**
+
+- **[P1]** Where recorded or golden JSON holds floats that Rust parses, enable `serde_json`'s `float_roundtrip` feature, so every float parses back to the same bits (rust-anything, `Cargo.toml:28-29`).
+- **[P1]** Enable `preserve_order` only where a `serde_json::Value` must keep the original's key order. Cargo turns a feature on for every crate in the build that shares the dependency, so first check that no other crate in the build relies on a `Value` sorting its keys. Typed structs serialize in field order either way.
+
 ### Cross-Target Parity Matrix
 
 | Path | Required Evidence | Severity |
@@ -245,6 +253,24 @@ NAPI_RS_FORCE_WASI=error npm test
 - **[P1]** `error_parity.rs`
 
 Every parity failure is a compatibility defect until the TypeScript contract is intentionally changed and all consumers, fixtures, declarations, and boundaries are updated together.
+
+### Porting Against a Recorded Original
+
+**[P0] When a Rust port replaces a program that is not a TypeScript oracle, the original's recorded behavior is the oracle.** Record what the original does as cases of input and output, then compare the port against those cases (rust-anything, `skills/rust-anything/whole-app.md:232-236`). Where TypeScript is the oracle, the rules above apply unchanged.
+
+- **[P0]** A mismatch is a bug in the port, never in the cases. Change a recorded case only with the owner's approval, and record why.
+- **[P0]** `cargo test` passing with no tests proves nothing. The recorded cases are the proof (rust-anything, `skills/rust-anything/SKILL.md:149-150`).
+- **[P1]** After writing cases for a behavior, check that the recording holds them, then break the port once and watch the comparison fail (rust-anything, `docs/pitfalls.md:112-116`).
+- **[P1]** Commit the replay report and keep timings and temporary paths out of it, so two runs of the same build write the same file. Run `git diff --exit-code` on it in CI, so any change in what passes, better or worse, fails CI until the report is updated (rust-anything, `docs/whole-apps.md:120-123`).
+- **[P1]** While the port still hands some cases back to the original, the share of those fallback cases only goes down (rust-anything, `skills/rust-anything/whole-app.md:152-153`).
+
+**[P0] A port passes by porting, never by gaming the cases.** Review every change for the three ways a port can pass without porting anything (rust-anything, `docs/how-it-works.md:225-241`):
+
+- **[P0]** No recorded argument or result is written into the port's own code. A value the original really takes from a library stays, with a `// recorded-literal: <reason>` comment on its line so a reviewer can tell it from a hard-coded answer (rust-anything, `DECISIONS.md:48`).
+- **[P0]** No fewer tests or assertions, and no more ignored tests, than at the last passing run.
+- **[P0]** No recorded case is edited or removed. Cases appended after the recorded ones are fine.
+
+**[P1] A float tolerance forgives rounding only.** When the owner accepts that a ported numeric routine cannot match bit for bit, compare floats within an agreed tolerance. Integers, strings and the spelling of a number, such as `3` against `3.0`, still match exactly, and a tolerance is never widened to make a mismatch go away (rust-anything, `skills/rust-anything/SKILL.md:210-215`). No tolerance applies at a napi-rs, WASM or sidecar boundary held to the TypeScript oracle, where the byte-for-byte rule above holds.
 
 ---
 
