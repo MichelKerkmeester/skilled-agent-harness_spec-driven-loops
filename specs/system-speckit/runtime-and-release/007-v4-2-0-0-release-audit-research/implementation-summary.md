@@ -244,6 +244,25 @@ Two workflows had failed on every `main` run since `98b712cd248`, and the operat
 | The compiled `skill-graph.json` lacked the `in aside` signal from `1ad6a392b3d`. CI never reached this step | The operator approved the reindex, `skill_graph_compiler.py --export-json` | `skill-graph-freshness.cjs --strict` exits 0 |
 
 Every other step of the routing guard passes locally. The skill advisor suite passes 3547 with 1 failure, a local `system-skilled-bots` skill with an empty description that has no tracked files.
+
+### Unsaved operator answers
+
+`match-decision-table.js --scan-orphans` lists 23 earlier sessions whose 120 captured answers reached no decision record, because each session ended without a save. The operator chose to report them, not record them. The likely packet comes from a `session_ref` or handoff note that names the session. Each packet owner records its answers on that packet's next `/speckit:save`.
+
+| Likely packet | Sessions | Answers |
+|---------------|----------|---------|
+| `specs/system-skilled-bots/001-headless-bots-first-build` | 5 | 51 |
+| `specs/mcp/mcp-browser-use/001-mcp-browser-use-hub` and its children 013 and 014 | 3 | 31 |
+| `specs/sk-doc/authoring-modes-and-playbooks/007-playbook-run-recording/002-playbook-marker-backfill` | 1 | 9 |
+| `specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/070-opencode-v1-removal` | 1 | 5 |
+| `specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers` | 3 | 4 |
+| `specs/sk-code/code-surfaces/007-sk-code-rust` | 2 | 3 |
+| `specs/system-skilled-doctor/008-own-all-doctor-commands` | 1 | 2 |
+| This packet, session `d72bb3f6` | 1 | 2 |
+| `specs/sk-doc/document-standards/006-readme-template-conformance/011-readme-guards` | 1 | 1 |
+| Not traceable: `0352ae70`, `15b479d3`, `34470899`, `5704bf0b`, `617b2600` | 5 | 12 |
+
+The open items left by the fix pass are closed. The `mcp-browser-use` v1.1.4.0 changelog carries the same "Correction, added later" lines as `sk-doc` v2.10.1.0. The `sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout` continuity record was rewritten through the writer and now reads `ok`. An older copy of that block in its `spec.md` frontmatter, which the writer no longer maintains, is left as recorded. The active `gh` account was switched to `MichelKerkmeester` on the operator's instruction, and `gh auth switch --user michelkerkmeester-barter` restores it.
 <!-- /ANCHOR:verification -->
 
 ---
