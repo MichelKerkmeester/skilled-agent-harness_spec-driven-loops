@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T17:52:49Z"
+    last_updated_at: "2026-11-26T18:09:30Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed the four causes behind the two pre-existing red workflows on main"
-    next_safe_action: "Verify every CI workflow on the pushed fix concludes success"
+    recent_action: "Republished v4.2.0.0 on c530dbea1aa after main went fully green"
+    next_safe_action: "Close the session, since the packet and the release are complete"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
@@ -21,17 +21,17 @@ _memory:
       - "tasks.md"
       - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:e807d048f73878d398fc994ade5851e085035134424b2eba4b54a58aa733e05e"
+      fingerprint: "sha256:f4f407551239ab18fdb8a6228b79722d506dc30aede2fdf2690552c737a48dbb"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "2e5ce85f-4d66-468e-98a7-a671d4e5d012"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T17:52:49Z"
+      savedAt: "2026-11-26T18:09:30Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,7 @@ _memory:
 | **Spec Folder** | 007-v4-2-0-0-release-audit-research |
 | **Completed** | 2026-11-25 |
 | **Level** | 1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
