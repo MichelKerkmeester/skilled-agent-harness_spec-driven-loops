@@ -8,18 +8,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T17:01:11Z"
+    last_updated_at: "2026-11-26T17:52:49Z"
     last_updated_by: "generate-context"
-    recent_action: "Merged worktree 547 into main with the alias fallout fix"
-    next_safe_action: "Verify every CI workflow on the pushed merge concludes success"
+    recent_action: "Fixed the four causes behind the two pre-existing red workflows on main"
+    next_safe_action: "Verify every CI workflow on the pushed fix concludes success"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - "spec.md"
       - "acceptance-criteria.md"
       - "implementation-summary.md"
-      - "decision-record.md"
+      - "spec.md"
       - "tasks.md"
+      - "decision-record.md"
     session_dedup:
       fingerprint: "sha256:e807d048f73878d398fc994ade5851e085035134424b2eba4b54a58aa733e05e"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
@@ -28,7 +28,7 @@ _memory:
       runtime: "claude"
       sessionId: "2e5ce85f-4d66-468e-98a7-a671d4e5d012"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T17:01:11Z"
+      savedAt: "2026-11-26T17:52:49Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95
@@ -231,6 +231,19 @@ Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and three workflows on 
 One CLI run listed packet docs under its guard for changed paths. Those were edits made while it ran, and the rerun on a still tree passed. A frozen benchmark report still holds a `.skilled/specs` path inside captured command output, and it stays as recorded.
 
 CI on the pushed merge found one more reader the scan of `.skilled/` could not see. A step in `.github/workflows/routing-registry-drift.yml` runs under `.opencode/skills/system-skill-advisor/runtime`, where `.opencode/skills` links to `.skilled/skills`, so its `../../../specs/` landed on the removed alias. It now climbs four levels. Run locally, the old path raises the same FileNotFoundError as CI, and the new one reaches the file and stops at the corpus pin check that already failed on `31821cee5d7`.
+
+### Pre-existing red workflows
+
+Two workflows had failed on every `main` run since `98b712cd248`, and the operator chose to fix them here, on `main`. Each cause was reproduced before its fix.
+
+| Cause | Fix | Check |
+|-------|-----|-------|
+| The `--claude-config-dir` research cases put the artifact folder outside any git worktree, so the dispatcher's containment refusal exited 64. The cases skip under Claude Code, so only CI ran them | The fixture builds its own git worktree with the packet inside it | Run detached from Claude: 2 failed before, 48 of 48 after. The whole suite passes 4071, 0 failed |
+| `system-skilled-doctor/leaf-aliases.json` missed the alias for a playbook file added in `85e9f28d788` | `ci-skill-root-metadata.cjs --fix` | The three skill-root checks exit 0 |
+| The `mcp-browser-use` relabel in `6a5e1048ea5` left both corpus pins stale | Recaptured the six baseline files with their own scripts at `0d0f0b4b9d1` | Pins match and every CI floor holds. Advisor accuracy moved from 114 to 113 of 196, TT from 111 to 110 and holdout top-3 from 50 to 48 of 63 |
+| The compiled `skill-graph.json` lacked the `in aside` signal from `1ad6a392b3d`. CI never reached this step | The operator approved the reindex, `skill_graph_compiler.py --export-json` | `skill-graph-freshness.cjs --strict` exits 0 |
+
+Every other step of the routing guard passes locally. The skill advisor suite passes 3547 with 1 failure, a local `system-skilled-bots` skill with an empty description that has no tracked files.
 <!-- /ANCHOR:verification -->
 
 ---

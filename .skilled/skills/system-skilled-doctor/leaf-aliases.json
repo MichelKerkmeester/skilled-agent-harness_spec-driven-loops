@@ -361,6 +361,11 @@
   },
   {
     "workflowMode": "system-skilled-doctor",
+    "leafResourceId": "manual-testing-playbook/overlays/removed-items-leave-the-file.md",
+    "diskPath": "manual-testing-playbook/overlays/removed-items-leave-the-file.md"
+  },
+  {
+    "workflowMode": "system-skilled-doctor",
     "leafResourceId": "manual-testing-playbook/overlays/sibling-folder-relayout.md",
     "diskPath": "manual-testing-playbook/overlays/sibling-folder-relayout.md"
   },

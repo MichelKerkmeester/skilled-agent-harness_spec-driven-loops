@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "artifact": "routing-baseline",
-  "purpose": "The hash-pinned routing-accuracy + compiler baseline the routing-registry-drift workflow gates against. Recaptured on 2026-11-19 after the pasted-reply strip added one labeled row and a merge removed one holdout row, which left both pins stale.",
-  "capturedAt": "2026-11-19",
-  "capturedAtSha": "4c7de105e2d",
+  "purpose": "The hash-pinned routing-accuracy + compiler baseline the routing-registry-drift workflow gates against. Recaptured on 2026-11-26 after the mcp-browser-use hub took over the browser rows in 6a5e1048ea5, which relabeled nine rows from mcp-tooling and left both pins stale.",
+  "capturedAt": "2026-11-26",
+  "capturedAtSha": "0d0f0b4b9d1",
   "captureRegime": {
     "projectionSource": "filesystem",
     "env": {
@@ -18,11 +18,11 @@
   "corpus": {
     "labeled-prompts.jsonl": {
       "rows": 196,
-      "sha256": "18bc5977180a722ec3967559fee4dd379f2a2e9404fa9e687304bfe5a0598fe1"
+      "sha256": "b14b53ed211a5a5f9c871ecb4e10126ac36a8c7c687a8d6f1ba39ffa4ca2c7cb"
     },
     "holdout-prompts.jsonl": {
       "rows": 63,
-      "sha256": "918265c278fd51fe5198d2a88df357ed40f5bab8d9a14298ae4e7dac6c7b3b21"
+      "sha256": "a6aa180c56b5f202e093fe1535a510bf54d24375843350edd6abc4b45edda382"
     },
     "ambiguity-prompts.jsonl": {
       "rows": 24,
@@ -80,9 +80,9 @@
           "accuracy": 0.8065
         },
         "memory_save": {
-          "correct": 28,
+          "correct": 27,
           "total": 32,
-          "accuracy": 0.875
+          "accuracy": 0.8438
         },
         "delegation": {
           "correct": 22,
@@ -95,9 +95,9 @@
     "top1_score_routing_corpus": {
       "source": "routing-accuracy/score-routing-corpus.py --dataset labeled-prompts.jsonl",
       "note": "A different top-1 definition (advisor accuracy over the 195-row corpus, counting missed/wrong/false fires) — captured verbatim, not reconciled here.",
-      "advisor_accuracy": 0.5816,
+      "advisor_accuracy": 0.5765,
       "missed_skill_fires": 42,
-      "wrong_skill_fires": 35,
+      "wrong_skill_fires": 36,
       "false_fires_on_none": 5,
       "gate3": {
         "precision": 0.9844,
@@ -109,8 +109,8 @@
         "tn": 66
       },
       "joint": {
-        "TT": 111,
-        "TF": 81,
+        "TT": 110,
+        "TF": 82,
         "FT": 3,
         "FF": 1
       },
@@ -125,9 +125,9 @@
         "accuracy": 0.9031
       },
       "holdout_top3": {
-        "correct": 50,
+        "correct": 48,
         "total": 63,
-        "accuracy": 0.7937
+        "accuracy": 0.7619
       },
       "definition": "gold skill_top_1 label present among the top 3 ranked recommendations (alias-aware match, same regime as top-1)",
       "evidence": "capture-top3.json"
