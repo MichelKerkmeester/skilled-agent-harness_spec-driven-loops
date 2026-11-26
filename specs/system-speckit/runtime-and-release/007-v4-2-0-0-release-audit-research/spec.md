@@ -63,6 +63,7 @@ HEAD was `c75200c504a` when this was measured.
 - Amended 2026-11-25 on the operator's instruction: fix the confirmed bugs first, then update the release notes.
 - Amended 2026-11-25 on the operator's instruction: a second, native deep-research run of ten iterations audits the v4.2.0.0 logic and features for bugs, drift and bad UX. The first run's state is archived under `research_archive/20261125T162358Z/`, and `research/research.md` is the second run's synthesis.
 - Amended 2026-11-25 on the operator's instruction ("fix all", scope "Everything"): fix every defect in `research/research.md` sections 2, 4 and 12 in worktree `545-v4-2-audit-fixes`, with a regression test for each behavior change. Two items stay unchanged on purpose: f-iter005-003 is pinned by design in `deep-loop-offer-cases.json:123`, and f-iter009-003 has no shown consequence. The `run_extended` lineageId is checked and changed only if a reader breaks on it.
+- Amended 2026-11-26 on the operator's instruction ("After fixing dependabot", then "Fix all three groups", "Fix it and merge", "Dismiss as not used" and "Fix all three, then re-tag"): before the tag moves again, close every open Dependabot alert on `main`, merge Dependabot PR 108, and fix the three CI checks that already failed on `main`. Work on `main`.
 
 ### Out of Scope
 - Release-note edits beyond the confirmed findings, the reorder and the section openings the operator asked for.
@@ -93,6 +94,13 @@ HEAD was `c75200c504a` when this was measured.
 | `.skilled/bin/skilled-loop` | Modify | The non-Claude goal-hop warning is true and names the next step |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modify | Provisioning checks that the skill-graph database is usable and prints the scan's reason on failure |
 | Tests beside each changed file | Modify or Create | One regression test per behavior change |
+| `.skilled/skills/system-spec-kit/package-lock.json`, `.skilled/skills/mcp-code-mode/mcp-server/package-lock.json` | Modify | hono moves to 4.13.22, past the five advisories fixed in 4.13.16 |
+| `.skilled/package.json`, `.skilled/package-lock.json`, both `.pi/extensions/*/package-lock.json`, `.pi/extensions/pi-fast-mode-w-subagent-support/package.json` | Modify | Dependabot PR 108's dev dependency group, merged |
+| `.skilled/scripts/git-hooks/tests/pre-push.test.sh` | Modify | The Commit-Id fixture repository names its branch `main` at init |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modify | The frozen README manifest is regenerated with its own `--write` command |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Modify | The completed-session check asserts no routing to the extend step, not the absence of the word |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/helpers/upgrade-legacy-harness.ts`, `upgrade-legacy-refresh-markers.vitest.ts`, `upgrade-legacy-host-root.vitest.ts` | Modify | The copied dist is stamped strictly newer than its backdated sources, and the refresh-markers copy skips `.workflow-lock` |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/workflow-invariance.vitest.ts` | Modify | The sentinel's temp folder moves out of the checked-in tree |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -115,6 +123,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-003 | Every finding reported to the operator was re-checked in the repository | Each reported finding names the command or file read that confirmed it, or it is marked unconfirmed |
 | REQ-004 | Every defect in scope is fixed at its source | Each finding id in `research/research.md` sections 2, 4 and 12, except the two left on purpose, has a `Met` row in `acceptance-criteria.md` that names its test or reproduction |
 | REQ-005 | No regression in the suites the fixes touch | Each touched suite passes in full, with the before and after counts recorded in `implementation-summary.md` |
+| REQ-006 | The tag moves only onto a `main` with no open Dependabot alert and green CI | The Dependabot alerts API lists no open alert, PR 108 reads MERGED, and every workflow run on the tagged commit concludes `success` |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -8,28 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T04:18:43Z"
+    last_updated_at: "2026-11-26T07:21:48Z"
     last_updated_by: "generate-context"
-    recent_action: "Synced the tasks.md verification counts"
-    next_safe_action: "None; packet complete"
+    recent_action: "Fixed Dependabot alerts and main CI"
+    next_safe_action: "Verify green CI, then move the v4.2.0.0 tag"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs"
-      - ".skilled/changelog/skilled/v4.2.0.0.md"
-      - "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/tasks.md"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/helpers/upgrade-legacy-harness.ts"
+      - ".skilled/scripts/git-hooks/tests/pre-push.test.sh"
+      - ".skilled/skills/system-spec-kit/package-lock.json"
+      - "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/acceptance-criteria.md"
     session_dedup:
-      fingerprint: "sha256:797dd22f5319302c3786a75319d1b3d405245f87d84ef14ae94c20d3f4f40ff2"
+      fingerprint: "sha256:c7c16c56526e8f8b61900bced8a8b4f42d0d8fbad9122aab9f21ae1f7e1f9094"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "1cf09172-5a54-4491-b11f-0d1deee0fd05"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T04:18:43Z"
+      savedAt: "2026-11-26T07:21:48Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -169,6 +170,22 @@ A second pass on `main` closed the last open drift after the merge.
 | Quality gate | `quality-gate.cjs --files` on both changed files: `NO_BLOCKER_FOUND`, 0 P0, 0 P1, 0 P2 |
 | Dist rebuild | `npm run build` in `runtime/cli` and `runtime` exit 0. `hook-session-stop.vitest.ts` 32 of 32. The compiled hook imports and `acquireCanonicalSaveLock` resolves as a function |
 | Release notes | `check_changelog_shape.py` PASS, `hvr_scan.py` 0 hard blockers with the same soft count as before the edit, `validate_document.py` VALID |
+
+### Dependabot and CI pass on main
+
+The operator asked to fix Dependabot before the tag moved again. That covered the alerts, PR 108, and the three CI checks that already failed on `main`.
+
+| Check | Result |
+|-------|--------|
+| hono alerts | hono 4.13.22 in both lockfiles. `npm ci` under Node 24 (the code-mode server's engine) installs, and the server answers `initialize` with 8 tools. The spec-kit typecheck exits 0 |
+| Pip alerts | The 12 `uv.lock` manifests are untracked since `00c5a5b1a25`, so they were dismissed as not used rather than edited |
+| PR 108 | Its base `7226b913e47` failed the same provisioning on `main`. Merged onto current `main`, the walk prints `0 failed`, `tsc -p tsconfig.pi.json` exits 0, the hook node:test suites pass 1989 of 1989, and both Pi extensions pass (120 and 81). Neither extension changes `render()` output in place, so the pi-coding-agent 1.6.0 break does not apply |
+| Gate Inputs | The pre-push fixture repository took git's default branch name. Named `main` at init, it passes 59 of 59 with `init.defaultBranch=master`, where it failed 57/2 |
+| sk-doc walk | Three benchmark report folders were missing from the frozen README manifest. `test_readme_manifest.py --write` regenerated it, and both walk tests pass |
+| Spec-kit CLI shard 1 | The contract test rejected the word `extend` anywhere in the completed-session branch, which now advises `--extend=N`. It now rejects only routing to the extend step, and a temporary route in the YAML makes it fail |
+| Spec-kit CLI shard 3 | The upgrade-legacy copies stamped their dist with a whole-millisecond `Date`, while mtimes are finer, so a source written in the same millisecond read newer and the validator exited 3. The dist keeps `now` and the copied sources are dated one second back. 20000 of 20000 trials stay fresh, and an edit afterwards still reads stale |
+| Spec-kit CLI project | 210 files passed, 2725 tests passed, 0 failed. One file first failed only because the packet docs were edited during the run, and it passes 4 of 4 on its own |
+| Quality gate | `quality-gate.cjs --files` on the six changed test files: `NO_BLOCKER_FOUND`, 0 open findings |
 <!-- /ANCHOR:verification -->
 
 ---

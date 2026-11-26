@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The v4.2.0.0 release notes at `.skilled/changelog/skilled/v4.2.0.0.md` describe a release that is not tagged yet, while work kept landing after the notes were drafted",
     "created_at": "2026-11-25T07:59:08Z",
-    "last_save_at": "2026-11-26T04:19:02.678Z",
+    "last_save_at": "2026-11-26T07:21:48.916Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:09baa705c1217ee4074c501905fc0601fa7f06d88aaeb2bd32001822544582bf",
+    "source_fingerprint": "sha256:010ea56fd571de448f8fd56e91d6d5f5c0e39cdd37798301aacd54e3b69b5e89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "319073e71a6574478752409c230460fd00a95f291ace5a2c8904182f6cdf40b5",
+      "spec.md": "34e7a705a3899ea4b599dc572c3ae105f9c60f220f06def331641519a99fa272",
       "plan.md": "cfba9a34a756cf6b68edb5f05085ee5eb56f767aed27ee15897a2c6d585eeaf3",
-      "tasks.md": "453a7bc83ea3e1cb33d20cb310eaf1edf3415b1a2fd9eae7fddee993d4e8f2c6",
-      "decision-record.md": "a368db95a562afddd5e58f79cf11aadb6ad7f2f5231d7f25085d942127b3182f",
-      "implementation-summary.md": "a729e5d4bfbf2618be54d34fd3076b0e485902df1d89e3abdf97c819a7926bb8",
+      "tasks.md": "196fbe435164bf11eab6497a959a17d4ffb27bd07f62d2dea0f3ec620c814646",
+      "decision-record.md": "fa5e09c3b4e30f6184e6189480ef19e1fd288bf388d0fce2c5053e810a107899",
+      "implementation-summary.md": "bdc560fd947cf84537e732ab855e28b39a86e3297d50e2ea5827bf76dfcb1c71",
       "research/research.md": "88a97f37d8688843fb6c5b3801ba2a9a56477f169b44de70b2c429d1d130b810"
     },
     "last_active_at": null

@@ -79,6 +79,7 @@ and findings belong here.
 | Synthesis and verification | Done | `research/research.md`: 16 of 26 candidates confirmed (9 missing, 5 drift, 2 bug), 10 rejected |
 | Follow-up on main | Done | stop-decision frontier fix 4067 passed, dists rebuilt, release notes PASS/VALID |
 | Save | Done | tasks.md verification counts set to 12/12, 13/13, 1/1 |
+| Dependabot and main CI | Done | hono 4.13.22, PR 108 merged, 12 pip alerts dismissed, 3 failing main checks fixed |
 
 ### Deviations and findings
 

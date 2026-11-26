@@ -68,6 +68,10 @@ contextType: "general"
 - [x] T019 Count only trusted frontier nodes in the stop decision (`convergence.cjs`). Verify: `stop-decision.vitest.ts` passes 133 of 133 with the fix and fails 1 with the HEAD file.
 - [x] T020 Rebuild the gitignored dists in the primary checkout. Verify: both builds exit 0 and `hook-session-stop.vitest.ts` passes 32 of 32.
 - [x] T021 Add the fix pass to `C` and bring `$P/spec.md` section 9 to the fixed state. Verify: `check_changelog_shape.py` prints PASS and `validate_document.py` prints VALID.
+- [x] T022 Update hono to a fixed version in the system-spec-kit and mcp-code-mode lockfiles. Verify: `npm ls hono` prints 4.13.22 in both, and the code-mode server answers `initialize` and lists its 8 tools.
+- [x] T023 Merge Dependabot PR 108 into `main`. Verify: `gh pr view 108` prints MERGED, and the provisioning walk prints `0 failed`.
+- [x] T024 Dismiss the 12 pip alerts whose `uv.lock` files are no longer tracked. Verify: each of alerts 1448 to 1459 reads `dismissed not_used`.
+- [x] T025 Fix the three CI checks already failing on `main` (`pre-push.test.sh`, the README manifest, the spec-kit CLI shards). Verify: `pre-push.test.sh` passes 59 of 59 with `init.defaultBranch=master`, both sk-doc walk tests pass, and the spec-kit CLI project passes in full. The tag moves only after every workflow run on the pushed commit concludes `success`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

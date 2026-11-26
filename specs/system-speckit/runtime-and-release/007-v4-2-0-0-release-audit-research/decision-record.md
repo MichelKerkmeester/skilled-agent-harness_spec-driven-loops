@@ -44,6 +44,10 @@ _memory:
 | Q008 | Recorded automatically: Everything | Not stated. | None | Not linked to a requirement yet. |
 | Q009 | Recorded automatically: Dangerous, 3 parallel (Recommended) | Not stated. | None | Not linked to a requirement yet. |
 | Q010 | Recorded automatically: cli-pi | Not stated. | None | Not linked to a requirement yet. |
+| Q011 | Fix every open Dependabot alert group on `main`: hono, aiohttp and the vendored snapshot lockfiles. | Not stated. | None | REQ-006, T022 |
+| Q012 | Make Dependabot PR 108 pass and merge it into `main` before the tag moves. | Not stated. | None | REQ-006, T023 |
+| Q013 | Dismiss the 12 pip alerts as not used, since their `uv.lock` files are no longer tracked and no commit can fix them. | Not stated. | Q011, for the aiohttp and vendored snapshot groups | REQ-006, T024 |
+| Q014 | Fix the three CI checks already failing on `main`, then move the tag. | Not stated. | None | REQ-006, T025 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -250,6 +254,84 @@ Wait for Devin quota
 Answer:
 ```text
 cli-pi
+```
+
+### Q011
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01HCBG88tASrL3tq8FuDxoN5:2 -->
+
+Question:
+```text
+Which of the 22 open alerts should be fixed? 10 are hono (fix in 4.13.16) in the two shipped lockfiles: system-spec-kit and mcp-code-mode/mcp-server. 9 are aiohttp (fix in 3.14.4) in the zvec-grep benchmark uv.lock. 3 are mcp and opentelemetry-api in uv.lock files inside vendored upstream snapshots under specs/*/context/ (GraphARC-main, jev-cli-main).
+```
+
+Options:
+```text
+Fix all three groups (Recommended)
+Fix shipped code, dismiss vendored
+Fix hono only
+```
+
+Answer:
+```text
+Fix all three groups (Recommended)
+```
+
+### Q012
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01HCBG88tASrL3tq8FuDxoN5:3 -->
+
+Question:
+```text
+What should happen to Dependabot PR #108 (dev-dependency bumps: vitest, rolldown, @opencode/plugin, pi-coding-agent 1.6.0, which has a breaking change)? It fixes none of the alerts, and 7 of its CI checks fail.
+```
+
+Options:
+```text
+Leave it open (Recommended)
+Fix it and merge
+Close it
+```
+
+Answer:
+```text
+Fix it and merge
+```
+
+### Q013
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01NaT1mu65uP253TDfo3LiCb:0 -->
+
+Question:
+```text
+The 12 pip alerts (aiohttp, mcp, opentelemetry-api) name uv.lock files that are no longer in the repository. Commit 00c5a5b1a25 stopped tracking the vendored context folders, and GitHub returns 404 for all three paths on main. No commit can fix them. How should they be closed?
+```
+
+Options:
+```text
+Dismiss as not used (Recommended)
+Leave them open
+```
+
+Answer:
+```text
+Dismiss as not used (Recommended)
+```
+
+### Q014
+<!-- source: claude:1cf09172-5a54-4491-b11f-0d1deee0fd05:toolu_01NaT1mu65uP253TDfo3LiCb:1 -->
+
+Question:
+```text
+Three CI checks were already failing on main before PR #108 and are still failing: Gate Inputs (2 pre-push tests hit "pathspec 'main' did not match"), sk-doc walk (test_readme_manifest.py, a README manifest that no longer reproduces) and spec-kit CLI vitest shards 1 and 3 (a deep-review contract test and three upgrade-legacy tests). Fix them before re-tagging v4.2.0.0?
+```
+
+Options:
+```text
+Re-tag now, fix later (Recommended)
+Fix all three, then re-tag
+```
+
+Answer:
+```text
+Fix all three, then re-tag
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
