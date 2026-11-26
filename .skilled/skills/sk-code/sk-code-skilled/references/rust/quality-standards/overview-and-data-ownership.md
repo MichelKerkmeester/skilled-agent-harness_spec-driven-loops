@@ -8,7 +8,7 @@ trigger_phrases:
   - "cargo verification baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Rust Quality Standards
@@ -36,10 +36,6 @@ assert_eq!(
 
 Semantic JSON equality is diagnostic only. Acceptance requires byte-for-byte equality wherever output is observable.
 
-### Source of the rust-anything citations
-
-A rule that ends in `(rust-anything, <file>:<line>)` restates a rule from the rust-anything repository, https://github.com/erkamyaman/rust-anything. Every line number refers to commit `beed6fa45fc984f566e9563c61614f476c70c43f` of its `main` branch, dated 2026-11-26. Read a cited line at that commit, because later upstream edits move the numbers.
-
 ### When to Use
 
 - Writing or reviewing Rust core modules
@@ -66,6 +62,10 @@ A rule that ends in `(rust-anything, <file>:<line>)` restates a rule from the ru
 - **[P0] No `unsafe` is permitted without a documented invariant and tests.** The pure core forbids unsafe code. Every permitted boundary unsafe block requires an adjacent `// SAFETY:` explanation, an exercising test, and a precondition-challenge test. This protects **FFI memory safety and boundary integrity**.
 - **[P0] Panics are not boundary errors.** JavaScript-controlled input must not reach `unwrap`, `expect`, unchecked indexing, explicit `panic!`, or assertion-dependent validation. This protects **Node process survival, WASM trap avoidance, and JavaScript error-shape parity**.
 - **[P0] Where a TypeScript backend owns the process, TypeScript remains the behavior authority.** MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection remain in TypeScript. Rust adapters expose only narrow, measured kernels. This protects **transport compatibility and fallback behavior**.
+
+### Source of the rust-anything citations
+
+A rule that ends in `(rust-anything, <file>:<line>)` restates a rule from the [rust-anything repository](https://github.com/erkamyaman/rust-anything). Every line number refers to commit `beed6fa45fc984f566e9563c61614f476c70c43f` of its `main` branch, dated 2026-11-26. Read a cited line at that commit, because later upstream edits move the numbers.
 
 ---
 

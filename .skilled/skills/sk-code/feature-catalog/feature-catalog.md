@@ -9,7 +9,7 @@ trigger_phrases:
   - "sk-code quality gate"
   - "sk-code doctor commands"
 last_updated: "2026-10-28"
-version: 1.0.14.0
+version: 1.0.15.0
 ---
 
 # sk-code: Feature Catalog
@@ -30,7 +30,7 @@ Use this catalog as the current-state inventory for the `sk-code` hub. The hub d
 
 #### Description
 
-`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router.
+`mode-registry.json` lists the modes and their packets, discriminated by `workflowMode`, `packetKind`, and `backendKind`. The routing authority is named once in the hub's `SKILL.md` section 2, where `hub-router.json` is the mode vocabulary and `ROUTER.md` is the leaf-set router. Within SKILLED the route slices by the languages the task names, Rust included.
 
 #### Current Reality
 
