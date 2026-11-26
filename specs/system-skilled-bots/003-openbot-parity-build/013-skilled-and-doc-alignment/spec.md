@@ -127,9 +127,9 @@ The topic's three `checks` are all green today: the skill-package and catalog va
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/commands/assets/local-doc-alignment/topics.json` | Modify | The `system-skilled-bots` topic: title, four `terms`, three `codeRoots`, `lanes`, three `checks`. The decided entry is `design/records.md` section 2.2 and the model shape it copies is section 2.1 |
-| `.skilled/skills/system-skilled-bots/SKILL.md` | Modify | Whatever the skilled-alignment report names on the hub entry file |
+| `.skilled/skills/system-skilled-bots/SKILL.md` | Modify | Whatever the skilled-alignment report names on the hub entry file, and the `sk-code-skilled` Rust standards the `crates/bots-tui` crate relies on |
 | `.skilled/skills/system-skilled-bots/ROUTER.md` | Modify | Whatever the report names on the surface router |
-| `.skilled/skills/system-skilled-bots/README.md` | Modify | Whatever the report names on the skill README |
+| `.skilled/skills/system-skilled-bots/README.md` | Modify | Whatever the report names on the skill README, and the `sk-code-skilled` Rust standards the `crates/bots-tui` crate relies on |
 | `.skilled/skills/system-skilled-bots/feature-catalog/` | Modify | The entries the report names, and the root catalog row each one needs |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Modify | The scenarios the report names, and the root playbook row each one needs |
 | `.skilled/skills/system-skilled-bots/*/references/` | Modify | The reference files the report names |
@@ -165,6 +165,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | The bots CLI help lists every verb `VERB_SPECS` dispatches and no verb the table lacks, so the help block and the verb table agree on one verb set. The pair is measured at this phase's setup and recorded, because both counts move as phases 001 to 011 land |
 | REQ-007 | The skill docs, README, feature catalog and manual testing playbook name the same verbs and fields the runtime ships, so a doc claim and its code root cannot disagree |
 | REQ-008 | `implementation-summary.md` names both report roots, the clean criterion and the re-measured help-line and verb counts |
+| REQ-010 | The skill names the code standards it relies on. `SKILL.md` and `README.md` of `system-skilled-bots` name `sk-code`, through its `sk-code-skilled` surface, as the standards the `crates/bots-tui` Rust crate is written and reviewed against, and point at `sk-code-skilled/references/rust/` and `sk-code-skilled/assets/checklists/rust-checklist/`. They also say that sk-code holds no rendering or terminal-state rules for ratatui or crossterm yet, so a reader does not look for them there. A probe confirms that sk-code routes a `crates/bots-tui` `.rs` file to the Rust set |
 
 This phase fixes findings of every severity, and 014 leaves P2 open, by intent. The two rules are not in conflict: a P2 that this phase's own reports name is fixed here, and a P2 that 014's review finds afterwards is recorded and left. The reason is that this phase's clean criterion is a count of open findings and a count cannot be read as clean while a P2 sits in it, while 014's verdict is a judgement about the build and a P2 is not a blocker for it.
 
@@ -183,6 +184,7 @@ This phase fixes findings of every severity, and 014 leaves P2 open, by intent. 
 - **SC-004**: The recheck's `recheck.md` table rows `still_open` and `new` both read `0`.
 - **SC-005**: `node .skilled/bin/bots.cjs --help` lists every key of `VERB_SPECS`, and the count of verb lines in the help equals the count of `VERB_SPECS` keys.
 - **SC-006**: `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines, one per evidence folder, so the clean close is checkable from the packet and not only from the operator's state root.
+- **SC-007**: `rg -l 'sk-code-skilled' .skilled/skills/system-skilled-bots/SKILL.md .skilled/skills/system-skilled-bots/README.md` lists both files, and the sk-code explain probe on a `crates/bots-tui` `.rs` file names the Rust language and a Rust checklist.
 <!-- /ANCHOR:success-criteria -->
 
 ---

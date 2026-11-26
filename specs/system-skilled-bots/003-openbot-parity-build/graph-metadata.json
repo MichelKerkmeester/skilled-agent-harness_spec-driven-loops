@@ -30,7 +30,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "003-openbot-parity-build operator decisions"
     ],
     "key_topics": [
       "openbot",
@@ -46,11 +47,12 @@
       "criteria",
       "binding"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
@@ -67,8 +69,7 @@
       "003-terminal-screen/002-architecture-and-contracts/spec.md",
       "contracts/prompt-sections.md",
       "contracts/answer-seam.md",
-      "012-manual-testing-scenarios/scratch/failures.md",
-      "contracts/README.md"
+      "012-manual-testing-scenarios/scratch/failures.md"
     ],
     "entities": [
       {
@@ -81,6 +82,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -174,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "contracts/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -218,17 +219,19 @@
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-26T08:26:28.777Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-26T13:05:08.842Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9702fb2d4a4d271b7464a576ec9d16216181ccca46ee26062cedc3f7e714daad",
+    "source_fingerprint": "sha256:2947f1a81e88bac2e0dd30ec3f62c3432f2b0aa4293ac586da663bd88e236f06",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d801712a0179641ce6498555db9592d10dbcc17f3b1dab9cc3aaa67f770426d"
+      "spec.md": "0d801712a0179641ce6498555db9592d10dbcc17f3b1dab9cc3aaa67f770426d",
+      "decision-record.md": "cc408f1b2fb322bbb32228c043804fbd5c8ee25319436f4cfb976550d814764c"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/005-memory",
     "last_active_at": "2026-11-26T08:26:12.286Z"

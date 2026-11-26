@@ -20,13 +20,13 @@
     "skills",
     "chat"
   ],
-  "lastUpdated": "2026-11-25T20:09:58.277Z",
+  "lastUpdated": "2026-11-26T13:05:08.842Z",
   "specId": "003",
   "folderSlug": "openbot-parity-build",
   "parentChain": [
     "system-skilled-bots"
   ],
-  "memorySequence": 9,
+  "memorySequence": 11,
   "memoryNameHistory": [
     "25-11-26_08-34__created-phased-packet-003-from-the-002-research-a.md",
     "25-11-26_16-02__ran-a-51-iteration-expansive-review-of-the-eleven.md",
@@ -36,6 +36,8 @@
     "25-11-26_19-18__targeted-fourth-vibe-fix-pass-on-002-003-006-011.md",
     "25-11-26_19-47__targeted-fifth-vibe-fix-pass-on-003-006-and-011.md",
     "25-11-26_20-03__final-targeted-vibe-fix-pass-on-003-006-and-011.md",
-    "25-11-26_21-09__added-phases-012-manual-testing-scenarios-013.md"
+    "25-11-26_21-09__added-phases-012-manual-testing-scenarios-013.md",
+    "26-11-26_14-04__records-nine-operator-answers-on-the-bots-parity.md",
+    "26-11-26_14-05__records-nine-operator-answers-on-the-bots-parity.md"
   ]
 }

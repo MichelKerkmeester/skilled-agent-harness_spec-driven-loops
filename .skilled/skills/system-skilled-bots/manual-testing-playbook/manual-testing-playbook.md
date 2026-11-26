@@ -1,7 +1,7 @@
 ---
 title: "system-skilled-bots: Manual Testing Playbook"
-description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule and report on throwaway bots."
-version: 1.2.1.0
+description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule, report, converse, remember, link a channel and drive the terminal screen on throwaway bots."
+version: 1.3.0.0
 ---
 
 # system-skilled-bots: Manual Testing Playbook
@@ -11,13 +11,13 @@ version: 1.2.1.0
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **COMPLETION**: A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into `.skilled/skills/system-skilled-bots/benchmark/reports/<dated-run-label>/`. A run never edits this corpus.
 
-This is the operator index for the bots hub and its runtime. The routing scenarios check which mode the hub picks for a request and run nothing. The runtime scenarios build a throwaway world for each test and drive `.skilled/bin/bots.cjs` in it: authoring and the definition checker, manual runs, needs-you items and answers, worktree isolation and delivery, the request queue, the launchd schedule and status.
+This is the operator index for the bots hub and its runtime. The routing scenarios check which mode the hub picks for a request and run nothing. The runtime scenarios build a throwaway world for each test and drive `.skilled/bin/bots.cjs` in it: authoring and the definition checker, manual runs, needs-you items and answers, worktree isolation and delivery, the request queue, the launchd schedule and status, chat and its proposals, routines, activity, the terminal screen, the working place, memory, apps, the vault, skills and channels.
 
 ---
 
 ## 1. OVERVIEW
 
-The playbook holds 25 scenarios in seven categories. The 8 hub-routing scenarios carry routing gold in their frontmatter, so the admission check replays every prompt through the compiled router. The 17 runtime scenarios carry no routing fields: they are operator scenarios, and the admission check never reads them.
+The playbook holds 58 scenarios in seventeen categories. The 8 hub-routing scenarios carry routing gold in their frontmatter, so the admission check replays every prompt through the compiled router. The 50 runtime scenarios carry no routing fields: they are operator scenarios, and the admission check never reads them.
 
 ### Realistic Test Model
 
@@ -34,6 +34,7 @@ The playbook holds 25 scenarios in seven categories. The 8 hub-routing scenarios
 - The working directory is the repository root.
 - The advisor index includes `system-skilled-bots`. Routing scenarios need nothing else.
 - Runtime scenarios need macOS, node, git and the runtime's installed dependencies under `.skilled/skills/system-skilled-bots/runtime/node_modules`. BOT-017 also needs a logged-in desktop session, and BOT-021 the user launchd domain.
+- BOT-043 to BOT-045 need `cargo` and the phase 003 crate at `crates/bots-tui`. BOT-058 needs one free local port for its stand-in daemon and no channel account, because the stand-in never reaches a network.
 - Run the runtime scenarios from a plain terminal, never from inside an AI runtime session. The recursion guard reads the command lines and session variables of every ancestor process, and a match refuses the run with exit 3. That is a setup `SKIP`, not a product `FAIL`.
 - Neither the repository path nor any temp path may contain an executor word: `claude`, `codex`, `opencode` or `vibe`.
 - Every runtime scenario uses the throwaway identity `local/bots-playbook`, a `pb-` bot id and a state root inside its own temp folder, so it never touches a real bot's state.
@@ -53,7 +54,7 @@ The playbook holds 25 scenarios in seven categories. The 8 hub-routing scenarios
 
 - Each routing scenario runs the two stage commands above on the prompt exactly as the scenario gives it.
 - Each runtime scenario gives one bash block, run in order in one shell. The block builds the world in step 1, commits it and defines its helpers in step 2 and removes the world in its last step.
-- `pbots <verb> ...` runs `.skilled/bin/bots.cjs` with HOME inside the world, PATH starting at the stub executor and `--repo` and `--skilled-tree` pointing into the world.
+- `pbots <verb> ...` runs `.skilled/bin/bots.cjs` with HOME inside the world, PATH starting at the stub executor and `--repo` pointing into the world, plus `--skilled-tree` when the scenario needs a skill tree.
 - `records` prints one line per run record under the world's state root: run id, bot id, exit reason, exit class, delivery entries, worktree path and worktree evidence, separated by ` | `.
 - `echo "exit=$?"` after a command shows its exit status: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision.
 
@@ -74,7 +75,10 @@ The playbook holds 25 scenarios in seven categories. The 8 hub-routing scenarios
 
 - Wave 1: the 8 routing scenarios. They are read-only and parallel-safe.
 - Wave 2: BOT-009 to BOT-020 and BOT-022 to BOT-025. Each builds its own temp world, so they can run side by side, but each one runs its block in a single shell from start to finish.
-- Wave 3: BOT-021 alone, last, because it writes into the account's launchd domain. Confirm its removal step ran before the wave ends.
+- Wave 3: BOT-026 to BOT-042 and BOT-046 to BOT-057. Each builds its own temp world, so they can run side by side, and each one runs its block in a single shell from start to finish.
+- Wave 4: BOT-043 to BOT-045, which need `cargo` and the phase 003 crate. Run them after the crate lands.
+- Wave 5: BOT-058, which needs one free local port for its stand-in daemon. Run it alone so the port is not taken.
+- Wave 6: BOT-021 alone, last, because it writes into the account's launchd domain. Confirm its removal step ran before the wave ends.
 - No wave may run from inside an AI runtime session, because the recursion guard would refuse the runs.
 
 ---
@@ -456,7 +460,495 @@ Expected signals: one item id in an `open` status line, in parseable JSON and in
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. CONVERSATIONS (`BOT-026..BOT-034`)
+
+Nine scenarios on `bots chat`: one message and its transcript, the at-bot address, the parked answer and its scope, the grants on the item, the two proposals and the two channel paths.
+
+### BOT-026 | A chat message appends one human and one bot message
+
+#### Description
+Verify a chat message appends one human and one bot message.
+
+#### Scenario Contract
+Prompt: `Send my bot a message and show me it answered, with the conversation saved.`
+
+Expected signals: `bots: pb-chat run <run id> completed` with `exit=0`, a transcript object carrying `"version":1` and two messages whose `role` values are `human` and `bot`, a line count of `2`, and one `pb-chat` record.
+
+#### Test Execution
+> **Feature File:** [BOT-026](conversations/chat-appends-one-message.md)
+
+### BOT-027 | An at-bot address routes the message and an unknown bot is refused
+
+#### Description
+Verify an at-bot address routes the message and an unknown bot is refused.
+
+#### Scenario Contract
+Prompt: `Send this to my other bot, and tell me when I name a bot that does not exist.`
+
+Expected signals: the first send prints `bots: pb-other run <run id> completed` with `exit=0`, the second prints `bots: bot-unknown: pb-missing` with `exit=4`, the transcript holds one message whose `botId` is `pb-other`, and the line count is `2`.
+
+#### Test Execution
+> **Feature File:** [BOT-027](conversations/at-bot-routing.md)
+
+### BOT-028 | A parked chat run is answered with scope once and the resume replies
+
+#### Description
+Verify a parked chat run is answered with scope once and the resume replies.
+
+#### Scenario Contract
+Prompt: `My bot asked me something in chat. Answer it and let it finish, then show me the whole exchange.`
+
+Expected signals: the send exits 5 with `is waiting on a decision: item <item id>`, the item's `answer.scope` is `once`, the answer prints `resume request <request id> enqueued` with `exit=0`, the drain prints `<request id> ran`, and the transcript holds four messages.
+
+#### Test Execution
+> **Feature File:** [BOT-028](conversations/park-answer-scope-once.md)
+
+### BOT-029 | A denied scope records a denial and an unsupported scope is refused
+
+#### Description
+Verify a denied scope records a denial and an unsupported scope is refused.
+
+#### Scenario Contract
+Prompt: `I said no to my bot twice. Show me both refusals were recorded as refusals, and that a scope it does not support is rejected instead of stored.`
+
+Expected signals: the first answer exits 0 and its grant reads `deny`, the `--scope always` answer exits 2 with `bots: --scope takes once or deny` and the item stays open, the bare `no` answer exits 0 and its grant reads `deny`, and both run records carry a `request.grant` object whose scope is `deny`.
+
+#### Test Execution
+> **Feature File:** [BOT-029](conversations/scope-deny-and-unsupported.md)
+
+### BOT-030 | The grant rides on the item, on the inbox line and on the resumed run
+
+#### Description
+Verify the grant rides on the item, on the inbox line and on the resumed run.
+
+#### Scenario Contract
+Prompt: `Before I answer my bot, show me what kind of action it is asking about. Then show me the same thing after I answer.`
+
+Expected signals: the plain inbox line carries the action kind, the rung and `-` for the scope, the JSON row carries a `grants` object with six keys, the copied item lists with `grants` reading `null`, and the resumed run's `request.grant` names the same item id and kind.
+
+#### Test Execution
+> **Feature File:** [BOT-030](conversations/grants-on-the-item.md)
+
+### BOT-031 | A remember line becomes a proposal and only confirm appends it
+
+#### Description
+Verify a remember line becomes a proposal and only confirm appends it.
+
+#### Scenario Contract
+Prompt: `My bot wants to remember something. Show me the proposal, refuse a bad answer, then let me confirm one and reject another.`
+
+Expected signals: the run ends `completed` with exit 0, the inbox lists one `memory-proposal` item under `memory-proposals` with both options, the bad answer exits 4 with `review-answer-invalid`, the confirm appends one entry naming the operator and `bot:pb-ask`, and the reject leaves the entry count unchanged.
+
+#### Test Execution
+> **Feature File:** [BOT-031](conversations/memory-proposal-confirm.md)
+
+### BOT-032 | A skill proposal writes a draft and a review item, and a stale target is refused
+
+#### Description
+Verify a skill proposal writes a draft and a review item, and a stale target is refused.
+
+#### Scenario Contract
+Prompt: `My bot wrote something worth keeping as a skill. Draft it, show me the draft, then refuse it because I changed the file in the meantime.`
+
+Expected signals: the propose exits 0 and prints the draft path, `proposal.json` holds five keys with `revisionRead` reading `null`, the inbox lists one `skill-proposal` item under `skill-proposals`, the unknown run id exits 4 with `run-record-missing`, and the answer exits 4 with `proposal-stale` while the item stays open.
+
+#### Test Execution
+> **Feature File:** [BOT-032](conversations/skill-proposal-review.md)
+
+### BOT-033 | A terminal chat links with a one-time code and answers a prompt by number
+
+#### Description
+Verify a terminal chat links with a one-time code and answers a prompt by number.
+
+#### Scenario Contract
+Prompt: `Link my terminal chat to my bot, then answer its question with a number and let it finish.`
+
+Expected signals: the first send exits 4 with `channel-unlinked`, the first link exits 4 with `channel-roster-missing`, the second link prints six digits, the code send links the chat, the prompt prints with numbered choices, the `1` closes the item with the scope `once` and the drain prints one `ran` line.
+
+#### Test Execution
+> **Feature File:** [BOT-033](conversations/channel-link-and-reply.md)
+
+### BOT-034 | A chat whose actor left the roster cannot answer an item
+
+#### Description
+Verify a chat whose actor left the roster cannot answer an item.
+
+#### Scenario Contract
+Prompt: `I removed myself from the channel roster. Show me my chat can no longer answer my bot, and that the bot is still waiting.`
+
+Expected signals: the list prints one owner and one member, the last-owner removal exits 4 with `channel-roster-owner`, the answer exits 4 with `answer-not-approver`, the item is still open with a null answer and the drain prints no `ran` line.
+
+#### Test Execution
+> **Feature File:** [BOT-034](conversations/channel-non-approver.md)
+
+---
+
+## 15. ROUTINES (`BOT-035..BOT-039`)
+
+Five scenarios on the routine block, the cron slot computed from the current clock, the until check, the fifteen-minute floor and fatigue after ten failures.
+
+### BOT-035 | A routine block renders on the routines verb and its conflicts are refused
+
+#### Description
+Verify a routine block renders on the routines verb and its conflicts are refused.
+
+#### Scenario Contract
+Prompt: `Show me every routine in this repo with what it does and when it runs, then tell me why these two bots are rejected.`
+
+Expected signals: the empty list exits 0, the valid bot renders one row with its what, its summary, `act` and its until, the JSON object carries all ten fields, and the two conflicts exit 4 with `routine-trigger-conflict` and `routine-tell-with-targets`.
+
+#### Test Execution
+> **Feature File:** [BOT-035](routines/routine-block-renders.md)
+
+### BOT-036 | A cron start fires at the slot computed from the current clock
+
+#### Description
+Verify a cron start fires at the slot computed from the current clock.
+
+#### Scenario Contract
+Prompt: `Set my bot to run two minutes from now, wait for it, and show me it actually ran. Then show me why a one-minute schedule is rejected.`
+
+Expected signals: the summary names the computed hour and minute, the install prints a next-fire line naming the same slot, one run record exists after the slot, and the one-minute cron exits 4 with `routine-floor-15-minutes`.
+
+#### Test Execution
+> **Feature File:** [BOT-036](routines/cron-start-fires-at-computed-slot.md)
+
+### BOT-037 | An until check sets completed only when it exits zero
+
+#### Description
+Verify an until check sets completed only when it exits zero.
+
+#### Scenario Contract
+Prompt: `My bot should stop once its summary exists. Run it until that happens, then show me it refuses to run again.`
+
+Expected signals: the first record carries `until.met` false, the second carries true with `untilMetAt` stamped, the routine row reads `completed`, the next run exits 4 with `routine-completed`, and the three malformed bots exit 4 with their own names.
+
+#### Test Execution
+> **Feature File:** [BOT-037](routines/until-outcome-completes.md)
+
+### BOT-038 | A cron under fifteen minutes is refused by the run and by the install
+
+#### Description
+Verify a cron under fifteen minutes is refused by the run and by the install.
+
+#### Scenario Contract
+Prompt: `Show me the shortest schedule my bot is allowed to have, and that anything faster is rejected before it is installed.`
+
+Expected signals: the five-minute and fourteen-minute bots exit 4 with `routine-floor-15-minutes` on both verbs, the fifteen-minute bot exits 0 on both, and the list holds one row.
+
+#### Test Execution
+> **Feature File:** [BOT-038](routines/floor-fifteen-minutes.md)
+
+### BOT-039 | Ten consecutive failures fatigue a bot and one enable brings it back
+
+#### Description
+Verify ten consecutive failures fatigue a bot and one enable brings it back.
+
+#### Scenario Contract
+Prompt: `My bot keeps failing. Show me it stops after ten tries, then turn it back on and show me it runs again.`
+
+Expected signals: the tenth run sets `switch` to `fatigued` with `failureStreak` reading `10`, the inbox lists one item under `pb-fail`, the next run exits 4 with `routine-fatigued`, the enable exits 0 and answers the item, and the row returns to `enabled` with a zero streak.
+
+#### Test Execution
+> **Feature File:** [BOT-039](routines/fatigue-after-ten-failures.md)
+
+---
+
+## 16. ACTIVITY (`BOT-040..BOT-042`)
+
+Three scenarios on the grouped activity view, the JSON inbox fields and the actor on the answer and the record.
+
+### BOT-040 | Activity prints its rows under the seven ids in one fixed order
+
+#### Description
+Verify activity prints its rows under the seven ids in one fixed order.
+
+#### Scenario Contract
+Prompt: `Show me everything my bots are doing, grouped, and in the same order every time.`
+
+Expected signals: the plain output carries the groups `needs_you`, `done`, `stopped` and `failed` in that order with no `working`, `scheduled` or `recurring` heading, and the JSON output carries the same four groups with `id`, `title` and `rows`, each row carrying `botId`, `identity`, `state`, `at`, `actor` and `runId`.
+
+#### Test Execution
+> **Feature File:** [BOT-040](activity/activity-groups-seven-ids.md)
+
+### BOT-041 | The JSON inbox carries ten fields and hides an answered item until all is asked
+
+#### Description
+Verify the JSON inbox carries ten fields and hides an answered item until all is asked.
+
+#### Scenario Contract
+Prompt: `Show me my open questions as JSON, then show me the one I answered, then show me one that timed out.`
+
+Expected signals: the first read carries one row with ten fields, the second carries no row, the third carries the answered row with its answer, and the fourth carries the copied row reading `expired`.
+
+#### Test Execution
+> **Feature File:** [BOT-041](activity/inbox-json-item-fields.md)
+
+### BOT-042 | The actor rides on the run record and the answer names its approver
+
+#### Description
+Verify the actor rides on the run record and the answer names its approver.
+
+#### Scenario Contract
+Prompt: `Show me who asked for each run and who approved it, and show me a script cannot pretend to be someone else.`
+
+Expected signals: the first record's `actor` is the OS user, the foreign `--as` exits 2 with `bots: --as needs a tty`, the self `--as` exits 0, the resumed record carries `actor` and `answeredBy`, and the activity row prints the actor.
+
+#### Test Execution
+> **Feature File:** [BOT-042](activity/actor-on-answer-and-record.md)
+
+---
+
+## 17. TERMINAL SCREEN (`BOT-043..BOT-045`)
+
+Three scenarios on the `ui` refusal, the inbox pane keys and the drawn key set. All three run without a tty.
+
+### BOT-043 | The ui verb refuses a missing crate and a missing binary, and the crate is MIT
+
+#### Description
+Verify the ui verb refuses a missing crate and a missing binary, and the crate is MIT.
+
+#### Scenario Contract
+Prompt: `Show me what happens when the screen is not built, and prove the crate carries the right licence.`
+
+Expected signals: the first run exits 4 with `ui-unavailable`, the second exits 4 with `ui-not-built` and the build command, the stub run exits with the stub's own code, the licence line reads `license = "MIT"` and the source search matches only comment lines.
+
+#### Test Execution
+> **Feature File:** [BOT-043](terminal-screen/screen-refuses-without-binary.md)
+
+### BOT-044 | The inbox pane answers with y and n and a closed input writes nothing
+
+#### Description
+Verify the inbox pane answers with y and n and a closed input writes nothing.
+
+#### Scenario Contract
+Prompt: `Show me that y approves and n refuses, that nothing else refuses, and that closing the screen answers nothing.`
+
+Expected signals: the test passes, the argv log holds one `--scope once` line for `y` and one `--scope deny` line for `n`, no other key produces an answer line, and the closed-input case leaves the item open.
+
+#### Test Execution
+> **Feature File:** [BOT-044](terminal-screen/inbox-pane-answers.md)
+
+### BOT-045 | Every bound key is drawn in the frame that binds it
+
+#### Description
+Verify every bound key is drawn in the frame that binds it.
+
+#### Scenario Contract
+Prompt: `Show me every key the screen binds is on the screen, and that the four tabs are there.`
+
+Expected signals: both tests pass, the source search finds the four footer labels, the `Enter open` label, the decision overlay's four keys with `n deny` first and the choice overlay's three labels.
+
+#### Test Execution
+> **Feature File:** [BOT-045](terminal-screen/banner-and-overlay.md)
+
+---
+
+## 18. WORKING PLACE (`BOT-046..BOT-047`)
+
+Two scenarios on the working-place line the prompt carries and the branch and tree status prints.
+
+### BOT-046 | The prompt names the working place, its branch and the run folder
+
+#### Description
+Verify the prompt names the working place, its branch and the run folder.
+
+#### Scenario Contract
+Prompt: `Show me what my bot is told about where it works, for a shared run, a worktree run and a detached checkout.`
+
+Expected signals: the shared line names the checkout and its branch, the worktree line names the tree, the detached line carries no branch clause, and each record's `evidence.branch` matches its line.
+
+#### Test Execution
+> **Feature File:** [BOT-046](working-place/working-place-line.md)
+
+### BOT-047 | Status prints the branch and the worktree the last run recorded
+
+#### Description
+Verify status prints the branch and the worktree the last run recorded.
+
+#### Scenario Contract
+Prompt: `Show me which branch and which tree each of my bots last ran on, including the one that never ran.`
+
+Expected signals: the shared row carries `branch <name>`, the worktree row carries `worktree <path>`, every JSON row carries both keys as a string or null, the never-run row carries neither part, and the index reports schema version `2`.
+
+#### Test Execution
+> **Feature File:** [BOT-047](working-place/status-branch-and-worktree.md)
+
+---
+
+## 19. MEMORY (`BOT-048..BOT-050`)
+
+Three scenarios on `remember`, the injected memory block and the file bounds.
+
+### BOT-048 | Remember appends one line, lists it and forgets it by index
+
+#### Description
+Verify remember appends one line, lists it and forgets it by index.
+
+#### Scenario Contract
+Prompt: `Remember two things for me, show me the list, then forget the first one and show me the list again.`
+
+Expected signals: each append prints its 1-based index, the list prints both entries and the file path with counts, the JSON object carries seven keys, the forget prints the removed entry, the unknown index exits 2 and the second list holds one entry at index one.
+
+#### Test Execution
+> **Feature File:** [BOT-048](memory/remember-appends-and-lists.md)
+
+### BOT-049 | The memory block reaches the prompt and a false flag keeps it out
+
+#### Description
+Verify the memory block reaches the prompt and a false flag keeps it out.
+
+#### Scenario Contract
+Prompt: `Show me my notes reaching my bot, then show me a bot that is told to ignore them.`
+
+Expected signals: the first prompt carries two `<memory file="...">` blocks with the shared one first, the second carries none, the third exits 4 with `memory-invalid`, and the fourth carries no memory block.
+
+#### Test Execution
+> **Feature File:** [BOT-049](memory/memory-block-injected.md)
+
+### BOT-050 | The memory file refuses a sixty-first entry, a long text and an unsafe bot id
+
+#### Description
+Verify the memory file refuses a sixty-first entry, a long text and an unsafe bot id.
+
+#### Scenario Contract
+Prompt: `Fill my notes to the limit, show me the next one is refused, and show me the file is private.`
+
+Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts, the two checksums match, the long text exits 2 with `memory-entry-too-long`, the folder reads `700` and the file `600`, and the unsafe id is refused by name.
+
+#### Test Execution
+> **Feature File:** [BOT-050](memory/memory-bound-refuses.md)
+
+---
+
+## 20. APPS (`BOT-051..BOT-052`)
+
+Two scenarios on the apps filter and an unknown server name.
+
+### BOT-051 | A bot's apps filter the run's utcp config and reach the child
+
+#### Description
+Verify a bot's apps filter the run's utcp config and reach the child.
+
+#### Scenario Contract
+Prompt: `Show me my bot only gets the two servers it asked for, and show me the file it actually reads.`
+
+Expected signals: the first run's filtered config holds two templates, its record carries the two names and its environment names the filtered path, and the second run's filtered config holds none and its record carries an empty list.
+
+#### Test Execution
+> **Feature File:** [BOT-051](apps/apps-filter-utcp-config.md)
+
+### BOT-052 | An unknown app name is refused by name and the checker fails on it
+
+#### Description
+Verify an unknown app name is refused by name and the checker fails on it.
+
+#### Scenario Contract
+Prompt: `I typed the server names wrong. Show me every name you cannot find, and show me the checker catches it before the bot runs.`
+
+Expected signals: the first run exits 4 with both unknown names in the detail, the checker prints one `FAIL:` line naming `apps-unknown-server` and exits 1, both malformed bots exit 4 with `apps-invalid`, and the shared bot exits 4 with `apps-unenforceable`.
+
+#### Test Execution
+> **Feature File:** [BOT-052](apps/apps-unknown-server.md)
+
+---
+
+## 21. VAULT (`BOT-053..BOT-055`)
+
+Three scenarios on `secret set`, the secret reaching the child and the redaction of a printed secret.
+
+### BOT-053 | Secret set reads stdin, list prints no value and forget is idempotent
+
+#### Description
+Verify secret set reads stdin, list prints no value and forget is idempotent.
+
+#### Scenario Contract
+Prompt: `Store a token for me, show me the list without showing the token, then remove it twice.`
+
+Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, the placeholder exits 2 with `secret-placeholder`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`.
+
+#### Test Execution
+> **Feature File:** [BOT-053](vault/secret-set-and-list.md)
+
+### BOT-054 | A named secret reaches the child environment and the record names it
+
+#### Description
+Verify a named secret reaches the child environment and the record names it.
+
+#### Scenario Contract
+Prompt: `Give my bot its token, show me it arrived, and show me the record names the token without holding it.`
+
+Expected signals: the first run exits 0, the receipt carries `SKILLED_BOT_SECRET_PB_TOKEN` with the value, the record's `posture.secretsUsed` reads `["PB_TOKEN"]`, the absent name exits 4 with `secret-unknown` and the malformed name is refused `secret-name-invalid`.
+
+#### Test Execution
+> **Feature File:** [BOT-054](vault/secret-reaches-child.md)
+
+### BOT-055 | A secret printed by the child is redacted and the run is not delivered
+
+#### Description
+Verify a secret printed by the child is redacted and the run is not delivered.
+
+#### Scenario Contract
+Prompt: `My bot printed its token by accident. Show me the log is cleaned, the run is held, and a token in the bot file is refused.`
+
+Expected signals: the log line reads the redaction marker rather than the value, the record carries `secret-in-output`, the delivery is withheld, and the second run exits 4 with `body-secret`.
+
+#### Test Execution
+> **Feature File:** [BOT-055](vault/secret-in-output-redacted.md)
+
+---
+
+## 22. SKILLS (`BOT-056..BOT-057`)
+
+Two scenarios on the skill block and the two byte caps.
+
+### BOT-056 | A named skill's body reaches the prompt inside its own block
+
+#### Description
+Verify a named skill's body reaches the prompt inside its own block.
+
+#### Scenario Contract
+Prompt: `Give my bot the notes skill, show me the body arrived in its own block, and show me a missing skill is refused.`
+
+Expected signals: the prompt carries one `<skill_content name="pb-notes">` block holding the body, the block sits after the memory block and before the standing body, the missing name exits 4 with `skills-unknown`, and the checker prints one `FAIL:` line naming it.
+
+#### Test Execution
+> **Feature File:** [BOT-056](skills/skills-list-injects-body.md)
+
+### BOT-057 | Both byte caps refuse before the prompt is built
+
+#### Description
+Verify both byte caps refuse before the prompt is built.
+
+#### Scenario Contract
+Prompt: `Show me the skill size caps refusing, tell me which skill crossed the list cap, and show me a duplicate name refused.`
+
+Expected signals: the body at 16,384 bytes runs, the body at 16,385 bytes exits 4 with `skill-too-large`, the list at 24,577 bytes exits 4 with `skills-over-budget: pb-sum-b`, the duplicate exits 4 with `definition-malformed: skills-duplicate`, the bad name exits 4 with `definition-malformed: skills-name-invalid`, and the checker prints one `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line.
+
+#### Test Execution
+> **Feature File:** [BOT-057](skills/skills-over-budget.md)
+
+---
+
+## 23. CHANNELS (`BOT-058`)
+
+One scenario on the durable send queue, the `unknown` state and the channel list.
+
+### BOT-058 | A queued send is written before the I/O and an unknown send is never retried
+
+#### Description
+Verify a queued send is written before the I/O and an unknown send is never retried.
+
+#### Scenario Contract
+Prompt: `Show me a send that lands in the queue first, show me an uncertain send is never retried, and show me the queue depth in the channel list.`
+
+Expected signals: one file in `queue/`, the entry holding `unknown`, the stand-in's request log holding one line after two drain passes, the `signal` line of `channel list` holding a `1`, no token value anywhere under `queue/`, and `DELIVERY_CHANNELS` holding five names.
+
+#### Test Execution
+> **Feature File:** [BOT-058](channels/queue-unknown-not-retried.md)
+
+---
+## 24. AUTOMATED TEST CROSS-REFERENCE
 
 The runtime's vitest suite covers the same behavior with stubbed hosts. These scenarios add the real terminal, the real launchd domain and the real desktop.
 
@@ -476,12 +968,37 @@ The runtime's vitest suite covers the same behavior with stubbed hosts. These sc
 | `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts` | Install, hold and uninstall | BOT-021 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` | Status rows and staleness | BOT-022, BOT-023 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/post-commit-leg.test.sh` | The post-commit enqueue leg through the real hook | BOT-025 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/conversation.vitest.ts` | Chat transcripts and the at-bot address | BOT-026, BOT-027 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/cli-chat.vitest.ts` | The chat verb and its transcript | BOT-026 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/approval-ladder.vitest.ts` | The approval rung and the answer scope | BOT-028, BOT-029 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/action-kind.vitest.ts` | The action kind on the item and the inbox line | BOT-030 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/routine.vitest.ts` | Routine blocks, cron slots, until and the floor | BOT-035, BOT-036, BOT-037, BOT-038 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/routine-state.vitest.ts` | Fatigue and the routine switches | BOT-039 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts` | Activity groups and the JSON inbox | BOT-040, BOT-041 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/actor.vitest.ts` | The actor on the record and the answer | BOT-042 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | The ui refusal and the build command | BOT-043 |
+| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/cli_client.rs` | The client and the stub binary | BOT-043 |
+| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/answer_flow.rs` | The inbox pane keys | BOT-044 |
+| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/render_keys.rs` | The drawn key set | BOT-045 |
+| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/panes.rs` | The four tabs | BOT-045 |
+| `.skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts` | The working-place line on the record | BOT-046 |
+| `.skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts` | The working-place line in the prompt | BOT-046 |
+| `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` | The branch and the tree on the status row | BOT-047 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/memory.vitest.ts` | Memory append, block and bounds | BOT-048, BOT-049, BOT-050 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/apps.vitest.ts` | The apps filter and unknown servers | BOT-051, BOT-052 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` | Secret set and list | BOT-053 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/secret-matcher.vitest.ts` | Redaction and the literal check | BOT-054, BOT-055 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/skills.vitest.ts` | Skill loading and the two byte caps | BOT-056, BOT-057 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/skill-proposal.vitest.ts` | The skill proposal and its review item | BOT-032 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/channel-link.vitest.ts` | The link code and the roster | BOT-033, BOT-034 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/channel-approval.vitest.ts` | The approval index and the reply grammar | BOT-033 |
+| `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/channel-queue.vitest.ts` | The durable send queue and the unknown state | BOT-058 |
 
 ---
 
-## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 25. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md). Each scenario maps to the catalog entry it exercises most directly. Five catalog entries have no dedicated scenario: repository config and identity, state layout, cron translation, missed-slot accounting, and the run record and result ledger. The runtime vitest suite covers them in `identity.vitest.ts`, `repo-config.vitest.ts`, `state-root.vitest.ts`, `cron-translator.vitest.ts`, `slot-accounting.vitest.ts`, `run-record.vitest.ts` and `result-ledger.vitest.ts`.
+The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](../feature-catalog/feature-catalog.md). Each scenario maps to the catalog entry it exercises most directly. Five catalog entries have no dedicated scenario: repository config and identity, state layout, cron translation, missed-slot accounting, and the run record and result ledger. The 33 rows from BOT-026 on carry a dash in the last column, because the feature catalog has no entry for those features yet and a link to a near neighbour would claim coverage the catalog does not hold. The runtime vitest suite covers them in `identity.vitest.ts`, `repo-config.vitest.ts`, `state-root.vitest.ts`, `cron-translator.vitest.ts`, `slot-accounting.vitest.ts`, `run-record.vitest.ts` and `result-ledger.vitest.ts`.
 
 | Feature ID | Feature Name | Category | Feature File | Catalog Entry |
 |---|---|---|---|---|
@@ -510,3 +1027,36 @@ The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](.
 | BOT-023 | Status and the inbox agree on an open needs-you item | Status And Inbox | [BOT-023](status-and-inbox/status-json-open-item.md) | [status-and-inbox-report](../feature-catalog/status/status-and-inbox-report.md) |
 | BOT-024 | A request for a bot whose BOT.md changed after approval is quarantined | Request Queue | [BOT-024](request-queue/drift-refused-before-run.md) | [definition-approval](../feature-catalog/runs/definition-approval.md) |
 | BOT-025 | A commit in an opted-in repository queues one request | Request Queue | [BOT-025](request-queue/commit-enqueues-request.md) | [commit-triggered-requests](../feature-catalog/requests/commit-triggered-requests.md) |
+| BOT-026 | A chat message appends one human and one bot message | Conversations | [BOT-026](conversations/chat-appends-one-message.md) | - |
+| BOT-027 | An at-bot address routes the message and an unknown bot is refused | Conversations | [BOT-027](conversations/at-bot-routing.md) | - |
+| BOT-028 | A parked chat run is answered with scope once and the resume replies | Conversations | [BOT-028](conversations/park-answer-scope-once.md) | - |
+| BOT-029 | A denied scope records a denial and an unsupported scope is refused | Conversations | [BOT-029](conversations/scope-deny-and-unsupported.md) | - |
+| BOT-030 | The grant rides on the item, on the inbox line and on the resumed run | Conversations | [BOT-030](conversations/grants-on-the-item.md) | - |
+| BOT-031 | A remember line becomes a proposal and only confirm appends it | Conversations | [BOT-031](conversations/memory-proposal-confirm.md) | - |
+| BOT-032 | A skill proposal writes a draft and a review item, and a stale target is refused | Conversations | [BOT-032](conversations/skill-proposal-review.md) | - |
+| BOT-033 | A terminal chat links with a one-time code and answers a prompt by number | Conversations | [BOT-033](conversations/channel-link-and-reply.md) | - |
+| BOT-034 | A chat whose actor left the roster cannot answer an item | Conversations | [BOT-034](conversations/channel-non-approver.md) | - |
+| BOT-035 | A routine block renders on the routines verb and its conflicts are refused | Routines | [BOT-035](routines/routine-block-renders.md) | - |
+| BOT-036 | A cron start fires at the slot computed from the current clock | Routines | [BOT-036](routines/cron-start-fires-at-computed-slot.md) | - |
+| BOT-037 | An until check sets completed only when it exits zero | Routines | [BOT-037](routines/until-outcome-completes.md) | - |
+| BOT-038 | A cron under fifteen minutes is refused by the run and by the install | Routines | [BOT-038](routines/floor-fifteen-minutes.md) | - |
+| BOT-039 | Ten consecutive failures fatigue a bot and one enable brings it back | Routines | [BOT-039](routines/fatigue-after-ten-failures.md) | - |
+| BOT-040 | Activity prints its rows under the seven ids in one fixed order | Activity | [BOT-040](activity/activity-groups-seven-ids.md) | - |
+| BOT-041 | The JSON inbox carries ten fields and hides an answered item until all is asked | Activity | [BOT-041](activity/inbox-json-item-fields.md) | - |
+| BOT-042 | The actor rides on the run record and the answer names its approver | Activity | [BOT-042](activity/actor-on-answer-and-record.md) | - |
+| BOT-043 | The ui verb refuses a missing crate and a missing binary, and the crate is MIT | Terminal Screen | [BOT-043](terminal-screen/screen-refuses-without-binary.md) | - |
+| BOT-044 | The inbox pane answers with y and n and a closed input writes nothing | Terminal Screen | [BOT-044](terminal-screen/inbox-pane-answers.md) | - |
+| BOT-045 | Every bound key is drawn in the frame that binds it | Terminal Screen | [BOT-045](terminal-screen/banner-and-overlay.md) | - |
+| BOT-046 | The prompt names the working place, its branch and the run folder | Working Place | [BOT-046](working-place/working-place-line.md) | - |
+| BOT-047 | Status prints the branch and the worktree the last run recorded | Working Place | [BOT-047](working-place/status-branch-and-worktree.md) | - |
+| BOT-048 | Remember appends one line, lists it and forgets it by index | Memory | [BOT-048](memory/remember-appends-and-lists.md) | - |
+| BOT-049 | The memory block reaches the prompt and a false flag keeps it out | Memory | [BOT-049](memory/memory-block-injected.md) | - |
+| BOT-050 | The memory file refuses a sixty-first entry, a long text and an unsafe bot id | Memory | [BOT-050](memory/memory-bound-refuses.md) | - |
+| BOT-051 | A bot's apps filter the run's utcp config and reach the child | Apps | [BOT-051](apps/apps-filter-utcp-config.md) | - |
+| BOT-052 | An unknown app name is refused by name and the checker fails on it | Apps | [BOT-052](apps/apps-unknown-server.md) | - |
+| BOT-053 | Secret set reads stdin, list prints no value and forget is idempotent | Vault | [BOT-053](vault/secret-set-and-list.md) | - |
+| BOT-054 | A named secret reaches the child environment and the record names it | Vault | [BOT-054](vault/secret-reaches-child.md) | - |
+| BOT-055 | A secret printed by the child is redacted and the run is not delivered | Vault | [BOT-055](vault/secret-in-output-redacted.md) | - |
+| BOT-056 | A named skill's body reaches the prompt inside its own block | Skills | [BOT-056](skills/skills-list-injects-body.md) | - |
+| BOT-057 | Both byte caps refuse before the prompt is built | Skills | [BOT-057](skills/skills-over-budget.md) | - |
+| BOT-058 | A queued send is written before the I/O and an unknown send is never retried | Channels | [BOT-058](channels/queue-unknown-not-retried.md) | - |
