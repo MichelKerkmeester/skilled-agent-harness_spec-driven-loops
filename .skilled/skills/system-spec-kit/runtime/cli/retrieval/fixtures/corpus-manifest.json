@@ -39599,10 +39599,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-bots/context",
-      "reason": "symlink not followed"
-    },
-    {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/scratch",
       "reason": "excluded directory"
     },
