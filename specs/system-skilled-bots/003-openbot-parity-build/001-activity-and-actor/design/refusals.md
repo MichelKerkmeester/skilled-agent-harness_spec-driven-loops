@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Activity and actor refusals
 
-`contracts/refusals.md` section 3.1 owns this phase's rows and section 2 owns the exit rule: a check `bots.cjs` makes on its own input exits 2, and a refusal from a runtime call exits 4. This file adds the exact text, the check order and the test for each row, and names the three rows the contract does not hold yet. None of them enters `REFUSAL_CAUSES`, and none is a run refusal.
+`contracts/refusals.md` section 3.1 owns this phase's rows and section 2 owns the exit rule: a check `bots.cjs` makes on its own input exits 2, and a refusal from a runtime call exits 4. This file adds the exact text, the check order and the test for each row, and names the three rows the contract gained from this phase, R6, R7 and R8. None of them enters `REFUSAL_CAUSES`, and none is a run refusal.
 
 A usage refusal prints `bots: <message>` and then the usage text on stderr, so its first line is the message alone [SOURCE: .skilled/bin/bots.cjs:94-98]. Nothing is printed on stdout.
 
@@ -27,9 +27,9 @@ A usage refusal prints `bots: <message>` and then the usage text on stderr, so i
 | R3 | `bots: grant-scope-unsupported` | `answer` | `--scope always` or `--scope conversation` | 2 | yes | `cli-run.vitest.ts`, `scope` |
 | R4 | `bots: --scope takes once or deny` | `answer` | any other `--scope` value, case included, so `ONCE` and the empty string land here | 2 | yes | `cli-run.vitest.ts`, `scope` |
 | R5 | `bots: --as needs a tty` | `answer`, `run` | `--as` names someone other than the OS user and `process.stdin.isTTY` is not `true` | 2 | yes | `cli-run.vitest.ts`, `tty` |
-| R6 | `bots: --full-access needs a tty` | `schedule install` | `--full-access` and `process.stdin.isTTY` is not `true` | 2 | no, amendment | `cli-run.vitest.ts`, `full access` |
-| R7 | `bots: activity takes no id` | `activity` | a positional after the verb | 2 | no, amendment | `cli-run.vitest.ts`, `activity usage` |
-| R8 | `bots: activity takes no --<option>` | `activity` | any option but `--json`, `--repo` and `--skilled-tree` | 2 | no, amendment | `cli-run.vitest.ts`, `activity usage` |
+| R6 | `bots: --full-access needs a tty` | `schedule install` | `--full-access` and `process.stdin.isTTY` is not `true` | 2 | yes, added 2026-11-26 | `cli-run.vitest.ts`, `full access` |
+| R7 | `bots: activity takes no id` | `activity` | a positional after the verb | 2 | yes, added 2026-11-26 | `cli-run.vitest.ts`, `activity usage` |
+| R8 | `bots: activity takes no --<option>` | `activity` | any option but `--json`, `--repo` and `--skilled-tree` | 2 | yes, added 2026-11-26 | `cli-run.vitest.ts`, `activity usage` |
 | R9 | `bots: <reason>: <detail>; run bots status --rebuild` | `activity` | the index cannot be opened, read or built, where reason is `index-unreadable`, `index-binding-failed` or `index-build-failed` | 1 | yes | `activity.vitest.ts`, `index failure` |
 | R10 | `bots: the status modules did not load: <message>` | `activity` | the status modules throw on load, as `status` does today [SOURCE: .skilled/bin/bots.cjs:352-354] | 1 | no, same as `status` | none, the existing line |
 | R11 | `bots: identity-unknown: ...` and the other config refusals | `activity` | the checkout's config or identity refuses, as `status` does today [SOURCE: .skilled/bin/bots.cjs:356-360] | 4 | no, same as `status` | none, the existing line |

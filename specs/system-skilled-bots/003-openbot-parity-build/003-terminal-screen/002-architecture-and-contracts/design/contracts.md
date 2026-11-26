@@ -468,8 +468,8 @@ The empty payload is `{"version": 1, "groups": []}`, which draws frame 6.
 | `botId` | string | no | bot id | packet 001 | row column 1, padded to 17, and detail `bot` |
 | `identity` | string | no | `owner/name` | packet 001 | detail `identity` at 120 |
 | `state` | string | no | equal to its group's `id` | packet 001 | row glyph and row column 2, detail `state` |
-| `at` | string | no | ISO 8601 UTC. The event time on a past row, the next fire on a `scheduled` or `recurring` row, so it is in the future there | packet 001, a future `at` from the next-fire computation REQ-012 adds (section 13.1 item 4) | row column 3 and detail `at` |
-| `actor` | string | yes, for a run recorded before packet 001 | an actor name | packet 001 | detail `actor` at 120, `-` when null |
+| `at` | string | no | ISO 8601 UTC. The event time on a past row, the next fire on a `recurring` row and on a `scheduled` row from an installed schedule, so it is in the future there. A `scheduled` row from a queued request carries the request's `enqueuedAt`, which is in the past | packet 001, a future `at` from the next-fire computation REQ-012 adds (section 13.1 item 4) | row column 3 and detail `at` |
+| `actor` | string | yes, for a run recorded before packet 001 and on a `scheduled` row from a queued request, whose record holds no actor | an actor name. A row from an installed schedule carries the install record's `operator` | packet 001 | detail `actor` at 120, `-` when null |
 | `runId` | string | yes, on `scheduled` and `recurring` rows, which have no run yet | run id | packet 001 | detail `runId` at 120, `-` when null |
 | `schedule` | string | yes, on every row that does not come from an installed schedule | the start's `summary` phrase from section 7 | packet 002, through 001's row | row column 3 on a `recurring` row (`every 6h`) |
 
@@ -712,14 +712,14 @@ Decision A2: the runtime brings the status index up to date on every read the sc
 **The rule, the cheapest correct variant.** For each identity whose generation stamp is ahead of the generation the index consumed:
 
 1. Read the stamp first, then list the identity's run records. A record written after the stamp read leaves the identity stale for the next poll and is never lost. The full build reads in the same order. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:681-683]
-2. Index each record not yet in the index with `indexRunRecord`, which inserts or ignores by run id and so is safe to repeat. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:304-317]
+2. Pass every listed record of the identity through `indexRunRecord`, which inserts a new run row and replaces an indexed run's delivery rows, and so is safe to repeat. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:304-317]
 3. Replace the identity's item rows with `refreshItemRows`, as status already does. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:337]
-4. Record the stamp read in step 1 with `recordGeneration`, and write `updatedAt`. Steps 2 to 4 run in one transaction, so two verbs polling together cannot record a generation whose rows the other has not written. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:349-350]
+4. Record the stamp read in step 1 with `recordGeneration`, and write `updatedAt`. Every step after the stamp read, steps 2 to 4, runs in one transaction, so two verbs polling together cannot record a generation whose rows the other has not written. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status-index.ts:349-350]
 5. Never apply retention and never rebuild on this path. A successful refresh writes nothing to stderr, or the screen would draw it in the status row (section 9).
 
 An identity whose stamp did not move costs one stamp read, which status already pays. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:326-332] The runner writes the stamp each time it writes a terminal record. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:409-412] After the rule, `stale` is true only when a refresh could not complete, for example a locked index, and `bots status --rebuild` stays the one full rebuild.
 
-One gap for packet 001 to close: `indexRunRecord` ignores a run id it already holds, so a record that is rewritten under the same id keeps its old summary. Whether the runner rewrites a record after its terminal write is not settled by what I read. If it does, step 2 needs an insert-or-replace for that case.
+The rewrite gap is closed by packet 001 (`001-activity-and-actor/design/data-model.md` section 6). A record is rewritten under the same id after its terminal write, by delivery and by the answer's `answeredBy` stamp, and neither rewrite changes a summary field. `indexRunRecord` keeps an existing run row and replaces its delivery rows, so step 2 passes every listed record through it and needs no insert-or-replace.
 
 **The proof packet 001 owes.** With an index built, a run finishes, and the next `bots activity --json`, with no `--rebuild`, lists that run's row while `bots status --json` prints `"stale": false`. The criterion is in section 13.1.
 
@@ -783,7 +783,7 @@ Line numbers are from the tree at commit `69ecfd0b1f9`. Paths are relative to `s
 **3. `spec.md`, a new P0 row after line 156.** Insert:
 
 ```text
-| REQ-011 | `bots status --json` and `bots activity --json` bring the status index up to date before they answer. For each identity whose generation stamp is ahead of the one the index consumed, the read reads the stamp, then indexes every run record not yet in the index through `indexRunRecord`, replaces the identity's item rows through `refreshItemRows`, records the stamp it read, and writes `updatedAt`, the last three in one transaction. The read never applies retention, never rebuilds the whole index and writes nothing to stderr when it succeeds. `bots status --json` also carries `version` and `updatedAt`. The rule is `003-terminal-screen/002-architecture-and-contracts/design/contracts.md` section 10 |
+| REQ-011 | `bots status --json` and `bots activity --json` bring the status index up to date before they answer. For each identity whose generation stamp is ahead of the one the index consumed, the read reads the stamp, then passes every run record of the identity through `indexRunRecord`, which inserts the ones not yet in the index and refreshes the delivery rows of the rest, replaces the identity's item rows through `refreshItemRows`, records the stamp it read and writes `updatedAt`, every step after the stamp read in one transaction. The read never applies retention, never rebuilds the whole index and writes nothing to stderr when it succeeds. `bots status --json` also carries `version` and `updatedAt`. The rule is `003-terminal-screen/002-architecture-and-contracts/design/contracts.md` section 10 |
 ```
 
 **4. `spec.md`, a second new P0 row, after the REQ-011 row.** The index holds terminal run records and needs-you items only, so three of the seven groups have no index source today. The runner writes a run record only at its terminal write [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:409-412], and the installer computes no next fire: "The next fire time is never computed: no launchd surface reports it." [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:93-94] Insert:
@@ -844,7 +844,7 @@ prints the seven row keys
 
 ```text
 | AC-012 | REQ-011 | Given an index already built and a run that completes after it, When `bots activity --json` runs with no `--rebuild`, Then that run's row is listed and `bots status --json` prints `"stale": false` and an `updatedAt` no older than the run's record | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/activity.vitest.ts -t "refresh on read"` prints one passing test | Unmet | - |
-| AC-013 | REQ-012 | Given a run in flight and an installed cron schedule, When `bots activity --json` runs, Then a `working` row names the run in flight and a `recurring` row carries a future `at` and a non-null `schedule` | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/activity.vitest.ts -t "row sources"` prints one passing test | Unmet | - |
+| AC-013 | REQ-012 | Given a run in flight and an installed cron schedule, When `bots activity --json` runs, Then a `working` row names the run in flight and a `recurring` row carries a future `at` and a non-null `schedule`. Until 002 wires `describeStart`, the non-null `schedule` is proved with the stub `describe` `design/data-model.md` section 4.3 names | `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/activity.vitest.ts -t "row sources"` prints one passing test | Unmet | - |
 ```
 
 **10. `tasks.md:75`, T033.** Append to the task line:

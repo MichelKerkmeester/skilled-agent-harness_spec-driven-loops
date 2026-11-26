@@ -41,18 +41,18 @@ Today's group membership is the README's file table. [SOURCE: .skilled/skills/sy
 
 | Module | Phase | Group | Imports | What it owns |
 |--------|-------|-------|---------|--------------|
-| `activity.ts` | 001 | Status index | `status-index` | The seven group ids, their order and the grouping of index rows [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:151] |
-| `actor.ts` | 001 | Contracts and state | none | The precedence `--as` then the pinned operator then the OS user, plus the name pattern [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md:61] |
-| `routine.ts` | 002 | Contracts and state | `repo-config`, and `definition` as a type-only import | The block parse, `renderTrigger`, the `until` rules, `routineDelivery` and `checkRoutineFloor` over a period its caller passes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:61] |
-| `routine-state.ts` | 002 | Contracts and state | `state-root`, `run-record`, `switches`, `needs-you`, `action-kind`, `approval-ladder` | The per-bot state file, the failure streak and the fatigue item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:62] |
-| `memory.ts` | 005 | Contracts and state | `state-root` | The entry line, the bounds, the parser, the renderer, append and forget [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md:60] |
-| `action-kind.ts` | 006 | Contracts and state | none | The six kinds, their order, their word lists and `classifyAction` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:58] |
+| `activity.ts` | 001 | Status index | `status-index` | The seven group ids, their order and the grouping of index rows [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-001] |
+| `actor.ts` | 001 | Contracts and state | none | The precedence `--as` then the pinned operator then the OS user, plus the name pattern [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md, section "Key Components"] |
+| `routine.ts` | 002 | Contracts and state | `repo-config`, and `definition` as a type-only import | The block parse, `renderTrigger`, the `until` rules, `routineDelivery` and `checkRoutineFloor` over a period its caller passes [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
+| `routine-state.ts` | 002 | Contracts and state | `state-root`, `run-record`, `switches`, `needs-you`, `action-kind`, `approval-ladder` | The per-bot state file, the failure streak and the fatigue item [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
+| `memory.ts` | 005 | Contracts and state | `state-root` | The entry line, the bounds, the parser, the renderer, append and forget [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/plan.md, section "Key Components"] |
+| `action-kind.ts` | 006 | Contracts and state | none | The six kinds, their order, their word lists and `classifyAction` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md, section "Key Components"] |
 | `approval-ladder.ts` | 006 | Contracts and state | `action-kind` | The four rungs, `decideApproval` and the scope rule |
-| `apps.ts` | 007 | Runner and dispatch | `repo-config`, `state-root` | The only reader of `.utcp_config.json` and the only writer of a run's filtered copy [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:60] |
-| `secrets.ts` | 008 | Contracts and state | `state-root`, `secret-matcher`, `secrets-guard` | The name grammar, the backend, the index and the only read or write of a value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md:65] |
+| `apps.ts` | 007 | Runner and dispatch | `repo-config`, `state-root` | The only reader of `.utcp_config.json` and the only writer of a run's filtered copy [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md, section "Key Components"] |
+| `secrets.ts` | 008 | Contracts and state | `state-root`, `secret-matcher`, `secrets-guard` | The name grammar, the backend, the index and the only read or write of a value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md, section "Key Components"] |
 | `secret-matcher.ts` | 008 | Contracts and state | none | The lifted one-pass multi-value matcher |
 | `secrets-guard.ts` | 008 | Contracts and state | none | The lifted placeholder guard and constant-time compare |
-| `skills.ts` | 009 | Contracts and state | `approval` | The name grammar, the two caps, `parseSkillList`, `loadSkills` and `renderSkillsPrompt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:63] |
+| `skills.ts` | 009 | Contracts and state | `approval` | The name grammar, the two caps, `parseSkillList`, `loadSkills` and `renderSkillsPrompt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md, section "Key Components"] |
 | `skill-proposal.ts` | 009 | Request pipeline | `state-root`, `run-record`, `needs-you`, `action-kind`, `approval-ladder`, `dispatch` | The proposals folder, the review item and the settle |
 | `conversation.ts` | 010 | Request pipeline | `state-root` | The message record, the append, the torn-line read, `@bot` routing, the bound and the block renderer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/plan.md:63] |
 | `channel.ts` | 011 | Channels | `state-root` | The adapter contract, the message model, the capability table and `channels/config.json` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:66] |
@@ -75,6 +75,7 @@ Today's group membership is the README's file table. [SOURCE: .skilled/skills/sy
 | `delivery.ts` | `channel-queue`, `secrets` | 011, 008 | A channel target is an entry on the send queue, and the delivery text is checked against stored values |
 | `installer.ts` | `routine`, `skills`, `slot-accounting` | 002, 009 | The floor check at install and the recorded skill digests |
 | `label.ts` | none | 005, 009 | `RESERVED_BOT_IDS` gains `memory-proposals` and `skill-proposals` |
+| `status.ts` | `cron-translator`, `slot-lister`, `request-record` and the deep-loop `processAlive`, then `routine` | 001, then 002 | The live activity sources and the next fire. 002 adds `routine` so `status.ts` passes `describeStart` to `activityReport` as its `describe` argument [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/data-model.md, section "4.3 An installed schedule and its next fire"] |
 
 ### 1.4 Acyclicity
 
@@ -84,6 +85,7 @@ No new edge closes a cycle. The edges that come closest, checked by hand:
 - A transport imports `answer`, which imports `runner` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:23], which imports `delivery`. `delivery` imports `channel-queue` and never a transport, so the loop through a transport does not close.
 - `answer` imports `channel-link`, which imports only `channel`, `state-root` and `actor`.
 - `definition` imports `routine`, and `routine` imports `definition` for types only, which the compiler erases.
+- `status` imports `routine` for `describeStart`, and `routine` imports neither `status` nor `activity`.
 
 ---
 
@@ -149,18 +151,18 @@ Folder modes are 0700, the mode the state root gives every folder it makes. [SOU
 | `registered-roots` | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:347] |
 | Identity folders | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131] |
 | Request and marker files 0600 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:51] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts:133-135] |
-| Switch files and the `completed` kind | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/switches.ts:25] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/switches.ts:42] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:65] |
+| Switch files and the `completed` kind | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/switches.ts:25] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/switches.ts:42] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
 | Items and records | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:164] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:367] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:176-183] |
 | Delivery claims 0600 | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:255] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:292] |
 | Approvals, installs, slots, drain backoff, agent logs, generation | [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:199-255] |
-| `routines/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:62] |
-| `memory/` both places, 0700 and 0600 | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:146-147] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:162] |
-| `secrets/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:190] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md:197] |
-| `proposals/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163] |
+| `routines/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
+| `memory/` both places, 0700 and 0600 | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-001 and REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-012] |
+| `secrets/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, section "6. RISKS & DEPENDENCIES"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/tasks.md, CHK-031] |
+| `proposals/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-004] |
 | `conversations/` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md:152] |
 | `channels/`, `operators.json` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:28] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:248] |
 
-The state root is the unit of backup, and `bots status --rebuild` is the only repair. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:120]
+The state root is the unit of backup, and `bots status --rebuild` is the only repair. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Files to Change"]
 
 ### 2.2 The run root in the Skilled tree
 
@@ -175,9 +177,9 @@ Evidence a child may read without harm lives in the Skilled tree, under its giti
     utcp.json                                   umask         007
 ```
 
-[SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:36] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:361-367] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:334-345] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1062] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:68]
+[SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:36] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:361-367] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:334-345] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1062] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md, section "Data Flow"]
 
-A worktree run also gets `<worktree>/.utcp_config.json`, the filtered config the project pin reads, restored after the child exits. That file is in the run's tree, not in either root. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md:62]
+A worktree run also gets `<worktree>/.utcp_config.json`, the filtered config the project pin reads, restored after the child exits. That file is in the run's tree, not in either root. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md, section "Key Components"]
 
 ---
 
@@ -313,13 +315,13 @@ sequenceDiagram
 
 | Decision | Why |
 |----------|-----|
-| `routine.ts` is a contracts module, and `checkRoutineFloor` takes the shortest period as an argument that the checker and the installer compute | `definition.ts` calls the routine parser, and a contracts module may import nothing outside its group [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:39]. 002 has `routine.ts` measure the period itself with `schedulePeriodSeconds` from `slot-accounting.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:61], which is a schedule module that already imports `definition.ts`, so that edge would also close a cycle |
+| `routine.ts` is a contracts module, and `checkRoutineFloor` takes the shortest period as an argument that the checker and the installer compute | `definition.ts` calls the routine parser, and a contracts module may import nothing outside its group [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:39]. 002 has `routine.ts` measure the period itself with `schedulePeriodSeconds` from `slot-accounting.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"], which is a schedule module that already imports `definition.ts`, so that edge would also close a cycle |
 | `routine.ts` takes `parseTrigger` from `definition.ts` as a type-only import plus an argument | It reuses the trigger parser 002 names without a runtime cycle |
-| `skills.ts` and `secrets.ts` sit in contracts and state | `definition.ts` checks the `skills` list shape and the secret name grammar at parse time [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:172] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150], and it may import only its own group |
+| `skills.ts` and `secrets.ts` sit in contracts and state | `definition.ts` checks the `skills` list shape and the secret name grammar at parse time [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-008] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-005], and it may import only its own group |
 | `dispatch.ts` composes rendered blocks and does not import `memory.ts` or `skills.ts` | The runner reads and renders, the builder joins and bounds. This keeps the budget check in one function, as [prompt-sections.md](prompt-sections.md) requires |
 | Channels is a new group, and `delivery.ts` reaches it only through `channel-queue.ts` | A transport imports `answer`, which imports `runner`, which imports `delivery`. If `delivery` imported a transport the loop would close. 011 also requires every outbound message on the queue before the I/O [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:195] |
 | `answer.ts` may import `channel-link.ts` for the roster | 011 keeps the roster in `channel-link.ts` and puts the check in `answer.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:208], and `channel-link` imports nothing that reaches `answer` |
-| New state files written by `writeStateAtomic` keep `umask` like today's, except files that hold a secret, a sender id or a person's words, which are 0600 | 005 and 008 already require 0600 for memory and secrets [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:162]. Conversations, channel files, the roster and the item lock hold the same kind of content. Their phases name no mode |
+| New state files written by `writeStateAtomic` keep `umask` like today's, except files that hold a secret, a sender id or a person's words, which are 0600 | 005 and 008 already require 0600 for memory and secrets [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-012]. Conversations, channel files, the roster and the item lock hold the same kind of content. Their phases name no mode |
 | Pairing lockouts live in `links.json`, as [records.md](records.md) decides, and the listen lease is `channels/listen-<channel>.lease` | 011 requires both to be files and names neither path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:186] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:248] |
-| The item lock is `needs-you/<itemId>.lock` | 006 places it beside the item and names no path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md:63]. The listing reads `.json` files only, so the lock never reads as an item |
+| The item lock is `needs-you/<itemId>.lock` | 006 places it beside the item and names no path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md, section "Key Components"]. The listing reads `.json` files only, so the lock never reads as an item |
 | A transport other than the terminal enqueues an inbound message as a request whose prompt is a `<conversation channel="...">` block, rendered by `conversation.ts` | One renderer, one label and one escape for every chat text, as [prompt-sections.md](prompt-sections.md) section 1.9 fixes |

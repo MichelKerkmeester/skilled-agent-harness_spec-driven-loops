@@ -278,7 +278,7 @@ The install record keeps the two values as well, because the drain runs a queued
 
 ## 12. AMENDMENTS THIS PHASE NEEDS FROM FROZEN FILES
 
-These files are outside this phase's folder and frozen. Each row is the fix, for the owner to apply. Until it is applied this file wins for this phase's build, and the contract wins everywhere else.
+These files are outside this phase's folder and frozen. Each row is the fix, for the owner to apply. Until it is applied this file wins for this phase's build, and the contract wins everywhere else. The contract reconciliation pass of 2026-11-26 applied every row below, so the frozen files now agree with this file. The refusal rows landed as R6, R7 and R8 of `refusals.md` in this folder.
 
 | File and section | What it says | The one-line fix |
 |------------------|--------------|------------------|

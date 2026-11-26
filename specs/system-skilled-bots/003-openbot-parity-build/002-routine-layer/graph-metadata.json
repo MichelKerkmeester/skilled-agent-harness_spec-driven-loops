@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger and a body, so it says when a bot runs and nothing about what the run is for, whether it acts or only tells, or when it is done",
     "created_at": "2026-11-25T07:13:38Z",
-    "last_save_at": "2026-11-25T23:19:48.310Z",
+    "last_save_at": "2026-11-26T01:11:20.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00a07e62c4d828e11df4808cf7bcb35fc14b258aabfb970a748beb8edb971f1b",
+    "source_fingerprint": "sha256:ce97db9d20c6f80f23e7f6bc3622e67908740b7343db39dedc74d01d6ce85117",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "46817a41b47938bf37c38b0186ce20a6749fe993e6095b0858873f5d4be13f6b",
-      "plan.md": "f18c595b42f3fbd47ca5d536b4fb9012fec213d56becab6c597e34357062db2f",
-      "tasks.md": "cfd3b8d972983e3b84d08b56d91660026ecb0a510995e4771ddeb6966f955bd4",
+      "spec.md": "8553a014f7bfa04278089c1c9ae5e469988ca5f125922eb4070e5e2fa7771671",
+      "plan.md": "741e04e49c1722aa920b009815012fc47747a2e5862191b2c3a5ab8ea37ca896",
+      "tasks.md": "8634689b48c90b5e73653d1c504210fb197593c2a030b58ca0e3677e2163dc90",
       "implementation-summary.md": "0d7f921d1001c8f065113d46e668e1fcaf25dadaf4218e7c56971b76197947b8"
     },
     "last_active_at": null

@@ -77,7 +77,7 @@ The answer to the parked question arrives later in the same conversation, append
 | A refusal or `unknown command` line | stderr | Yes |
 | The `/help` list | stderr | Yes |
 
-Stdout carries only the conversation, so `printf 'hello\n/exit\n' | bots chat hello > out.txt` leaves one bot message line in `out.txt` and nothing else. The prompt and the opening line are drawn only for a person at a terminal, which readline's tty check decides.
+Stdout carries only the conversation, so `printf 'hello\n/exit\n' | bots chat hello > out.txt` leaves one bot message in `out.txt` and nothing else. The prompt and the opening line are drawn only for a person at a terminal, which readline's tty check decides.
 
 ---
 
@@ -113,7 +113,7 @@ $ echo $?
 
 Its exit code is the run's: 0 completed, 1 failed, 5 parked and 4 for a run refused before dispatch or a `bot-unknown` address, as the runtime's exit table gives (`contracts/refusals.md` section 1 and section 3.9). An empty message, or an address with nothing after it, exits 2 with the usage text. `--message` takes no `--json`, because `contracts/cli-json.md` section 2 gives `bots chat` one `--json` form, the transcript's.
 
-`bots chat <id> --transcript` prints one line per message, oldest first:
+`bots chat <id> --transcript` prints one entry per message, oldest first. A message that holds line feeds (D10 in `contracts/decisions.md`) prints each later line on a line of its own, indented four spaces:
 
 ```text
 $ node .skilled/bin/bots.cjs chat hello --transcript

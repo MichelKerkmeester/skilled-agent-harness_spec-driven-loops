@@ -41,7 +41,7 @@ The answer verb's own returns, line by line, are drawn in the screen's answer co
 
 | Layer | Where it is decided | How it surfaces | Exit | Enters `REFUSAL_CAUSES` |
 |-------|---------------------|-----------------|------|-------------------------|
-| Definition parse | `parseDefinition` and the parsers it calls | At run time as the run refusal `definition-malformed` with the parse reason as its detail [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:125] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:789], and in the checker as `definition.<reason>` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150] | 4 at run time, 1 in the checker | No. The parse reason is a detail of `definition-malformed` |
+| Definition parse | `parseDefinition` and the parsers it calls | At run time as the run refusal `definition-malformed` with the parse reason as its detail [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:125] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:789], and in the checker as `definition.<reason>` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-005] | 4 at run time, 1 in the checker | No. The parse reason is a detail of `definition-malformed` |
 | Checker invariant | `bot-check.cjs` | One `FAIL: <id>: <message>` line [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:110-113] | 1 | No |
 | Run refusal | `runBot` before dispatch | A run record whose exit names the cause, and no child started | 4 | Yes |
 | Verb refusal | `bots.cjs` or the runtime call a verb makes | `bots: <reason>` or `bots: <reason>: <detail>` on stderr [SOURCE: .skilled/bin/bots.cjs:208-214] | 2 when `bots.cjs` refuses before any runtime call, 4 when a runtime `Result` refused | No |
@@ -59,50 +59,53 @@ Class is the failure class the run record carries, one of `author`, `operator`, 
 
 | Name or message | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |-----------------|-------|-------|------|------------------|--------|
-| `bots: --as needs a tty` | Verb refusal (`answer`, `run`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:179] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:231] |
-| `bots: --as takes a name` | Verb refusal | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:230] |
-| `bots: option --as needs a value` | Verb refusal | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:230] |
-| `grant-scope-unsupported` | Verb refusal (`answer`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156] |
-| `bots: --scope takes once or deny` | Verb refusal (`answer`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:156] |
-| `bots: <reason>` for an index that cannot be opened | Verb refusal (`activity`) | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:229] |
+| `bots: --as needs a tty` | Verb refusal (`answer`, `run`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, SC-004] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"] |
+| `bots: --as takes a name` | Verb refusal | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"] |
+| `bots: option --as needs a value` | Verb refusal | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"] |
+| `grant-scope-unsupported` | Verb refusal (`answer`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010] |
+| `bots: --scope takes once or deny` | Verb refusal (`answer`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010] |
+| `bots: <reason>` for an index that cannot be opened | Verb refusal (`activity`) | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"] |
+| `bots: --full-access needs a tty` | Verb refusal (`schedule install`), checked before the installer is called | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R6 |
+| `bots: activity takes no id` | Verb refusal (`activity`), a positional after the verb | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R7 |
+| `bots: activity takes no --<option>` | Verb refusal (`activity`), any option but `--json`, `--repo` and `--skilled-tree` | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/refusals.md, section "1. THE ROWS"], R8 |
 
-The `activity` index failure keeps exit 1 because `bots status` already uses 1 for an index failure and the phase matches it on purpose. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:229]
+The last two rows are the parser's existing messages for any verb, so they need only the verb's row in `VERB_SPECS` and no new code. The `activity` index failure keeps exit 1 because `bots status` already uses 1 for an index failure and the phase matches it on purpose. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, section "L2: EDGE CASES"]
 
 ### 3.2 Phase 002, routine layer
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `routine-trigger-conflict` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:163] |
-| `routine-tell-with-targets` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:164] |
-| `routine-starts-empty` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:174] |
-| `routine-starts-multiple-cron` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:175] |
-| `routine-starts-cron-not-first` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:175] |
-| `routine-starts-multiple` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:175] |
-| `routine-until-check-without-outcome` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:177] |
-| `routine-until-shell-metacharacters` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:177] |
-| `routine-floor-15-minutes` | Checker invariant, and an install refusal | - | 1 checker, 4 `bots install` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:166] |
-| `routine-fatigued` | Run refusal | `null` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:130] |
+| `routine-trigger-conflict` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-002] |
+| `routine-tell-with-targets` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-003] |
+| `routine-starts-empty` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-008] |
+| `routine-starts-multiple-cron` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-009] |
+| `routine-starts-cron-not-first` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-009] |
+| `routine-starts-multiple` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-009] |
+| `routine-until-check-without-outcome` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-011] |
+| `routine-until-shell-metacharacters` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-011] |
+| `routine-floor-15-minutes` | Checker invariant, and an install refusal | - | 1 checker, 4 `bots install` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-005] |
+| `routine-fatigued` | Run refusal | `null` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, section "Files to Change"] |
 | `routine-completed` | Run refusal | `null` | 4 | Yes | Decided here, see section 5 |
 
 ### 3.3 Phase 004, computer exposure
 
-Phase 004 adds no refusal. Its requirements add a prompt line and two record fields. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:140-148]
+Phase 004 adds no refusal. Its requirements add a prompt line and two record fields. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md, REQ-001 and REQ-002 and REQ-003 and REQ-004 and REQ-005 and REQ-006, section "P0 - Blockers (MUST complete)"]
 
 ### 3.4 Phase 005, memory
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `memory-full` | Verb refusal (`remember`, `answer confirm`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] |
-| `memory-entry-too-long` | Verb refusal (`remember`), checked in `bots.cjs` on its argument | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] |
-| `memory-entry-unknown` | Verb refusal (`remember --forget`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:150] |
-| `memory-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:160] |
-| `memory-secret` | Verb refusal (`remember`, `answer confirm`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:161] |
-| `memory-proposal-secret` | Post-run cause | - | The run's own, 0 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:161] |
-| `remember-type-invalid` | Post-run cause | - | The run's own, 0 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:264] |
-| `review-answer-invalid` | Verb refusal (`answer` on a `memory-proposal` item, text other than `confirm` or `reject`) | - | 4 | No | Named here, see section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:153] |
-| `bot-id-invalid` | Verb refusal (`remember --bot`) | - | 2 | No | Named here, see section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:162] |
-| `prompt-over-budget` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:165] |
-| `body-secret` for a memory file | Run refusal, existing cause | `author` | 4 | Already there [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:141] | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:161] |
+| `memory-full` | Verb refusal (`remember`, `answer confirm`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-003] |
+| `memory-entry-too-long` | Verb refusal (`remember`), checked in `bots.cjs` on its argument | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-003] |
+| `memory-entry-unknown` | Verb refusal (`remember --forget`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-005] |
+| `memory-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-010] |
+| `memory-secret` | Verb refusal (`remember`, `answer confirm`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-011] |
+| `memory-proposal-secret` | Post-run cause | - | The run's own, 0 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-011] |
+| `remember-type-invalid` | Post-run cause | - | The run's own, 0 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "10. OPEN QUESTIONS"] |
+| `review-answer-invalid` | Verb refusal (`answer` on a `memory-proposal` item, text other than `confirm` or `reject`) | - | 4 | No | Named here, see section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-008] |
+| `bot-id-invalid` | Verb refusal (`remember --bot`) | - | 2 | No | Named here, see section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-012] |
+| `prompt-over-budget` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-015] |
+| `body-secret` for a memory file | Run refusal, existing cause | `author` | 4 | Already there [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:141] | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-011] |
 
 The prompt budget and its overflow rule are in [prompt-sections.md](prompt-sections.md).
 
@@ -110,58 +113,58 @@ The prompt budget and its overflow rule are in [prompt-sections.md](prompt-secti
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `answer-not-approver` | Verb refusal (`answer`, `enable`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:103] |
-| `item-answered-differently` for a second answer with the same text and another scope, and for the loser of a race | Verb refusal (`answer`), existing reason | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:170-171] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:84-86] |
+| `answer-not-approver` | Verb refusal (`answer`, `enable`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "In Scope"] |
+| `item-answered-differently` for a second answer with the same text and another scope, and for the loser of a race | Verb refusal (`answer`), existing reason | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013 and REQ-014] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:84-86] |
 | `item-busy` | Verb refusal (`answer`), the item lock is held by a live process past the wait | - | 4 | No | Named here, see [answer-seam.md](answer-seam.md) step 5 |
-| `action-kind-invalid` | Run failure reason after dispatch, for a run that parked a question with an `[ACTION: <kind>]` line naming no known kind | - | 1, the run is failed with class `author` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:169] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:235] |
-| `grant-kind-unknown` | Verb refusal, reserved. No rule store lands in this packet, so nothing can raise it yet | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:158] |
+| `action-kind-invalid` | Run failure reason after dispatch, for a run that parked a question with an `[ACTION: <kind>]` line naming no known kind | - | 1, the run is failed with class `author` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-012] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "L2: EDGE CASES"] |
+| `grant-kind-unknown` | Verb refusal, reserved. No rule store lands in this packet, so nothing can raise it yet | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-006] |
 
 ### 3.6 Phase 007, per-bot apps
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `apps-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:140] |
-| `apps-unknown-server` | Checker invariant, failing closed | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:141] |
-| `apps-refused` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:151] |
-| `apps-unenforceable` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:144] |
-| `utcp-config-missing`, `utcp-config-invalid` | Detail of `apps-refused` | `author` | 4 | No, they are details | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:182] |
+| `apps-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-001] |
+| `apps-unknown-server` | Checker invariant, failing closed | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-002] |
+| `apps-refused` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-007] |
+| `apps-unenforceable` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, REQ-005] |
+| `utcp-config-missing`, `utcp-config-invalid` | Detail of `apps-refused` | `author` | 4 | No, they are details | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md, section "6. RISKS & DEPENDENCIES"] |
 
 ### 3.7 Phase 008, vault
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `secret-no-input` | Verb refusal (`secret set`), in `bots.cjs` | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:146] |
-| `secret-empty` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:160] |
-| `secret-placeholder` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:160] |
-| `secret-too-long` | Verb refusal (`secret set`), on the value read | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:222] |
-| `secret-write-dropped` | Verb refusal (`secret set`), the read-back found no value | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:161] |
-| `secret-name-invalid` | Definition parse, and a verb refusal on `secret set` | - | 4 run, 1 checker, 2 verb | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:150] |
-| `secret-unknown` | Run refusal | `operator` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:151] |
-| `secret-store-unreadable` | Run refusal | `environment` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:223] |
-| `secret-in-output` | Post-run cause. The line is redacted and the delivery withheld | - | The run's own | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:164] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:137] |
+| `secret-no-input` | Verb refusal (`secret set`), in `bots.cjs` | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-001] |
+| `secret-empty` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-010] |
+| `secret-placeholder` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-010] |
+| `secret-too-long` | Verb refusal (`secret set`), on the value read | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, section "8. EDGE CASES"] |
+| `secret-write-dropped` | Verb refusal (`secret set`), the read-back found no value | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-011] |
+| `secret-name-invalid` | Definition parse, and a verb refusal on `secret set` | - | 4 run, 1 checker, 2 verb | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-005] |
+| `secret-unknown` | Run refusal | `operator` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-006] |
+| `secret-store-unreadable` | Run refusal | `environment` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, section "8. EDGE CASES"] |
+| `secret-in-output` | Post-run cause. The line is redacted and the delivery withheld | - | The run's own | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-014] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] |
 
-`secret-in-output` is one cause name for the `stdout.log` scan and for 010's reply scan. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:137] It is not a refusal, because the child already ran, so it stays out of `REFUSAL_CAUSES` and the run keeps the exit its outcome gives. Its field on the run record is in [records.md](records.md).
+`secret-in-output` is one cause name for the `stdout.log` scan and for 010's reply scan. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records"] It is not a refusal, because the child already ran, so it stays out of `REFUSAL_CAUSES` and the run keeps the exit its outcome gives. Its field on the run record is in [records.md](records.md).
 
 ### 3.8 Phase 009, skills
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `skills-duplicate` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:172] |
-| `skills-name-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:172] |
-| `skills-unknown` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:171] |
-| `skills-too-large` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:171] |
-| `skills-over-budget` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:171] |
-| `skill-unknown` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161] |
-| `skill-too-large` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162] |
-| `skills-over-budget` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162] |
-| `skill-unreadable` | Run refusal | `environment` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:229] |
-| `skill-changed` | Run refusal | `operator` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:175] |
-| `run-record-missing` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md:211] |
-| `review-already-exists` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:231] |
-| `proposal-secret` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:173] |
-| `proposal-stale` | Verb refusal (`answer` on a `skill-proposal` item) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:165] |
+| `skills-duplicate` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-008] |
+| `skills-name-invalid` | Definition parse | - | 4 run, 1 checker | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-008] |
+| `skills-unknown` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-007] |
+| `skills-too-large` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-007] |
+| `skills-over-budget` | Checker invariant | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-007] |
+| `skill-unknown` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-002] |
+| `skill-too-large` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-003] |
+| `skills-over-budget` | Run refusal | `author` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-003] |
+| `skill-unreadable` | Run refusal | `environment` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "Reliability"] |
+| `skill-changed` | Run refusal | `operator` | 4 | Yes | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-011] |
+| `run-record-missing` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md, section "Waves"] |
+| `review-already-exists` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "Reliability"] |
+| `proposal-secret` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-009] |
+| `proposal-stale` | Verb refusal (`answer` on a `skill-proposal` item) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-006] |
 
-The checker names are plural (`skills-unknown`) and the run names singular (`skill-unknown`), as the phase writes them. Both spellings are kept because the checker audits the list and the runner names the one skill. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:241]
+The checker names are plural (`skills-unknown`) and the run names singular (`skill-unknown`), as the phase writes them. Both spellings are kept because the checker audits the list and the runner names the one skill. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "L2: EDGE CASES"]
 
 ### 3.9 Phase 010, conversations
 
@@ -184,8 +187,11 @@ The checker names are plural (`skills-unknown`) and the run names singular (`ski
 | `channel-signature` | Inbound refusal on the WhatsApp webhook before any parse | - | None, the webhook answers the HTTP request | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:194] |
 | `channel-daemon-unreachable` | Send refusal on the Signal transport. The queue keeps the entry | - | 4 on `channel send` or `channel drain` | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:240] |
 | `channel-listening` | Verb refusal (`channel listen`), the per-channel lease is held | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:248] |
+| `bots: <channel> rejected the credential`, no refusal name | Failure line of `channel listen` when the provider rejects the credential on the start probe, as a `401` from Telegram's `getMe`. The lease is released | - | 1 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-024 and REQ-025] |
 | `unsupported` | The adapter result for an undeclared operation, `retryable: false` | - | Not a CLI exit | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183] |
 | `answer-not-approver`, `item-expired` on a press | Answer refusals, existing names | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:187-188] |
+
+A rejected credential exits 1 and carries no name, as 011 chose. The secret resolved, so it is not `secret-unknown`, and the provider's answer is a runtime failure the operator fixes by storing a new value, not a refusal the runtime decides. Exit 1 is also what 011's transport children specify, so the contract and 011 agree. A later name would be a new row here and a new exit for 011.
 
 `channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:166]
 
@@ -222,16 +228,16 @@ Every entry keeps the shape `{ reason, class }` the registry already types. [SOU
 
 | Decision | Why |
 |----------|-----|
-| `routine-fatigued` is decided at the `disabled` check: when the `disabled` switch is set and the routine state file records `fatiguedAt`, the run is refused `routine-fatigued` instead of `disabled` | Fatigue sets the `disabled` switch, and the `disabled` check refuses before anything else could name fatigue [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:822-823] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:167]. Without this the name 002 requires can never be recorded |
-| The `completed` switch refuses as `routine-completed`, class `null`, checked beside `disabled` | 002 adds the switch and reads it before the lease but names no cause for it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md:64] |
+| `routine-fatigued` is decided at the `disabled` check: when the `disabled` switch is set and the routine state file records `fatiguedAt`, the run is refused `routine-fatigued` instead of `disabled` | Fatigue sets the `disabled` switch, and the `disabled` check refuses before anything else could name fatigue [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:822-823] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006]. Without this the name 002 requires can never be recorded |
+| The `completed` switch refuses as `routine-completed`, class `null`, checked beside `disabled` | 002 adds the switch and reads it before the lease but names no cause for it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/plan.md, section "Key Components"] |
 | Definition parse names are details of `definition-malformed`, never registry entries | The runner already folds every parse refusal into that one cause [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:789] |
 | `memory-full` exits 4, not 1 | Exit 1 means a run failure or a caught throw [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:115] [SOURCE: .skilled/bin/bots.cjs:542-545], and the screen classes exit 1 as a throw. A full file is a runtime refusal |
 | `memory-entry-too-long` exits 2 | The length is checked on the argument before any file is read, which is the usage layer |
 | `memory-entry-unknown` keeps the phase's exit 2 | A new verb may treat an index that names nothing as a bad argument. It does not reach the answer verb |
-| A non-`confirm` answer on a memory proposal is refused `review-answer-invalid` with exit 4 | Every `answerItem` refusal exits 4 and the screen depends on it [SOURCE: .skilled/bin/bots.cjs:292-297]. The phase names no reason and says exit 2 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:153] |
-| An unsafe `--bot` id on `remember` is `bot-id-invalid`, exit 2 | The phase says "refused by name" and names none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:162] |
-| `memory-proposal-secret` and `remember-type-invalid` are post-run causes: the run stays `completed`, no item is written and the cause is recorded on the run record beside `secret-in-output` | The child already ran, and 005 ends a proposing run `completed` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152] |
-| `action-kind-invalid` ends the run failed with class `author`, exit 1 | The item is not written [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:235], so the run cannot park. The bot author wrote the bad line |
+| A non-`confirm` answer on a memory proposal is refused `review-answer-invalid` with exit 4 | Every `answerItem` refusal exits 4 and the screen depends on it [SOURCE: .skilled/bin/bots.cjs:292-297]. The phase names no reason and says exit 2 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-008] |
+| An unsafe `--bot` id on `remember` is `bot-id-invalid`, exit 2 | The phase says "refused by name" and names none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-012] |
+| `memory-proposal-secret` and `remember-type-invalid` are post-run causes: the run stays `completed`, no item is written and the cause is recorded on the run record beside `secret-in-output` | The child already ran, and 005 ends a proposing run `completed` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-007] |
+| `action-kind-invalid` ends the run failed with class `author`, exit 1 | The item is not written [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, section "L2: EDGE CASES"], so the run cannot park. The bot author wrote the bad line |
 | `item-busy` is a new answer refusal, exit 4 | The lock that [answer-seam.md](answer-seam.md) takes needs a name for a holder that is still alive |
 | `secret-too-long` exits 2 and `secret-write-dropped` exits 4 | The first is a check on input read before any store is touched. The second is a runtime finding after a write |
 | `secret-unknown` is class `operator`, `secret-store-unreadable` is `environment` | The operator sets the missing name. A folder that cannot be read is the host's |

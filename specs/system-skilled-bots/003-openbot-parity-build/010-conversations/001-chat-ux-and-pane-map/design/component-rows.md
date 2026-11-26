@@ -85,7 +85,7 @@ The title suffix is the status line. `blank` adds nothing, `sending` adds `· se
 | Rule | How the chat pane keeps it |
 |------|----------------------------|
 | At most one read in flight per surface | The transcript is one new surface, `Chat`, with its own in-flight flag |
-| Every drawn runtime string is sanitized | Message text, bot ids and stderr lines go through the screen's `printable` before they are drawn [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:73] |
+| Every drawn runtime string is sanitized | Message text, bot ids and stderr lines go through the screen's `printable` before they are drawn. Message text is split on its line feeds first, so each line is drawn on its own row (D10 in `contracts/decisions.md`) [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:73] |
 | A key with no binding does nothing | No chat key sends by default. Only `Enter` in typing sends |
 | Every bound key is drawn in the frame that binds it | `key-map-delta.md` section 3 lists each footer line, and every label is in a frame |
 

@@ -3,7 +3,7 @@
   "idempotencyKey": "notice-20261125T210504Z-3f9d2b11-telegram",
   "channel": "telegram",
   "conversationId": "81234567",
-  "text": "digest needs you: Which channel?\n1  email\n2  chat",
+  "text": "Skilled bot digest\nRun 20261125T210504Z-3f9d2b11: needs your decision\nReason: awaiting-decision\nNeeds-you item 20261125T210504Z-3f9d2b11: Which channel?\nRecord: <bots state>/skilled-scratch%2Fhello/records/20261125T210504Z-3f9d2b11.json\n\nPress a button to answer.",
   "itemId": "20261125T210504Z-3f9d2b11",
   "runId": "20261125T210504Z-3f9d2b11",
   "state": "delivered",

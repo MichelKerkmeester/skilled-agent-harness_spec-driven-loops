@@ -11,7 +11,7 @@ version: 1.0.0.0
 
 # Golden records and payloads
 
-Each file is the literal sample of one section of `../records.md` or `../cli-json.md`, on the screen's one data set (clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`). The four screen verbs are not here: their samples are `003-terminal-screen/002-architecture-and-contracts/design/payloads/`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:25]
+Each file is the literal sample of one section of `../records.md` or `../cli-json.md`, on the screen's one data set (clock `2026-11-25T21:14:04Z`, identity `skilled-scratch/hello`, operator `ada`). The four screen verbs are not here: their samples are `003-terminal-screen/002-architecture-and-contracts/design/payloads/`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "1. THE SAMPLE FILES AND THE ONE DATA SET"]
 
 A test reads a golden in one of two ways. A **record** golden is fed to the module's validator or reader. A **payload** golden is compared key by key and type by type against the verb's real `--json` output, the type check the screen contract runs for its own four. A phase that changes a shape edits the golden in the same change.
 
@@ -37,7 +37,7 @@ Today's runtime tests live in `.skilled/skills/system-skilled-bots/runtime/tests
 | `channel-seen.json` | records 15 | the seen check of the inbound sink | `channel-conformance.vitest.ts`, created by 011 |
 | `channel-list.json` | cli-json 3.3 | type check of `bots channel list --json` | `cli-channel.vitest.ts`, created by 011 |
 
-The test file names come from each phase's Files to Change table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:125] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:128] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:155-161] 008, 009 and 010 name theirs in the same table of their own `spec.md`.
+The test file names come from each phase's Files to Change table. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, section "Files to Change"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "Files to Change"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:155-161] 008, 009 and 010 name theirs in the same table of their own `spec.md`.
 
 Two values in the goldens are illustrative and a test compares their type only: the SHA-256 digest under `posture.skills` and the message ids in the conversation files. Every other value is a real shape the runtime produces. The request record's `id` and `idempotencyKey` are what `buildRequest` returns for this answer.
 

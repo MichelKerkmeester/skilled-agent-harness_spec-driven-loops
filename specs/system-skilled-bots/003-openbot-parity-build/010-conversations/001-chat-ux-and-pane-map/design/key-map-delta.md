@@ -103,7 +103,7 @@ The picker lists every bot id of the `kind: "bot"` rows in the last `bots status
 |-----|---------|
 | `Tab` for completion | The loop completes `@<bot-id>` and `/` commands with Tab, but the pane has no completion list to draw, and the screen binds no Tab anywhere. A person types the id. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md:114] |
 | `Left`, `Right`, `Home`, `End` | The draft is edited at its end only, which is what the screen's overlay does. A cursor that moves would need a drawn cursor position |
-| `Ctrl+Enter` or `Shift+Enter` for a new line | A stored message is one line, because the newline is a control character the runtime strips (`contracts/prompt-sections.md` section 6) |
+| `Ctrl+Enter` or `Shift+Enter` for a new line | The composer sends one line, and `Enter` sends it. A stored message can hold line feeds from a bot reply (D10 in `contracts/decisions.md`), but a typed draft has no key that inserts one |
 | `PgUp`, `PgDn` while typing | They would need a label on a footer line already at 64 columns, and `Esc` then `PgUp` reaches the same scroll |
 | A key that cancels a send | The run is a bot run with its own lease and record. Stopping it is not a chat action, and a killed send could leave a human message with no reply for no reason the person chose |
 

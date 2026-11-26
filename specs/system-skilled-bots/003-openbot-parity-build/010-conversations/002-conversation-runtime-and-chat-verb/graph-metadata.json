@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Skilled bots is headless by contract",
     "created_at": "2026-11-25T23:17:48Z",
-    "last_save_at": "2026-11-25T23:51:57.095Z",
+    "last_save_at": "2026-11-26T01:06:04.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c13e353d55feff6573976ac3282910e47d5aaa5c0cf56dc008bceb56ad8ff6e",
+    "source_fingerprint": "sha256:5d7761af778c4e0a5d1bbf138fd6f8c23bf754997dbb00c9e70ea22132d8fa1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a043f6da12ae7a517df9cb73e2d3ac4c8170983cbd7885f8c027a01af6afffba",
-      "plan.md": "d35189217046a43baad629aae7dc5ca2e7f1e04057a6421ecf7e906340ee9bc9",
-      "tasks.md": "7134e66267eeccd965418a2ad11483e50caa2cc9f88e14c8ea41a76d62ed3ae3",
+      "spec.md": "a2861731df52bdfe80232f17476bcd2acda57091f52a504b8f6b87e2268e25e0",
+      "plan.md": "6b07127161aab03457b16d02ce945ee039e30df70bb25d726e132ac135eb15a4",
+      "tasks.md": "25e4082e5be2826a23a6276ccb0bf0581b46d1fe424039620e2d8c3e83ec2aa8",
       "implementation-summary.md": "8175bb576cda3fc929ea86ab61bb931de419d550e8b1a2340bc0fbb28b21564e"
     },
     "last_active_at": null

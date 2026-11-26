@@ -40,7 +40,7 @@ Trailing blanks are trimmed, as in the screen's mockups. [SOURCE: specs/system-s
 
 ## 2. HOW ONE MESSAGE DRAWS
 
-A message is a label line, then its text on lines indented four columns and wrapped at the column width. One blank line separates two messages. The text is the stored `text` exactly, run through the screen's control character rule before it is drawn. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:79] The message record and its nine keys are `contracts/records.md` section 10.
+A message is a label line, then its text on lines indented four columns and wrapped at the column width. One blank line separates two messages. The text is the stored `text` split on each line feed, and each line is run through the screen's control character rule before it is drawn, so a reply keeps its paragraph breaks (D10 in `contracts/decisions.md`). [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:79] The message record and its nine keys are `contracts/records.md` section 10.
 
 | Message | Label line | Glyph | How the pane knows |
 |---------|------------|-------|--------------------|
@@ -56,7 +56,7 @@ The glyphs are the screen's own: `✓` done, `✗` failed, `!` needs you, `·` w
 
 A window that cannot hold every message drops whole messages from the top and draws `  ↑ <n> earlier messages · PgUp` in their place, followed by a blank line, so no message is ever drawn without its label.
 
-The composer shows the tail of a draft that is wider than its row, so the newest typed character is always on screen. A draft is one line, because a message is one line once stored (`contracts/prompt-sections.md` section 1.9).
+The composer shows the tail of a draft that is wider than its row, so the newest typed character is always on screen. A draft is one line, because `Enter` sends it and no key inserts a line feed. A stored message can still hold line feeds, which a bot reply brings (D10 in `contracts/decisions.md`).
 
 ---
 

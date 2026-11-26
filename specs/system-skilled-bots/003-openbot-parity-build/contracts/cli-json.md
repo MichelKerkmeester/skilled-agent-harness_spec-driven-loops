@@ -15,10 +15,10 @@ version: 1.0.0.0
 
 ## 1. THE RULE
 
-1. Every `--json` verb prints one JSON object with a top-level integer `version`. Version 1 is this file and the screen contract. A bare array is never a payload, because it has no place for a version or a later sibling key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:740]
+1. Every `--json` verb prints one JSON object with a top-level integer `version`. Version 1 is this file and the screen contract. A bare array is never a payload, because it has no place for a version or a later sibling key. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "12. DECISIONS TAKEN"]
 2. On a successful read stdout carries that one document and nothing else. Every human line, a progress note or a warning, goes to stderr. `status --json` already routes its info lines this way. [SOURCE: .skilled/bin/bots.cjs:376] [SOURCE: .skilled/bin/bots.cjs:386-388]
-3. A non-zero exit prints nothing on stdout. Its reason is the first stderr line, in the `bots: <reason>: <detail>` form the exit table of the screen contract lists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:671-680]
-4. Instants are ISO 8601 UTC with a `Z`, as `toISOString` writes them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:71]
+3. A non-zero exit prints nothing on stdout. Its reason is the first stderr line, in the `bots: <reason>: <detail>` form the exit table of the screen contract lists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "9. A FAILED READ"]
+4. Instants are ISO 8601 UTC with a `Z`, as `toISOString` writes them. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "Instants"]
 5. A reader ignores keys it does not know and reads an absent `version` as `1`. How a version moves is `versioning.md` rule 5.
 
 D2 in `decisions.md` records this rule as taken for the verbs outside the screen.
@@ -27,17 +27,17 @@ D2 in `decisions.md` records this rule as taken for the verbs outside the screen
 
 | Verb | Envelope key | Empty shape | Field table | Owner |
 |------|--------------|-------------|-------------|-------|
-| `bots status --json` | `rows`, beside the report's other top-level keys | the report with no rows, as the screen contract's status table fixes it | screen contract section 4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:98] | today, `version` and `updatedAt` from 001 |
-| `bots activity --json` | `groups` | `{"version": 1, "groups": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:457] | screen contract section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:330] | 001 |
-| `bots inbox --json [--all]` | `items` | `{"version": 1, "items": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:543] | screen contract section 6 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:494] | 001 |
-| `bots routines --json` | `routines` | `{"version": 1, "routines": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:621] | screen contract section 7 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:584] | 002 |
+| `bots status --json` | `rows`, beside the report's other top-level keys | the report with no rows, as the screen contract's status table fixes it | screen contract section 4 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "4. `bots status --json`"] | today, `version` and `updatedAt` from 001 |
+| `bots activity --json` | `groups` | `{"version": 1, "groups": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "Sample"] | screen contract section 5 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "5. `bots activity --json`"] | 001 |
+| `bots inbox --json [--all]` | `items` | `{"version": 1, "items": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "Sample"] | screen contract section 6 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "6. `bots inbox --json`"] | 001 |
+| `bots routines --json` | `routines` | `{"version": 1, "routines": []}` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "Sample"] | screen contract section 7 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "7. `bots routines --json`"] | 002 |
 | `bots chat <id> --transcript --json` | `messages` | `{"version": 1, "conversationId": "<id>", "messages": []}` | section 3.1 below | 010 |
 | `bots remember --list [--bot <id>] --json` | `entries` | `{"version": 1, "botId": null, "path": "<path>", "entries": [], "entryCount": 0, "byteCount": 0, "skippedLines": 0}` | section 3.2 below | 005 |
 | `bots channel list --json` | `channels` | `{"version": 1, "channels": []}` | section 3.3 below | 011 |
 
-The four screen verbs are fixed in the screen contract and this file copies nothing from it. A change to one of them is a change to that file first. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md:15]
+The four screen verbs are fixed in the screen contract and this file copies nothing from it. A change to one of them is a change to that file first. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, the opening paragraph]
 
-No other verb takes `--json` in any phase. `bots secret list` prints names and metadata as text only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:148] A phase that gives a verb `--json` adds its row here in the same change.
+No other verb takes `--json` in any phase. `bots secret list` prints names and metadata as text only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-003] A phase that gives a verb `--json` adds its row here in the same change.
 
 ## 3. FIELD TABLES FOR THE VERBS THE SCREEN DOES NOT READ
 
@@ -57,7 +57,7 @@ Golden: `fixtures/chat-transcript.json`.
 
 ### 3.2 `bots remember --list [--bot <id>] --json`
 
-One file, the shared file without `--bot` and the bot's file with it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:149]
+One file, the shared file without `--bot` and the bot's file with it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-004]
 
 | Key | Type | Null | Format |
 |-----|------|------|--------|
@@ -67,7 +67,7 @@ One file, the shared file without `--bot` and the bot's file with it. [SOURCE: s
 | `entries` | array | no | file order. Each entry is `{index, type, date, actor, source, text}`, `index` a 1-based integer and the rest strings in the `records.md` section 7 formats |
 | `entryCount` | integer | no | `entries.length`, against the 60-entry bound |
 | `byteCount` | integer | no | the file's size in bytes, against the 3,600-byte bound |
-| `skippedLines` | integer | no | lines that did not parse, counted and not printed [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:220] |
+| `skippedLines` | integer | no | lines that did not parse, counted and not printed [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "Reliability"] |
 
 Golden: `fixtures/remember-list.json`.
 
@@ -93,8 +93,8 @@ Golden: `fixtures/channel-list.json`.
 
 | Where | Values | Source |
 |-------|--------|--------|
-| `activity` row `state` | the seven group ids: `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:152] |
-| `inbox` item `state` | `open`, `answered`, `expired` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:153] |
+| `activity` row `state` | the seven group ids: `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] |
+| `inbox` item `state` | `open`, `answered`, `expired` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] |
 | `status` bot row `state` | the bot row values, plus `completed` from 002 | screen contract section 4, bot row table |
 | `status` item row `state` | the item row values | screen contract section 4, item row line |
 

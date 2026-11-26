@@ -43,7 +43,7 @@ The read prints the envelope that `contracts/cli-json.md` section 3.1 fixes and 
 | `messages[].conversationId` | string | no | Not drawn |
 | `messages[].botId` | string | no | The label's bot: the addressed bot on a human message, the replying bot on a bot message |
 | `messages[].role` | string, `human` or `bot` | no | Picks the label form. Any other value draws `? <raw role>` as the label and the text as stored |
-| `messages[].text` | string | no | Drawn as stored after the screen's control character rule. Its prefix picks the bot glyph (section 3) |
+| `messages[].text` | string, which may hold line feeds (D10 in `contracts/decisions.md`) | no | Split on each line feed and drawn line by line, each line after the screen's control character rule. Its prefix picks the bot glyph (section 3) |
 | `messages[].at` | string, ISO 8601 UTC | no | Drawn as local `HH:MM` |
 | `messages[].runId` | string | yes, every human message | Drawn in the detail column for the newest bot message |
 | `messages[].by` | string | no | The human label's actor. The literal `bot` on a bot message, not drawn |
