@@ -212,6 +212,20 @@ The failures on both sides predate this pass. The three deep-loop failures read 
 | Quality gate | `quality-gate.cjs --worktree --lines changed`: 0 P0, 0 P1, 0 P2 |
 | Docs | `check_changelog_shape.py` PASS and `validate_document.py` VALID for both changelogs. Every other changed `.md` validates the same as on `main` |
 | Builds | The advisor and spec-kit runtime dists were rebuilt in the worktree. Both are gitignored, so `main` needs the same rebuild after the merge |
+
+### Alias fallout fix
+
+Commit `035c9dd6bdd` removed the `.skilled/specs` alias, and three workflows on `main` went red because 24 links in 20 skill docs and three test paths still reached `specs/` through it. Each now climbs one more level to the repository root. The `cli-pi/SKILL.md` link edit re-minted the `cli-external-orchestration` manifest.
+
+| Check | Before | After |
+|-------|--------|-------|
+| `check-markdown-links.cjs` | 24 broken, exit 1 | 0 broken, exit 0 |
+| `validate-playbook-package.cjs --strict` | 1 FAIL, exit 1 | 53 PASS, exit 0 |
+| Deep-loop runtime | 4066 passed, 3 failed | 4069 passed, 0 failed |
+| Spec-kit runtime CLI | 2724 passed, 1 failed | 2725 passed, 0 failed, exit 0 |
+| Compiled routing | `cli-external-orchestration` stale after the edit | All eight hubs `compiled-serving`, and a cli-pi request routes to `cli-pi` |
+
+One CLI run listed packet docs under its guard for changed paths. Those were edits made while it ran, and the rerun on a still tree passed. A frozen benchmark report still holds a `.skilled/specs` path inside captured command output, and it stays as recorded.
 <!-- /ANCHOR:verification -->
 
 ---

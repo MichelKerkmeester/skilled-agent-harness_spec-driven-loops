@@ -80,7 +80,7 @@ contextType: "general"
 - [x] T031 Resolve a default-depth question only on answer evidence (`reduce-state.cjs`). Verify: the new reducer test leaves a focused but unanswered question open.
 - [x] T032 Document the pre-push fail-open and fix the pre-commit uninstall line. Verify: `grep -n 'fail' .skilled/scripts/git-hooks/README.md` shows the sentence and `sed -n 13p .skilled/scripts/git-hooks/pre-commit` shows the installer command.
 - [x] T033 Rerun every touched suite, add the fix pass to `C` and validate the packet. Verify: before and after counts are in `$P/implementation-summary.md` and `validate.sh $P --strict` prints `RESULT: PASSED`.
-- [ ] T034 Repoint the 24 skill-doc links and the three test paths that reach `specs/` through the removed `.skilled/specs` alias. Verify: `check-markdown-links.cjs` prints `0 broken`, `validate-playbook-package.cjs --strict` exits 0, and the deep-loop runtime and spec-kit CLI suites pass with no failure.
+- [x] T034 Repoint the 24 skill-doc links and the three test paths that reach `specs/` through the removed `.skilled/specs` alias. Verify: `check-markdown-links.cjs` prints `0 broken`, `validate-playbook-package.cjs --strict` exits 0, and the deep-loop runtime and spec-kit CLI suites pass with no failure.
 - [ ] T035 Merge worktree 547 into `main` with a merge commit, rebuild the gitignored dists, save continuity and push `main`. Verify: `git log origin/main -1` shows the merge and every workflow run on it concludes `success`.
 <!-- /ANCHOR:phase-3 -->
 
