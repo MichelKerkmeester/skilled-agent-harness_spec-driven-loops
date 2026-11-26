@@ -166,6 +166,7 @@ const SESSION_REF_KEYS = ['runtime', 'sessionId', 'workspace', 'savedAt', 'locat
 // names the parent folder it came from.
 const PACKET_PURPOSE_MAX_CHARS = 512;
 const SENTINEL_VALUES = new Set(['', 'none', 'n/a', 'na']);
+const SENTENCE_TERMINATOR_RE = /(?<!\b(?:e\.g|i\.e|etc|vs|cf))[.!?](?=\s+\p{L}|\s*$)/giu;
 const COMPACT_FIELD_DISCOURSE_RE = /\b(?:because|so that|which means|the reason|details|summary)\b/i;
 const LIST_PREFIX_RE = /^\s*(?:[-*+]|\d+\.)\s+/;
 const MARKDOWN_STRUCTURE_RE = /^\s*(?:#{1,6}\s+|>\s+|```)/;
@@ -344,10 +345,11 @@ function looksCompactNarrativeViolation(value: string): boolean {
     return true;
   }
 
-  // A terminator ends a sentence only before a capitalised next word or the end of the
-  // value; a dot inside a version, filename or abbreviation ("v2.1.3.0", "run.cjs", "e.g.")
-  // is not one, so a single line carrying such tokens still reads as compact.
-  const sentenceTerminators = value.match(/[.!?](?=\s+\p{Lu}|\s*$)/gu) ?? [];
+  // A terminator ends a sentence only before whitespace and a next word, in either case,
+  // or at the end of the value. A dot inside a version or filename ("v2.1.3.0", "run.cjs")
+  // has no whitespace after it, and the dot of a listed abbreviation ("e.g.") is skipped,
+  // so a single line carrying such tokens still reads as compact while "Ready. fine." does not.
+  const sentenceTerminators = value.match(SENTENCE_TERMINATOR_RE) ?? [];
   if (sentenceTerminators.length > 1) {
     return true;
   }
