@@ -115,27 +115,28 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 | `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (006, 008, 010, 011) | 001, 006, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path; 001 creates the file and the rest append a `## <phase>` section |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Create/Modify | 012 | 33 new scenario files in ten category folders, the root index's sections and counts, and one run folder under `benchmark/reports/` |
 | `.skilled/skills/system-skilled-bots/SKILL.md` and its catalog, playbook and references | Modify | 013 | The `system-skilled-bots` topic in `topics.json`, and the fix for every finding the two alignment reports name |
+| `specs/system-skilled-bots/003-openbot-parity-build/contracts/` | Create | 001-014 | The shared shapes every phase reads: `records.md`, `cli-json.md`, `versioning.md`, `refusals.md`, `prompt-sections.md`, `answer-seam.md`, `runtime-architecture.md`, `decisions.md` and one golden per record in `fixtures/` |
 | `.skilled/bin/bots.cjs`, `runtime/lib/` and the phase docs | Modify | 014 | The fix for every P0 and P1 the review reports, and the re-run of the affected tests |
 
 > **State root:** the state root is the unit of backup; `bots status --rebuild` is the only repair.
 
 ### Shared Records
 
-One owner per record more than one phase writes. The owner fixes the shape; every other phase reads it.
+One owner per record more than one phase writes. The owner fixes the shape and every other phase reads it. The shape itself lives in [`contracts/`](contracts/README.md), one section per record. A phase that changes a shape edits that file in the same change. The nine packet decisions are [`contracts/decisions.md`](contracts/decisions.md).
 
-| Record | Owner | What the owner fixes |
-|--------|-------|----------------------|
-| Run record `actor` and the status index `schemaVersion` | 001 | `actor` is an additive field and `schemaVersion` stays `'2'`, so an index built before the change still opens |
-| `bots activity --json` row | 001 | `botId`, `identity`, `state`, `at`, `actor`, `runId` |
-| `bots inbox --json` item | 001 | `id`, `botId`, `kind`, `question`, `state`, `at`, `options`, `createdAt`, `expiresAt`, `answer` |
-| The item's `kind` field | 005 | The values (`decision`, `memory-proposal`, `skill-proposal`) and the absent-means-`decision` default; 001 lands the key in `ITEM_KEYS` and 009 adds its value |
-| The item's `grants` field and the answer's scope | 006 | Every item writer fills it; 001 lands `bots answer --scope once\|deny` and 006 extends the scope with `grants` and the ladder |
-| `crates/bots-tui/tests/fixtures/bots` | 003 | The copy of every `--json` contract the screen reads; a phase that changes one updates it in the same change |
-| `buildBotPrompt` section order | 005 | Exemption, spec folder, working place, checkout, memory, skills, decision marker, body, conversation |
-| `answerItem` review seam | 005 | One seam after the answer and the scope are written and before the resume request is built |
-| `answerItem` guarded write | 006 | An exclusive lock or a write-if-unchanged check, so a second answer with different text is refused `item-answered-differently` |
-| The secret-literal scan's run-record cause | 008 | One name, `secret-in-output`, for the post-run `stdout.log` scan and for 010's returned answer text, so one scan never records two causes |
-| `operators.json` roster | 011 | `owner` and `members`, single-operator |
+| Record | Owner | Where the shape is fixed |
+|--------|-------|--------------------------|
+| Run record `actor` and the status index `schemaVersion` | 001 | [`contracts/records.md`](contracts/records.md) section 4, which keeps `actor` additive and `schemaVersion` at `'2'` |
+| `bots activity --json` row | 001 | [`contracts/cli-json.md`](contracts/cli-json.md) section 2, whose row points at the screen contract's section 5 |
+| `bots inbox --json` item | 001 | [`contracts/records.md`](contracts/records.md) section 1, the closed key list |
+| The item's `kind` field | 005 | [`contracts/records.md`](contracts/records.md) section 1, the `kind` row and its absent-means-`decision` default |
+| The item's `grants` field and the answer's scope | 006 | [`contracts/records.md`](contracts/records.md) section 3 for the grant and section 2 for the answer's scope |
+| `crates/bots-tui/tests/fixtures/bots` | 003 | [`contracts/fixtures/README.md`](contracts/fixtures/README.md), one golden per record and per verb |
+| `buildBotPrompt` section order | 005 | [`contracts/prompt-sections.md`](contracts/prompt-sections.md) section 1, the nine blocks in order |
+| `answerItem` review seam | 005 | [`contracts/answer-seam.md`](contracts/answer-seam.md) section 1, step 10 |
+| `answerItem` guarded write | 006 | [`contracts/answer-seam.md`](contracts/answer-seam.md) section 1, step 6, the `needs-you/<item-id>.lock` file taken before the read and released on every exit, with `item-busy` when the wait runs out |
+| The secret-literal scan's run-record cause | 008 | [`contracts/records.md`](contracts/records.md) section 4, the `postRunCauses` row |
+| `operators.json` roster | 011 | [`contracts/records.md`](contracts/records.md) section 16 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -151,15 +152,15 @@ The packet has fourteen phases. Phases 001 to 011 build the parity slices the 00
 |-------|--------|-------|------------|--------|
 | 1 | `001-activity-and-actor/` | `bots activity` grouped by OpenBot's seven ids, `bots inbox --json`, and a `by:` actor on answers and run records | None; the check-after, and the prerequisite for any later shared-host packet | Pending |
 | 2 | `002-routine-layer/` | The four-part `routine` block over the existing triggers, the `until` check, the 15-minute floor, the fatigue switch and `bots routines` | None; 001's `by:` summary field only enriches the routine list | Pending |
-| 3 | `003-terminal-screen/` | A new MIT Rust ratatui app with activity, inbox and routine panes over `bots ... --json`, written from openhuman-tui's shape | 001 and 002 only, whose data it draws and whose `--scope` it passes; no backend of its own | Pending |
+| 3 | `003-terminal-screen/` | A new MIT Rust ratatui app with activity, inbox and routine panes over `bots ... --json`, written from openhuman-tui's shape. A phase parent with six children | 001 and 002 only, whose data it draws and whose `--scope` it passes; no backend of its own | Pending |
 | 4 | `004-computer-exposure/` | The worktree or run folder named in the prompt, with its path and branch in run records and `bots status` | 001, whose run records carry the fields | Pending |
 | 5 | `005-memory/` | Shared and per-bot memory files prepended to the prompt, `bots remember`, and needs-you confirmation of bot-proposed facts | 001, whose needs-you item carries the confirmation | Pending |
 | 6 | `006-approval-grants/` | A `grants` field on needs-you items and the precedence ladder applied at that gate | 001, whose item, inbox and `--scope` it extends with `grants` and the ladder; 005, whose review seam the scope is written before | Pending |
 | 7 | `007-per-bot-apps/` | The `apps:` key, a filtered UTCP config per run, `HonoredPosture.apps` and the `apps-unknown-server` checker invariant | 001, whose run records carry the posture | Pending |
 | 8 | `008-vault/` | `bots secret set` over the keychain or a 0600 store, child-environment injection and `secretsUsed` | 007, which lands the per-run config the secret is injected into; this is the one slice that can leak, so it lands after the first | Pending |
 | 9 | `009-skills/` | A `skills:` list under a byte cap, and `bots skill propose` reviewed through a needs-you item | 001, whose needs-you item reviews the proposal; 005, whose prompt order and review seam it inserts into; 006, whose `grants` field its item fills | Pending |
-| 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL | 001, whose run records each message writes; 003, whose chat pane this phase fills; 005, whose review seam stamps the conversation id; 008, whose `secret-in-output` cause its scan reuses | Pending |
-| 11 | `011-messaging-channels/` | A shared channel adapter, a file-backed identity link and the `operators.json` roster, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere | 001, whose actor a link names; 005, whose review seam the roster check runs before; 006, whose grant an approval carries; 008, whose vault holds the tokens; 010, whose chat the terminal transport reuses | Pending |
+| 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL. A phase parent with three children | 001, whose run records each message writes; 003, whose chat pane this phase fills; 005, whose review seam stamps the conversation id; 008, whose `secret-in-output` cause its scan reuses | Pending |
+| 11 | `011-messaging-channels/` | A shared channel adapter, a file-backed identity link and the `operators.json` roster, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere. A phase parent with seven children | 001, whose actor a link names; 005, whose review seam the roster check runs before; 006, whose grant an approval carries; 008, whose vault holds the tokens; 010, whose chat the terminal transport reuses | Pending |
 | 12 | `012-manual-testing-scenarios/` | 33 operator scenarios in ten new category folders, `BOT-026` to `BOT-058`, the root index's sections and counts, and one recorded execution of every scenario | 001 to 011, whose verbs and records every scenario asserts; this is the phase that proves an operator can drive them | Pending |
 | 13 | `013-skilled-and-doc-alignment/` | The `system-skilled-bots` topic in `topics.json`, one `/local-skilled-alignment` run and one `/local-doc-alignment` run over the packet's change set, and the fix for every finding either report names | 001 to 012, whose `.skilled` change set and docs the two runs read | Pending |
 | 14 | `014-deep-review/` | One expanded `/deep:review` run over the code and docs 001 to 013 built, the merged findings registry, and the fix for every P0 and P1 it reports | 013, which must be clean first so the review reads a checked surface rather than an assumed one | Pending |
@@ -174,6 +175,8 @@ The packet has fourteen phases. Phases 001 to 011 build the parity slices the 00
 ### Phase Handoff Criteria
 
 A child hands off when its own `acceptance-criteria.md` rows are Met and `validate.sh --strict` prints `RESULT: PASSED` for its folder. The dependency column above names the one thing the next child reads from the one before; nothing else passes between them.
+
+The three closing phases hand off through named files. 012 writes every product failure it records to `012-manual-testing-scenarios/scratch/failures.md`, with the scenario id, the phase, the requirement, the observed line and the evidence path, and 014 reads that file as its intake. 013 writes its rebuttals to `013-skilled-and-doc-alignment/scratch/rebuttals.md` and its evidence to `013-skilled-and-doc-alignment/evidence/`, and 014 reads both. 014 then re-runs every 012 scenario whose owning phase one of its fixes touched and records each result beside the finding that caused it. A failure filed by 012 does not block 012 and it does block 014's PASS.
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -225,5 +228,6 @@ Every phase's build is dispatched, not hand-run. The hub owns the routing and ea
 ## RELATED DOCUMENTS
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Contracts**: [`contracts/README.md`](contracts/README.md) indexes the shared shapes. The shapes themselves are in [`contracts/records.md`](contracts/records.md) for the durable records and [`contracts/cli-json.md`](contracts/cli-json.md) for the `--json` rule and one row per verb. The nine packet decisions D1 to D9 are in [`contracts/decisions.md`](contracts/decisions.md).
 - **Research source**: `../002-openbot-parity-research/001-openbot-parity-research/research/research.md` §12-15 for the small-team model, the skip list, reuse and licensing, and the ranked build order
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 8: vault"
-description: "Ordered tasks for the secret store, the `bots secret` verb group, the child-environment injection and the `secretsUsed` record field, each with the command that proves it."
+description: "Ordered tasks for the secret store, its three backends, the index lock, the `bots secret` verb group, the child-environment injection, the post-run scan and the `secretsUsed` record field, each with the command that proves it."
 trigger_phrases:
   - "vault task list"
   - "secret store tasks"
@@ -27,7 +27,19 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/runtime`, `S` is `.skilled/skills/system-skilled-bots`, `RUN` is the run folder the fixture prints, and `STATE` is the identity's state root. The tests plant the value `skilled-test-value-7f3a`, and `pb-vault` is the fixture bot.
+Short names keep the paths short. `R` is `.skilled/skills/system-skilled-bots/runtime` and `S` is `.skilled/skills/system-skilled-bots`. The tests plant the value `skilled-test-value-7f3a`, and `pb-vault` is the fixture bot `tests/secrets.vitest.ts` writes into the fixture checkout. `RUN` is the run folder the fixture prints.
+
+`FIXTURE` and `STATE` come from one recipe, which keeps every CLI check off the operator's real state root and login keychain. It pins the state root in the fixture's own `bots/config.json`, which `jobEnv` and `userStateRoot` honor [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:783] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:105]. A pinned `SKILLED_BOTS_STATE_ROOT` in the shell is not isolated, because the verb resolves through the job environment, which turns it into `XDG_STATE_HOME` set to its parent folder [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:343-346].
+
+```sh
+FIXTURE=$(mktemp -d) && git -C "$FIXTURE" init -q && mkdir -p "$FIXTURE/bots" && printf '{"identity":"skilled-scratch/vault","stateRoot":"%s/state"}\n' "$FIXTURE" > "$FIXTURE/bots/config.json" && STATE="$FIXTURE/state/skilled-scratch%2Fvault"
+mkdir -p "$FIXTURE/bots/pb-vault" && printf -- '---\nid: pb-vault\ntrigger: {kind: cron, expression: "0 9 * * *"}\nruntime: {kind: cli-codex}\nbudget: {maxIterations: 1, timeoutSeconds: 60}\nisolation: shared\ndelivery: local-only\nsecrets: absent\n---\nPrint the names of your environment variables only.\n' > "$FIXTURE/bots/pb-vault/BOT.md"
+BADNAME=$(mktemp -d) && git -C "$BADNAME" init -q && mkdir -p "$BADNAME/bots/pb-bad" && cp "$FIXTURE/bots/config.json" "$BADNAME/bots/" && sed -e 's/pb-vault/pb-bad/' -e 's#secrets: absent#secrets: ../etc/passwd#' "$FIXTURE/bots/pb-vault/BOT.md" > "$BADNAME/bots/pb-bad/BOT.md"
+```
+
+`bot-check.cjs "$FIXTURE"` prints eight `PASS:` lines and exits 0 today, which proves `pb-vault` parses. Do not `bots run pb-vault` before this phase lands: today's runtime ignores `secrets` and would dispatch a real executor. `BADNAME` is a separate checkout, so AC-005's checker output holds only that bot's line.
+
+Every CLI check that stores a value passes `--store file --repo "$FIXTURE"`. A check of the keychain path runs inside `tests/secrets.vitest.ts` behind the fake `security` (`design/backends.md` section 7), never against the login keychain.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -35,8 +47,8 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the five runtime modules this phase changes and record their refusal ids (`spec.md`). Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md` prints 15.
-- [ ] T002 Capture the measured behavior the problem statement rests on (`spec.md`). Verify: `node .skilled/bin/bots.cjs secret set demo` prints `bots: unknown verb: secret` and exits 2.
+- [ ] T001 Read the runtime modules this phase changes, the nine contract files and the seven `design/` notes, and record the refusal ids (`spec.md`). Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md` prints 19.
+- [ ] T002 Capture the measured behavior the problem statement rests on (`spec.md`). Verify: `node .skilled/bin/bots.cjs secret set demo </dev/null 2>&1 | head -1` prints `bots: unknown verb: secret`, and `node .skilled/bin/bots.cjs secret set demo </dev/null >/dev/null 2>&1; echo "exit=$?"` prints `exit=2`.
 - [ ] T003 Confirm the dispatch-env gate refuses a key outside its per-kind list (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `rg -n 'is not allowed for' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints one line.
 - [ ] T004 Confirm the identity's state folders carry no `secrets` entry today (`$R/lib/state-root.ts`). Verify: `rg -n 'secrets' $R/lib/state-root.ts` exits 1.
 - [ ] T005 [P] Confirm `HonoredPosture` carries no `secretsUsed` today (`$R/lib/run-record.ts`). Verify: `rg -n 'secretsUsed' $R/lib/run-record.ts` exits 1.
@@ -51,10 +63,15 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 ### Store
 
 - [ ] T007 Name and create the identity's `secrets` folder (`$R/lib/state-root.ts`). Verify: `rg -n 'secrets: join' $R/lib/state-root.ts` prints one line.
-- [ ] T008 Create the store with the name grammar, the 0600 index and the 0600 value file (`$R/lib/secrets.ts`). Verify: `rg -n 'export function setSecret' $R/lib/secrets.ts` prints one line.
-- [ ] T009 Add the keychain backend and the file backend behind one interface, with `--store` overriding the choice, and hand `security -i` the `add-generic-password -a <name> -s skilled-bots -U -w <value>` command on stdin, so the CLI is the only reader, the value never enters argv and no tty is needed (`$R/lib/secrets.ts`). Verify: `rg -n 'add-generic-password' $R/lib/secrets.ts` prints one line and `rg -n "'-i'" $R/lib/secrets.ts` prints one line.
-- [ ] T010 Verify each write by reading it back and report a dropped write (`$R/lib/secrets.ts`). Verify: `rg -n 'secret-write-dropped' $R/lib/secrets.ts` prints one line.
-- [ ] T011 Add `listSecrets`, `forgetSecret`, `resolveSecret` and `knownSecretValues`, none of which returns a value except `resolveSecret` (`$R/lib/secrets.ts`). Verify: `rg -c 'export function (listSecrets|forgetSecret|resolveSecret|knownSecretValues)' $R/lib/secrets.ts` prints 4.
+- [ ] T008 Create the store with `SECRET_NAME_PATTERN`, `SECRET_NAME_MAX = 64`, the 0600 value file and the 0700 folder narrowed on every write (`$R/lib/secrets.ts`, `design/names-and-keys.md` section 1, `design/backends.md` section 4). Verify: `rg -n 'export function setSecret' $R/lib/secrets.ts` prints one line.
+- [ ] T040 Add `secretEnvKey(name)` and `keychainAccount(name, secretsFolder)`, the account `<name>@<first 12 hex of sha256(realpath(secretsFolder))>` (`$R/lib/secrets.ts`, `design/names-and-keys.md` sections 2 and 3). Verify: `rg -c 'export function (secretEnvKey|keychainAccount)' $R/lib/secrets.ts` prints 2.
+- [ ] T009 Add the keychain and file backends behind one interface, chosen by the table in `design/backends.md` section 1 with `--store` overriding. The macOS write spawns `security -q -i` and writes one line, `add-generic-password -a <account> -s skilled-bots -U -w <hex>`, to its stdin. The read is `find-generic-password -a <account> -s skilled-bots -w` and the delete `delete-generic-password -a <account> -s skilled-bots`. The Linux commands are section 3. The password is the lowercase hex of the UTF-8 bytes, every spawn is an argv array with no shell, its output is never printed, and it is killed after 10,000 ms. The three keychain functions take an optional `keychainPath` that only tests pass (`$R/lib/secrets.ts`). Verify: `rg -c "add-generic-password -a |find-generic-password|delete-generic-password" $R/lib/secrets.ts` prints 3, `rg -c "'store'|'lookup'|'clear'" $R/lib/secrets.ts` prints 3 and `rg -n '10_000' $R/lib/secrets.ts` prints one line.
+- [ ] T041 Refuse a keychain write line over 4,095 bytes as `secret-too-long` before the spawn, and a value over 16,384 code points on every backend (`$R/lib/secrets.ts`, `design/backends.md` section 2.3). Verify: `rg -n '4095' $R/lib/secrets.ts` prints one line and `rg -n '16_384' $R/lib/secrets.ts` prints one line.
+- [ ] T042 Add `readSecretsIndex` with the validation table and the temp-and-rename writer, entries in name order and unknown keys kept (`$R/lib/secrets.ts`, `design/index-and-writes.md` sections 1 and 2.2). Verify: `rg -n 'export function readSecretsIndex' $R/lib/secrets.ts` prints one line.
+- [ ] T043 Add the `secrets/index.lock` lock in the form of `contracts/answer-seam.md` step 6, polled every 25 ms with no deadline below the 60 s reclaim, and released in a `finally` (`$R/lib/secrets.ts`, `design/index-and-writes.md` section 2.1). Verify: `rg -n "'index.lock'" $R/lib/secrets.ts` prints one line.
+- [ ] T010 Verify each write by reading it back in constant time and report a dropped, failed or timed-out write as `secret-write-dropped` with no index write (`$R/lib/secrets.ts`). Verify: `rg -n 'secret-write-dropped' $R/lib/secrets.ts` prints one line.
+- [ ] T011 Add `listSecrets`, `forgetSecret`, `resolveSecret` and `knownSecretValues` with the write order of `design/index-and-writes.md` section 2.3, the orphan sweep of section 3 and the outcome map of `design/backends.md` section 6. None returns a value except `resolveSecret` and `knownSecretValues` (`$R/lib/secrets.ts`). Verify: `rg -c 'export function (listSecrets|forgetSecret|resolveSecret|knownSecretValues)' $R/lib/secrets.ts` prints 4.
+- [ ] T044 Return `secret-store-unreadable` for every unreadable case REQ-017 lists (`$R/lib/secrets.ts`). Verify: `rg -c 'secret-store-unreadable' $R/lib/secrets.ts` prints at least 1.
 
 ### Lifted modules
 
@@ -64,31 +81,39 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 
 ### Definition and record
 
-- [ ] T015 Own the one `secrets` name parse and refuse a value outside the name grammar as `secret-name-invalid` (`$R/lib/definition.ts`). Verify: `rg -n 'secret-name-invalid' $R/lib/definition.ts` prints one line.
-- [ ] T016 Add `secretsUsed` to `HonoredPosture` and read it as `[]` when an older record omits it (`$R/lib/run-record.ts`). Verify: `rg -c 'secretsUsed' $R/lib/run-record.ts` prints 2.
+- [ ] T015 Check the `secrets` value after `optionalString` against the grammar and the 64 character bound and refuse `secret-name-invalid` (`$R/lib/definition.ts`). Verify: `rg -n 'secret-name-invalid' $R/lib/definition.ts` prints one line.
+- [ ] T016 Add `secretsUsed` to `HonoredPosture`, read as `[]` when absent, and `postRunCauses` as `contracts/records.md` section 4 types it, read as `[]` when absent (`$R/lib/run-record.ts`). Verify: `rg -c 'secretsUsed' $R/lib/run-record.ts` prints 2 and `rg -c 'postRunCauses' $R/lib/run-record.ts` prints at least 2.
 
 ### Dispatch and runner
 
-- [ ] T017 Add `secretEnv` to `DispatchInput` and merge it into `dispatchEnv` after the per-kind filter (`$R/lib/dispatch.ts`). Verify: `rg -c 'secretEnv' $R/lib/dispatch.ts` prints 2.
-- [ ] T018 Add an extra known-secret map to `collectKnownSecrets` and put the matcher behind `findSecretLiteral` (`$R/lib/dispatch.ts`). Verify: `rg -n 'createSecretMatcher' $R/lib/dispatch.ts` prints one line.
-- [ ] T019 Resolve the name before dispatch, refuse `secret-unknown`, pass `secretEnv` and record the name (`$R/lib/runner.ts`). Verify: `rg -n 'secret-unknown' $R/lib/runner.ts` prints one line.
-- [ ] T020 Scan `stdout.log` after the child exits, redact a matching line in place, record `secret-in-output` and withhold the delivery (`$R/lib/runner.ts`). Verify: `rg -n 'secret-in-output' $R/lib/runner.ts` prints one line.
-- [ ] T021 Include the store's values in the delivery check (`$R/lib/delivery.ts`). Verify: `rg -n 'knownSecretValues' $R/lib/delivery.ts` prints one line.
-- [ ] T022 Include the store's values in the answer check (`$R/lib/answer.ts`). Verify: `rg -n 'knownSecretValues' $R/lib/answer.ts` prints one line.
+- [ ] T017 Add `secretEnv` to `DispatchInput` and pass `dispatchEnv: { ...built.env, ...secretEnv }` with `dispatchEnvKeys: Object.keys(secretEnv)` (`$R/lib/dispatch.ts`, `design/injection-sequence.md` step 7). Verify: `rg -c 'secretEnv' $R/lib/dispatch.ts` prints 2.
+- [ ] T018 Put the matcher behind `findSecretLiteral`, keeping its signature and return shape (`$R/lib/dispatch.ts`). Verify: `rg -n 'createSecretMatcher' $R/lib/dispatch.ts` prints one line.
+- [ ] T019 Resolve the name after posture, merge `knownSecretValues` into the known map, refuse `secret-unknown` and `secret-store-unreadable`, pass `secretEnv` and record the name (`$R/lib/runner.ts`). Verify: `rg -n 'secret-unknown' $R/lib/runner.ts` prints one line and `rg -c 'secret-store-unreadable' $R/lib/runner.ts` prints at least 1.
+- [ ] T020 Run the post-run scan of `design/leak-checks.md` section 3 before `finalAnswerText`: the in-memory stdout, every file under the run folder and the receipt folder, the plain, base64 and URL-encoded forms, the `[redacted: <name>]` token and one `postRunCauses` row (`$R/lib/runner.ts`). Verify: `rg -n 'secret-in-output' $R/lib/runner.ts` prints one line and `rg -n 'redacted: ' $R/lib/runner.ts` prints one line.
+- [ ] T021 Include the store's values in the delivery check, fail closed on an unreadable vault, and withhold every entry of a record whose `postRunCauses` holds `secret-in-output` (`$R/lib/delivery.ts`). Verify: `rg -n 'knownSecretValues' $R/lib/delivery.ts` prints one line and `rg -n 'withheld: secret-in-output' $R/lib/delivery.ts` prints one line.
+- [ ] T022 Include the store's values in the answer check and refuse `secret-store-unreadable` when the vault cannot be read (`$R/lib/answer.ts`). Verify: `rg -n 'knownSecretValues' $R/lib/answer.ts` prints one line.
 - [ ] T023 Take `dispatchEnvKeys` in `assertDispatchEnvAllowed` and name exactly `SKILLED_BOT_SECRET_<NAME>` in it, so a second `SKILLED_BOT_SECRET_OTHER` key is still refused (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`). Verify: `rg -c 'dispatchEnvKeys' .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` prints 2.
 
 ### CLI and docs
 
-- [ ] T024 Add the `secret set|list|forget` verb group, the no-echo prompt and the `secret-no-input` refusal for a closed stdin (`.skilled/bin/bots.cjs`). Verify: `node .skilled/bin/bots.cjs secret list` exits 0.
-- [ ] T025 Replace the template comment that says the field is not enforced (`$S/assets/bot-template.txt`). Verify: `rg -n 'secrets:' $S/assets/bot-template.txt` prints one line.
+- [ ] T024 Add the `secret set|list|forget` verb group: `VERB_SPECS.secret` with `--store` on `set` only, the name check, the no-echo prompt and the read rules of `design/leak-checks.md` section 1, `secret-no-input`, and `secret forget takes no --store` (`.skilled/bin/bots.cjs`). Verify: after the `FIXTURE` recipe, `node .skilled/bin/bots.cjs secret list --repo "$FIXTURE"` prints `bots: no secrets stored` and exits 0.
+- [ ] T025 Replace the template comment that says the field is not enforced with the short form of the upgrade note (`$S/assets/bot-template.txt`). Verify: `rg -n 'secrets:' $S/assets/bot-template.txt` prints one line and `rg -n 'bots secret set' $S/assets/bot-template.txt` prints one line.
 - [ ] T026 Add one row per new module to the files table (`$R/lib/README.md`). Verify: `rg -c 'secrets.ts' $R/lib/README.md` prints 1.
-- [ ] T027 Update the author reference and the feature-catalog contract to say the field names a store entry (`$S/bots-author/references/bot-definition.md`, `$S/feature-catalog/definition/bot-definition-contract.md`). Verify: `rg -c 'secrets' $S/bots-author/references/bot-definition.md $S/feature-catalog/definition/bot-definition-contract.md` prints two lines.
+- [ ] T027 Update the author reference and the feature-catalog contract to say the field names a store entry, and add the upgrade note of `design/names-and-keys.md` section 4 verbatim to the author reference (`$S/bots-author/references/bot-definition.md`, `$S/feature-catalog/definition/bot-definition-contract.md`). Verify: `rg -n 'Upgrading to the vault' $S/bots-author/references/bot-definition.md` prints one line and `rg -c 'secrets' $S/bots-author/references/bot-definition.md $S/feature-catalog/definition/bot-definition-contract.md` prints two lines.
 
 ### Tests
 
-- [ ] T028 Prove the keychain backend's one reader and its argv: a set with stdin a pipe and no tty stores the value, and a process-table sample taken during it finds no `security` argument carrying it (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'process table' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T028 Prove the keychain backend's argv and stdin through the fake `security` of `design/backends.md` section 7: a set with stdin a pipe and no tty stores the hex form, the write reaches `security -q -i` on stdin, and no recorded argv element holds the value or its hex form (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'argv log' $R/tests/secrets.vitest.ts` prints one line.
 - [ ] T029 Prove the same-user boundary: a child of a bot declaring no `secrets` reads another name's value file, and the record names no secret (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'same-user' $R/tests/secrets.vitest.ts` prints one line.
-- [ ] T030 Prove the post-run scan: a `stdout.log` holding the value is redacted, `secret-in-output` lands on the record and the delivery is withheld, including a partial log from a killed child (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'secret-in-output' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T030 Prove the post-run scan: a `stdout.log` holding the value, its base64 form or its URL-encoded form is redacted to `[redacted: demo]`, `secret-in-output` lands on `postRunCauses`, the delivery is withheld and the exit is the run's own, including a partial log from a killed child (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'secret-in-output' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T045 Prove the grammar on every row of `design/names-and-keys.md` section 1.1, through `parseDefinition` and through the verb (`$R/tests/secrets.vitest.ts`). Verify: `rg -c 'secret-name-invalid' $R/tests/secrets.vitest.ts` prints at least 4.
+- [ ] T046 Prove the environment key on every accept row, including `slack-app-token` to `SKILLED_BOT_SECRET_SLACK_APP_TOKEN`, and its inverse (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'SKILLED_BOT_SECRET_SLACK_APP_TOKEN' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T047 Prove keychain forget through the fake `security`: the item and the entry are gone, a second forget says the name was not held, and `forget --store file` exits 2 (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'keychain forget' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T048 Prove the concurrent cases of `design/index-and-writes.md` section 5 with two child processes on one barrier file (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'racing set' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T049 Prove the stop table and the orphan rule: a stop after the value write and after the forget's index write each leave an orphan that `list` omits and the next `forget` removes, and a leftover temp file is removed (`$R/tests/secrets.vitest.ts`, `design/lifecycle.md` section 3). Verify: `rg -c 'leaves an orphan' $R/tests/secrets.vitest.ts` prints 2.
+- [ ] T050 Prove `secret-too-long` on the file backend at 16,385 code points and on the keychain at a line of 4,096 bytes, with no spawn, and `secret-store-unreadable` for a malformed index, a newer `schemaVersion`, a fake `security` that sleeps past 10 s and a keychain item not in hex form (`$R/tests/secrets.vitest.ts`). Verify: `rg -c 'secret-too-long|secret-store-unreadable' $R/tests/secrets.vitest.ts` prints at least 6.
+- [ ] T051 Prove the keychain account scope: two identities each set `demo`, the fake `security` holds two accounts, and one identity's forget leaves the other's value (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'account scope' $R/tests/secrets.vitest.ts` prints one line.
+- [ ] T052 Guard the login keychain: `beforeAll` asserts the first `security` on `PATH` is the fake, except in the one macOS test that uses a scratch keychain through `keychainPath` (`$R/tests/secrets.vitest.ts`). Verify: `rg -n 'login keychain guard' $R/tests/secrets.vitest.ts` prints one line.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -101,9 +126,9 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 - [ ] T033 Run the typecheck (`$R/tsconfig.json`). Verify: `cd $R && npm run typecheck` exits 0.
 - [ ] T034 Run the definition checker on the clean fixture (`$S/scripts/bot-check.cjs`). Verify: `node $S/scripts/bot-check.cjs $S/scripts/fixtures/clean` exits 0.
 - [ ] T035 Run the fixture bot declaring `secrets: demo`, whose body prints its environment's names only, and scan its run folder for the planted value (`$R/tests/secrets.vitest.ts`). Verify: `rg -c 'skilled-test-value-7f3a' "$RUN"` exits 1 and the child's stdout holds `SKILLED_BOT_SECRET_DEMO` with no `=`.
-- [ ] T036 Confirm the record carries the name and not the value (`$R/tests/secrets.vitest.ts`). Verify: `jq '.posture.secretsUsed' "$STATE"/*/records/*.json` prints `["demo"]`.
-- [ ] T037 Confirm an unknown name refuses before dispatch (`$R/tests/secrets.vitest.ts`). Verify: `node .skilled/bin/bots.cjs run pb-vault` prints `refused before dispatch (secret-unknown)` and exits 4.
-- [ ] T038 Confirm no verb prints a value (`$R/tests/secrets.vitest.ts`). Verify: `node .skilled/bin/bots.cjs secret list | rg -c 'skilled-test-value-7f3a'` exits 1.
+- [ ] T036 Confirm the record carries the name and not the value (`$R/tests/secrets.vitest.ts`). Verify: `jq '.posture.secretsUsed' "$STATE"/records/*.json` prints `["demo"]`.
+- [ ] T037 Confirm an unknown name refuses before dispatch (`$R/tests/secrets.vitest.ts`). Verify: `node .skilled/bin/bots.cjs run pb-vault --repo "$FIXTURE"` prints `refused before dispatch (secret-unknown)` and exits 4.
+- [ ] T038 Confirm no verb prints a value. Verify: after `printf 'skilled-test-value-7f3a\n' | node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE"`, `node .skilled/bin/bots.cjs secret list --repo "$FIXTURE" | rg -c 'skilled-test-value-7f3a'` exits 1.
 - [ ] T039 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/008-vault/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/008-vault --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -126,6 +151,7 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Acceptance criteria**: See `acceptance-criteria.md`
+- **Design notes**: See `design/`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -147,9 +173,10 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md` prints 15.
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md` prints 19.
 - [ ] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -n '^## 3. ARCHITECTURE' specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md` prints one line.
 - [ ] CHK-003 [P1] Dependencies identified and available. Verify: `rg -n '^## 6. DEPENDENCIES' specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md` prints one line.
+- [ ] CHK-004 [P1] Every design decision a task needs is in a design note. Verify: `ls specs/system-skilled-bots/003-openbot-parity-build/008-vault/design | wc -l` prints 7.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -158,9 +185,10 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 ## Code Quality
 
 - [ ] CHK-010 [P0] The typecheck passes. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] CHK-011 [P0] The suite passes with no skipped secret test. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0.
+- [ ] CHK-011 [P0] The suite passes with no skipped secret test, the one macOS scratch keychain test aside on another platform. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0.
 - [ ] CHK-012 [P1] Every store refusal names its reason and its detail. Verify: `rg -c "reason: 'secret-" .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts` prints at least 5.
 - [ ] CHK-013 [P1] The new modules follow the runtime's section-comment layout. Verify: `rg -c '^// [0-9]\. ' .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts` prints at least 3.
+- [ ] CHK-014 [P0] No keychain spawn goes through a shell. Verify: `rg -n 'shell: true' .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts` exits 1.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -170,8 +198,8 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 
 - [ ] CHK-020 [P0] Every acceptance criterion is Met, and there is at least one per requirement. Verify: `test "$(rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md)" -ge "$(rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md)"` exits 0.
 - [ ] CHK-021 [P0] The fixture run proves the injection. Verify: `rg -c 'skilled-test-value-7f3a' "$RUN"` exits 1 and the child's stdout holds `SKILLED_BOT_SECRET_DEMO` with no `=`.
-- [ ] CHK-022 [P1] The backend matrix is covered: keychain and file, each with a stored, absent and unreadable store. Verify: `rg -c "backend" .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 4.
-- [ ] CHK-023 [P1] The adversarial names are covered: a slash, `..`, an empty name and a 65-character name. Verify: `rg -c 'secret-name-invalid' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 4.
+- [ ] CHK-022 [P1] The backend matrix is covered: keychain through the fake `security`, keychain through the fake `secret-tool` and file, each with a stored, absent and unreadable store. Verify: `rg -c "backend" .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 6.
+- [ ] CHK-023 [P1] The adversarial names are covered: a slash, `..`, an empty name on the verb and a 65-character name. Verify: `rg -c 'secret-name-invalid' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 4.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -181,7 +209,7 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 
 - [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Verify: `rg -n 'secrets' .skilled/skills/system-skilled-bots/runtime/lib` names only `definition.ts` before the change.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Verify: `rg -n 'posture\.secrets|secretsUsed|collectKnownSecrets|findSecretLiteral' .skilled --glob '*.ts' --glob '*.cjs'` names every consumer.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Verify: `rg -n 'posture\.secrets|secretsUsed|postRunCauses|collectKnownSecrets|findSecretLiteral' .skilled --glob '*.ts' --glob '*.cjs'` names every consumer.
 - [ ] CHK-FIX-004 [P0] Security fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Verify: `rg -c 'secret-name-invalid|secret-too-long|secret-empty' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 3.
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Verify: `rg -n 'Matrix axes' specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md` prints one line.
 - [ ] CHK-FIX-006 [P1] Hostile env variant executed when tests or code read process-wide state. Verify: `rg -c 'process\.env' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 1.
@@ -194,11 +222,12 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secret in the new modules or the tests. Verify: `rg -n 'ghp_|sk-[A-Za-z0-9]{20}' .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` exits 1.
-- [ ] CHK-031 [P0] The store folder is 0700 and every file it writes is 0600. Verify: `stat -f '%Lp' "$STATE/secrets"` prints 700 and `stat -f '%Lp' "$STATE/secrets/index.json"` prints 600.
-- [ ] CHK-032 [P1] The value reaches the child environment only. Verify: `rg -c 'skilled-test-value-7f3a' "$RUN" "$STATE"/*/records/*.json` exits 1.
+- [ ] CHK-031 [P0] The store folder is 0700 and every file it writes is 0600. Verify: after T038, `stat -f '%Lp' "$STATE/secrets"` prints 700 and `stat -f '%Lp' "$STATE/secrets/index.json" "$STATE/secrets/demo.value"` prints 600 twice.
+- [ ] CHK-032 [P1] The value reaches the child environment only. Verify: `rg -c 'skilled-test-value-7f3a' "$RUN" "$STATE"/records/*.json` exits 1.
 - [ ] CHK-033 [P0] A child that prints the value is caught after the run. Verify: `rg -c 'secret-in-output' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints at least 1.
-- [ ] CHK-034 [P1] The keychain set leaves no value in argv. Verify: `rg -n 'process table' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints one line.
+- [ ] CHK-034 [P1] The keychain set leaves no value and no hex form in any argv. Verify: `rg -n 'argv log' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints one line.
 - [ ] CHK-035 [P1] The same-user boundary is stated and pinned. Verify: `rg -n 'same-user' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints one line.
+- [ ] CHK-036 [P0] No test touches the login keychain. Verify: `rg -n 'login keychain guard' .skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts` prints one line, and `security find-generic-password -s skilled-bots >/dev/null 2>&1; echo "exit=$?"` prints `exit=44` after the suite on a host where the operator has stored nothing.
 <!-- /ANCHOR:security -->
 
 ---
@@ -206,7 +235,7 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan, tasks and acceptance criteria agree on the refusal ids. Verify: `rg -c 'secret-unknown' specs/system-skilled-bots/003-openbot-parity-build/008-vault/*.md` prints one line per document, four in all.
+- [ ] CHK-040 [P1] Spec, plan, tasks and acceptance criteria agree on the refusal ids. Verify: `rg -c 'secret-unknown' specs/system-skilled-bots/003-openbot-parity-build/008-vault/{spec,plan,tasks,acceptance-criteria}.md` prints four lines.
 - [ ] CHK-041 [P1] The template comment no longer says the field is unenforced. Verify: `rg -n 'does not enforce' .skilled/skills/system-skilled-bots/assets/bot-template.txt` exits 1.
 - [ ] CHK-042 [P2] The bot template names the verb that fills the store. Verify: `rg -n 'bots secret' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints one line.
 <!-- /ANCHOR:docs -->
@@ -227,9 +256,9 @@ Four names keep the paths short: `R` is `.skilled/skills/system-skilled-bots/run
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 13 | 0/13 |
-| P1 Items | 15 | 0/15 |
+| P0 Items | 15 | 0/15 |
+| P1 Items | 16 | 0/16 |
 | P2 Items | 1 | 0/1 |
 
-**Verification Date**: 2026-11-25
+**Verification Date**: 2026-11-26
 <!-- /ANCHOR:summary -->
