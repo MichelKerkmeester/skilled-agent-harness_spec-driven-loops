@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-25 |
 | **Branch** | `worktrees/545-v4-2-audit-fixes` |
 <!-- /ANCHOR:metadata -->
