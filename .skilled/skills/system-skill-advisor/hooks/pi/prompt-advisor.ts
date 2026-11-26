@@ -277,6 +277,7 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
             prompt?: string;
             cwd?: string;
             hook_event_name?: string;
+            session_id?: string;
           },
           dependencies?: { runtime?: "pi"; writeDiagnostic?: (line: string) => void },
         ) => Promise<AdvisorEnvelope | Record<string, unknown>>;
@@ -292,6 +293,9 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
                 prompt: event.text,
                 cwd: ctx.cwd,
                 hook_event_name: "UserPromptSubmit",
+                // The shared handler keys its weak-follow-up route receipt on the
+                // session id, and without one it neither reads nor writes it.
+                session_id: sessionIdFromContext(ctx),
               },
               // The hook runs inside Pi's own process, so its default stderr
               // diagnostic would draw over Pi's input line. The record is
