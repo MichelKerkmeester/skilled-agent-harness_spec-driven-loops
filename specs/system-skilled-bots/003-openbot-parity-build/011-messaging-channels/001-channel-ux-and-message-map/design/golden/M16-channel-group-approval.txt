@@ -1,0 +1,1 @@
+Approvals are not taken in a group chat. Answer in a direct chat with the bot.

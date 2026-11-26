@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "daemon and webhook transports",
+      "phase 6 daemon and webhook transports",
+      "signal cli daemon transport",
+      "whatsapp cloud api webhook",
+      "signal whatsapp transport plan",
+      "daemon and webhook transports tasks",
+      "daemon and webhook transports acceptance criteria",
+      "daemon and webhook transports goal",
+      "daemon and webhook transports implementation summary"
+    ],
+    "key_topics": [
+      "daemon",
+      "webhook",
+      "transports",
+      "phase",
+      "signal",
+      "cli",
+      "transport",
+      "whatsapp",
+      "cloud",
+      "api",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/bots.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Signal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Signal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prove Signal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Signal has no hosted bot API, so a bot speaks through a `signal-cli` daemon the operator runs",
+    "created_at": "2026-11-26T00:00:20Z",
+    "last_save_at": "2026-11-26T00:48:04.417Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f73dd4a06c20908adf899746f16caf935477f625659da508a62bcf2a7b49d80b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8fa79b787845d5a7cc111b3529adb3b94405450d248e94764feb4a3f6a164ce3",
+      "plan.md": "6468abf5ba0753356ed0ef2216680240556abc1edb545549fb8e098f9d846265",
+      "tasks.md": "9e5198e49f3c906eb7de265bac5101aa18fc4ae5a8cbc3855eeaea09628afba9",
+      "implementation-summary.md": "698b6df1a9abc16e5fae9dbec9fdf5426cebf6b29433efd0b4598f3ff1615cb4"
+    },
+    "last_active_at": null
+  }
+}

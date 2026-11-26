@@ -2,32 +2,30 @@
 title: "Goal: Phase 11: messaging-channels"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
-  - "packet goal"
-  - "durable directive"
-  - "completion criteria"
-  - "goal binding"
+  - "messaging channels goal"
+  - "phase 11 goal binding"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels"
-    last_updated_at: "2026-11-25T20:01:13Z"
-    last_updated_by: "create-goal"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-26T06:00:00Z"
+    last_updated_by: "wo-09-writer"
+    recent_action: "Bound the seven child goals"
+    next_safe_action: "Start child 003"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "w3-011-messaging-channels"
+      session_id: "wo09-011-parent"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: Phase 11: messaging-channels
 
-<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 <!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
 
@@ -36,7 +34,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Put a bot in a chat — one `channel.ts` adapter contract, a file-backed identity link with its lockout and the `operators.json` roster, a file-backed approval index and a durable send queue, five transports (terminal, Telegram, Slack, Signal and WhatsApp) and the four channel names on `delivery.ts` — so a person can answer a bot's needs-you question from the chat where it was asked, as phase 11 of the parent goal's OpenBot parity build.
+**Objective:** Deliver Phase 11 of `../goal.md`: put a bot in a chat. One `channel.ts` adapter contract, a file-backed link with its lockout and the `operators.json` roster, a file-backed approval index, a durable send queue, five transports (terminal, Telegram, Slack, Signal and WhatsApp) and four channel names on `delivery.ts`, so a person answers a bot's needs-you question from the chat where it was asked.
 
 ### Decisions
 
@@ -44,29 +42,50 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | `channel.ts` owns the one adapter contract and the one message model, and an operation a transport does not declare returns `unsupported: true` with `retryable: false` and `sentBeforeError: false` rather than throwing, so a text-only transport still answers every call. |
-| D2 | A channel belongs to the identity, so `channels/config.json`, `links.json`, `approvals.json` and `queue/` sit under the identity's state root, and `channel.ts` is the only reader and writer of `channels/config.json`, which holds a secret name and never a value. |
-| D3 | The link record carries both the actor who ran `link` and the provider-asserted sender id, and `isApprover` resolves the sender id through that record before it matches the actor against the roster, so a chat cannot borrow another person's name. |
-| D4 | The roster is the minimal `owner`/`members` shape and `bots channel roster` is its only writer; an absent roster refuses every channel answer `channel-roster-missing` and refuses `link`, while a terminal answer needs no roster because the host is the authority. |
-| D5 | The approval index entry is written before the send and is the only record a press resolves through, so a restart loses no prompt; an entry expires with its item and a press after `expiresAt` is refused `item-expired`. |
-| D6 | A send is written to the queue before the I/O, an uncertain result is recorded `unknown` and never retried, and that `unknown` state also reaches the run record's delivery entry, so a lost notice is visible in `bots status`. |
-| D7 | A token is a phase 008 secret name in the config and never a value; it is read at `start` and at every send, and every URL renders `bot<redacted>` before it reaches an error, a log or a queue entry. |
-| D8 | An inbound chat message is labelled untrusted before it becomes a request prompt, and a closing tag in its text is escaped so it cannot end its own block. |
+| D1 | Every message text and every record shape is fixed in children 001 and 002 before any code, and the build children decide none of their own. |
+| D2 | An undeclared operation returns the unsupported result and reaches no provider. |
+| D3 | A chat answers only as the actor it linked, by sender id and only when the roster names that actor. A terminal answer needs no roster. |
+| D4 | Every prompt has an index entry before it is sent, and every outbound message is a file before it is sent. An uncertain send is `unknown`, never retried and reaches the run record. |
+| D5 | A token is a phase 008 secret name, read at `start` and at every send, never stored and rendered `bot<redacted>`. |
+| D6 | An inbound chat message is an untrusted, escaped `<conversation channel="...">` block. |
+| D7 | A chat sees the run's outcome and record pointer, never the reply text. |
 
 <!-- /ANCHOR:directive -->
+
+---
+
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-channel-ux-and-message-map | `001-channel-ux-and-message-map/goal.md` |
+| 002-adapter-and-record-contracts | `002-adapter-and-record-contracts/goal.md` |
+| 003-link-roster-and-answer-gate | `003-link-roster-and-answer-gate/goal.md` |
+| 004-approval-index-and-send-queue | `004-approval-index-and-send-queue/goal.md` |
+| 005-polling-transports | `005-polling-transports/goal.md` |
+| 006-daemon-and-webhook-transports | `006-daemon-and-webhook-transports/goal.md` |
+| 007-conformance-hardening-and-proof | `007-conformance-hardening-and-proof/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
 
 ---
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0, and `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel.vitest.ts tests/channel-conformance.vitest.ts` prints a `Test Files` line with no `failed` count, covering `ChannelInbound`, `ChannelOutbound`, `ChannelSendResult`, `unsupported`, `readChannelConfig`, `writeChannelConfig`, `untrusted` and five conformance rules.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-link.vitest.ts tests/cli-channel.vitest.ts` prints a `Test Files` line with no `failed` count, covering `channel-locked`, `channel-unlinked`, `channel-roster-missing`, `channel-roster-owner`, a six-digit one-use code and a per-actor lockout.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-approval.vitest.ts tests/answer.vitest.ts` prints a `Test Files` line with no `failed` count, covering `approval-v1`, `item-expired`, `channel-group-approval`, `item-answered-differently`, `answer-not-approver` on both surfaces and the YES/NO grammar.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-queue.vitest.ts tests/channel-transports.vitest.ts` prints a `Test Files` line with no `failed` count, covering `unknown`, `BACKOFF_MS`, the delivery entry, `TELEGRAM_MAX_MESSAGE_LENGTH`, `SLACK_TEXT_CHUNK_CHARS`, `SIGNAL_TEXT_CHUNK_CHARS`, `TEXT_LIMIT` and `channel-signature`.
-- [ ] `T=$(mktemp -d) && mkdir -p "$T/checkout" && XDG_STATE_HOME="$T/state" SKILLED_BOTS_IDENTITY=acme/widgets node .skilled/bin/bots.cjs channel roster add ada --role owner --repo "$T/checkout" && XDG_STATE_HOME="$T/state" SKILLED_BOTS_IDENTITY=acme/widgets node .skilled/bin/bots.cjs channel link telegram --repo "$T/checkout"` exits 0 and prints one six-digit code.
-- [ ] `awk '/^## 011-messaging-channels$/{f=1;next} /^## /{f=0} f' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md | rg -c 'Apache License'` prints 4 or more, and `rg -n 'tinychannels' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` exits 1.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict` prints `RESULT: PASSED`.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "R2"` prints `18 passed`.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict --recursive` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,17 +101,15 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels` prints `RESULT: PASSED` |
-| Packet validates | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict` prints `RESULT: PASSED` |
-| Implementation | Pending | `node .skilled/bin/bots.cjs channel list` prints `bots: unknown verb: channel` and exits 2, the measured gap `spec.md` records |
-| Acceptance criteria | Pending | All twenty-three rows in `acceptance-criteria.md` read `Unmet` |
+| Phase parent authored | Done | `spec.md` carries the threshold evidence, the requirement map and the map for seven children |
+| Children 001 and 002 design | Written | Each child's checks printed their expected output on 2026-11-26, recorded in its `goal.md` |
+| Children 003 to 007 | Planned | `node .skilled/bin/bots.cjs channel list` prints `bots: unknown verb: channel` and exits 2 |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Parent goal | `specs/system-skilled-bots/003-openbot-parity-build/goal.md` binds this phase through its row `011-messaging-channels/goal.md`, which this file supplies. No parent decision or criterion changes, so the parent goal needs no amendment and no resend. |
-| Plan section added | `plan.md` §8 External orchestration was added in the same run, so the wave assignment and the executor roster sit beside the plan that owns the module order. |
-| Wave order departs from the task numbering | `tasks.md` numbers T050 after the docs and T074 after T060, but T050 is the roster verb group in `bots.cjs` and T074 is the config read and write in `channel.ts`, so `plan.md` §8 runs them in waves 5 and 1 and keeps every task id. |
-| Scaffold tokens outside this goal's write scope | `implementation-summary.md` still carries unfilled value tokens, which the implementation run fills when it writes that file. `validate.sh --strict` reports them as one warning on a Draft packet, not as an error. |
+| The pre-expansion decisions | D1 to D8 of the pre-expansion goal are kept in substance: D2 and D3 here, D4 in children 003 and 004, D5 and D6 in D4 here, D7 in D5 and D8 in D6. |
+| Documents moved | The pre-expansion `plan.md`, `tasks.md`, `acceptance-criteria.md` and `implementation-summary.md` were split by file into children 003 to 007. Each task names its old id. |
+| D7 | Recorded in `spec.md` section 5 and asked in section 7. |
 <!-- /ANCHOR:log -->

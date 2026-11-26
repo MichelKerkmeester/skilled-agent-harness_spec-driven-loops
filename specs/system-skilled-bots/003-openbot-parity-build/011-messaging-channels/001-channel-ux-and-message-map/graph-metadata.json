@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "channel ux and message map",
+      "phase 1 channel ux and message map",
+      "channel message catalog",
+      "channel reply grammar",
+      "channel ux plan",
+      "channel message catalog plan",
+      "channel ux and message map tasks",
+      "channel ux and message map acceptance criteria",
+      "channel ux and message map goal",
+      "channel ux and message map implementation summary"
+    ],
+    "key_topics": [
+      "channel",
+      "message",
+      "map",
+      "phase",
+      "catalog",
+      "reply",
+      "grammar",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "design/message-catalog.md",
+      "design/mockups.md",
+      "design/reply-grammar.md",
+      "design/golden/M01-prompt-options-text.txt",
+      "design/golden/M21-delivery-unknown.txt",
+      ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-catalog.md",
+        "kind": "doc",
+        "path": "design/message-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "reply-grammar.md",
+        "kind": "doc",
+        "path": "design/reply-grammar.md",
+        "source": "derived"
+      },
+      {
+        "name": "M01-prompt-options-text.txt",
+        "kind": "file",
+        "path": "design/golden/M01-prompt-options-text.txt",
+        "source": "derived"
+      },
+      {
+        "name": "M21-delivery-unknown.txt",
+        "kind": "file",
+        "path": "design/golden/M21-delivery-unknown.txt",
+        "source": "derived"
+      },
+      {
+        "name": "delivery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No message a person reads in a chat was designed",
+    "created_at": "2026-11-26T00:00:16Z",
+    "last_save_at": "2026-11-26T00:45:01.371Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:918d5b7512334422d3334f05de831513f4737c52ae03a34e6fd69ffab21dfc3d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d49ad89d818000b219975d16ac0294d0cccde55d3ea1cfb783c9dc9debca9184",
+      "plan.md": "34e19f1b619db7aff0dac5a708e2617c154e3a3e395d658ee4a4263d305e9beb",
+      "tasks.md": "4b5d64fa6e110dc9860e2a2c08f6231f7a9d5a31f03a720695222ea4b15a6d42",
+      "implementation-summary.md": "b8b24cf6112adc61234c98c0415c233c978ffdd7996fea2247737eef3949359e"
+    },
+    "last_active_at": null
+  }
+}

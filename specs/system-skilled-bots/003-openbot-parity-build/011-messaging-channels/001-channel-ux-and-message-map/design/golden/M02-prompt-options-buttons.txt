@@ -1,0 +1,7 @@
+Skilled bot digest
+Run 20261125T210504Z-3f9d2b11: needs your decision
+Reason: awaiting-decision
+Needs-you item 20261125T210504Z-3f9d2b11: Which channel?
+Record: <bots state>/skilled-scratch%2Fhello/records/20261125T210504Z-3f9d2b11.json
+
+Press a button to answer.

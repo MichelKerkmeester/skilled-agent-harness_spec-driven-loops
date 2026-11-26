@@ -1,0 +1,7 @@
+Skilled bot hello
+Run 20261125T211204Z-7c1e9a40: needs your decision
+Reason: awaiting-decision
+Needs-you item 20261125T211204Z-7c1e9a40: Ship the release?
+Record: <bots state>/skilled-scratch%2Fhello/records/20261125T211204Z-7c1e9a40.json
+
+Press a button to answer.

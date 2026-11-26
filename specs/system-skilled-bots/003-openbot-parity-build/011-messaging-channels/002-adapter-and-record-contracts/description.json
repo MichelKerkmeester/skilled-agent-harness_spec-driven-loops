@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts",
+  "description": "Phase 2: adapter-and-record-contracts",
+  "keywords": [
+    "phase",
+    "adapter-and-record-contracts"
+  ],
+  "lastUpdated": "2026-11-26T00:00:18.277Z",
+  "specId": "002",
+  "folderSlug": "adapter-and-record-contracts",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build",
+    "011-messaging-channels"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,4 @@
+Skilled bot nightly-report
+Run 20261125T193000Z-5e6f7a8b: failed (budget)
+Reason: maxDurationReached
+Record: <bots state>/skilled-scratch%2Fhello/records/20261125T193000Z-5e6f7a8b.json

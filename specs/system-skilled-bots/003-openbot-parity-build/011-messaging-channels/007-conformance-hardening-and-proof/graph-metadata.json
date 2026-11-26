@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conformance hardening and proof",
+      "phase 7 conformance hardening and proof",
+      "channel conformance suite",
+      "messaging channels operator reference",
+      "channel conformance plan",
+      "conformance hardening and proof tasks",
+      "conformance hardening and proof acceptance criteria",
+      "conformance hardening and proof goal",
+      "conformance hardening and proof implementation summary"
+    ],
+    "key_topics": [
+      "conformance",
+      "hardening",
+      "proof",
+      "phase",
+      "channel",
+      "suite",
+      "messaging",
+      "channels",
+      "operator",
+      "reference",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+      ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "conformance-rules.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Table",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each transport child proves its own transport",
+    "created_at": "2026-11-26T00:00:21Z",
+    "last_save_at": "2026-11-26T00:48:05.611Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:160f37ff5c6ec8af385f5583adb05758106dcabc99a3085b575bccc3036a7c55",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f19f7bececca605a3e0d99dfcec121d1807fe9e42c09be52b46747b772b9afa6",
+      "plan.md": "9864e024146b755b419e131cc7478a6d547ae22780f3a2b61d9040daca02f87f",
+      "tasks.md": "a196118f19c7b441716a053e94054f84dc55f221440d4f6a425058eaa3dcdaba",
+      "implementation-summary.md": "4662bb621a4a6a19e092cd8351be32eb81838685ad3d06da676f63093b2073d3"
+    },
+    "last_active_at": null
+  }
+}

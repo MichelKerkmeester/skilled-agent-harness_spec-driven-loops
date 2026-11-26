@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "link roster and answer gate",
+      "phase 3 link roster and answer gate",
+      "bots channel link",
+      "bots channel roster",
+      "channel roster check",
+      "link roster plan",
+      "channel contract plan",
+      "messaging channels executor roster",
+      "link roster and answer gate tasks",
+      "link roster and answer gate acceptance criteria",
+      "link roster and answer gate goal",
+      "link roster and answer gate implementation summary"
+    ],
+    "key_topics": [
+      "link",
+      "roster",
+      "answer",
+      "gate",
+      "phase",
+      "bots",
+      "channel",
+      "check",
+      "plan",
+      "contract",
+      "messaging",
+      "channels"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "answer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nothing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nothing links a chat identity to a person, so a message from a chat cannot be attributed to an actor and nothing says who may answer from one",
+    "created_at": "2026-11-26T00:00:18Z",
+    "last_save_at": "2026-11-26T00:48:00.827Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:438f4960873ae3bb8da19cb8cdb187377649c7f1a6cdbfdbdb62d740841f70ef",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83e21ed8d5f25036d7d802840f9c08224a0eff1450921e8d4942af2b331a1e9e",
+      "plan.md": "4b20733d0789b8902668f3700652ea5975ad467666e1a28a0339ca7bd5b71f03",
+      "tasks.md": "5a8045e92c5c03cc5ba2a8ca501317a10cad6f6a38c830521c2fb9e1396a9690",
+      "implementation-summary.md": "f344efaddd31c446ce1e3878682d098a8c13085de2081adf89224bac95400f24"
+    },
+    "last_active_at": null
+  }
+}

@@ -2,33 +2,23 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "messaging channels implementation summary"
+  - "channel ux and message map implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels"
-    last_updated_at: "2026-11-25T20:09:58Z"
-    last_updated_by: "generate-context"
-    recent_action: "Added phases 012-014, goals and orchestration plans"
-    next_safe_action: "Plan the build of phase 001 activity and actor"
-    packet_purpose: "Purpose: Put a bot in the chat the team already uses, so a message starts a run and a question is answered where it was asked, with the answer attributed to a person who is allowed to give it."
+    packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map"
+    last_updated_at: "2026-11-26T00:00:17Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialized Level 2 template"
+    next_safe_action: "Replace continuity placeholders"
     blockers: []
-    key_files:
-      - "specs/system-skilled-bots/003-openbot-parity-build/goal.md"
-      - "specs/system-skilled-bots/003-openbot-parity-build/spec.md"
+    key_files: []
     session_dedup:
-      fingerprint: "sha256:8dde84a8bb6bc9e0209b773ab443eb9c15225471b1f58593d9b2e13d568d73c3"
-      session_id: "scaffold-011-messaging-channels"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-001-channel-ux-and-message-map"
       parent_session_id: null
-    session_ref:
-      runtime: "claude"
-      sessionId: "335d5a41-9d36-45cb-8bae-6e6010fef894"
-      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
-      savedAt: "2026-11-25T20:09:58Z"
-      locatorKind: "transcript_path"
-      version: 1
-    completion_pct: 100
+    completion_pct: 0
     open_questions: []
     answered_questions: []
 ---
@@ -46,8 +36,8 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-messaging-channels |
-| **Completed** | 2026-11-25 |
+| **Spec Folder** | 001-channel-ux-and-message-map |
+| **Completed** | 2026-11-26 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -59,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 11: messaging-channels
+### Phase 1: channel-ux-and-message-map
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

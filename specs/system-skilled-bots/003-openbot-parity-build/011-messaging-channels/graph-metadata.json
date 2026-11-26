@@ -3,7 +3,15 @@
   "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
   "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
   "parent_id": "system-skilled-bots/003-openbot-parity-build",
-  "children_ids": [],
+  "children_ids": [
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports",
+    "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -14,15 +22,14 @@
       "messaging channels",
       "phase 11 messaging channels",
       "bots channel",
+      "messaging channels phase parent",
       "telegram long polling",
       "slack socket mode",
       "signal-cli daemon",
       "whatsapp cloud api webhook",
-      "messaging channels plan",
-      "bots channel plan",
-      "channel adapter plan",
-      "telegram slack signal whatsapp plan",
-      "messaging channels tasks"
+      "messaging channels goal",
+      "phase 11 goal binding",
+      "011-messaging-channels operator decisions"
     ],
     "key_topics": [
       "messaging",
@@ -30,61 +37,39 @@
       "phase",
       "bots",
       "channel",
+      "parent",
       "telegram",
       "long",
       "polling",
       "slack",
       "socket",
-      "mode",
-      "signal-cli"
+      "mode"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-      ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-      ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-      "lib/README.md"
+      "001-channel-ux-and-message-map/design/message-catalog.md",
+      "002-adapter-and-record-contracts/design/records.md",
+      "001-channel-ux-and-message-map/design/mockups.md",
+      "002-adapter-and-record-contracts/design/inbound-sequence.md",
+      "001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt",
+      "003-link-roster-and-answer-gate/spec.md",
+      "001-channel-ux-and-message-map/goal.md",
+      "002-adapter-and-record-contracts/goal.md",
+      "003-link-roster-and-answer-gate/goal.md",
+      "004-approval-index-and-send-queue/goal.md",
+      "005-polling-transports/goal.md",
+      "006-daemon-and-webhook-transports/goal.md",
+      "007-conformance-hardening-and-proof/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
         "source": "derived"
       },
       {
@@ -100,85 +85,37 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "message-catalog.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "001-channel-ux-and-message-map/design/message-catalog.md",
         "source": "derived"
       },
       {
-        "name": "state-root.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "name": "records.md",
+        "kind": "doc",
+        "path": "002-adapter-and-record-contracts/design/records.md",
         "source": "derived"
       },
       {
-        "name": "delivery.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "001-channel-ux-and-message-map/design/mockups.md",
         "source": "derived"
       },
       {
-        "name": "answer.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "name": "inbound-sequence.md",
+        "kind": "doc",
+        "path": "002-adapter-and-record-contracts/design/inbound-sequence.md",
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
+        "name": "M02-prompt-options-buttons.txt",
         "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "answer.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-        "source": "derived"
-      },
-      {
-        "name": "request-queue.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-queue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-record.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "path": "001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Slack Socket Mode",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -190,46 +127,105 @@
         "source": "derived"
       },
       {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
+        "name": "Purpose Put",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Deliver Phase",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Now Not",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A bot's only way to reach a person is a macOS desktop notice, and its only way to ask a question is `bots inbox` on the host, so a small team that works in a chat client walks to the machine to answer",
+    "causal_summary": "A bot reaches a person only through a macOS desktop notice and asks a question only through `bots inbox` on the host, so a team that works in a chat client walks to the machine to answer",
     "created_at": "2026-11-25T07:51:30Z",
-    "last_save_at": "2026-11-25T22:43:29.933Z",
+    "last_save_at": "2026-11-26T00:45:00.161Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a1b86fe386ca328c2461d66fdc8eaa300a03a4287a3484f17afa3356bfb6de10",
+    "source_fingerprint": "sha256:bbc931934d83a96b968589fed5712815f2f3746c09745a6a153c1b874092b1de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "eb527d8a9480854c2b716c648d8eaaf8c468e86b1a6be69e29c57a877c96c1be",
-      "plan.md": "0fd9bbef465a92cf025168af7c5c357402d8e40a12421485ceedc65edce1d0cb",
-      "tasks.md": "56d9759d99efef8d8685cf253cab3204674e61e3670985fb407f5563188676e3",
-      "decision-record.md": "4c83a69572ed645785f1854ac28077ca9baccba294e9677932209b8daa24787c",
-      "implementation-summary.md": "a89f8ae6a175044e5a56dccfa6740a18675d49c5837357d41c34eb8fdc757c98"
+      "spec.md": "256cb022a614e39e02c78516789194254728b5df233d01f4553c4ef106e6ae19",
+      "decision-record.md": "4c83a69572ed645785f1854ac28077ca9baccba294e9677932209b8daa24787c"
     },
     "last_active_at": null
   }

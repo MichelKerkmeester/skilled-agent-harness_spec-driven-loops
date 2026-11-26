@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adapter and record contracts",
+      "phase 2 adapter and record contracts",
+      "channel capability matrix",
+      "channel inbound sequence",
+      "channel operator runbook",
+      "adapter contracts plan",
+      "channel records plan",
+      "adapter and record contracts tasks",
+      "adapter and record contracts acceptance criteria",
+      "adapter and record contracts goal",
+      "adapter and record contracts implementation summary"
+    ],
+    "key_topics": [
+      "adapter",
+      "record",
+      "contracts",
+      "phase",
+      "channel",
+      "capability",
+      "matrix",
+      "inbound",
+      "sequence",
+      "operator",
+      "runbook",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "design/records.md",
+      "design/capabilities.md",
+      "design/inbound-sequence.md",
+      "design/conformance-rules.md",
+      "design/operator-runbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "capabilities.md",
+        "kind": "doc",
+        "path": "design/capabilities.md",
+        "source": "derived"
+      },
+      {
+        "name": "inbound-sequence.md",
+        "kind": "doc",
+        "path": "design/inbound-sequence.md",
+        "source": "derived"
+      },
+      {
+        "name": "conformance-rules.md",
+        "kind": "doc",
+        "path": "design/conformance-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator-runbook.md",
+        "kind": "doc",
+        "path": "design/operator-runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`declaredCapabilities` had no vocabulary and no matrix, the inbound acknowledge boundary was undefined and the `seen/` folder was named once with no content",
+    "created_at": "2026-11-26T00:00:17Z",
+    "last_save_at": "2026-11-26T00:45:02.595Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bb93b03ce7bf460919bad047b0a7e1de1a1ab61c9e3f06f6926d7ca198bac118",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "686e118878e1293fd57e56f830eed7d17d7bfccfa887b2044b5836ee5403d0de",
+      "plan.md": "a7adadf36ee7841f496c624231fd36c44547be4c0f5f5ed98bd2f7e97ccc7699",
+      "tasks.md": "90de377b1e752e0d739043609f884c8bad5e672239557026f0cd483a6a4d7642",
+      "implementation-summary.md": "71baaa4771b7f8618b07c4bd7533651f2d9c731150ad82acbac56b0eb307978e"
+    },
+    "last_active_at": null
+  }
+}

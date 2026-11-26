@@ -1,0 +1,4 @@
+Skilled bot nightly-report
+Run 20261125T200000Z-1a2b3c4d: completed
+Reason: converged
+Record: <bots state>/skilled-scratch%2Fhello/records/20261125T200000Z-1a2b3c4d.json
