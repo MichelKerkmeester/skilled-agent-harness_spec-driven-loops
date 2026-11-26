@@ -158,20 +158,28 @@ describe('dispatch-iteration --claude-config-dir', () => {
 
   type Fixture = {
     root: string;
+    repo: string;
     recordPath: string;
     configuredDir: string;
     inheritedDir: string;
   };
 
   // The shim records the config dir the child inherited, so a case can tell an
-  // explicit flag from the value the parent environment already carried.
+  // explicit flag from the value the parent environment already carried. The
+  // packet sits inside its own git worktree because the dispatcher refuses an
+  // artifact folder it cannot contain within one.
   function createFixture(): Fixture {
     const root = mkdtempSync(join(tmpdir(), 'dispatch-cfg-'));
     tempDirs.push(root);
     const recordPath = join(root, 'record.json');
     const binDir = join(root, 'bin');
     mkdirSync(binDir);
-    mkdirSync(join(root, 'packet'));
+    const repo = join(root, 'repo');
+    mkdirSync(join(repo, '.skilled', 'agents'), { recursive: true });
+    mkdirSync(join(repo, 'packet'));
+    writeFileSync(join(repo, '.skilled', 'agents', 'deep-research.md'), 'persona\n', 'utf8');
+    writeFileSync(join(repo, '.skilled', 'agents', 'deep-review.md'), 'persona\n', 'utf8');
+    spawnSync('git', ['init', '-q', repo], { encoding: 'utf8' });
     writeFileSync(join(root, 'prompt.md'), 'fixture prompt\n', 'utf8');
     writeFileSync(join(root, 'state.jsonl'), '', 'utf8');
     const configuredDir = join(root, '.claude-configured');
@@ -190,7 +198,7 @@ describe('dispatch-iteration --claude-config-dir', () => {
       'utf8',
     );
     chmodSync(shimPath, 0o755);
-    return { root, recordPath, configuredDir, inheritedDir };
+    return { root, repo, recordPath, configuredDir, inheritedDir };
   }
 
   function baseFlags(
@@ -201,11 +209,11 @@ describe('dispatch-iteration --claude-config-dir', () => {
     return [
       '--executor', 'cli-claude-code',
       '--loop-type', loopType,
-      '--repo-root', REPO_ROOT,
+      '--repo-root', fixture.repo,
       '--prompt-file', promptFile ?? join(fixture.root, 'prompt.md'),
       '--state-log', join(fixture.root, 'state.jsonl'),
-      '--packet-dir', join(fixture.root, 'packet'),
-      '--artifact-dir', join(fixture.root, 'packet'),
+      '--packet-dir', join(fixture.repo, 'packet'),
+      '--artifact-dir', join(fixture.repo, 'packet'),
       '--iteration', '1',
       '--generation', '1',
       '--session-id', 's',

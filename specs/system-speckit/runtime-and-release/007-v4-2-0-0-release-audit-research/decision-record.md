@@ -58,6 +58,8 @@ _memory:
 | Q022 | Add a v4.2.0.0 release-notes entry for the generation-3 fix pass, including the clause that named stdin as the front-door input. | Not stated by the operator. The question cited goal.md decision D3, which updates the release notes after the fixes. | none | REQ-007, `.skilled/changelog/skilled/v4.2.0.0.md` |
 | Q023 | Fix the .skilled/specs alias fallout in worktree 547 under a scope amendment before the merge, so one push lands main green. | Not stated. | None | REQ-008, T034, AC-046, AC-047 |
 | Q024 | Merge worktree 547 into main with a merge commit and push main. | Not stated. | None | T035, AC-048 |
+| Q025 | Fix the two workflows that were already red on main under a new amendment to this packet. | Not stated. | None | REQ-009, T036, T037, T038, AC-049, AC-050, AC-051 |
+| Q026 | Run the skill-graph reindex so skill-graph.json carries the in aside signal. | Not stated. | None | REQ-009, AC-050 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -535,6 +537,45 @@ Hold the merge
 Answer:
 ```text
 Merge and push (Recommended)
+```
+
+### Q025
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_016VnyEcp4a4cYEkduUbabYq:0 -->
+
+Question:
+```text
+Two workflows on main are still red, and both failed for the same causes on 31821cee5d7, before this pass, and on every main run since 98b712cd248. (1) Deep-Loop Runtime Tests: two dispatch-iteration --claude-config-dir tests exit 64, a usage error, on the CI runner only. Locally the whole suite passes 4069/0, cause not yet known. (2) Routing Registry Drift Guard: system-skilled-doctor/leaf-aliases.json is stale against its leaf-manifest.json, and the routing-accuracy corpus files changed on 2026-11-21 without their sha256 pins in the baseline being recaptured. REQ-006 moves the v4.2.0.0 tag only onto an all-green main. What should happen?
+```
+
+Options:
+```text
+Amend, fix both here (Recommended)
+Fix in a new packet
+Leave red, hold the tag
+```
+
+Answer:
+```text
+Amend, fix both here (Recommended)
+```
+
+### Q026
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01W5yHCLJGFyGLZaEmWcaNQ1:0 -->
+
+Question:
+```text
+Fixing the routing guard exposed one more check that CI never reached: skill-graph-freshness.cjs --strict exits 1 because the compiled skill-graph.json lacks one mcp-browser-use signal, "in aside", added in 1ad6a392b3d on 2026-11-24. Regenerating it with skill_graph_compiler.py --export-json is the skill-graph reindex, and that tool's header says "the reindex stays operator-owned". A scratch compile changes only that one signal and the generated_at stamp. Should I run the reindex into the repo?
+```
+
+Options:
+```text
+Run the reindex (Recommended)
+Leave the graph as is
+```
+
+Answer:
+```text
+Run the reindex (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

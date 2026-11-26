@@ -1,12 +1,11 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "4c7de105e2d",
-  "corpusSha256": "sha256:18bc5977180a722ec3967559fee4dd379f2a2e9404fa9e687304bfe5a0598fe1",
-  "holdoutSha256": "sha256:918265c278fd51fe5198d2a88df357ed40f5bab8d9a14298ae4e7dac6c7b3b21",
+  "capturedAtSha": "0d0f0b4b9d1",
+  "corpusSha256": "sha256:b14b53ed211a5a5f9c871ecb4e10126ac36a8c7c687a8d6f1ba39ffa4ca2c7cb",
+  "holdoutSha256": "sha256:a6aa180c56b5f202e093fe1535a510bf54d24375843350edd6abc4b45edda382",
   "ambiguitySha256": "sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491",
   "env": {
-    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
     "SYSTEM_SKILL_ADVISOR_DB_DIR": "<empty-dir>",
     "projectionSource": "filesystem"
   },
@@ -17,7 +16,7 @@
       "accuracy": 0.8214
     },
     "unknown_count": {
-      "value": 13
+      "value": 14
     },
     "gold_none_false_fire": {
       "value": 5
@@ -40,9 +39,9 @@
         "accuracy": 0.8065
       },
       "memory_save": {
-        "correct": 28,
+        "correct": 27,
         "total": 32,
-        "accuracy": 0.875
+        "accuracy": 0.8438
       },
       "delegation": {
         "correct": 22,
