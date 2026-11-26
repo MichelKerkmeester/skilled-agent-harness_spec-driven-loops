@@ -78,7 +78,7 @@
       "expected": "delete"
     },
     {
-      "name": "a declaration outside the six",
+      "name": "a declaration outside the seven",
       "question": "[ACTION: transfer] Move the balance",
       "declared": "transfer",
       "expected": "action-kind-invalid"

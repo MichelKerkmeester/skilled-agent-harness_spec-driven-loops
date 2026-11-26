@@ -30,7 +30,7 @@ Each file is an input this phase's tests write into a temporary state root, with
 2. Each entry of `records` is the file `recordBase` names, with every dotted path in `recordBaseDrop` deleted, then every dotted key of the entry set. A record entry with no `actor` key is a record written before this phase. Write each through `writeRunRecord`.
 3. Write each of `items` through `writeNeedsYouItem`.
 4. For each of `leases`, compute the lease path with `leaseFile(stateRoot, identity, leaseKey(identity, botId, specFolder))`, create that file and write the side file at `<lease>.run.json` with `ownerPid` set to `process.pid`.
-5. Write each of `installs` at `installFile(stateRoot, identity, botId)` as a full install record with `schemaVersion: 1`, `identity` and `checkoutRoot` set to the data set's top-level values, `labels` set to the one label `buildBotLabel(identity, botId, 0)` gives, or `buildDrainLabel(identity)` for the drain, and every other key set to any value `readInstallRecord` accepts.
+5. Write each of `installs` at `installFile(stateRoot, identity, botId)` as a full install record with `schemaVersion: 1`, `identity` and `checkoutRoot` set to the data set's top-level values, `labels` set to the one label `buildBotLabel(identity, botId, 0)` gives or `buildDrainLabel(identity)` for the drain, and every other key set to any value `readInstallRecord` accepts.
 6. Build the index with `rebuildIndex`, then call `activityReport` at `clock`. With `describe` built from the `describe` map the payload must deep-equal `expect.activityWithDescribe`. With no `describe` it must deep-equal `expect.activityWithoutDescribe`.
 
 The held `archive` install and the `drain` install give no row, which proves the two filters without changing the expected payload.

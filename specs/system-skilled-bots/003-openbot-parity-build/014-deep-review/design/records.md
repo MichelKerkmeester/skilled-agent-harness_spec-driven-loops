@@ -71,7 +71,7 @@ The loop's config asset fixes every key. [SOURCE: .skilled/skills/system-deep-lo
 | `maxMinutesPerIteration` | integer | no | `10` | the contract default |
 | `specFolder` | string | no | `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review` | the packet this run reports into |
 | `mode` | string | no | `review` | the loop's mode |
-| `reviewTarget` | string | no | `specs/system-skilled-bots/003-openbot-parity-build` | the thirteen phase folders plus the contracts folder |
+| `reviewTarget` | string | no | `specs/system-skilled-bots/003-openbot-parity-build` | the thirteen phase folders plus the contracts folder. The scope source is the file list `plan.md` §8.4 fixes, built from `contracts/runtime-architecture.md` section 1 plus `crates/bots-tui/` and `.skilled/bin/bots.cjs`, because a folder walk reaches no module phases 001 to 011 add |
 | `reviewTargetType` | string | no | `spec-folder` | the target is a folder tree |
 | `reviewDimensions` | array | no | `["correctness","security","traceability","maintainability"]` | the four canonical ids. The five named dimensions ride on them, per `spec.md` section 4 |
 | `reviewFocus` | string | yes | `null` | no single focus, because the run covers the whole build |
@@ -256,7 +256,7 @@ The three paths are fixed by the plan-depth research, so this phase does not cho
 | Path | Kind | What one row is |
 |------|------|-----------------|
 | `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md` | `failures-table` | one table row carrying the scenario id, the phase, the requirement, the observed line and the evidence path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:144] |
-| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | `rebuttals-headings` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md, T016] |
+| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | `rebuttals-headings` | one `## <finding-id>` heading and the six bullet fields under it, `- Phase: <NNN>`, `- Requirement: <REQ id>`, `- Status: handed_off` or `- Status: rebutted`, `- Reason:`, `- Evidence:` and `- Owner:` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/records.md, section 11] |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/` | `evidence-findings` | one finding in `skilled-alignment/findings.json` or `doc-alignment/findings.json` |
 
 A missing source is not a refusal. It is recorded in `missingSources` with the reason, and the run continues, because a phase that filed nothing has nothing to hand over. A source that exists and holds a row this phase cannot read is a refusal, `review-seed-unreadable`, in `design/refusals.md`.
@@ -284,9 +284,9 @@ The orchestrator assigns the severity, so no builder decides it.
 |--------|-----------|----------|
 | `012-failures` | the observed line names a lost write, a secret in output, a path outside the state root or a refusal that blocks every later scenario | `P0` |
 | `012-failures` | any other observed line | `P1` |
-| `013-rebuttals` | the reason is `handed to 014` and the finding names a security or data-loss defect | `P0` |
-| `013-rebuttals` | the reason is `handed to 014` and the finding names any other runtime defect | `P1` |
-| `013-rebuttals` | the reason is anything else | not seeded, because 013 fixed it or declined it with a reason of its own |
+| `013-rebuttals` | the row's `Status` is `handed_off` and the finding names a security or data-loss defect | `P0` |
+| `013-rebuttals` | the row's `Status` is `handed_off` and the finding names any other runtime defect | `P1` |
+| `013-rebuttals` | the row's `Status` is `rebutted` | not seeded, because 013 declined it with a reason of its own |
 | `013-evidence` | the finding's own `severity` is `P0` | `P0` |
 | `013-evidence` | the finding's own `severity` is `P1` or `P2`, or it carries none | `P1` |
 
@@ -346,6 +346,8 @@ The ten folders are the ones 012 creates, one per phase group. [SOURCE: specs/sy
 
 A `FAIL` in the re-run is a new finding. It enters `openFindings` with `source` `review` and `sourceRef` the scenario id, and it blocks the close until it is fixed or deferred with a reason.
 
+A `SKIP` is a recorded outcome only when its reason names a prerequisite the build does not own, such as a channel account or a host without a tty. A `SKIP` whose reason names a missing verb or a missing field is a product failure the build was supposed to close, so it makes the verdict `CONDITIONAL` under `design/state-machines.md` section 5 and is named in the report's Deferred Items section. Phases 001 to 011 are closed before the corpus runs, so a missing verb at that point is a defect and not a prerequisite.
+
 ---
 
 ## 9. `review-report.md`
@@ -369,7 +371,7 @@ Three lines sit outside the nine sections and each appears exactly once.
 | Line | Form | Where |
 |------|------|-------|
 | the verdict | `Review verdict: PASS`, `Review verdict: CONDITIONAL` or `Review verdict: FAIL` | the last line of the Executive Summary |
-| the reviewed commit | `Reviewed commit: <sha>` | the Audit Appendix |
+| the reviewed commit | `Reviewed commit: <sha>`, the `baseCommit` `review/preflight.json` recorded at setup | the Audit Appendix |
 | the stop reason | `Stop reason: converged` or `Stop reason: max_iterations` | the Audit Appendix |
 
 The verdict line is the one AC-008 counts, and it is the one line the report may not carry twice. An iteration file carries its own verdict line, and that is a different file. [SOURCE: .skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md:51]
@@ -393,7 +395,7 @@ The summary's other sections are the template's and this file does not change th
 
 ## 11. `preflight.json`
 
-The probe record. It is written at setup, before the seeded intake, and it is what makes D3 checkable: the run records which of the five binaries it found rather than assuming all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
+The probe record. It is written at setup, before the seeded intake, and it is what makes D3 checkable: the run records which of the five binaries it found rather than assuming all five. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3] It also carries the two measurements every later gate compares against, the suite baseline and the base commit, so a floor and a diff point are read from one file rather than quoted from a plan.
 
 ### 11.1 The document
 
@@ -405,6 +407,8 @@ The probe record. It is written at setup, before the seeded intake, and it is wh
 | `presentCount` | integer | no | the entries whose `present` is `true` |
 | `fallbackUsed` | boolean | no | `true` when `presentCount` is below five, so a reader knows the matrix was re-run |
 | `fallbackOrder` | array of string | no | the order `plan.md` §8.3 fixes, so the record names the order it used rather than pointing at a doc |
+| `suiteBaseline` | object | no | `{testFiles, tests, command, capturedAt}`, the `Test Files` and `Tests` counts the post-013 `npm test` run printed. Section 11.3 |
+| `baseCommit` | string | no | the commit `HEAD` named at setup, with `git status --porcelain` empty. The fix pass diffs against it and the report's `Reviewed commit:` line quotes it |
 
 ### 11.2 One binary entry
 
@@ -420,6 +424,19 @@ The probe record. It is written at setup, before the seeded intake, and it is wh
 
 A binary whose `pinOk` is `false` is treated as absent, because a lineage on an unpinned version reviews a different model than the roster names. The run then re-runs the matrix with `--count=2` on the next executor in `fallbackOrder`, so `total_cli_lineages` still reads five. A run whose `presentCount` is `0` refuses before spawn, `review-no-executor`, in `design/refusals.md`.
 
+### 11.3 `suiteBaseline`
+
+The floor every later suite run is compared against. It is measured at setup from the post-013 run and never quoted from a plan, because a count written before phase 001 landed passes a build that deleted a phase's tests.
+
+| Key | Type | Null | Value |
+|-----|------|------|-------|
+| `testFiles` | integer | no | the `Test Files  N passed (N)` count the setup run printed |
+| `tests` | integer | no | the `Tests  N passed (N)` count the setup run printed. This is the floor |
+| `command` | string | no | `cd .skilled/skills/system-skilled-bots/runtime && npm test` |
+| `capturedAt` | string | no | the setup instant, ISO 8601 UTC with a `Z` |
+
+A later run whose `tests` count is below `suiteBaseline.tests` refuses `review-suite-below-baseline`, and a setup run that exits non-zero refuses `review-baseline-missing`. Both are in `design/refusals.md` section 2.
+
 ---
 
 ## 12. DECISIONS TAKEN
@@ -434,4 +451,7 @@ A binary whose `pinOk` is `false` is treated as absent, because a lineage on an 
 | The owning phase of a scenario comes from the failure row first and the folder second | The failure row is precise and the folder is conservative. Reading the folder first would re-run nine conversation scenarios for a fix in 001 |
 | The report is rewritten once after the last fix wave | The verdict has to describe the final state, and a report written at synthesis describes the state before the fixes. The rewrite is the same file, so the nine headings stay in one place |
 | `seededFindings` is the one key this phase adds to the registry document | Every other key is the merge's or the reducer's, and a second added key would be a second place to read the same count |
+| The review target is the parent packet and the scope source is a file list | A spec-folder target makes the loop read that folder's own docs and the files its tasks list, which reaches no module phases 001 to 011 add. The file list is built from `contracts/runtime-architecture.md` section 1 plus `crates/bots-tui/` and `.skilled/bin/bots.cjs`, so the five readers review the built surface rather than the folder that reports on it |
+| The suite floor is measured at setup and not quoted from a plan | The 381-test figure was measured before phase 001 landed, so a build that deleted a phase's tests would still clear it. The setup run records the count and every later gate compares against that record |
+| A `SKIP` for a missing verb or field makes the verdict `CONDITIONAL` | Phases 001 to 011 are closed before the corpus runs, so a missing verb at that point is a defect the build was supposed to close. A `SKIP` for a prerequisite the build does not own stays a recorded outcome |
 | The probe result is a file and not a log line | D3 makes the fallback the normal path, so a reader has to see which five were tried and which one ran twice. A log line is read once and a file is read by the check that proves the fallback happened [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3] |

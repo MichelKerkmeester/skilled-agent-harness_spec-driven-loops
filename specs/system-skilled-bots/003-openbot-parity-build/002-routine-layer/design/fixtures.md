@@ -92,17 +92,17 @@ Each row names the file it changes, the change, and the one line the checker mus
 
 | Fixture | File changed | The change | The checker line |
 |---------|--------------|------------|------------------|
-| `routine-trigger-conflict` | `digest/BOT.md` | add `trigger: {kind: manual}` after the `id` line | `FAIL: routine-trigger-conflict: ...` |
-| `routine-tell-with-targets` | `digest/BOT.md` | add `delivery: {targets: [], onFailure: null}` after the `does` line | `FAIL: routine-tell-with-targets: ...` |
-| `routine-starts-empty` | `digest/BOT.md` | replace the two `starts` lines with `  starts: []` | `FAIL: routine-starts-empty: ...` |
-| `routine-starts-multiple-cron` | `digest/BOT.md` | add `    - {kind: cron, expression: "0 9 * * *"}` after the existing entry | `FAIL: routine-starts-multiple-cron: ...` |
-| `routine-starts-cron-not-first` | `digest/BOT.md` | change the entry to `    - {kind: manual}` and add `    - {kind: cron, expression: "0 9 * * *"}` | `FAIL: routine-starts-cron-not-first: ...` |
-| `routine-starts-multiple` | `digest/BOT.md` | add `    - {kind: queue, name: inbox}` after the existing entry | `FAIL: routine-starts-multiple: ...` |
-| `routine-until-check-without-outcome` | `digest/BOT.md` | change `  until: the digest is sent` to `  until_check: test -f reports/digest.md` | `FAIL: routine-until-check-without-outcome: ...` |
-| `routine-until-shell-metacharacters` | `digest/BOT.md` | change `  until: the digest is sent` to `  until: the digest is sent; then stop` | `FAIL: routine-until-shell-metacharacters: ...` |
+| `routine-trigger-conflict` | `digest/BOT.md` | add `trigger: {kind: manual}` after the `id` line | `FAIL: definition.routine-trigger-conflict: ...` |
+| `routine-tell-with-targets` | `digest/BOT.md` | add `delivery: {targets: [], onFailure: null}` after the `does` line | `FAIL: definition.routine-tell-with-targets: ...` |
+| `routine-starts-empty` | `digest/BOT.md` | replace the two `starts` lines with `  starts: []` | `FAIL: definition.routine-starts-empty: ...` |
+| `routine-starts-multiple-cron` | `digest/BOT.md` | add `    - {kind: cron, expression: "0 9 * * *"}` after the existing entry | `FAIL: definition.routine-starts-multiple-cron: ...` |
+| `routine-starts-cron-not-first` | `digest/BOT.md` | change the entry to `    - {kind: manual}` and add `    - {kind: cron, expression: "0 9 * * *"}` | `FAIL: definition.routine-starts-cron-not-first: ...` |
+| `routine-starts-multiple` | `digest/BOT.md` | add `    - {kind: queue, name: inbox}` after the existing entry | `FAIL: definition.routine-starts-multiple: ...` |
+| `routine-until-check-without-outcome` | `digest/BOT.md` | change `  until: the digest is sent` to `  until_check: test -f reports/digest.md` | `FAIL: definition.routine-until-check-without-outcome: ...` |
+| `routine-until-shell-metacharacters` | `digest/BOT.md` | change `  until: the digest is sent` to `  until: the digest is sent; then stop` | `FAIL: definition.routine-until-shell-metacharacters: ...` |
 | `routine-floor` | `digest/BOT.md` | change the expression to `"*/5 * * * *"` | `FAIL: routine-floor-15-minutes: ...` |
 
-**The precedence between the three `starts` names.** A `starts` list with more than one entry is checked in this order, and the first that applies is the one reported: `routine-starts-multiple-cron` when any entry past index 0 is a cron entry, then `routine-starts-cron-not-first` when a cron entry sits past index 0, then `routine-starts-multiple` for any other second entry. Without a fixed order, `routine-starts-multiple-cron` and `routine-starts-cron-not-first` would both fire on the same fixture and the test could not assert one name.
+**The precedence between the three `starts` names.** A `starts` list with more than one entry is checked in this order, and the first that applies is the one reported: `routine-starts-multiple-cron` when two or more entries are cron, else `routine-starts-cron-not-first` when exactly one entry is cron and it is not at index 0, else `routine-starts-multiple`. Without a fixed order, `routine-starts-multiple-cron` and `routine-starts-cron-not-first` would both fire on the same fixture and the test could not assert one name. The rule is restated in `design/refusals.md` section 2, which `spec.md` cites for it.
 
 **The floor fixture is named `routine-floor`.** The other eight carry the invariant id because the id is the whole rule. The floor's id names the bound, and the folder names the rule, which is the shape `cron-untranslatable` and `timeout-over-bound` already use.
 

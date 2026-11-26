@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # State machines and sequences of the approval grant
 
-Six diagrams. The first two are state machines, the next two are sequences and the last two are decision flows. Each one closes a question the phase documents leave open: what a grant's states are, what the lock does to the item's states, which write happens in which order, and which of the six kinds wins when a question names more than one.
+Six diagrams. The first two are state machines, the next two are sequences and the last two are decision flows. Each one closes a question the phase documents leave open: what a grant's states are, what the lock does to the item's states, which write happens in which order and which of the six kinds wins when a question names more than one.
 
 The step numbers in the answer sequence are `contracts/answer-seam.md` section 1's and are not renumbered here. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"] The item's own transitions are `contracts/answer-seam.md` section 2's. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "2. ITEM STATE TRANSITIONS"]
 
@@ -196,7 +196,7 @@ sequenceDiagram
     Ak->>Ak: test pay, credentials, delete, send, share, post in that order
     Ak-->>Ru: delete
     Ru->>Ak: read one [ACTION: kind] line, if the question carries one
-    alt the declared kind is outside the six
+    alt the declared kind is outside the seven
       Ak-->>Ru: action-kind-invalid, no item is written, the run fails with class author
     else the declared kind is one of the six
       Ak-->>Ru: the earlier of the declared and the classified kind in the order
@@ -250,7 +250,7 @@ flowchart TD
   W -- no --> X[the classified kind stands]
   W -- yes, earlier in the order --> Y[the declared kind wins]
   W -- yes, later in the order --> X
-  W -- yes, outside the six --> Z[action-kind-invalid, no item]
+  W -- yes, outside the seven --> Z[action-kind-invalid, no item]
 ```
 
 Rules the flow fixes:
@@ -258,7 +258,7 @@ Rules the flow fixes:
 - The first match wins, so a payment that also deletes reads as `pay`.
 - The scan is over the whole question, so a benign first sentence cannot hide a delete in the second.
 - The declaration is compared after the scan and can only move the kind earlier in the order.
-- `other` is a result and never a declaration.
+- `other` is a declaration like any other and sits last in the order, so it can never lower a kind and `[ACTION: other]` on a question that names a delete records `delete`.
 
 ---
 

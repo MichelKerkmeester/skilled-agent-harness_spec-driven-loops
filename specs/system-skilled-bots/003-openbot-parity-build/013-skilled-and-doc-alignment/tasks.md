@@ -40,6 +40,7 @@ The fallback ladder every wave walks is `cli-pi` → `cli-opencode` → `cli-dev
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
+- [ ] T024 Confirm phases 001 to 012 are committed and the working tree is clean before any run scopes a change set (`spec.md`). Verify: `git status --porcelain` prints nothing, and `git log --oneline -1` prints one commit. A dirty tree would put an uncommitted edit into the scope the skilled-alignment run reads and into the diff T023 checks
 - [ ] T000 Read the design artifacts this phase ships (`design/records.md`, `design/state-machines.md`, `design/sequences.md`, `design/refusals.md`, `design/mockups.md`, `design/fixtures/README.md`, `evidence/README.md`). Verify: `ls design/records.md design/state-machines.md design/sequences.md design/refusals.md design/mockups.md design/fixtures/README.md evidence/README.md` exits 0 and `rg -c '^## [0-9]+\.' design/records.md` prints `13`
 - [ ] T001 Record the skilled-alignment contract (`.skilled/commands/local-skilled-alignment.md`). Verify: `rg -n 'report-only unless|Merge everything with' .skilled/commands/local-skilled-alignment.md` prints two lines
 - [ ] T002 Record the doc-alignment contract (`.skilled/commands/local-doc-alignment.md`). Verify: `rg -n 'A new topic is one entry|checks the docs as they stand' .skilled/commands/local-doc-alignment.md` prints two lines
@@ -48,7 +49,7 @@ The fallback ladder every wave walks is `cli-pi` → `cli-opencode` → `cli-dev
 - [ ] T005 Record the surfaces a `.skilled` scope fires (`.skilled/commands/assets/local-skilled-alignment/surface-map.yaml`). Verify: `rg -c 'id: S[0-9]+-' .skilled/commands/assets/local-skilled-alignment/surface-map.yaml` prints `62`
 - [ ] T006 Capture the baseline that no doc run exists for this repository (`$DA`). Verify: `ls "$DA"` exits 1
 - [ ] T007 Capture the baseline suite result (`$RT/tests/`). Verify: `cd $RT && npx vitest run` prints a `Test Files` line with no `failed` count
-- [ ] T008 Record the bots CLI help and its verb table (`.skilled/bin/bots.cjs`). Verify: `$BOTS --help | wc -l` prints `35` and `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints `64:`
+- [ ] T008 Record the bots CLI help and its verb table as they stand at this phase's setup (`.skilled/bin/bots.cjs`). Verify: `$BOTS --help | wc -l` prints a number and `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints one line, and both numbers are written into `scratch/help-baseline.md` rather than asserted here. The 35-line help and the eleven-verb table are the pre-001 measurement, so a task that asserted them would fail on the post-012 tree this phase actually reads
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,7 +64,7 @@ The fallback ladder every wave walks is `cli-pi` → `cli-opencode` → `cli-dev
 - [ ] T013 Fix the feature-catalog findings (`$SK/feature-catalog/`). Verify: `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` exits 0
 - [ ] T014 Fix the playbook findings (`$SK/manual-testing-playbook/`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package $SK/manual-testing-playbook` prints `violations=0`
 - [ ] T015 Fix the reference and CLI-help findings (`$SK/*/references/`, `.skilled/bin/bots.cjs`). Verify: `$BOTS --help | rg -o '^  [a-z]+' | sort -u | wc -l` prints the same count as the `VERB_SPECS` keys
-- [ ] T016 Record every finding the fix pass settled, with its reason (`scratch/rebuttals.md`). Verify: `rg -c '^## ' scratch/rebuttals.md` prints the settled count the two reports name, and `rg -c '^- Status: ' scratch/rebuttals.md` prints the same count, so every heading carries its five fields. The heading grammar is `^## (\S+)$` and the five fields are `design/records.md` section 11
+- [ ] T016 Record every finding the fix pass settled, with its reason (`scratch/rebuttals.md`). Verify: `rg -c '^## ' scratch/rebuttals.md` prints the settled count the two reports name, `rg -c '^- Status: ' scratch/rebuttals.md` prints the same count, and `rg -c '^- Phase: [0-9]{3}$' scratch/rebuttals.md` prints the same count again, so every heading carries its six fields. The heading grammar is `^## (\S+)$` and the six fields are `design/records.md` section 11. The `Phase` line is the one 014's seeded intake reads, so a `handed_off` row without it is a row 014 cannot seed
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -71,7 +72,7 @@ The fallback ladder every wave walks is `cli-pi` → `cli-opencode` → `cli-dev
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T017 Re-run the skilled-alignment pass with `--recheck` (`$SA/<UTC timestamp>/recheck.md`). Verify: `RUN=$(ls -d "$SA"/*/ | tail -1) && rg -n '^\| still_open \| 0 \|' "$RUN/recheck.md"` prints one line
+- [ ] T017 Run the skilled-alignment pass a second time in full after the fix pass, so a run folder holds a `report.md` that reads zero, then run `--recheck` against that second run (`$SA/<UTC timestamp>/report.md`, then `$SA/<UTC timestamp>/recheck.md`). Verify: `F=$(ls -t "$SA"/*/report.md | head -1) && rg -n '^- Open findings: 0' "$F"` prints one line, and `rg -n '^\| (still_open|new) \| 0 \|' "${F%report.md}recheck.md"` prints two lines. A `--recheck` alone writes no `report.md`, so the evidence copy in T020 would have no clean report to copy
 - [ ] T018 Re-run the doc-alignment pass (`$DA/<UTC timestamp>/report.md`). Verify: `RUN=$(ls -d "$DA"/*/ | tail -1) && rg -n '^- Open findings: 0' "$RUN/report.md"` prints one line
 - [ ] T019 Record both report folders, the clean criterion and the re-measured counts (`implementation-summary.md`). Verify: `rg -n 'Open findings: 0' implementation-summary.md` prints one line
 - [ ] T020 Copy the last run of each command into the packet (`evidence/skilled-alignment/`, `evidence/doc-alignment/`). Verify: `ls evidence/skilled-alignment/report.md evidence/skilled-alignment/findings.json evidence/skilled-alignment/recheck.md evidence/doc-alignment/report.md evidence/doc-alignment/findings.json evidence/doc-alignment/recheck.md` exits 0. The six source paths and the doc run's `recheck.md` rule are `design/records.md` section 12
@@ -89,24 +90,24 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 
 | Wave | Task ids | Executor | Model | Effort | Workers in parallel | What sets the worker count |
 |------|----------|----------|-------|--------|---------------------|----------------------------|
-| W1 | T000-T008 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 4 | No task writes a file, so the bound is the four read groups, not file overlap |
+| W1 | T000-T008, T024 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 4 | No task writes a file, so the bound is the four read groups, not file overlap |
 | W2 | T009 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 1 | T009 is the only writer of `topics.json`, so a second worker would race it |
 | W3 | T010-T011 | the commands' own `--lanes=deepseek` preset | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The two runs write two different output roots and neither writes the checkout |
 | W4 | T012-T015 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 4 | Four disjoint file sets: hub files, catalog, playbook, references plus the CLI help |
 | W5 | T016 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T016 is the only writer of `scratch/rebuttals.md` |
-| W6 | T017-T018 | the commands' own `--lanes=deepseek` preset | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The two re-runs write two different output roots and neither writes the checkout |
+| W6 | T017-T018 | the commands' own `--lanes=deepseek` preset | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The two second runs write two different output roots and neither writes the checkout |
 | W7 | T019 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T019 is the only writer of `implementation-summary.md` |
 | W8 | T020-T021 | the orchestrator, no dispatch | none | none | 1 | Both tasks are a file copy and a grep over the copy, so a dispatch would add a hop and no judgement |
 | W9 | T022-T023 | the orchestrator, no dispatch | none | none | 1 | Both tasks are read-only gates, so a dispatch would cost a run for a grep |
 
 ### W1 - Setup reads
 
-- **Task ids**: T000, T001, T002, T003, T004, T005, T006, T007, T008
+- **Task ids**: T000, T001, T002, T003, T004, T005, T006, T007, T008, T024
 - **Executor**: `cli-pi`, because it is the one row whose effort is a standalone flag and whose guard never fires for being inside Pi [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10]
 - **Model**: `llmgateway/deepseek-v4.1-flash-1017`
 - **Effort**: `--thinking high`, because every task is a read and a grep
 - **Workers in parallel**: 4. Worker A takes T000 to T002, worker B T003 and T004, worker C T005, worker D T006 to T008. No task writes a file, so file overlap does not bind and the four read groups set the count.
-- **Orchestrator verify after the wave**: the eight task verifies are the wave's evidence, and the orchestrator re-reads the two that later waves depend on: `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints `64:` and `$BOTS --help | wc -l` prints `35`. No task in this wave writes a file, so there is no artifact to check beyond those outputs.
+- **Orchestrator verify after the wave**: the eight task verifies are the wave's evidence, and the orchestrator re-reads the two that later waves depend on: `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints one line and `$BOTS --help | wc -l` prints a number, and both are recorded in `scratch/help-baseline.md`. No task in this wave writes a file, so there is no artifact to check beyond those outputs.
 - **Fallback order**: `cli-pi` → `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` → `cli-devin` at `deepseek-v4-1-flash-max` after a probe → `cli-mistral-vibe` at `deepseek-flash` unless `VIBE_SESSION=1` → `cli-codex` at `gpt-6-luna` `xhigh` `fast`. A read wave is the cheapest to re-run, so the orchestrator does the reads itself before it spends the last fallback.
 
 ### W2 - The topic entry
@@ -149,14 +150,14 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 - **Orchestrator verify after the wave**: `rg -c '^## ' scratch/rebuttals.md` prints the rebutted count the report names, and every heading names a finding id the report carries
 - **Fallback order**: `cli-pi` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-codex` at `xhigh` `fast`. The orchestrator writes this file itself before it spends the last fallback, because the reasons are already in the fix pass's own output.
 
-### W6 - The re-runs
+### W6 - The second runs and the recheck
 
 - **Task ids**: T017, T018
 - **Executor**: the commands' own `--lanes=deepseek` preset
 - **Model**: `llmgateway/deepseek-v4.1-flash-1017`
 - **Effort**: `--thinking max`, the preset's own tier
-- **Workers in parallel**: 2, one per command. The two re-runs write two different output roots and neither writes the checkout.
-- **Orchestrator verify after the wave**: `RUN=$(ls -d "$SA"/*/ | tail -1) && rg -n '^\| still_open \| 0 \|' "$RUN/recheck.md"` prints one line, and `RUN=$(ls -d "$DA"/*/ | tail -1) && rg -n '^- Open findings: 0' "$RUN/report.md"` prints one line
+- **Workers in parallel**: 2, one per command. The two second runs write two different output roots and neither writes the checkout. T017 then runs its own `--recheck` against the folder its second run wrote, because a recheck of the first run would report the findings the fix pass already closed.
+- **Orchestrator verify after the wave**: `F=$(ls -t "$SA"/*/report.md | head -1) && rg -n '^- Open findings: 0' "$F"` prints one line, `rg -n '^\| (still_open|new) \| 0 \|' "${F%report.md}recheck.md"` prints two lines, and `RUN=$(ls -d "$DA"/*/ | tail -1) && rg -n '^- Open findings: 0' "$RUN/report.md"` prints one line
 - **Fallback order**: `--lanes=deepseek` → `--lanes=opencode-go` → `--lanes=codex` → `--lanes=devin` after a probe → `--lanes=native`. A re-run that reports a `new` bucket above `0` reopens W4 rather than falling back, because the finding is real and a different lane would only re-word it.
 
 ### W7 - The record
@@ -269,10 +270,10 @@ A blocked task is marked `[B]` with the command that blocked it and its exit sta
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Verify: `rg -c '^## ' scratch/rebuttals.md` plus the fixed count equals the report's finding count
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence` or `test-isolation`. Verify: `rg -c '^## ' scratch/rebuttals.md` plus the fixed count equals the report's finding count
 - [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Verify: `rg -n 'bots (activity|routines|ui|remember|secret|skill|chat|channel)' $SK --glob '*.md'` lists every doc that names a new verb, so a fix to one is checked against the rest
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Verify: `rg -n 'VERB_SPECS' .skilled/bin/bots.cjs` prints the table and its one reader, so the help block's consumers are the two
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Verify: N/A, because this phase changes no parser, path resolver or redaction rule. The one code edit is a help string
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs and tests. Verify: `rg -n 'VERB_SPECS' .skilled/bin/bots.cjs` prints the table and its one reader, so the help block's consumers are the two
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op and fallback cases. Verify: N/A, because this phase changes no parser, path resolver or redaction rule. The one code edit is a help string
 - [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Verify: `rg -n 'Matrix axes' plan.md` prints one line naming the two commands, the two report shapes and the three topic checks
 - [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Verify: `rg -c 'VIBE_SESSION=1' plan.md tasks.md` prints a count above 0 for each, so the one process-wide signal this phase reads is written into the ladder and into every wave that walks it
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Verify: `git rev-parse HEAD` is recorded in `implementation-summary.md` beside the two report folders

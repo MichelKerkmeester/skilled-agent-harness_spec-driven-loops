@@ -62,7 +62,7 @@ The five headings appear once each and in this order. A sixth `## <n>. ` heading
 
 A scenario's outcome is one of `PASS`, `FAIL` or `SKIP`. The words `PARTIAL`, `READY`, `UNAUTOMATABLE` and `BLOCKED` are refused anywhere in a scenario file, because each one is a verdict the recorder cannot store. [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:31]
 
-`SKIP` carries a blocker. The blocker names the missing prerequisite, which is one of four: a binary the scenario needs, the stub executor, a real channel account, or the verb the scenario drives when that verb is not in the CLI's verb table. A `SKIP` with no blocker fails `SKIP_BLOCKER_MISSING`.
+`SKIP` carries a blocker. The blocker names the missing prerequisite, which is one of four: a binary the scenario needs, the stub executor, a real channel account or the verb the scenario drives when that verb is not in the CLI's verb table. A `SKIP` with no blocker fails `SKIP_BLOCKER_MISSING`.
 
 ### 1.5 The citation rule
 
@@ -196,7 +196,7 @@ One row per scenario. The line resolves to the requirement row the scenario prov
 | BOT-054 | 008 | `008-vault/spec.md, REQ-007` | the value reaches the child under `SKILLED_BOT_SECRET_<NAME>` |
 | BOT-055 | 008 | `008-vault/spec.md, REQ-014` | a printed value is redacted and records `secret-in-output` |
 | BOT-056 | 009 | `009-skills/spec.md, REQ-002` | each named skill's body is inserted at the skills position |
-| BOT-057 | 009 | `009-skills/spec.md, REQ-003` | a list whose bodies sum over 24,576 bytes refuses `skills-over-budget` |
+| BOT-057 | 009 | `009-skills/spec.md, REQ-003` | a list whose bodies sum over 20,480 bytes refuses `skills-over-budget`, which is the cap D11 sets |
 | BOT-058 | 011 | `011-messaging-channels/004-approval-index-and-send-queue/spec.md, REQ-013` | an uncertain send is recorded `unknown` and never retried |
 
 ---

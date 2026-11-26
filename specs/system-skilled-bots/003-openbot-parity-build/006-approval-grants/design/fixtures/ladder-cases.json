@@ -75,6 +75,24 @@
       "expected": "deny"
     },
     {
+      "name": "an explicit once with a NO records deny",
+      "given": "once",
+      "text": "no",
+      "expected": "deny"
+    },
+    {
+      "name": "a reject pick on a review item records deny",
+      "given": "once",
+      "text": "reject",
+      "expected": "deny"
+    },
+    {
+      "name": "a confirm pick on a review item records once",
+      "given": "deny",
+      "text": "confirm",
+      "expected": "once"
+    },
+    {
       "name": "always is refused",
       "given": "always",
       "text": "yes",

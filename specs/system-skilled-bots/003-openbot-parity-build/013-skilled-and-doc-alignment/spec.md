@@ -38,9 +38,9 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 13** of the OpenBot parity build. Phases 001 to 012 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, and the skill's own docs. This phase is the one that checks those changes against the standards they are held to, using the two operator-local alignment commands the repository already ships.
+This is **Phase 13** of the OpenBot parity build. Phases 001 to 012 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/` and the skill's own docs. This phase is the one that checks those changes against the standards they are held to, using the two operator-local alignment commands the repository already ships.
 
-**Scope Boundary**: The `system-skilled-bots` topic entry in `topics.json`, one `/local-skilled-alignment` run over the packet's `.skilled` change set, one `/local-doc-alignment` run over that topic, the fixes both reports name, and the re-runs that prove the fixes landed. The 001 to 012 feature work itself, a new alignment command, a new surface in `surface-map.yaml`, and a CI gate are out of scope.
+**Scope Boundary**: The `system-skilled-bots` topic entry in `topics.json`, one `/local-skilled-alignment` run over the packet's `.skilled` change set, one `/local-doc-alignment` run over that topic, the fixes both reports name and the re-runs that prove the fixes landed. The 001 to 012 feature work itself, a new alignment command, a new surface in `surface-map.yaml`, and a CI gate are out of scope.
 
 **Dependencies**:
 - Phases 001 to 012 are closed, so the `.skilled` change set the skilled-alignment run scopes is the packet's own and not a moving target. The parent map names each phase's dependency [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "PHASE DOCUMENTATION MAP", row 13]
@@ -50,7 +50,7 @@ This is **Phase 13** of the OpenBot parity build. Phases 001 to 012 change `.ski
 - The surface map already fires S1 to S16 for a `.skilled` scope, so no new surface is needed [SOURCE: .skilled/commands/assets/local-skilled-alignment/surface-map.yaml:103]
 
 **Deliverables**:
-- A `system-skilled-bots` topic in `.skilled/commands/assets/local-doc-alignment/topics.json`: a title, the `terms` that reach the skill docs, the README, the feature catalog, the manual testing playbook, the references and the bots CLI help, three `codeRoots`, and the three package checks that already exist for those docs. The entry's every field and its decided values are `design/records.md` section 2, and the model shape it copies is section 2.1
+- A `system-skilled-bots` topic in `.skilled/commands/assets/local-doc-alignment/topics.json`: a title, the `terms` that reach the skill docs, the README, the feature catalog, the manual testing playbook, the references and the bots CLI help, three `codeRoots` and the three package checks that already exist for those docs. The entry's every field and its decided values are `design/records.md` section 2, and the model shape it copies is section 2.1
 - One `/local-skilled-alignment :auto` run over the packet's `.skilled` change set, writing `report.md`, `findings.json` and `fix-plan.md` under `<state>/local-skilled-alignment/system-skilled-bots/<UTC timestamp>/`
 - One `/local-doc-alignment system-skilled-bots :auto` run, writing the same three files under `<state>/local-doc-alignment/system-skilled-bots/<UTC timestamp>/`
 - The fixes for every finding either report names, and a recorded reason for every finding the fix pass rebuts or hands on
@@ -69,7 +69,7 @@ This is **Phase 13** of the OpenBot parity build. Phases 001 to 012 change `.ski
 Phases 001 to 012 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to. Two operator-local commands exist for exactly that check and neither has ever run over these docs: the doc-alignment output root for this repository does not exist, and `topics.json` carries no topic whose terms reach the bots docs, so `/local-doc-alignment` has no topic to resolve and stops at its no-topic display [SOURCE: .skilled/commands/local-doc-alignment.md:41]. A skill doc that names a verb the CLI does not have, or a feature-catalog entry that describes a field the runtime dropped, therefore ships unread.
 
 ### Purpose
-Run both alignment commands over the packet's own changes and docs, fix every finding they report, and re-run both until each report holds zero open findings, so the packet closes on a checked surface rather than an assumed one.
+Run both alignment commands over the packet's own changes and docs, fix every finding they report and re-run both until each report holds zero open findings, so the packet closes on a checked surface rather than an assumed one.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -98,7 +98,7 @@ The last three commands are the surface the doc run has to read and the shape th
 
 The block is measured before 001 lands, so the 35-line help and the eleven-verb table are today's numbers. This phase re-measures both after 012 closes and records the new pair in `implementation-summary.md`, because the count is the one number the doc run's own check compares.
 
-The topic's three `checks` are not all green today. The skill-package and catalog validators exit 0, and the playbook validator exits 1 with `violations=17 warnings=30`, all 17 `INDEX_ORPHAN_FILE` because the root `manual-testing-playbook.md` links none of the 17 per-feature files under `activity/`, `conversations/` and `routines/`. That is a finding the fix pass closes and not a baseline the phase inherits, so the criterion stays `violations=0` and the 17 rows are the work.
+The topic's three `checks` are all green today: the skill-package and catalog validators exit 0, and the playbook validator prints `violations=0 warnings=0` over 58 scenarios in 17 categories. The root `manual-testing-playbook.md` links every per-feature file, because 012's root-index task closed the seventeen `INDEX_ORPHAN_FILE` rows that stood before it. The criterion therefore reads `violations=0` as a regression guard rather than as work this phase inherits, and a row that reappears is a finding the fix pass closes.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -136,7 +136,7 @@ The topic's three `checks` are not all green today. The skill-package and catalo
 | `.skilled/bin/bots.cjs` | Modify | The `USAGE` block, so the help lists every verb `VERB_SPECS` dispatches. The block today and the eight verb groups 001 to 011 add are `design/mockups.md` section 9 |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/skilled-alignment/` | Create | The last skilled run's `report.md`, `findings.json` and `recheck.md`, copied out of the state root |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/doc-alignment/` | Create | The last doc run's `report.md`, `findings.json` and `recheck.md`, copied out of the state root |
-| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | Create | One heading per settled finding, with the five fields `design/records.md` section 11 fixes |
+| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | Create | One heading per settled finding, with the six fields `design/records.md` section 11 fixes, including the `Phase` line 014's seeded intake reads |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/implementation-summary.md` | Modify | The two report roots, the clean criterion and the re-measured help and verb counts |
 <!-- /ANCHOR:scope -->
 
@@ -162,9 +162,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | The bots CLI help lists every verb `VERB_SPECS` dispatches and no verb the table lacks, so the 35-line block and the verb table agree |
+| REQ-006 | The bots CLI help lists every verb `VERB_SPECS` dispatches and no verb the table lacks, so the help block and the verb table agree on one verb set. The pair is measured at this phase's setup and recorded, because both counts move as phases 001 to 011 land |
 | REQ-007 | The skill docs, README, feature catalog and manual testing playbook name the same verbs and fields the runtime ships, so a doc claim and its code root cannot disagree |
-| REQ-008 | `implementation-summary.md` names both report roots, the clean criterion, and the re-measured help-line and verb counts |
+| REQ-008 | `implementation-summary.md` names both report roots, the clean criterion and the re-measured help-line and verb counts |
 
 This phase fixes findings of every severity, and 014 leaves P2 open, by intent. The two rules are not in conflict: a P2 that this phase's own reports name is fixed here, and a P2 that 014's review finds afterwards is recorded and left. The reason is that this phase's clean criterion is a count of open findings and a count cannot be read as clean while a P2 sits in it, while 014's verdict is a judgement about the build and a P2 is not a blocker for it.
 
@@ -254,7 +254,7 @@ The packet's own contracts are cited by file and section and never copied. The t
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 8/25 | One JSON topic entry, one CLI help block, and the doc edits two reports name. No new module and no new command |
+| Scope | 8/25 | One JSON topic entry, one CLI help block and the doc edits two reports name. No new module and no new command |
 | Risk | 6/25 | The fixes are doc edits and one help block. The one real risk is editing a doc to agree with a runtime bug, which the handoff rule in §6 covers |
 | Research | 5/20 | Both command contracts are read in full, and the topic shape is copied from the ten entries already in `topics.json` |
 | **Total** | **19/70** | **Level 2** |

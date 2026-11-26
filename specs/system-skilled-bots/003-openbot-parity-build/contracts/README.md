@@ -39,6 +39,4 @@ The four payloads the terminal screen reads keep their own contract, `003-termin
 
 ## Phase document lines that contradict a contract
 
-One is open. `008-vault/design/index-and-writes.md` step 5 writes the index entry as `{ backend, createdAt, updatedAt }`, while `records.md` section 8 now carries `setBy`, the actor `bots secret set` resolved, so the parent's Scope line about a `by:` field on secret records is backed by a key. The 008 writer closes it by adding `setBy` to that step. `bots secret list` is unchanged, so 008 REQ-003's line format still holds.
-
-The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.
+None is open. The reconciliation pass of 2026-11-26 checked each line the first pass listed here against its phase document and found every one fixed by its work order (WO-02, WO-03, WO-04, WO-07, WO-08, WO-09 and WO-10). The 005 line cited a sentence that D1 removed, and the 010 lines moved into `010-conversations/002-conversation-runtime-and-chat-verb/`. A new disagreement is listed here as a row naming the phase document, what it says and the contract it contradicts, until it is fixed.

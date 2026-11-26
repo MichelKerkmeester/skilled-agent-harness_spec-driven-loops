@@ -27,10 +27,12 @@ The diagrams for everything below are in [state-machines.md](state-machines.md).
 | Module | Owns | Reads files |
 |--------|------|-------------|
 | `activity.ts` | The seven ids and titles, their order, the run-row mapping in section 3, the sort in section 5, the empty-group filter and the text lines in section 7 | No. It takes an `ActivitySources` value and returns the payload object, so it is pure and a test feeds it rows directly |
-| `status.ts` | The refresh in section 6, opening the index, and gathering the three live sources in section 4 into `ActivitySources` | Yes |
+| `status.ts` | The refresh in section 6, opening the index and gathering the three live sources in section 4 into `ActivitySources` | Yes |
 | `actor.ts` | The name pattern, the trim, the precedence in section 8 | Only `node:os` for the OS user |
 
-`ActivitySources` is the input type `activity.ts` exports: the index snapshot, the list of live runs, the list of queued requests, the list of installed schedule fires, the clock and an optional `describe` function that turns a cron expression into a summary phrase. It imports `IndexSnapshot` and `RunSummary` from `status-index.ts` as types.
+`ActivitySources` is the input type `activity.ts` exports: the index snapshot, the list of live runs, the list of queued requests, the list of installed schedule fires, the clock and an optional `describe` function. It imports `IndexSnapshot` and `RunSummary` from `status-index.ts` as types.
+
+The `describe` seam takes the parsed start, not a bare expression string, because 002's `describeStart` also phrases a queue, a git-hook and a manual start. Its type is `describe(start: { kind: 'cron'; expression: string }) => string | null`. `activity.ts` calls it with the start it read from the install record and prints `null` when the function returns `null` or is absent.
 
 Gathering the schedule fires makes `status.ts` import `translateCron` from `cron-translator.ts` and `listSlots` from `slot-lister.ts`, reading the queued requests makes it import `validateRequest` from `request-record.ts` and reading a lease makes it import `processAlive` from the deep-loop loop lock [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:623]. None of the four closes a cycle, because none of those modules imports `status.ts`. `contracts/runtime-architecture.md` section 1.3 lists no new edge for `status.ts`, so this is reported as an amendment to that table in section 12 below rather than written into it.
 
@@ -176,22 +178,33 @@ A heading line starts with the group id, so `bots activity | cut -f1 | grep -v '
 
 `actor.ts` exports `resolveActor` and `ACTOR_PATTERN`, the pattern `^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$`. A name is trimmed of surrounding whitespace, then tested against the pattern, then stored as the trimmed string. Two names compare by exact match after the trim, so `Ada` and `ada` are two actors.
 
-`resolveActor({ as, env })` takes the first source that gives a name:
+`resolveActor({ as, env, scheduled })` takes the first source that gives a name:
 
 1. `as`, the trimmed `--as` value or the actor a library caller such as a channel passes. A value that fails the pattern is a refusal, never a fallback.
-2. `env.SKILLED_BOTS_OPERATOR`, the operator pinned into a job's environment at install. A value that fails the pattern is ignored.
+2. `env.SKILLED_BOTS_OPERATOR`, the operator pinned into a job's environment at install. A value that fails the pattern is ignored. It is honoured only when `scheduled` is true, which means a scheduled fire or a scheduled drain. On any other path the pinned name is not an actor, because a shell that exports the variable would otherwise claim the operator's name with no tty.
 3. `os.userInfo().username`. A lookup that throws or a name that fails the pattern gives `null`.
+
+`scheduled` is true when `env.SKILLED_BOTS_SCHEDULED_FIRE` is set, which is the marker a bot's job file carries, or when the drain job runs the request. `bots.cjs` passes it for a verb it runs under a job's environment and leaves it false for a verb a person typed. A pinned operator on a path that is not scheduled is refused `bots: --as needs a tty` when stdin is not a tty, the same rule `--as` follows, so a script cannot claim the name and a person at a terminal still can.
 
 It reads `env`, the environment the run executes under, and never `resolveEnv`. `bots.cjs` resolves identity and the state root under the job's environment for every verb [SOURCE: .skilled/bin/bots.cjs:429-432], and that environment carries the pinned operator after this phase, so reading it would name the installing operator on an answer typed at a terminal. A launchd fire runs with the job file's environment as its own, so a scheduled run and a drained run find the pinned operator in `env` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:349-355].
 
-| Caller | `as` | `env` holds an operator | Actor |
-|--------|------|-------------------------|-------|
-| `bots answer` or `bots run` at a terminal | `--as` or absent | no | `--as`, else the OS user |
-| A launchd fire of a bot's job | absent | yes, the bot's installer | the pinned operator |
-| A drain job's run of a queued request or a resume | absent | yes, the drain's installer | the pinned operator |
-| A channel transport or a test calling `answerItem` | the actor it holds | any | that actor |
+| Caller | `as` | `env` holds an operator | `scheduled` | Actor |
+|--------|------|-------------------------|-------------|-------|
+| `bots answer` or `bots run` at a terminal | `--as` or absent | no | false | `--as`, else the OS user |
+| `bots answer` from a script that exports `SKILLED_BOTS_OPERATOR` | absent | yes | false | the OS user, or `bots: --as needs a tty` when the OS user is not the pinned name |
+| A launchd fire of a bot's job | absent | yes, the bot's installer | true | the pinned operator |
+| A drain job's run of a queued request or a resume | absent | yes, the drain's installer | true | the pinned operator |
+| A channel transport or a test calling `answerItem` | the actor it holds | any | any | that actor |
 
 A resumed run's record also carries `answeredBy`, copied from the answered item's `answer.by` when the runner loads the item to resume [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:648-656]. That satisfies `contracts/records.md` section 4, whose null rule for `answeredBy` is "every run no answer continued".
+
+### 8.1 The child marker
+
+The actor is a name the host vouches for, so it cannot separate a person from a bot child. Both run as the same OS user, and a child that answers an open item would record the operator. The run marker does separate them, and it is the one bar this phase adds.
+
+`bots.cjs` refuses every write verb it has when the environment holds a bot child's run marker, with the one refusal `child-write-refused` and exit 2. The marker is `SKILLED_BOT_RUN_ID`, which `dispatch.ts` sets on a child [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:39], or `AI_SESSION_CHILD=1`. This phase's verbs are `answer` and `enable`, and each later phase adds its own write verb to the same list. The check runs before the runtime loads, so nothing is read or written.
+
+The bar is not an authentication. A child that clears the marker is not stopped by it, and the refusal is a guard against the ordinary case rather than a boundary. `contracts/refusals.md` section 3.1 names the row and `contracts/answer-seam.md` step 1 places it.
 
 ---
 
@@ -203,7 +216,7 @@ A resumed run's record also carries `answeredBy`, copied from the answered item'
 
 ### 9.2 Answer object
 
-The shape is `contracts/records.md` section 2. The validator checks `by` as absent, `null` or a string matching `ACTOR_PATTERN`, and `scope` as absent or one of `once` and `deny` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:116-121]. `readNeedsYouItem` returns every answer normalized to four keys: an absent `by` reads `null` and an absent `scope` reads `once`. The file on disk is not rewritten by a read.
+The shape is `contracts/records.md` section 2. The validator checks `by` as absent, `null` or a string matching `ACTOR_PATTERN`. It checks `scope` as absent or one of `once` and `deny` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:116-121]. `readNeedsYouItem` returns every answer normalized to four keys: an absent `by` reads `null` and an absent `scope` reads `once`. The file on disk is not rewritten by a read.
 
 `answerItem` writes all four keys. With no scope passed it writes `once`. The derivation of `deny` from a NO text is 006's, per `contracts/answer-seam.md` step 8, so in this phase `bots answer x no` records `once`. The answer's identity is its text and its scope from this phase on: the same text with the same scope is the duplicate path, and the same text with another scope is refused `item-answered-differently` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:82-86]. An answer stored before this phase reads `scope: "once"`, so re-sending its text with no `--scope` is still a duplicate.
 
@@ -238,6 +251,8 @@ The install record keeps the two values as well, because the drain runs a queued
 
 `validatePosture` gains a third argument, `{ fullAccess: boolean }`. A declared `danger-full-access` with `fullAccess` false is honored as `workspace-write`, and the record's `posture.sandbox` names `workspace-write`. With `fullAccess` true it is honored as declared. `read-only` and `workspace-write` pass unchanged. A bot with no install record has `fullAccess` false. The cap is not a refusal: the run dispatches at the capped value.
 
+**A non-cron bot gets its install record from the same verb.** `bots schedule install <id> --full-access` writes the install record for a bot whose trigger is not cron and stops before the plist step, so a manual, queue or git-hook bot can be granted full access. The installer's `trigger-not-cron` refusal stays for the case that needs a plist, which is an install with no `--full-access`. With the flag the verb writes the record, prints `bots: <botId> has a <kind> trigger, so full access is recorded and no schedule is installed`, and exits 0. The record carries `operator` and `fullAccess` and no `label`, so `bots status` still shows the bot as unscheduled. Without the flag the verb refuses `trigger-not-cron` exactly as it does today, so nothing about a scheduled bot changes.
+
 ---
 
 ## 10. WHAT EACH CHANGE COSTS ON REVERT
@@ -265,13 +280,17 @@ The install record keeps the two values as well, because the drain runs a queued
 | A queued request row has `at` `enqueuedAt` and a null actor | A request has no future instant and no actor key, and the request key list is closed |
 | A held install record gives no `scheduled` or `recurring` row, a needs-you hold does | A held job never fires. A needs-you hold still lets the job fire and records the held slot |
 | The schedule's actor is the install record's `operator` | Reading it back from the job file through `jobEnv` would need the checkout per identity and a plist read per bot, and the install record already holds every other install fact |
-| `describe` is an argument and null until 002 | 002 owns the phrase, 001 lands first, and an injected stub lets this phase prove the field |
+| `describe` is an argument and null until 002 | 002 owns the phrase and 001 lands first, and an injected stub lets this phase prove the field |
 | Every listed record of a stale identity goes through `indexRunRecord` | Delivery and the `answeredBy` stamp rewrite a record after its terminal write. Neither touches the summary, and the call already refreshes delivery rows |
 | A refresh that fails leaves the identity stale and prints nothing | Section 10 of the screen contract wants no stderr on success, and `stale` already says the rows are old |
 | `kind` is accepted and never written in this phase | It keeps every item this phase writes readable by an older runtime |
 | Scope joins the answer's identity now | The answer carries a scope from this phase on, and a second answer with another scope must not pass as a duplicate |
 | `fullAccess` and `operator` are also kept in the install record | The drain runs queued and resumed runs under its own environment, and the runner cannot import the installer |
 | `--full-access` needs a tty | A bot that can run `bots schedule install` from a script would otherwise grant itself full access |
+| The pinned operator is honoured only on a scheduled fire or a scheduled drain | A shell that exports `SKILLED_BOTS_OPERATOR` would otherwise claim the operator's name with no tty, and the roster cannot tell a child from the operator |
+| A bot child's run marker refuses every write verb | The actor is a name the host vouches for, so it cannot separate a person from a child. The marker can, and it is a bar rather than an authentication |
+| `bots schedule install <id> --full-access` writes the install record for a non-cron bot | Only an install record carries `fullAccess`, and the installer refuses a non-cron trigger because there is no plist to write. Writing the record and stopping before the plist step is the one way a manual, queue or git-hook bot is granted full access |
+| `describe` takes the parsed start, not an expression string | 002's `describeStart` also phrases a queue, a git-hook and a manual start, so a bare expression would not type-check against it |
 | The verbatim REQ-003 and REQ-011 rows lose their serial commas | The packet's style rule forbids a serial comma. Every token is kept |
 
 ---

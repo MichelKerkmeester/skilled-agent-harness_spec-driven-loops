@@ -1,6 +1,6 @@
 ---
 title: "Design: the four sequences phase 9 adds"
-description: "Mermaid sequence diagrams for a run that loads skill bodies, the bots skill propose verb, an answer to the review through the claim and the settle, and the repair re-run after an interrupted proposal."
+description: "Mermaid sequence diagrams for a run that loads skill bodies, the bots skill propose verb, an answer to the review through the claim and the settle and the repair re-run after an interrupted proposal."
 trigger_phrases:
   - "skills load sequence"
   - "skill propose sequence"
@@ -33,7 +33,7 @@ sequenceDiagram
 
   Rn->>Rn: the definition carries skills, parsed as shape only
   Rn->>St: read the install record for skillDigests
-  St-->>Rn: the digests, or an empty object on a bot installed before this phase
+  St-->>Rn: the digests, or an empty object when the bot has no install record
   Rn->>Sk: loadSkills with skilledTree, the names and the digests
   loop each name in list order
     Sk->>Sk: resolve .skilled/skills/name/SKILL.md
@@ -43,9 +43,9 @@ sequenceDiagram
       Sk-->>Rn: skill-unreadable, class environment
     else the body is over 16384 bytes
       Sk-->>Rn: skill-too-large, class author
-    else the running total is over 24576 bytes
+    else the running total is over 20480 bytes
       Sk-->>Rn: skills-over-budget, class author
-    else the digest differs from the installed one
+    else the digest differs from the pinned one
       Sk-->>Rn: skill-changed, class operator
     else the body is admitted
       Sk->>Sk: keep the name, the digest and the body
@@ -65,7 +65,9 @@ sequenceDiagram
   end
 ```
 
-**Why the install record is read before the loader.** The digest comparison is the loader's fifth check and it needs the installed value in hand. A bot installed before this phase has no `skillDigests`, so the object reads as `{}` and every name refuses `skill-changed` until the bot is reinstalled. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`]
+**Why the install record is read before the loader.** The digest comparison is the loader's fifth check and it needs the pinned value in hand. Only a cron bot can be installed, so a queue, git-hook or manual bot has no install record at all. Such a bot pins against the digest its most recent approved run recorded under `posture.skills`, and a bot with neither an install record nor an approved run loads its bodies unpinned, with the run record's `posture.skills` becoming the pin the next run reads. Without that fallback a bot that is not a cron bot could never name a skill. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`]
+
+**Why the loader does not run on a resume.** A resumed run reuses the parked prompt, which already holds the `<skill_content>` blocks the first attempt loaded, so `loadSkills` is not called again and no body is read twice. The resumed record still carries `posture.skills`, because the record is copied from the parked run rather than rebuilt.
 
 **Why a refusal writes a record.** A refused run is a run the operator can see in `bots status`, and the record's `exit.refusal` names the cause. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:142-148]
 
@@ -89,7 +91,8 @@ sequenceDiagram
 
   Op->>Cl: skill propose RUN-ID --name NAME
   Cl->>Cl: parse the verb, the action and the option, refuse a bad name as usage exit 2
-  Cl->>Sp: writeProposal with the state root, the identity, the run id and the name
+  Cl->>Sp: writeProposal with the state root, the identity, the run id, the name and the skilled tree root
+  Sp->>Sp: check RUN-ID is a safe path segment, so no id can leave the proposals folder
   Sp->>Rr: readRunRecord
   alt the record is absent
     Rr-->>Sp: record-missing
@@ -98,8 +101,8 @@ sequenceDiagram
     Rr-->>Sp: the reader's own reason
     Sp-->>Cl: that reason, exit 4
   end
-  Sp->>Sp: targetPath is .skilled/skills/NAME/SKILL.md
-  Sp->>Sk: read the target body when it exists
+  Sp->>Sp: targetPath is .skilled/skills/NAME/SKILL.md under the skilled tree root
+  Sp->>Sk: read the target body under that root when it exists
   alt the target exists
     Sk-->>Sp: the bytes, so revisionRead is their SHA-256 hex
   else the target is absent
@@ -111,8 +114,10 @@ sequenceDiagram
     Sp-->>Cl: proposal-secret naming the key, exit 4, nothing written
   end
   Sp->>Ny: read the item file for this run id
-  alt the item exists
+  alt the item exists and its kind is skill-proposal
     Sp-->>Cl: review-already-exists, exit 4, nothing overwritten
+  else the item exists and its kind is anything else
+    Sp-->>Cl: review-already-exists with that kind as the detail, exit 4, nothing overwritten
   end
   Sp->>Sr: create proposals/RUN-ID with mode 0700
   Sp->>Sr: write SKILL.md first
@@ -128,6 +133,10 @@ sequenceDiagram
 **Why the secret check runs before any write.** A draft that quotes a run's stdout can carry a stored value, and the state root must never hold one. The refusal names the key and never the value. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:173]
 
 **Why the item check runs before the writes.** A re-run with an item present must overwrite nothing, so the check has to precede the first write rather than follow it. A re-run with files present and no item overwrites both files, which is the repair path.
+
+**Why the existing item is read for its kind.** The item id is the run id, and a run that parked a question already owns the item file with that id. Reading the kind keeps the refusal honest: a `skill-proposal` item means a review really does exist, and any other kind means the id belongs to that run's own question, so the detail names the kind. A run that parked a question therefore cannot be proposed from, which is the limit `spec.md` REQ-005 states.
+
+**Why the pin reads the skilled tree root.** The pin compares the target body against `revisionRead`, so it must read the same file the loader will load. The loader reads `<skilledTree>/.skilled/skills/<name>/SKILL.md`, and `AnswerInput` carries no skilled tree, so the claim resolves the root the same way the loader does rather than assuming the checkout. A pin that watched a different file would pass a body the loader never loads.
 
 ---
 

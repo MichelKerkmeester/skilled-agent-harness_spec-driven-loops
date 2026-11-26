@@ -40,9 +40,10 @@ The `bots-review:` prefix is this phase's own. It is not a `bots:` line, because
 | Name | Layer | Exit | Raised when | On disk when it stops |
 |------|-------|------|-------------|-----------------------|
 | `review-013-not-clean` | Gate | 1 | `validate.sh --strict` on `013-skilled-and-doc-alignment` does not print `RESULT: PASSED`, or a row in its `acceptance-criteria.md` is not `Met` | nothing. `review/` is not created |
-| `review-baseline-missing` | Gate | 1 | `npm test` in the runtime folder exits non-zero, or prints fewer than 381 tests | nothing |
+| `review-baseline-missing` | Gate | 1 | `npm test` in the runtime folder exits non-zero, so no `suiteBaseline` can be recorded | nothing |
 | `review-no-executor` | Orchestrator | 2 | all five binaries are absent, or every present one fails its version probe | `preflight.json` with `presentCount` `0`, and nothing else. The probe table is printed to stderr as well, so the operator sees which five were tried |
 | `review-scope-empty` | Orchestrator | 2 | the scope discovery found no file, so `fanout-review-scope.txt` is empty | the empty scope file, and nothing else |
+| `review-scope-stale` | Orchestrator | 1 | the scope file holds no module phases 001 to 011 add, so the file list was built from the pre-packet modules alone | the scope file as written, and nothing else. The run stops before any lineage spawns |
 | `review-seed-unreadable` | Record | 1 | a handoff path exists and a row in it cannot be read | `seeded-findings.json` with the rows read so far and the failing path in `missingSources` |
 | `review-dry-run-missing` | Orchestrator | 1 | the dry run does not print five lineage lines and one `dry_run_halt` line naming `step_fanout_spawn` | the dry run's own output, and no lineage folder |
 
@@ -54,7 +55,7 @@ The `bots-review:` prefix is this phase's own. It is not a `bots:` line, because
 |------|-------|------|-------------|-----------------------|
 | `review-lineage-orphaned` | Runner | 3 | a lineage is marked orphaned, so its directory holds a writer that outlived its runner | the orphan row in the ledger and the lineage's own folder. The run refuses before a second writer enters that folder |
 | `review-all-lineages-lost` | Runner | 3 | every lineage failed or was dropped | `orchestration-summary.json` with `all_failed` true, and no verdict line |
-| `review-merge-incomplete` | Record | 1 | `orchestration-summary.json` is missing, or `total_cli_lineages` is not 5, or `orphaned_lineages` is not empty | the summary as written, and no report |
+| `review-merge-incomplete` | Record | 1 | `orchestration-summary.json` is missing, or `total_cli_lineages` is not 5 or `orphaned_lineages` is not empty | the summary as written, and no report |
 
 `review-all-lineages-lost` is the case the spec's edge cases name: a run that loses every lineage exits non-zero and writes no verdict line, because a review with no reader is not a clean review.
 
@@ -82,7 +83,7 @@ A report that carries two verdict lines is refused for the same reason as one th
 
 | Name | Layer | Exit | Raised when | On disk when it stops |
 |------|-------|------|-------------|-----------------------|
-| `review-suite-below-baseline` | Gate | 1 | `npm test` exits non-zero, or prints fewer than 381 tests | the suite's own output, and no close |
+| `review-suite-below-baseline` | Gate | 1 | `npm test` exits non-zero, or prints fewer tests than `suiteBaseline.tests` in `preflight.json` | the suite's own output, and no close |
 | `review-validator-failed` | Gate | 1 | `validate.sh --strict` on this packet does not print `RESULT: PASSED` | the validator's own output, and no close |
 | `review-verdict-blocked` | Orchestrator | 1 | the verdict is `FAIL`, so a P0 is still active | the report with its `FAIL` line, and no close |
 
@@ -99,7 +100,8 @@ A `CONDITIONAL` verdict does not refuse the close. It closes the packet and name
 | A P1 is deferred | REQ-005 allows it and the handoff criteria reads zero active P1 | the verdict reads `CONDITIONAL` and the close proceeds |
 | A lineage is complete but its terminal row is missing | its work is whole and the merge reads the work | counts it as complete and records the missing row in the Audit Appendix |
 | A lineage is replaced by the fallback | D3 says the fallback wins | the label set changes and the count stays five |
-| A scenario re-run reads `SKIP` | a skip is a recorded outcome, not a failure | records it with its reason and does not block the close |
+| A scenario re-run reads `SKIP` for a prerequisite the build does not own | a missing channel account or a host without a tty is not a defect the build can fix | records it with its reason and does not block the close |
+| A scenario re-run reads `SKIP` for a missing verb or a missing field | phases 001 to 011 are closed before the corpus runs, so the verb or the field was supposed to exist | the verdict reads `CONDITIONAL` and the row is named in Deferred Items. It blocks a `PASS` |
 | A finding is withdrawn as a false positive | the orchestrator re-read it and the evidence did not hold | moves it to `resolvedFindings` with `status` `resolved` and names it in the Audit Appendix |
 
 The last row is the one that keeps the evidence gate honest. A P0 that a lineage inferred rather than observed is withdrawn before any fix, and the withdrawal is recorded, because a fix for a defect that does not exist is a change to a surface nobody asked to change.
@@ -115,4 +117,5 @@ The last row is the one that keeps the evidence gate honest. A P0 that a lineage
 | A missing handoff file is recorded and not refused | A clean build files nothing, and refusing there would block the one run that has nothing to seed |
 | A `CONDITIONAL` verdict closes and a `FAIL` does not | A deferred P1 is a recorded decision and an active P0 is an unowned defect. Only the second needs a later phase |
 | The scope check exempts `review/` and `implementation-summary.md` | They are this phase's own outputs. Without the exemption the check refuses the report that carries the verdict, which is the one file the phase exists to write |
+| A `SKIP` for a missing verb or field blocks a `PASS` | A skip is a recorded outcome only when the blocker is outside the build. A missing verb after phases 001 to 011 closed is a defect, and a verdict that reads `PASS` over it claims a surface nobody proved |
 | A withdrawn finding is recorded rather than deleted | The evidence gate's value is that a reader can see what was claimed and why it did not hold. A deleted claim teaches nothing |

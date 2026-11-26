@@ -1,2 +1,2 @@
-open	20261125T211204Z-7c1e9a40	hello	send	kind	-	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
+open	20261125T211204Z-7c1e9a40	hello	post	kind	-	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
 	Ship the release?

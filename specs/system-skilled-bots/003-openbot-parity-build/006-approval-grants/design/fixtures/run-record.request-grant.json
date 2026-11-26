@@ -6,7 +6,7 @@
   "resumedItemId": "20261125T211204Z-7c1e9a40",
   "grant": {
     "itemId": "20261125T211204Z-7c1e9a40",
-    "kind": "send",
+    "kind": "post",
     "scope": "deny",
     "by": "ada"
   }

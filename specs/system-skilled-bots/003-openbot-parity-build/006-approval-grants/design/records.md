@@ -73,9 +73,11 @@ The shape is `contracts/records.md` section 2. [SOURCE: specs/system-skilled-bot
 
 `answerItem` derives the scope before it judges the item's state, so a refusal never depends on the scope. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:65]
 
-1. An explicit `--scope once` or `--scope deny` is the scope.
-2. Otherwise, a text that is `deny`, `no` or `n` after trim and in any case is `deny`. The set is closed and holds three spellings.
+1. A text in the NO set, `deny`, `no`, `n` or `reject`, after trim and in any case, records `deny` even when `--scope once` is given. The set is closed and holds four spellings. A refusal is therefore never recorded as an approval, whatever the screen or the channel grammar put on the command line.
+2. Otherwise an explicit `--scope once` or `--scope deny` is the scope.
 3. Otherwise the scope is `once`.
+
+Step 10 restates the rule for a claimed review item, whose options are `["confirm", "reject"]`: `reject` forces `deny` and `confirm` forces `once`, whatever `--scope` says. So a `reject` pick on a review item records a refusal and never an approval, and a `confirm` pick records `once` even when the screen passed `--scope deny`.
 
 The rule lives in `answerItem` and not in `bots.cjs`, so a channel transport that calls `answerItem` directly with the text `no` records `deny` too. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
 
@@ -114,15 +116,23 @@ A lock is reclaimed when either condition holds.
 
 A lock whose owner is alive and whose age is under 60 s is waited on for up to 2,000 ms, polled every 50 ms. When the wait runs out the answer is refused `item-busy`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"]
 
+**The wait mechanism.** `answerItem` is synchronous today and stays synchronous, so the wait is `Atomics.wait` over a `SharedArrayBuffer` of one integer, called with the 50 ms poll interval as its timeout. `Atomics.wait` blocks the calling thread without a busy loop and without a signature change, so `bots.cjs`, 002's `enable`, the 005 and 009 seam and 011's transports all keep calling `answerItem` as they do now. A promise-based sleep would make `answerItem` async and reach every one of those callers, so it is not used.
+
 The model is the run lease's, which reclaims by owner pid and nonce rather than by age alone. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:12]
 
 ### 3.3 The reclaim
 
 A reclaimer renames the lock to `<item-id>.lock.<nonce>.stale` and then unlinks it, and only the process whose rename succeeded proceeds. A rename is atomic, so two reclaimers cannot both win and the loser retries the acquisition rather than the reclaim.
 
+A rename alone is not enough, because a first reclaimer can rename the stale file away and a second reclaimer can then create a fresh lock before the first one retries. So every acquisition, whether it created the file or reclaimed one, re-reads the lock after it holds it and proceeds only when the file still holds its own `nonce`. A process that reads another `nonce` there lost the race, so it releases nothing and retries the acquisition from the top, which is the same path a live holder takes.
+
 ### 3.4 The release
 
-Step 18 removes the lock on every exit path after step 6, including a refusal and a throw. A process killed outright leaves the file, and the next answer reclaims it by section 3.2. The inbox ignores it, because the listing reads `.json` files only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
+Step 18 removes the lock on every exit path after step 6, including a refusal and a throw. The release re-reads the file first and unlinks it only when it still holds the writer's own `nonce`, so a process whose lock was reclaimed and taken by another answer cannot delete that answer's lock. A process killed outright leaves the file, and the next answer reclaims it by section 3.2. The inbox ignores it, because the listing reads `.json` files only. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "1. THE SEQUENCE"]
+
+### 3.5 How the race is proved
+
+The concurrent-answer test cannot make two answers both read `open` inside one process, because the lock is taken before the read and the second answer would wait. So the test starts two child processes that each run `bots answer` against the same item, and it holds them at a barrier file: each child writes its own ready file and then polls for the other's, so both reach the lock within one poll interval. One child lands and the other is refused `item-answered-differently`, and the item holds the first child's text and scope. The same barrier shape proves the stale-lock case, where the test writes a lock file naming a dead pid before it releases the children.
 
 ---
 
@@ -154,10 +164,10 @@ A bot that knows what kind of action it is asking about may say so on one line o
 ```
 
 - The line starts at the beginning of a line after a trim, the same rule the decision marker follows. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:432]
-- `<kind>` is one of the six action kinds. `other` is not a declaration, because `other` is what the classifier returns when it finds nothing.
+- `<kind>` is one of the seven action kinds, `other` included. `other` sits last in the order, so a declaration of `other` can never lower a kind and is a harmless floor: `[ACTION: other]` on a question that names a delete records `delete`.
 - The line may appear anywhere in the question text the child printed after `[NEEDS-DECISION] `. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:42]
 - Two lines: the first wins and the second is ignored.
-- A `<kind>` outside the six refuses the run `action-kind-invalid` and no item is written.
+- A `<kind>` outside the seven refuses the run `action-kind-invalid` and no item is written.
 
 ### 5.2 The floor rule
 
@@ -166,6 +176,19 @@ The recorded kind is the earlier of the declared kind and the classified kind in
 ### 5.3 What `action` holds
 
 `action` is the question verbatim, clipped to 120 characters, with the `[ACTION: <kind>]` line left in place. The contract says the question, and a reader that stripped the line would disagree with the stored `question`. The consequence is that the inbox line shows the bot's own declaration, which tells the operator what the bot believed it was asking about.
+
+### 5.4 The matching rule
+
+The word lists in `fixtures/action-kinds.json` are matched by four rules, and the floor rule of section 5.2 depends on all four.
+
+1. **Lower case.** The question is lower-cased before the scan, so `Delete` and `delete` are one word.
+2. **Whole word.** A word matches only when it stands alone, bounded by a non-letter on each side. `buy` does not match inside `buyer`, and `post` does not match inside `postpone`. A hyphen, a space, a digit, a quote and the start or end of the text all count as a boundary.
+3. **A phrase is matched as a phrase.** An entry holding a space, such as `api key`, `grant access` or `go live`, matches only when its words appear in that order with one space or one hyphen between them. `api  key` with two spaces does not match.
+4. **The declaration tokens are removed before the scan.** Every `[ACTION: <kind>]` line is cut out of the text first, so a declaration's own words never feed the word lists. `[ACTION: send] [ACTION: pay] Notify the buyer` therefore scans as `Notify the buyer`, which matches `notify` for `send` and nothing for `pay`, and the first declaration wins, so the row reads `send`. Without rule 4 the second token's `pay` would win, and without rule 2 the `buy` inside `buyer` would too.
+
+The scan then tests the six kinds in `classifyAction`'s order and returns the first that matches, so the strictest kind wins and the order decides a tie. `other` is the result when nothing matches.
+
+The cost of rule 2 is that a plural or an inflection is not a match unless the list names it, which is why the lists carry both `credential` and `credentials`, and both `permission` and `permissions`. The cost of rule 4 is that a bot cannot declare a kind by writing the word in its question, which is the point: the declaration is a separate line and never a word the scan reads.
 
 ---
 
@@ -207,6 +230,9 @@ What an older runtime does with an item that carries `grants`, and the manual st
 | The lock holds `pid`, `nonce` and `createdAt` and is reclaimed by pid or by a 60 s age | The run lease already reclaims by owner pid and nonce, and an answer holds the lock for milliseconds [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:12] |
 | The reclaim renames before it unlinks | A rename is atomic, so two reclaimers cannot both proceed and the loser retries the acquisition |
 | The wait is 2,000 ms polled every 50 ms, then `item-busy` | The bound is the contract's, and a poll interval short enough to feel instant keeps a contended answer under a second in practice [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/answer-seam.md, section "4. DECISIONS TAKEN"] |
+| The wait is `Atomics.wait` and not a promise | `answerItem` is synchronous and every caller depends on that, so a promise-based sleep would change the signature of the one function six phases call |
+| Every acquisition re-reads the lock and proceeds only on its own `nonce` | A rename is atomic but a second reclaimer can create a fresh lock before the first retries, so the rename alone does not say who won |
+| The release unlinks only a lock that still holds the writer's own `nonce` | A process whose lock was reclaimed must not delete the lock the next answer now holds |
 | `action` keeps the `[ACTION: <kind>]` line | The contract says the question, and stripping it would make `action` disagree with the stored `question` |
 | The resumed prompt line is `Granted scope: <scope>` and is absent when no scope was granted | An item written before this phase must produce today's prompt unchanged, so the line cannot be unconditional |
 | The run record's key is `by` and not `grantedBy` | The contract fixed the shorter name for this join, and the two values are equal by construction [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "17. DECISIONS TAKEN"] |

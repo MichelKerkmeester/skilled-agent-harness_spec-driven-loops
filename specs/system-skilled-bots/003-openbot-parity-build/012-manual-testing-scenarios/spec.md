@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 12** of the OpenBot parity build. Phases 001 to 011 each land a slice of the runtime: activity and the actor, routines, the terminal screen, the working place, memory, approval grants, per-bot apps, the vault, skills, conversations and messaging channels. Each one closes on its own automated suite, and no phase proves that an operator can drive the slice from a terminal. This phase writes that proof as a corpus of manual scenarios and then runs it.
 
-**Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index, and the run folder the recorder writes under `benchmark/reports/`. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
+**Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index and the run folder the recorder writes under `benchmark/reports/`. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
 
 **Dependencies**:
 - The eleven phase specs, which name every verb and record a scenario asserts [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "PHASE DOCUMENTATION MAP"]
@@ -89,7 +89,7 @@ $ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate
 PASS package=system-skilled-bots tier=FAIL_CLOSED scenarios=25 categories=7 operator=19 routing_gold_excluded=6 violations=0 warnings=0
 ```
 
-The corpus holds 25 scenario files in 7 category folders, and the package validator passes them. Every number this spec states about the corpus as it stands quotes that last line; the 33 new files, 58 total and 17 categories are this phase's targets.
+The corpus holds 25 scenario files in 7 category folders, and the package validator passes them. Every number this spec states about the corpus as it stands quotes that last line. The 33 new files, 58 total and 17 categories are this phase's targets.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -134,6 +134,8 @@ The corpus holds 25 scenario files in 7 category folders, and the package valida
 ### Scenario Inventory
 
 One row per new scenario. The phase column names the spec whose requirement the scenario proves, and the conversation rows come first because a conversation is the only form that proves a message, a parked question, an answer and a resumed run in one pass.
+
+The files were authored before the packet's contracts were reconciled, so a re-verification wave runs before execution and re-checks all 33 files against `contracts/cli-json.md`, `contracts/refusals.md` and `design/refusal-catalogue.md`. The wave fixes each mismatch it finds, replaces any `pbots check` call with the checker script at `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` because no `check` verb exists or is planned, and records one row per file in `scratch/contract-recheck.md`. A scenario that asserts a field name, a verb or a refusal form the contracts do not carry records a false `FAIL` against a correct product, which is the one outcome this phase may not ship.
 
 | ID | Category | Phase | What it proves |
 |----|----------|-------|----------------|
@@ -190,6 +192,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-005 | Every created scenario is executed and its `PASS` or `FAIL` recorded with its evidence in `benchmark/reports/<dated-run-label>/results.csv` through `record-playbook-run.cjs`, which is the one writer of that folder |
 | REQ-006 | Every `FAIL` is either fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed |
 | REQ-007 | The root playbook index gains the ten new category sections, the updated scenario and category counts, the preconditions the new scenarios need and the wave plan |
+| REQ-013 | The corpus is executed only after phases 001 to 011 close, so no verdict reads `SKIP` for a missing verb or a missing field. A `SKIP` names a prerequisite the build does not own, such as an absent real channel account, and never a blocker the build already cleared |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -245,7 +248,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-P02**: One scenario's bash block runs in under 60 seconds, except the schedule scenario
 
 ### Security
-- **NFR-S01**: No scenario writes a real secret value or a real channel token; every scenario uses a temp state root and a `pb-` bot id
+- **NFR-S01**: No scenario writes a real secret value or a real channel token. Every scenario uses a temp state root and a `pb-` bot id
 - **NFR-S02**: A scenario that would print a stored secret prints the redacted form only, so the evidence never carries a value
 
 ### Reliability
@@ -270,8 +273,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 14/25 | 33 new files, one root index, one run folder; no runtime change |
-| Risk | 8/25 | No production surface; the risk is a scenario that cannot run or that waits |
+| Scope | 14/25 | 33 new files, one root index, one run folder. No runtime change |
+| Risk | 8/25 | No production surface. The risk is a scenario that cannot run or that waits |
 | Research | 6/20 | The eleven phase specs are the source, and the playbook contract is already written |
 | **Total** | **28/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->

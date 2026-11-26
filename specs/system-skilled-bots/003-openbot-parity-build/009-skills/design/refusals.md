@@ -28,14 +28,14 @@ Paths are relative to the repository root. `$R` is `.skilled/skills/system-skill
 | `skills-name-invalid` | Definition parse | - | 4 run, 1 checker | No | `bots: definition-malformed: skills-name-invalid (<name>)`, or `(<not a list>)` for a value that is not a list of strings | a name outside `SKILL_NAME_PATTERN`, an empty entry, or a value that is not a list | nothing |
 | `skills-unknown` | Checker invariant | - | 1 | No | `FAIL: skills-unknown: <bot>: <name>` | the checkout's `BOT.md` names a skill with no `SKILL.md` under the checker's own tree | nothing, the checker writes no file |
 | `skills-too-large` | Checker invariant | - | 1 | No | `FAIL: skills-too-large: <bot>: <name> is <n> bytes, over 16384` | one named body is over the per-skill cap | nothing |
-| `skills-over-budget` | Checker invariant | - | 1 | No | `FAIL: skills-over-budget: <bot>: <name> takes the list to <n> bytes, over 24576` | the running total crosses the list cap | nothing |
+| `skills-over-budget` | Checker invariant | - | 1 | No | `FAIL: skills-over-budget: <bot>: <name> takes the list to <n> bytes, over 20480` | the running total crosses the list cap | nothing |
 | `skill-unknown` | Run refusal | `author` | 4 | Yes | `bots: skill-unknown: <name>` | the named file does not exist under `<skilledTree>/.skilled/skills/` | a refused run record with `posture.skills` empty |
 | `skill-unreadable` | Run refusal | `environment` | 4 | Yes | `bots: skill-unreadable: <name> (<errno>)` | the read fails for a reason other than absence | a refused run record |
 | `skill-too-large` | Run refusal | `author` | 4 | Yes | `bots: skill-too-large: <name> is <n> bytes, over 16384` | one body is over the per-skill cap | a refused run record |
-| `skills-over-budget` | Run refusal | `author` | 4 | Yes | `bots: skills-over-budget: <name> takes the list to <n> bytes, over 24576` | the running total crosses the list cap | a refused run record |
-| `skill-changed` | Run refusal | `operator` | 4 | Yes | `bots: skill-changed: <name> differs from the installed body` | the body's digest differs from `skillDigests[name]`, or no digest is recorded | a refused run record |
+| `skills-over-budget` | Run refusal | `author` | 4 | Yes | `bots: skills-over-budget: <name> takes the list to <n> bytes, over 20480` | the running total crosses the list cap | a refused run record |
+| `skill-changed` | Run refusal | `operator` | 4 | Yes | `bots: skill-changed: <name> differs from the pinned body` | the body's digest differs from the pinned one, which is `skillDigests[name]` when the bot has an install record and the digest its most recent approved run recorded under `posture.skills` when it does not | a refused run record |
 | `run-record-missing` | Verb refusal (`skill propose`) | - | 4 | No | `bots: run-record-missing: <run-id>` | the run record file does not exist | nothing |
-| `review-already-exists` | Verb refusal (`skill propose`) | - | 4 | No | `bots: review-already-exists: <run-id>` | the review item for that run id already exists | nothing, the two files are not overwritten |
+| `review-already-exists` | Verb refusal (`skill propose`) | - | 4 | No | `bots: review-already-exists: <run-id>`, or `bots: review-already-exists: <run-id> (<kind>)` when the item is another kind | an item with that run id already exists. Its `kind` is read first: a `skill-proposal` refuses with the plain message, and any other kind refuses with that kind as the detail, because the id then belongs to that run's own question | nothing, the two files are not overwritten |
 | `proposal-secret` | Verb refusal (`skill propose`) | - | 4 | No | `bots: proposal-secret: <key>` | the draft holds a known secret literal | nothing, neither file is written |
 | `proposal-stale` | Verb refusal (`answer` on a `skill-proposal` item) | - | 4 | No | `bots: proposal-stale: <name>` | the target's digest differs from `revisionRead`, or the target appeared or vanished since the proposal | nothing, the item stays open |
 
@@ -45,7 +45,7 @@ Three names are the contract's and this phase only reaches them:
 |------|-------|---------------------------|
 | `review-answer-invalid` | 005 | the claim refuses an answer that is not `confirm`, `reject` or a NO, with the item still open [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "3.4 Phase 005, memory", row `review-answer-invalid`] |
 | `prompt-over-budget` | 005 | the composed prompt is over 32,000 characters and the skills block is the block that crossed the line, so the detail reads `prompt-over-budget: skills at <n> of 32000 characters` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.3 The overflow rule"] |
-| `checker-failed` | today | `bots install` runs the checker, so a bad `skills` list refuses the install with the checker's own `FAIL:` line as the detail [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:569-572] |
+| `checker-failed` | today | `bots schedule install <id>` runs the checker, so a bad `skills` list refuses the install with the checker's own `FAIL:` line as the detail [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:569-572] |
 
 ---
 
@@ -83,7 +83,7 @@ The checker prints one `FAIL:` line per broken invariant and exits 1. [SOURCE: .
 |---------|-------------------------|------|
 | `$F/skills-unknown` | `FAIL: skills-unknown: nightly-digest: no-such-skill` | 1 |
 | `$F/skills-too-large` | `FAIL: skills-too-large: nightly-digest: sk-git is 32362 bytes, over 16384` | 1 |
-| `$F/skills-over-budget` | `FAIL: skills-over-budget: nightly-digest: sk-doc takes the list to 26183 bytes, over 24576` | 1 |
+| `$F/skills-over-budget` | `FAIL: skills-over-budget: nightly-digest: sk-doc takes the list to 26183 bytes, over 20480` | 1 |
 | `$F/skills-clean` | no `FAIL:` line | 0 |
 
 The three names are added to `HARD_INVARIANTS`, so a fixture that breaks one cannot pass under `--strict` either. [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:39-58]
@@ -98,5 +98,5 @@ The three names are added to `HARD_INVARIANTS`, so a fixture that breaks one can
 | `run-record-missing` is the verb's own name, not the reader's `record-missing` | The reader's name is about a file and the verb's is about the command's argument. The verb maps `record-missing` to `run-record-missing` and passes every other reader reason through unchanged, so no second vocabulary is invented |
 | An invalid `--name` is a usage error with no reason name | The command line is wrong before any file is read, which is the usage layer, and 001's `bots: --as takes a name` is the same shape |
 | `proposal-secret` names the key and never the value | A refusal that printed the value would put the secret in the terminal and in the shell history |
-| `skill-changed` names the skill and not the two digests | The operator's fix is to reinstall, and the digests are long enough to make the line unreadable |
+| `skill-changed` names the skill and not the two digests | The operator's fix is to run `bots schedule install <id>` for a cron bot or to approve the body in a run for any other bot, and the digests are long enough to make the line unreadable |
 | The checker resolves its own skilled tree | The checker takes a checkout root and no other option, so the tree it audits is the one it ships in. The fixtures name real skills whose sizes are measured in `design/fixtures.md` |

@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Activity and actor refusals
 
-`contracts/refusals.md` section 3.1 owns this phase's rows and section 2 owns the exit rule: a check `bots.cjs` makes on its own input exits 2, and a refusal from a runtime call exits 4. This file adds the exact text, the check order and the test for each row, and names the three rows the contract gained from this phase, R6, R7 and R8. None of them enters `REFUSAL_CAUSES`, and none is a run refusal.
+`contracts/refusals.md` section 3.1 owns this phase's rows and section 2 owns the exit rule: a check `bots.cjs` makes on its own input exits 2, and a refusal from a runtime call exits 4. This file adds the exact text, the check order and the test for each row. It names the four rows the contract gained from this phase: R6, R7, R8 and R13. None of them enters `REFUSAL_CAUSES`, and none is a run refusal.
 
 A usage refusal prints `bots: <message>` and then the usage text on stderr, so its first line is the message alone [SOURCE: .skilled/bin/bots.cjs:94-98]. Nothing is printed on stdout.
 
@@ -34,6 +34,7 @@ A usage refusal prints `bots: <message>` and then the usage text on stderr, so i
 | R10 | `bots: the status modules did not load: <message>` | `activity` | the status modules throw on load, as `status` does today [SOURCE: .skilled/bin/bots.cjs:352-354] | 1 | no, same as `status` | none, the existing line |
 | R11 | `bots: identity-unknown: ...` and the other config refusals | `activity` | the checkout's config or identity refuses, as `status` does today [SOURCE: .skilled/bin/bots.cjs:356-360] | 4 | no, same as `status` | none, the existing line |
 | R12 | `bots: item-answered-differently: answered at <t>` | `answer` | the same text with another scope, new in this phase, beside today's other-text case | 4 | existing row [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:82-86] | `answer.vitest.ts`, `scope` |
+| R13 | `bots: child-write-refused` | `answer`, `enable` | `SKILLED_BOT_RUN_ID` or `AI_SESSION_CHILD=1` is in the environment, so the caller is a bot child | 2 | yes, added 2026-11-26 | `cli-run.vitest.ts`, `child write` |
 
 R7 and R8 are the parser's existing messages for any verb [SOURCE: .skilled/bin/bots.cjs:144] [SOURCE: .skilled/bin/bots.cjs:166], so they need no new code, only the verb's row in `VERB_SPECS`. They are listed because the screen's failed-read table names exit 2 for a usage error.
 
@@ -43,11 +44,13 @@ R7 and R8 are the parser's existing messages for any verb [SOURCE: .skilled/bin/
 
 ## 2. THE ORDER
 
-`bots answer` runs R1, R2, R3 and R4, then R5, then loads the runtime. So a script that passes a bad scope and a foreign `--as` is told about the scope first, and nothing is read or written before the last check passes. The diagram is [state-machines.md](state-machines.md) section 6.
+`bots answer` runs R13, then R1, R2, R3 and R4, then R5, then loads the runtime. So a script that passes a bad scope and a foreign `--as` is told about the scope first, and nothing is read or written before the last check passes. The diagram is [state-machines.md](state-machines.md) section 6.
 
 `bots run` runs R1, R2 and R5 in that order. `bots schedule install` runs R6 before the installer is called.
 
-The tty check compares the trimmed `--as` with `os.userInfo().username` by exact match. A lookup that throws counts as no match, so the check refuses without a tty.
+R13 runs first because a bot child is not a person at a terminal, so no later check can make its write legitimate. It reads the environment only, so it costs no file read.
+
+The tty check compares the trimmed `--as` with `os.userInfo().username` by exact match. A lookup that throws counts as no match, so the check refuses without a tty. A pinned `SKILLED_BOTS_OPERATOR` on a path that is not a scheduled fire or a scheduled drain takes the same check, so a shell that exports the variable is refused `bots: --as needs a tty` unless the name is the OS user.
 
 ---
 
@@ -56,6 +59,7 @@ The tty check compares the trimmed `--as` with `os.userInfo().username` by exact
 | Case | What happens |
 |------|--------------|
 | A definition declares `danger-full-access` on a bot installed without `--full-access` | The run dispatches at `workspace-write` and records it. No line is printed |
+| `bots schedule install <id> --full-access` on a bot whose trigger is not cron | The install record is written with `operator` and `fullAccess`, no plist is written and the verb prints `bots: <botId> has a <kind> trigger, so full access is recorded and no schedule is installed` on stdout and exits 0. Without the flag the same verb still refuses `trigger-not-cron` |
 | A pinned `SKILLED_BOTS_OPERATOR` that fails the pattern | Ignored, the actor falls to the OS user |
 | The OS user name fails the pattern or cannot be read | The actor is `null` on the record or the answer |
 | `answeredBy` cannot be stamped because the parked run has no record yet | Skipped, the answer still succeeds |
@@ -66,4 +70,4 @@ The tty check compares the trimmed `--as` with `os.userInfo().username` by exact
 
 ## 4. CLASS FOR THE SCREEN
 
-The screen classes every answer refusal by its first line [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:283-285]. R3 and R4 are the two rows it already lists as reachable only through a screen defect. R12 is `gone`, the same class as the other-text case.
+The screen classes every answer refusal by its first line [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/design/state-machines.md:283-285]. R3 and R4 are the two rows it already lists as reachable only through a screen defect. R12 is `gone`, the same class as the other-text case. R13 is `refused`, because a bot child that tries to answer is a caller the screen did not expect rather than an item that moved.

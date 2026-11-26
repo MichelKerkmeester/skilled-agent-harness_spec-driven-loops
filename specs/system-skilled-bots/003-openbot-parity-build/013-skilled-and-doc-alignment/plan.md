@@ -24,7 +24,7 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | JSON for the topic entry, Markdown for the docs, CommonJS for the one CLI help block |
-| **Framework** | None; the two alignment commands are the tooling, and both are operator-local |
+| **Framework** | None. The two alignment commands are the tooling, and both are operator-local |
 | **Storage** | Two run folders outside the checkout: `<state>/local-skilled-alignment/system-skilled-bots/<UTC timestamp>/` and `<state>/local-doc-alignment/system-skilled-bots/<UTC timestamp>/`, each holding `report.md`, `findings.json` and `fix-plan.md` |
 | **Testing** | The two commands' own batteries and lanes, plus `validate.sh --strict` on this packet and `npx vitest run` on the runtime |
 
@@ -41,8 +41,8 @@ The doc run cannot start until a topic exists, so the first change is one entry 
 - [ ] `rg -c 'system-skilled-bots' .skilled/commands/assets/local-doc-alignment/topics.json` exits 1, the measured gap this phase closes
 - [ ] `ls "${XDG_STATE_HOME:-$HOME/.local/state}/local-doc-alignment/system-skilled-bots"` exits 1, so no doc run has ever been made here
 - [ ] `node -e "const t=require('./.skilled/commands/assets/local-doc-alignment/topics.json');console.log(Object.keys(t.topics).length)"` prints `10`, the shape the new entry copies
-- [ ] `node .skilled/bin/bots.cjs --help | wc -l` prints `35` and `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints `64:`, the pair the doc run's help check compares
-- [ ] Phases 001 to 012 are closed, so the change set the skilled-alignment run scopes is the packet's own
+- [ ] `node .skilled/bin/bots.cjs --help | wc -l` prints a number and `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints one line, and both are recorded in `scratch/help-baseline.md` as the pair the doc run's help check compares. The 35-line help and the eleven-verb table are the pre-001 measurement, so this gate records the pair rather than asserting it
+- [ ] Phases 001 to 012 are closed, committed and the working tree is clean, so the change set the skilled-alignment run scopes is the packet's own and `git status --porcelain` prints nothing before the first run. A dirty tree would put an uncommitted edit into the scope the run reads and into the diff T023 checks
 - [ ] `command -v python3 node` prints both paths, because the topic's three checks need both interpreters
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count
 
@@ -56,7 +56,7 @@ The doc run cannot start until a topic exists, so the first change is one entry 
 - [ ] `evidence/skilled-alignment/` and `evidence/doc-alignment/` each hold `report.md`, `findings.json` and `recheck.md`, copied from the last run of each command, and `evidence/README.md` names the source run folder of each
 - [ ] `rg -c '^## ' scratch/rebuttals.md` prints the number of settled findings, and every heading names an id a run's `findings.json` carries
 - [ ] `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/system-skilled-bots` exits 0
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook` prints `violations=17 warnings=30`, the baseline the fix pass closes. All 17 are `INDEX_ORPHAN_FILE`, so the root `manual-testing-playbook.md` links none of the 17 per-feature files under `activity/`, `conversations/` and `routines/`
+- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook` prints `violations=0 warnings=0`, the state 012's root-index task leaves and the fix pass must not regress
 - [ ] `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` exits 0
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
@@ -117,7 +117,7 @@ This packet is a fix packet: its whole job is to work two findings reports. The 
 Required inventories:
 - Same-class producers: `rg -n 'system-skilled-bots' .skilled/commands/assets/local-doc-alignment/topics.json` before the edit exits 1, and after it prints the new key once.
 - Consumers of changed symbols: `rg -n 'bots (activity|routines|ui|remember|secret|skill|chat|channel)' .skilled/skills/system-skilled-bots --glob '*.md'` lists every doc that names a verb the help must carry.
-- Matrix axes: the two commands, the two report shapes, and the three topic checks are the independent axes; every row of each is run before completion is claimed.
+- Matrix axes: the two commands, the two report shapes and the three topic checks are the independent axes. Every row of each is run before completion is claimed.
 - Algorithm invariant: the help block and `VERB_SPECS` name the same verb set, and the topic's `codeRoots` cover every doc the `terms` reach.
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -155,7 +155,7 @@ The one command that decides the phase is the re-run: `rg -n '^- Open findings: 
 |------------|------|--------|-------------------|
 | `python3` | External | Green | The skill-package and catalog checks become `cannot_run`, so the doc run's deterministic layer is a gap rather than a pass |
 | `node` | External | Green | The playbook check and the bots CLI help read become `cannot_run` |
-| A lane CLI on PATH for the chosen `--lanes` preset | External | Yellow | The lane fails and the critic scores a partial set; `--lanes=native` needs no binary and is the last resort |
+| A lane CLI on PATH for the chosen `--lanes` preset | External | Yellow | The lane fails and the critic scores a partial set. `--lanes=native` needs no binary and is the last resort |
 | Phases 001 to 012 closed | Internal | Yellow | The change set the skilled-alignment run scopes is not the packet's own, so a finding can belong to a phase still in flight |
 | `origin/main` present as the default base | Internal | Green | `--base` must name another ref, and the scope is then not the packet's change set |
 <!-- /ANCHOR:dependencies -->
@@ -198,13 +198,13 @@ This phase's build is dispatched, not hand-run. The roster below is the closed s
 ### Dispatch rules every worker carries
 
 - Read the target mode's `SKILL.md` before composing the prompt, and attach the resolved agent persona to every dispatch [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199].
-- Compose every prompt as the child preamble, then the inlined persona, then the task, and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:56].
+- Compose every prompt as the child preamble, then the inlined persona, then the task and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:56].
 - One change per brief: the file, the edit and the check that proves it.
 - Read the outcome record, not stdout. A clean stdout proves nothing, and `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
 
 ### Self-invocation guards
 
-A running CLI skill never dispatches itself, so the orchestrator's own runtime removes its own row from the roster before the first wave. The table below is the guard each row carries; the orchestrator reads its own runtime signal once, at the start, and the ladder in the next section is written to survive one row being gone.
+A running CLI skill never dispatches itself, so the orchestrator's own runtime removes its own row from the roster before the first wave. The table below is the guard each row carries. The orchestrator reads its own runtime signal once, at the start, and the ladder in the next section is written to survive one row being gone.
 
 | Executor | Refuses when | Source |
 |----------|--------------|--------|
@@ -212,7 +212,7 @@ A running CLI skill never dispatches itself, so the orchestrator's own runtime r
 | `cli-opencode` | the runtime is OpenCode | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:10] |
 | `cli-codex` | `$CODEX_SESSION_ID` or any `CODEX_*` env var is set, or `codex` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:10] |
 | `cli-devin` | `$DEVIN_PROJECT_DIR` is set, or `devin` is in the process ancestry | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:10] |
-| `cli-pi` | never for being inside Pi; only from inside a fan-out lineage or when `cli-pi` already appears in the dispatch stack | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10] |
+| `cli-pi` | never for being inside Pi. Only from inside a fan-out lineage or when `cli-pi` already appears in the dispatch stack | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10] |
 
 ### Fallback ladder
 
@@ -228,7 +228,7 @@ The ladder is ordered by cost and by how much of the roster a single refusal rem
 
 ### Wave mapping
 
-`tasks.md` §Waves owns the wave table: the task ids in each wave, the executor, model and effort each wave runs at, how many workers run in parallel and the file-overlap bound that sets that number, the orchestrator's verify step after the wave, and the fallback order. This section owns the roster and the rules; `tasks.md` owns the assignment.
+`tasks.md` §Waves owns the wave table: the task ids in each wave, the executor, model and effort each wave runs at, how many workers run in parallel and the file-overlap bound that sets that number, the orchestrator's verify step after the wave, and the fallback order. This section owns the roster and the rules. `tasks.md` owns the assignment.
 <!-- /ANCHOR:external-orchestration -->
 
 ---

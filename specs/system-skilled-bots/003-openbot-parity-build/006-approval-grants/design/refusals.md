@@ -28,7 +28,7 @@ The exit rule is `contracts/refusals.md` section 2's: a check `bots.cjs` makes o
 | 3 | `item-answered-differently` | A second answer carries another text or another scope, or the answer lost the lock race | `bots: item-answered-differently: answered at <instant>` | 4 | Nothing. The first answer and its grant stand | Read the item with `bots inbox --all` and accept the recorded answer |
 | 4 | `item-busy` | The lock is held by a live process and the 2,000 ms wait ran out | `bots: item-busy: held by pid <pid> since <instant>` | 4 | The lock file, which the holder releases | Retry the same answer with the same text and scope. The answer is idempotent for one text and one scope |
 | 5 | `answer-not-approver` | A present roster names neither the actor as `owner` nor in `members` | `bots: answer-not-approver: <actor> is not on the roster` | 4 | Nothing. The item stays open | Answer as the owner, or add the actor with `bots channel roster add` |
-| 6 | `action-kind-invalid` | A question carries `[ACTION: <kind>]` naming a kind outside the six | `bots: action-kind-invalid: <kind>` on the run's record, and the run's own line | 1 | No item. The run is failed with class `author` | Fix the bot's `[ACTION: <kind>]` line and run again |
+| 6 | `action-kind-invalid` | A question carries `[ACTION: <kind>]` naming a kind outside the seven | `bots: action-kind-invalid: <kind>` on the run's record, and the run's own line | 1 | No item. The run is failed with class `author` | Fix the bot's `[ACTION: <kind>]` line and run again |
 | 7 | `grant-kind-unknown` | Reserved. A standing allow on an item whose `grants.kind` is `other` | `bots: grant-kind-unknown: <item-id>` | 4 | Nothing | None in this packet. No rule store lands, so nothing raises it |
 | 8 | `item-field-invalid: grants` | A stored grant fails one of the ten checks in `design/records.md` section 1.1 | `bots: item-field-invalid: grants` from `answerItem`, and `bots: item <id> did not read` from `bots inbox` | 4 from `answerItem`, 0 from `inbox` | The item file, unchanged | Repair the item file by hand, or remove it if the decision is lost |
 | 9 | `item-expired` | The item passed `expiresAt` before the answer | `bots: item-expired: expired at <instant>` | 4 | Nothing. The grant stays born open | None. An expired item is never answered automatically |
@@ -93,7 +93,7 @@ The rule the whole catalogue follows: a refusal at steps 1 to 10 of `contracts/a
 
 | Refusal | Test file | Test name |
 |---------|-----------|-----------|
-| `grant-scope-unsupported` | `tests/answer.vitest.ts` | `grant-scope-unsupported` |
+| `grant-scope-unsupported` | `tests/cli-run.vitest.ts` | `grant-scope-unsupported` |
 | `--scope takes once or deny` | `tests/cli-run.vitest.ts` | `scope takes once or deny` |
 | `item-answered-differently` | `tests/answer.vitest.ts` | `item-answered-differently` |
 | `item-busy` | `tests/answer.vitest.ts` | `item-busy` |

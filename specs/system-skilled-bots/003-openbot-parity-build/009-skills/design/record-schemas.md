@@ -30,7 +30,9 @@ Paths are relative to the repository root. `$R` is `.skilled/skills/system-skill
   answer.json                                    umask  009, the decision, written by the settle
 ```
 
-`<identityKey>` is the value `identityKey(identity)` returns, the same key every other identity folder uses. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131] `<runId>` is the run record's `identity.runId`, which `validateRunRecord` has already checked as a safe segment, so the folder name needs no second check. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:250]
+`<identityKey>` is the value `identityKey(identity)` returns, the same key every other identity folder uses. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts:117-131] `<runId>` is the run record's `identity.runId`. The verb checks the id is a safe path segment before it reads the record, so no id can leave the proposals folder, and `validateRunRecord` checks it again on the way in. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:250]
+
+The pin reads the target under the skilled tree root, which is the same root the loader reads: `<skilledTree>/.skilled/skills/<name>/SKILL.md`. `targetPath` stays checkout-relative because that is the form `contracts/records.md` section 9 fixes, and the claim resolves it against the skilled tree root rather than against the process's working directory. A pin that read a different file would pass a body the loader never loads.
 
 The folder is never inside a checkout. A worktree run's tree is thrown away, and unreviewed content must not land in the repository before review. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:263]
 
@@ -121,7 +123,7 @@ The item's key list is closed and `contracts/records.md` section 1 holds every k
 
 | Key | Value on a `skill-proposal` item |
 |-----|----------------------------------|
-| `id` | the run id. The validator requires `id === runId` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:103] |
+| `id` | the run id. The validator requires `id === runId` [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:103]. A run that parked a question already owns the item file with that id, so the verb reads the existing item's `kind` before it writes: a `skill-proposal` refuses `review-already-exists`, and any other kind refuses with that kind as the detail. Such a run cannot be proposed from, which is the limit `spec.md` REQ-005 states |
 | `runId` | the run id |
 | `botId` | the literal `skill-proposals`, the reserved sentinel |
 | `identity` | the record's `identity.repository`, an `owner/name` identity |
@@ -213,7 +215,7 @@ Sample, one loaded body:
 
 | Field | Type | Null | Value rule |
 |-------|------|------|------------|
-| `skillDigests` | object | no | keyed by skill name, each value the SHA-256 hex of the body `bots install` read |
+| `skillDigests` | object | no | keyed by skill name, each value the SHA-256 hex of the body `bots schedule install <id>` read |
 | `skillDigests.<name>` | string | no | lower case, 64 characters |
 
 The object is `{}` on a bot installed before this phase, and the loader then refuses `skill-changed` for every name the definition carries until the bot is reinstalled. That is the intended upgrade step and it is named in the author reference. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "Install record addition", row `skillDigests`]

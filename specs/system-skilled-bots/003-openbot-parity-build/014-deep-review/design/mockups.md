@@ -24,12 +24,14 @@ Trailing blanks are trimmed. A frame's longest line is at most 100 columns, so i
 
 The run prints one line per phase boundary and nothing per tool call. A reader who watches the console sees where the run is, not what it is doing.
 
+The two counts in a `suite baseline` line are the ones the setup run recorded in `preflight.json`, so a frame shows a shape and not a number. A frame that printed a fixed count would read as a floor the build could not move.
+
 ### 1.1 A clean run
 
 ```text
 bots-review: preflight
   phase 013        RESULT: PASSED
-  suite baseline   35 files, 381 tests, exit 0
+  suite baseline   <files> files, <tests> tests, exit 0
   executors        vibe pi opencode devin codex, all present, preflight.json written
   handoff 012      failures.md, 1 row
   handoff 013      rebuttals.md, 3 headings, 1 handed on
@@ -56,7 +58,7 @@ bots-review: scenario re-run
   touched phases   006 010
   scenarios        9 re-run, 9 PASS, 0 FAIL
 bots-review: close
-  suite            35 files, 381 tests, exit 0
+  suite            <files> files, <tests> tests, exit 0
   validator        RESULT: PASSED
   scoped diff      0 paths outside the named surfaces
   report           rewritten, Review verdict: PASS
@@ -68,7 +70,7 @@ bots-review: close
 ```text
 bots-review: preflight
   phase 013        RESULT: PASSED
-  suite baseline   35 files, 381 tests, exit 0
+  suite baseline   <files> files, <tests> tests, exit 0
   executors        none present
 bots-review: review-no-executor: command -v vibe pi opencode devin codex printed no path
 ```
@@ -80,7 +82,7 @@ Exit 2. `review/preflight.json` is written with `presentCount` `0` and nothing e
 ```text
 bots-review: preflight
   phase 013        RESULT: PASSED
-  suite baseline   35 files, 381 tests, exit 0
+  suite baseline   <files> files, <tests> tests, exit 0
   executors        vibe pi opencode codex, devin absent, preflight.json written
   fallback         devin dropped, pi runs twice, 5 lineages on 4 executors
   handoff 012      failures.md, 1 row

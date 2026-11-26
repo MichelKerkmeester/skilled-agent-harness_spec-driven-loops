@@ -41,19 +41,23 @@ stateDiagram-v2
   TooLarge --> [*]: refuse skill-too-large, class author, exit 4, naming the skill and its size
 
   Measure --> Total: the body is at most 16384 bytes
-  Total --> OverBudget: the running total is over 24576 bytes
+  Total --> OverBudget: the running total is over 20480 bytes
   OverBudget --> [*]: refuse skills-over-budget, class author, exit 4, naming the skill that crossed the line
 
-  Total --> Digest: the running total is at most 24576 bytes
-  Digest --> Changed: the digest differs from skillDigests for that name, or no digest is recorded
+  Total --> Digest: the running total is at most 20480 bytes
+  Digest --> Changed: the digest differs from the pinned one for that name
   Changed --> [*]: refuse skill-changed, class operator, exit 4, naming the skill
 
-  Digest --> Keep: the digest equals the installed one
+  Digest --> Keep: the digest equals the pinned one
   Keep --> NextName: one entry appended to posture.skills
   Keep --> [*]: the list is exhausted, renderSkillsPrompt returns one block per kept entry
 ```
 
-**Why size before digest.** A body over the per-skill cap can never have an installed digest, because `bots install` runs the checker and the checker refuses `skills-too-large` before the install record is written. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:569-572] So the size check is the one that can fire first in practice, and naming the bound a body broke is more use to the author than naming a digest mismatch the author cannot fix.
+**What the pin compares against.** The pinned digest is `skillDigests[name]` from the bot's install record when that record exists. Only a cron bot can be installed, so a queue, git-hook or manual bot has no install record at all, and it pins against the digest its most recent approved run recorded under `posture.skills` instead. A bot with neither an install record nor an approved run has nothing to compare against, so its bodies load unpinned and the run record's `posture.skills` becomes the pin the next run reads. Without that fallback a bot that is not a cron bot could never name a skill, because the only stated fix would be an install it cannot have.
+
+**Why the loader does not run on a resume.** A resumed run reuses the parked prompt, which already holds the `<skill_content>` blocks the first attempt loaded, so `loadSkills` is not called again and no body is read twice. The resumed record still carries `posture.skills`, because the record is copied from the parked run rather than rebuilt.
+
+**Why size before digest.** A body over the per-skill cap can never have an installed digest, because `bots schedule install <id>` runs the checker and the checker refuses `skills-too-large` before the install record is written. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/installer.ts:569-572] So the size check is the one that can fire first in practice, and naming the bound a body broke is more use to the author than naming a digest mismatch the author cannot fix.
 
 **Why the total is measured as the list is walked.** The refusal must name the skill that crossed the line, and the running total at that name is the only value that names it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162]
 
@@ -79,8 +83,11 @@ stateDiagram-v2
   Interrupted --> FilesWritten: a re-run with no item overwrites both files and writes the item
   Interrupted --> Open: a re-run with no item writes the item
 
-  FilesWritten --> AlreadyExists: the review item already exists
+  FilesWritten --> AlreadyExists: an item with that run id exists and its kind is skill-proposal
   AlreadyExists --> [*]: refuse review-already-exists, exit 4, nothing overwritten
+
+  FilesWritten --> ItemTaken: an item with that run id exists and its kind is anything else
+  ItemTaken --> [*]: refuse review-already-exists with that kind as the detail, exit 4, nothing overwritten
 
   Open --> Stale: an answer arrives and the target digest differs from revisionRead
   Stale --> Open: refuse proposal-stale, exit 4, nothing written, the item stays open
@@ -93,6 +100,8 @@ stateDiagram-v2
 ```
 
 **Why the item is last.** The item is the only thing a person sees. An item written before its draft would offer a review of a file that does not exist, and the answer would then read a missing `proposal.json` and fall back to not-a-proposal, which loses the review silently. Writing the item last makes an interrupted proposal invisible rather than wrong.
+
+**Why the existing item is read for its kind.** The item id is the run id, and a run that parked a question already owns the item file with that id. Reading the kind is what keeps the refusal honest: a `skill-proposal` item means a review really does exist, and any other kind means the id belongs to that run's own question, so the detail names the kind and the operator learns which item holds the id. A run that parked a question therefore cannot be proposed from, which is the limit `spec.md` REQ-005 states.
 
 **Why a re-run overwrites.** The one existing guard covers an item that already exists. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:231] A re-run with files present and no item is the repair path, and it must overwrite rather than refuse, because the files it finds are the interrupted run's own output for the same run id and the same target name. A re-run with an item present refuses as today, so an open question is never erased.
 

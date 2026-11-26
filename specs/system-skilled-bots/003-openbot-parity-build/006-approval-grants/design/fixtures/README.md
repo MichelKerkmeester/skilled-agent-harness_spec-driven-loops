@@ -27,7 +27,7 @@ The item goldens the packet already holds are not copied here. `contracts/fixtur
 | `lock.file.json` | the lock file's three keys | the lock reader in `answer.ts` | `tests/answer.vitest.ts` |
 | `run-record.request-grant.json` | the request join with `grant` | `validateRunRecord` | `tests/run-record.vitest.ts` |
 | `action-kinds.json` | the six kinds, their word lists, their order and nine cases | `classifyAction` | `tests/action-kind.vitest.ts` |
-| `ladder-cases.json` | the four rungs, the fallback, ten scope cases and the 21-row matrix | `decideApproval` and the scope rule | `tests/approval-ladder.vitest.ts` |
+| `ladder-cases.json` | the four rungs, the fallback, thirteen scope cases and the 21-row matrix | `decideApproval` and the scope rule | `tests/approval-ladder.vitest.ts` |
 | `inbox-line.txt` | the `bots inbox` line for one open item | the CLI's own output | `tests/cli-run.vitest.ts` |
 | `inbox-json-row.json` | one `bots inbox --json` row | the CLI's own output | `tests/cli-run.vitest.ts` |
 | `resumed-prompt.txt` | the resumed prompt for a denied item | `buildResumedPrompt` | `tests/needs-you.vitest.ts` |
@@ -38,8 +38,10 @@ A **record** golden is fed to the module's validator or reader. A **surface** go
 
 `action-kinds.json` and `ladder-cases.json` are not samples. They are the tables a test walks, so the word lists and the case matrix live in one place rather than in a test body.
 
-- `action-kinds.json` holds the six kinds in `classifyAction`'s order, the word list each kind is recognized by, one sample question per kind and nine cases. The cases include the two-kind question, the benign first sentence, the empty question, the quoted example, the declaration that raises a kind, the declaration that cannot lower one, the declaration outside the six and two declarations.
-- `ladder-cases.json` holds the four rungs, the `bot` fallback, the two implemented values, the three that are not, ten scope cases and the 21-row matrix of seven kinds by three scopes.
+- `action-kinds.json` holds the six kinds in `classifyAction`'s order, the word list each kind is recognized by, one sample question per kind and nine cases. The cases include the two-kind question, the benign first sentence, the empty question, the quoted example, the declaration that raises a kind, the declaration that cannot lower one, the declaration outside the seven and two declarations.
+- `ladder-cases.json` holds the four rungs, the `bot` fallback, the two implemented values, the three that are not, thirteen scope cases and the 21-row matrix of seven kinds by three scopes.
+
+The matching rule the cases are read under is `../records.md` section 5.4: lower case, whole word, a phrase matched as a phrase and the declaration tokens removed before the scan. The `two declarations, the first wins` case is the one that proves the last two rules together. Its text scans as `Notify the buyer` once both declaration lines are cut out, so `notify` matches `send` and the `buy` inside `buyer` matches nothing, and the first declaration wins. A reader that matched substrings would read `pay` from the second token and a reader that scanned the declarations would read `pay` as well, so the row fails on either mistake.
 
 ## 3. THE ONE CASE THAT IS A LIMITATION
 

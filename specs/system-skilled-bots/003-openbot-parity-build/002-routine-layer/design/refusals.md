@@ -22,19 +22,21 @@ The exit rule is the packet's. A definition parse refusal exits 4 at run time as
 
 | # | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Checker invariant id | Fixture |
 |---|------|-------|-------|------|------------------|----------------------|---------|
-| 1 | `routine-trigger-conflict` | Definition parse | - | 4 run, 1 checker | No | `routine-trigger-conflict` | `routine-trigger-conflict` |
-| 2 | `routine-tell-with-targets` | Definition parse | - | 4 run, 1 checker | No | `routine-tell-with-targets` | `routine-tell-with-targets` |
-| 3 | `routine-starts-empty` | Definition parse | - | 4 run, 1 checker | No | `routine-starts-empty` | `routine-starts-empty` |
-| 4 | `routine-starts-multiple-cron` | Definition parse | - | 4 run, 1 checker | No | `routine-starts-multiple-cron` | `routine-starts-multiple-cron` |
-| 5 | `routine-starts-cron-not-first` | Definition parse | - | 4 run, 1 checker | No | `routine-starts-cron-not-first` | `routine-starts-cron-not-first` |
-| 6 | `routine-starts-multiple` | Definition parse | - | 4 run, 1 checker | No | `routine-starts-multiple` | `routine-starts-multiple` |
-| 7 | `routine-until-check-without-outcome` | Definition parse | - | 4 run, 1 checker | No | `routine-until-check-without-outcome` | `routine-until-check-without-outcome` |
-| 8 | `routine-until-shell-metacharacters` | Definition parse | - | 4 run, 1 checker | No | `routine-until-shell-metacharacters` | `routine-until-shell-metacharacters` |
+| 1 | `routine-trigger-conflict` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-trigger-conflict` | `routine-trigger-conflict` |
+| 2 | `routine-tell-with-targets` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-tell-with-targets` | `routine-tell-with-targets` |
+| 3 | `routine-starts-empty` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-starts-empty` | `routine-starts-empty` |
+| 4 | `routine-starts-multiple-cron` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-starts-multiple-cron` | `routine-starts-multiple-cron` |
+| 5 | `routine-starts-cron-not-first` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-starts-cron-not-first` | `routine-starts-cron-not-first` |
+| 6 | `routine-starts-multiple` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-starts-multiple` | `routine-starts-multiple` |
+| 7 | `routine-until-check-without-outcome` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-until-check-without-outcome` | `routine-until-check-without-outcome` |
+| 8 | `routine-until-shell-metacharacters` | Definition parse | - | 4 run, 1 checker | No | `definition.routine-until-shell-metacharacters` | `routine-until-shell-metacharacters` |
 | 9 | `routine-floor-15-minutes` | Checker invariant, and an install refusal | - | 1 checker, 4 `bots install` | No | `routine-floor-15-minutes` | `routine-floor` |
 | 10 | `routine-fatigued` | Run refusal | `null` | 4 | Yes | none | none, a state root is the fixture |
 | 11 | `routine-completed` | Run refusal | `null` | 4 | Yes | none | none, a state root is the fixture |
 
 Rows 1 to 8 are details of `definition-malformed` at run time, never registry entries, because the runner already folds every parse refusal into that one cause. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:789] Row 9 is the one refusal that is both a checker invariant and an install refusal, because the checker audits a checkout and the installer refuses before it writes a plist.
+
+**The checker prefixes a parse reason with `definition.`.** `parseDefinition` calls the routine parser, so rows 1 to 8 are parse refusals and the checker prints them as `FAIL: definition.<reason>`, the shape it already uses for every parse reason [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:177]. The reason string the runtime returns stays unprefixed, so a run records `definition-malformed` with the bare reason as its detail. Row 9 is a checker invariant rather than a parse refusal, so it prints unprefixed.
 
 **The registry after this phase.** `REFUSAL_CAUSES` holds 25 causes today and this phase adds two, so it holds 27 until 005 adds its own. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:122-149] Both new entries keep the `{ reason, class }` shape the registry types. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:149]
 
@@ -44,7 +46,7 @@ Rows 1 to 8 are details of `definition-malformed` at run time, never registry en
 
 | # | Where it surfaces | The exact line |
 |---|-------------------|----------------|
-| 1 to 8 | The checker | `FAIL: <name>: <message>` on stdout, exit 1 [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:110-113] |
+| 1 to 8 | The checker | `FAIL: definition.<name>: <message>` on stdout, exit 1 [SOURCE: .skilled/skills/system-skilled-bots/scripts/bot-check.cjs:110-113] |
 | 1 to 8 | A run | `bots: <botId> refused before dispatch (definition-malformed: <name>)` on stdout, exit 4 [SOURCE: .skilled/bin/bots.cjs:404] |
 | 9 | The checker | `FAIL: routine-floor-15-minutes: <message>` on stdout, exit 1 |
 | 9 | `bots install` | `bots: routine-floor-15-minutes: <detail>` on stderr, exit 4 [SOURCE: .skilled/bin/bots.cjs:208-214] |
@@ -52,6 +54,8 @@ Rows 1 to 8 are details of `definition-malformed` at run time, never registry en
 | 11 | A run | `bots: <botId> refused before dispatch (routine-completed)` on stdout, exit 4 |
 
 The checker's message for each invariant names the file and the field, in the shape the existing invariants use, such as `bots/<id>/BOT.md: routine.starts holds 2 entries`. The message is not asserted by a test, only the id is, so a builder may word it freely as long as the id is exact.
+
+**The precedence between the three `starts` names.** Rows 4, 5 and 6 can all fire on one `starts` list, so the order is fixed and the first that applies is the one reported: `routine-starts-multiple-cron` when two or more entries are cron, else `routine-starts-cron-not-first` when exactly one entry is cron and it is not at index 0, else `routine-starts-multiple`. `design/fixtures.md` section 2 states the same rule beside the three fixtures that prove it, and `spec.md` REQ-009 cites both.
 
 ---
 
@@ -102,7 +106,7 @@ The screen contract's section 9 fixes how the screen draws a failed read of the 
 
 | Decision | Why |
 |----------|-----|
-| The nine parse and checker names are the checker's invariant ids, spelled the same | A builder writes one string per rule and a test asserts it in both places. Two spellings would be two names for one rule |
+| The eight parse names carry the checker's `definition.` prefix and the floor name does not | The checker already prints every parse reason as `definition.<reason>`, so the routine parse reasons follow it and a builder writes no new branch. The floor is a checker invariant rather than a parse refusal, so it prints unprefixed |
 | The floor fixture is `routine-floor`, not `routine-floor-15-minutes` | The fixture folder names the rule and the invariant id names the bound. The other nine fixtures carry the invariant id because the id is the whole rule |
 | `routine-fatigued` and `routine-completed` carry class `null` | Neither is a failure. A class would make a refused run count toward the streak, which is the bug the refusal exists to report |
 | `disabled` is checked before `completed` | A bot that is both fatigued and completed reports the fatigue, which is the state the operator has to act on |

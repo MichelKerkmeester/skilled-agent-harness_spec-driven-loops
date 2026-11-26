@@ -33,14 +33,14 @@ open	20261125T211204Z-7c1e9a40	hello	created 2026-11-25T21:12:04.000Z	expires 20
 ### 1.2 After this phase, an open item
 
 ```text
-open	20261125T211204Z-7c1e9a40	hello	send	kind	-	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
+open	20261125T211204Z-7c1e9a40	hello	post	kind	-	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
 	Ship the release?
 ```
 
 ### 1.3 After this phase, an answered item under `--all`
 
 ```text
-answered	20261125T211204Z-7c1e9a40	hello	send	kind	deny	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
+answered	20261125T211204Z-7c1e9a40	hello	post	kind	deny	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
 	Ship the release?
 ```
 
@@ -82,7 +82,7 @@ The row is 001's ten keys plus `grants`. [SOURCE: specs/system-skilled-bots/003-
   "expiresAt": "2026-11-26T21:12:04.000Z",
   "answer": null,
   "grants": {
-    "kind": "send",
+    "kind": "post",
     "action": "Ship the release?",
     "rung": "kind",
     "scope": null,
@@ -96,7 +96,7 @@ The envelope is `{"version": 1, "items": [...]}` and the empty shape is `{"versi
 
 ### 2.1 The two `kind` keys on one row
 
-The row carries `kind` and `grants.kind` and they do not share a vocabulary. `kind` is the review kind, `decision` here. `grants.kind` is the action kind, `send` here. A reader that means the action says `grants.kind`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
+The row carries `kind` and `grants.kind` and they do not share a vocabulary. `kind` is the review kind, `decision` here. `grants.kind` is the action kind, `post` here. A reader that means the action says `grants.kind`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "1. NEEDS-YOU ITEM"]
 
 ### 2.2 An item written before this phase
 

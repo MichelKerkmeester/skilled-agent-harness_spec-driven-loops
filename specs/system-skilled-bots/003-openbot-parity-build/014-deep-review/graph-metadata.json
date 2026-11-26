@@ -52,15 +52,15 @@
       "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md",
       "design/refusals.md",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      "runtime/lib/README.md",
       "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/implementation-summary.md",
       "design/state-machines.md",
       "design/mockups.md",
       ".skilled/commands/deep/review.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       "design/fixtures/README.md",
-      ".skilled/skills/system-skilled-bots/runtime/package.json",
-      ".skilled/commands/assets/local-skilled-alignment/executors.json",
-      "design/fixtures/preflight.json"
+      ".skilled/skills/system-skilled-bots/runtime/package.json"
     ],
     "entities": [
       {
@@ -130,6 +130,18 @@
         "source": "derived"
       },
       {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
         "name": "state-machines.md",
         "kind": "doc",
         "path": "design/state-machines.md",
@@ -154,27 +166,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "design/fixtures/README.md",
-        "source": "derived"
-      },
-      {
         "name": "package.json",
         "kind": "config",
         "path": ".skilled/skills/system-skilled-bots/runtime/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "executors.json",
-        "kind": "config",
-        "path": ".skilled/commands/assets/local-skilled-alignment/executors.json",
-        "source": "derived"
-      },
-      {
-        "name": "preflight.json",
-        "kind": "config",
-        "path": "design/fixtures/preflight.json",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Thirteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
     "created_at": "2026-11-25T19:32:30Z",
-    "last_save_at": "2026-11-26T05:55:07.935Z",
+    "last_save_at": "2026-11-26T07:00:11.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0716eaf5ee8b25486648286692a592e252004c62132fe4dccc9e1268d3a13f4b",
+    "source_fingerprint": "sha256:12943a7417b7eb90ebdef7ab68e1c7cb1b8b4b78dbf5ca1db58174c81793ce16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b3133ee48d9d7bb4e5cf3f3810f766e8459cce7a042e10b558fd7cfe731dc2a8",
-      "plan.md": "1ff22712f45dd27229871909ef2b658474c19bbafa975004a2a2342310307054",
-      "tasks.md": "c1be34c4ce8249624740e85fcc1e2c854a0747f1b258b7e03a1e34cc666bb9fc",
+      "spec.md": "8bae3ac6dce0def0d7ad23a9eeaf522a1bb9ae815221ad87324a9486086be37a",
+      "plan.md": "dbb59a68b0a621d9ec23443c283182513429431455241447b1131b36476d0f8e",
+      "tasks.md": "d2315787edb37b620fdb6e76a6563213ab0d3f070238f02284dade1384b52883",
       "implementation-summary.md": "04417aeaae86ae895456f3ac9983e2556685981dc6a6c5ca571272e96b471aad"
     },
     "last_active_at": null

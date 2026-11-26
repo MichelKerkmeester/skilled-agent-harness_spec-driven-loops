@@ -117,7 +117,7 @@ The gate is `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh s
 | `node -e "const t=require('./.skilled/commands/assets/local-doc-alignment/topics.json');console.log(Object.keys(t.topics).length)"` | 10, the count the new entry raises to 11 |
 | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/system-skilled-bots` | exit 0 |
 | `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` | exit 0 |
-| `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-skilled-bots/manual-testing-playbook` | exit 1, `violations=17 warnings=30`. All 17 are `INDEX_ORPHAN_FILE`: the root `manual-testing-playbook.md` links none of the 17 per-feature files under `activity/`, `conversations/` and `routines/`. This is a finding for the fix pass and not a baseline, so the criterion reads `violations=0` only after T014 |
+| `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` | exit 0, `violations=0 warnings=0` over 58 scenarios in 17 categories. The seventeen `INDEX_ORPHAN_FILE` rows that stood before 012 are closed by that phase's root-index task, so the criterion is a regression guard and T014 keeps it green |
 | `rg -n '^- Open findings: 0' evidence/*/report.md` | Prints nothing yet, because neither run is made. This is the row that decides closure |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment --strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
@@ -128,7 +128,7 @@ The gate is `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh s
 ## Known Limitations
 
 1. **Neither alignment run is made.** The topic entry, the two runs, the fix pass and the evidence copy are all pending, so `evidence/skilled-alignment/` and `evidence/doc-alignment/` hold only their `.gitkeep` and the clean criterion has nothing to read. The workaround is the task order in `tasks.md`: T009 adds the topic, T010 and T011 make the two runs, T012 to T016 work the reports and T020 copies the evidence.
-2. **The 35-line help and the 11-verb table are today's numbers.** Phases 001 to 011 add eight more verb groups, so both counts move before this phase runs. The pair is re-measured after 012 closes and the new pair replaces the two rows above.
+2. **The help-line and verb counts are recorded, not asserted.** The 35-line help and the 11-verb table are the pre-001 measurement. Phases 001 to 011 add eight more verb groups, so both counts move before this phase runs. T008 records the pair at this phase's setup in `scratch/help-baseline.md`, and the new pair replaces the two rows above.
 3. **The doc run's `recheck.md` is a copy of its last `report.md`.** The doc run has no recheck mode, so its `still_open` and `new` buckets do not exist and the criterion for that command reads the report's `Open findings` line instead. `design/records.md` section 12 records the choice.
 <!-- /ANCHOR:limitations -->
 

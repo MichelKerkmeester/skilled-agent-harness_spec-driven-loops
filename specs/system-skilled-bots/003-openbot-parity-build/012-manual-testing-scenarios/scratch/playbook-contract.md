@@ -54,4 +54,4 @@ A citation is `[SOURCE: path:line]` and the line has to resolve. A contract is c
 
 ## 10. The result record
 
-A run is recorded by `record-playbook-run.cjs` and never by hand. The recorder writes `results.csv` with the columns `scenario_id,runtime,verdict,reason,evidence`, a leading line naming itself, and the run's own page. A hand-edited `results.csv` is a record with no provenance.
+A run is recorded by `record-playbook-run.cjs` and never by hand. The recorder writes `results.csv` with the columns `scenario_id,runtime,verdict,reason,evidence`, a leading line naming itself and the run's own page. A hand-edited `results.csv` is a record with no provenance.

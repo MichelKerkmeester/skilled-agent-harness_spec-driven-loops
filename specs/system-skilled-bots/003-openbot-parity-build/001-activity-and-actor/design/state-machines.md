@@ -129,19 +129,23 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-  A["resolveActor with as and env"] --> B{"as given?"}
+  A["resolveActor with as, env and scheduled"] --> B{"as given?"}
   B -- yes --> C["trim"]
   C --> D{"matches ACTOR_PATTERN?"}
   D -- no --> RF["refusal, the CLI prints bots --as takes a name"]
   D -- yes --> OK["actor is the trimmed as"]
-  B -- no --> E{"env SKILLED_BOTS_OPERATOR set and matching?"}
+  B -- no --> E{"env SKILLED_BOTS_OPERATOR set, matching and scheduled?"}
   E -- yes --> OP["actor is the pinned operator"]
-  E -- no --> F{"os userInfo username resolves and matches?"}
+  E -- no --> E2{"env SKILLED_BOTS_OPERATOR set and matching, but not scheduled?"}
+  E2 -- yes --> TTY{"stdin a tty, or the name is the OS user?"}
+  TTY -- yes --> OP
+  TTY -- no --> RF2["refusal, the CLI prints bots --as needs a tty"]
+  E2 -- no --> F{"os userInfo username resolves and matches?"}
   F -- yes --> OS["actor is the OS user"]
   F -- no --> NU["actor is null"]
 ```
 
-`env` is the environment the run or the answer executes under, never `resolveEnv`. [data-model.md](data-model.md) section 8 says why.
+`env` is the environment the run or the answer executes under, never `resolveEnv`. [data-model.md](data-model.md) section 8 says why. `scheduled` is true on a scheduled fire or a scheduled drain, so a shell that exports the pinned name takes the tty rule instead of the name.
 
 ---
 
@@ -151,7 +155,9 @@ Every check here runs in `bots.cjs` before the runtime loads, so each refusal ex
 
 ```mermaid
 flowchart TD
-  P["parseArgs"] --> P1{"known options only, answer takes as and scope?"}
+  P["parseArgs"] --> C0{"SKILLED_BOT_RUN_ID or AI_SESSION_CHILD=1 in the environment?"}
+  C0 -- yes --> U0["child-write-refused, exit 2"]
+  C0 -- no --> P1{"known options only, answer takes as and scope?"}
   P1 -- no --> U1["unknown option or answer takes no option, exit 2"]
   P1 -- yes --> P2{"item id and non-blank text?"}
   P2 -- no --> U2["answer needs the answer text, exit 2"]
@@ -169,10 +175,12 @@ flowchart TD
   S3 -- no --> U6["--scope takes once or deny, exit 2"]
   S3 -- yes --> T1{"--as given and not the OS user and stdin not a tty?"}
   T1 -- yes --> U7["--as needs a tty, exit 2"]
-  T1 -- no --> RT["load the runtime and call answerItem with actor and scope"]
+  T1 -- no --> T2{"SKILLED_BOTS_OPERATOR set, not a scheduled fire or drain, not the OS user and stdin not a tty?"}
+  T2 -- yes --> U7
+  T2 -- no --> RT["load the runtime and call answerItem with actor and scope"]
 ```
 
-`bots run --as` takes the same `--as` branch and the same tty check. `bots schedule install --full-access` takes the tty check alone, with the message `bots: --full-access needs a tty`.
+`bots run --as` takes the same `--as` branch and the same tty check. `bots schedule install --full-access` takes the tty check alone, with the message `bots: --full-access needs a tty`. `bots enable` takes the child check alone, because it writes the fatigue item's answer and takes no `--as`.
 
 ---
 

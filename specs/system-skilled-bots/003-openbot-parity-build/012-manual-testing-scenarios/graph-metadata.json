@@ -50,17 +50,17 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
       ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
+      "design/refusal-catalogue.md",
       "benchmark/reports/README.md",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       "scratch/results.csv",
+      "scratch/failures.md",
       "scratch/verb-and-record-map.md",
       "scratch/playbook-contract.md",
       "scratch/baseline-corpus.md",
       "scratch/baseline-verbs.txt",
       "scratch/scenario-inventory.md",
-      "scratch/verdicts-conversations.csv",
-      "scratch/verdicts-routines.csv",
-      "scratch/verdicts-activity-screen.csv",
-      "scratch/verdicts-rest.csv"
+      "scratch/verdicts-conversations.csv"
     ],
     "entities": [
       {
@@ -118,9 +118,27 @@
         "source": "derived"
       },
       {
+        "name": "refusal-catalogue.md",
+        "kind": "doc",
+        "path": "design/refusal-catalogue.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
         "name": "results.csv",
         "kind": "file",
         "path": "scratch/results.csv",
+        "source": "derived"
+      },
+      {
+        "name": "failures.md",
+        "kind": "doc",
+        "path": "scratch/failures.md",
         "source": "derived"
       },
       {
@@ -160,24 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "verdicts-routines.csv",
-        "kind": "file",
-        "path": "scratch/verdicts-routines.csv",
-        "source": "derived"
-      },
-      {
-        "name": "verdicts-activity-screen.csv",
-        "kind": "file",
-        "path": "scratch/verdicts-activity-screen.csv",
-        "source": "derived"
-      },
-      {
-        "name": "verdicts-rest.csv",
-        "kind": "file",
-        "path": "scratch/verdicts-rest.csv",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
     "created_at": "2026-11-25T19:32:28Z",
-    "last_save_at": "2026-11-26T05:55:01.215Z",
+    "last_save_at": "2026-11-26T06:56:26.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8d4b54a8d2229f2e10df8c6d52696984cae8958f435394cd18a39a61bb44235",
+    "source_fingerprint": "sha256:1456766bde3d91e74d5e1337daf153404c2caeb07e7f425ce70e445284a93f7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7595c71034319cca0235f77cdf43ded23003dedfebf4640e6cb8f8959fe98306",
-      "plan.md": "5c6ee09e81354ed4b55bf1ce18085e8a20946b439e63961302eae3d4d453f0d9",
-      "tasks.md": "3403661ecaa12e21a9281df1074e1f5dcd4f3150ce5d1ca431137532d71ef1e4",
-      "implementation-summary.md": "ee62dd0a768f87a71ef19ca3de2bc25239a838dd7f458c93a5571e4557e0ffcf"
+      "spec.md": "01983dad3f1d359f9925ea6a34060cb43028fdb515a21044c312d3bb00de02fc",
+      "plan.md": "7f2bd795081c067c94992805b2ba355a26f7b11733da266038e61b1868e6eafa",
+      "tasks.md": "0ece847585fedec1a50145ffe9bd250c131a7e09585c55546b476b89501c3fcf",
+      "implementation-summary.md": "b79f87ec490f2b39d962a146e49aa4ef27285c8b5241a8c9a3fcbb4c373643b4"
     },
     "last_active_at": null
   }

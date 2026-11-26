@@ -1,6 +1,6 @@
 ---
 title: "Design: the literal draft SKILL.md template"
-description: "The exact draft bots skill propose writes, the run-record field that fills each slot, the literal used where no field fills one, and the validator run that proves the draft passes validate_skill_package.py."
+description: "The exact draft bots skill propose writes, the run-record field that fills each slot, the literal used where no field fills one and the validator run that proves the draft passes validate_skill_package.py."
 trigger_phrases:
   - "skill draft template"
   - "proposal draft SKILL.md"

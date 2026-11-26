@@ -84,6 +84,7 @@ A scan that must find nothing is stated as `exits 1`, never as `prints 0`: `rg -
 | AC-025 | REQ-004 | Given a name stored in the keychain through the fake `security`, When `bots secret forget` runs, Then the item and the entry are gone, and `forget --store file` is refused with exit 2 | `tests/secrets.vitest.ts` "keychain forget" case passes, and `node .skilled/bin/bots.cjs secret forget demo --store file --repo "$FIXTURE"; echo "exit=$?"` prints `secret forget takes no --store` and `exit=2` | Unmet | - |
 | AC-026 | REQ-019 | Given the suite, When it runs, Then no test reaches the login keychain | `tests/secrets.vitest.ts` "login keychain guard" passes, and `security find-generic-password -s skilled-bots >/dev/null 2>&1; echo "exit=$?"` prints `exit=44` after the suite on a host where the operator has stored nothing | Unmet | - |
 | AC-027 | REQ-014 | Given a child that writes the value to stderr, When the run ends, Then the stream is captured before it reaches the bots process's stderr, the redacted copy is what is re-emitted or written, no match survives under `$STATE/agent-logs`, and one `secret-in-output` row is on `postRunCauses` | (cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/secrets.vitest.ts -t "^post-run scan redacts the child's stderr$")` prints `Tests  1 passed`, and `rg -c 'skilled-test-value-7f3a' "$STATE"/agent-logs` exits 1 | Unmet | - |
+| AC-028 | REQ-020 | Given a stored value, When `bots secret set demo` runs and the index is read, Then `entries.demo.setBy` names the actor `resolveActor` returned, an entry written before the actor was recorded reads as `null` and `bots secret list` prints no actor | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/secrets.vitest.ts -t "^secret index records the actor and keeps it out of list$")` prints `Tests  1 passed` | Unmet | - |
 
 ### Status values
 
@@ -110,5 +111,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-All 26 rows are unmet: no verb stores a value yet, so every later criterion has nothing to read.
+All 28 rows are unmet: no verb stores a value yet, so every later criterion has nothing to read.
 <!-- /ANCHOR:closure -->

@@ -50,5 +50,12 @@
   ],
   "presentCount": 4,
   "fallbackUsed": true,
-  "fallbackOrder": ["pi", "opencode", "vibe", "devin", "codex"]
+  "fallbackOrder": ["pi", "opencode", "vibe", "devin", "codex"],
+  "suiteBaseline": {
+    "testFiles": 35,
+    "tests": 381,
+    "command": "cd .skilled/skills/system-skilled-bots/runtime && npm test",
+    "capturedAt": "2026-11-25T20:58:31Z"
+  },
+  "baseCommit": "79519553b62"
 }

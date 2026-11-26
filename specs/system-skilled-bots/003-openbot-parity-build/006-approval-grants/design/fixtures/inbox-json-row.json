@@ -10,7 +10,7 @@
   "expiresAt": "2026-11-26T21:12:04.000Z",
   "answer": null,
   "grants": {
-    "kind": "send",
+    "kind": "post",
     "action": "Ship the release?",
     "rung": "kind",
     "scope": null,

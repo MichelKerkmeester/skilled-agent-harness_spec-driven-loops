@@ -181,7 +181,7 @@ stateDiagram-v2
     FAIL --> PASS: every P0 and every P1 is fixed
     CONDITIONAL --> CONDITIONAL: a P1 is deferred, or a filed product failure is open
     CONDITIONAL --> PASS: every P1 is fixed and no filed product failure is open
-    PASS --> CONDITIONAL: a filed product failure is open, or a frontier node closed short
+    PASS --> CONDITIONAL: a filed product failure is open, a frontier node closed short, or a scenario re-run reads SKIP for a missing verb or field
     PASS --> [*]
     CONDITIONAL --> [*]
     FAIL --> [*]
@@ -194,11 +194,14 @@ The rule, in the order it is applied:
 | 1 | any finding reads `active` with severity `P0` | `FAIL` | step 2 |
 | 2 | any finding reads `deferred` with severity `P1` | `CONDITIONAL` | step 3 |
 | 3 | `seeded-findings.json` holds a `012-failures` row whose finding is not `fixed` | `CONDITIONAL` | step 4 |
-| 4 | a frontier node closed `exhausted` or `blocked` short of its dimension universe | `CONDITIONAL` | step 5 |
-| 5 | a `blocked_stop` event is in the state log | `CONDITIONAL` | step 6 |
-| 6 | every test above is false | `PASS` | not reached |
+| 4 | a `scenario-rerun.json` entry reads `SKIP` with a reason naming a missing verb or a missing field | `CONDITIONAL` | step 5 |
+| 5 | a frontier node closed `exhausted` or `blocked` short of its dimension universe | `CONDITIONAL` | step 6 |
+| 6 | a `blocked_stop` event is in the state log | `CONDITIONAL` | step 7 |
+| 7 | every test above is false | `PASS` | not reached |
 
 Step 3 is D4. A filed product failure does not block 012's close and it does block this phase's PASS, so a run that leaves one open reads `CONDITIONAL` and names it in Deferred Items.
+
+Step 4 is the scenario re-run rule. A `SKIP` whose reason names a prerequisite the build does not own, such as a channel account or a host without a tty, is a recorded outcome and does not reach this step. A `SKIP` whose reason names a missing verb or a missing field is a defect, because phases 001 to 011 are closed before the corpus runs, so the run reads `CONDITIONAL` and names the row in Deferred Items.
 
 `hasAdvisories` is true when any finding reads `deferred` with severity `P2`. It does not change the verdict.
 
@@ -222,7 +225,7 @@ sequenceDiagram
   Or->>Va: validate 013 with --strict
   Va-->>Or: RESULT: PASSED, or the run stops
   Or->>Su: npm test in the runtime folder
-  Su-->>Or: 35 files and 381 tests, the baseline
+  Su-->>Or: the suite baseline, recorded in preflight.json
   Or->>Bi: command -v and one version probe each
   Bi-->>Or: present or absent, per binary
   Or->>Pk: write preflight.json with the five entries
@@ -345,6 +348,7 @@ sequenceDiagram
 | A lineage whose work is whole but whose terminal row is missing counts as complete | The plan-depth research hit exactly this case and judged the lineage on content [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:5]. Calling it failed would report whole findings as partial |
 | The fallback keeps the count at five and changes the label set | D3 says the fallback wins, and AC-003 reads five lineages after it. A group with `--count=2` yields two labels, so the count holds and the labels say which executor ran twice |
 | A deferred P1 closes the packet on `CONDITIONAL` | REQ-005 allows a deferral and the handoff criteria reads zero active P1. A `CONDITIONAL` close is the honest reading of both, and a false PASS is the one outcome the phase may not produce |
-| The verdict is applied as six ordered tests, not as a score | A score leaves a builder choosing a weight. Six tests each name a fact a reader can check |
+| The verdict is applied as seven ordered tests, not as a score | A score leaves a builder choosing a weight. Seven tests each name a fact a reader can check |
+| A `SKIP` for a missing verb or field is a verdict test and not a recorded outcome | A skip is honest only when the blocker is outside the build. After phases 001 to 011 close, a missing verb is a defect, and a `PASS` over it would claim a surface nobody proved |
 | The scenario re-run resolves the owning phase from the failure row first | The row is precise and the folder is conservative. Reading the folder first would re-run nine conversation scenarios for a fix in 001 |
 | A `FAIL` in the re-run is a new finding rather than a reopened one | The original finding was fixed and its fix proved. A new failure is a new defect, and merging the two would hide which change caused it |

@@ -1,5 +1,5 @@
 {
-  "kind": "send",
+  "kind": "post",
   "action": "Ship the release?",
   "rung": "kind",
   "scope": null,

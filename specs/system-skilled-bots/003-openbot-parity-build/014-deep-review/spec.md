@@ -36,7 +36,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs, and the packet's own phase documents. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
+This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs and the packet's own phase documents. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
 
 **Scope Boundary**: One expanded `/deep:review` run over the code and docs phases 001 to 013 built, the synthesis of its findings, the fix for every P0 and P1 it reports, and the re-run of the affected tests. New feature work, a change to the parity research, a rewrite of a phase document's scope, and any fix to a P2 finding are out of scope.
 
@@ -52,13 +52,13 @@ This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.ski
 | Input | What one row is | What this phase does with it |
 |-------|-----------------|------------------------------|
 | `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/failures.md` | one filed product failure, carrying the scenario id, the phase, the requirement, the observed line and the evidence path [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:144] | seeds one finding, at the severity `design/records.md` section 7.4 assigns |
-| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | one `## <finding-id>` heading and the reason under it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/tasks.md, T016] | seeds one finding when the reason is `handed to 014`, and nothing when it is not |
+| `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch/rebuttals.md` | one `## <finding-id>` heading and the six bullet fields under it, including `- Phase: <NNN>` and `- Status: handed_off` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/records.md, section 11] | seeds one finding when the row's `Status` is `handed_off`, and nothing when it is `rebutted` |
 | `specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/evidence/` | one finding in `skilled-alignment/findings.json` or `doc-alignment/findings.json` | seeds one finding per finding that is not fixed |
 
 A missing input is recorded in `review/seeded-findings.json` with its reason and does not stop the run, because a phase that filed nothing has nothing to hand over. An input that exists and holds a row this phase cannot read is refused `review-seed-unreadable`, per `design/refusals.md` section 2.1.
 
 **Deliverables**:
-- One `/deep:review:auto` run with `--depth-mode=expansive`, `--spec-folder` bound to this packet, and a five-lineage fan-out, writing its packet under `review/`
+- One `/deep:review:auto` run with `--depth-mode=expansive`, `--spec-folder` bound to this packet and a five-lineage fan-out, writing its packet under `review/`
 - The synthesized `review/review-report.md` with one verdict line, and the merged findings registry
 - A fix for every P0 and P1 finding, each with the verification step that proved it
 - The re-run of the affected tests, the re-run of every 012 scenario whose owning phase a fix touched, and the whole runtime suite once at the end
@@ -91,7 +91,7 @@ $ cd .skilled/skills/system-skilled-bots/runtime && npm test
    Duration  70.80s (transform 3.96s, setup 0ms, import 7.24s, tests 631.88s, environment 1ms)
 ```
 
-Exit status 0. The suite is 35 files and 381 tests, and the command is the one the tests README names [SOURCE: .skilled/skills/system-skilled-bots/runtime/tests/README.md:107]. Every count this spec states about the current suite quotes this block, and REQ-006 is met only when the same command exits 0 with at least 381 tests passing.
+Exit status 0. The suite was 35 files and 381 tests when this block was captured, and the command is the one the tests README names [SOURCE: .skilled/skills/system-skilled-bots/runtime/tests/README.md:107]. The block is the pre-build measurement and not the floor. Phases 001 to 013 add test files, so the floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, and REQ-006 is met only when the same command exits 0 with at least that recorded count passing. A floor quoted from this block would pass a build that deleted a phase's tests.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -110,7 +110,7 @@ Exit status 0. The suite is 35 files and 381 tests, and the command is the one t
 - New feature work, a new runtime module or a new CLI verb - the review reports what exists, and a missing feature is a finding for a later packet, not a fix here
 - A change to the parity research or to a phase's scope - a finding that says a phase's scope is wrong is recorded and deferred, because the scope is frozen
 - Fixing a P2 finding - recorded in the report and left open, since the verdict reads PASS with advisories
-- A second review run after the fixes - the fix pass re-runs the affected tests and the validator, not the loop; a re-review is a later operator decision
+- A second review run after the fixes - the fix pass re-runs the affected tests and the validator, not the loop. A re-review is a later operator decision
 
 ### Files to Change
 
@@ -123,6 +123,10 @@ Exit status 0. The suite is 35 files and 381 tests, and the command is the one t
 | `.skilled/bin/bots.cjs` | Modify | Only when a finding names a CLI verb or flag |
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | Modify | Only when a finding names a checker invariant |
 | `specs/system-skilled-bots/003-openbot-parity-build/0[01][0-9]-*/` | Modify | Only the doc line a docs-truth finding names |
+| `specs/system-skilled-bots/003-openbot-parity-build/contracts/` | Modify | Only when a finding names a contract the build got wrong. A contract-changing fix edits the contract, its golden, the code and the owning phase document in one worker, because a contract that moves under three of the four leaves the fourth describing a shape nobody has |
+| `crates/bots-tui/` | Modify | Only the module, test or fixture a finding names. The crate is phase 003's surface and the review reads it like any other |
+| `.skilled/skills/system-skilled-bots/assets/bot-template.txt` and the skill docs under `.skilled/skills/system-skilled-bots/` | Modify | Only the line a docs-truth finding names, in the template, `SKILL.md`, `README.md`, `runtime/lib/README.md` or a mode folder |
+| `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Modify | Only the scenario line a finding names, because a scenario that drives a verb the CLI does not have is a docs-truth defect |
 | `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/implementation-summary.md` | Modify | The review outcome, the finding count by severity and the fix list |
 
 ### Design artifacts
@@ -132,7 +136,7 @@ The design work is done before the run, so the run copies a shape rather than ch
 | File | What it fixes |
 |------|---------------|
 | `design/records.md` | every field of every record this phase writes, the probe record, the seeded-finding intake, the fix ledger row, the scenario re-run record and the nine report sections |
-| `design/state-machines.md` | the run, the lineage, the finding and the fix wave as four state machines, five sequences in Mermaid, and the six ordered tests that produce the verdict |
+| `design/state-machines.md` | the run, the lineage, the finding and the fix wave as four state machines, five sequences in Mermaid and the seven ordered tests that produce the verdict |
 | `design/refusals.md` | every way the run stops before it writes a verdict, with its layer, its exit code and what is on disk when it stops, plus what is not a refusal |
 | `design/fixtures/` | one golden per record, on one data set, with the command that reads each and the count it must print |
 | `design/mockups.md` | the console transcript as three frames, the rendered report, the rendered ledger and the dashboard as an operator reads them, plus the two failure frames |
@@ -155,7 +159,7 @@ The review names five dimensions. The loop configures dimensions by id, and a na
 |---|---|---|
 | Correctness | `correctness` | Logic, invariants, state transitions and edge cases in the modules 001 to 013 built, against the behavior their docs claim |
 | Security | `security` | Trust boundaries, secret handling, approval authority, path handling and prompt injection across the phases that touch them |
-| Cross-phase consistency | `traceability` | Shared records two phases both write, the build order, and whether a later phase's edit composes with an earlier one |
+| Cross-phase consistency | `traceability` | Shared records two phases both write, the build order and whether a later phase's edit composes with an earlier one |
 | Docs truth | `traceability` | Whether a doc names a verb, flag, field or file the built code actually has |
 | Tests | `maintainability` | Whether a suite asserts the shape the code now has, and whether a fixed defect has a test that fails without the fix |
 
@@ -163,7 +167,7 @@ The review names five dimensions. The loop configures dimensions by id, and a na
 
 The run stops on convergence, not on the iteration ceiling, and only when all five of these hold:
 
-1. Every canonical id the five named dimensions map onto has at least one evidence-bearing iteration in every lineage. A `complete`, `insight` or `stuck` row counts; `thought`, `error` and `timeout` spend no band share.
+1. Every canonical id the five named dimensions map onto has at least one evidence-bearing iteration in every lineage. A `complete`, `insight` or `stuck` row counts. `thought`, `error` and `timeout` spend no band share.
 2. The composite stop score clears `convergenceThreshold` 0.1, or the frontier has drained with at least one answered node, which is the hard `frontier_drained` candidate an expansive run earns.
 3. No frontier node stays open or active, because the `frontierOpen` veto holds the loop at CONTINUE while one does.
 4. The three quality gates pass: evidence (every active finding carries file:line), scope (nothing outside the declared target) and coverage (the required dimensions and traceability protocols are covered).
@@ -180,7 +184,7 @@ Hitting `maxIterations` 7 without a false-positive STOP is a legal stop, and the
 | REQ-003 | The review runs as a fan-out of five lineages, one per roster executor, with `--concurrency=5`, and `review/orchestration-summary.json` lists all five labels with no partition gap. A lineage whose binary is absent is replaced in the fallback order, so the count reads five after the fallback and not before it. |
 | REQ-004 | Every P0 finding is fixed, and each fix names the finding id, the file and the command whose output proved it. |
 | REQ-005 | Every P1 finding is fixed and verified, or deferred with a recorded reason that names the finding id and what blocks it. |
-| REQ-006 | The affected tests are re-run after the last fix and pass: `npm test` in the runtime folder exits 0 with at least 381 tests passing. |
+| REQ-006 | The affected tests are re-run after the last fix and pass: `npm test` in the runtime folder exits 0 with at least the `suiteBaseline.tests` count `review/preflight.json` recorded at setup. |
 | REQ-011 | Every row of the three review inputs becomes a seeded finding before any lineage spawns, at the severity `design/records.md` section 7.4 assigns, and `review/seeded-findings.json` records each row with its source, its phase and its disposition. A missing input is recorded with its reason and does not stop the run. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -195,12 +199,12 @@ Hitting `maxIterations` 7 without a false-positive STOP is a legal stop, and the
 
 ### The verdict rule
 
-The verdict is strongest restriction over the lineages, then narrowed by the fix pass's own state. The six ordered tests are in `design/state-machines.md` section 5. Three outcomes follow from them:
+The verdict is strongest restriction over the lineages, then narrowed by the fix pass's own state. The seven ordered tests are in `design/state-machines.md` section 5. Three outcomes follow from them:
 
 | Verdict | When | What it does |
 |---------|------|--------------|
 | `FAIL` | a finding still reads `active` with severity `P0` | blocks the close. A P0 is a defect no later phase owns |
-| `CONDITIONAL` | no active P0, and a P1 is deferred, or a filed product failure from 012 is not fixed, or a frontier node closed short, or a `blocked_stop` event is in the state log | closes the packet and names what blocks a PASS in the report's Deferred Items section |
+| `CONDITIONAL` | no active P0, and a P1 is deferred, or a filed product failure from 012 is not fixed, or a scenario re-run reads `SKIP` for a missing verb or a missing field, or a frontier node closed short, or a `blocked_stop` event is in the state log | closes the packet and names what blocks a PASS in the report's Deferred Items section |
 | `PASS` | none of the above. A deferred P2 is allowed and sets `hasAdvisories` true | closes the packet |
 
 The verdict cannot read `PASS` while a filed product failure from `012-manual-testing-scenarios/scratch/failures.md` is open. That is D4: the failure does not block 012's close once it is filed, and it does block this phase's PASS. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D4]
@@ -217,7 +221,7 @@ The verdict cannot read `PASS` while a filed product failure from `012-manual-te
 - **SC-001**: `review/deep-review-config.json` reads `antiConvergence.depthMode` `expansive` and `reviewDimensions` `["correctness","security","traceability","maintainability"]`.
 - **SC-002**: `review/orchestration-summary.json` lists five lineage labels and reports no dealt frontier node that a lineage failed to report.
 - **SC-003**: The merged findings registry holds zero active P0 and zero active P1 at close.
-- **SC-004**: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints at least `Tests  381 passed`.
+- **SC-004**: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 and prints at least the `suiteBaseline.tests` count `review/preflight.json` recorded at setup.
 - **SC-005**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-deep-review --strict` prints `RESULT: PASSED`.
 - **SC-006**: `review/seeded-findings.json` holds one row per row of the three review inputs, each with its source, its phase and its severity, and `seededCount` equals `rows.length`.
 - **SC-007**: `review/scenario-rerun.json` holds one entry per scenario whose owning phase a fix touched, each with its result and its evidence path, and `failedCount` is `0` or every failure is a finding with a disposition.
@@ -230,7 +234,7 @@ The verdict cannot read `PASS` while a filed product failure from `012-manual-te
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 013 clean | The review reads a moving surface and its findings go stale mid-run | REQ-001 gates the start on 013's validator line, and the run records the commit it reviewed |
+| Dependency | Phase 013 clean, phases 001 to 013 committed and the tree clean | The review reads a moving surface and its findings go stale mid-run | REQ-001 gates the start on 013's validator line, the setup records the base commit in `preflight.json` and refuses a dirty tree, and the report quotes that commit on its `Reviewed commit:` line |
 | Dependency | Five CLI binaries and their provider credentials | A missing binary or an exhausted plan drops a lineage | Preflight probes every binary and records which are present. At least one must be, and an absent one is replaced in the fallback order in `plan.md` §8.3, so the fan-out keeps five lineages |
 | Dependency | The three review inputs | A filed product failure or a handed-on finding that nobody reads is a defect the build closes over | REQ-011 seeds every row before any lineage spawns, and the verdict rule reads a filed product failure |
 | Risk | A fix pass widens into a rewrite | The diff leaves the reviewed surface and the verdict no longer describes it | REQ-009 caps the diff to the named surfaces and exempts this phase's own outputs, and a fix that needs a new surface is deferred as a finding |
@@ -249,10 +253,10 @@ The verdict cannot read `PASS` while a filed product failure from `012-manual-te
 
 ### Performance
 - **NFR-P01**: Each lineage stays inside the loop's `maxDurationMinutes` of 120, and a lineage that reaches it stops on its duration budget rather than being killed.
-- **NFR-P02**: A fix wave runs only the suites covering the files it changed; the whole 35-file suite runs once, in the final wave.
+- **NFR-P02**: A fix wave runs only the suites covering the files it changed. The whole suite runs once, in the final wave.
 
 ### Security
-- **NFR-S01**: No credential value appears in a lineage prompt, a review artifact or a fix commit; a prompt names the environment variable, never its value.
+- **NFR-S01**: No credential value appears in a lineage prompt, a review artifact or a fix commit. A prompt names the environment variable, never its value.
 - **NFR-S02**: Every lineage runs with `AI_SESSION_CHILD=1` and the child-dispatch preamble, and a review lineage runs read-only, so the review cannot edit the surface it audits.
 
 ### Reliability
@@ -267,8 +271,8 @@ The verdict cannot read `PASS` while a filed product failure from `012-manual-te
 
 - Empty input: a scope discovery that finds no file writes an empty `fanout-review-scope.txt`, which the runner reads as no seeded scope, so the run halts before any lineage spawns rather than reviewing nothing and reporting PASS.
 - Empty handoff: a build that filed no product failure and handed on no finding leaves `seeded-findings.json` with `seededCount` `0` and `missingSources` naming each absent path with its reason. The run continues, because a phase that filed nothing has nothing to hand over.
-- Maximum input: a scope covering every file 001 to 013 touched exceeds one lineage's budget, so the fan-out splits it and each lineage sizes its own budget from its share of the seed; a lineage dealt no seed node runs at the loop default of 7 iterations.
-- Failure path: a lineage whose binary is missing or whose plan is exhausted is dropped before spawn and the matrix is re-run with `--count=2` on the next executor in the fallback order; a run that loses every lineage exits non-zero and writes no verdict line.
+- Maximum input: a scope covering every file 001 to 013 touched exceeds one lineage's budget, so the fan-out splits it and each lineage sizes its own budget from its share of the seed. A lineage dealt no seed node runs at the loop default of 7 iterations.
+- Failure path: a lineage whose binary is missing or whose plan is exhausted is dropped before spawn and the matrix is re-run with `--count=2` on the next executor in the fallback order. A run that loses every lineage exits non-zero and writes no verdict line.
 - Partial fallback: a host with three binaries runs five lineages on three executors, so two labels carry a `-1` and a `-2` suffix. `total_cli_lineages` still reads `5` and the label set is recorded in `orchestration-summary.json`.
 - Scenario regression: a fix that breaks a scenario 012 recorded as passing makes the re-run read `FAIL`, which becomes a new finding and blocks the close until it is fixed or deferred with a reason.
 <!-- /ANCHOR:edge-cases -->
@@ -280,9 +284,9 @@ The verdict cannot read `PASS` while a filed product failure from `012-manual-te
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 16/25 | One review packet plus fixes confined to the modules and doc lines the findings name; no new module, verb or dependency |
-| Risk | 15/25 | Fixes touch runtime modules and shared records, so a wrong fix can break a phase that already passed; the suite and the validator are the guard |
-| Research | 11/20 | The dimensions, the stop rule and the executor roster are documented; what the review finds is unknown until it runs |
+| Scope | 16/25 | One review packet plus fixes confined to the modules and doc lines the findings name. No new module, verb or dependency |
+| Risk | 15/25 | Fixes touch runtime modules and shared records, so a wrong fix can break a phase that already passed. The suite and the validator are the guard |
+| Research | 11/20 | The dimensions, the stop rule and the executor roster are documented. What the review finds is unknown until it runs |
 | **Total** | **42/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 

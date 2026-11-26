@@ -30,6 +30,7 @@ This note closes gaps 4 and 5 of the plan-depth research: the index shape and it
 | `entries` not a plain object | unreadable, detail `index-invalid: entries` |
 | An entry key outside the name grammar | unreadable, detail `index-invalid: name <key>` |
 | An entry whose `backend` is not `keychain` or `file`, or whose `createdAt` or `updatedAt` is not a string `Date.parse` accepts | unreadable, detail `index-invalid: <name>.<key>` |
+| An entry whose `setBy` is present and is neither a string nor `null` | unreadable, detail `index-invalid: <name>.setBy` |
 | A read error other than `ENOENT` | unreadable, detail `index unreadable: <code>` |
 | Any other key, at the top or in an entry | kept as read and written back unchanged, per `contracts/versioning.md` rule 1 |
 
@@ -61,7 +62,7 @@ The new index is written to `secrets/.index.json.<pid>.<6 random bytes hex>.tmp`
 2. Read the index.
 3. Write the value to the chosen backend (`backends.md` section 1).
 4. Read it back and compare in constant time. A missing or different value refuses `secret-write-dropped` with exit 4, and the index is not written.
-5. Write the index with the entry `{ backend, createdAt, updatedAt }`, `createdAt` kept from an existing entry.
+5. Write the index with the entry `{ backend, createdAt, updatedAt, setBy }`, `createdAt` kept from an existing entry and `setBy` the actor `resolveActor` returned, the OS user or the pinned operator.
 6. When the existing entry named the other backend, delete the value there (`backends.md` section 5).
 7. Remove every `secrets/.*.tmp` file. The lock is held, so any such file is left by a writer that stopped.
 8. Release the lock.

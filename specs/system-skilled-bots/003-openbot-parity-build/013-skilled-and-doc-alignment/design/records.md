@@ -58,7 +58,7 @@ File: `.skilled/commands/assets/local-doc-alignment/topics.json`, one object und
 | `overlayReadmes` | boolean | no | `false` | Adds the overlay folder's READMEs and the folder to the review roots |
 | `exclude` | array of strings | no | `[]`, added to `defaults.exclude` | Globs removed from the doc set |
 
-The loader stops the run by name in four cases: an unknown topic, a topic with no `terms`, a topic with no `codeRoots`, and a `codeRoot` that does not exist. [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:94] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:95] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:96] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:281]
+The loader stops the run by name in four cases: an unknown topic, a topic with no `terms`, a topic with no `codeRoots` and a `codeRoot` that does not exist. [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:94] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:95] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:96] [SOURCE: .skilled/commands/assets/local-doc-alignment/doc-alignment.cjs:281]
 
 ### 2.1 The model shape, pasted from the file
 
@@ -261,7 +261,7 @@ A bare array, one entry per finding, sorted by severity then by file. Written by
 | `note` | string | yes | the critic's evidence |
 | `lane_severity` | string | no | the severity the lane gave, kept beside the new one |
 
-A `refuted` or `duplicate` finding leaves the counts and is listed under the report's overturned section. A `pre-existing` finding moves outside the scope. A `severity` override replaces `severity` and keeps `lane_severity`. An override that names no finding, names two, or carries an invalid severity is listed in the report's problems section with its reason and is not applied. [SOURCE: .skilled/commands/assets/local-skilled-alignment/aggregate-findings.cjs:320]
+A `refuted` or `duplicate` finding leaves the counts and is listed under the report's overturned section. A `pre-existing` finding moves outside the scope. A `severity` override replaces `severity` and keeps `lane_severity`. An override that names no finding, names two or carries an invalid severity is listed in the report's problems section with its reason and is not applied. [SOURCE: .skilled/commands/assets/local-skilled-alignment/aggregate-findings.cjs:320]
 
 ### 5.4 `disposition`
 
@@ -282,7 +282,7 @@ The input the fix pass writes into a run folder before the aggregator runs again
 
 | Key | Type | Null | Format |
 |-----|------|------|--------|
-| `id` | string | no | a finding `id`, or a `source_id`, or `<lane>-<source_id>` |
+| `id` | string | no | a finding `id`, a `source_id` or `<lane>-<source_id>` |
 | `status` | string | no | `handed_off` or `rebutted` |
 | `note` | string | yes | the reason, one sentence |
 
@@ -385,19 +385,22 @@ The phase declines `--fix literal` because the applier reaches only a `literal` 
 
 ## 11. `scratch/rebuttals.md`
 
-This phase's own record, and one of the two things it hands to 014. One `##` heading per settled finding, the heading text being the finding id exactly as `findings.json` carries it, then five bullet lines.
+This phase's own record, and one of the two things it hands to 014. One `##` heading per settled finding, the heading text being the finding id exactly as `findings.json` carries it, then six bullet lines.
 
 ```text
 ## <finding id>
 
 - Status: handed_off | rebutted
 - Severity: P0 | P1 | P2
+- Phase: <NNN>, the phase whose code root the finding names
 - File: <path>:<line>, or none
 - Reason: <one sentence>
 - Evidence: <the command and its exit status, or the report line that shows it>
 ```
 
-The heading grammar is `^## (\S+)$` so a check can collect the ids and compare them with a run's `findings.json`. The five fields are the five a reader needs to decide whether to accept the decline, and `Status` is the same word `dispositions.json` carries so the two records cannot disagree.
+The heading grammar is `^## (\S+)$` so a check can collect the ids and compare them with a run's `findings.json`. The six fields are the six a reader needs to decide whether to accept the decline, and `Status` is the same word `dispositions.json` carries so the two records cannot disagree.
+
+`Phase` is the field 014 reads. Its seeded intake keys on the literal `Status: handed_off` and takes the phase from this line, so a `handed_off` row with no `Phase` line is a row 014 cannot seed and `review-seed-unreadable` refuses it. The value is the three-digit phase number, `001` to `013`, and never a folder name.
 
 A `handed_off` row names 014 as its destination in `Reason`, because 014 is where a wrong code root is fixed. A `rebutted` row names what makes the finding wrong, which is a fact about the doc or about the scope and never a preference.
 

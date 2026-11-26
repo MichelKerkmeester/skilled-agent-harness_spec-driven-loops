@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 1** of the Build OpenBot parity for skilled bots from the 002 research: activity, routines, terminal screen, workspace, memory, approvals, apps, vault, skills and chat specification.
 
-**Scope Boundary**: The activity read and the sources of its seven groups, the JSON form of the inbox, the refresh that keeps the status index current on read, the `version` and `updatedAt` keys on `bots status --json`, the actor field on needs-you answers and run records, the `--scope once|deny` flag on `bots answer` with the answer's `scope` field and the install-time full-access flag the sandbox cap reads. The approval `grants` object, the precedence ladder, per-action policy inside the executor, the two-role `operators.json` roster and the shared-host mode are other phases: 006 extends this phase's answer scope with `grants` and the ladder, 011 lands the roster its channel approver check needs, and no phase builds the shared-host mode.
+**Scope Boundary**: The activity read and the sources of its seven groups, the JSON form of the inbox, the refresh that keeps the status index current on read, the `version` and `updatedAt` keys on `bots status --json`, the actor field on needs-you answers and run records, the `--scope once|deny` flag on `bots answer` with the answer's `scope` field and the install-time full-access flag the sandbox cap reads. The approval `grants` object, the precedence ladder, per-action policy inside the executor, the two-role `operators.json` roster and the shared-host mode are other phases: 006 extends this phase's answer scope with `grants` and the ladder. 011 lands the roster its channel approver check needs. No phase builds the shared-host mode.
 
 **Design**: `design/` holds what a builder needs and the requirements below point at it. [data-model.md](design/data-model.md) fixes every row source, the group mapping, the order, the text forms, the refresh, the next fire, the actor and every record delta. [state-machines.md](design/state-machines.md) draws them. [refusals.md](design/refusals.md) holds each refusal's exact line and exit. [fixtures/](design/fixtures/README.md) holds the inputs that reproduce the screen's sample payloads. Payload shapes are the screen contract's, `003-terminal-screen/002-architecture-and-contracts/design/contracts.md` sections 4 to 6 and 10, and shared record shapes are `../contracts/records.md`. Neither is copied here.
 
@@ -54,7 +54,8 @@ This is **Phase 1** of the Build OpenBot parity for skilled bots from the 002 re
 - A status index brought up to date on every `status` and `activity` read, with no retention. `version` and `updatedAt` on `bots status --json`
 - `by:` on a needs-you answer and `actor` on a run record, from the OS user or `--as`, and the installing operator for a scheduled run
 - `--scope once|deny` on `bots answer`, recorded on the answer as `scope` and defaulting to `once`
-- `bots schedule install <id> --full-access`, the only way a definition's `danger-full-access` is honored
+- `bots schedule install <id> --full-access`, the only way a definition's `danger-full-access` is honored, and the same verb writing the install record for a bot whose trigger is not cron
+- `bots: child-write-refused` on `answer` and `enable` when a bot child's run marker is in the environment
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -104,7 +105,8 @@ Each block is the first stderr line and the exit status, read on 2026-11-26 at c
 - Add `by:` to a needs-you answer and `actor` to a run record, filled from the OS user or `--as <name>`
 - Add `--scope once|deny` to `bots answer`, recorded on the answer as `scope` and defaulting to `once`, so a caller records a denial without the grants phase
 - Refuse `bots answer --as` and `bots run --as` outside a tty unless the name matches the OS user, in the CLI alone so a channel or a test passes the actor to `answerItem` with no tty, and cap a definition's declared sandbox at `workspace-write` unless the operator installed the bot with `--full-access`, so neither an actor nor a posture is self-declared
-- Pin the installing operator into a job's environment and its install record, so a scheduled run records that operator rather than the launchd user
+- Refuse the write verbs `answer` and `enable` when a bot child's run marker is in the environment, by name `child-write-refused` and exit 2, so a child cannot answer an open item under the operator's name
+- Pin the installing operator into a job's environment and its install record, so a scheduled run records that operator rather than the launchd user, and honour that pinned name only on a scheduled fire or a scheduled drain
 - Carry the actor inside the status index's run summary JSON, so the activity read needs no second pass over run records and the DDL does not move
 
 ### Out of Scope
@@ -132,7 +134,7 @@ Each block is the first stderr line and the exit status, read on 2026-11-26 at c
 | `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts` | Modify | Carry the resolved actor on the record seed and the record, copy `answer.by` into a resumed run's `answeredBy`, read `fullAccess` from the install record for `validatePosture` and export the `LeaseSideFile` type |
 | `.skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts` | Modify | Render and read back `SKILLED_BOTS_OPERATOR` and `SKILLED_BOTS_FULL_ACCESS` in a job's environment |
 | `.skilled/skills/system-skilled-bots/runtime/lib/installer.ts` | Modify | Pass the installing operator and the full-access flag into the pinned job values and the install record, and carry both through `jobFileEnv` and `pinsOf` |
-| `.skilled/bin/bots.cjs` | Modify | Add the `activity` verb, `--json` and `--all` on `inbox`, `--as` and `--scope` on `answer`, `--as` on `run`, `--full-access` on `schedule install` and the tty refusals, which live here alone |
+| `.skilled/bin/bots.cjs` | Modify | Add the `activity` verb, `--json` and `--all` on `inbox`, `--as` and `--scope` on `answer`, `--as` on `run`, `--full-access` on `schedule install` and the tty refusals, which live here alone. Also the `child-write-refused` check on `answer` and `enable`, and the install record a non-cron bot gets from `schedule install --full-access` |
 | `.skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts` | Create | Group order, empty-group omission, the seven row keys, the row sources, the refresh on read and the one data set against the screen's sample |
 | `.skilled/skills/system-skilled-bots/runtime/tests/actor.vitest.ts` | Create | `--as` precedence, OS-user fallback, the pinned operator and the trim-then-exact-match comparison |
 | `.skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts` | Modify | The answer's `by` and `scope` fields and their validation, the old-answer read and the item's `kind` key accepted with no value rule |
@@ -143,7 +145,7 @@ Each block is the first stderr line and the exit status, read on 2026-11-26 at c
 | `.skilled/skills/system-skilled-bots/runtime/tests/posture.vitest.ts` | Modify | The sandbox cap and the install-time full-access flag |
 | `.skilled/skills/system-skilled-bots/runtime/tests/resume.vitest.ts` | Modify | A full-access bot whose parked run the drain resumes keeps `danger-full-access` |
 | `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts` | Modify | The operator and full-access values in the rendered job, the install record and `jobEnv` |
-| `.skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts` | Modify | The `activity` verb, `inbox --json` and `--all` over an open and an answered item, `--as` and `--scope` parsing, the tty refusals and the payload type check |
+| `.skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts` | Modify | The `activity` verb, `inbox --json` and `--all` over an open and an answered item, `--as` and `--scope` parsing, the tty refusals, the `child-write-refused` check and the payload type check |
 | `.skilled/skills/system-skilled-bots/runtime/lib/README.md` | Modify | Add the two new modules to the module table |
 | `.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` | Modify | Name `bots activity` and `bots inbox --json` in the verb table |
 | `.skilled/skills/system-skilled-bots/bots-status/SKILL.md` | Modify | Add the activity verb to the mode's allowed Bash |
@@ -176,8 +178,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|
 | REQ-006 | The lifted grouping and row rules carry an MIT notice in `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`, one entry per lifted file naming its source path, `app/src/lib/bot-lifecycle/activity-groups.ts` and `shared/activity-rows.ts`, with OpenBot's copyright line `Copyright (c) 2026 CopilotKit` [SOURCE: specs/system-skilled-bots/context/OpenBot-main/LICENSE:1-3] |
 | REQ-007 | The status index carries the actor inside each run row's `summary` JSON, so `bots activity` reads it without opening a run record and neither the DDL nor `SCHEMA_VERSION` moves |
-| REQ-008 | The tty refusal lives in `bots.cjs` alone: `bots answer --as <name>` and `bots run --as <name>` are refused `bots: --as needs a tty` outside a tty unless the name matches the OS user, and `bots schedule install <id> --full-access` is refused `bots: --full-access needs a tty` outside a tty, so a script cannot claim another person's name or grant full access, while `answerItem` takes the actor as an argument so a channel daemon or a test passes it with no tty |
-| REQ-009 | A definition's declared sandbox is capped at `workspace-write`: `danger-full-access` is honored only when the operator installed the bot with `--full-access`, recorded as `fullAccess` in the install record and as `SKILLED_BOTS_FULL_ACCESS` beside the pinned operator in the job's environment, and read from the install record for every run kind, so a definition cannot grant itself full access and a resumed run keeps the posture its parked run had |
+| REQ-008 | The tty refusal lives in `bots.cjs` alone: `bots answer --as <name>` and `bots run --as <name>` are refused `bots: --as needs a tty` outside a tty unless the name matches the OS user, and `bots schedule install <id> --full-access` is refused `bots: --full-access needs a tty` outside a tty, so a script cannot claim another person's name or grant full access, while `answerItem` takes the actor as an argument so a channel daemon or a test passes it with no tty. A pinned `SKILLED_BOTS_OPERATOR` takes the same tty rule on any path that is not a scheduled fire or a scheduled drain, so a shell that exports the variable cannot claim the name |
+| REQ-009 | A definition's declared sandbox is capped at `workspace-write`: `danger-full-access` is honored only when the operator installed the bot with `--full-access`, recorded as `fullAccess` in the install record and as `SKILLED_BOTS_FULL_ACCESS` beside the pinned operator in the job's environment, and read from the install record for every run kind, so a definition cannot grant itself full access and a resumed run keeps the posture its parked run had. `bots schedule install <id> --full-access` writes that install record for a bot whose trigger is not cron and stops before the plist step, so a manual, queue or git-hook bot can be granted full access. Without the flag the verb still refuses `trigger-not-cron` |
+| REQ-013 | `bots.cjs` refuses the write verbs `answer` and `enable` with `bots: child-write-refused` and exit 2 when a bot child's run marker is in the environment, which is `SKILLED_BOT_RUN_ID` or `AI_SESSION_CHILD=1`. The check runs before the runtime loads, so nothing is read or written. It is a bar and not an authentication: a child that clears the marker is not stopped by it. Each later phase adds its own write verb to the same list. The row is `contracts/refusals.md` section 3.1 and the placement is `contracts/answer-seam.md` step 1 |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -195,6 +198,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-005**: `bots answer <item-id> yes --scope deny` writes `"scope": "deny"` on the item's answer, the same answer with no `--scope` writes `"scope": "once"` and `--scope always` exits 2 with `bots: grant-scope-unsupported`
 - **SC-006**: The one data set in `design/fixtures/one-data-set.json`, read at its clock with a stub `describe`, gives exactly the screen's `payloads/activity.json`, and its items give exactly `payloads/inbox.json`
 - **SC-007**: A run that completes after the index was built is listed by the next `bots activity --json` with no `--rebuild`, and `bots status --json` then prints `"stale": false`
+- **SC-008**: `SKILLED_BOT_RUN_ID=r1 node .skilled/bin/bots.cjs answer item-1 yes` and `AI_SESSION_CHILD=1 node .skilled/bin/bots.cjs enable digest` each exit 2 with `bots: child-write-refused`, and the item stays open
+- **SC-009**: `bots schedule install digest --full-access` on a bot whose trigger is `manual` writes the install record with `fullAccess: true` and no plist, and the same verb without the flag still exits 4 with `trigger-not-cron`
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -214,6 +219,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | `--as` reaches a path or a shell | A crafted name writes outside the state root | Validate the name against a fixed pattern and use it only as a stored string |
 | Risk | The answer's `scope` and 006's `grants.scope` disagree | A denial reads back as an allow | 006 fills `grants.scope` from the answer's `scope` at answer time, so one write sets both and no item is rewritten twice |
 | Risk | A definition declares `danger-full-access` and answers its own item | A bot approves its own delete as `owner` | Cap the declared sandbox at `workspace-write` unless the operator installed the bot with `--full-access` from a tty, and refuse `bots answer --as` outside a tty unless it matches the OS user, in the CLI alone |
+| Risk | A bot child answers an open item | The grant records the operator, because a child runs as the same OS user | Refuse `answer` and `enable` with `child-write-refused` when the child's run marker is in the environment. The marker is a bar and not an authentication, so a child that clears it is not stopped |
+| Risk | A shell exports `SKILLED_BOTS_OPERATOR` and answers an item | The answer records the installing operator with no tty | Honour the pinned name only on a scheduled fire or a scheduled drain, and apply the tty rule to it otherwise |
+| Risk | A manual, queue or git-hook bot declares `danger-full-access` | It runs capped with no way to grant it, because only an install record carries `fullAccess` and the installer refuses a non-cron trigger | `bots schedule install <id> --full-access` writes the install record for a non-cron bot and stops before the plist step, so the grant exists for every trigger kind |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -233,6 +241,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-S01**: `--as` is validated against `^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$` and is stored as a string only. It never becomes a path segment or a shell word. Two names compare by exact match after trimming surrounding whitespace, so `Ada` and `ada` are different actors
 - **NFR-S02**: The actor is a name, never a credential. No secret is read to fill it, and no secret value reaches a record
 - **NFR-S03**: `bots answer --as`, `bots run --as` and `bots schedule install --full-access` are refused outside a tty, the first two unless the name matches the OS user, in `bots.cjs` alone, and a definition's declared sandbox is capped at `workspace-write` unless the install record says `fullAccess: true`
+- **NFR-S04**: A pinned `SKILLED_BOTS_OPERATOR` is honoured only on a scheduled fire or a scheduled drain. On any other path it takes the tty rule, so a shell that exports the variable cannot claim the operator's name
+- **NFR-S05**: `bots answer` and `bots enable` are refused `child-write-refused` when `SKILLED_BOT_RUN_ID` or `AI_SESSION_CHILD=1` is in the environment, so a bot child cannot answer an open item under the operator's name. The bar is not an authentication, and a child that clears the marker is not stopped by it
 
 ### Reliability
 - **NFR-R01**: An index written before this phase still opens and still accepts a write, because `SCHEMA_VERSION` does not move, the DDL does not change and `actor` is a nullable field inside the `summary` JSON, so no rebuild is needed and no row is misread
@@ -252,6 +262,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Failure path: a refresh that cannot complete leaves that identity in `staleIdentities` with `"stale": true`, prints nothing on stderr and exits 0
 - Failure path: `bots answer <item-id> yes --as ''` exits 2 with `bots: option --as needs a value`, and `--as 'a/b'` exits 2 with `bots: --as takes a name`
 - Failure path: `bots answer <item-id> yes --as ada` with stdin not a tty and `ada` not the OS user exits 2 with `bots: --as needs a tty`
+- Failure path: `SKILLED_BOTS_OPERATOR=ada node .skilled/bin/bots.cjs answer <item-id> yes` with stdin not a tty and `ada` not the OS user exits 2 with `bots: --as needs a tty`, and the same command under a scheduled fire records `ada`
+- Failure path: `SKILLED_BOT_RUN_ID=r1 node .skilled/bin/bots.cjs answer <item-id> yes` and `AI_SESSION_CHILD=1 node .skilled/bin/bots.cjs enable <bot>` each exit 2 with `bots: child-write-refused`, and the item stays open
+- Failure path: `bots schedule install <id> --full-access` on a bot whose trigger is `manual` writes the install record and exits 0, and the same verb without the flag exits 4 with `trigger-not-cron`
 - Failure path: `bots answer <item-id> yes --scope always` exits 2 with `bots: grant-scope-unsupported`, and `--scope sometimes` exits 2 with `bots: --scope takes once or deny`
 - Failure path: a definition declaring `danger-full-access` on a bot installed without `--full-access` dispatches at `workspace-write`, and the run record's `posture.sandbox` names the capped value
 - Race: an answer that lands before the parked run's terminal record exists skips the `answeredBy` stamp and still succeeds, and the resumed run's record carries `answeredBy`
@@ -283,6 +296,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Is a definition's declared sandbox trusted? Decision: no. It is capped at `workspace-write`, and `danger-full-access` needs the operator's install-time flag, because a bot that can grant itself full access can answer its own item.
 - Does the answer's scope live on the answer or on the item? Decision: on the answer as `scope`, because 006 owns the item's `grants` object and fills `grants.scope` from the answer's scope, so one write sets both and no item is rewritten twice.
 - Does the tty rule belong in `answerItem` or in the CLI? Decision: in `bots.cjs` alone, because a channel daemon and a test call `answerItem` with an actor they already hold, and a tty check there would refuse every check run without a terminal.
+- Does the actor name separate a person from a bot child? Decision: no. Both run as the same OS user, so the roster cannot tell them apart. The child's run marker can, and `bots.cjs` refuses `answer` and `enable` with `child-write-refused` when it is set. It is a bar and not an authentication.
+- Is a pinned `SKILLED_BOTS_OPERATOR` an actor on every path? Decision: no. It is honoured on a scheduled fire and a scheduled drain, and takes the tty rule everywhere else, because a shell that exports it would otherwise claim the operator's name with no tty.
+- How does a non-cron bot get full access? Decision: `bots schedule install <id> --full-access` writes the install record and stops before the plist step. Only an install record carries `fullAccess`, and the installer refuses a non-cron trigger because there is no plist to write.
 - Does `bots inbox --json` filter out the answered items the text form leaves out? Decision: yes by default, and `--all` adds them. The default form answers what needs me, the same question the text form answers, and `--all` is the readback that shows the answer an item carries.
 - Where does each activity group come from, and when is a design choice not settled by the screen contract? Decision: `design/data-model.md` fixes every source and choice, and section 12 there lists the amendments the frozen contracts need.
 <!-- /ANCHOR:questions -->
