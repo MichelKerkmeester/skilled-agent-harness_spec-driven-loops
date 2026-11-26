@@ -101,6 +101,9 @@ Where a row names a regression test for a behavior change, that test failed with
 | AC-043 | REQ-007 | P2-pre: Given the git-hooks README, When the pre-push gate is read, Then it says a sweep error warns and lets the push through | `.skilled/scripts/git-hooks/README.md:119` now says a sweep that exits other than 0 or 1 warns and lets the push through | Met | - |
 | AC-044 | REQ-007 | P3-pre: Given the pre-commit header, When its uninstall line is followed, Then it runs the installer's `--uninstall` | `sed -n 13p .skilled/scripts/git-hooks/pre-commit` prints `# Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall` | Met | - |
 | AC-045 | REQ-005 | Given every suite the generation-3 fixes touch, When it reruns from the final state, Then it passes in full | Every touched suite reran from the final state. Before and after counts are in `implementation-summary.md` under Generation-3 fix pass. No suite gained a failure, and the failures left on both sides predate the pass | Met | - |
+| AC-046 | REQ-008 | Given the 24 skill-doc links that reached `specs/` through `.skilled/specs`, When the link guard and the playbook contract run, Then neither reports a broken link | `check-markdown-links.cjs` prints `15829 links checked, 0 broken` and exits 0, where `main` reports 24 broken and exits 1. `validate-playbook-package.cjs --strict` reports 53 PASS and exits 0, where `main` reports 1 FAIL and exits 1 | Met | - |
+| AC-047 | REQ-008 | Given the three test paths that read `.skilled/specs`, When the deep-loop runtime and spec-kit CLI suites run, Then they pass with no failure | Pending the full-suite rerun | Unmet | - |
+| AC-048 | REQ-006 | Given the merge pushed to `main`, When CI runs on it, Then every workflow run concludes `success` | Pending the push | Unmet | - |
 
 ### Status values
 
