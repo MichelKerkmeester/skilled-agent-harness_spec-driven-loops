@@ -59,7 +59,7 @@ Each mode owns a distinct band. A row marked **MCP lane only** runs through Code
 
 Generic browser-automation phrasing defers. Debugging, Lighthouse and performance-trace requests go to Chrome DevTools, and so does a request naming the user's own Chrome, through its live instance. Deterministic signed-in proof goes to Aside. Agentic or stealth signed-in work goes to Bladebro, and so does a caller-owned or already-open browser that names no Chrome.
 
-Take the mode from the compiled front door first: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-stdin <<'TASK'`, the task, then `TASK`. The quoted heredoc keeps the shell from running anything in the task. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above. `SPECKIT_COMPILED_ROUTING=0` forces legacy routing fleet-wide.
+Take the mode from the compiled front door first: `node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-file <task-file>`, with the task written there by your file tool. A file has no closing line, so no task line can run as shell. Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the `hub-router.json` routing above. `SPECKIT_COMPILED_ROUTING=0` forces legacy routing fleet-wide.
 
 ---
 

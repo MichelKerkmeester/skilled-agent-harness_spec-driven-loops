@@ -51,7 +51,7 @@ The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 
 The advisor routes every MCP tool-bridge request to the single identity `mcp-tooling`.
-Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`).
+Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt-file <task-file>` (write the task there with your file tool, never a heredoc).
 Follow the decision: `route` loads `targets`, and `clarify` or `defer` asks for the missing tool identity.
 A scored route loads only the selected mode's resources, so the fallback resource is never added to it.
 

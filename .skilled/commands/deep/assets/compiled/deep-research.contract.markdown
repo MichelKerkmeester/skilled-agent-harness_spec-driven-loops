@@ -32,7 +32,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "e153dd04bc6200e55e893b28ebd9459c4053f8d1fa9f7fceb72e7feb1cf1ba52",
+      "sha256": "0a2371ff97e2bd0630bb74dc2e3e688aeafbacd1f84dac48d8a72b3c9d6ae81d",
       "section": "full"
     },
     {

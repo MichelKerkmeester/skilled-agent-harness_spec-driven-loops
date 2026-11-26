@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-browser-use routing"
 importance_tier: normal
 contextType: general
-version: 1.1.6.0
+version: 1.1.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -102,10 +102,9 @@ The hub's routing directive. The stage-two maps live in section 3, so no second 
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-stdin <<'TASK'
-> <task>
-> TASK
+> node .skilled/bin/compiled-route.cjs --hub mcp-browser-use --prompt-file <task-file>
 > ```
+> Write the task to `<task-file>` with your file-write tool first. Never pass it through a heredoc, because a task line that matches the delimiter ends it and runs the lines after it as shell.
 > Follow the returned decision: `route` uses its `targets`, `clarify` and `defer` ask for disambiguation, and `reject` refuses. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the registry routing in `hub-router.json`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing for every hub.
 
 `mcp-browser-use` serves compiled routing by default, so the directive above returns a compiled decision. The legacy sentinel appears only when the kill flag is set, when the hub's activation manifest is stale or missing, or when the engine errors, and routing then uses `hub-router.json`. This hub returns `reject` only for a caller constraint, and the CLI front door takes none, so a CLI call never returns it. Prompt text alone never rejects.

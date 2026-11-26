@@ -15,7 +15,7 @@ trigger_phrases:
   - "render checks"
   - "render ledger and rewrite guard"
 last_updated: "2026-11-05"
-version: 2.3.7.0
+version: 2.3.8.0
 ---
 
 # sk-doc: Feature Catalog
@@ -72,7 +72,7 @@ A default-on, flag-gated, additive directive in `sk-doc`'s `ROUTER.md` asks the 
 
 #### Current Reality
 
-The directive is on by default for `sk-doc`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin <<'TASK'` (the task on the next lines, then `TASK`) returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy packet-authored, registry-projected routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
+The directive is on by default for `sk-doc`, one of the seven activated hubs: with `SPECKIT_COMPILED_ROUTING` unset, `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-file <task-file>` (write the task there with your file tool, never a heredoc) returns the authoritative decision and the hub follows it directly. Setting `SPECKIT_COMPILED_ROUTING=0` is the explicit kill-switch that forces legacy packet-authored, registry-projected routing; any error or a `{"servingAuthority":"legacy"}` sentinel also leaves routing unchanged.
 
 #### Source Files
 
