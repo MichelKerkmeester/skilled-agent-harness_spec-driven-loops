@@ -52,6 +52,7 @@ _memory:
 | Q016 | Delete the stray decision-record.md the decision-capture hook wrote into an unrelated archive packet, after its four answers were copied here as Q012 to Q015. | Not stated. | None | implementation-summary.md Verification |
 | Q017 | Move the LS-007 sandbox to the gitignored .skilled/skills/.state/skc-LS007-sandbox/ path, so the app-crate words alone reach SKILLED and RUST. | A /tmp sandbox with no .rs or .ts file in the prompt leaves the surface UNKNOWN and loads no Rust reference. | None | T033, manual-testing-playbook LS-007 |
 | Q018 | Add the sk-code-review and sk-code-skilled Rust entries to the root v4.2.0.0 release notes, although v4.2.0.0 is already tagged and published without this branch. | Not stated. | None | T036, .skilled/changelog/skilled/v4.2.0.0.md |
+| Q019 | Fix the Bots Runtime Tests timeout too, and move the v4.2.0.0 tag only once every workflow is green. | Not stated. | None | implementation-summary.md Verification |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -415,6 +416,26 @@ Add to v4.2.0.0 anyway
 Answer:
 ```text
 Add to v4.2.0.0 anyway
+```
+
+### Q019
+<!-- source: claude:18b5b122-c5b4-40c0-ac3e-13860897d68b:toolu_01P9aHwkxbBY5ekmPnF1zmr9:0 -->
+
+Question:
+```text
+Two blockers stand before moving the v4.2.0.0 tag. My fixes for the failed sk-doc check (feature catalog line and Rust source note) are ready but uncommitted on main. Separately, the new Bots Runtime Tests workflow timed out at 20 minutes, apparently on a hanging test, and the cause is unknown. How should I proceed?
+```
+
+Options:
+```text
+Fix bots too, then tag (Recommended)
+Push fix, tag after rerun
+Push fix only, no tag
+```
+
+Answer:
+```text
+Fix bots too, then tag (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

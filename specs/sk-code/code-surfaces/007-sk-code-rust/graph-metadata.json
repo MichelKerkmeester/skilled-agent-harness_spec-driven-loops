@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Rust references and checklist under `.skilled/skills/sk-code/sk-code-skilled/` are written for one job: a napi-rs or WASM binding whose output must match a TypeScript oracle byte for byte",
     "created_at": "2026-11-26T11:53:48Z",
-    "last_save_at": "2026-11-26T19:46:27.160Z",
+    "last_save_at": "2026-11-26T20:52:00.125Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +223,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:af446a13cc7281d10ca14201652feab9c6ac929e78fa61d367522713124b07c8",
+    "source_fingerprint": "sha256:0195ddf4b00412acdb473f6599d9213f56537bbd9125bcd2b6b8f4a608194aed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "80010e43fef8a6f323e2bbfd569b0b3b3206bac15e64494a225f69ba1d197613",
       "plan.md": "09ec106eaa2e6813b8affec096bedddbba6f5423f5c20c78a234a38237954610",
       "tasks.md": "58cfc7a2411384111a81c264b0b0b18b660ff5e16a3c36b4d4749eaa214ebf4c",
-      "decision-record.md": "0be7de50a8b57cd6722484c11288cd9388aa23fbf927cca274c558ba4b59d239",
-      "implementation-summary.md": "cdfeff35d54670742b2d65b6bf6636c3f7ecb1784596da0d011838a7807fef8f",
+      "decision-record.md": "1dc0aa081dd65af39f573dc98674ce0b181d8c2fddb9147e7ff071a89f8d03a8",
+      "implementation-summary.md": "dd032716c07d172b7fb3e0afd4c53b039494e19d3c80c2821a1ccabd7673171e",
       "research/research.md": "9f92420f7d4bd38608744197c9187ea2b0b10df26619339af9fbcb2feed16eb9"
     },
     "last_active_at": null

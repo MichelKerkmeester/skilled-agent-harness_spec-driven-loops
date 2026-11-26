@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/code-surfaces/007-sk-code-rust"
-    last_updated_at: "2026-11-26T19:46:27Z"
+    last_updated_at: "2026-11-26T20:52:00Z"
     last_updated_by: "generate-context"
-    recent_action: "Moved LS-006 to the state sandbox and reran stage one"
-    next_safe_action: "Review the merged main and approve the push"
+    recent_action: "Merged to main, pushed, fixed the sk-doc CI failure"
+    next_safe_action: "Review the bots rerun, then move the v4.2.0.0 tag"
     packet_purpose: "Purpose: The Rust set covers a Rust app as well as a Rust binding, with every new rule traced to a line of the rust-anything repository or to an existing sk-code rule."
     blockers: []
     key_files:
@@ -20,14 +20,14 @@ _memory:
       - ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-rust-app.md"
       - ".skilled/skills/sk-code/shared/references/stack-detection.md"
     session_dedup:
-      fingerprint: "sha256:da2743d519a3e05100cfa63758663c66fc0b267178d3d81b518dd8f0cc030b28"
+      fingerprint: "sha256:c1ab57f6f975ae55ef768f6d3233125e46229c55ff542e0a0072c550c422b9bc"
       session_id: "scaffold-007-sk-code-rust"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "18b5b122-c5b4-40c0-ac3e-13860897d68b"
-      workspace: "/Users/michelkerkmeester/worktrees/public/546-sk-code-rust"
-      savedAt: "2026-11-26T19:46:27Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-26T20:52:00Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
