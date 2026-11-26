@@ -208,8 +208,8 @@
     ],
     "causal_summary": "A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]",
     "created_at": "2026-11-25T07:13:40Z",
-    "last_save_at": "2026-11-26T06:49:54.833Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-26T08:26:12.263Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24f1e62522a7798ede89b30f3a543f9e840f32950e97bb0ff9ec67d98898ff50",
+    "source_fingerprint": "sha256:b3cef36d88c9429e4fb063ae48dac4f123c09ce0527fa585d95dd0f562c65850",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cf5717ddcf2258941e54a14c4ac49963075c78ca5e99e26a24c0c97a46fc90e8",
       "plan.md": "6512fad11cf6421a4783885357b240c1e607b2f4e65b47d02b5112c3db844515",
       "tasks.md": "77abdd9fc2e8c9c5e6f427bc1a7f73cf0e6f71390a375f89c5a2c17dba721cd5",
-      "implementation-summary.md": "45353e8fed56bec9062246d66aeb1a85147a946294fcbde40201df7271a21b56"
+      "implementation-summary.md": "32a2f7eb26eb6f131a418783dc7a93720da804d5a9ca2f4f43303ee7b297b2ed"
     },
     "last_active_at": null
   }

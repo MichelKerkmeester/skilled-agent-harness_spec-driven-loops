@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/005-memory"
-    last_updated_at: "2026-11-25T07:13:41Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
-    blockers: []
-    key_files: []
+    last_updated_at: "2026-11-26T08:26:12Z"
+    last_updated_by: "generate-context"
+    recent_action: "Aligned the memory proposal id rule with phase 009 and pushed d686cfdad8f"
+    next_safe_action: "Wait for the operator's green light before implementing any phase"
+    packet_purpose: "Purpose: Give a bot two bounded memory files, one shared and one its own, prepended to its prompt, with a verb to add a fact and a needs-you item to confirm one a bot proposes."
+    blockers:
+      - "Operator green light to implement"
+      - "Operator review of decisions D1 to D11"
+    key_files:
+      - "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/record-schemas.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-memory"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "833af0cc-38d5-498d-8268-a1869252b4d2"
+      workspace: "/Users/michelkerkmeester/worktrees/public/system-skilled-bots"
+      savedAt: "2026-11-26T08:26:12Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

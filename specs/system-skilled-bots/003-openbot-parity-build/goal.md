@@ -114,6 +114,7 @@ and findings belong here.
 | Parent goal authored | Done | `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-skilled-bots/003-openbot-parity-build --workspace "$PWD"` reports `packet_budget=ok` |
 | Fourteen binding rows | Done | `find specs/system-skilled-bots/003-openbot-parity-build -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 14 |
 | Child goals authored | Done | Every phase holds its own `goal.md`, and `check-goal.cjs` passes on this parent and on `003-terminal-screen` |
+| Final plan gap F-032 closed and plan ready for green light | Done | validate.sh --strict --recursive prints RESULT: PASSED 15 of 15 at d686cfdad8f |
 
 ### Deviations and findings
 

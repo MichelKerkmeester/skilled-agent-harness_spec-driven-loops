@@ -43,6 +43,7 @@ _memory:
 | U007 | Operator chose: Same pair, 10 each | Devin was out of weekly quota, so the second lineage runs on the same DeepSeek flash max pair, ten iterations each. | None | specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md |
 | U008 | Operator chose: Codex Luna xhigh fast | opencode-go had hit its monthly limit and Devin was out of weekly quota, so the missing second lineage ran on Codex Luna at xhigh on the fast tier. | None | specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md |
 | U009 | Operator chose: No count (Recommended) | The banner row already carries the open-item count and the key to the inbox on every tab, so a count on the tab label would say the same thing twice. The tab stays `2 Inbox`. | None | specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md |
+| Q001 | The Inbox tab draws no unread count, so the tab bars in mockups.md, the component inventory and the tab snapshot stay as they are. | Not stated. | None | design/mockups.md, design/component-inventory.md row 2, 003 REQ-004 |
 <!-- /ANCHOR:operator-decisions -->
 
 The key map's approval is the next row. `design/key-map.md` section 6 holds the answer, `acceptance-criteria.md` AC-007 restates it, and this table takes it as a row when the operator gives it, so the parent's handoff wording holds without a deviation.
@@ -218,6 +219,25 @@ Codex Luna xhigh fast
 Question:
 ```text
 Should the Inbox tab show an unread count, e.g. `2 Inbox (3)`?
+```
+
+Options:
+```text
+No count (Recommended)
+Add the count
+```
+
+Answer:
+```text
+No count (Recommended)
+```
+
+### Q001
+<!-- source: claude:833af0cc-38d5-498d-8268-a1869252b4d2:toolu_01Q968MEbyUPC7uC4dXFhdGM:0 -->
+
+Question:
+```text
+The terminal screen re-review confirmed the docs agree with each other on the Inbox tab: none of them draws an unread count. The only mention is a proposal in research/ui-references.md:88 waiting for your yes. Adopting it means changing all 51 tab bars in mockups.md, component inventory row 2, 003 REQ-004 and 003's tab snapshot. Should the Inbox tab show an unread count, e.g. `2 Inbox (3)`?
 ```
 
 Options:

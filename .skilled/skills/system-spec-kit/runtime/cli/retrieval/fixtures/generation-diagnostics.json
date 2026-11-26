@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 47,
-    "missing-frontmatter": 7222,
-    "ok": 20543,
+    "duplicate-phrase": 49,
+    "missing-frontmatter": 7286,
+    "ok": 20864,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 29393,
+  "documentsScanned": 29780,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "fe0ff451e94058fb422ead68d35f06e7eb7c4c2d90ff4297ebda4430e7ddcfe7",
+  "manifestHash": "86e69c40b813e67f365c56d08b8260cfbef2bd55bdfed3900d596e606766a8ba",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -36,7 +36,7 @@
       "generic-workflow-word": 71,
       "numeric-only": 38,
       "prose-sentence": 14,
-      "single-token": 348,
+      "single-token": 350,
       "stop-word-only": 9,
       "template-default": 22
     },
@@ -45,9 +45,9 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 46277,
+      "ok": 47026,
       "prose-sentence": 23,
-      "single-token": 153,
+      "single-token": 155,
       "stop-word-only": 1,
       "template-default": 19
     }
@@ -33364,14 +33364,20 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-skilled-bots/assets/bot-template.md",
+      "path": ".skilled/skills/system-skilled-bots/benchmark/README.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-skilled-bots/benchmark/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
+      "line": 1,
+      "path": ".skilled/skills/system-skilled-bots/benchmark/reports/2026-11-26--manual-testing-playbook--openbot-parity/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skilled-bots/benchmark/reports/2026-11-26--manual-testing-playbook--openbot-parity/source.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -33419,6 +33425,128 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skilled-bots/bots-status/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 8,
+      "path": ".skilled/skills/system-skilled-bots/feature-catalog/runs/bot-runner.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"bots run\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 8,
+      "path": ".skilled/skills/system-skilled-bots/feature-catalog/status/status-and-inbox-report.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"bots status\""
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/activity/activity-groups-seven-ids.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/activity/actor-on-answer-and-record.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/activity/inbox-json-item-fields.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/apps/apps-filter-utcp-config.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/apps/apps-unknown-server.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/bot-authoring/author-and-check-bot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/bot-authoring/checker-reports-defects.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/bot-authoring/native-runtime-refused.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/channels/queue-unknown-not-retried.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/at-bot-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/channel-link-and-reply.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/channel-non-approver.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/chat-appends-one-message.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/grants-on-the-item.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/memory-proposal-confirm.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/park-answer-scope-once.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/scope-deny-and-unsupported.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/conversations/skill-proposal-review.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -33472,7 +33600,199 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/answer-resumes-parked-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/manual-run-completes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/manual-run-timeout.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/memory/memory-block-injected.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/memory/memory-bound-refuses.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/memory/remember-appends-and-lists.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/request-queue/commit-enqueues-request.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/request-queue/drain-quarantines-paused-bot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/request-queue/drift-refused-before-run.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/request-queue/enqueue-dedupe-and-drain.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/routines/cron-start-fires-at-computed-slot.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/routines/fatigue-after-ten-failures.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/routines/floor-fifteen-minutes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/routines/routine-block-renders.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/routines/until-outcome-completes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/schedule-lifecycle/pause-and-disable-switches.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/schedule-lifecycle/schedule-install-held-and-removed.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/skills/skills-list-injects-body.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/skills/skills-over-budget.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/status-and-inbox/status-json-open-item.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/status-and-inbox/status-stale-and-rebuild.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/terminal-screen/banner-and-overlay.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/terminal-screen/inbox-pane-answers.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/terminal-screen/screen-refuses-without-binary.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/vault/secret-in-output-redacted.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/vault/secret-reaches-child.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/vault/secret-set-and-list.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/working-place/status-branch-and-worktree.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/working-place/working-place-line.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/worktree-and-delivery/desktop-delivery-recorded.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/worktree-and-delivery/worktree-run-cleans-up.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -43738,6 +44058,84 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-5/report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/fixtures/hello.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/fixtures/shared-torn.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/fixtures/shared.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/fix-plan.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/rebuttals.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/recheck.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/report-clean.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/report-first.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/fix-ledger.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -63982,6 +64380,162 @@
     {
       "path": "specs/system-skilled-bots/001-headless-bots-first-build/008-hub-wiring/scratch",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/009-skilled-alignment-and-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/001-headless-bots-first-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/005-memory/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/008-vault/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/009-skills/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/context",
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/scratch",
