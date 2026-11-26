@@ -8,24 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research"
-    last_updated_at: "2026-11-26T14:49:39Z"
+    last_updated_at: "2026-11-26T17:01:11Z"
     last_updated_by: "generate-context"
-    recent_action: "Recorded the fix-all decisions and handed off"
-    next_safe_action: "Create the worktree and amend spec.md scope for the fixes"
+    recent_action: "Merged worktree 547 into main with the alias fallout fix"
+    next_safe_action: "Verify every CI workflow on the pushed merge concludes success"
     packet_purpose: "Purpose: One synthesis that lists, with a commit hash and a `file:line` for each, every user-visible change the notes miss, every note the code contradicts and every bug found in code shipped in the window."
     blockers: []
     key_files:
-      - "research/research.md"
       - "spec.md"
+      - "acceptance-criteria.md"
+      - "implementation-summary.md"
+      - "decision-record.md"
+      - "tasks.md"
     session_dedup:
       fingerprint: "sha256:e807d048f73878d398fc994ade5851e085035134424b2eba4b54a58aa733e05e"
       session_id: "scaffold-007-v4-2-0-0-release-audit-research"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "012507d7-ddbb-4b4f-9a7c-222cd8523a30"
+      sessionId: "2e5ce85f-4d66-468e-98a7-a671d4e5d012"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-26T14:49:39Z"
+      savedAt: "2026-11-26T17:01:11Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 95

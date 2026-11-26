@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7a88fab45fcffcb364a1c6764984a288b551c04ef51a054dd260460f48a2ec18",
+  "manifestHash": "f5f3cff2858795d7581d8740399d7848f376b567abc1d7f73f4538f551159808",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -19887,6 +19887,7 @@
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/goal.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/implementation-summary.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/plan.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/deep-research-strategy.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/spec.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -22239,7 +22240,7 @@
       13724
     ],
     "005 goldfish cold read plan review operator decisions": [
-      20080
+      20081
     ],
     "005 graph impact and affordance changelog index": [
       16644
@@ -22380,7 +22381,7 @@
       16024
     ],
     "005 subtrack proposal and archive reach operator decisions": [
-      20682
+      20683
     ],
     "005 surface intent fold declaration operator decisions": [
       8697
@@ -22395,7 +22396,7 @@
       19775
     ],
     "005 tests and closeout operator decisions": [
-      20636
+      20637
     ],
     "005 trim duplicated and dead agent text operator decisions": [
       3722
@@ -22554,10 +22555,10 @@
       16212
     ],
     "006 purpose carry follow ups operator decisions": [
-      20152
+      20153
     ],
     "006 purpose retention across handovers operator decisions": [
-      20195
+      20196
     ],
     "006 readme template conformance operator decisions": [
       10310
@@ -22572,7 +22573,7 @@
       15638
     ],
     "006 remove nested changelog operator decisions": [
-      20686
+      20687
     ],
     "006 remove release size limit operator decisions": [
       10087
@@ -22843,7 +22844,7 @@
       13783
     ],
     "007 shared blocks and retired mechanisms operator decisions": [
-      20234
+      20235
     ],
     "007 sk prompt parent": [
       10820
@@ -22855,7 +22856,7 @@
       12222
     ],
     "007 speckit command gates step order drift operator decisions": [
-      20260
+      20261
     ],
     "007 tasks voyage cleanup": [
       14570
@@ -23182,7 +23183,7 @@
       6795
     ],
     "008 router readme presentation alignment operator decisions": [
-      20240
+      20241
     ],
     "008 routing and release alignment operator decisions": [
       6380
@@ -23232,7 +23233,7 @@
       16153
     ],
     "008 track subtrack regrouping operator decisions": [
-      20580
+      20581
     ],
     "008 vitest baseline": [
       16367
@@ -23324,7 +23325,7 @@
       16921
     ],
     "009 fix alignment report findings for speckit command surfaces operator decisions": [
-      20251
+      20252
     ],
     "009 fp16 plan": [
       15220
@@ -23411,10 +23412,10 @@
       15130
     ],
     "009 rename rule and test root fixes operator decisions": [
-      20585
+      20586
     ],
     "009 resume contract owned assets operator decisions": [
-      20245
+      20246
     ],
     "009 retention reducer": [
       16929
@@ -23569,7 +23570,7 @@
       14438
     ],
     "010 mixed track sweep guard operator decisions": [
-      20590
+      20591
     ],
     "010 p0 p1 p2 aggregate": [
       14437
@@ -28013,7 +28014,7 @@
       15833
     ],
     "032 changelog index": [
-      20305
+      20306
     ],
     "032 complete": [
       15896
@@ -28028,7 +28029,7 @@
       11426
     ],
     "032 relocate specs folder summary": [
-      20311
+      20312
     ],
     "032 substrate repair followups": [
       14678
@@ -28094,7 +28095,7 @@
       13026
     ],
     "034 spec folder tooling number map": [
-      20515
+      20516
     ],
     "035 backstop sessionstart": [
       15831,
@@ -28351,7 +28352,7 @@
       14715
     ],
     "041 write recipe fixes number map": [
-      20543
+      20544
     ],
     "042 cocoindex refresh split": [
       14719
@@ -28402,7 +28403,7 @@
       14724
     ],
     "044 doc drift remediation": [
-      20568
+      20569
     ],
     "044 implementation plan": [
       14726
@@ -28414,10 +28415,10 @@
       7034
     ],
     "044 named subtracks and host repos operator decisions": [
-      20596
+      20597
     ],
     "044 review remediation handoff": [
-      20598
+      20599
     ],
     "044 suite revalidation": [
       16277
@@ -28638,19 +28639,19 @@
       13990
     ],
     "054 packet closeout": [
-      19939
+      19940
     ],
     "054 plan": [
       13991
     ],
     "054 review remediation": [
-      19945
+      19946
     ],
     "054 review remediation plan": [
-      19944
+      19945
     ],
     "054 review remediation tasks": [
-      19946
+      19947
     ],
     "054 review verdict": [
       18134
@@ -28939,7 +28940,7 @@
       14331
     ],
     "4000 character goal": [
-      19881
+      19882
     ],
     "401 415 post wave validation": [
       14723
@@ -29413,7 +29414,7 @@
       18716
     ],
     "acceptance criteria template default": [
-      20361
+      20362
     ],
     "acceptance packet correction": [
       5327
@@ -29817,25 +29818,25 @@
       18163
     ],
     "addon removal and speed refinements": [
-      19963
+      19964
     ],
     "addon removal and speed refinements acceptance criteria": [
-      19958
-    ],
-    "addon removal and speed refinements decision record": [
       19959
     ],
-    "addon removal and speed refinements goal": [
+    "addon removal and speed refinements decision record": [
       19960
     ],
-    "addon removal and speed refinements implementation summary": [
+    "addon removal and speed refinements goal": [
       19961
     ],
-    "addon removal and speed refinements plan": [
+    "addon removal and speed refinements implementation summary": [
       19962
     ],
+    "addon removal and speed refinements plan": [
+      19963
+    ],
     "addon removal and speed refinements tasks": [
-      19964
+      19965
     ],
     "adherence iteration ledger": [
       17166
@@ -31171,22 +31172,22 @@
       13993
     ],
     "advisor routing and local install": [
-      20016
+      20017
     ],
     "advisor routing and local install acceptance criteria": [
-      20012
-    ],
-    "advisor routing and local install goal": [
       20013
     ],
-    "advisor routing and local install implementation summary": [
+    "advisor routing and local install goal": [
       20014
     ],
-    "advisor routing and local install plan": [
+    "advisor routing and local install implementation summary": [
       20015
     ],
+    "advisor routing and local install plan": [
+      20016
+    ],
     "advisor routing and local install tasks": [
-      20017
+      20018
     ],
     "advisor routing calibration": [
       16116
@@ -33108,22 +33109,22 @@
     ],
     "alignment audit fixes": [
       4144,
-      20004
+      20005
     ],
     "alignment audit fixes acceptance criteria": [
-      20000
-    ],
-    "alignment audit fixes goal": [
       20001
     ],
-    "alignment audit fixes implementation summary": [
+    "alignment audit fixes goal": [
       20002
     ],
-    "alignment audit fixes plan": [
+    "alignment audit fixes implementation summary": [
       20003
     ],
+    "alignment audit fixes plan": [
+      20004
+    ],
     "alignment audit fixes tasks": [
-      20005
+      20006
     ],
     "alignment audit goal": [
       8559
@@ -33213,22 +33214,22 @@
       6739
     ],
     "alignment findings fixes": [
-      20040
+      20041
     ],
     "alignment findings fixes acceptance criteria": [
-      20036
-    ],
-    "alignment findings fixes goal": [
       20037
     ],
-    "alignment findings fixes implementation summary": [
+    "alignment findings fixes goal": [
       20038
     ],
-    "alignment findings fixes plan": [
+    "alignment findings fixes implementation summary": [
       20039
     ],
+    "alignment findings fixes plan": [
+      20040
+    ],
     "alignment findings fixes tasks": [
-      20041
+      20042
     ],
     "alignment findings goal": [
       6740
@@ -33379,22 +33380,22 @@
       4142
     ],
     "alignment preexisting gaps": [
-      20046
+      20047
     ],
     "alignment preexisting gaps acceptance criteria": [
-      20042
-    ],
-    "alignment preexisting gaps goal": [
       20043
     ],
-    "alignment preexisting gaps implementation summary": [
+    "alignment preexisting gaps goal": [
       20044
     ],
-    "alignment preexisting gaps plan": [
+    "alignment preexisting gaps implementation summary": [
       20045
     ],
+    "alignment preexisting gaps plan": [
+      20046
+    ],
     "alignment preexisting gaps tasks": [
-      20047
+      20048
     ],
     "alignment proof plan": [
       4143
@@ -33545,10 +33546,10 @@
       10630
     ],
     "allow a declared sub track to hold declared": [
-      20694
+      20695
     ],
     "allow single lineage acceptance": [
-      20093
+      20094
     ],
     "allow single lineage flag": [
       2415
@@ -33693,22 +33694,22 @@
       18416
     ],
     "anchor contract alignment": [
-      20459
-    ],
-    "anchor contract alignment acceptance criteria": [
-      20455
-    ],
-    "anchor contract alignment implementation summary": [
-      20457
-    ],
-    "anchor contract alignment plan": [
-      20458
-    ],
-    "anchor contract alignment tasks": [
       20460
     ],
-    "anchor contract specification": [
+    "anchor contract alignment acceptance criteria": [
+      20456
+    ],
+    "anchor contract alignment implementation summary": [
+      20458
+    ],
+    "anchor contract alignment plan": [
       20459
+    ],
+    "anchor contract alignment tasks": [
+      20461
+    ],
+    "anchor contract specification": [
+      20460
     ],
     "anchor generator": [
       3333
@@ -33739,19 +33740,19 @@
       3043
     ],
     "anchor repair mode": [
-      20447
+      20448
     ],
     "anchor repair mode acceptance criteria": [
-      20443
+      20444
     ],
     "anchor repair mode implementation summary": [
-      20445
-    ],
-    "anchor repair mode plan": [
       20446
     ],
+    "anchor repair mode plan": [
+      20447
+    ],
     "anchor repair mode tasks": [
-      20448
+      20449
     ],
     "anchor reset plan": [
       9041
@@ -33772,13 +33773,13 @@
       3198
     ],
     "anchors valid anchor rules plan": [
-      20458
+      20459
     ],
     "anchors valid implementation tasks": [
-      20460
+      20461
     ],
     "anchors valid order nesting": [
-      20459
+      20460
     ],
     "and": [
       14386,
@@ -34124,7 +34125,7 @@
       16621
     ],
     "applier verify commands": [
-      20541
+      20542
     ],
     "apply confirmed drift to release notes": [
       19249
@@ -34140,7 +34141,7 @@
       8911
     ],
     "apply ledger rows": [
-      19897
+      19898
     ],
     "apply mode phase b implementation": [
       16570
@@ -34550,28 +34551,28 @@
       1052
     ],
     "archive a phase": [
-      20330,
       20331,
       20332,
-      20333
+      20333,
+      20334
     ],
     "archive container graph node": [
       18125
     ],
     "archive current location and ignored files": [
-      20381
+      20382
     ],
     "archive current location and ignored files acceptance criteria": [
-      20378
-    ],
-    "archive current location and ignored files implementation summary": [
       20379
     ],
-    "archive current location and ignored files plan": [
+    "archive current location and ignored files implementation summary": [
       20380
     ],
+    "archive current location and ignored files plan": [
+      20381
+    ],
     "archive current location and ignored files tasks": [
-      20382
+      20383
     ],
     "archive handling": [
       2865
@@ -34586,29 +34587,29 @@
       16248
     ],
     "archive parent derivation negative control": [
-      20566
+      20567
     ],
     "archive parent derivation test cannot fail": [
-      20568
+      20569
     ],
     "archive path follow ups": [
-      20399
-    ],
-    "archive path follow ups acceptance criteria": [
-      20395
-    ],
-    "archive path follow ups implementation summary": [
-      20397
-    ],
-    "archive path follow ups plan": [
-      20398
-    ],
-    "archive path follow ups tasks": [
       20400
     ],
-    "archive re derive recorded paths": [
-      20381,
+    "archive path follow ups acceptance criteria": [
+      20396
+    ],
+    "archive path follow ups implementation summary": [
+      20398
+    ],
+    "archive path follow ups plan": [
       20399
+    ],
+    "archive path follow ups tasks": [
+      20401
+    ],
+    "archive re derive recorded paths": [
+      20382,
+      20400
     ],
     "archive renumber implementation summary": [
       18131
@@ -34632,34 +34633,34 @@
       18126
     ],
     "archive search and json": [
-      20633
-    ],
-    "archive search and json acceptance criteria": [
-      20629
-    ],
-    "archive search and json goal": [
-      20630
-    ],
-    "archive search and json implementation summary": [
-      20631
-    ],
-    "archive search and json plan": [
-      20632
-    ],
-    "archive search and json tasks": [
       20634
     ],
+    "archive search and json acceptance criteria": [
+      20630
+    ],
+    "archive search and json goal": [
+      20631
+    ],
+    "archive search and json implementation summary": [
+      20632
+    ],
+    "archive search and json plan": [
+      20633
+    ],
+    "archive search and json tasks": [
+      20635
+    ],
     "archive seeds sub track metadata": [
-      20572
+      20573
     ],
     "archive sh track": [
-      20326,
       20327,
       20328,
-      20329
+      20329,
+      20330
     ],
     "archived label in path search json": [
-      20660
+      20661
     ],
     "archived label in ripgrep results": [
       3193
@@ -34668,7 +34669,7 @@
       16997
     ],
     "archived packet validation repair": [
-      20371
+      20372
     ],
     "archived tier changelog": [
       18263
@@ -35553,22 +35554,22 @@
       3084
     ],
     "authoring benchmark and closeout": [
-      19939
+      19940
     ],
     "authoring benchmark and closeout acceptance criteria": [
-      19935
-    ],
-    "authoring benchmark and closeout goal": [
       19936
     ],
-    "authoring benchmark and closeout implementation summary": [
+    "authoring benchmark and closeout goal": [
       19937
     ],
-    "authoring benchmark and closeout plan": [
+    "authoring benchmark and closeout implementation summary": [
       19938
     ],
+    "authoring benchmark and closeout plan": [
+      19939
+    ],
     "authoring benchmark and closeout tasks": [
-      19940
+      19941
     ],
     "authoring boundary": [
       1711
@@ -35580,13 +35581,13 @@
       3178
     ],
     "authoring card documentation": [
-      19927
+      19928
     ],
     "authoring card documentation alignment": [
-      19926
+      19927
     ],
     "authoring card example acceptance": [
-      20099
+      20100
     ],
     "authoring card pointer": [
       3134
@@ -35640,44 +35641,44 @@
       19627
     ],
     "authoring metric definitions": [
-      19938
+      19939
     ],
     "authoring not scoring boundary": [
       1878,
       1879
     ],
     "authoring speed fixes and alignment": [
-      19956
-    ],
-    "authoring speed fixes and alignment goal": [
-      19953
-    ],
-    "authoring speed fixes and alignment implementation summary": [
-      19954
-    ],
-    "authoring speed fixes and alignment plan": [
-      19955
-    ],
-    "authoring speed fixes and alignment tasks": [
       19957
     ],
-    "authoring speed ranked changes": [
-      19950
+    "authoring speed fixes and alignment goal": [
+      19954
     ],
-    "authoring speed research": [
+    "authoring speed fixes and alignment implementation summary": [
+      19955
+    ],
+    "authoring speed fixes and alignment plan": [
+      19956
+    ],
+    "authoring speed fixes and alignment tasks": [
+      19958
+    ],
+    "authoring speed ranked changes": [
       19951
     ],
-    "authoring speed research goal": [
-      19947
+    "authoring speed research": [
+      19952
     ],
-    "authoring speed research implementation summary": [
+    "authoring speed research goal": [
       19948
     ],
-    "authoring speed research plan": [
+    "authoring speed research implementation summary": [
       19949
     ],
+    "authoring speed research plan": [
+      19950
+    ],
     "authoring speed research tasks": [
-      19952
+      19953
     ],
     "authoring surfaces acceptance criteria": [
       9234
@@ -35845,7 +35846,7 @@
       17366
     ],
     "auto rebuild trigger index": [
-      20356
+      20357
     ],
     "auto record operator answers at stop": [
       5720
@@ -35889,7 +35890,7 @@
       2894
     ],
     "automate lane rules": [
-      20471
+      20472
     ],
     "automated multi model search fanout": [
       10871
@@ -36081,7 +36082,7 @@
       18015
     ],
     "backfill graph metadata in create sh phase": [
-      20392
+      20393
     ],
     "backfill graph metadata reuse": [
       18657
@@ -36223,7 +36224,7 @@
       18182
     ],
     "bare sibling folder name in a phase map": [
-      20650
+      20651
     ],
     "bare staging anchor": [
       2830
@@ -36451,7 +36452,7 @@
       10381
     ],
     "baseline authoring run": [
-      19892
+      19893
     ],
     "baseline capture after graph scan": [
       13272
@@ -36814,7 +36815,7 @@
       18633
     ],
     "before image manifest": [
-      20441
+      20442
     ],
     "beforemcpexecution advisory": [
       118
@@ -37058,22 +37059,22 @@
       1885
     ],
     "benchmark redesign and remeasure": [
-      19993
+      19994
     ],
     "benchmark redesign and remeasure acceptance criteria": [
-      19989
-    ],
-    "benchmark redesign and remeasure goal": [
       19990
     ],
-    "benchmark redesign and remeasure implementation summary": [
+    "benchmark redesign and remeasure goal": [
       19991
     ],
-    "benchmark redesign and remeasure plan": [
+    "benchmark redesign and remeasure implementation summary": [
       19992
     ],
+    "benchmark redesign and remeasure plan": [
+      19993
+    ],
     "benchmark redesign and remeasure tasks": [
-      19994
+      19995
     ],
     "benchmark report automation": [
       5773
@@ -37267,16 +37268,16 @@
       3253
     ],
     "bind single entry executors to single path": [
-      20091
+      20092
     ],
     "bind single entry executors to single path implementation summary": [
-      20089
-    ],
-    "bind single entry executors to single path plan": [
       20090
     ],
+    "bind single entry executors to single path plan": [
+      20091
+    ],
     "bind single entry executors to single path tasks": [
-      20092
+      20093
     ],
     "binding after config read": [
       1853
@@ -39208,13 +39209,13 @@
       17367
     ],
     "canonical first readers": [
-      20272
+      20273
     ],
     "canonical first readers plan": [
-      20271
+      20272
     ],
     "canonical first resolver": [
-      20277
+      20278
     ],
     "canonical first spec root resolution": [
       3200
@@ -39309,10 +39310,10 @@
       3200
     ],
     "canonical spec root resolution": [
-      20548
+      20549
     ],
     "canonical spec root timeline": [
-      20549
+      20550
     ],
     "canonical state files": [
       2494
@@ -39505,10 +39506,10 @@
       3623
     ],
     "card router edits": [
-      19916
+      19917
     ],
     "card sync guard": [
-      19914
+      19915
     ],
     "card sync guard rewrite": [
       10835
@@ -39523,7 +39524,7 @@
       10836
     ],
     "card sync guard tasks": [
-      19916
+      19917
     ],
     "card versus table enforcement": [
       8853
@@ -39627,19 +39628,19 @@
       3911
     ],
     "catalog and playbook alignment": [
-      20675
+      20676
     ],
     "catalog and playbook alignment goal": [
-      20672
-    ],
-    "catalog and playbook alignment implementation summary": [
       20673
     ],
-    "catalog and playbook alignment plan": [
+    "catalog and playbook alignment implementation summary": [
       20674
     ],
+    "catalog and playbook alignment plan": [
+      20675
+    ],
     "catalog and playbook alignment tasks": [
-      20676
+      20677
     ],
     "catalog and playbook implementation summary": [
       3913
@@ -39648,7 +39649,7 @@
       3916
     ],
     "catalog and readme alignment tasks": [
-      19928
+      19929
     ],
     "catalog and readme truth": [
       11468
@@ -40113,10 +40114,10 @@
       18461
     ],
     "census lane brief": [
-      19892
+      19893
     ],
     "census lane detection commands": [
-      19890
+      19891
     ],
     "census line feed path": [
       18478
@@ -40514,19 +40515,19 @@
       1899
     ],
     "changelog release extension": [
-      20051
+      20052
     ],
     "changelog release extension acceptance criteria": [
-      20048
-    ],
-    "changelog release extension implementation summary": [
       20049
     ],
-    "changelog release extension plan": [
+    "changelog release extension implementation summary": [
       20050
     ],
+    "changelog release extension plan": [
+      20051
+    ],
     "changelog release extension tasks": [
-      20052
+      20053
     ],
     "changelog research plan": [
       5377
@@ -42127,25 +42128,25 @@
       18118
     ],
     "children ids repeated entry": [
-      20577
+      20578
     ],
     "children ids stale": [
       18121
     ],
     "children list duplicates": [
-      20577
+      20578
     ],
     "children list duplicates acceptance criteria": [
-      20574
-    ],
-    "children list duplicates implementation summary": [
       20575
     ],
-    "children list duplicates plan": [
+    "children list duplicates implementation summary": [
       20576
     ],
+    "children list duplicates plan": [
+      20577
+    ],
     "children list duplicates tasks": [
-      20578
+      20579
     ],
     "chinese to english skill docs": [
       8711
@@ -42416,22 +42417,22 @@
     ],
     "ci gate regressions": [
       3095,
-      20010
+      20011
     ],
     "ci gate regressions acceptance criteria": [
-      20006
-    ],
-    "ci gate regressions goal": [
       20007
     ],
-    "ci gate regressions implementation summary": [
+    "ci gate regressions goal": [
       20008
     ],
-    "ci gate regressions plan": [
+    "ci gate regressions implementation summary": [
       20009
     ],
+    "ci gate regressions plan": [
+      20010
+    ],
     "ci gate regressions tasks": [
-      20011
+      20012
     ],
     "ci health followups": [
       18558
@@ -42553,7 +42554,7 @@
       5085
     ],
     "ci regression gate comparison rule sets": [
-      20423
+      20424
     ],
     "ci repo profile": [
       8621
@@ -42595,19 +42596,19 @@
       19136
     ],
     "ci rule set comparison": [
-      20423
+      20424
     ],
     "ci rule set comparison acceptance criteria": [
-      20419
+      20420
     ],
     "ci rule set comparison implementation summary": [
-      20421
-    ],
-    "ci rule set comparison plan": [
       20422
     ],
+    "ci rule set comparison plan": [
+      20423
+    ],
     "ci rule set comparison tasks": [
-      20424
+      20425
     ],
     "ci runner minutes": [
       51
@@ -42679,7 +42680,7 @@
       845
     ],
     "ci trigger index job hardening": [
-      20405
+      20406
     ],
     "ci truth checks": [
       8165
@@ -43116,7 +43117,7 @@
       3259
     ],
     "clarification markers per pass": [
-      20111
+      20112
     ],
     "clarifies validation coverage": [
       2250
@@ -47365,7 +47366,7 @@
       2677
     ],
     "cli tests write into specs": [
-      20495
+      20496
     ],
     "cli tool name read only floor": [
       2791
@@ -49010,17 +49011,17 @@
       16257
     ],
     "code graph index flag deprecation": [
-      20294,
-      20309
+      20295,
+      20310
     ],
     "code graph index flag deprecation plan": [
-      20293
+      20294
     ],
     "code graph index flag deprecation summary": [
-      20292
+      20293
     ],
     "code graph index flag deprecation tasks": [
-      20295
+      20296
     ],
     "code graph initial scan": [
       16685
@@ -49937,19 +49938,19 @@
       16574
     ],
     "code review and dispatch policy": [
-      20221
+      20222
     ],
     "code review and dispatch policy acceptance criteria": [
-      20218
-    ],
-    "code review and dispatch policy implementation summary": [
       20219
     ],
-    "code review and dispatch policy plan": [
+    "code review and dispatch policy implementation summary": [
       20220
     ],
+    "code review and dispatch policy plan": [
+      20221
+    ],
     "code review and dispatch policy tasks": [
-      20222
+      20223
     ],
     "code review benchmark index": [
       1387
@@ -50857,16 +50858,16 @@
       18015
     ],
     "collision classifier": [
-      20263
-    ],
-    "collision classifier plan": [
-      20262
-    ],
-    "collision classifier tasks": [
       20264
     ],
+    "collision classifier plan": [
+      20263
+    ],
+    "collision classifier tasks": [
+      20265
+    ],
     "collision rejection plan": [
-      20268
+      20269
     ],
     "color frequency interpretation": [
       1712
@@ -50953,13 +50954,13 @@
       1951
     ],
     "command and agent audit": [
-      19921
-    ],
-    "command and agent audit rows": [
       19922
     ],
+    "command and agent audit rows": [
+      19923
+    ],
     "command and agent audit table": [
-      19920
+      19921
     ],
     "command and playbook acceptance": [
       9926
@@ -51982,28 +51983,28 @@
       6669
     ],
     "compaction purpose folder": [
-      20171
-    ],
-    "compaction purpose folder implementation summary": [
-      20169
-    ],
-    "compaction purpose folder plan": [
-      20170
-    ],
-    "compaction purpose folder tasks": [
       20172
     ],
+    "compaction purpose folder implementation summary": [
+      20170
+    ],
+    "compaction purpose folder plan": [
+      20171
+    ],
+    "compaction purpose folder tasks": [
+      20173
+    ],
     "compaction purpose line": [
-      20145
+      20146
     ],
     "compaction purpose line implementation summary": [
-      20143
-    ],
-    "compaction purpose line plan": [
       20144
     ],
+    "compaction purpose line plan": [
+      20145
+    ],
     "compaction purpose line tasks": [
-      20146
+      20147
     ],
     "compaction recall census": [
       3978
@@ -52075,7 +52076,7 @@
       12639
     ],
     "compat resume dirty check": [
-      20495
+      20496
     ],
     "compat shim advisor": [
       2867
@@ -52111,7 +52112,7 @@
       10943
     ],
     "compatibility window tasks": [
-      20273
+      20274
     ],
     "compile research output": [
       2501
@@ -53128,43 +53129,43 @@
       19589,
       19596,
       19772,
-      20078,
-      20081,
-      20088,
-      20094,
-      20100,
-      20106,
-      20112,
-      20118,
-      20123,
-      20127,
-      20132,
-      20137,
-      20142,
-      20147,
-      20153,
-      20158,
-      20163,
-      20168,
-      20173,
-      20178,
-      20196,
-      20384,
-      20390,
-      20396,
-      20402,
-      20420,
-      20426,
-      20432,
-      20438,
-      20444,
-      20450,
-      20456,
-      20462,
-      20468,
-      20474,
-      20479,
-      20683
+      20079,
+      20082,
+      20089,
+      20095,
+      20101,
+      20107,
+      20113,
+      20119,
+      20124,
+      20128,
+      20133,
+      20138,
+      20143,
+      20148,
+      20154,
+      20159,
+      20164,
+      20169,
+      20174,
+      20179,
+      20197,
+      20385,
+      20391,
+      20397,
+      20403,
+      20421,
+      20427,
+      20433,
+      20439,
+      20445,
+      20451,
+      20457,
+      20463,
+      20469,
+      20475,
+      20480,
+      20684
     ],
     "completion criteria copied": [
       18788,
@@ -53700,7 +53701,7 @@
       2496
     ],
     "confirm first investigation closed": [
-      20302
+      20303
     ],
     "confirm invariance": [
       3312
@@ -54712,16 +54713,16 @@
       16225
     ],
     "continuity purpose field": [
-      20150
+      20151
     ],
     "continuity purpose field implementation summary": [
-      20148
-    ],
-    "continuity purpose field plan": [
       20149
     ],
+    "continuity purpose field plan": [
+      20150
+    ],
     "continuity purpose field tasks": [
-      20151
+      20152
     ],
     "continuity reader flow lists": [
       19541,
@@ -55528,19 +55529,19 @@
       8760
     ],
     "corpus wide validation repair": [
-      20371
+      20372
     ],
     "corpus wide validation repair acceptance criteria": [
-      20368
-    ],
-    "corpus wide validation repair implementation summary": [
       20369
     ],
-    "corpus wide validation repair plan": [
+    "corpus wide validation repair implementation summary": [
       20370
     ],
+    "corpus wide validation repair plan": [
+      20371
+    ],
     "corpus wide validation repair tasks": [
-      20372
+      20373
     ],
     "corpus workflow blocks changes": [
       1560
@@ -56276,16 +56277,16 @@
       18969
     ],
     "create path track refresh": [
-      20609
+      20610
     ],
     "create path track refresh implementation summary": [
-      20607
-    ],
-    "create path track refresh plan": [
       20608
     ],
+    "create path track refresh plan": [
+      20609
+    ],
     "create path track refresh tasks": [
-      20610
+      20611
     ],
     "create pull request programmatically": [
       2303,
@@ -56329,20 +56330,20 @@
       19194
     ],
     "create sh canonical": [
-      20269
+      20270
     ],
     "create sh canonical specs root": [
-      20313,
       20314,
       20315,
       20316,
-      20514
-    ],
-    "create sh canonical specs root timeline": [
+      20317,
       20515
     ],
+    "create sh canonical specs root timeline": [
+      20516
+    ],
     "create sh canonical tasks": [
-      20270
+      20271
     ],
     "create sh fallback": [
       14442
@@ -56378,19 +56379,19 @@
       18098
     ],
     "create sh parent phase map anchor": [
-      20546
+      20547
     ],
     "create sh path refreshes the track root": [
-      20609
+      20610
     ],
     "create sh path symlink": [
       3130
     ],
     "create sh phase backfill tasks": [
-      20394
+      20395
     ],
     "create sh phase derives graph metadata": [
-      20393
+      20394
     ],
     "create sh phase label criteria": [
       4008
@@ -56405,28 +56406,28 @@
       4012
     ],
     "create sh root numbering": [
-      20317,
       20318,
       20319,
-      20320
+      20320,
+      20321
     ],
     "create sh sibling listing plan": [
-      20336
+      20337
     ],
     "create sh sub track guard": [
-      20550
-    ],
-    "create sh symlinked sub track": [
-      20552
-    ],
-    "create sh track guard plan": [
       20551
     ],
+    "create sh symlinked sub track": [
+      20553
+    ],
+    "create sh track guard plan": [
+      20552
+    ],
     "create sh track traversal fix": [
-      19945
+      19946
     ],
     "create sh trailing slash track": [
-      20552
+      20553
     ],
     "create sh unknown option": [
       3155
@@ -56453,10 +56454,10 @@
       3237
     ],
     "create sh writes to opencode specs": [
-      20313,
       20314,
       20315,
-      20316
+      20316,
+      20317
     ],
     "create skill": [
       1740,
@@ -56506,16 +56507,16 @@
       903
     ],
     "create track fixes": [
-      20552
+      20553
     ],
     "create track fixes implementation summary": [
-      20550
-    ],
-    "create track fixes plan": [
       20551
     ],
+    "create track fixes plan": [
+      20552
+    ],
     "create track fixes tasks": [
-      20553
+      20554
     ],
     "create wiki": [
       935
@@ -58342,10 +58343,10 @@
       1644
     ],
     "data canonicalization plan": [
-      20265
+      20266
     ],
     "data canonicalization tasks": [
-      20267
+      20268
     ],
     "data chart inert": [
       8887
@@ -58525,7 +58526,7 @@
       19052
     ],
     "dead hash file deletion guard": [
-      19896
+      19897
     ],
     "dead hook file removal": [
       6069,
@@ -58838,7 +58839,7 @@
       3331
     ],
     "decision free implementation readiness": [
-      20085
+      20086
     ],
     "decision gate not implementation": [
       18938
@@ -59041,10 +59042,10 @@
       1555
     ],
     "declared more than once": [
-      20577
+      20578
     ],
     "declared more than once fix": [
-      20575
+      20576
     ],
     "declared phrase specificity": [
       2782,
@@ -59054,10 +59055,10 @@
       10327
     ],
     "declared sub track container": [
-      20601
+      20602
     ],
     "declared sub track rule parity": [
-      20556
+      20557
     ],
     "declared surfaces parity": [
       1469
@@ -62318,7 +62319,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "deep research strategy md": [
       2513
@@ -62833,22 +62835,22 @@
       15060
     ],
     "deep review finding fixes": [
-      19945
+      19946
     ],
     "deep review finding fixes acceptance criteria": [
-      19941
-    ],
-    "deep review finding fixes goal": [
       19942
     ],
-    "deep review finding fixes implementation summary": [
+    "deep review finding fixes goal": [
       19943
     ],
-    "deep review finding fixes plan": [
+    "deep review finding fixes implementation summary": [
       19944
     ],
+    "deep review finding fixes plan": [
+      19945
+    ],
     "deep review finding fixes tasks": [
-      19946
+      19947
     ],
     "deep review finding reproducing case": [
       7750
@@ -62984,13 +62986,13 @@
       15119
     ],
     "deep review p2 closure gate": [
-      20117
+      20118
     ],
     "deep review p2 plan check build implementation summary": [
-      20119
+      20120
     ],
     "deep review p2 plan check build summary": [
-      20119
+      20120
     ],
     "deep review p2 remediation": [
       6432
@@ -63090,32 +63092,32 @@
       14314,
       16604,
       18885,
-      20022,
-      20500
+      20023,
+      20501
     ],
     "deep review remediation 010 007": [
       16642
     ],
     "deep review remediation acceptance criteria": [
       6480,
-      20018,
-      20497
+      20019,
+      20498
     ],
     "deep review remediation adr": [
       15291,
       17305
     ],
     "deep review remediation edit packets": [
-      20122
+      20123
     ],
     "deep review remediation goal": [
       6481,
-      20019
+      20020
     ],
     "deep review remediation implementation summary": [
       6482,
-      20020,
-      20498
+      20021,
+      20499
     ],
     "deep review remediation phase parent": [
       18167
@@ -63125,8 +63127,8 @@
       17307,
       18884,
       19421,
-      20021,
-      20499
+      20022,
+      20500
     ],
     "deep review remediation source root": [
       19422
@@ -63141,8 +63143,8 @@
       6485,
       14999,
       17309,
-      20023,
-      20501
+      20024,
+      20502
     ],
     "deep review replay idempotency tasks": [
       11125
@@ -63348,8 +63350,8 @@
       13285,
       18133,
       18401,
-      20124,
-      20200
+      20125,
+      20201
     ],
     "deep review synthesis research plan": [
       14282
@@ -63621,7 +63623,7 @@
       6134
     ],
     "deepseek flash spec authoring": [
-      20079
+      20080
     ],
     "deepseek guard implementation": [
       6133
@@ -63858,7 +63860,7 @@
       11504
     ],
     "defect ledger schema": [
-      19890
+      19891
     ],
     "defer active reducers ledger quality": [
       16945
@@ -64384,22 +64386,22 @@
       12353
     ],
     "deprecate nested changelogs": [
-      20034
+      20035
     ],
     "deprecate nested changelogs acceptance criteria": [
-      20030
-    ],
-    "deprecate nested changelogs goal": [
       20031
     ],
-    "deprecate nested changelogs implementation summary": [
+    "deprecate nested changelogs goal": [
       20032
     ],
-    "deprecate nested changelogs plan": [
+    "deprecate nested changelogs implementation summary": [
       20033
     ],
+    "deprecate nested changelogs plan": [
+      20034
+    ],
     "deprecate nested changelogs tasks": [
-      20035
+      20036
     ],
     "deprecate sk prompt models": [
       10853
@@ -64441,7 +64443,7 @@
       16029
     ],
     "deprecated tier duplicate row": [
-      20303
+      20304
     ],
     "deprecated tier exclusion": [
       16993
@@ -65152,7 +65154,7 @@
       2885
     ],
     "deterministic packet relocation": [
-      20684
+      20685
     ],
     "deterministic provenance merge": [
       10986
@@ -65178,7 +65180,7 @@
       18055
     ],
     "deterministic repair rules": [
-      20471
+      20472
     ],
     "deterministic research replay": [
       11074
@@ -66660,11 +66662,11 @@
       849
     ],
     "disposable worktree scenario run": [
-      19933,
-      19934
+      19934,
+      19935
     ],
     "disposable worktree scenario runner": [
-      19932
+      19933
     ],
     "disprove p0 finding": [
       2591
@@ -66836,7 +66838,7 @@
       2432
     ],
     "divergent duplicate resolution": [
-      20266
+      20267
     ],
     "divergent duplicate save block linked skilled": [
       19615
@@ -67290,16 +67292,16 @@
       16455
     ],
     "docs and tests": [
-      20568
+      20569
     ],
     "docs and tests implementation": [
-      20566
-    ],
-    "docs and tests plan": [
       20567
     ],
+    "docs and tests plan": [
+      20568
+    ],
     "docs and tests tasks": [
-      20569
+      20570
     ],
     "docs catalogs phase parent": [
       16053
@@ -67856,7 +67858,7 @@
       5318
     ],
     "doctor env duplicate variable": [
-      20495
+      20496
     ],
     "doctor env implementation summary": [
       5320
@@ -68745,16 +68747,16 @@
       12863
     ],
     "doctor symlink gaps": [
-      20564
+      20565
     ],
     "doctor symlink gaps plan": [
-      20563
+      20564
     ],
     "doctor symlink gaps summary": [
-      20562
+      20563
     ],
     "doctor symlink gaps tasks": [
-      20565
+      20566
     ],
     "doctor symlink install phase parent spec": [
       5600
@@ -68815,22 +68817,22 @@
       15676
     ],
     "doctor update compat docs": [
-      20490
+      20491
     ],
     "doctor update compatibility": [
-      20435
+      20436
     ],
     "doctor update compatibility acceptance criteria": [
-      20431
+      20432
     ],
     "doctor update compatibility implementation summary": [
-      20433
-    ],
-    "doctor update compatibility plan": [
       20434
     ],
+    "doctor update compatibility plan": [
+      20435
+    ],
     "doctor update compatibility tasks": [
-      20436
+      20437
     ],
     "doctor update copied tree": [
       5356
@@ -69330,7 +69332,7 @@
       4182
     ],
     "draft metadata auto repair": [
-      19987
+      19988
     ],
     "draft placeholder rule": [
       3250
@@ -70388,10 +70390,10 @@
       10444
     ],
     "dual executor deep research": [
-      20279
+      20280
     ],
     "dual executor deep review dispatch": [
-      20298
+      20299
     ],
     "dual importance tier fields": [
       3052
@@ -70539,12 +70541,12 @@
       7072
     ],
     "duplicate packet number 001": [
-      20317,
-      20319,
-      20320
+      20318,
+      20320,
+      20321
     ],
     "duplicate phase documentation map": [
-      20546
+      20547
     ],
     "duplicate plugin id worktree": [
       4624
@@ -71217,43 +71219,43 @@
       19589,
       19596,
       19772,
-      20078,
-      20081,
-      20088,
-      20094,
-      20100,
-      20106,
-      20112,
-      20118,
-      20123,
-      20127,
-      20132,
-      20137,
-      20142,
-      20147,
-      20153,
-      20158,
-      20163,
-      20168,
-      20173,
-      20178,
-      20196,
-      20384,
-      20390,
-      20396,
-      20402,
-      20420,
-      20426,
-      20432,
-      20438,
-      20444,
-      20450,
-      20456,
-      20462,
-      20468,
-      20474,
-      20479,
-      20683
+      20079,
+      20082,
+      20089,
+      20095,
+      20101,
+      20107,
+      20113,
+      20119,
+      20124,
+      20128,
+      20133,
+      20138,
+      20143,
+      20148,
+      20154,
+      20159,
+      20164,
+      20169,
+      20174,
+      20179,
+      20197,
+      20385,
+      20391,
+      20397,
+      20403,
+      20421,
+      20427,
+      20433,
+      20439,
+      20445,
+      20451,
+      20457,
+      20463,
+      20469,
+      20475,
+      20480,
+      20684
     ],
     "durable fan in failure plan": [
       10981
@@ -71638,7 +71640,7 @@
       19385
     ],
     "elephant goldfish model spec kit": [
-      20085
+      20086
     ],
     "eleven p1 fixed at source": [
       18899
@@ -72458,16 +72460,16 @@
       9910
     ],
     "empty parent purpose backfill": [
-      20181
+      20182
     ],
     "empty parent purpose backfill implementation summary": [
-      20179
-    ],
-    "empty parent purpose backfill plan": [
       20180
     ],
+    "empty parent purpose backfill plan": [
+      20181
+    ],
     "empty parent purpose backfill tasks": [
-      20182
+      20183
     ],
     "empty phase child skipped": [
       18404,
@@ -73174,34 +73176,34 @@
       17506
     ],
     "epic docs alignment": [
-      20490
-    ],
-    "epic docs alignment acceptance criteria": [
-      20487
-    ],
-    "epic docs alignment implementation summary": [
-      20488
-    ],
-    "epic docs alignment plan": [
-      20489
-    ],
-    "epic docs alignment tasks": [
       20491
     ],
-    "epic follow up fixes": [
-      20495
+    "epic docs alignment acceptance criteria": [
+      20488
     ],
-    "epic follow up fixes acceptance criteria": [
+    "epic docs alignment implementation summary": [
+      20489
+    ],
+    "epic docs alignment plan": [
+      20490
+    ],
+    "epic docs alignment tasks": [
       20492
     ],
-    "epic follow up fixes implementation summary": [
+    "epic follow up fixes": [
+      20496
+    ],
+    "epic follow up fixes acceptance criteria": [
       20493
     ],
-    "epic follow up fixes plan": [
+    "epic follow up fixes implementation summary": [
       20494
     ],
+    "epic follow up fixes plan": [
+      20495
+    ],
     "epic follow up fixes tasks": [
-      20496
+      20497
     ],
     "epic follow up review": [
       8313
@@ -73618,19 +73620,19 @@
       14837
     ],
     "evidence gated provenance": [
-      20417
+      20418
     ],
     "evidence gated provenance acceptance criteria": [
-      20413
+      20414
     ],
     "evidence gated provenance implementation summary": [
-      20415
-    ],
-    "evidence gated provenance plan": [
       20416
     ],
+    "evidence gated provenance plan": [
+      20417
+    ],
     "evidence gated provenance tasks": [
-      20418
+      20419
     ],
     "evidence ledger runtime for system deep loop": [
       12162
@@ -73743,7 +73745,7 @@
       15557
     ],
     "exact match row applier": [
-      19896
+      19897
     ],
     "exact session id reader": [
       161
@@ -73762,7 +73764,7 @@
       18993
     ],
     "exactly once applier": [
-      20539
+      20540
     ],
     "exactly one fresh cross process acquire": [
       12521
@@ -73778,11 +73780,11 @@
     ],
     "example drift guard": [
       3210,
-      19908,
-      19909
+      19909,
+      19910
     ],
     "example drift guard source": [
-      19910
+      19911
     ],
     "example generation": [
       17965
@@ -73878,7 +73880,7 @@
       907
     ],
     "execute the specs flip": [
-      20290
+      20291
     ],
     "executed post dispatch gate executor identity": [
       5059
@@ -73901,19 +73903,19 @@
       3313
     ],
     "execution mode and autopilot contract": [
-      20216
+      20217
     ],
     "execution mode and autopilot contract acceptance criteria": [
-      20213
-    ],
-    "execution mode and autopilot contract implementation summary": [
       20214
     ],
-    "execution mode and autopilot contract plan": [
+    "execution mode and autopilot contract implementation summary": [
       20215
     ],
+    "execution mode and autopilot contract plan": [
+      20216
+    ],
     "execution mode and autopilot contract tasks": [
-      20217
+      20218
     ],
     "execution mode branch closure gate": [
       19167
@@ -74082,7 +74084,7 @@
       11933
     ],
     "executor matrix acceptance criteria": [
-      20087
+      20088
     ],
     "executor matrix audit checklist": [
       11560
@@ -74110,7 +74112,7 @@
       11579
     ],
     "executor routing closure criteria": [
-      20087
+      20088
     ],
     "executor selection contract": [
       2576
@@ -74192,7 +74194,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "exhausted review approaches": [
       2532,
@@ -74225,8 +74228,8 @@
       13285,
       18133,
       18401,
-      20124,
-      20200
+      20125,
+      20201
     ],
     "exhaustive residue sweep methodology bug": [
       16544
@@ -74461,7 +74464,7 @@
       18433
     ],
     "extend the open release": [
-      20051
+      20052
     ],
     "extended bake off plan": [
       14933
@@ -74567,7 +74570,7 @@
       13467
     ],
     "external repo upgrade path": [
-      20435
+      20436
     ],
     "external scanner reset bash": [
       16636
@@ -75430,7 +75433,7 @@
       3024
     ],
     "failing first placeholder test": [
-      19904
+      19905
     ],
     "failure count lowered bar": [
       18705
@@ -75645,7 +75648,7 @@
       2578
     ],
     "fan out opt in closure criteria": [
-      20093
+      20094
     ],
     "fan out pair census": [
       2674
@@ -76078,7 +76081,7 @@
       16077
     ],
     "fanout run refusal traceability": [
-      20093
+      20094
     ],
     "fanout run two lineages": [
       19244
@@ -76415,7 +76418,7 @@
       15561
     ],
     "feature catalog relocation exit 3": [
-      20675
+      20676
     ],
     "feature catalog review plan": [
       14270
@@ -77126,10 +77129,10 @@
       3319
     ],
     "fill guidance test source": [
-      19910
+      19911
     ],
     "fill instruction format": [
-      19908
+      19909
     ],
     "filter and sort rows in a notion data source": [
       1048
@@ -77196,7 +77199,7 @@
       13258
     ],
     "final baseline run tasks": [
-      19940
+      19941
     ],
     "final commit live proof": [
       4718
@@ -77776,19 +77779,19 @@
       7222
     ],
     "fix alignment report findings for speckit command surfaces": [
-      20254
+      20255
     ],
     "fix alignment report findings for speckit command surfaces acceptance criteria": [
-      20250
+      20251
     ],
     "fix alignment report findings for speckit command surfaces implementation summary": [
-      20252
-    ],
-    "fix alignment report findings for speckit command surfaces plan": [
       20253
     ],
+    "fix alignment report findings for speckit command surfaces plan": [
+      20254
+    ],
     "fix alignment report findings for speckit command surfaces tasks": [
-      20255
+      20256
     ],
     "fix audit findings": [
       14314
@@ -77918,16 +77921,16 @@
       16416
     ],
     "fix deep review p2 findings acceptance criteria": [
-      20117
+      20118
     ],
     "fix deep review p2 findings for plan check builds": [
-      20121
+      20122
     ],
     "fix deep review p2 findings for plan check builds plan": [
-      20120
+      20121
     ],
     "fix deep review p2 findings for plan check builds tasks": [
-      20122
+      20123
     ],
     "fix deferred p2s for test only and shared exports changelog": [
       16479
@@ -77939,7 +77942,7 @@
       16145
     ],
     "fix duplicate anchors": [
-      20447
+      20448
     ],
     "fix eight skill and command surfacing gaps": [
       13279
@@ -78005,7 +78008,7 @@
       3015
     ],
     "fix nested questions anchor": [
-      20387
+      20388
     ],
     "fix now accept as is p2 scope": [
       18157
@@ -78126,82 +78129,82 @@
       12914
     ],
     "fix write recipe backfill flag": [
-      20518
-    ],
-    "fix write recipe backfill flag implementation summary": [
-      20516
-    ],
-    "fix write recipe backfill flag plan": [
-      20517
-    ],
-    "fix write recipe backfill flag tasks": [
       20519
     ],
-    "fix write recipe commit step": [
-      20522
+    "fix write recipe backfill flag implementation summary": [
+      20517
     ],
-    "fix write recipe commit step implementation summary": [
+    "fix write recipe backfill flag plan": [
+      20518
+    ],
+    "fix write recipe backfill flag tasks": [
       20520
     ],
-    "fix write recipe commit step plan": [
-      20521
-    ],
-    "fix write recipe commit step tasks": [
+    "fix write recipe commit step": [
       20523
     ],
-    "fix write recipe move destination": [
-      20540
+    "fix write recipe commit step implementation summary": [
+      20521
     ],
-    "fix write recipe move destination acceptance criteria": [
-      20536
+    "fix write recipe commit step plan": [
+      20522
     ],
-    "fix write recipe move destination goal": [
-      20537
-    ],
-    "fix write recipe move destination implementation summary": [
-      20538
-    ],
-    "fix write recipe move destination plan": [
-      20539
-    ],
-    "fix write recipe move destination tasks": [
-      20541
-    ],
-    "fix write recipe post checks": [
-      20530
-    ],
-    "fix write recipe post checks implementation summary": [
-      20528
-    ],
-    "fix write recipe post checks plan": [
-      20529
-    ],
-    "fix write recipe post checks tasks": [
-      20531
-    ],
-    "fix write recipe verification gate": [
-      20534
-    ],
-    "fix write recipe verification gate implementation summary": [
-      20532
-    ],
-    "fix write recipe verification gate plan": [
-      20533
-    ],
-    "fix write recipe verification gate tasks": [
-      20535
-    ],
-    "fix write recipe workspace bullet": [
-      20526
-    ],
-    "fix write recipe workspace bullet implementation summary": [
+    "fix write recipe commit step tasks": [
       20524
     ],
-    "fix write recipe workspace bullet plan": [
+    "fix write recipe move destination": [
+      20541
+    ],
+    "fix write recipe move destination acceptance criteria": [
+      20537
+    ],
+    "fix write recipe move destination goal": [
+      20538
+    ],
+    "fix write recipe move destination implementation summary": [
+      20539
+    ],
+    "fix write recipe move destination plan": [
+      20540
+    ],
+    "fix write recipe move destination tasks": [
+      20542
+    ],
+    "fix write recipe post checks": [
+      20531
+    ],
+    "fix write recipe post checks implementation summary": [
+      20529
+    ],
+    "fix write recipe post checks plan": [
+      20530
+    ],
+    "fix write recipe post checks tasks": [
+      20532
+    ],
+    "fix write recipe verification gate": [
+      20535
+    ],
+    "fix write recipe verification gate implementation summary": [
+      20533
+    ],
+    "fix write recipe verification gate plan": [
+      20534
+    ],
+    "fix write recipe verification gate tasks": [
+      20536
+    ],
+    "fix write recipe workspace bullet": [
+      20527
+    ],
+    "fix write recipe workspace bullet implementation summary": [
       20525
     ],
+    "fix write recipe workspace bullet plan": [
+      20526
+    ],
     "fix write recipe workspace bullet tasks": [
-      20527
+      20528
     ],
     "fixclass allow list": [
       17984,
@@ -78590,25 +78593,25 @@
       13324
     ],
     "fold one off repairs": [
-      20453
+      20454
     ],
     "fold one off repairs acceptance criteria": [
-      20449
+      20450
     ],
     "fold one off repairs implementation summary": [
-      20451
-    ],
-    "fold one off repairs plan": [
       20452
     ],
+    "fold one off repairs plan": [
+      20453
+    ],
     "fold one off repairs tasks": [
-      20454
+      20455
     ],
     "fold refinement finding plan": [
       12511
     ],
     "fold remaining one offs": [
-      20453
+      20454
     ],
     "folder alignment scoring": [
       11
@@ -78647,7 +78650,7 @@
       18700
     ],
     "folder named in brief": [
-      20171
+      20172
     ],
     "folder nesting visualization": [
       1663
@@ -78722,19 +78725,19 @@
       18204
     ],
     "follow up defect fixes": [
-      20505
+      20506
     ],
     "follow up defect fixes acceptance criteria": [
-      20502
-    ],
-    "follow up defect fixes implementation summary": [
       20503
     ],
-    "follow up defect fixes plan": [
+    "follow up defect fixes implementation summary": [
       20504
     ],
+    "follow up defect fixes plan": [
+      20505
+    ],
     "follow up defect fixes tasks": [
-      20506
+      20507
     ],
     "follow up fix sweep": [
       3810
@@ -78752,24 +78755,24 @@
       3811
     ],
     "follow up fixes": [
-      19998
+      19999
     ],
     "follow up fixes goal": [
-      19995
+      19996
     ],
     "follow up fixes implementation summary": [
-      19996
+      19997
     ],
     "follow up fixes plan": [
       12667,
-      19997
+      19998
     ],
     "follow up fixes summary": [
       12666
     ],
     "follow up fixes tasks": [
       12669,
-      19999
+      20000
     ],
     "follow up quality pass": [
       13988
@@ -78805,7 +78808,7 @@
       12737
     ],
     "followable spec templates": [
-      20079
+      20080
     ],
     "followed a real workflow against improvising": [
       13141
@@ -79372,7 +79375,7 @@
       2495
     ],
     "fresh context plan comprehension check": [
-      20085
+      20086
     ],
     "fresh context review cycle": [
       2580
@@ -80535,19 +80538,19 @@
       44
     ],
     "gate 3 choice consistency plan": [
-      20464
-    ],
-    "gate 3 choice wording consistency": [
       20465
     ],
-    "gate 3 constants parity": [
+    "gate 3 choice wording consistency": [
       20466
     ],
+    "gate 3 constants parity": [
+      20467
+    ],
     "gate 3 constants parity summary": [
-      20463
+      20464
     ],
     "gate 3 constants parity verification": [
-      20461
+      20462
     ],
     "gate 3 delivery": [
       19504
@@ -80568,32 +80571,32 @@
       3388
     ],
     "gate 3 menu parity": [
-      20464,
-      20465
-    ],
-    "gate 3 menu parity acceptance": [
-      20461
-    ],
-    "gate 3 menu parity implementation": [
-      20463
-    ],
-    "gate 3 menu parity tasks": [
+      20465,
       20466
     ],
+    "gate 3 menu parity acceptance": [
+      20462
+    ],
+    "gate 3 menu parity implementation": [
+      20464
+    ],
+    "gate 3 menu parity tasks": [
+      20467
+    ],
     "gate 3 menu series parent": [
-      20352
+      20353
     ],
     "gate 3 menu series parent acceptance criteria": [
-      20349
-    ],
-    "gate 3 menu series parent implementation summary": [
       20350
     ],
-    "gate 3 menu series parent plan": [
+    "gate 3 menu series parent implementation summary": [
       20351
     ],
+    "gate 3 menu series parent plan": [
+      20352
+    ],
     "gate 3 menu series parent tasks": [
-      20353
+      20354
     ],
     "gate 3 mutation time delivery acceptance criteria": [
       19501
@@ -80611,7 +80614,7 @@
       19356
     ],
     "gate 3 option labels plan": [
-      20351
+      20352
     ],
     "gate 3 option merge": [
       19356
@@ -80638,7 +80641,7 @@
       7148
     ],
     "gate 3 question wording": [
-      20352
+      20353
     ],
     "gate 3 re ask": [
       7151
@@ -80659,7 +80662,7 @@
       5750
     ],
     "gate 3 series parent wording": [
-      20341
+      20342
     ],
     "gate 3 suppression": [
       19504
@@ -81048,7 +81051,7 @@
       13942
     ],
     "generate command routers check exits 1": [
-      20248
+      20249
     ],
     "generate command routers clean": [
       5358
@@ -81821,7 +81824,7 @@
       11627
     ],
     "glm grok specs relocation": [
-      20280
+      20281
     ],
     "glm research lane spec kit": [
       19004,
@@ -82560,43 +82563,43 @@
       19589,
       19596,
       19772,
-      20078,
-      20081,
-      20088,
-      20094,
-      20100,
-      20106,
-      20112,
-      20118,
-      20123,
-      20127,
-      20132,
-      20137,
-      20142,
-      20147,
-      20153,
-      20158,
-      20163,
-      20168,
-      20173,
-      20178,
-      20196,
-      20384,
-      20390,
-      20396,
-      20402,
-      20420,
-      20426,
-      20432,
-      20438,
-      20444,
-      20450,
-      20456,
-      20462,
-      20468,
-      20474,
-      20479,
-      20683
+      20079,
+      20082,
+      20089,
+      20095,
+      20101,
+      20107,
+      20113,
+      20119,
+      20124,
+      20128,
+      20133,
+      20138,
+      20143,
+      20148,
+      20154,
+      20159,
+      20164,
+      20169,
+      20174,
+      20179,
+      20197,
+      20385,
+      20391,
+      20397,
+      20403,
+      20421,
+      20427,
+      20433,
+      20439,
+      20445,
+      20451,
+      20457,
+      20463,
+      20469,
+      20475,
+      20480,
+      20684
     ],
     "goal binding gaps": [
       9259
@@ -82962,9 +82965,9 @@
     "goal durable budget": [
       2041,
       9258,
-      19879,
       19880,
-      19881
+      19881,
+      19882
     ],
     "goal durable budget 4000": [
       19287,
@@ -83022,7 +83025,7 @@
       9277
     ],
     "goal facet packet purpose": [
-      20150
+      20151
     ],
     "goal fallback bound": [
       6932
@@ -83887,10 +83890,10 @@
       3967
     ],
     "goal warning tier": [
-      19879,
       19880,
       19881,
-      19882
+      19882,
+      19883
     ],
     "goal without phases": [
       2027
@@ -83950,22 +83953,22 @@
       19196
     ],
     "goldfish cold read plan review": [
-      20085
-    ],
-    "goldfish cold read plan review implementation summary": [
-      20082
-    ],
-    "goldfish cold read plan review phase parent spec": [
-      20125
-    ],
-    "goldfish cold read plan review plan": [
-      20083
-    ],
-    "goldfish cold read plan review tasks": [
       20086
     ],
-    "goldfish plan check synthesis": [
+    "goldfish cold read plan review implementation summary": [
+      20083
+    ],
+    "goldfish cold read plan review phase parent spec": [
       20126
+    ],
+    "goldfish cold read plan review plan": [
+      20084
+    ],
+    "goldfish cold read plan review tasks": [
+      20087
+    ],
+    "goldfish plan check synthesis": [
+      20127
     ],
     "good and weak example": [
       3245
@@ -84497,7 +84500,7 @@
       3332
     ],
     "graph metadata backfill command": [
-      20542
+      20543
     ],
     "graph metadata child drift": [
       18121
@@ -84870,7 +84873,7 @@
       17846
     ],
     "group related small packets": [
-      20337
+      20338
     ],
     "grouped bars": [
       1650
@@ -85583,7 +85586,7 @@
       13522
     ],
     "harden the series parent rule": [
-      20342
+      20343
     ],
     "hardening": [
       14486
@@ -85766,22 +85769,22 @@
       1076
     ],
     "heal cli and compat yaml simplification": [
-      20485
-    ],
-    "heal cli and compat yaml simplification acceptance criteria": [
-      20482
-    ],
-    "heal cli and compat yaml simplification implementation summary": [
-      20483
-    ],
-    "heal cli and compat yaml simplification plan": [
-      20484
-    ],
-    "heal cli and compat yaml simplification tasks": [
       20486
     ],
+    "heal cli and compat yaml simplification acceptance criteria": [
+      20483
+    ],
+    "heal cli and compat yaml simplification implementation summary": [
+      20484
+    ],
+    "heal cli and compat yaml simplification plan": [
+      20485
+    ],
+    "heal cli and compat yaml simplification tasks": [
+      20487
+    ],
     "heal lane modes cli selector": [
-      20480
+      20481
     ],
     "heal spec docs anchor repair": [
       3212
@@ -85790,25 +85793,25 @@
       3213
     ],
     "heal spec docs phrase refill policy": [
-      20410
-    ],
-    "heal spec docs refill tasks": [
-      20412
-    ],
-    "healer phrase seeding": [
       20411
     ],
+    "heal spec docs refill tasks": [
+      20413
+    ],
+    "healer phrase seeding": [
+      20412
+    ],
     "healer phrase seeding acceptance criteria": [
-      20407
+      20408
     ],
     "healer phrase seeding implementation summary": [
-      20409
-    ],
-    "healer phrase seeding plan": [
       20410
     ],
+    "healer phrase seeding plan": [
+      20411
+    ],
     "healer phrase seeding tasks": [
-      20412
+      20413
     ],
     "health and degeneration harness implementation plan": [
       11035
@@ -86459,8 +86462,8 @@
       16510
     ],
     "highest branch number": [
-      20318,
-      20319
+      20319,
+      20320
     ],
     "highest priority review dimension": [
       2586
@@ -86469,7 +86472,7 @@
       4104
     ],
     "hint to token conversion script": [
-      19904
+      19905
     ],
     "historic context preservation": [
       18666
@@ -87358,16 +87361,16 @@
       6550
     ],
     "hop purpose rule parity": [
-      20166
+      20167
     ],
     "hop purpose rule parity implementation summary": [
-      20164
-    ],
-    "hop purpose rule parity plan": [
       20165
     ],
+    "hop purpose rule parity plan": [
+      20166
+    ],
     "hop purpose rule parity tasks": [
-      20167
+      20168
     ],
     "hop recall baseline": [
       6392
@@ -87414,19 +87417,19 @@
       17982
     ],
     "host relative alias decision plan": [
-      20563
-    ],
-    "host relative alias ignore decision": [
-      20562
-    ],
-    "host relative link ignore bookkeeping": [
       20564
     ],
+    "host relative alias ignore decision": [
+      20563
+    ],
+    "host relative link ignore bookkeeping": [
+      20565
+    ],
     "host repository trigger index": [
-      20600
+      20601
     ],
     "host repository trigger index mode": [
-      20601
+      20602
     ],
     "host root marker refresh": [
       19748
@@ -88736,7 +88739,7 @@
       1285
     ],
     "implement write intent": [
-      20105
+      20106
     ],
     "implementation": [
       8704,
@@ -89136,7 +89139,7 @@
       1673
     ],
     "include archive search mode": [
-      20633
+      20634
     ],
     "include archived default": [
       16995
@@ -89587,7 +89590,7 @@
       18713
     ],
     "inline purpose label": [
-      20161
+      20162
     ],
     "inline word level highlighting": [
       1968
@@ -89639,7 +89642,7 @@
       11425
     ],
     "insert level 2 sections above the questions anchor": [
-      20605
+      20606
     ],
     "inspect clickup task": [
       865
@@ -90103,7 +90106,7 @@
       18881
     ],
     "invert resolver registry": [
-      20285
+      20286
     ],
     "invocation metadata executor gate": [
       2429
@@ -91223,7 +91226,7 @@
       15992
     ],
     "keep a packet s core purpose across handovers": [
-      20201
+      20202
     ],
     "keep a published release in step": [
       1919
@@ -91427,14 +91430,14 @@
       6695
     ],
     "known row move destination": [
-      20539,
-      20541
+      20540,
+      20542
     ],
     "known rows apply script": [
-      19898
+      19899
     ],
     "known rows k 01 to k 25": [
-      19896
+      19897
     ],
     "kubernetes icon": [
       1645
@@ -91760,7 +91763,7 @@
       11351
     ],
     "lane modes json output branch": [
-      20480
+      20481
     ],
     "lane registry weight update": [
       16109
@@ -91788,19 +91791,19 @@
       12856
     ],
     "lane rules as heal modes": [
-      20471
+      20472
     ],
     "lane rules as heal modes acceptance criteria": [
-      20467
+      20468
     ],
     "lane rules as heal modes implementation summary": [
-      20469
-    ],
-    "lane rules as heal modes plan": [
       20470
     ],
+    "lane rules as heal modes plan": [
+      20471
+    ],
     "lane rules as heal modes tasks": [
-      20472
+      20473
     ],
     "lane selection and status": [
       651
@@ -91908,7 +91911,7 @@
       5604
     ],
     "last spec folder containment": [
-      20171
+      20172
     ],
     "late hook payload test": [
       3161
@@ -92625,7 +92628,7 @@
       718
     ],
     "leaked example descriptions": [
-      19897
+      19898
     ],
     "leaked timer reproduction": [
       18829
@@ -92839,7 +92842,7 @@
       11848
     ],
     "ledger rows owned by phase 2": [
-      19898
+      19899
     ],
     "ledger schema legacy upcasters delete": [
       11864
@@ -92971,19 +92974,19 @@
       15691
     ],
     "legacy era report": [
-      20429
+      20430
     ],
     "legacy era report acceptance criteria": [
-      20425
+      20426
     ],
     "legacy era report implementation summary": [
-      20427
-    ],
-    "legacy era report plan": [
       20428
     ],
+    "legacy era report plan": [
+      20429
+    ],
     "legacy era report tasks": [
-      20430
+      20431
     ],
     "legacy file cleanup audit": [
       17599
@@ -93103,7 +93106,7 @@
       10950
     ],
     "legacy read fallback": [
-      20272
+      20273
     ],
     "legacy record has no lossless mode event": [
       11046
@@ -93222,7 +93225,7 @@
       13265
     ],
     "let the continuity writer save into a research": [
-      19885
+      19886
     ],
     "let the doctor git check accept a hand": [
       10709
@@ -93234,7 +93237,7 @@
       10581
     ],
     "level 1 smoke run brief": [
-      19916
+      19917
     ],
     "level 2 3 3 required docs": [
       18721
@@ -95191,7 +95194,7 @@
       6170
     ],
     "maintainer flags filter removal": [
-      20294
+      20295
     ],
     "maintainer mode leak": [
       15838
@@ -95370,7 +95373,7 @@
       16132
     ],
     "manifest check fsmonitor": [
-      19998
+      19999
     ],
     "manifest dead field acceptance": [
       19191
@@ -95693,7 +95696,7 @@
       2073
     ],
     "manual testing playbook execution": [
-      19933
+      19934
     ],
     "manual testing playbook fairness audit": [
       15056
@@ -95740,10 +95743,10 @@
       5777
     ],
     "manual testing playbook report package": [
-      19932
+      19933
     ],
     "manual testing playbook report tasks": [
-      19934
+      19935
     ],
     "manual testing playbook suite citation": [
       19153
@@ -98618,27 +98621,27 @@
       3218
     ],
     "measured behavior and draft metadata": [
-      19987
+      19988
     ],
     "measured behavior and draft metadata acceptance criteria": [
-      19983
-    ],
-    "measured behavior and draft metadata goal": [
       19984
     ],
-    "measured behavior and draft metadata implementation summary": [
+    "measured behavior and draft metadata goal": [
       19985
     ],
-    "measured behavior and draft metadata plan": [
+    "measured behavior and draft metadata implementation summary": [
       19986
     ],
+    "measured behavior and draft metadata plan": [
+      19987
+    ],
     "measured behavior and draft metadata tasks": [
-      19988
+      19989
     ],
     "measured behavior block": [
       3083,
       3218,
-      19987
+      19988
     ],
     "measured catch rate": [
       1343
@@ -100772,16 +100775,16 @@
       3292
     ],
     "memory scan dedup gap": [
-      20303
+      20304
     ],
     "memory scan dedup gap plan": [
-      20302
+      20303
     ],
     "memory scan dedup gap summary": [
-      20301
+      20302
     ],
     "memory scan dedup gap tasks": [
-      20304
+      20305
     ],
     "memory scripts": [
       3327
@@ -101209,10 +101212,10 @@
       13210
     ],
     "menu wording plan": [
-      20351
+      20352
     ],
     "menu wording tasks": [
-      20353
+      20354
     ],
     "merge assets templates and assets examples into one": [
       9177
@@ -101266,7 +101269,7 @@
       18899
     ],
     "merge step failure fields": [
-      20485
+      20486
     ],
     "merge tasks": [
       947
@@ -101502,16 +101505,16 @@
       14304
     ],
     "metadata write safety": [
-      20560
+      20561
     ],
     "metadata write safety implementation": [
-      20558
-    ],
-    "metadata write safety plan": [
       20559
     ],
+    "metadata write safety plan": [
+      20560
+    ],
     "metadata write safety tasks": [
-      20561
+      20562
     ],
     "metal context race spec kit memory": [
       16277
@@ -101601,17 +101604,17 @@
       19373
     ],
     "migration execution decision record": [
-      20287
-    ],
-    "migration execution runbook": [
-      20289,
-      20308
-    ],
-    "migration execution summary": [
       20288
     ],
+    "migration execution runbook": [
+      20290,
+      20309
+    ],
+    "migration execution summary": [
+      20289
+    ],
     "migration execution tasks": [
-      20291
+      20292
     ],
     "migration field census source fingerprint hashes": [
       18045
@@ -101623,16 +101626,16 @@
       18656
     ],
     "migration plan adrs": [
-      20307
+      20308
     ],
     "migration plan decision record": [
-      20282
-    ],
-    "migration plan summary": [
       20283
     ],
+    "migration plan summary": [
+      20284
+    ],
     "migration plan tasks": [
-      20286
+      20287
     ],
     "migration point of no return": [
       19371
@@ -101921,7 +101924,7 @@
       11511
     ],
     "missing sub track metadata seed": [
-      20558
+      20559
     ],
     "missing transcript notice": [
       6968
@@ -102038,16 +102041,16 @@
       11174
     ],
     "mixed track sweep guard": [
-      20593
+      20594
     ],
     "mixed track sweep guard implementation summary": [
-      20591
-    ],
-    "mixed track sweep guard plan": [
       20592
     ],
+    "mixed track sweep guard plan": [
+      20593
+    ],
     "mixed track sweep guard tasks": [
-      20594
+      20595
     ],
     "mixed vector guard": [
       17961
@@ -103317,7 +103320,7 @@
       5522
     ],
     "move opencode specs": [
-      20312
+      20313
     ],
     "move opencode to skilled": [
       19473
@@ -103765,16 +103768,16 @@
       17637
     ],
     "name file in plan phase lines": [
-      20103
+      20104
     ],
     "name file in plan phase lines implementation summary": [
-      20101
-    ],
-    "name file in plan phase lines plan": [
       20102
     ],
+    "name file in plan phase lines plan": [
+      20103
+    ],
     "name file in plan phase lines tasks": [
-      20104
+      20105
     ],
     "name stem hop suffix": [
       7103
@@ -103789,28 +103792,28 @@
       18805
     ],
     "named sub track research": [
-      20600
+      20601
     ],
     "named sub track support in spec kit plus": [
-      20601
-    ],
-    "named sub track validation": [
-      20554
-    ],
-    "named subtracks and host repos": [
-      20601
-    ],
-    "named subtracks and host repos implementation summary": [
-      20597
-    ],
-    "named subtracks and host repos plan": [
-      20599
-    ],
-    "named subtracks and host repos tasks": [
       20602
     ],
+    "named sub track validation": [
+      20555
+    ],
+    "named subtracks and host repos": [
+      20602
+    ],
+    "named subtracks and host repos implementation summary": [
+      20598
+    ],
+    "named subtracks and host repos plan": [
+      20600
+    ],
+    "named subtracks and host repos tasks": [
+      20603
+    ],
     "named subtracks closure gate": [
-      20595
+      20596
     ],
     "namespace command example": [
       1953
@@ -104131,7 +104134,7 @@
       13341
     ],
     "negative control test repair plan": [
-      20567
+      20568
     ],
     "negative knowledge": [
       2502
@@ -104255,19 +104258,19 @@
       3022
     ],
     "nested subtracks": [
-      20694
+      20695
     ],
     "nested subtracks acceptance criteria": [
-      20691
-    ],
-    "nested subtracks implementation summary": [
       20692
     ],
-    "nested subtracks plan": [
+    "nested subtracks implementation summary": [
       20693
     ],
+    "nested subtracks plan": [
+      20694
+    ],
     "nested subtracks tasks": [
-      20695
+      20696
     ],
     "nested workflow packet": [
       340
@@ -104447,7 +104450,7 @@
       19541
     ],
     "next spec number counts archived": [
-      20680
+      20681
     ],
     "next step options after findings": [
       1420
@@ -104481,7 +104484,7 @@
       9917
     ],
     "no alias validation": [
-      20275
+      20276
     ],
     "no analogous readactive provider functions": [
       14843
@@ -105400,7 +105403,7 @@
       2254
     ],
     "numbering counts archived packets": [
-      20627
+      20628
     ],
     "numeric design laws": [
       1719
@@ -106424,13 +106427,13 @@
       2452
     ],
     "one lineage executor matrix": [
-      20091
+      20092
     ],
     "one lineage fan out refused": [
       2415
     ],
     "one lineage refusal synthesis": [
-      20126
+      20127
     ],
     "one mode classifier hub": [
       4203,
@@ -107875,7 +107878,7 @@
       3336
     ],
     "opt in archive search": [
-      20684
+      20685
     ],
     "opt in collector posture": [
       15610
@@ -109357,7 +109360,7 @@
       14074
     ],
     "packet canonicalization": [
-      20266
+      20267
     ],
     "packet changelog frontmatter": [
       2013
@@ -109369,10 +109372,10 @@
       9933
     ],
     "packet closeout sequence": [
-      19938
+      19939
     ],
     "packet closeout tasks": [
-      19940
+      19941
     ],
     "packet closure": [
       12992
@@ -110019,45 +110022,45 @@
       19589,
       19596,
       19772,
-      20078,
-      20081,
-      20088,
-      20094,
-      20100,
-      20106,
-      20112,
-      20118,
-      20123,
-      20127,
-      20132,
-      20137,
-      20142,
-      20147,
-      20153,
-      20158,
-      20163,
-      20168,
-      20173,
-      20178,
-      20196,
-      20384,
-      20390,
-      20396,
-      20402,
-      20408,
-      20414,
-      20420,
-      20426,
-      20432,
-      20438,
-      20444,
-      20450,
-      20456,
-      20462,
-      20468,
-      20474,
-      20479,
-      20683
+      20079,
+      20082,
+      20089,
+      20095,
+      20101,
+      20107,
+      20113,
+      20119,
+      20124,
+      20128,
+      20133,
+      20138,
+      20143,
+      20148,
+      20154,
+      20159,
+      20164,
+      20169,
+      20174,
+      20179,
+      20197,
+      20385,
+      20391,
+      20397,
+      20403,
+      20409,
+      20415,
+      20421,
+      20427,
+      20433,
+      20439,
+      20445,
+      20451,
+      20457,
+      20463,
+      20469,
+      20475,
+      20480,
+      20684
     ],
     "packet goal authoring boundary": [
       9262
@@ -110107,9 +110110,9 @@
       19347
     ],
     "packet home": [
-      20330,
       20331,
-      20332
+      20332,
+      20333
     ],
     "packet id audit": [
       13834,
@@ -110147,7 +110150,7 @@
       3928
     ],
     "packet numbering without track": [
-      20319
+      20320
     ],
     "packet pointer handover check": [
       18924
@@ -110174,17 +110177,17 @@
       3271
     ],
     "packet purpose after compaction": [
-      20145
+      20146
     ],
     "packet purpose carry": [
       3181
     ],
     "packet purpose continuity field": [
       3274,
-      20150
+      20151
     ],
     "packet purpose first sentence abbreviation": [
-      20161
+      20162
     ],
     "packet purpose on relaunch": [
       3272
@@ -110208,7 +110211,7 @@
       18764
     ],
     "packet root resolution chronology": [
-      20549
+      20550
     ],
     "packet scaffold acceptance criteria": [
       8713
@@ -110331,7 +110334,7 @@
       3221
     ],
     "parent completion criteria proofs": [
-      19938
+      19939
     ],
     "parent decision record": [
       13820
@@ -110400,10 +110403,10 @@
       18796
     ],
     "parent goal limit": [
-      19879,
       19880,
       19881,
-      19882
+      19882,
+      19883
     ],
     "parent goal resend": [
       19302,
@@ -110498,22 +110501,22 @@
       11538
     ],
     "parent purpose label": [
-      20166
+      20167
     ],
     "parent purpose row": [
       3273
     ],
     "parent purpose scaffold": [
-      20130
+      20131
     ],
     "parent purpose scaffold implementation summary": [
-      20128
-    ],
-    "parent purpose scaffold plan": [
       20129
     ],
+    "parent purpose scaffold plan": [
+      20130
+    ],
     "parent purpose scaffold tasks": [
-      20131
+      20132
     ],
     "parent rollup summary": [
       7559
@@ -110765,7 +110768,7 @@
       16105
     ],
     "partial template phrase blocks": [
-      20366
+      20367
     ],
     "partial unique not autoincrement": [
       17680
@@ -112128,7 +112131,7 @@
       13373
     ],
     "phase 1 create track fixes": [
-      20552
+      20553
     ],
     "phase 1 dead hook file removal": [
       6069
@@ -112206,7 +112209,7 @@
       8069
     ],
     "phase 1 parent purpose scaffold": [
-      20130
+      20131
     ],
     "phase 1 per doc versions": [
       8198
@@ -112218,7 +112221,7 @@
       8474
     ],
     "phase 1 relocation engine": [
-      20615
+      20616
     ],
     "phase 1 removal research": [
       12292
@@ -112284,13 +112287,13 @@
       19621
     ],
     "phase 1 spec template anchor nesting": [
-      20387
+      20388
     ],
     "phase 1 standalone agent and council command": [
       12389
     ],
     "phase 1 step order acceptance after development": [
-      20206
+      20207
     ],
     "phase 1 sweet search research": [
       6342
@@ -112299,7 +112302,7 @@
       5571
     ],
     "phase 1 template drift census and baseline": [
-      19891
+      19892
     ],
     "phase 1 typo proof parsers": [
       8172
@@ -112335,7 +112338,7 @@
       3783
     ],
     "phase 10 deep review finding fixes": [
-      19945
+      19946
     ],
     "phase 10 documentation sweep": [
       4538
@@ -112350,7 +112353,7 @@
       8115
     ],
     "phase 10 fix alignment report findings for speckit": [
-      20254
+      20255
     ],
     "phase 10 fix barter repin handover items": [
       13491
@@ -112368,7 +112371,7 @@
       7205
     ],
     "phase 10 mixed track sweep guard": [
-      20593
+      20594
     ],
     "phase 10 observations": [
       12698
@@ -112389,7 +112392,7 @@
       6515
     ],
     "phase 10 problem sentence carry": [
-      20176
+      20177
     ],
     "phase 10 reachability and attribution": [
       13095
@@ -112398,7 +112401,7 @@
       10303
     ],
     "phase 10 real pipeline tests": [
-      20665
+      20666
     ],
     "phase 10 reference readability research": [
       7477
@@ -112426,10 +112429,10 @@
       9746
     ],
     "phase 10 trigger index ci rebuild": [
-      20356
+      20357
     ],
     "phase 10 upgrade reversibility": [
-      20441
+      20442
     ],
     "phase 10 validate and retrieval exit honesty": [
       19682
@@ -112450,10 +112453,10 @@
       8568
     ],
     "phase 11 anchor repair mode": [
-      20447
+      20448
     ],
     "phase 11 authoring speed research": [
-      19951
+      19952
     ],
     "phase 11 bdg eval port note": [
       7210
@@ -112468,7 +112471,7 @@
       3651
     ],
     "phase 11 empty parent purpose backfill": [
-      20181
+      20182
     ],
     "phase 11 gateway enforcement": [
       12490
@@ -112498,7 +112501,7 @@
       12342
     ],
     "phase 11 prerequisites bound folder override": [
-      20258
+      20259
     ],
     "phase 11 push and repin open items": [
       13617
@@ -112507,7 +112510,7 @@
       10308
     ],
     "phase 11 relocate and restore fixes": [
-      20670
+      20671
     ],
     "phase 11 remaining limits": [
       10697
@@ -112541,7 +112544,7 @@
       9769
     ],
     "phase 11 template phrase census and cleanup": [
-      20361
+      20362
     ],
     "phase 11 two version proof and closeout": [
       4545
@@ -112565,13 +112568,13 @@
       10431
     ],
     "phase 12 authoring speed fixes and alignment": [
-      19956
+      19957
     ],
     "phase 12 browser hub doc topic": [
       7216
     ],
     "phase 12 catalog and playbook alignment": [
-      20675
+      20676
     ],
     "phase 12 deep loop modes and commands": [
       5001
@@ -112604,7 +112607,7 @@
       7883
     ],
     "phase 12 purpose reader precision": [
-      20187
+      20188
     ],
     "phase 12 residual reference sweep": [
       12347
@@ -112647,7 +112650,7 @@
       9773
     ],
     "phase 12 template phrase cleanup round two": [
-      20366
+      20367
     ],
     "phase 12 verification and release": [
       8646
@@ -112665,7 +112668,7 @@
       7578
     ],
     "phase 13 addon removal and speed refinements": [
-      19963
+      19964
     ],
     "phase 13 advisory checks blocking gates": [
       19827
@@ -112692,7 +112695,7 @@
       3795
     ],
     "phase 13 corpus wide validation repair": [
-      20371
+      20372
     ],
     "phase 13 devin compaction fallback budget": [
       6452
@@ -112725,7 +112728,7 @@
       6832
     ],
     "phase 13 purpose docs and backfill": [
-      20193
+      20194
     ],
     "phase 13 python advisor native and parity": [
       8000
@@ -112743,7 +112746,7 @@
       4556
     ],
     "phase 13 skill docs and housekeeping": [
-      20680
+      20681
     ],
     "phase 13 system spec kit": [
       9778
@@ -112797,7 +112800,7 @@
       3800
     ],
     "phase 14 removed template reality sweep": [
-      19969
+      19970
     ],
     "phase 14 results": [
       19430
@@ -112821,7 +112824,7 @@
       10542
     ],
     "phase 14 spec auto healing research": [
-      20376
+      20377
     ],
     "phase 14 system skill advisor": [
       9473
@@ -112845,7 +112848,7 @@
       13639
     ],
     "phase 15 archive current location and ignored files": [
-      20381
+      20382
     ],
     "phase 15 barter overlay upstream intake": [
       13528
@@ -112884,7 +112887,7 @@
       19835
     ],
     "phase 15 lane rules as heal modes": [
-      20471
+      20472
     ],
     "phase 15 pi mode and descendant walk": [
       6846
@@ -112914,7 +112917,7 @@
       19439
     ],
     "phase 15 template example neutralization": [
-      19975
+      19976
     ],
     "phase 15 v4 0 0 13 changelog": [
       6540
@@ -112968,13 +112971,13 @@
       6853
     ],
     "phase 16 research recommendations": [
-      20481
+      20482
     ],
     "phase 16 results": [
       19441
     ],
     "phase 16 scaffold filler section trim": [
-      19981
+      19982
     ],
     "phase 16 sk doc tooling followups": [
       8015
@@ -113019,7 +113022,7 @@
       6550
     ],
     "phase 17 measured behavior and draft metadata": [
-      19987
+      19988
     ],
     "phase 17 missing transcript notice": [
       6968
@@ -113061,7 +113064,7 @@
       10523
     ],
     "phase 18 benchmark redesign and remeasure": [
-      19993
+      19994
     ],
     "phase 18 cli vitest shards": [
       19848
@@ -113130,7 +113133,7 @@
       5044
     ],
     "phase 19 follow up fixes": [
-      19998
+      19999
     ],
     "phase 19 fork compact pointer research": [
       6559
@@ -113359,10 +113362,10 @@
       12297
     ],
     "phase 2 required artifact gates": [
-      20211
+      20212
     ],
     "phase 2 resume purpose row": [
-      20135
+      20136
     ],
     "phase 2 retrieval lessons research": [
       6349
@@ -113408,10 +113411,10 @@
       6706
     ],
     "phase 2 subtrack predicate": [
-      20556
+      20557
     ],
     "phase 2 subtrack proposal": [
-      20621
+      20622
     ],
     "phase 2 surface contract alignment": [
       7661
@@ -113420,7 +113423,7 @@
       5637
     ],
     "phase 2 template and example defect repair": [
-      19897
+      19898
     ],
     "phase 2 tooling fixes": [
       7432
@@ -113444,7 +113447,7 @@
       10531
     ],
     "phase 20 alignment audit fixes": [
-      20004
+      20005
     ],
     "phase 20 closure gate": [
       19460
@@ -113453,7 +113456,7 @@
       13147
     ],
     "phase 20 deep review remediation": [
-      20500
+      20501
     ],
     "phase 20 dsh direct writer gateway": [
       5049
@@ -113505,7 +113508,7 @@
       13153
     ],
     "phase 21 ci gate regressions": [
-      20010
+      20011
     ],
     "phase 21 closure gate": [
       19465
@@ -113517,7 +113520,7 @@
       12837
     ],
     "phase 21 follow up defect fixes": [
-      20505
+      20506
     ],
     "phase 21 fork nudge and precompact guards": [
       6567
@@ -113557,7 +113560,7 @@
       5213
     ],
     "phase 22 advisor routing and local install": [
-      20016
+      20017
     ],
     "phase 22 agent source and drift checks": [
       3837
@@ -113605,7 +113608,7 @@
       19868
     ],
     "phase 23 deep review remediation": [
-      20022
+      20023
     ],
     "phase 23 dsh lineage executor check": [
       5064
@@ -113656,7 +113659,7 @@
       3846
     ],
     "phase 24 typed command ambiguity": [
-      20028
+      20029
     ],
     "phase 24 vibe hook review 2 remediation": [
       5229
@@ -113668,7 +113671,7 @@
       4604
     ],
     "phase 25 deprecate nested changelogs": [
-      20034
+      20035
     ],
     "phase 25 external surface priority research": [
       8231
@@ -113683,7 +113686,7 @@
       3852
     ],
     "phase 26 alignment findings fixes": [
-      20040
+      20041
     ],
     "phase 26 alignment remaining findings": [
       5076
@@ -113701,7 +113704,7 @@
       13184
     ],
     "phase 27 alignment preexisting gaps": [
-      20046
+      20047
     ],
     "phase 27 ci red checks": [
       5080
@@ -113719,7 +113722,7 @@
       3860
     ],
     "phase 28 changelog release extension": [
-      20051
+      20052
     ],
     "phase 28 ci red checks": [
       5084
@@ -113836,7 +113839,7 @@
       8250
     ],
     "phase 3 execution mode and autopilot contract": [
-      20216
+      20217
     ],
     "phase 3 feature catalog findings": [
       9371
@@ -113905,7 +113908,7 @@
       9568
     ],
     "phase 3 metadata write safety": [
-      20560
+      20561
     ],
     "phase 3 mint locator at prepare": [
       6403
@@ -113935,10 +113938,10 @@
       7777
     ],
     "phase 3 refuse single lineage fanout run": [
-      20097
+      20098
     ],
     "phase 3 relaunch goal quote": [
-      20140
+      20141
     ],
     "phase 3 repin": [
       13446
@@ -113978,7 +113981,7 @@
       7898
     ],
     "phase 3 subtrack archive and numbering": [
-      20627
+      20628
     ],
     "phase 3 system spec kit": [
       9438
@@ -114005,7 +114008,7 @@
       4800
     ],
     "phase 3 versioned placeholder gate": [
-      19903
+      19904
     ],
     "phase 30 epic deep review": [
       8302
@@ -114125,7 +114128,7 @@
       9804
     ],
     "phase 4 archive search and json": [
-      20633
+      20634
     ],
     "phase 4 battery misses": [
       8084
@@ -114152,7 +114155,7 @@
       9220
     ],
     "phase 4 code review and dispatch policy": [
-      20221
+      20222
     ],
     "phase 4 command contract and readme": [
       5588
@@ -114170,7 +114173,7 @@
       5924
     ],
     "phase 4 compaction purpose line": [
-      20145
+      20146
     ],
     "phase 4 conversation adoption build": [
       9489
@@ -114194,7 +114197,7 @@
       9441
     ],
     "phase 4 doctor symlink gaps": [
-      20564
+      20565
     ],
     "phase 4 doctrine": [
       8519
@@ -114257,7 +114260,7 @@
       9553
     ],
     "phase 4 name file in plan phase lines": [
-      20103
+      20104
     ],
     "phase 4 offer lookup at claim": [
       6408
@@ -114320,13 +114323,13 @@
       10111
     ],
     "phase 4 template section fill guidance": [
-      19909
+      19910
     ],
     "phase 4 total candidate count": [
       6362
     ],
     "phase 4 trigger index rebuild hardening": [
-      20405
+      20406
     ],
     "phase 4 v2 review p2 fixes": [
       4806
@@ -114398,7 +114401,7 @@
       3758
     ],
     "phase 5 authoring card routing": [
-      20105
+      20106
     ],
     "phase 5 barter parity": [
       13458
@@ -114446,7 +114449,7 @@
       8526
     ],
     "phase 5 continuity purpose field": [
-      20150
+      20151
     ],
     "phase 5 deep review remediation": [
       6484
@@ -114458,7 +114461,7 @@
       7824
     ],
     "phase 5 docs and tests": [
-      20568
+      20569
     ],
     "phase 5 doctor git ci runtime": [
       19651
@@ -114470,10 +114473,10 @@
       8264
     ],
     "phase 5 healer phrase seeding": [
-      20411
+      20412
     ],
     "phase 5 healer phrase seeding goal": [
-      20408
+      20409
     ],
     "phase 5 hook stdin deadlines": [
       7760
@@ -114521,7 +114524,7 @@
       6656
     ],
     "phase 5 point chat sessions at authoring card": [
-      20109
+      20110
     ],
     "phase 5 readme node floor": [
       7908
@@ -114536,7 +114539,7 @@
       13401
     ],
     "phase 5 resume detection and single workflow": [
-      20226
+      20227
     ],
     "phase 5 review output additions": [
       7676
@@ -114606,7 +114609,7 @@
       6724
     ],
     "phase 5 tests and closeout": [
-      20640
+      20641
     ],
     "phase 5 trim duplicated and dead agent text": [
       3726
@@ -114618,7 +114621,7 @@
       4506
     ],
     "phase 5 weak model authoring card": [
-      19915
+      19916
     ],
     "phase 50 sk doc ci outside failures": [
       4706
@@ -114741,13 +114744,13 @@
       5493
     ],
     "phase 6 evidence gated provenance": [
-      20417
+      20418
     ],
     "phase 6 evidence gated provenance goal": [
-      20414
+      20415
     ],
     "phase 6 fix write recipe move destination": [
-      20540
+      20541
     ],
     "phase 6 gate 2 binding and runtime pointers": [
       13072
@@ -114796,7 +114799,7 @@
       12886
     ],
     "phase 6 purpose carry follow ups": [
-      20156
+      20157
     ],
     "phase 6 record without handoff": [
       6902
@@ -114814,19 +114817,19 @@
       10677
     ],
     "phase 6 relocate resume and preflight": [
-      20645
+      20646
     ],
     "phase 6 remediation deep review": [
       7872
     ],
     "phase 6 repair speckit workflow gates": [
-      20115
+      20116
     ],
     "phase 6 research lineage reducer path": [
       12466
     ],
     "phase 6 review follow ups": [
-      20572
+      20573
     ],
     "phase 6 review remediation": [
       8374,
@@ -114842,7 +114845,7 @@
       12317
     ],
     "phase 6 save search handoff contracts": [
-      20231
+      20232
     ],
     "phase 6 shared agent contract": [
       3763
@@ -114881,7 +114884,7 @@
       8432
     ],
     "phase 6 speckit command and agent alignment": [
-      19921
+      19922
     ],
     "phase 6 strip rule boundary edges": [
       12751
@@ -114944,10 +114947,10 @@
       8540
     ],
     "phase 7 children list duplicates": [
-      20577
+      20578
     ],
     "phase 7 ci rule set comparison": [
-      20423
+      20424
     ],
     "phase 7 cli opencode": [
       9541
@@ -114977,7 +114980,7 @@
       13468
     ],
     "phase 7 fix deep review p2 findings": [
-      20121
+      20122
     ],
     "phase 7 gap closure": [
       5671
@@ -115022,13 +115025,13 @@
       13079
     ],
     "phase 7 phase map and prearchive rewrites": [
-      20650
+      20651
     ],
     "phase 7 playbook catalog readme alignment": [
-      19927
+      19928
     ],
     "phase 7 purpose reader coverage": [
-      20161
+      20162
     ],
     "phase 7 python scorer strip parity": [
       12756
@@ -115059,10 +115062,10 @@
       6378
     ],
     "phase 7 series parent review and hardening research": [
-      20342
+      20343
     ],
     "phase 7 shared blocks and retired mechanisms": [
-      20237
+      20238
     ],
     "phase 7 shared references and detection order": [
       8379
@@ -115173,7 +115176,7 @@
       6914
     ],
     "phase 8 hop purpose rule parity": [
-      20166
+      20167
     ],
     "phase 8 hub gap report": [
       5552
@@ -115182,7 +115185,7 @@
       13422
     ],
     "phase 8 legacy era report": [
-      20429
+      20430
     ],
     "phase 8 lineage proof enforcement": [
       12475
@@ -115206,7 +115209,7 @@
       13473
     ],
     "phase 8 playbook run in worktree": [
-      19933
+      19934
     ],
     "phase 8 project scoped state": [
       5678
@@ -115227,7 +115230,7 @@
       9402
     ],
     "phase 8 restore and phase numbering": [
-      20655
+      20656
     ],
     "phase 8 review 3 remediation": [
       6502
@@ -115236,13 +115239,13 @@
       6799
     ],
     "phase 8 router readme presentation alignment": [
-      20243
+      20244
     ],
     "phase 8 runner limit closeout": [
       8547
     ],
     "phase 8 series parent review fixes": [
-      20347
+      20348
     ],
     "phase 8 session aware tie break": [
       7839
@@ -115269,7 +115272,7 @@
       10202
     ],
     "phase 8 track subtrack regrouping": [
-      20583
+      20584
     ],
     "phase 8 vibe repo guards": [
       5146
@@ -115290,7 +115293,7 @@
       10491
     ],
     "phase 9 authoring benchmark and closeout": [
-      19939
+      19940
     ],
     "phase 9 chat answer evidence": [
       5684
@@ -115299,7 +115302,7 @@
       13089
     ],
     "phase 9 compaction purpose folder": [
-      20171
+      20172
     ],
     "phase 9 crash fallback edge cases": [
       12766
@@ -115323,7 +115326,7 @@
       18550
     ],
     "phase 9 doctor update compatibility": [
-      20435
+      20436
     ],
     "phase 9 document corrections": [
       6920
@@ -115338,7 +115341,7 @@
       12480
     ],
     "phase 9 gate 3 menu series parent": [
-      20352
+      20353
     ],
     "phase 9 gate3 and continuity root": [
       19676
@@ -115371,7 +115374,7 @@
       7929
     ],
     "phase 9 proposal search and routing": [
-      20660
+      20661
     ],
     "phase 9 reducer config message": [
       8110
@@ -115383,7 +115386,7 @@
       10162
     ],
     "phase 9 rename rule and test root fixes": [
-      20588
+      20589
     ],
     "phase 9 repo rules readme": [
       10297
@@ -115392,7 +115395,7 @@
       6508
     ],
     "phase 9 resume contract owned assets": [
-      20248
+      20249
     ],
     "phase 9 review closeout": [
       8554
@@ -115447,11 +115450,11 @@
       2025
     ],
     "phase aware archive": [
-      20330,
       20331,
       20332,
       20333,
-      20514
+      20334,
+      20515
     ],
     "phase b handoff": [
       15673
@@ -115639,19 +115642,19 @@
       11930
     ],
     "phase map and prearchive rewrites": [
-      20650
+      20651
     ],
     "phase map and prearchive rewrites goal": [
-      20647
-    ],
-    "phase map and prearchive rewrites implementation summary": [
       20648
     ],
-    "phase map and prearchive rewrites plan": [
+    "phase map and prearchive rewrites implementation summary": [
       20649
     ],
+    "phase map and prearchive rewrites plan": [
+      20650
+    ],
     "phase map and prearchive rewrites tasks": [
-      20651
+      20652
     ],
     "phase map repair evidence": [
       19561
@@ -115679,16 +115682,16 @@
       19552
     ],
     "phase map unanchored append": [
-      20546
+      20547
     ],
     "phase map unanchored append implementation summary": [
-      20544
-    ],
-    "phase map unanchored append plan": [
       20545
     ],
+    "phase map unanchored append plan": [
+      20546
+    ],
     "phase map unanchored append tasks": [
-      20547
+      20548
     ],
     "phase name placeholder": [
       3236
@@ -115703,7 +115706,7 @@
       14443
     ],
     "phase numbering counts archived phases": [
-      20655
+      20656
     ],
     "phase one analysis plan": [
       18668
@@ -115892,25 +115895,25 @@
       14193
     ],
     "phase scaffold graph metadata": [
-      20393
+      20394
     ],
     "phase scaffold graph metadata acceptance criteria": [
-      20389
+      20390
     ],
     "phase scaffold graph metadata implementation summary": [
-      20391
-    ],
-    "phase scaffold graph metadata plan": [
       20392
     ],
+    "phase scaffold graph metadata plan": [
+      20393
+    ],
     "phase scaffold graph metadata tasks": [
-      20394
+      20395
     ],
     "phase scaffolding overwrites parent metadata": [
       18103
     ],
     "phase scaffolds pass their own gate": [
-      20393
+      20394
     ],
     "phase six deliverables": [
       18690
@@ -115994,23 +115997,23 @@
       12563
     ],
     "phrase census and cleanup plan": [
-      20476
+      20477
     ],
     "phrase census and cleanup robustness": [
-      20477
+      20478
     ],
     "phrase cleanup hardening": [
-      20476,
-      20477
+      20477,
+      20478
     ],
     "phrase cleanup hardening acceptance": [
-      20473
+      20474
     ],
     "phrase cleanup hardening implementation": [
-      20475
+      20476
     ],
     "phrase cleanup hardening tasks": [
-      20478
+      20479
     ],
     "phrase intent booster migration": [
       16125,
@@ -116020,7 +116023,7 @@
       19129
     ],
     "phrase lint env reference": [
-      20490
+      20491
     ],
     "phrase quality criteria": [
       19071
@@ -117440,7 +117443,7 @@
       19165
     ],
     "placeholder scanner parity fix": [
-      19945
+      19946
     ],
     "placeholder syntax types": [
       3304
@@ -117565,7 +117568,7 @@
       18713
     ],
     "plan clarity gate criteria": [
-      20111
+      20112
     ],
     "plan contract optimization": [
       18639
@@ -117658,7 +117661,7 @@
       18638
     ],
     "plan phase file naming acceptance criteria": [
-      20099
+      20100
     ],
     "plan phase names its file": [
       3134
@@ -117682,7 +117685,7 @@
       18603
     ],
     "plan template example closure criteria": [
-      20099
+      20100
     ],
     "plan template phase reduction": [
       18637
@@ -117826,22 +117829,22 @@
       6920
     ],
     "playbook catalog readme alignment": [
-      19927
+      19928
     ],
     "playbook catalog readme alignment acceptance criteria": [
-      19923
-    ],
-    "playbook catalog readme alignment goal": [
       19924
     ],
-    "playbook catalog readme alignment implementation summary": [
+    "playbook catalog readme alignment goal": [
       19925
     ],
-    "playbook catalog readme alignment plan": [
+    "playbook catalog readme alignment implementation summary": [
       19926
     ],
+    "playbook catalog readme alignment plan": [
+      19927
+    ],
     "playbook catalog readme alignment tasks": [
-      19928
+      19929
     ],
     "playbook catalog truth": [
       8150
@@ -118171,22 +118174,22 @@
       14015
     ],
     "playbook run in worktree": [
-      19933
+      19934
     ],
     "playbook run in worktree acceptance criteria": [
-      19929
-    ],
-    "playbook run in worktree goal": [
       19930
     ],
-    "playbook run in worktree implementation summary": [
+    "playbook run in worktree goal": [
       19931
     ],
-    "playbook run in worktree plan": [
+    "playbook run in worktree implementation summary": [
       19932
     ],
+    "playbook run in worktree plan": [
+      19933
+    ],
     "playbook run in worktree tasks": [
-      19934
+      19935
     ],
     "playbook run phase 003 verification": [
       16180
@@ -118564,19 +118567,19 @@
       1145
     ],
     "point chat sessions at authoring card": [
-      20109
-    ],
-    "point chat sessions at authoring card implementation summary": [
-      20107
-    ],
-    "point chat sessions at authoring card plan": [
-      20108
-    ],
-    "point chat sessions at authoring card tasks": [
       20110
     ],
+    "point chat sessions at authoring card implementation summary": [
+      20108
+    ],
+    "point chat sessions at authoring card plan": [
+      20109
+    ],
+    "point chat sessions at authoring card tasks": [
+      20111
+    ],
     "point chat sessions authoring card": [
-      20105
+      20106
     ],
     "point cloud chart": [
       1669
@@ -119079,7 +119082,7 @@
       4574
     ],
     "post migration documentation drift": [
-      20299
+      20300
     ],
     "post mutation hook": [
       14295
@@ -119377,7 +119380,7 @@
       11904
     ],
     "pre implementation design choice stop": [
-      20111
+      20112
     ],
     "pre migration inventory": [
       1067
@@ -119450,13 +119453,13 @@
       11950
     ],
     "pre v4 detection": [
-      20429
+      20430
     ],
     "pre v4 repo upgrade": [
-      20435
+      20436
     ],
     "pre v4 spec folder migration": [
-      20376
+      20377
     ],
     "pre v4 spec upgrade": [
       44,
@@ -119501,7 +119504,7 @@
       15774
     ],
     "precompact active spec folder line": [
-      20156
+      20157
     ],
     "precompact authored continuity snapshot": [
       16961,
@@ -119650,16 +119653,16 @@
       9043
     ],
     "prerequisites bound folder override": [
-      20258
+      20259
     ],
     "prerequisites bound folder override implementation summary": [
-      20256
-    ],
-    "prerequisites bound folder override plan": [
       20257
     ],
+    "prerequisites bound folder override plan": [
+      20258
+    ],
     "prerequisites bound folder override tasks": [
-      20259
+      20260
     ],
     "presentation adherence research": [
       17165,
@@ -119890,7 +119893,7 @@
       16423
     ],
     "problem and purpose heading without subheading": [
-      20161
+      20162
     ],
     "problem first overview": [
       378
@@ -119899,22 +119902,22 @@
       16607
     ],
     "problem line after compaction": [
-      20176
+      20177
     ],
     "problem printed as purpose": [
-      20187
+      20188
     ],
     "problem sentence carry": [
-      20176
+      20177
     ],
     "problem sentence carry implementation summary": [
-      20174
-    ],
-    "problem sentence carry plan": [
       20175
     ],
+    "problem sentence carry plan": [
+      20176
+    ],
     "problem sentence carry tasks": [
-      20177
+      20178
     ],
     "problem statement": [
       3407,
@@ -119923,7 +119926,7 @@
       3424
     ],
     "problem statement beside the purpose": [
-      20176
+      20177
     ],
     "procedural benchmark gate task": [
       17706
@@ -120215,7 +120218,7 @@
       1673
     ],
     "project owned doctor entry": [
-      20600
+      20601
     ],
     "project plan roadmap": [
       1656
@@ -120692,19 +120695,19 @@
       2952
     ],
     "proposal search and routing": [
-      20660
+      20661
     ],
     "proposal search and routing goal": [
-      20657
-    ],
-    "proposal search and routing implementation summary": [
       20658
     ],
-    "proposal search and routing plan": [
+    "proposal search and routing implementation summary": [
       20659
     ],
+    "proposal search and routing plan": [
+      20660
+    ],
     "proposal search and routing tasks": [
-      20661
+      20662
     ],
     "propose sub tracks": [
       3139
@@ -121124,34 +121127,34 @@
       16247
     ],
     "purpose carry follow ups": [
-      20156
-    ],
-    "purpose carry follow ups implementation summary": [
-      20154
-    ],
-    "purpose carry follow ups plan": [
-      20155
-    ],
-    "purpose carry follow ups tasks": [
       20157
     ],
+    "purpose carry follow ups implementation summary": [
+      20155
+    ],
+    "purpose carry follow ups plan": [
+      20156
+    ],
+    "purpose carry follow ups tasks": [
+      20158
+    ],
     "purpose docs and backfill": [
-      20193
+      20194
     ],
     "purpose docs and backfill acceptance criteria": [
-      20189
-    ],
-    "purpose docs and backfill goal": [
       20190
     ],
-    "purpose docs and backfill implementation summary": [
+    "purpose docs and backfill goal": [
       20191
     ],
-    "purpose docs and backfill plan": [
+    "purpose docs and backfill implementation summary": [
       20192
     ],
+    "purpose docs and backfill plan": [
+      20193
+    ],
     "purpose docs and backfill tasks": [
-      20194
+      20195
     ],
     "purpose first readme": [
       734
@@ -121166,71 +121169,71 @@
       479
     ],
     "purpose line feature catalog": [
-      20193
+      20194
     ],
     "purpose line in the handoff note goal": [
-      20140
+      20141
     ],
     "purpose line label shapes": [
-      20166
+      20167
     ],
     "purpose line missing after compaction": [
-      20171
+      20172
     ],
     "purpose line on resume": [
       3181
     ],
     "purpose line playbook scenarios": [
-      20193
+      20194
     ],
     "purpose reader coverage": [
-      20161
-    ],
-    "purpose reader coverage implementation summary": [
-      20159
-    ],
-    "purpose reader coverage plan": [
-      20160
-    ],
-    "purpose reader coverage tasks": [
       20162
     ],
+    "purpose reader coverage implementation summary": [
+      20160
+    ],
+    "purpose reader coverage plan": [
+      20161
+    ],
+    "purpose reader coverage tasks": [
+      20163
+    ],
     "purpose reader precision": [
-      20187
-    ],
-    "purpose reader precision acceptance criteria": [
-      20183
-    ],
-    "purpose reader precision goal": [
-      20184
-    ],
-    "purpose reader precision implementation summary": [
-      20185
-    ],
-    "purpose reader precision plan": [
-      20186
-    ],
-    "purpose reader precision tasks": [
       20188
     ],
+    "purpose reader precision acceptance criteria": [
+      20184
+    ],
+    "purpose reader precision goal": [
+      20185
+    ],
+    "purpose reader precision implementation summary": [
+      20186
+    ],
+    "purpose reader precision plan": [
+      20187
+    ],
+    "purpose reader precision tasks": [
+      20189
+    ],
     "purpose retention across handovers": [
-      20199,
-      20201
-    ],
-    "purpose retention across handovers implementation summary": [
-      20197
-    ],
-    "purpose retention across handovers plan": [
-      20198
-    ],
-    "purpose retention across handovers tasks": [
+      20200,
       20202
     ],
-    "purpose row in the resume brief": [
+    "purpose retention across handovers implementation summary": [
+      20198
+    ],
+    "purpose retention across handovers plan": [
       20199
     ],
+    "purpose retention across handovers tasks": [
+      20203
+    ],
+    "purpose row in the resume brief": [
+      20200
+    ],
     "purpose rule parity across hops": [
-      20187
+      20188
     ],
     "push and create a pull request": [
       2318
@@ -121860,7 +121863,7 @@
       11704
     ],
     "quarantine tasks": [
-      20267
+      20268
     ],
     "quarantined": [
       2914
@@ -122041,7 +122044,7 @@
       3257
     ],
     "questions anchor scope": [
-      20387
+      20388
     ],
     "questions anchor un nesting": [
       3212
@@ -122332,7 +122335,7 @@
       3238
     ],
     "re parent resume phase rows": [
-      20670
+      20671
     ],
     "re pin after frontmatter move": [
       9934
@@ -122644,13 +122647,13 @@
       4133
     ],
     "reader normalization": [
-      20272
+      20273
     ],
     "reader normalization plan": [
-      20271
+      20272
     ],
     "reader normalization tasks": [
-      20273
+      20274
     ],
     "reader repoint checklist": [
       4169
@@ -122884,7 +122887,7 @@
       17312
     ],
     "readme deep review": [
-      20299
+      20300
     ],
     "readme description strict yaml": [
       389,
@@ -123043,20 +123046,20 @@
       10308
     ],
     "readme migration audit": [
-      20299,
-      20310
+      20300,
+      20311
     ],
     "readme migration audit before after": [
-      20296
-    ],
-    "readme migration audit plan": [
-      20298
-    ],
-    "readme migration audit summary": [
       20297
     ],
+    "readme migration audit plan": [
+      20299
+    ],
+    "readme migration audit summary": [
+      20298
+    ],
     "readme migration audit tasks": [
-      20300
+      20301
     ],
     "readme missing overview": [
       9848
@@ -123352,19 +123355,19 @@
       9309
     ],
     "real pipeline tests": [
-      20665
+      20666
     ],
     "real pipeline tests goal": [
-      20662
-    ],
-    "real pipeline tests implementation summary": [
       20663
     ],
-    "real pipeline tests plan": [
+    "real pipeline tests implementation summary": [
       20664
     ],
+    "real pipeline tests plan": [
+      20665
+    ],
     "real pipeline tests tasks": [
-      20666
+      20667
     ],
     "real tree census": [
       19050
@@ -123676,10 +123679,10 @@
       18057
     ],
     "recent packets in this track": [
-      20337
+      20338
     ],
     "recent packets listing hardening": [
-      20341
+      20342
     ],
     "reciprocal contradicts edges dormant": [
       14329
@@ -124622,19 +124625,19 @@
     ],
     "refresh track roots": [
       3246,
-      20322,
       20323,
       20324,
-      20325
+      20325,
+      20326
     ],
     "refresh track roots symlink guard": [
-      20558
+      20559
     ],
     "refresh track roots symlinked metadata": [
-      20560
+      20561
     ],
     "refresh track roots write guard plan": [
-      20559
+      20560
     ],
     "refreshgraphmetadata reindexspecdocs runenrichmentbackfill": [
       14473
@@ -124664,16 +124667,16 @@
       12640
     ],
     "refuse single lineage fanout run": [
-      20097
+      20098
     ],
     "refuse single lineage fanout run implementation summary": [
-      20095
-    ],
-    "refuse single lineage fanout run plan": [
       20096
     ],
+    "refuse single lineage fanout run plan": [
+      20097
+    ],
     "refuse single lineage fanout run tasks": [
-      20098
+      20099
     ],
     "refuse symlink traversal at open": [
       18807
@@ -125242,16 +125245,16 @@
       6488
     ],
     "relaunch goal quote": [
-      20140
+      20141
     ],
     "relaunch goal quote implementation summary": [
-      20138
-    ],
-    "relaunch goal quote plan": [
       20139
     ],
+    "relaunch goal quote plan": [
+      20140
+    ],
     "relaunch goal quote tasks": [
-      20141
+      20142
     ],
     "relaunch guard and generated title docs": [
       7002
@@ -125290,7 +125293,7 @@
       3272
     ],
     "relaunch note scaffold sentence": [
-      20166
+      20167
     ],
     "relaunch playbook catalog catch up": [
       6978
@@ -126378,22 +126381,22 @@
       17401
     ],
     "relocate and restore fixes": [
-      20670
-    ],
-    "relocate and restore fixes goal": [
-      20667
-    ],
-    "relocate and restore fixes implementation summary": [
-      20668
-    ],
-    "relocate and restore fixes plan": [
-      20669
-    ],
-    "relocate and restore fixes tasks": [
       20671
     ],
+    "relocate and restore fixes goal": [
+      20668
+    ],
+    "relocate and restore fixes implementation summary": [
+      20669
+    ],
+    "relocate and restore fixes plan": [
+      20670
+    ],
+    "relocate and restore fixes tasks": [
+      20672
+    ],
     "relocate and suggest subtracks vitest suites": [
-      20640
+      20641
     ],
     "relocate exit status 3": [
       3140
@@ -126402,86 +126405,86 @@
       3238
     ],
     "relocate mjs move renumber re parent": [
-      20615
+      20616
     ],
     "relocate rerun finishes a stopped move": [
       3140
     ],
     "relocate rerun finishes late steps": [
-      20645
-    ],
-    "relocate resume and preflight": [
-      20645
-    ],
-    "relocate resume and preflight goal": [
-      20642
-    ],
-    "relocate resume and preflight implementation summary": [
-      20643
-    ],
-    "relocate resume and preflight plan": [
-      20644
-    ],
-    "relocate resume and preflight tasks": [
       20646
     ],
+    "relocate resume and preflight": [
+      20646
+    ],
+    "relocate resume and preflight goal": [
+      20643
+    ],
+    "relocate resume and preflight implementation summary": [
+      20644
+    ],
+    "relocate resume and preflight plan": [
+      20645
+    ],
+    "relocate resume and preflight tasks": [
+      20647
+    ],
     "relocate specs folder": [
-      20312
+      20313
     ],
     "relocate specs folder changelog": [
-      20305
-    ],
-    "relocate specs folder code graph index flag deprecation changelog": [
-      20309
-    ],
-    "relocate specs folder migration execution changelog": [
-      20308
-    ],
-    "relocate specs folder migration plan changelog": [
-      20307
-    ],
-    "relocate specs folder readme migration audit changelog": [
-      20310
-    ],
-    "relocate specs folder relocation implications research changelog": [
       20306
     ],
+    "relocate specs folder code graph index flag deprecation changelog": [
+      20310
+    ],
+    "relocate specs folder migration execution changelog": [
+      20309
+    ],
+    "relocate specs folder migration plan changelog": [
+      20308
+    ],
+    "relocate specs folder readme migration audit changelog": [
+      20311
+    ],
+    "relocate specs folder relocation implications research changelog": [
+      20307
+    ],
     "relocate suite with the true writers": [
-      20665
+      20666
     ],
     "relocation engine": [
-      20615
+      20616
     ],
     "relocation engine acceptance criteria": [
-      20611
-    ],
-    "relocation engine goal": [
       20612
     ],
-    "relocation engine implementation summary": [
+    "relocation engine goal": [
       20613
     ],
-    "relocation engine plan": [
+    "relocation engine implementation summary": [
       20614
     ],
+    "relocation engine plan": [
+      20615
+    ],
     "relocation engine tasks": [
-      20616
+      20617
     ],
     "relocation events": [
       18699
     ],
     "relocation implications research": [
-      20280,
-      20306
+      20281,
+      20307
     ],
     "relocation research plan": [
-      20279
+      20280
     ],
     "relocation research summary": [
-      20278
+      20279
     ],
     "relocation research tasks": [
-      20281
+      20282
     ],
     "remaining cli worktree rule": [
       15827,
@@ -126897,10 +126900,10 @@
       6217
     ],
     "remove lane modes json flag": [
-      20485
+      20486
     ],
     "remove lane modes mode flag": [
-      20485
+      20486
     ],
     "remove list live edited": [
       13544
@@ -126935,19 +126938,19 @@
       12353
     ],
     "remove nested changelog": [
-      20689
+      20690
     ],
     "remove nested changelog acceptance criteria": [
-      20685
+      20686
     ],
     "remove nested changelog implementation summary": [
-      20687
-    ],
-    "remove nested changelog plan": [
       20688
     ],
+    "remove nested changelog plan": [
+      20689
+    ],
     "remove nested changelog tasks": [
-      20690
+      20691
     ],
     "remove obsidian plugin support": [
       7321
@@ -127056,7 +127059,7 @@
       10766
     ],
     "remove the unused nested spec changelog generator templates": [
-      20689
+      20690
     ],
     "remove track narrowing scorer": [
       4386
@@ -127092,22 +127095,22 @@
       13486
     ],
     "removed template reality sweep": [
-      19969
+      19970
     ],
     "removed template reality sweep acceptance criteria": [
-      19965
-    ],
-    "removed template reality sweep goal": [
       19966
     ],
-    "removed template reality sweep implementation summary": [
+    "removed template reality sweep goal": [
       19967
     ],
-    "removed template reality sweep plan": [
+    "removed template reality sweep implementation summary": [
       19968
     ],
+    "removed template reality sweep plan": [
+      19969
+    ],
     "removed template reality sweep tasks": [
-      19970
+      19971
     ],
     "removeitems overlay operation": [
       13653
@@ -127191,16 +127194,16 @@
       19393
     ],
     "rename rule and test root fixes": [
-      20588
+      20589
     ],
     "rename rule and test root fixes implementation summary": [
-      20586
-    ],
-    "rename rule and test root fixes plan": [
       20587
     ],
+    "rename rule and test root fixes plan": [
+      20588
+    ],
     "rename rule and test root fixes tasks": [
-      20589
+      20590
     ],
     "rename session relaunch": [
       7037
@@ -127263,7 +127266,7 @@
       17265
     ],
     "render every gate 3 menu from constants": [
-      20465
+      20466
     ],
     "render exempt loader": [
       1801
@@ -127437,19 +127440,19 @@
       18812
     ],
     "repair speckit workflow gates": [
-      20115
+      20116
     ],
     "repair speckit workflow gates acceptance": [
-      20111
+      20112
     ],
     "repair speckit workflow gates implementation summary": [
-      20113
-    ],
-    "repair speckit workflow gates plan": [
       20114
     ],
+    "repair speckit workflow gates plan": [
+      20115
+    ],
     "repair speckit workflow gates tasks": [
-      20116
+      20117
     ],
     "repair the five checks that fail on main": [
       18599
@@ -127690,7 +127693,7 @@
       9863
     ],
     "repo era detection": [
-      20429
+      20430
     ],
     "repo era mjs": [
       3223
@@ -128164,19 +128167,19 @@
       17800
     ],
     "required artifact gates": [
-      20211
+      20212
     ],
     "required artifact gates acceptance criteria": [
-      20208
-    ],
-    "required artifact gates implementation summary": [
       20209
     ],
-    "required artifact gates plan": [
+    "required artifact gates implementation summary": [
       20210
     ],
+    "required artifact gates plan": [
+      20211
+    ],
     "required artifact gates tasks": [
-      20212
+      20213
     ],
     "required ci message check": [
       5927
@@ -128191,7 +128194,7 @@
       1310
     ],
     "required template anchors v2 3": [
-      19944
+      19945
     ],
     "required templates by level": [
       3006
@@ -128730,16 +128733,16 @@
       6509
     ],
     "research folder continuity": [
-      19885
+      19886
     ],
     "research folder continuity implementation summary": [
-      19883
-    ],
-    "research folder continuity plan": [
       19884
     ],
+    "research folder continuity plan": [
+      19885
+    ],
     "research folder continuity tasks": [
-      19886
+      19887
     ],
     "research folder retrieval divergence": [
       3121
@@ -129043,10 +129046,10 @@
       4103
     ],
     "research recommendations": [
-      20481
+      20482
     ],
     "research recommendations overengineering": [
-      20480
+      20481
     ],
     "research recovery strategies": [
       2515
@@ -129076,7 +129079,7 @@
       2526
     ],
     "research review contract acceptance": [
-      20087
+      20088
     ],
     "research review graph signals": [
       2662
@@ -129121,7 +129124,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "research sibling loop docs": [
       2459
@@ -129148,7 +129152,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "research stop contract": [
       2518
@@ -129166,7 +129171,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "research stuck count": [
       2517
@@ -129437,7 +129443,7 @@
       569
     ],
     "resolvepacketpurpose helper": [
-      20145
+      20146
     ],
     "resolveprovider cloud fallback": [
       15583
@@ -129467,17 +129473,17 @@
       18644
     ],
     "resolver registry": [
-      20263,
-      20277
+      20264,
+      20278
     ],
     "resolver registry inversion": [
-      20284
+      20285
     ],
     "resolver registry plan": [
-      20262
+      20263
     ],
     "resolver registry tasks": [
-      20264
+      20265
     ],
     "resolvesearchscore absolute relevance plan": [
       17764
@@ -129690,19 +129696,19 @@
       13236
     ],
     "restore and phase numbering": [
-      20655
+      20656
     ],
     "restore and phase numbering goal": [
-      20652
-    ],
-    "restore and phase numbering implementation summary": [
       20653
     ],
-    "restore and phase numbering plan": [
+    "restore and phase numbering implementation summary": [
       20654
     ],
+    "restore and phase numbering plan": [
+      20655
+    ],
     "restore and phase numbering tasks": [
-      20656
+      20657
     ],
     "restore by count verification": [
       17815
@@ -129748,7 +129754,7 @@
       11698
     ],
     "restore phase to parent": [
-      20332
+      20333
     ],
     "restore pi advisor brief": [
       7140
@@ -129796,9 +129802,9 @@
       24
     ],
     "restore to track": [
-      20326,
       20327,
-      20328
+      20328,
+      20329
     ],
     "restraint and routing gates acceptance criteria": [
       3449
@@ -129895,7 +129901,7 @@
       2478
     ],
     "resume brief reply format rows": [
-      20156
+      20157
     ],
     "resume classifier restart evidence": [
       11057
@@ -129907,31 +129913,31 @@
       9482
     ],
     "resume contract owned assets": [
-      20248
-    ],
-    "resume contract owned assets implementation summary": [
-      20246
-    ],
-    "resume contract owned assets plan": [
-      20247
-    ],
-    "resume contract owned assets tasks": [
       20249
     ],
+    "resume contract owned assets implementation summary": [
+      20247
+    ],
+    "resume contract owned assets plan": [
+      20248
+    ],
+    "resume contract owned assets tasks": [
+      20250
+    ],
     "resume detection and single workflow": [
-      20226
+      20227
     ],
     "resume detection and single workflow acceptance criteria": [
-      20223
-    ],
-    "resume detection and single workflow implementation summary": [
       20224
     ],
-    "resume detection and single workflow plan": [
+    "resume detection and single workflow implementation summary": [
       20225
     ],
+    "resume detection and single workflow plan": [
+      20226
+    ],
     "resume detection and single workflow tasks": [
-      20227
+      20228
     ],
     "resume directive lifecycle phase 018": [
       5800
@@ -129972,16 +129978,16 @@
     ],
     "resume purpose row": [
       3273,
-      20135
+      20136
     ],
     "resume purpose row implementation summary": [
-      20133
-    ],
-    "resume purpose row plan": [
       20134
     ],
+    "resume purpose row plan": [
+      20135
+    ],
     "resume purpose row tasks": [
-      20136
+      20137
     ],
     "resume terminal proof work": [
       3427
@@ -131043,8 +131049,8 @@
       13285,
       18133,
       18401,
-      20124,
-      20200
+      20125,
+      20201
     ],
     "review dimensions": [
       2533
@@ -131167,16 +131173,16 @@
       2567
     ],
     "review follow ups": [
-      20572
+      20573
     ],
     "review follow ups implementation summary": [
-      20570
-    ],
-    "review follow ups plan": [
       20571
     ],
+    "review follow ups plan": [
+      20572
+    ],
     "review follow ups tasks": [
-      20573
+      20574
     ],
     "review frontier": [
       2562
@@ -131903,8 +131909,8 @@
       13285,
       18133,
       18401,
-      20124,
-      20200
+      20125,
+      20201
     ],
     "review severity calibration": [
       1276
@@ -132671,10 +132677,10 @@
       19765
     ],
     "root resolution preflight": [
-      20263
+      20264
     ],
     "root resolution validation matrix": [
-      20275
+      20276
     ],
     "root resolver acceptance criteria": [
       19204
@@ -132713,7 +132719,7 @@
       18798
     ],
     "root specs directory": [
-      20312
+      20313
     ],
     "roster completeness": [
       11450
@@ -132795,7 +132801,7 @@
       7736
     ],
     "route authoring intents to a card": [
-      19915
+      19916
     ],
     "route categories save command": [
       19111
@@ -133026,7 +133032,7 @@
       1352
     ],
     "router intent card rows": [
-      19914
+      19915
     ],
     "router intent terms": [
       788
@@ -133153,19 +133159,19 @@
       1829
     ],
     "router readme presentation alignment": [
-      20243
+      20244
     ],
     "router readme presentation alignment acceptance criteria": [
-      20239
+      20240
     ],
     "router readme presentation alignment implementation summary": [
-      20241
-    ],
-    "router readme presentation alignment plan": [
       20242
     ],
+    "router readme presentation alignment plan": [
+      20243
+    ],
     "router readme presentation alignment tasks": [
-      20244
+      20245
     ],
     "router references": [
       741,
@@ -133932,7 +133938,8 @@
       12849,
       19635,
       19643,
-      20084
+      19877,
+      20085
     ],
     "ruledout array": [
       2502
@@ -134167,7 +134174,7 @@
       13013
     ],
     "runnable series parent recipe": [
-      20347
+      20348
     ],
     "runner contract overview": [
       1353
@@ -134703,7 +134710,7 @@
       15938
     ],
     "runtime mirror alignment": [
-      19921
+      19922
     ],
     "runtime mirror and mcp config": [
       17631
@@ -134731,10 +134738,10 @@
       17499
     ],
     "runtime mirror sync commands": [
-      19920
+      19921
     ],
     "runtime mirror sync tasks": [
-      19922
+      19923
     ],
     "runtime mirrors": [
       3342
@@ -135216,7 +135223,7 @@
       2678
     ],
     "same artifact different change": [
-      20337
+      20338
     ],
     "same class producer inventory": [
       1382
@@ -135231,7 +135238,7 @@
       13053
     ],
     "same path duplicate row": [
-      20303
+      20304
     ],
     "sample cli opencode model": [
       2391
@@ -135427,19 +135434,19 @@
       2581
     ],
     "save search handoff contracts": [
-      20231
+      20232
     ],
     "save search handoff contracts acceptance criteria": [
-      20228
-    ],
-    "save search handoff contracts implementation summary": [
       20229
     ],
-    "save search handoff contracts plan": [
+    "save search handoff contracts implementation summary": [
       20230
     ],
+    "save search handoff contracts plan": [
+      20231
+    ],
     "save search handoff contracts tasks": [
-      20232
+      20233
     ],
     "save time trigger index staleness": [
       18923
@@ -135516,22 +135523,22 @@
       3206
     ],
     "scaffold filler section trim": [
-      19981
+      19982
     ],
     "scaffold filler section trim acceptance criteria": [
-      19977
-    ],
-    "scaffold filler section trim goal": [
       19978
     ],
-    "scaffold filler section trim implementation summary": [
+    "scaffold filler section trim goal": [
       19979
     ],
-    "scaffold filler section trim plan": [
+    "scaffold filler section trim implementation summary": [
       19980
     ],
+    "scaffold filler section trim plan": [
+      19981
+    ],
     "scaffold filler section trim tasks": [
-      19982
+      19983
     ],
     "scaffold golden ac": [
       19179
@@ -135589,11 +135596,11 @@
       19165
     ],
     "scaffold prunes remote tracking refs": [
-      20317,
-      20319
+      20318,
+      20320
     ],
     "scaffold purpose sentence live parents": [
-      20156
+      20157
     ],
     "scaffold real default status": [
       18748
@@ -135605,7 +135612,7 @@
       9914
     ],
     "scaffold snapshot regeneration acceptance": [
-      20099
+      20100
     ],
     "scaffold spec folder steps": [
       3321
@@ -135644,7 +135651,7 @@
       19432
     ],
     "scaffold without fetch": [
-      20318
+      20319
     ],
     "scan classifies regular file": [
       18806
@@ -135672,7 +135679,7 @@
       17828
     ],
     "scan path indexing investigation": [
-      20303
+      20304
     ],
     "scan promotion blocked scope mismatch": [
       16598
@@ -137147,7 +137154,7 @@
     ],
     "section fill instruction": [
       3245,
-      19909
+      19910
     ],
     "section fragment derivation": [
       19546
@@ -137243,10 +137250,10 @@
       16114
     ],
     "seeded trigger phrase drift": [
-      20341
+      20342
     ],
     "seeded trigger phrases plan": [
-      20336
+      20337
     ],
     "segment group plus to star": [
       18893
@@ -137637,61 +137644,61 @@
       8802
     ],
     "series parent hardening": [
-      20341
+      20342
     ],
     "series parent hardening recommendations": [
-      20339
-    ],
-    "series parent hardening research plan": [
       20340
     ],
+    "series parent hardening research plan": [
+      20341
+    ],
     "series parent hardening research tasks": [
-      20343
+      20344
     ],
     "series parent packets": [
       54
     ],
     "series parent review and hardening research": [
-      20342
-    ],
-    "series parent review fixes": [
-      20347
-    ],
-    "series parent review fixes acceptance criteria": [
-      20344
-    ],
-    "series parent review fixes implementation summary": [
-      20345
-    ],
-    "series parent review fixes plan": [
-      20346
-    ],
-    "series parent review fixes tasks": [
-      20348
-    ],
-    "series parent review plan": [
-      20340
-    ],
-    "series parent review tasks": [
       20343
     ],
+    "series parent review fixes": [
+      20348
+    ],
+    "series parent review fixes acceptance criteria": [
+      20345
+    ],
+    "series parent review fixes implementation summary": [
+      20346
+    ],
+    "series parent review fixes plan": [
+      20347
+    ],
+    "series parent review fixes tasks": [
+      20349
+    ],
+    "series parent review plan": [
+      20341
+    ],
+    "series parent review tasks": [
+      20344
+    ],
     "series parent review verdict": [
-      20339
+      20340
     ],
     "series parent rule": [
-      20337
+      20338
     ],
     "series parent rule and sibling listing acceptance criteria": [
-      20334
-    ],
-    "series parent rule plan": [
-      20336
-    ],
-    "series parent rule shipped": [
       20335
     ],
+    "series parent rule plan": [
+      20337
+    ],
+    "series parent rule shipped": [
+      20336
+    ],
     "series parent rule tasks": [
-      20338
+      20339
     ],
     "server adopted dimension": [
       16422
@@ -138180,7 +138187,7 @@
       5940
     ],
     "session stop autosave canonical": [
-      20269
+      20270
     ],
     "session surface hint": [
       1212
@@ -138711,19 +138718,19 @@
       5772
     ],
     "shared blocks and retired mechanisms": [
-      20237
+      20238
     ],
     "shared blocks and retired mechanisms acceptance criteria": [
-      20233
+      20234
     ],
     "shared blocks and retired mechanisms implementation summary": [
-      20235
-    ],
-    "shared blocks and retired mechanisms plan": [
       20236
     ],
+    "shared blocks and retired mechanisms plan": [
+      20237
+    ],
     "shared blocks and retired mechanisms tasks": [
-      20238
+      20239
     ],
     "shared checkout churn detection": [
       2624
@@ -139608,10 +139615,10 @@
       9917
     ],
     "sibling listing shipped": [
-      20335
+      20336
     ],
     "sibling listing tasks": [
-      20338
+      20339
     ],
     "sibling overlay folder": [
       2996
@@ -139968,7 +139975,7 @@
       1596
     ],
     "simplification research recommendations build": [
-      20480
+      20481
     ],
     "simplified review taxonomy": [
       2472
@@ -140039,10 +140046,10 @@
       2404
     ],
     "single lineage executor acceptance": [
-      20087
+      20088
     ],
     "single lineage refusal acceptance criteria": [
-      20093
+      20094
     ],
     "single lineage sol xhigh decision": [
       10868
@@ -140163,7 +140170,7 @@
       17271
     ],
     "singleton packet grouping default": [
-      20341
+      20342
     ],
     "situational awareness dashboard": [
       889
@@ -148417,19 +148424,19 @@
       16743
     ],
     "skill docs and housekeeping": [
-      20680
+      20681
     ],
     "skill docs and housekeeping goal": [
-      20677
-    ],
-    "skill docs and housekeeping implementation summary": [
       20678
     ],
-    "skill docs and housekeeping plan": [
+    "skill docs and housekeeping implementation summary": [
       20679
     ],
+    "skill docs and housekeeping plan": [
+      20680
+    ],
     "skill docs and housekeeping tasks": [
-      20681
+      20682
     ],
     "skill docs audit": [
       14748,
@@ -150357,7 +150364,7 @@
       1385
     ],
     "sort refusals order test": [
-      20485
+      20486
     ],
     "source balanced fan in": [
       10986
@@ -150613,7 +150620,7 @@
       2462
     ],
     "source tags fsmonitor slow validation": [
-      19950
+      19951
     ],
     "source tags rule": [
       3232,
@@ -150733,34 +150740,34 @@
       3175,
       3233,
       3319,
-      19915
+      19916
     ],
     "spec authoring card text": [
-      19914
+      19915
     ],
     "spec authoring recipe chronology": [
-      20549
+      20550
     ],
     "spec authoring speed research": [
-      19950
+      19951
     ],
     "spec auto healing recommendations": [
-      20481
+      20482
     ],
     "spec auto healing research": [
-      20376
+      20377
     ],
     "spec auto healing research acceptance criteria": [
-      20373
-    ],
-    "spec auto healing research implementation summary": [
       20374
     ],
-    "spec auto healing research plan": [
+    "spec auto healing research implementation summary": [
       20375
     ],
+    "spec auto healing research plan": [
+      20376
+    ],
     "spec auto healing research tasks": [
-      20377
+      20378
     ],
     "spec check protocol": [
       2523
@@ -150825,7 +150832,7 @@
       17941
     ],
     "spec corpus healing tooling": [
-      20376
+      20377
     ],
     "spec corpus quality": [
       18141
@@ -151200,13 +151207,13 @@
       3236
     ],
     "spec folder location policy": [
-      20548
+      20549
     ],
     "spec folder mis location": [
       15733
     ],
     "spec folder move destination": [
-      20540
+      20541
     ],
     "spec folder mutex": [
       3354,
@@ -151252,38 +151259,38 @@
       2523
     ],
     "spec folder tooling": [
-      20514
+      20515
     ],
     "spec folder tooling deep review findings": [
-      20500
+      20501
     ],
     "spec folder tooling deep review remediation changelog": [
-      20512
-    ],
-    "spec folder tooling epic docs alignment changelog": [
-      20510
-    ],
-    "spec folder tooling epic follow up fixes changelog": [
-      20511
-    ],
-    "spec folder tooling follow up defect fixes changelog": [
       20513
     ],
+    "spec folder tooling epic docs alignment changelog": [
+      20511
+    ],
+    "spec folder tooling epic follow up fixes changelog": [
+      20512
+    ],
+    "spec folder tooling follow up defect fixes changelog": [
+      20514
+    ],
     "spec folder tooling follow up defects": [
-      20505
+      20506
     ],
     "spec folder tooling heal cli and compat yaml simplification changelog": [
-      20509
+      20510
     ],
     "spec folder tooling research recommendations changelog": [
-      20508
+      20509
     ],
     "spec folder tooling timeline": [
-      20515,
-      20549
+      20516,
+      20550
     ],
     "spec folder tooling trigger index ci rebuild changelog": [
-      20507
+      20508
     ],
     "spec folder upgrades": [
       3023
@@ -151295,13 +151302,13 @@
       1193,
       3071,
       3321,
-      20542
+      20543
     ],
     "spec folder write recipe system spec kit": [
       7531
     ],
     "spec folder write recipe timeline": [
-      20543
+      20544
     ],
     "spec folders no longer hold changelogs": [
       3088
@@ -151347,7 +151354,7 @@
       19142
     ],
     "spec gate mutation notice": [
-      20105
+      20106
     ],
     "spec gate opencode plugin": [
       3359
@@ -151530,7 +151537,7 @@
       15700
     ],
     "spec kit defect ledger": [
-      19891
+      19892
     ],
     "spec kit doc drift": [
       19688
@@ -152134,7 +152141,7 @@
       12421
     ],
     "spec kit sub track design": [
-      20600
+      20601
     ],
     "spec kit tasks": [
       18223
@@ -152196,7 +152203,7 @@
       3158
     ],
     "spec kit upkeep cost": [
-      19950
+      19951
     ],
     "spec kit utilities": [
       3350
@@ -152468,16 +152475,16 @@
       18702
     ],
     "spec packet lands in opencode specs": [
-      20313,
       20314,
       20315,
-      20316
+      20316,
+      20317
     ],
     "spec packet merge gate": [
       18763
     ],
     "spec packet numbering and archive tooling": [
-      20548
+      20549
     ],
     "spec packet path leak fix": [
       16018
@@ -152519,28 +152526,28 @@
       3200
     ],
     "spec root resolution hardening": [
-      20277
+      20278
     ],
     "spec root topology flip": [
-      20285
+      20286
     ],
     "spec scripts": [
       3346
     ],
     "spec template anchor nesting": [
-      20387
+      20388
     ],
     "spec template anchor nesting acceptance criteria": [
-      20383
+      20384
     ],
     "spec template anchor nesting implementation summary": [
-      20385
-    ],
-    "spec template anchor nesting plan": [
       20386
     ],
+    "spec template anchor nesting plan": [
+      20387
+    ],
     "spec template anchor nesting tasks": [
-      20388
+      20389
     ],
     "spec template context optimization": [
       18714
@@ -152609,7 +152616,7 @@
       4012
     ],
     "spec write recipe checks": [
-      20548
+      20549
     ],
     "specdoc frontmatter 004": [
       18892
@@ -152722,7 +152729,7 @@
       16405
     ],
     "speckit code graph index cleanup": [
-      20294
+      20295
     ],
     "speckit code graph index skills": [
       16554
@@ -152734,28 +152741,28 @@
       16500
     ],
     "speckit command and agent alignment": [
-      19921
-    ],
-    "speckit command and agent alignment acceptance criteria": [
-      19917
-    ],
-    "speckit command and agent alignment goal": [
-      19918
-    ],
-    "speckit command and agent alignment implementation summary": [
-      19919
-    ],
-    "speckit command and agent alignment plan": [
-      19920
-    ],
-    "speckit command and agent alignment tasks": [
       19922
     ],
+    "speckit command and agent alignment acceptance criteria": [
+      19918
+    ],
+    "speckit command and agent alignment goal": [
+      19919
+    ],
+    "speckit command and agent alignment implementation summary": [
+      19920
+    ],
+    "speckit command and agent alignment plan": [
+      19921
+    ],
+    "speckit command and agent alignment tasks": [
+      19923
+    ],
     "speckit command drift remediation": [
-      20261
+      20262
     ],
     "speckit command gates step order drift phase parent spec": [
-      20261
+      20262
     ],
     "speckit command integration implementation summary": [
       19301
@@ -152770,7 +152777,7 @@
       17112
     ],
     "speckit command workflow logic fixes": [
-      20261
+      20262
     ],
     "speckit commands author presentation markdown": [
       17114
@@ -152947,7 +152954,7 @@
       18164
     ],
     "speckit lifecycle shared include": [
-      20237
+      20238
     ],
     "speckit memory automatic drift self healing changelog": [
       18308
@@ -153160,10 +153167,10 @@
       3195
     ],
     "speckit resume path drift": [
-      20248
+      20249
     ],
     "speckit retired vocabulary and dead paths": [
-      20237
+      20238
     ],
     "speckit retrieval class routing benchmark": [
       18176
@@ -153257,7 +153264,7 @@
       5890
     ],
     "speckit skip prepush track gate": [
-      20324
+      20325
     ],
     "speckit soft delete tombstones default off": [
       16948,
@@ -153293,7 +153300,7 @@
       16214
     ],
     "speckit test failure stop": [
-      20111
+      20112
     ],
     "speckit test run timeout ms env": [
       18826,
@@ -153314,7 +153321,7 @@
       3188
     ],
     "speckit workflow gates and step order": [
-      20261
+      20262
     ],
     "speckit workflow scenarios": [
       3322
@@ -153341,10 +153348,10 @@
       19841
     ],
     "specs folder outside opencode": [
-      20312
+      20313
     ],
     "specs folder research": [
-      20280
+      20281
     ],
     "specs folder symlink graph metadata": [
       3211
@@ -153353,34 +153360,34 @@
       3074
     ],
     "specs root atomic flip": [
-      20308
+      20309
     ],
     "specs root doc drift": [
-      20310
-    ],
-    "specs root migration changelog": [
-      20305
-    ],
-    "specs root migration design": [
-      20284
-    ],
-    "specs root migration diff": [
-      20296
-    ],
-    "specs root migration execution": [
-      20290
-    ],
-    "specs root migration plan": [
-      20285
-    ],
-    "specs root relocation before after": [
       20311
     ],
+    "specs root migration changelog": [
+      20306
+    ],
+    "specs root migration design": [
+      20285
+    ],
+    "specs root migration diff": [
+      20297
+    ],
+    "specs root migration execution": [
+      20291
+    ],
+    "specs root migration plan": [
+      20286
+    ],
+    "specs root relocation before after": [
+      20312
+    ],
     "specs symlink retirement": [
-      20277
+      20278
     ],
     "speed loop re prepare dirty sandbox": [
-      19998
+      19999
     ],
     "spider chart comparison": [
       1668
@@ -154684,29 +154691,29 @@
       15807
     ],
     "step 5 of the spec folder write recipe": [
-      20518
+      20519
     ],
     "step 7 of the write recipe told authors": [
-      20522
+      20523
     ],
     "step fanout spawn": [
       2493,
       2578
     ],
     "step order acceptance after development": [
-      20206
+      20207
     ],
     "step order acceptance after development acceptance criteria": [
-      20203
-    ],
-    "step order acceptance after development implementation summary": [
       20204
     ],
-    "step order acceptance after development plan": [
+    "step order acceptance after development implementation summary": [
       20205
     ],
+    "step order acceptance after development plan": [
+      20206
+    ],
     "step order acceptance after development tasks": [
-      20207
+      20208
     ],
     "step plans": [
       641
@@ -154761,7 +154768,7 @@
       18752
     ],
     "stop healer writing rejected phrases": [
-      20411
+      20412
     ],
     "stop hint evaluator plan": [
       4102
@@ -155223,7 +155230,7 @@
       16041
     ],
     "strict census before and after": [
-      19904
+      19905
     ],
     "strict fast mode env": [
       6298
@@ -155520,34 +155527,34 @@
       3300
     ],
     "sub track acceptance criteria": [
-      20595
+      20596
     ],
     "sub track doc corrections": [
-      20566
+      20567
     ],
     "sub track implementation plan": [
-      20599
+      20600
     ],
     "sub track inside a sub track": [
-      20694
+      20695
     ],
     "sub track parity verification": [
-      20554
+      20555
     ],
     "sub track predicate implementation": [
-      20554
+      20555
     ],
     "sub track proposal": [
       3241
     ],
     "sub track rule parity plan": [
-      20555
+      20556
     ],
     "sub track track segment alignment": [
-      20570
+      20571
     ],
     "sub track track segment parity": [
-      20572
+      20573
     ],
     "subagent": [
       6330
@@ -155741,52 +155748,52 @@
       18864
     ],
     "subtrack archive and numbering": [
-      20627
-    ],
-    "subtrack archive and numbering acceptance criteria": [
-      20623
-    ],
-    "subtrack archive and numbering goal": [
-      20624
-    ],
-    "subtrack archive and numbering implementation summary": [
-      20625
-    ],
-    "subtrack archive and numbering plan": [
-      20626
-    ],
-    "subtrack archive and numbering tasks": [
       20628
     ],
+    "subtrack archive and numbering acceptance criteria": [
+      20624
+    ],
+    "subtrack archive and numbering goal": [
+      20625
+    ],
+    "subtrack archive and numbering implementation summary": [
+      20626
+    ],
+    "subtrack archive and numbering plan": [
+      20627
+    ],
+    "subtrack archive and numbering tasks": [
+      20629
+    ],
     "subtrack predicate": [
-      20556
-    ],
-    "subtrack predicate plan": [
-      20555
-    ],
-    "subtrack predicate tasks": [
       20557
     ],
+    "subtrack predicate plan": [
+      20556
+    ],
+    "subtrack predicate tasks": [
+      20558
+    ],
     "subtrack proposal": [
-      20621
+      20622
     ],
     "subtrack proposal acceptance criteria": [
-      20617
-    ],
-    "subtrack proposal and archive reach phase parent spec": [
-      20684
-    ],
-    "subtrack proposal goal": [
       20618
     ],
-    "subtrack proposal implementation summary": [
+    "subtrack proposal and archive reach phase parent spec": [
+      20685
+    ],
+    "subtrack proposal goal": [
       20619
     ],
-    "subtrack proposal plan": [
+    "subtrack proposal implementation summary": [
       20620
     ],
+    "subtrack proposal plan": [
+      20621
+    ],
     "subtrack proposal tasks": [
-      20622
+      20623
     ],
     "subtree root scan deletion": [
       16563
@@ -155827,7 +155834,7 @@
       3241
     ],
     "suggest subtracks mjs whole track map": [
-      20621
+      20622
     ],
     "suggested order eval verdict": [
       4056
@@ -156355,10 +156362,10 @@
     ],
     "sweep track roots": [
       3246,
-      20324
+      20325
     ],
     "sweep unreadable sub track metadata repair": [
-      20560
+      20561
     ],
     "sweep verification checklist": [
       19166
@@ -156491,13 +156498,13 @@
       5483
     ],
     "symlink retirement": [
-      20275
+      20276
     ],
     "symlink retirement plan": [
-      20274
+      20275
     ],
     "symlink retirement tasks": [
-      20276
+      20277
     ],
     "symlink run folder collision": [
       5482
@@ -159936,31 +159943,31 @@
       19058
     ],
     "template and example defect repair": [
-      19897
-    ],
-    "template and example defect repair acceptance criteria": [
-      19893
-    ],
-    "template and example defect repair goal": [
-      19894
-    ],
-    "template and example defect repair implementation summary": [
-      19895
-    ],
-    "template and example defect repair plan": [
-      19896
-    ],
-    "template and example defect repair tasks": [
       19898
     ],
+    "template and example defect repair acceptance criteria": [
+      19894
+    ],
+    "template and example defect repair goal": [
+      19895
+    ],
+    "template and example defect repair implementation summary": [
+      19896
+    ],
+    "template and example defect repair plan": [
+      19897
+    ],
+    "template and example defect repair tasks": [
+      19899
+    ],
     "template authoring manual scenarios": [
-      19927
+      19928
     ],
     "template authoring playbook scenarios": [
-      19926
+      19927
     ],
     "template authoring scenario brief": [
-      19928
+      19929
     ],
     "template backend redesign": [
       14399
@@ -160073,7 +160080,7 @@
       18619
     ],
     "template default judge class": [
-      20341
+      20342
     ],
     "template default text in finished packets": [
       19526
@@ -160082,25 +160089,25 @@
       3244
     ],
     "template default trigger phrases": [
-      20337
+      20338
     ],
     "template drift census and baseline": [
-      19891
+      19892
     ],
     "template drift census and baseline acceptance criteria": [
-      19887
-    ],
-    "template drift census and baseline goal": [
       19888
     ],
-    "template drift census and baseline implementation summary": [
+    "template drift census and baseline goal": [
       19889
     ],
-    "template drift census and baseline plan": [
+    "template drift census and baseline implementation summary": [
       19890
     ],
+    "template drift census and baseline plan": [
+      19891
+    ],
     "template drift census and baseline tasks": [
-      19892
+      19893
     ],
     "template driven commit enforcement": [
       5931
@@ -160124,22 +160131,22 @@
       18611
     ],
     "template example neutralization": [
-      19975
+      19976
     ],
     "template example neutralization acceptance criteria": [
-      19971
-    ],
-    "template example neutralization goal": [
       19972
     ],
-    "template example neutralization implementation summary": [
+    "template example neutralization goal": [
       19973
     ],
-    "template example neutralization plan": [
+    "template example neutralization implementation summary": [
       19974
     ],
+    "template example neutralization plan": [
+      19975
+    ],
     "template example neutralization tasks": [
-      19976
+      19977
     ],
     "template examples": [
       3404
@@ -160212,7 +160219,7 @@
       18626
     ],
     "template hint conversion script": [
-      19902
+      19903
     ],
     "template impl decisions": [
       14401
@@ -160315,46 +160322,46 @@
       10353
     ],
     "template phrase census and cleanup": [
-      20361
-    ],
-    "template phrase census and cleanup acceptance criteria": [
-      20358
-    ],
-    "template phrase census and cleanup implementation summary": [
-      20359
-    ],
-    "template phrase census and cleanup plan": [
-      20360
-    ],
-    "template phrase census and cleanup tasks": [
       20362
     ],
-    "template phrase cleanup atomic writes": [
-      20478
+    "template phrase census and cleanup acceptance criteria": [
+      20359
     ],
-    "template phrase cleanup atomicity": [
-      20477
+    "template phrase census and cleanup implementation summary": [
+      20360
     ],
-    "template phrase cleanup round two": [
-      20366
+    "template phrase census and cleanup plan": [
+      20361
     ],
-    "template phrase cleanup round two acceptance criteria": [
+    "template phrase census and cleanup tasks": [
       20363
     ],
-    "template phrase cleanup round two implementation summary": [
-      20364
+    "template phrase cleanup atomic writes": [
+      20479
     ],
-    "template phrase cleanup round two plan": [
-      20365
+    "template phrase cleanup atomicity": [
+      20478
     ],
-    "template phrase cleanup round two tasks": [
+    "template phrase cleanup round two": [
       20367
     ],
+    "template phrase cleanup round two acceptance criteria": [
+      20364
+    ],
+    "template phrase cleanup round two implementation summary": [
+      20365
+    ],
+    "template phrase cleanup round two plan": [
+      20366
+    ],
+    "template phrase cleanup round two tasks": [
+      20368
+    ],
     "template phrase cleanup summary": [
-      20475
+      20476
     ],
     "template phrase cleanup verification": [
-      20473
+      20474
     ],
     "template phrase lint commit gate": [
       3244
@@ -160421,22 +160428,22 @@
     ],
     "template section fill guidance": [
       3245,
-      19909
+      19910
     ],
     "template section fill guidance acceptance criteria": [
-      19905
-    ],
-    "template section fill guidance goal": [
       19906
     ],
-    "template section fill guidance implementation summary": [
+    "template section fill guidance goal": [
       19907
     ],
-    "template section fill guidance plan": [
+    "template section fill guidance implementation summary": [
       19908
     ],
+    "template section fill guidance plan": [
+      19909
+    ],
     "template section fill guidance tasks": [
-      19910
+      19911
     ],
     "template selection guide": [
       3303
@@ -160494,20 +160501,20 @@
       2688
     ],
     "template v2 3 stamp": [
-      19903
+      19904
     ],
     "template validation orchestrator": [
       14410,
       16130
     ],
     "template version stamping evidence": [
-      20417
+      20418
     ],
     "template version stamping plan": [
-      20416
+      20417
     ],
     "template version stamping tasks": [
-      20418
+      20419
     ],
     "template version workflow": [
       3401
@@ -160941,22 +160948,22 @@
       3659
     ],
     "tests and closeout": [
-      20640
+      20641
     ],
     "tests and closeout acceptance criteria": [
-      20635
+      20636
     ],
     "tests and closeout goal": [
-      20637
-    ],
-    "tests and closeout implementation summary": [
       20638
     ],
-    "tests and closeout plan": [
+    "tests and closeout implementation summary": [
       20639
     ],
+    "tests and closeout plan": [
+      20640
+    ],
     "tests and closeout tasks": [
-      20641
+      20642
     ],
     "tests that cannot fail": [
       1386
@@ -161062,7 +161069,7 @@
       4301
     ],
     "the first bullet of step 7 cited": [
-      20526
+      20527
     ],
     "the folder suggestion scorer shows each option": [
       4336
@@ -161071,7 +161078,7 @@
       11643
     ],
     "the gate told the author to confirm": [
-      20534
+      20535
     ],
     "the gpt 5 6 model roster": [
       468
@@ -161927,13 +161934,13 @@
       16032
     ],
     "topology flip decision": [
-      20282
+      20283
     ],
     "topology flip runbook": [
-      20290
+      20291
     ],
     "topology flip steps": [
-      20289
+      20290
     ],
     "topology tree": [
       13909
@@ -162048,11 +162055,11 @@
       3929
     ],
     "track aware archive": [
-      20326,
       20327,
       20328,
       20329,
-      20514
+      20330,
+      20515
     ],
     "track b code remediation": [
       17316
@@ -162126,10 +162133,10 @@
       18601
     ],
     "track numbering restarts at 001": [
-      20313,
       20314,
       20315,
-      20316
+      20316,
+      20317
     ],
     "track prefix identity heal": [
       17816
@@ -162138,35 +162145,35 @@
       2513
     ],
     "track root children": [
-      20514
+      20515
     ],
     "track root children ids": [
       3246,
-      20321,
       20322,
       20323,
       20324,
-      20325
+      20325,
+      20326
     ],
     "track root children timeline": [
-      20515
+      20516
     ],
     "track root drift": [
-      20324
+      20325
     ],
     "track root packet listings": [
-      20548
+      20549
     ],
     "track root pointer store only": [
       19555
     ],
     "track root pre push gate": [
       3246,
-      20321,
       20322,
       20323,
       20324,
-      20325
+      20325,
+      20326
     ],
     "track root spec md rule": [
       3117
@@ -162196,19 +162203,19 @@
       18957
     ],
     "track subtrack regrouping": [
-      20583
+      20584
     ],
     "track subtrack regrouping acceptance criteria": [
-      20579
+      20580
     ],
     "track subtrack regrouping implementation summary": [
-      20581
-    ],
-    "track subtrack regrouping plan": [
       20582
     ],
+    "track subtrack regrouping plan": [
+      20583
+    ],
     "track subtrack regrouping tasks": [
-      20584
+      20585
     ],
     "track the never committed code mode server manifest": [
       7267
@@ -162217,7 +162224,7 @@
       884
     ],
     "track z archive": [
-      20328
+      20329
     ],
     "tracker shows status across periods": [
       1583
@@ -162624,16 +162631,16 @@
       3291
     ],
     "trigger index ci rebuild": [
-      20356
+      20357
     ],
     "trigger index ci rebuild implementation summary": [
-      20354
-    ],
-    "trigger index ci rebuild plan": [
       20355
     ],
+    "trigger index ci rebuild plan": [
+      20356
+    ],
     "trigger index ci rebuild tasks": [
-      20357
+      20358
     ],
     "trigger index determinism regenerate": [
       18952
@@ -162692,19 +162699,19 @@
       18885
     ],
     "trigger index rebuild hardening": [
-      20405
+      20406
     ],
     "trigger index rebuild hardening acceptance criteria": [
-      20401
+      20402
     ],
     "trigger index rebuild hardening implementation summary": [
-      20403
-    ],
-    "trigger index rebuild hardening plan": [
       20404
     ],
+    "trigger index rebuild hardening plan": [
+      20405
+    ],
     "trigger index rebuild hardening tasks": [
-      20406
+      20407
     ],
     "trigger index rebuild refused": [
       4005
@@ -162773,7 +162780,7 @@
       19539
     ],
     "trigger index skips git ignored files": [
-      20381
+      20382
     ],
     "trigger index stale warning": [
       18922
@@ -163199,7 +163206,7 @@
       15500
     ],
     "two level sub tracks": [
-      20694
+      20695
     ],
     "two lineage devin research": [
       3574
@@ -163247,7 +163254,7 @@
       4436
     ],
     "two post check rows of the write recipe": [
-      20530
+      20531
     ],
     "two root gate resolution": [
       19381
@@ -163374,22 +163381,22 @@
       11001
     ],
     "typed command ambiguity": [
-      20028
+      20029
     ],
     "typed command ambiguity acceptance criteria": [
-      20024
-    ],
-    "typed command ambiguity goal": [
       20025
     ],
-    "typed command ambiguity implementation summary": [
+    "typed command ambiguity goal": [
       20026
     ],
-    "typed command ambiguity plan": [
+    "typed command ambiguity implementation summary": [
       20027
     ],
+    "typed command ambiguity plan": [
+      20028
+    ],
     "typed command ambiguity tasks": [
-      20029
+      20030
     ],
     "typed command delivery acceptance criteria": [
       13097
@@ -163648,7 +163655,7 @@
       14217
     ],
     "un nest questions anchor": [
-      20447
+      20448
     ],
     "un skip launcher lease suite": [
       16521
@@ -164256,7 +164263,7 @@
       3249
     ],
     "upgrade legacy playbook scenarios": [
-      20490
+      20491
     ],
     "upgrade legacy results": [
       19579
@@ -164265,7 +164272,7 @@
       3249
     ],
     "upgrade legacy reversibility record": [
-      20441
+      20442
     ],
     "upgrade legacy spec folders": [
       44
@@ -164274,19 +164281,19 @@
       19583
     ],
     "upgrade level anchor insert": [
-      20605
-    ],
-    "upgrade level anchor insert implementation summary": [
-      20603
-    ],
-    "upgrade level anchor insert plan": [
-      20604
-    ],
-    "upgrade level anchor insert tasks": [
       20606
     ],
-    "upgrade level breaks anchors valid": [
+    "upgrade level anchor insert implementation summary": [
+      20604
+    ],
+    "upgrade level anchor insert plan": [
       20605
+    ],
+    "upgrade level anchor insert tasks": [
+      20607
+    ],
+    "upgrade level breaks anchors valid": [
+      20606
     ],
     "upgrade level fragments": [
       18723,
@@ -164348,19 +164355,19 @@
       9129
     ],
     "upgrade reversibility": [
-      20441
+      20442
     ],
     "upgrade reversibility acceptance criteria": [
-      20437
+      20438
     ],
     "upgrade reversibility implementation summary": [
-      20439
-    ],
-    "upgrade reversibility plan": [
       20440
     ],
+    "upgrade reversibility plan": [
+      20441
+    ],
     "upgrade reversibility tasks": [
-      20442
+      20443
     ],
     "upgrade safety audit": [
       13705,
@@ -165202,16 +165209,16 @@
       19876
     ],
     "v4 2 0 0 changelog audit": [
-      19877
+      19878
     ],
     "v4 2 0 0 missing entries drift bugs": [
-      19877
+      19878
     ],
     "v4 2 0 0 release audit acceptance criteria": [
       19872
     ],
     "v4 2 0 0 release audit research": [
-      19877
+      19878
     ],
     "v4 2 0 0 release audit research goal": [
       19874
@@ -165223,7 +165230,7 @@
       19876
     ],
     "v4 2 0 0 release audit research tasks": [
-      19878
+      19879
     ],
     "v4 2 0 0 release notes": [
       63
@@ -165570,7 +165577,7 @@
       18601
     ],
     "validate symlinked description sub track": [
-      20556
+      20557
     ],
     "validate ts hex mismatch": [
       1737
@@ -165589,7 +165596,7 @@
       14449
     ],
     "validateplaceholders orchestrator edit": [
-      19902
+      19903
     ],
     "validateplaceholders summary": [
       14448
@@ -165700,10 +165707,10 @@
       2713
     ],
     "validation matrix plan": [
-      20274
+      20275
     ],
     "validation matrix tasks": [
-      20276
+      20277
     ],
     "validation orchestrator": [
       3323,
@@ -165906,10 +165913,10 @@
       3175
     ],
     "value token lifecycle": [
-      19903
+      19904
     ],
     "value token lifecycle implementation": [
-      19902
+      19903
     ],
     "var name binding": [
       994
@@ -166720,22 +166727,22 @@
     ],
     "versioned placeholder gate": [
       3250,
-      19903
+      19904
     ],
     "versioned placeholder gate acceptance criteria": [
-      19899
-    ],
-    "versioned placeholder gate goal": [
       19900
     ],
-    "versioned placeholder gate implementation summary": [
+    "versioned placeholder gate goal": [
       19901
     ],
-    "versioned placeholder gate plan": [
+    "versioned placeholder gate implementation summary": [
       19902
     ],
+    "versioned placeholder gate plan": [
+      19903
+    ],
     "versioned placeholder gate tasks": [
-      19904
+      19905
     ],
     "versioned sub folders": [
       3300
@@ -167994,28 +168001,28 @@
       12772
     ],
     "weak model authoring baseline": [
-      19891
+      19892
     ],
     "weak model authoring card": [
-      19915
-    ],
-    "weak model authoring card acceptance criteria": [
-      19911
-    ],
-    "weak model authoring card goal": [
-      19912
-    ],
-    "weak model authoring card implementation summary": [
-      19913
-    ],
-    "weak model authoring card plan": [
-      19914
-    ],
-    "weak model authoring card tasks": [
       19916
     ],
+    "weak model authoring card acceptance criteria": [
+      19912
+    ],
+    "weak model authoring card goal": [
+      19913
+    ],
+    "weak model authoring card implementation summary": [
+      19914
+    ],
+    "weak model authoring card plan": [
+      19915
+    ],
+    "weak model authoring card tasks": [
+      19917
+    ],
     "weak model authoring delta": [
-      19939
+      19940
     ],
     "weak model drops query fix": [
       17403
@@ -168033,82 +168040,82 @@
       50
     ],
     "weak model spec authoring addon removal and speed refinements changelog": [
-      20065
-    ],
-    "weak model spec authoring advisor routing and local install changelog": [
-      20074
-    ],
-    "weak model spec authoring alignment audit fixes changelog": [
-      20072
-    ],
-    "weak model spec authoring benchmark and closeout changelog": [
-      20061
-    ],
-    "weak model spec authoring benchmark redesign and remeasure changelog": [
-      20070
-    ],
-    "weak model spec authoring changelog": [
-      20077
-    ],
-    "weak model spec authoring ci gate regressions changelog": [
-      20073
-    ],
-    "weak model spec authoring deep review finding fixes changelog": [
-      20062
-    ],
-    "weak model spec authoring deep review remediation changelog": [
-      20075
-    ],
-    "weak model spec authoring follow up fixes changelog": [
-      20071
-    ],
-    "weak model spec authoring measured behavior and draft metadata changelog": [
-      20069
-    ],
-    "weak model spec authoring phase parent spec": [
-      20079
-    ],
-    "weak model spec authoring playbook catalog readme alignment changelog": [
-      20059
-    ],
-    "weak model spec authoring playbook run in worktree changelog": [
-      20060
-    ],
-    "weak model spec authoring removed template reality sweep changelog": [
       20066
     ],
-    "weak model spec authoring scaffold filler section trim changelog": [
-      20068
+    "weak model spec authoring advisor routing and local install changelog": [
+      20075
     ],
-    "weak model spec authoring speckit command and agent alignment changelog": [
-      20058
+    "weak model spec authoring alignment audit fixes changelog": [
+      20073
     ],
-    "weak model spec authoring speed fixes and alignment changelog": [
-      20064
+    "weak model spec authoring benchmark and closeout changelog": [
+      20062
     ],
-    "weak model spec authoring speed research changelog": [
+    "weak model spec authoring benchmark redesign and remeasure changelog": [
+      20071
+    ],
+    "weak model spec authoring changelog": [
+      20078
+    ],
+    "weak model spec authoring ci gate regressions changelog": [
+      20074
+    ],
+    "weak model spec authoring deep review finding fixes changelog": [
       20063
     ],
-    "weak model spec authoring template and example defect repair changelog": [
-      20054
-    ],
-    "weak model spec authoring template drift census and baseline changelog": [
-      20053
-    ],
-    "weak model spec authoring template example neutralization changelog": [
-      20067
-    ],
-    "weak model spec authoring template section fill guidance changelog": [
-      20056
-    ],
-    "weak model spec authoring typed command ambiguity changelog": [
+    "weak model spec authoring deep review remediation changelog": [
       20076
     ],
-    "weak model spec authoring versioned placeholder gate changelog": [
+    "weak model spec authoring follow up fixes changelog": [
+      20072
+    ],
+    "weak model spec authoring measured behavior and draft metadata changelog": [
+      20070
+    ],
+    "weak model spec authoring phase parent spec": [
+      20080
+    ],
+    "weak model spec authoring playbook catalog readme alignment changelog": [
+      20060
+    ],
+    "weak model spec authoring playbook run in worktree changelog": [
+      20061
+    ],
+    "weak model spec authoring removed template reality sweep changelog": [
+      20067
+    ],
+    "weak model spec authoring scaffold filler section trim changelog": [
+      20069
+    ],
+    "weak model spec authoring speckit command and agent alignment changelog": [
+      20059
+    ],
+    "weak model spec authoring speed fixes and alignment changelog": [
+      20065
+    ],
+    "weak model spec authoring speed research changelog": [
+      20064
+    ],
+    "weak model spec authoring template and example defect repair changelog": [
       20055
     ],
-    "weak model spec authoring weak model authoring card changelog": [
+    "weak model spec authoring template drift census and baseline changelog": [
+      20054
+    ],
+    "weak model spec authoring template example neutralization changelog": [
+      20068
+    ],
+    "weak model spec authoring template section fill guidance changelog": [
       20057
+    ],
+    "weak model spec authoring typed command ambiguity changelog": [
+      20077
+    ],
+    "weak model spec authoring versioned placeholder gate changelog": [
+      20056
+    ],
+    "weak model spec authoring weak model authoring card changelog": [
+      20058
     ],
     "weak model write boundary": [
       11810
@@ -168576,8 +168583,8 @@
       4005
     ],
     "whole linked skilled specs limit": [
-      20562,
-      20564
+      20563,
+      20565
     ],
     "whole system gate": [
       11353,
@@ -168606,7 +168613,7 @@
       3582
     ],
     "why compaction loses the purpose": [
-      20199
+      20200
     ],
     "why did the scanner flag that": [
       2218
@@ -169588,19 +169595,19 @@
       18810
     ],
     "write recipe commit step": [
-      20542
+      20543
     ],
     "write recipe commit step timeline": [
-      20543
+      20544
     ],
     "write recipe fixes": [
-      20542
-    ],
-    "write recipe fixes timeline": [
       20543
     ],
+    "write recipe fixes timeline": [
+      20544
+    ],
     "write recipe verification gate": [
-      20542
+      20543
     ],
     "write safety and guards plan": [
       17219
@@ -169651,19 +169658,19 @@
       16557
     ],
     "writer canonicalization": [
-      20269
-    ],
-    "writer canonicalization plan": [
-      20268
-    ],
-    "writer canonicalization tasks": [
       20270
     ],
+    "writer canonicalization plan": [
+      20269
+    ],
+    "writer canonicalization tasks": [
+      20271
+    ],
     "writer freeze": [
-      20266
+      20267
     ],
     "writer freeze plan": [
-      20265
+      20266
     ],
     "writer lock reproduction tasks": [
       12518
@@ -169803,7 +169810,7 @@
       16248
     ],
     "z archive on every subtrack": [
-      20684
+      20685
     ],
     "z archive parent id resolution": [
       18124

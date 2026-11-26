@@ -55,6 +55,9 @@ _memory:
 | Q019 | Replace the fixed TASK heredoc in every hub front-door example with a task file argument to compiled-route.cjs. | Not stated. | none | Remaining work F2, research/research.md section 8 |
 | Q020 | Require answeredQuestions evidence to resolve a question in default depth mode, dropping the focus-equality rule there. | Not stated. | none | Remaining work P1-pre, reduce-state.cjs |
 | Q021 | Keep the pre-push track-root fail-open on sweep errors and document it in the git-hooks README. | Not stated. | none | Remaining work P2-pre, git-hooks README |
+| Q022 | Add a v4.2.0.0 release-notes entry for the generation-3 fix pass, including the clause that named stdin as the front-door input. | Not stated by the operator. The question cited goal.md decision D3, which updates the release notes after the fixes. | none | REQ-007, `.skilled/changelog/skilled/v4.2.0.0.md` |
+| Q023 | Fix the .skilled/specs alias fallout in worktree 547 under a scope amendment before the merge, so one push lands main green. | Not stated. | None | REQ-008, T034, AC-046, AC-047 |
+| Q024 | Merge worktree 547 into main with a merge commit and push main. | Not stated. | None | T035, AC-048 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -473,6 +476,65 @@ Fail closed with bypass
 Answer:
 ```text
 Document fail-open (Recommended)
+```
+
+### Q022
+<!-- source: claude:61d64df6-a89b-487a-b5bb-616d0e90398f:toolu_01AuvbJhmnJ2KqMnrLYhpij2:1 -->
+
+Question:
+```text
+goal.md decision D3 says the bugs are fixed first and then the release notes are updated. Should this fix pass also get a v4.2.0.0 release-notes entry (including a clause at v4.2.0.0.md:800, which names stdin as the front-door input)?
+```
+
+Options:
+```text
+Yes, add an entry (Recommended)
+No, fixes only
+```
+
+Answer:
+```text
+Yes, add an entry (Recommended)
+```
+
+### Q023
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01Y471suAqggTawTSwNddVgT:0 -->
+
+Question:
+```text
+Main's CI has 3 red workflows, all caused by 035c9dd6bdd removing the .skilled/specs alias: Spec-Kit Check (canonical-save-validation.vitest.ts:16 builds .skilled/specs/..., validate exits 3), Markdown Link Integrity (24 links in 20 skill docs written ../../../../specs/ that land on .skilled/specs, every target exists at repo-root specs/), and Playbook Operator Contract (4 of those same links). Three deep-loop tests also read .skilled/specs and fail locally (ENOENT). Deep-Loop Runtime CI did not run on that commit, but 547 touches deep-loop code, so it will run after the merge and fail too. REQ-006 moves the v4.2.0.0 tag only onto a green main. How should this be fixed?
+```
+
+Options:
+```text
+Amend, fix in 547 (Recommended)
+Fix on main after merge
+Leave red, no re-tag now
+```
+
+Answer:
+```text
+Amend, fix in 547 (Recommended)
+```
+
+### Q024
+<!-- source: claude:2e5ce85f-4d66-468e-98a7-a671d4e5d012:toolu_01Y471suAqggTawTSwNddVgT:1 -->
+
+Question:
+```text
+Merge worktree 547 (10 commits on 1bbebef885e, strict validate RESULT: PASSED) into main with a merge commit, like the 545 precedent, then push main (on the allowlist)? Things to know before you answer: (1) the old per-skill changelog heredoc lines and the three deep-review playbook `cat > file <<'TASK'` lines stay as they are, because they write fixed text and are not front-door calls. (2) mcp-browser-use/changelog/v1.1.4.0.md:26 still says a $() is "never run". (3) With the F1 fan-out fix, when ps fails, a killed child is listed under survivors, so the next run treats it as open until its pid is gone. (4) The stricter sentence count adds a second error to one saved record, sk-prompt/007/008 spec.md, which already fails validation on main with MEMORY_016.
+```
+
+Options:
+```text
+Merge and push (Recommended)
+Merge, don't push
+Hold the merge
+```
+
+Answer:
+```text
+Merge and push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

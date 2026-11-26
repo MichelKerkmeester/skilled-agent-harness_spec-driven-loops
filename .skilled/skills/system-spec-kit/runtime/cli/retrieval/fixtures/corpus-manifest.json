@@ -1,5 +1,5 @@
 {
-  "corpusHash": "af043b9deef5cef69b3c28a56d20c2cc0e318faa2f6520161b8df8e195c0cea2",
+  "corpusHash": "290c547e624c1793e0276a8497dae2e2bcf8bba1afdea2a9f5df13c9e3145bba",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 29621,
+  "includedPathCount": 29645,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -28726,6 +28726,30 @@
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/fanout-attribution.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/research.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/resource-map.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/deep-research-dashboard.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/deep-research-strategy.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-001.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-002.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-003.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-004.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-005.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-006.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-007.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-008.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-009.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/iterations/iteration-010.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-1.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-10.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-2.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-3.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-4.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-5.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-6.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-7.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-8.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/prompts/iteration-9.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/research.md",
+    "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261126T112816Z/resource-map.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/spec.md",
     "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -29653,7 +29677,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7a88fab45fcffcb364a1c6764984a288b551c04ef51a054dd260460f48a2ec18",
+  "manifestHash": "f5f3cff2858795d7581d8740399d7848f376b567abc1d7f73f4538f551159808",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -42533,6 +42557,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/dispatch-receipts",
       "reason": "excluded directory"
     },
     {

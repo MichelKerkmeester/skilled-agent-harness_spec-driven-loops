@@ -82,6 +82,7 @@ and findings belong here.
 | Dependabot and main CI | Done | hono 4.13.22, PR 108 merged, 12 pip alerts dismissed, 3 failing main checks fixed |
 | Generation 3 deep research (codex luna xhigh, 10 iters) | initialized, loop pending | research/deep-research-config.json |
 | Generation 3 deep research (codex luna xhigh, 10 iters) | Done | maxIterationsReached; research.md: 2 P2 + 2 P3 in window, 3 pre-existing, 2 rejected; no fixes |
+| Alias fallout fix and merge of worktree 547 | done | main 76dde2351f8, link guard 0 broken, deep-loop 4069/0, spec-kit CLI 2725/0 |
 
 ### Deviations and findings
 
