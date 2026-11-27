@@ -201,13 +201,13 @@ This phase's build is dispatched, not hand-run. The hub owns the routing and eac
 
 ### Executor roster
 
-Five executors, no sixth. Every row is a mode of the `cli-external-orchestration` hub, and each row's `SKILL.md` was read before this table was written.
+Five executors, no sixth. Every row is a mode of the `cli-external-orchestration` hub, and each row's `SKILL.md` was read before this table was written. `cli-mistral-vibe` is the primary for every wave and `cli-pi` is the first fallback, per the parent's ladder.
 
 | Executor | Model | Effort | Dispatch shape | Source |
 |----------|-------|--------|----------------|--------|
+| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | `VIBE_HOME="$VH" vibe -p "$PROMPT" --model deepseek-flash --add-dir "$WT" --auto-approve --output-dir "$RUN_DIR/out" </dev/null`, run from a scratch folder inside the worktree `$WT`, with `$VH` a fresh `mktemp -d` outside it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:94] |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` | `pi -p --offline --model llmgateway/deepseek-v4.1-flash-1017 --thinking <level> --mode text </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157] |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | `opencode run -m opencode-go/deepseek-v4.1-flash#max --format json </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] |
-| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | `vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
 | `cli-devin` | `deepseek-v4-1-flash-max` | baked into the model id, so no flag carries it | `devin -p --model deepseek-v4-1-flash-max --permission-mode dangerous -- "$PROMPT" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156] |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | `codex exec --model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138] |
 
@@ -226,6 +226,7 @@ Five executors, no sixth. Every row is a mode of the `cli-external-orchestration
 - Compose every prompt as the child preamble, then the inlined persona, then the task. Set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:68].
 - One change per brief: the file, the edit and the check that proves it [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:168].
 - Read the outcome record, not stdout. A clean stdout proves nothing, and `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
+- A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch].
 - After every wave the orchestrator runs `git status --porcelain` and confirms the wave touched only the files its workers were given. A file outside the wave's set is a lost worker, not a bonus.
 
 ### Self-invocation guards
@@ -244,108 +245,108 @@ A running CLI skill never dispatches itself, so the orchestrator removes its own
 
 Every wave walks the same ladder, and a wave names only its entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted. The order is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
-1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
-2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
-3. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set.
+1. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set.
+2. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
+3. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
 4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because quota exhaustion gates the paid families and the banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
 5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, as the last fallback.
 
-`cli-pi` is first because it is the one row whose effort is a flag and whose guard never fires for being inside Pi. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit.
+`cli-mistral-vibe` is first because the operator made it the primary for every phase on 2026-11-27. `cli-pi` is second because it is the one row whose effort is a flag and whose guard never fires for being inside Pi, so the wave's fallback tier lands there. A Vibe `429` or `402` moves the wave to `cli-pi` rather than a Vibe retry. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit.
 
 ### Waves
 
-`tasks.md` owns the ordered work and each task's own verify clause. This table owns the dispatch grouping: which tasks start together, at what tier and how many workers the file overlap allows. A wave is one dispatch round, and the orchestrator reads the wave's verify step before the next wave starts. The worker count is set by file overlap, never by how many tasks a wave holds: two workers never write the same file, so a wave whose tasks write one file runs one worker.
+`tasks.md` owns the ordered work and each task's own verify clause. This table owns the dispatch grouping: which tasks start together, at what fallback tier and how many workers the file overlap allows. A wave is one dispatch round, and the orchestrator reads the wave's verify step before the next wave starts. The worker count is set by file overlap, never by how many tasks a wave holds: two workers never write the same file, so a wave whose tasks write one file runs one worker.
 
 | Wave | Task ids | Executor | Model | Effort | Workers in parallel | What sets the worker count |
 |------|----------|----------|-------|--------|---------------------|----------------------------|
-| W0 | T001-T004, T011 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T001 and T002 both write `scratch/setup-notes.md`, and T011 is the only writer of `state-root.ts` |
-| W1 | T005-T010, T012, T014, T034-T037, T039 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | Three disjoint file sets: the routine pair, the state module, the switch and record pair |
-| W2 | T013, T015-T019, T026, T038, T040-T046 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | Three disjoint file sets: definition and runner, installer and status, the fixtures |
-| W3 | T020, T021 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The checker and the CLI verb share no file |
-| W4 | T022-T025 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2 | Four disjoint doc files, paired into two workers |
-| W5 | T027, T028 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2 | The two test files share no file |
-| W6 | T029-T031 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | All three are read-only runs, and T031 writes only `scratch/` |
-| W7 | T032, T033 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T032 is the only writer of `acceptance-criteria.md` |
+| W0 | T001-T004, T011 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T001 and T002 both write `scratch/setup-notes.md`, and T011 is the only writer of `state-root.ts` |
+| W1 | T005-T010, T012, T014, T034-T037, T039 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | Three disjoint file sets: the routine pair, the state module, the switch and record pair |
+| W2 | T013, T015-T019, T026, T038, T040-T046 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | Three disjoint file sets: definition and runner, installer and status, the fixtures |
+| W3 | T020, T021 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | The checker and the CLI verb share no file |
+| W4 | T022-T025 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 2 | Four disjoint doc files, paired into two workers |
+| W5 | T027, T028 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 2 | The two test files share no file |
+| W6 | T029-T031 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | All three are read-only runs, and T031 writes only `scratch/` |
+| W7 | T032, T033 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T032 is the only writer of `acceptance-criteria.md` |
 
 ### W0 - Setup and the state-root folder
 
 - **Task ids**: T001, T002, T003, T004, T011
-- **Executor**: `cli-pi`, because it is the one row whose effort is a standalone flag and whose guard never fires for being inside Pi [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10]
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because four tasks are reads and greps and the fifth adds one folder name
+- **Executor**: `cli-mistral-vibe`, the parent's primary for every phase since 2026-11-27 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"]
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because four tasks are reads and greps and the fifth adds one folder name
 - **Workers in parallel**: 1. T001 and T002 both write `scratch/setup-notes.md`, so a second worker would race it, and T011 is the only writer of `state-root.ts`.
 - **Orchestrator verify after the wave**: `(cd $R && npm test)` exits 0, which is the baseline T002 recorded, and `rg -c 'routines' .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` prints 2.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. A read wave is the cheapest to re-run, so the orchestrator does the reads itself before it spends the last fallback.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. A read wave is the cheapest to re-run, so the orchestrator does the reads itself before it spends the last fallback.
 
 ### W1 - The two new modules
 
 - **Task ids**: T005, T006, T007, T008, T009, T010, T012, T014, T034, T035, T036, T037, T039
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, because two new modules carry the block rules and the fatigue count, and a wrong shape here is read by every later wave
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because two new modules carry the block rules and the fatigue count, and a wrong shape here is read by every later wave
 - **Workers in parallel**: 3. Worker A takes T005-T007 and T036 and writes `.skilled/skills/system-skilled-bots/runtime/lib/routine.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/routine.vitest.ts`. Worker B takes T008-T010, T034, T035 and T037 and writes `.skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/routine-state.vitest.ts`. Worker C takes T012, T014 and T039 and writes `.skilled/skills/system-skilled-bots/runtime/lib/switches.ts`, `.skilled/skills/system-skilled-bots/runtime/lib/run-record.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts`. No two sets share a file.
 - **Orchestrator verify after the wave**: `(cd $R && npm run typecheck)` exits 0, `(cd $R && npx vitest run tests/routine.vitest.ts -t "^routine block ")` prints `Tests  5 passed`, `(cd $R && npx vitest run tests/routine-state.vitest.ts -t "^routine state ")` prints `Tests  6 passed`, and `(cd $R && npx vitest run tests/run-record.vitest.ts -t "^run record carries the until observation$")` prints `Tests  1 passed`.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. A worker that runs out mid-module hands its whole file set to the next row, because a half-written module is worse than an unwritten one.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. A worker that runs out mid-module hands its whole file set to the next row, because a half-written module is worse than an unwritten one.
 
 ### W2 - The wiring and the fixtures
 
 - **Task ids**: T013, T015, T016, T017, T018, T019, T026, T038, T040, T041, T042, T043, T044, T045, T046
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, because the two runner hooks are the seam between the block and the record, and the floor refusal has to land in the installer before anything is written
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because the two runner hooks are the seam between the block and the record, and the floor refusal has to land in the installer before anything is written
 - **Workers in parallel**: 3. Worker A takes T013, T015-T017, T038, T040, T045 and T046 and writes `.skilled/skills/system-skilled-bots/runtime/lib/definition.ts`, `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts`, `.skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts`, `.skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts`, `.skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts`. Worker B takes T018, T019, T041, T042, T043 and T044 and writes `.skilled/skills/system-skilled-bots/runtime/lib/installer.ts`, `.skilled/skills/system-skilled-bots/runtime/lib/status.ts`, `.skilled/skills/system-skilled-bots/runtime/tests/installer.vitest.ts`, `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts`. Worker C takes T026 and writes the ten `routine-*` fixtures under `.skilled/skills/system-skilled-bots/scripts/fixtures/`. No two sets share a file.
 - **Orchestrator verify after the wave**: `(cd $R && npm run typecheck)` exits 0, `(cd $R && npx vitest run tests/definition.vitest.ts -t "^worked shapes carries the routine block and derives the trigger$")`, `(cd $R && npx vitest run tests/runner.vitest.ts -t "^refusals before dispatch refuses a completed routine$")`, `(cd $R && npx vitest run tests/dispatch.vitest.ts -t "^bot prompt tells a scheduled run that it is a firing$")`, `(cd $R && npx vitest run tests/installer.vitest.ts -t "^preflight refuses a cron start under fifteen minutes$")`, `(cd $R && npx vitest run tests/status.vitest.ts -t "^row states reports the completed switch$")` and `(cd $R && npx vitest run tests/answer.vitest.ts -t "^bots answer answers with no resume$")` each print `Tests  1 passed`, and `ls .skilled/skills/system-skilled-bots/scripts/fixtures | rg -c '^routine-'` prints 10.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. The fixtures are the wave's cheapest re-run, so a worker that loses its row hands the fixtures to the next row first and the two code sets second.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. The fixtures are the wave's cheapest re-run, so a worker that loses its row hands the fixtures to the next row first and the two code sets second.
 
 ### W3 - The refusals and the verb
 
 - **Task ids**: T020, T021
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, because nine refusal names and the `enable` answer path are what the acceptance criteria assert by name
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because nine refusal names and the `enable` answer path are what the acceptance criteria assert by name
 - **Workers in parallel**: 2. Worker A takes T020 and writes `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` and `.skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts`. Worker B takes T021 and writes `.skilled/bin/bots.cjs`, `.skilled/skills/system-skilled-bots/runtime/lib/answer.ts`, `.skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts` and `.skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts`. The two sets share no file.
 - **Orchestrator verify after the wave**: `node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs $F/routine-clean` exits 0, and `node .skilled/bin/bots.cjs routines --repo "$S/checkout"` exits 0 and prints two rows.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. This is the wave where the last fallback is a real option, because a refusal name that ships wrong is a name every later phase quotes.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. This is the wave where the last fallback is a real option, because a refusal name that ships wrong is a name every later phase quotes.
 
 ### W4 - The docs the author and the reader use
 
 - **Task ids**: T022, T023, T024, T025
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because each task is one doc line naming a block or a verb
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because each task is one doc line naming a block or a verb
 - **Workers in parallel**: 2. Worker A takes T022 and T025 and writes `.skilled/skills/system-skilled-bots/assets/bot-template.txt` and `.skilled/skills/system-skilled-bots/runtime/lib/README.md`. Worker B takes T023 and T024 and writes `.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` and `.skilled/skills/system-skilled-bots/bots-status/SKILL.md`. Four disjoint files, paired into two dispatches rather than four.
 - **Orchestrator verify after the wave**: `rg -c 'routine' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints 1, `rg -c 'routine' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1, `rg -c 'bots routines' .skilled/skills/system-skilled-bots/bots-status/SKILL.md` prints at least 1, and `rg -c 'routine.ts|routine-state.ts' .skilled/skills/system-skilled-bots/runtime/lib/README.md` prints 2.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. A doc wave is the one place the orchestrator writes the line itself rather than spend a dispatch, because the check is a single `rg`.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. A doc wave is the one place the orchestrator writes the line itself rather than spend a dispatch, because the check is a single `rg`.
 
 ### W5 - The contract tests
 
 - **Task ids**: T027, T028
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because each task mirrors a test that already exists
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because each task mirrors a test that already exists
 - **Workers in parallel**: 2. Worker A takes T027 and writes `.skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts`. Worker B takes T028 and writes `.skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts`. The two files are disjoint.
 - **Orchestrator verify after the wave**: `(cd $R && npx vitest run tests/bot-check.vitest.ts -t "^fixtures prints the routine invariant for each defect fixture$")`, `(cd $R && npx vitest run tests/cli-run.vitest.ts -t "^bots routines lists the routines and their switches$")` and `(cd $R && npx vitest run tests/cli-run.vitest.ts -t "^bots enable answers the fatigue item with no resume$")` each print `Tests  1 passed`.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`.
 
 ### W6 - The whole gate
 
 - **Task ids**: T029, T030, T031
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because all three are runs of commands the earlier waves already proved
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because all three are runs of commands the earlier waves already proved
 - **Workers in parallel**: 1. T029 runs the whole suite, so a second worker running a suite beside it would race the same temp state, and T031 writes only `scratch/`.
 - **Orchestrator verify after the wave**: `(cd $R && npm test)` exits 0 and `(cd $R && npm run typecheck)` exits 0, and `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e '.version == 1 and (.routines | length == 2) and (.routines[0].botId != null) and (.routines[0].untilMetAt == null)'` exits 0.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. A gate wave that loses its row is run by the orchestrator directly, because a dispatch that only runs `npm test` costs a run for nothing.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. A gate wave that loses its row is run by the orchestrator directly, because a dispatch that only runs `npm test` costs a run for nothing.
 
 ### W7 - The packet
 
 - **Task ids**: T032, T033
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because T032 copies evidence that already exists into eleven rows and T033 runs one command
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because T032 copies evidence that already exists into eleven rows and T033 runs one command
 - **Workers in parallel**: 1. T032 is the only writer of `acceptance-criteria.md`, and T033 must read the file T032 finished.
 - **Orchestrator verify after the wave**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer --strict` prints `RESULT: PASSED`, and `rg -c '\| Unmet \|' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 0.
-- **Fallback order**: `cli-pi` → `cli-opencode` → `cli-mistral-vibe` → `cli-devin` after a probe → `cli-codex`. The last wave is the one the orchestrator keeps for itself when every row is out of usage, because a validator run and eleven status cells need no model.
+- **Fallback order**: `cli-mistral-vibe` → `cli-pi` → `cli-opencode` → `cli-devin` after a probe → `cli-codex`. The last wave is the one the orchestrator keeps for itself when every row is out of usage, because a validator run and eleven status cells need no model.
 <!-- /ANCHOR:external-orchestration -->
 
 ---

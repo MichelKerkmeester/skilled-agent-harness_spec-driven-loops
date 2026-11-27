@@ -136,8 +136,8 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T003 | none, three reads | `cli-pi` | `--thinking high` | 1 | The three setup checks print what they say |
-| 1 | T004 to T007 | `design/message-catalog.md`, `design/golden/` | `cli-pi` | `--thinking max` | 1, because the goldens are the catalog in files | The catalog check |
-| 2 | T008, T009 | `design/mockups.md`, `design/reply-grammar.md` | `cli-pi` | `--thinking max` | 2: one per file | The mockup check and the grammar check |
+| 0 | T001 to T003 | none, three reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The three setup checks print what they say |
+| 1 | T004 to T007 | `design/message-catalog.md`, `design/golden/` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because the goldens are the catalog in files | The catalog check |
+| 2 | T008, T009 | `design/mockups.md`, `design/reply-grammar.md` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2: one per file | The mockup check and the grammar check |
 | 3 | T010 to T014 | none | the orchestrator | none | 1 | The validator |
 <!-- /ANCHOR:external-orchestration -->

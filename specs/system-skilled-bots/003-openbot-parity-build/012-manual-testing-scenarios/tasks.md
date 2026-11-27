@@ -36,7 +36,7 @@ Every scenario builds its own throwaway world under one `mktemp -d` folder, driv
 <!-- ANCHOR:waves -->
 ## Wave Plan
 
-Eleven waves. Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of distinct files it writes, and a wave that shares a file runs one worker. The verify column names the check the orchestrator runs before the next wave starts.
+Eleven waves. Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of distinct files it writes, and a wave that shares a file runs one worker. The verify column names the check the orchestrator runs before the next wave starts. Waves 0 to 5 ran before 2026-11-27 and keep the executors they ran on. The open dispatched wave, 8, runs on `cli-mistral-vibe` at `deepseek-flash`, the parent's primary since that date [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 Waves 6, 7, 9 and 10 run from the orchestrator as plain shell, with no external executor. The playbook forbids any wave inside an AI runtime session, because the recursion guard refuses the runs, and every bot definition the new scenarios write names `cli-codex`, so a scenario executed from inside a session would be refused by its own subject. Those four waves are the re-verification, the execution, the re-run and the two validator gates.
 
@@ -50,7 +50,7 @@ Waves 6, 7, 9 and 10 run from the orchestrator as plain shell, with no external 
 | 5 | T038-T039 | one `channels/` file and the root index | `cli-devin` | `deepseek-v4-1-flash-max` | max, baked into the uid | 2, after the quota probe | V5 | pi, opencode, vibe, codex |
 | 6 | T050-T051 | `scratch/contract-recheck.md` and the moved dry-run folder | the orchestrator, no external executor | none | none | 1, because the re-check reads every file the five authoring waves wrote | V6 | none. The orchestrator runs both |
 | 7 | T040-T043 | four verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 | none. The orchestrator runs all four |
-| 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-codex` | `gpt-6-luna` | `xhigh`, `fast` service tier | 1, because both tasks share the results file | V8 | pi, opencode, vibe, devin |
+| 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because both tasks share the results file | V8 | pi, opencode, devin, codex |
 | 9 | T047, T045 | `scratch/results.csv` and the run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the file the re-run wrote | V9 | none. The orchestrator runs both |
 | 10 | T048-T049 | none. Both tasks read | the orchestrator, no external executor | none | none | 1 | V10 | none. The orchestrator runs both |
 

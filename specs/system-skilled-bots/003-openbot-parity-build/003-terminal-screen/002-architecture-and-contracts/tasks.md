@@ -94,14 +94,14 @@ Every `Verify:` clause runs without a tty. The loop takes its events from a sour
 
 The build runs as eight waves. A lane is the unit of parallelism and two lanes never hold the same file, so a wave's worker count is the number of lanes whose file sets are disjoint. `plan.md` §External orchestration holds the executor table, the tier rule, the parallelism rule and the fallback ladder. This section applies them to these task ids.
 
-The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, then `cli-mistral-vibe`, then `cli-devin`, then `cli-codex`, keeping the wave's effort tier. A Vibe-hosted orchestrator skips the `cli-mistral-vibe` rung, because that mode refuses to load when `VIBE_SESSION=1` is set. Each wave's **Fallback** line names the rung its executor moves to first.
+Every lane's primary is `cli-mistral-vibe` at `deepseek-flash`, which runs at its fixed `max`. The fallback ladder is the same for every wave: `cli-mistral-vibe`, then `cli-pi`, then `cli-opencode`, then `cli-devin`, then `cli-codex`, keeping the lane's fallback tier. A Vibe-hosted orchestrator skips the `cli-mistral-vibe` rung, because that mode refuses to load when `VIBE_SESSION=1` is set, and a Vibe `429` or `402` moves the lane to `cli-pi` rather than a Vibe retry. Each wave's **Fallback** line names the rung its executor moves to first.
 
 ### Wave 1 - Setup probes and the manifest
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T001, T002, T003 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | none, three read-only probes |
-| B | T004, T005 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/Cargo.toml`, `.gitignore` |
+| A | T001, T002, T003 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | none, three read-only probes |
+| B | T004, T005 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/Cargo.toml`, `.gitignore` |
 
 **Workers:** 2. **Verify:** `cargo metadata --manifest-path crates/bots-tui/Cargo.toml --no-deps --format-version 1` exits 0 and prints `"name":"bots-tui"`. `git check-ignore -v crates/bots-tui/target/release/bots-ui` prints the `/crates/bots-tui/target/` line. `node .skilled/bin/bots.cjs ui` still exits 2. **Fallback:** `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max`, because a Vibe row cannot be lowered below `max` and the replacement must not be either.
 
@@ -109,60 +109,60 @@ The fallback ladder is the same for every wave: `cli-pi`, then `cli-opencode`, t
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T006, T007 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/lib.rs`, `crates/bots-tui/src/main.rs`, the ten module stubs, `crates/bots-tui/Cargo.lock` |
+| A | T006, T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/lib.rs`, `crates/bots-tui/src/main.rs`, the ten module stubs, `crates/bots-tui/Cargo.lock` |
 
-**Workers:** 1, because the lane writes the library root every later module task is declared from. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0. `ls crates/bots-tui/target/release/bots-ui` prints the path. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib` exits 0. `git ls-files crates/bots-tui/Cargo.lock` prints the path. **Fallback:** `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max`.
+**Workers:** 1, because the lane writes the library root every later module task is declared from. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0. `ls crates/bots-tui/target/release/bots-ui` prints the path. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib` exits 0. `git ls-files crates/bots-tui/Cargo.lock` prints the path. **Fallback:** `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max`.
 
 ### Wave 3 - The dependency-free modules, the fixture and the design copy
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T008 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/src/model.rs` |
-| B | T013 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/src/event.rs` |
-| C | T015 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/terminal.rs` |
-| D | T010 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/tests/fixtures/bots`, `crates/bots-tui/tests/fixtures/payloads/` |
-| E | T028 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `crates/bots-tui/design/` |
+| A | T008 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `crates/bots-tui/src/model.rs` |
+| B | T013 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/event.rs` |
+| C | T015 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/terminal.rs` |
+| D | T010 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `crates/bots-tui/tests/fixtures/bots`, `crates/bots-tui/tests/fixtures/payloads/` |
+| E | T028 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/design/` |
 
-**Workers:** 5. Lane A is `high` because the model mirrors a payload the fixture already fixes. Lane C is `max` because the guard and the panic hook are the two places a mistake costs a terminal. Lane E is a copy, so it takes the cheapest rung. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib model` names `unknown_state_keeps_raw`. `--lib event` names `closed_input_is_one_event`. `--lib terminal` names `restore_runs_on_exit` and `restore_runs_on_panic`. The six `jq` checks on the fixture exit 0 and `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`. `ls crates/bots-tui/design` prints the six names, `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing. **Fallback:** lane A and lane D to `cli-opencode` · `#max`, lane B to `cli-pi` · `--thinking max`, lane C to `cli-opencode` · `#max`, lane E to `cli-pi` · `--thinking max`.
+**Workers:** 5. Lane A falls back at `high` because the model mirrors a payload the fixture already fixes. Lane C falls back at `max` because the guard and the panic hook are the two places a mistake costs a terminal. Lane E is a copy, so it falls back to the cheapest rung. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib model` names `unknown_state_keeps_raw`. `--lib event` names `closed_input_is_one_event`. `--lib terminal` names `restore_runs_on_exit` and `restore_runs_on_panic`. The six `jq` checks on the fixture exit 0 and `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`. `ls crates/bots-tui/design` prints the six names, `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing. **Fallback:** lanes A and D to `cli-pi` · `--thinking high`, lanes B, C and E to `cli-pi` · `--thinking max`.
 
 ### Wave 4 - The process boundary and the reducer
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T009 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/cli.rs` |
-| B | T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/state.rs` |
+| A | T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/cli.rs` |
+| B | T012 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/state.rs` |
 
-**Workers:** 2, both `max` because each is a seam every later child reads through: `cli.rs` is the only process boundary and `state.rs` is the only place an answer is decided. T029 is not here: its test asserts the loop's exit code, and `app.rs` lands in wave 6. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib cli` names `program_defaults_to_node_and_bots_cjs`. `--lib state` names `esc_produces_no_answer_effect` and `stale_generation_is_dropped`. **Fallback:** `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max`.
+**Workers:** 2, both falling back at `max` because each is a seam every later child reads through: `cli.rs` is the only process boundary and `state.rs` is the only place an answer is decided. T029 is not here: its test asserts the loop's exit code, and `app.rs` lands in wave 6. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib cli` names `program_defaults_to_node_and_bots_cjs`. `--lib state` names `esc_produces_no_answer_effect` and `stale_generation_is_dropped`. **Fallback:** `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max`.
 
 ### Wave 5 - The worker data layer and the client test
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T014 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/data.rs` |
-| B | T011 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/tests/cli_client.rs` |
-| C | T030 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `crates/bots-tui/tests/common/` |
+| A | T014 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/data.rs` |
+| B | T011 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `crates/bots-tui/tests/cli_client.rs` |
+| C | T030 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `crates/bots-tui/tests/common/` |
 
-**Workers:** 3. Lane A is `max` because the generation channel is the fix for the measured freeze. Lanes B and C are `high` because they mirror the fixture's argv log and the frames the design already draws. Lane B declares `mod common;` and lane C writes the module it names, so the two hold different files and the wave's verify compiles both. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib data` names `answer_jumps_queued_reads`, `child_past_timeout_is_killed` and `loop_thread_spawns_nothing`. `--test cli_client` prints `test result: ok`, names `frame_loader_reads_frame_1` and the argv log carries the four reads and the one write. **Fallback:** `cli-opencode` · `#max` for lane A, `cli-opencode` · `#max` for lanes B and C.
+**Workers:** 3. Lane A falls back at `max` because the generation channel is the fix for the measured freeze. Lanes B and C fall back at `high` because they mirror the fixture's argv log and the frames the design already draws. Lane B declares `mod common;` and lane C writes the module it names, so the two hold different files and the wave's verify compiles both. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib data` names `answer_jumps_queued_reads`, `child_past_timeout_is_killed` and `loop_thread_spawns_nothing`. `--test cli_client` prints `test result: ok`, names `frame_loader_reads_frame_1` and the argv log carries the four reads and the one write. **Fallback:** `cli-pi` · `--thinking max` for lane A, `cli-pi` · `--thinking high` for lanes B and C.
 
 ### Wave 6 - The loop and the signal path
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T016 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh"` · `-c service_tier="fast"` | `crates/bots-tui/src/app.rs` |
-| B | T029 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/terminal.rs`, `crates/bots-tui/src/event.rs` |
+| A | T016 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/app.rs` |
+| B | T029 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/terminal.rs`, `crates/bots-tui/src/event.rs` |
 
-**Workers:** 2. Lane A is the packet's hardest task: the loop is where a closed input must write nothing, where a stale generation must be dropped and where the empty frame is drawn, so it takes the highest tier the roster offers. Lane B follows wave 3's lane C on the same two files, so the two never run at once, and it sits here rather than in wave 4 because its test asserts the loop's exit code and `app.rs` is lane A's. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib app` prints `test result: ok` and names `closed_input_writes_nothing` and `empty_frame_draws`. `--lib terminal` names `signal_becomes_terminate_event`. **Fallback:** lane A to `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max`, then `cli-opencode` · `#max`, then `cli-devin` · `deepseek-v4-1-flash-max` after a read-only probe. Lane B to `cli-opencode` · `#max`.
+**Workers:** 2. Lane A is the packet's hardest task: the loop is where a closed input must write nothing, where a stale generation must be dropped and where the empty frame is drawn. Vibe runs it at its fixed `max`, and `cli-codex` at `xhigh` stays its last rung. Lane B follows wave 3's lane C on the same two files, so the two never run at once, and it sits here rather than in wave 4 because its test asserts the loop's exit code and `app.rs` is lane A's. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib app` prints `test result: ok` and names `closed_input_writes_nothing` and `empty_frame_draws`. `--lib terminal` names `signal_becomes_terminate_event`. **Fallback:** lane A to `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max`, then `cli-opencode` · `#max`, then `cli-devin` · `deepseek-v4-1-flash-max` after a read-only probe, then `cli-codex` · `gpt-6-luna` · `xhigh` · `fast`. Lane B to `cli-pi` · `--thinking max`.
 
 ### Wave 7 - The library root, the verb, the verb tests and the CI job
 
 | Lane | Tasks | Executor · model · effort | Files held |
 |------|-------|---------------------------|------------|
-| A | T017 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `crates/bots-tui/src/lib.rs`, `crates/bots-tui/src/main.rs` |
-| B | T018 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `.skilled/bin/bots.cjs` |
-| C | T019 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` |
-| D | T020 | `cli-mistral-vibe` · `deepseek-flash` · row `max` | `.github/workflows/bots-runtime.yml` |
+| A | T017 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/lib.rs`, `crates/bots-tui/src/main.rs` |
+| B | T018 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/bin/bots.cjs` |
+| C | T019 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` |
+| D | T020 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.github/workflows/bots-runtime.yml` |
 
-**Workers:** 4. Lane C is written against REQ-001's wording rather than against lane B's code, so the two run at once and the wave's verify is what proves they agree. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0. `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`, and the same command after `mkdir -p "$T/crates/bots-tui"` exits 4 and prints `ui-not-built`. The `--mono`, `--ascii` and `ui-contract-mismatch` cases are proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv and its `--version` line. `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`. `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps. **Fallback:** lanes A and B to `cli-opencode` · `#max`, lane C to `cli-opencode` · `#max`, lane D to `cli-pi` · `--thinking max`.
+**Workers:** 4. Lane C is written against REQ-001's wording rather than against lane B's code, so the two run at once and the wave's verify is what proves they agree. **Verify:** `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0. `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`, and the same command after `mkdir -p "$T/crates/bots-tui"` exits 4 and prints `ui-not-built`. The `--mono`, `--ascii` and `ui-contract-mismatch` cases are proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv and its `--version` line. `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`. `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps. **Fallback:** lanes A, B and D to `cli-pi` · `--thinking max`, lane C to `cli-pi` · `--thinking high`.
 
 ### Wave 8 - Verification gates
 

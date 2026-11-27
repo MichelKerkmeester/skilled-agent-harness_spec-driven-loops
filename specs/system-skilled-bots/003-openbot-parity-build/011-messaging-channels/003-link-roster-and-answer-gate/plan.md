@@ -163,13 +163,13 @@ This section is the executor roster for the whole phase parent. Every other chil
 
 | Executor | Model | Effort lever | Dispatch shape | Source |
 |----------|-------|--------------|----------------|--------|
+| `cli-mistral-vibe` | `deepseek-flash` | none, always the row's `max` | `VIBE_HOME="$VH" vibe -p "<prompt>" --model deepseek-flash --add-dir "$WT" --auto-approve --output-dir "$RUN_DIR/out" </dev/null`, run from a scratch folder inside the worktree `$WT`, with `$VH` a fresh `mktemp -d` outside it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` | `pi -p "<prompt>" --model llmgateway/deepseek-v4.1-flash-1017 --thinking <level> --mode text --offline </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | `opencode run --standalone -m opencode-go/deepseek-v4.1-flash#<level> --format json "<prompt>" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] |
-| `cli-mistral-vibe` | `deepseek-flash` | none, always the row's `max` | `vibe -p "<prompt>" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] |
 | `cli-devin` | `deepseek-v4-1-flash-max` | none, the max tier is in the uid | `devin -p --model deepseek-v4-1-flash-max --permission-mode dangerous -- "<prompt>" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:85] |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | `codex exec --model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast" "<prompt>"` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] |
 
-**Effort policy.** `high` carries a small mechanical task: a verb option, a doc line, a test that mirrors an existing one. `max` carries a design or tricky task: a new module, a transport, the roster check. `gpt-6-luna` at `xhigh` is the last fallback for every wave, through `cli-codex` alone, because no other row reaches an OpenAI model [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:28]. The parent packet's EXTERNAL ORCHESTRATION section sets `--thinking max` as this phase's primary effort and the four-worker bound.
+**Effort policy.** `high` carries a small mechanical task: a verb option, a doc line, a test that mirrors an existing one. `max` carries a design or tricky task: a new module, a transport, the roster check. `gpt-6-luna` at `xhigh` is the last fallback for every wave, through `cli-codex` alone, because no other row reaches an OpenAI model [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:28]. The parent packet's EXTERNAL ORCHESTRATION section sets `cli-mistral-vibe` at `deepseek-flash` and `max (fixed)` as this phase's primary and the four-worker bound, so every wave runs at `max` and the tier sets only the fallback tier on `cli-pi`.
 
 **The worker rule.** No two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, at most four. Across children, `bots.cjs` is edited in the order 003, 004, 005, 006 and the two shared test files in the order the parent spec section 5 gives.
 
@@ -177,11 +177,11 @@ This section is the executor roster for the whole phase parent. Every other chil
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T005 | none, reads and the baseline | `cli-pi` | `--thinking high` | 1 | V0 |
-| 1 | T006 to T008 | `lib/channel.ts`, `lib/state-root.ts` | `cli-pi` | `--thinking max` | 2 | V1, the handoff to child 004 |
-| 2 | T009 to T012 | `lib/channel-link.ts`, `tests/channel-support.ts` | `cli-pi` | `--thinking max` | 2 | V2 |
-| 3 | T013, T014 | `lib/answer.ts`, `bin/bots.cjs` | `cli-pi` | `--thinking max` | 2 | V3 |
-| 4 | T015 to T018 | the four test files | `cli-pi` | `--thinking high` | 4 | V4 |
+| 0 | T001 to T005 | none, reads and the baseline | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | V0 |
+| 1 | T006 to T008 | `lib/channel.ts`, `lib/state-root.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | V1, the handoff to child 004 |
+| 2 | T009 to T012 | `lib/channel-link.ts`, `tests/channel-support.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | V2 |
+| 3 | T013, T014 | `lib/answer.ts`, `bin/bots.cjs` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | V3 |
+| 4 | T015 to T018 | the four test files | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 4 | V4 |
 | 5 | T019 to T026 | none | the orchestrator | none | 1 | V5 |
 
 - **V0**: T001 to T005 print what they say.
@@ -195,9 +195,9 @@ This section is the executor roster for the whole phase parent. Every other chil
 
 When a CLI runs out of usage, the wave moves down this ladder and keeps its task ids, its files and its verify step.
 
-1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`
-2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`
-3. `cli-mistral-vibe` at `deepseek-flash`, always at the row's `max`
+1. `cli-mistral-vibe` at `deepseek-flash`, always at the row's `max`
+2. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`
+3. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`
 4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because a quota banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
 5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, the last fallback
 
@@ -210,6 +210,7 @@ A wave that reaches the end of the ladder without a working executor stops and r
 - One change per brief: the file, the edit and the check that proves it.
 - Keep GPL sources out of the brief of a worker that writes a transport. tinychannels is GPL-3.0 and Skilled is MIT. The worker that reads a provider's tinychannels source writes the wire facts it needs as a design note, `design/wire-notes.md` in the child that owns the transport, in its own words with one `[SOURCE:]` per fact. A different worker writes the transport from that note and the child's Wire Table, and its brief names no tinychannels path. The orchestrator records which worker wrote which file. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/plan.md:168]
 - Read the outcome record, not stdout. `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72].
+- A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch].
 - Every task that writes state runs on a temporary state root, never the real one, as `tasks.md` Task Notation requires.
 
 ### Self-invocation guards

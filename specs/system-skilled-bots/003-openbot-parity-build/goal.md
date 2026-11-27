@@ -116,6 +116,7 @@ and findings belong here.
 | Child goals authored | Done | Every phase holds its own `goal.md`, and `check-goal.cjs` passes on this parent and on `003-terminal-screen` |
 | Final plan gap F-032 closed and plan ready for green light | Done | validate.sh --strict --recursive prints RESULT: PASSED 15 of 15 at d686cfdad8f |
 | Build orchestration written and D2 amended | Done | `spec.md` BUILD ORCHESTRATION holds 16 waves for the 27 units. D2 now gates a phase on the phases it depends on rather than on the phase before it by number. `goal.cjs packet` reports `packet_durable_chars=3928` and `packet_budget=ok` |
+| Vibe made primary in the plan, operator decision of 2026-11-27 | Done | `spec.md` EXTERNAL ORCHESTRATION holds 14 phase rows on `cli-mistral-vibe` at `deepseek-flash` and `max (fixed)`, and the ladder runs Vibe, then `cli-pi`, then the rest. BUILD ORCHESTRATION gains a Vibe dispatch section. No decision or criterion changed, so the durable slice needs no resend |
 
 ### Deviations and findings
 

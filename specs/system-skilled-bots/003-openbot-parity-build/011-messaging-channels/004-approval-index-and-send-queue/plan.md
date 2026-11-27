@@ -151,9 +151,9 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T004 | none, reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
-| 1 | T005 to T008 | `lib/channel-approval.ts`, `lib/channel-queue.ts` | `cli-pi` | `--thinking max` | 2 | T005 to T008 and the typecheck |
-| 2 | T009, T010 | `lib/delivery.ts`, `bin/bots.cjs` | `cli-pi` | `--thinking max` | 2 | T009, T010 and the typecheck |
-| 3 | T011 to T013 | the three test files | `cli-pi` | `--thinking high` | 3 | Each file prints no `failed` |
+| 0 | T001 to T004 | none, reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The setup checks |
+| 1 | T005 to T008 | `lib/channel-approval.ts`, `lib/channel-queue.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | T005 to T008 and the typecheck |
+| 2 | T009, T010 | `lib/delivery.ts`, `bin/bots.cjs` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | T009, T010 and the typecheck |
+| 3 | T011 to T013 | the three test files | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 3 | Each file prints no `failed` |
 | 4 | T014 to T021 | none | the orchestrator | none | 1 | T014 to T021 |
 <!-- /ANCHOR:external-orchestration -->

@@ -184,11 +184,11 @@ The authoring and execution work is dispatched to external CLIs in eleven waves,
 |----------|-------|--------------|--------------------------|
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:18] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] | The mechanical authoring waves, at `#high` |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:68] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] | The conversation wave and the screen wave, at `max` and `high` |
-| `cli-mistral-vibe` | `deepseek-flash` | none. The row's `thinking` is `max` and no flag raises or lowers it [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] | The execution wave, where the work is running a block and reading its output |
+| `cli-mistral-vibe` | `deepseek-flash` | none. The row's `thinking` is `max` and no flag raises or lowers it [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] | The open fix wave 8, as the primary since 2026-11-27 |
 | `cli-devin` | `deepseek-v4-1-flash-max` | none. The max tier is baked into the uid [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:85] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:59] | The channel and root-index wave, after a quota probe |
-| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] | The fix wave, the hardest judgment in this phase |
+| `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] | The last fallback for the open wave 8 |
 
-**Effort policy.** DeepSeek Flash at `high` carries a small mechanical task: one scenario file from a settled inventory row, one root-index section, one execution pass. DeepSeek Flash at `max` carries a design or tricky task: a conversation scenario whose turns must be ordered so each one's state is the next one's precondition, or a scenario whose timing must be computed rather than written down. `gpt-6-luna` at `xhigh` on the `fast` service tier carries the hardest task, which here is deciding whether a `FAIL` is a scenario defect or a product defect, and it is the last fallback for every other wave.
+**Effort policy.** DeepSeek Flash at `high` carries a small mechanical task: one scenario file from a settled inventory row, one root-index section, one execution pass. DeepSeek Flash at `max` carries a design or tricky task: a conversation scenario whose turns must be ordered so each one's state is the next one's precondition, or a scenario whose timing must be computed rather than written down. `gpt-6-luna` at `xhigh` on the `fast` service tier is the last fallback. The hardest task here is wave 8's call on whether a `FAIL` is a scenario defect or a product defect. Since 2026-11-27 that wave runs on `cli-mistral-vibe` at its fixed `max`, falls back at `max` and walks the whole ladder down to `cli-codex`.
 
 **GPT models go through `cli-codex` alone.** It is the hub's OpenAI-backed mode [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:28], and no other mode in this roster reaches an OpenAI model, so a GPT dispatch that names another executor is a routing error rather than a cheaper route.
 
@@ -196,7 +196,7 @@ The authoring and execution work is dispatched to external CLIs in eleven waves,
 
 ### Waves
 
-Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of distinct files it writes. A wave whose files are all distinct runs its workers at once. A wave that shares a file runs one worker. The verify column names the check the orchestrator runs before the next wave starts, and the checks themselves follow the table.
+Parallelism follows file overlap: no two workers touch one file, so a wave's worker count is the number of distinct files it writes. A wave whose files are all distinct runs its workers at once. A wave that shares a file runs one worker. The verify column names the check the orchestrator runs before the next wave starts, and the checks themselves follow the table. Waves 0 to 5 ran before 2026-11-27 and keep the executors they ran on. The open dispatched wave, 8, runs on `cli-mistral-vibe` at `deepseek-flash`, the parent's primary since that date [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 | Wave | Task ids | Files | Executor | Model | Effort | Workers in parallel | Verify |
 |------|----------|-------|----------|-------|--------|---------------------|--------|
@@ -208,7 +208,7 @@ Parallelism follows file overlap: no two workers touch one file, so a wave's wor
 | 5 | T038-T039 | one `channels/` file and the root index | `cli-devin` | `deepseek-v4-1-flash-max` | max, baked into the uid | 2, after the quota probe | V5 |
 | 6 | T050-T051 | `scratch/contract-recheck.md` and the moved dry-run folder | the orchestrator, no external executor | none | none | 1, because the re-check reads every file the five authoring waves wrote | V6 |
 | 7 | T040-T043 | four verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 |
-| 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-codex` | `gpt-6-luna` | `xhigh`, `fast` service tier | 1, because both tasks share the results file | V8 |
+| 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because both tasks share the results file | V8 |
 | 9 | T047, T045 | `scratch/results.csv` and the run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the file the re-run wrote | V9 |
 | 10 | T048-T049 | none. Both tasks read | the orchestrator, no external executor | none | none | 1 | V10 |
 
@@ -226,13 +226,13 @@ Parallelism follows file overlap: no two workers touch one file, so a wave's wor
 
 ### Fallback Order
 
-When a CLI runs out of usage, the wave moves down this ladder and keeps its task ids, its files and its verify step. The order is by headroom rather than by capability, so a wave that falls back still finishes at the effort it was planned for.
+When a CLI runs out of usage, or Vibe answers `429` or `402`, the wave moves down this ladder and keeps its task ids, its files and its verify step. The order is the parent's ladder, so a wave that falls back still finishes at the effort it was planned for.
 
 1. `cli-pi` `llmgateway/deepseek-v4.1-flash-1017`, metered per token with the account's credit bonus, and the route sits under the gateway's Premium threshold, so no weekly cap applies [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:96]
 2. `cli-opencode` `opencode-go/deepseek-v4.1-flash`, the Go gateway's subsidized rate, at `#high` or `#max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:74] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78]
 3. `cli-mistral-vibe` `deepseek-flash`, the Vibe plan's own budget, always at the row's `max` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:98]
 4. `cli-devin` `deepseek-v4-1-flash-max`, the weekly quota, probed with a trivial read-only call before the wave spends it [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
-5. `cli-codex` `gpt-6-luna` at `xhigh` on `fast`, the last fallback, and the planned executor for wave 7 alone [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
+5. `cli-codex` `gpt-6-luna` at `xhigh` on `fast`, the last fallback [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
 
 A wave that reaches the end of the ladder without a working executor stops and reports the wave, its task ids and the last refusal, rather than authoring a file by hand outside the dispatch contract.
 

@@ -147,8 +147,8 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T004 | `design/wire-notes.md`, written by T002 and T003 in one worker, and reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
-| 1 | T005 to T008 | `lib/channel-telegram.ts`, `lib/channel-slack.ts`, `lib/channel-terminal.ts` | `cli-pi` | `--thinking max` | 3 | T005 to T008 and the typecheck |
-| 2 | T009 to T011 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-pi` | `--thinking max` | 2: the verb and the fixtures with the test file | T009 to T011 |
+| 0 | T001 to T004 | `design/wire-notes.md`, written by T002 and T003 in one worker, and reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The setup checks |
+| 1 | T005 to T008 | `lib/channel-telegram.ts`, `lib/channel-slack.ts`, `lib/channel-terminal.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | T005 to T008 and the typecheck |
+| 2 | T009 to T011 | `bin/bots.cjs`, `tests/fixtures/channels/`, `tests/channel-transports.vitest.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2: the verb and the fixtures with the test file | T009 to T011 |
 | 3 | T012 to T020 | none | the orchestrator | none | 1 | T012 to T020 |
 <!-- /ANCHOR:external-orchestration -->

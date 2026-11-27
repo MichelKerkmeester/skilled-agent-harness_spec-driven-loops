@@ -179,17 +179,19 @@ Three roster rules follow from those rows and are not negotiable:
 | Design or tricky: a shared record two phases both write, a seam between phases, a fix whose blast radius crosses modules | DeepSeek Flash `max` | The fix has to reconcile two contracts, and a broad brief at the cheaper tier has already been observed to read a subsystem and write nothing [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:169] |
 | The hardest task: a P0 whose cause is not yet located, or a fix two DeepSeek attempts failed | `gpt-6-luna` `xhigh` `fast` | The last resort, and the only route for a GPT model |
 
+Every fix worker's primary is `cli-mistral-vibe` at `deepseek-flash`, which runs at its fixed `max`, so the two DeepSeek tiers above set only the fallback tier a worker takes on `cli-pi` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
+
 ### 8.3 The fallback order
 
-When a CLI runs out of usage, the next executor in this order absorbs its share. The order is fixed for the whole phase and is recorded per wave in `tasks.md`.
+When a CLI runs out of usage, or Vibe answers `429` or `402`, the next executor in this order absorbs its share. The order is the parent's ladder, fixed for the whole phase and recorded per wave in `tasks.md`.
 
-1. `pi`, the rotation default for DeepSeek Flash and the route the roster's `lanes` preset already uses [SOURCE: .skilled/commands/assets/local-skilled-alignment/executors.json:191].
-2. `opencode`, the Go gateway's subsidized 2x usage rate.
-3. `vibe`, which bills the plan's Vibe budget and that budget is separate from the API budget.
+1. `vibe`, the primary for every fix worker since 2026-11-27. It bills the plan's Vibe budget, which is separate from the API budget.
+2. `pi`, the rotation default for DeepSeek Flash on DevPass and the route the roster's `lanes` preset already uses [SOURCE: .skilled/commands/assets/local-skilled-alignment/executors.json:191].
+3. `opencode`, the Go gateway's subsidized 2x usage rate.
 4. `devin`, a weekly quota, so probe it with a trivial read-only call before spending it. A quota banner alone is not proof of exhaustion, because a free-tier model still dispatches at 0% [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
 5. `codex`, the last fallback and the only route for a GPT model.
 
-A dropped review lineage is replaced by `--count=2` on the next executor in the order, so the fan-out keeps five lineages and the review keeps five independent reads. A dropped fix worker is replaced by the next executor at the same effort tier.
+A dropped review lineage is replaced by `--count=2` on the first executor in the order that is still up, so the fan-out keeps five lineages and the review keeps five independent reads. Vibe runs in a deep loop only as a fan-out lineage beside a second executor group, and the runner refuses a single-executor run [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:190]. The fan-out therefore always holds at least one group that is not Vibe, and if only Vibe would remain, Wave 1 stops and reports rather than running Vibe alone. A dropped fix worker is replaced by the next executor at the same fallback tier.
 
 ### 8.4 The dispatch shape
 
@@ -227,7 +229,7 @@ command -v vibe pi opencode devin codex
 vibe --version </dev/null; pi --version; opencode --version; devin --version; codex --version
 ```
 
-At least one binary must be present. A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn, and the run re-runs the matrix with `--count=2` on the next executor in §8.3.
+At least one binary other than `vibe` must be present, because Vibe never runs as the only executor group. A binary that is absent, or a version outside the pin its mode names, drops that lineage before spawn, and the run re-runs the matrix with `--count=2` on the next executor in §8.3.
 
 The same preflight proves the scope reaches the built code, because a fan-out of five readers over the pre-packet modules is five reads of the wrong surface:
 

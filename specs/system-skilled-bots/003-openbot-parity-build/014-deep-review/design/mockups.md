@@ -84,18 +84,18 @@ bots-review: preflight
   phase 013        RESULT: PASSED
   suite baseline   <files> files, <tests> tests, exit 0
   executors        vibe pi opencode codex, devin absent, preflight.json written
-  fallback         devin dropped, pi runs twice, 5 lineages on 4 executors
+  fallback         devin dropped, vibe runs twice, 5 lineages on 4 executors
   handoff 012      failures.md, 1 row
   handoff 013      rebuttals.md, 3 headings, 1 handed on
   handoff 013      evidence/, 2 findings, 0 open
   seeded           2 findings, F001 P0 and F002 P1
 bots-review: fan-out
   matrix           5 lineages, concurrency 5
-  spawn            vibe pi pi opencode codex
+  spawn            vibe vibe pi opencode codex
   merge            5 of 5 complete, 0 orphaned, merged verdict FAIL
 ```
 
-The label set reads `cli-mistral-vibe`, `cli-pi-1`, `cli-pi-2`, `cli-opencode` and `cli-codex`, so a reader sees which executor ran twice. `total_cli_lineages` still reads five, which is what AC-003 checks. That is the case D3 makes normal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
+The label set reads `cli-mistral-vibe-1`, `cli-mistral-vibe-2`, `cli-pi`, `cli-opencode` and `cli-codex`, so a reader sees which executor ran twice. Vibe takes the extra lineage because it is first in `fallbackOrder`, and three other groups still run beside it. `total_cli_lineages` still reads five, which is what AC-003 checks. That is the case D3 makes normal. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D3]
 
 ### 1.4 A run that closes CONDITIONAL
 

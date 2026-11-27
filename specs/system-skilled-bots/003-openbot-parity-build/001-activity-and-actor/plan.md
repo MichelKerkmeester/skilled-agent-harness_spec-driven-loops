@@ -176,9 +176,9 @@ This phase's build is dispatched, not hand-run. The roster below is the closed s
 
 | Executor | Model | Effort | Source |
 |----------|-------|--------|--------|
+| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157] |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] |
-| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
 | `cli-devin` | `deepseek-v4-1-flash-max` | baked into the model uid, so no flag carries it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:59] |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 
@@ -193,7 +193,7 @@ Each row's own `SKILL.md` owns its flags, its stdin redirect and its outcome rec
 - **`gpt-6-luna` at `xhigh` on the `fast` service tier** for the hardest task in the build, and as the last fallback when every other row is out of usage.
 - **GPT models only through `cli-codex`.** No other row in this roster reaches a GPT model, so a task that needs one is a `cli-codex` task by definition.
 
-The parent's phase row fixes this phase at `cli-pi` and `--thinking max` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. That `max` is the phase's primary effort and its ceiling. The parent's tier rule is what sets a mechanical wave below it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"], so W0, W6, W8, W9 and W10 run at `high` and the design waves run at `max`.
+The parent's phase row fixes this phase at `cli-mistral-vibe` on `deepseek-flash` at `max (fixed)` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. Vibe runs every wave at `max`, so the tier above picks only the fallback tier, the `--thinking` level a wave takes on `cli-pi`. The parent's tier rule is what sets a mechanical wave's fallback below `max` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"], so W0, W6, W8, W9 and W10 fall back at `high` and the design waves fall back at `max`.
 
 ### Dispatch rules every worker carries
 
@@ -202,6 +202,7 @@ The parent's phase row fixes this phase at `cli-pi` and `--thinking max` [SOURCE
 - One change per brief: the file, the edit, the `design/` section it implements and the check that proves it.
 - Read the outcome record, not stdout. A clean stdout proves nothing, and `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
 - The executor CLI is the HOW. It never overrides this phase's own workflow, so a worker that finishes its brief stops and reports rather than widening its scope [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:206].
+- A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch].
 
 ### Self-invocation guards
 
@@ -219,9 +220,9 @@ A running CLI skill never dispatches itself, so the orchestrator removes its own
 
 Every wave walks this ladder from its own entry point, and a wave names only that entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted. The order is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
-1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
-2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
-3. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set.
+1. `cli-mistral-vibe` at `deepseek-flash`, the entry point of every wave, skipped when `VIBE_SESSION=1` is set and left on a `429` or `402`.
+2. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max` at the wave's fallback tier.
+3. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
 4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because quota exhaustion gates the paid families and the banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
 5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, as the last fallback.
 
@@ -229,21 +230,21 @@ A wave that reaches the end of the ladder without a working executor stops and r
 
 ### Waves
 
-The parent's worker rule sets the bound: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, and this phase's row caps it at 3 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. A wave runs at one effort, so a wave holds only tasks of one tier.
+The parent's worker rule sets the bound: no two workers touch one file, so a wave's worker count is the number of disjoint file groups its tasks fall into, and this phase's row caps it at 3 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION", row 001]. A wave runs at one fallback tier, so a wave holds only tasks of one tier.
 
 | Wave | Task ids | Executor | Model | Effort | Workers | File groups |
 |------|----------|----------|-------|--------|---------|-------------|
-| W0 | T000, T001, T002, T003, T004, T005, T006 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | T000 writes only `$SCRATCH/checkout`, and the rest read: (T000, T001, T002) / (T003, T004) / (T005, T006) |
-| W1 | T007, T008, T009 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `activity.ts` (T007, T008) / `actor.ts` (T009) |
-| W2 | T010, T012, T013, T014 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | `needs-you.ts` (T010) / `run-record.ts` (T012) / `status-index.ts` (T013, T014) |
-| W3 | T011, T015, T018 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | `answer.ts` (T011) / `runner.ts` (T015) / `posture.ts` (T018) |
-| W4 | T016, T017 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `plist-render.ts` (T016) / `installer.ts` (T017) |
-| W5 | T019, T020, T021, T046, T047, T041, T042 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | `bots.cjs` (T019, T020, T021, T046) / `status.ts` (T041, T042), with T047 split across `installer.ts` and `bots.cjs` and run after T046 in the same worker |
-| W6 | T022, T024, T026 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | `activity.vitest.ts` (T022) / `needs-you.vitest.ts` with `answer.vitest.ts` (T024) / `posture.vitest.ts` with `resume.vitest.ts` (T026) |
-| W7 | T023, T025, T043 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | `actor.vitest.ts` (T023) / `run-record.vitest.ts` with `status-index.vitest.ts` (T025) / `activity.vitest.ts` (T043) |
-| W8 | T027, T032, T033, T044, T045 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | `cli-run.vitest.ts` (T027, T033) / `bots-run/references/run-queue-and-answer.md` (T032) / `status.vitest.ts` with `installer.vitest.ts` (T044, T045) |
-| W9 | T028, T029, T030, T031 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3 | `THIRD_PARTY_NOTICES.md` (T028) / `lib/README.md` (T029) / `bots-status/references/status-and-inbox.md` with `bots-status/SKILL.md` (T030, T031) |
-| W10 | T034, T035, T036, T037, T038, T039 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | commands only, so no file is written |
+| W0 | T000, T001, T002, T003, T004, T005, T006 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 3 | T000 writes only `$SCRATCH/checkout`, and the rest read: (T000, T001, T002) / (T003, T004) / (T005, T006) |
+| W1 | T007, T008, T009 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | `activity.ts` (T007, T008) / `actor.ts` (T009) |
+| W2 | T010, T012, T013, T014 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | `needs-you.ts` (T010) / `run-record.ts` (T012) / `status-index.ts` (T013, T014) |
+| W3 | T011, T015, T018 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | `answer.ts` (T011) / `runner.ts` (T015) / `posture.ts` (T018) |
+| W4 | T016, T017 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | `plist-render.ts` (T016) / `installer.ts` (T017) |
+| W5 | T019, T020, T021, T046, T047, T041, T042 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | `bots.cjs` (T019, T020, T021, T046) / `status.ts` (T041, T042), with T047 split across `installer.ts` and `bots.cjs` and run after T046 in the same worker |
+| W6 | T022, T024, T026 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 3 | `activity.vitest.ts` (T022) / `needs-you.vitest.ts` with `answer.vitest.ts` (T024) / `posture.vitest.ts` with `resume.vitest.ts` (T026) |
+| W7 | T023, T025, T043 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | `actor.vitest.ts` (T023) / `run-record.vitest.ts` with `status-index.vitest.ts` (T025) / `activity.vitest.ts` (T043) |
+| W8 | T027, T032, T033, T044, T045 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 3 | `cli-run.vitest.ts` (T027, T033) / `bots-run/references/run-queue-and-answer.md` (T032) / `status.vitest.ts` with `installer.vitest.ts` (T044, T045) |
+| W9 | T028, T029, T030, T031 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 3 | `THIRD_PARTY_NOTICES.md` (T028) / `lib/README.md` (T029) / `bots-status/references/status-and-inbox.md` with `bots-status/SKILL.md` (T030, T031) |
+| W10 | T034, T035, T036, T037, T038, T039 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | commands only, so no file is written |
 
 W2 and W3 are split by dependency, not by tier: `answer.ts` writes the `by` and `scope` that `needs-you.ts` declares and stamps the `answeredBy` that `run-record.ts` declares, so T011 waits for W2. W5's two workers share no file: `bots.cjs` calls `activityReport` by the signature `design/data-model.md` section 1 fixes, so it can be written beside `status.ts`, and the wave's verify runs only once both are in. T043 waits for W6 because it edits the file T022 creates.
 

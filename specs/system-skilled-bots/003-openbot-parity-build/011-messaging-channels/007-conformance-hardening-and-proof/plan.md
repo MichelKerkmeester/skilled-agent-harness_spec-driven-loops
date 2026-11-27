@@ -129,8 +129,8 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T003 | none, reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
-| 1 | T004, T005 | `tests/channel-support.ts`, `tests/channel-conformance.vitest.ts` | `cli-pi` | `--thinking max` | 1, because the file imports the driver | T005 |
-| 2 | T006 to T010 | the seven document files | `cli-pi` | `--thinking high` | 4: the notices, the reference, the README and skill lines, the catalog | Each task's check |
+| 0 | T001 to T003 | none, reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The setup checks |
+| 1 | T004, T005 | `tests/channel-support.ts`, `tests/channel-conformance.vitest.ts` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because the file imports the driver | T005 |
+| 2 | T006 to T010 | the seven document files | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 4: the notices, the reference, the README and skill lines, the catalog | Each task's check |
 | 3 | T011 to T016 | none | the orchestrator | none | 1 | T011 to T016 |
 <!-- /ANCHOR:external-orchestration -->

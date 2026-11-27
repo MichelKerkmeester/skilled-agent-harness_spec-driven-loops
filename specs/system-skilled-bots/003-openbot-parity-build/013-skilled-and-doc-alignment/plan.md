@@ -180,11 +180,11 @@ This phase's build is dispatched, not hand-run. The roster below is the closed s
 
 | Executor | Model | Effort | Dispatch shape | Source |
 |----------|-------|--------|----------------|--------|
+| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | `VIBE_HOME="$VH" vibe -p "$PROMPT" --model deepseek-flash --add-dir "$WT" --auto-approve --output-dir "$RUN_DIR/out" </dev/null`, run from a scratch folder inside the worktree `$WT`, with `$VH` a fresh `mktemp -d` outside it | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:94] |
 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` or `--thinking max` | `pi -p --offline --model llmgateway/deepseek-v4.1-flash-1017 --thinking <level> --mode text </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:160] |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` or `#max` on the model id | `opencode run -m opencode-go/deepseek-v4.1-flash#max --format json </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="xhigh"` with `-c service_tier="fast"` | `codex exec --model gpt-6-luna -c model_reasoning_effort="xhigh" -c service_tier="fast"` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 | `cli-devin` | `deepseek-v4-1-flash-max` | baked into the model id, so no flag carries it | `devin -p -- "$PROMPT" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156] |
-| `cli-mistral-vibe` | `deepseek-flash` | `thinking = "max"` on the roster row, and no flag exists to change it | `vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null` | [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:67] [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] |
 
 `cli-pi` is the only row whose effort is a standalone flag, so it is the only row where `high` and `max` are a choice on the command line rather than a property of the model id [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:157]. `cli-codex` sets effort through `-c model_reasoning_effort=` because no `--reasoning-effort` flag exists [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138]. `cli-devin` and `cli-mistral-vibe` bake the tier into the id or the row, so a dispatch cannot raise or lower it.
 
@@ -194,6 +194,7 @@ This phase's build is dispatched, not hand-run. The roster below is the closed s
 - **`max`** for a design or tricky task: the topic's `terms` and `codeRoots`, a fix that changes what a doc claims, and any edit where two docs disagree about the same fact.
 - **`gpt-6-luna` at `xhigh` on the `fast` service tier** for the hardest task in the build, and as the last fallback when every other row is out of usage.
 - **GPT models only through `cli-codex`.** No other row in this roster reaches a GPT model, so a task that needs one is a `cli-codex` task by definition.
+- **Vibe is the primary for every dispatched wave** and runs at its fixed `max`, so the `high` and `max` tiers above set only the fallback tier on `cli-pi` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 ### Dispatch rules every worker carries
 
@@ -201,6 +202,7 @@ This phase's build is dispatched, not hand-run. The roster below is the closed s
 - Compose every prompt as the child preamble, then the inlined persona, then the task and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:56].
 - One change per brief: the file, the edit and the check that proves it.
 - Read the outcome record, not stdout. A clean stdout proves nothing, and `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116].
+- A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch].
 
 ### Self-invocation guards
 
@@ -218,13 +220,13 @@ A running CLI skill never dispatches itself, so the orchestrator's own runtime r
 
 Every wave walks the same ladder, and a wave names only its entry point. A row is skipped, not retried, when its guard refuses or its usage is exhausted.
 
-1. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max`.
-2. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
-3. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because quota exhaustion gates the paid families and the banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
-4. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set.
+1. `cli-mistral-vibe` at `deepseek-flash`, skipped when `VIBE_SESSION=1` is set and left on a `429` or `402`.
+2. `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017`, `--thinking high` or `max` at the wave's fallback tier.
+3. `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` or `#max`.
+4. `cli-devin` at `deepseek-v4-1-flash-max`, probed first with a trivial read-only call, because quota exhaustion gates the paid families and the banner alone is not a refusal [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237].
 5. `cli-codex` at `gpt-6-luna`, `xhigh`, `fast`, as the last fallback.
 
-The ladder is ordered by cost and by how much of the roster a single refusal removes. `cli-pi` is first because it is the one row whose effort is a flag and whose guard never fires for being inside Pi. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit.
+The ladder is the parent's [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"]. `cli-mistral-vibe` is first because the operator made it the primary for every phase on 2026-11-27. `cli-pi` is second because it is the one row whose effort is a flag and whose guard never fires for being inside Pi. `cli-codex` is last because it is the hardest-task row and the one a build should not spend on a mechanical edit.
 
 ### Wave mapping
 

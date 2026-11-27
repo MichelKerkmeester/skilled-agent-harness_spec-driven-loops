@@ -423,7 +423,7 @@ The probe record. It is written at setup, before the seeded intake, and it is wh
 | `pin` | string | no | the version the mode names, so a version outside the pin reads as absent |
 | `pinOk` | boolean | no | whether `version` satisfies `pin`. `false` when absent |
 
-A binary whose `pinOk` is `false` is treated as absent, because a lineage on an unpinned version reviews a different model than the roster names. The run then re-runs the matrix with `--count=2` on the next executor in `fallbackOrder`, so `total_cli_lineages` still reads five. A run whose `presentCount` is `0` refuses before spawn, `review-no-executor`, in `design/refusals.md`.
+A binary whose `pinOk` is `false` is treated as absent, because a lineage on an unpinned version reviews a different model than the roster names. The run then re-runs the matrix with `--count=2` on the first executor in `fallbackOrder` that is still up, so `total_cli_lineages` still reads five. A run whose `presentCount` is `0` refuses before spawn, `review-no-executor`, in `design/refusals.md`, and a run whose only present binary is `vibe` stops before spawn too, because Vibe never runs as the only executor group.
 
 ### 11.3 `suiteBaseline`
 

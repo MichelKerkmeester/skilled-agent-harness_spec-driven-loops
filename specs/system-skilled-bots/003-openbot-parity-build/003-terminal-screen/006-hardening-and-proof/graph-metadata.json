@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The five children before this one each add a surface, and each one's own tests prove only its own surface",
     "created_at": "2026-11-25T20:22:35Z",
-    "last_save_at": "2026-11-26T06:48:21.277Z",
+    "last_save_at": "2026-11-27T15:42:09.562Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55ea6d978c321e475e6e856083309f52ee6e6ed9787908f4273b2feb1dc9c0ca",
+    "source_fingerprint": "sha256:359a5c71347f858a716536dcd49d7640e65c759730e2c30072d6e68c407fa5d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2409b5e04f4f98b9ae103c8cdd88f3af09ac337d262be4b485628fbd6f198d0",
-      "plan.md": "b7d9ed0a3b2e8c9bc7656fc2c2c2b9fb0d241167f8ff62a147a9347cfc0e8950",
-      "tasks.md": "7126d88f604a7b0eb6f4e79043b5df514af6bfb66bcd2419fafa9c92940a2ff2",
+      "plan.md": "3533ee87cf102eb51b7bdb192593f8a996f1b5c46e0aa0d9150c40593cec5a8c",
+      "tasks.md": "c466e64c4db332ac070a2109c14b881007b3b7a281e4df784a3a9626e2c594d8",
       "implementation-summary.md": "12a7882208e87336c1643a3bbecc60cefa381a5db4e69629b3feffb08762ab96"
     },
     "last_active_at": null

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A parked run's question reaches only a desktop notice today, because `desktop` is the one delivery channel [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45]",
     "created_at": "2026-11-26T00:00:19Z",
-    "last_save_at": "2026-11-27T14:22:49.345Z",
+    "last_save_at": "2026-11-27T15:42:09.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +208,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dc2edf6b5c58c7da38422d8d839e22211249fe8cb1f9c2fb9d980a605a6b059",
+    "source_fingerprint": "sha256:ea8bfe77d457763a1bed90b7da41f648a1ec7531c3c7e124a323ab1c39dd72e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f804b043f33fc0e980fa5633e5dcf2d9cb2617c404bb4af7e8c990702f81db2c",
-      "plan.md": "548228d29342720ffde178d7aa4c4c9acb443837db382e06714f955edaed3c8d",
+      "plan.md": "56e8d0f4d49ebdbeb051c6129a2ed224b6ea04e7930ec288f3637edc664d94a6",
       "tasks.md": "2feb4d3563be8dd0700c0bd7bd70613a0e83783f854b99b86cd8fc407a9119fb",
       "implementation-summary.md": "c23e0dcf8bf4d07a8723b2aee5b607f4dc53af9247ba22c5a9928766c9ef6d7b"
     },

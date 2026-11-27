@@ -49,6 +49,7 @@ _memory:
 | Q013 | Apply the 307 literal amendment-map edits with a script instead of Vibe runs. | | Every edit was already exact old and new text, so a model would only copy it and could drift. | None | scratch/amendment-map.json |
 | Q014 | Update the shipped manual testing playbook in the same pass, so its memory, vault and skills scenarios match the amended plan. | | The scenarios describe unbuilt features, and left alone they would test the old plan. | None | .skilled/skills/system-skilled-bots/manual-testing-playbook |
 | Q015 | A Slack approval with an option label over 75 characters goes out in numbered text form, and a typed number answers it. | | Otherwise that prompt could not be answered from Slack at all. | The rule that a typed Slack line is always chat | 011-messaging-channels |
+| Q016 | Every phase is dispatched to cli-mistral-vibe with deepseek-flash at its fixed max thinking, and cli-pi becomes the first fallback. No build starts. | The operator chose DeepSeek Flash at max through Vibe for the build. | The cli-pi primary rows of the executor table | spec.md EXTERNAL ORCHESTRATION and BUILD ORCHESTRATION |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -350,6 +351,26 @@ Refuse long labels
 Answer:
 ```text
 Accept it (Recommended)
+```
+
+### Q016
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01WEBV1ZgrgpaQdnnfgW1uwN:0 -->
+
+Question:
+```text
+"Use max cli vibe": for what exactly? The build schedule now names cli-pi (DeepSeek Flash on DevPass) as the primary executor for most phases, and cli-mistral-vibe only as third on the fallback ladder. Vibe runs deepseek-flash at max thinking always.
+```
+
+Options:
+```text
+Make Vibe primary in plan (Recommended)
+Amend plan and start build
+Only start the build with Vibe
+```
+
+Answer:
+```text
+Make Vibe primary in plan (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

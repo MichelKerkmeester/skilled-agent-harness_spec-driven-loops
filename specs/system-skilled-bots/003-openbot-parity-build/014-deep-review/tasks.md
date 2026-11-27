@@ -112,7 +112,7 @@ A contract-changing fix is one worker across group M, the golden under `contract
 | Effort | Not applicable |
 | Parallel workers | 0 |
 | Orchestrator verify | `node -e "const p=require('./$R/preflight.json'); console.log(p.binaries.length, p.presentCount)"` prints `5` and at least `1`, `node -e "const p=require('./$R/preflight.json'); console.log(p.suiteBaseline.tests > 0, p.baseCommit.length > 0)"` prints `true true`, `rg -c 'runtime/lib/(memory|skills|conversation|channel)\.ts' $R/fanout-review-scope.txt` prints at least `1`, `node -e "const s=require('./$R/seeded-findings.json'); console.log(s.seededCount===s.rows.length)"` prints `true`, the `--dry-run` preview prints five lineage commands and halts at `step_fanout_spawn`, and `ls $R/lineages 2>/dev/null \| wc -l` prints `0` |
-| Fallback order | None needed. A binary that fails its probe drops its lineage before spawn, and Wave 1 re-runs the matrix with `--count=2` on the next executor in the order Wave 1 names. A host with no binary at all refuses `review-no-executor` and stops here |
+| Fallback order | None needed. A binary that fails its probe drops its lineage before spawn, and Wave 1 re-runs the matrix with `--count=2` on the next executor in the order Wave 1 names. A host with no binary at all refuses `review-no-executor` and stops here, and a host whose only present binary is `vibe` refuses `review-no-executor` too, because Vibe never runs as the only executor group |
 
 ### Wave 1 - Review fan-out
 
@@ -124,7 +124,7 @@ A contract-changing fix is one worker across group M, the golden under `contract
 | Effort | `max` on the four DeepSeek lineages, `xhigh` on `gpt-6-luna` with `service_tier="fast"` |
 | Parallel workers | 5, one per lineage. Each lineage writes only `$R/lineages/<label>/`, so no two workers share a file |
 | Orchestrator verify | `node -e "const s=require('./$R/orchestration-summary.json'); console.log(s.total_cli_lineages, s.orphaned_lineages.length)"` prints `5 0`, and `node -e "const c=require('./$R/deep-review-config.json'); console.log(c.antiConvergence.depthMode)"` prints `expansive` |
-| Fallback order | `pi` then `opencode` then `vibe` then `devin` then `codex`. A dropped lineage is replaced by `--count=2` on the next executor in that order, so the fan-out keeps five lineages and five independent reads |
+| Fallback order | `vibe` then `pi` then `opencode` then `devin` then `codex`, the parent's ladder. A dropped lineage is replaced by `--count=2` on the first executor in that order that is still up, so the fan-out keeps five lineages and five independent reads. Vibe runs only as a fan-out lineage beside a second executor group, so the matrix always keeps a group that is not Vibe, and if only Vibe would remain the wave stops and reports [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:190] |
 
 ### Wave 2 - Synthesis and triage
 
@@ -143,36 +143,36 @@ A contract-changing fix is one worker across group M, the golden under `contract
 | Field | Value |
 |---|---|
 | Task ids | T010, T012. T012 re-runs each fixed module's suite before Wave 4 starts, so no unverified fix stacks under the next wave |
-| Executor | `cli-pi` |
-| Model | `deepseek-v4.1-flash-1017` (provider `llmgateway`) |
-| Effort | `max`, because a P0 fix reconciles two contracts and is the design case, not the mechanical one |
+| Executor | `cli-mistral-vibe` |
+| Model | `deepseek-flash` |
+| Effort | `max (fixed)`. Fallback tier `max`, because a P0 fix reconciles two contracts and is the design case, not the mechanical one |
 | Parallel workers | At most 3, one per disjoint file group from the table above. A P0 that needs a file another worker owns waits for Wave 4 |
 | Orchestrator verify | `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.findingsBySeverity.P0)"` prints `0`, and each fix row in `$R/fix-ledger.md` carries the command whose output proved it |
-| Fallback order | `pi` then `opencode` then `vibe` then `devin` then `codex`. A P0 that two DeepSeek attempts failed goes to `codex` at `gpt-6-luna` `xhigh` `fast`, which is the hardest-task tier and the last fallback |
+| Fallback order | `vibe` then `pi` then `opencode` then `devin` then `codex`. A P0 that two DeepSeek attempts failed goes to `codex` at `gpt-6-luna` `xhigh` `fast`, which is the hardest-task tier and the last fallback |
 
 ### Wave 4 - P1 fixes
 
 | Field | Value |
 |---|---|
 | Task ids | T011, T012 |
-| Executor | `cli-pi` |
-| Model | `deepseek-v4.1-flash-1017` (provider `llmgateway`) |
-| Effort | `high` for a mechanical fix such as a one-line doc correction or a test that mirrors an existing one. `max` for a fix that crosses modules or touches a shared record |
+| Executor | `cli-mistral-vibe` |
+| Model | `deepseek-flash` |
+| Effort | `max (fixed)`. Fallback tier `high` for a mechanical fix such as a one-line doc correction or a test that mirrors an existing one. `max` for a fix that crosses modules or touches a shared record |
 | Parallel workers | At most 4, one per disjoint file group. Group G is one worker, because every doc fix is a line edit and two workers on one doc would collide |
 | Orchestrator verify | `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.findingsBySeverity.P1)"` prints `0`, and every deferred P1 names its finding id and the reason that blocks it |
-| Fallback order | `pi` then `opencode` then `vibe` then `devin` then `codex`, at the same effort tier. A P1 that no DeepSeek route can fix is recorded as deferred rather than escalated to `codex`, because `codex` is reserved for a P0 |
+| Fallback order | `vibe` then `pi` then `opencode` then `devin` then `codex`, at the same fallback tier. A P1 that no DeepSeek route can fix is recorded as deferred rather than escalated to `codex`, because `codex` is reserved for a P0 |
 
 ### Wave 5 - Verification
 
 | Field | Value |
 |---|---|
 | Task ids | T013, T014, T015, T016, T018 |
-| Executor | None for the gates, and none for T018, which is an orchestrator-run plain-shell step because the playbook forbids a scenario run from inside an AI runtime session. One `cli-codex` worker only if a residual finding needs the hardest tier |
-| Model | `gpt-6-luna` for that one worker, and no model for the gates |
-| Effort | `xhigh` with `service_tier="fast"` for that one worker |
+| Executor | None for the gates, and none for T018, which is an orchestrator-run plain-shell step because the playbook forbids a scenario run from inside an AI runtime session. One `cli-mistral-vibe` worker for a residual fix, which walks the ladder down to `cli-codex` when the finding needs the hardest tier |
+| Model | `deepseek-flash` for that one worker, and no model for the gates |
+| Effort | `max (fixed)` for that one worker with fallback tier `max`. `xhigh` with `service_tier="fast"` if it reaches `cli-codex` |
 | Parallel workers | 0 for the gates, 1 for a residual fix. The gates run in sequence because each reads the state the one before it left, and T018 runs after T013 because a scenario re-run on a suite that does not pass proves nothing |
 | Orchestrator verify | `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0 with at least the `suiteBaseline.tests` count `preflight.json` recorded, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P/014-deep-review --strict` prints `RESULT: PASSED`, the scoped-diff check in T014 prints `0`, and `node -e "const s=require('./$R/scenario-rerun.json'); console.log(s.failedCount)"` prints `0` |
-| Fallback order | `codex` is already last, so a residual finding it cannot fix is recorded as deferred with the reason, and the packet closes on a CONDITIONAL verdict rather than a false PASS |
+| Fallback order | `vibe` then `pi` then `opencode` then `devin` then `codex`. A residual finding that `codex` cannot fix either is recorded as deferred with the reason, and the packet closes on a CONDITIONAL verdict rather than a false PASS |
 
 ---
 

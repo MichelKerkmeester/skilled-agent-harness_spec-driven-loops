@@ -153,7 +153,7 @@ The build is dispatched to external CLIs, one change per brief, with the orchest
 | Design or tricky work: a frame, a key context, a glyph meaning, a state list | DeepSeek flash `max` | `cli-mistral-vibe`, or `cli-pi` at `--thinking max` |
 | The hardest task, or the last fallback | Luna `xhigh` on the `fast` tier | `cli-codex` |
 
-Vibe is not the `high` route, because its roster row pins `thinking = "max"` and no flag lowers it. A mechanical brief that wants `high` goes to Pi or OpenCode.
+Vibe is not the `high` route, because its roster row pins `thinking = "max"` and no flag lowers it. A mechanical brief that wants `high` goes to Pi or OpenCode. Waves 1 to 5 ran before 2026-11-27 on the executors `tasks.md` names and keep them. The open wave 6 runs on `cli-mistral-vibe` at `deepseek-flash`, the parent's primary since that date, and falls back from there down the order below [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 ### The dispatch rules
 
@@ -166,6 +166,7 @@ Vibe is not the `high` route, because its roster row pins `thinking = "max"` and
 | Count a Vibe run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` | A clean stdout proves nothing, because a denied tool call still exits 0 [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:116] |
 | Name the model and the effort explicitly on every dispatch | A caller's config default is not reproducible [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:235] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] |
 | Keep GPL sources out of the brief of a worker that writes the matching module | A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay view gets our design files and MIT or Apache references only. openhuman and tinychannels paths appear in design documents as provenance, never in a brief, and the orchestrator compares the finished guard and overlay with the openhuman files by eye and records that it did [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/fable-review-1.md, section "P1: a builder would have to decide"] |
+| Start a Vibe worker from its own scratch folder inside the worktree, pass `--add-dir` for the worktree and keep `VIBE_HOME` outside it | The worktree's hooks resolve the checkout from the cwd, so a run from outside git skips every tool call [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch] |
 
 ### The wave discipline
 

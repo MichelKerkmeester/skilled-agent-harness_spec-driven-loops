@@ -141,8 +141,8 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T003 | none, three reads | `cli-pi` | `--thinking high` | 1 | The three setup checks print what they say |
-| 1 | T004 to T007 | `design/mockups.md`, `design/key-map-delta.md`, `design/component-rows.md` | `cli-mistral-vibe`, the design route | the row's `max` | 1, because the three files share one state index | The frame check and the label check |
-| 2 | T008 to T011 | `design/pane-contract.md` with its sample, `design/loop-transcript.md`, `design/routing-grammar.md`, `design/prompt-boundary.md` | `cli-pi` | `--thinking max` | 2: the pane contract with its sample, and the three runtime-facing files | The payload check and the arithmetic check |
+| 0 | T001 to T003 | none, three reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The three setup checks print what they say |
+| 1 | T004 to T007 | `design/mockups.md`, `design/key-map-delta.md`, `design/component-rows.md` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because the three files share one state index | The frame check and the label check |
+| 2 | T008 to T011 | `design/pane-contract.md` with its sample, `design/loop-transcript.md`, `design/routing-grammar.md`, `design/prompt-boundary.md` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2: the pane contract with its sample, and the three runtime-facing files | The payload check and the arithmetic check |
 | 3 | T012 to T016 | none | the orchestrator | none | 1 | The validator |
 <!-- /ANCHOR:external-orchestration -->

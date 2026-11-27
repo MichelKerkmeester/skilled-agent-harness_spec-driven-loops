@@ -94,9 +94,9 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T001 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. One build probe | rung 2, then 3 |
-| B | T002 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. One fixture probe | rung 2, then 3 |
-| C | T003 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. Three read-only greps | rung 2, then 3 |
+| A | T001 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. One build probe | rung 2, then 3 |
+| B | T002 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. One fixture probe | rung 2, then 3 |
+| C | T003 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. Three read-only greps | rung 2, then 3 |
 
 **Workers:** 3, because no lane writes a file. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`. The three `jq -e` probes on the fixture exit 0. The three `rg` probes on the design sources print their lines.
 
@@ -104,15 +104,15 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T004, T005 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/view/panes.rs`, `$CRATE/src/view/mod.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
+| A | T004, T005 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/view/panes.rs`, `$CRATE/src/view/mod.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
 
-**Workers:** 1, serial inside the lane because both tasks edit `$CRATE/src/view/panes.rs`. T004 also declares `mod panes;` and T005 opens `tests/panes.rs`, so the module and its test target exist from this wave on and every later wave's verify finds them. T005 fixes the marker seam every later task draws through, so the lane takes `max`. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`. `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
+**Workers:** 1, serial inside the lane because both tasks edit `$CRATE/src/view/panes.rs`. T004 also declares `mod panes;` and T005 opens `tests/panes.rs`, so the module and its test target exist from this wave on and every later wave's verify finds them. T005 fixes the marker seam every later task draws through, so the lane falls back at `max`. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`. `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
 
 ### Wave 3 - The four pane bodies
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T006, T007, T008, T009 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/view/panes.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
+| A | T006, T007, T008, T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/view/panes.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
 
 **Workers:** 1, serial inside the lane because all four tasks edit `$CRATE/src/view/panes.rs`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- activity`, `-- inbox`, `-- routines` and `-- chat` each print `test result: ok`, and the four named tests appear.
 
@@ -120,8 +120,8 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T010, T011, T012 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/view/panes.rs`, `$CRATE/src/keys.rs`, `$CRATE/src/state.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
-| B | T013, T023 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/mod.rs`, `$CRATE/src/view/banner.rs` | rung 2 at `max`, then 3 |
+| A | T010, T011, T012 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/view/panes.rs`, `$CRATE/src/keys.rs`, `$CRATE/src/state.rs`, `$CRATE/tests/panes.rs` | rung 2, then 3 |
+| B | T013, T023 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `$CRATE/src/view/mod.rs`, `$CRATE/src/view/banner.rs` | rung 2 at `high`, then 3 |
 
 **Workers:** 2, because lane B holds the view root and the banner module and lane A holds the pane module, the key rows and the reducer arms. Lane B runs after wave 3, because the body it routes must exist, and its two tasks are serial because both edit the view root. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- states` and `-- wide` each print `test result: ok`. `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`. `cargo test --manifest-path $CRATE/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`. `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
 
@@ -129,17 +129,17 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T014 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/tests/panes.rs` | rung 2 at `max`, then 3 |
+| A | T014 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `$CRATE/tests/panes.rs` | rung 2 at `high`, then 3 |
 
-**Workers:** 1. The table is mechanical once the bodies exist, so it takes `high`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, one per pane per state at each size, each compared cell for cell to its frame.
+**Workers:** 1. The table is mechanical once the bodies exist, so it falls back at `high`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, one per pane per state at each size, each compared cell for cell to its frame.
 
 ### Wave 6 - The reorder, budget and sanitizer tests
 
 | Lane | Tasks | Executor, model, effort | Files held | Fallback |
 |------|-------|-------------------------|------------|----------|
-| A | T015, T016, T017, T024 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `$CRATE/tests/panes.rs` | rung 1 at `max` as a deliberate re-tier, then stop and report |
+| A | T015, T016, T017, T024 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/tests/panes.rs` | rung 2 at `max`, then 3, 4 and 5 |
 
-**Workers:** 1, serial inside the lane because all three tasks edit `$CRATE/tests/panes.rs`. This is the packet's hardest wave: a timing assertion that passes for the wrong reason and a reorder test that asserts the wrong thing both go green while proving nothing, so it takes the highest tier the roster offers. `cli-codex` is the last rung, so a spent codex re-tiers to `cli-pi` at `max` rather than dropping the tier, and a spent `cli-pi` stops the wave. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder`, `-- budget`, `-- sanitize` and `-- clip` each print `test result: ok`, and the three named tests appear, with `two_thousand_rows_visit_at_most_the_body_height` among them.
+**Workers:** 1, serial inside the lane because all three tasks edit `$CRATE/tests/panes.rs`. This is the packet's hardest wave: a timing assertion that passes for the wrong reason and a reorder test that asserts the wrong thing both go green while proving nothing, so it falls back at `max` and walks the whole ladder down to `cli-codex` on rung 5. A spent `cli-codex` stops the wave. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder`, `-- budget`, `-- sanitize` and `-- clip` each print `test result: ok`, and the three named tests appear, with `two_thousand_rows_visit_at_most_the_body_height` among them.
 
 ### Wave 7 - Verification gates
 

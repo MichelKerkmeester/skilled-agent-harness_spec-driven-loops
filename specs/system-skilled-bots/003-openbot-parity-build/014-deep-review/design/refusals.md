@@ -41,7 +41,7 @@ The `bots-review:` prefix is this phase's own. It is not a `bots:` line, because
 |------|-------|------|-------------|-----------------------|
 | `review-013-not-clean` | Gate | 1 | `validate.sh --strict` on `013-skilled-and-doc-alignment` does not print `RESULT: PASSED`, or a row in its `acceptance-criteria.md` is not `Met` | nothing. `review/` is not created |
 | `review-baseline-missing` | Gate | 1 | `npm test` in the runtime folder exits non-zero, so no `suiteBaseline` can be recorded | nothing |
-| `review-no-executor` | Orchestrator | 2 | all five binaries are absent, or every present one fails its version probe | `preflight.json` with `presentCount` `0`, and nothing else. The probe table is printed to stderr as well, so the operator sees which five were tried |
+| `review-no-executor` | Orchestrator | 2 | all five binaries are absent, every present one fails its version probe, or `vibe` is the only one that passes | `preflight.json` with `presentCount` `0`, and nothing else. The probe table is printed to stderr as well, so the operator sees which five were tried |
 | `review-scope-empty` | Orchestrator | 2 | the scope discovery found no file, so `fanout-review-scope.txt` is empty | the empty scope file, and nothing else |
 | `review-scope-stale` | Orchestrator | 1 | the scope file holds no module phases 001 to 011 add, so the file list was built from the pre-packet modules alone | the scope file as written, and nothing else. The run stops before any lineage spawns |
 | `review-seed-unreadable` | Record | 1 | a handoff path exists and a row in it cannot be read | `seeded-findings.json` with the rows read so far and the failing path in `missingSources` |

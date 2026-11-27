@@ -100,7 +100,7 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:waves -->
 ## Waves
 
-A wave is a set of tasks that can run at once. Parallelism follows file overlap and nothing else: two workers never write the same file, so a wave's worker count is the number of distinct files it writes. A wave with one file gets one worker however many tasks it holds.
+A wave is a set of tasks that can run at once. Parallelism follows file overlap and nothing else: two workers never write the same file, so a wave's worker count is the number of distinct files it writes. A wave with one file gets one worker however many tasks it holds. Waves 1 to 5 ran before 2026-11-27 and keep the executors they ran on. The open wave 6 runs on `cli-mistral-vibe` at `deepseek-flash`, the parent's primary since that date [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"].
 
 | Wave | Tasks | Files written | Executor | Model | Effort | Workers | Verify after the wave | Fallback order |
 |------|-------|---------------|----------|-------|--------|---------|-----------------------|----------------|
@@ -109,7 +109,7 @@ A wave is a set of tasks that can run at once. Parallelism follows file overlap 
 | 3 | T010 to T018 | `design/key-map.md`, `design/glyph-table.md`, `design/component-inventory.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3 | T010 prints 29, T013 prints 7 then 3, T016 prints 13 | vibe, opencode, devin, codex |
 | 4 | T019 | `spec.md` | `cli-opencode` | `opencode-go/deepseek-v4.1-flash#max` | `#max` | 1 | T019 prints 11 | vibe, pi, devin, codex |
 | 5 | T020 to T023 | `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high`, `max` for `goal.md` | 4 | T023 exits 0 and T021 prints 6 | vibe, opencode, devin, codex |
-| 6 | T024 to T031 | None: read-only | `cli-codex` | `gpt-6-luna` | `xhigh` on the `fast` tier | 1 | T024 prints `frames=53 bad=0` then `panels-misaligned=0`, T025 prints 0, T028 prints 0, T029 prints `RESULT: PASSED`, T031 prints 4 | vibe, pi, opencode, devin |
+| 6 | T024 to T031 | None: read-only | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1 | T024 prints `frames=53 bad=0` then `panels-misaligned=0`, T025 prints 0, T028 prints 0, T029 prints `RESULT: PASSED`, T031 prints 4 | pi, opencode, devin, codex |
 
 ### Wave 1: Setup
 
@@ -133,7 +133,7 @@ Four workers, one per file: `plan.md`, `tasks.md`, `acceptance-criteria.md` and 
 
 ### Wave 6: verification
 
-One worker, because the checks are one shell session and the judgment is whether a frame's content matches the state it claims, which is the hardest reading in the packet. `cli-codex` at `gpt-6-luna` with `xhigh` on the `fast` tier is the route for that, and GPT models reach this packet only through Codex. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165]
+One worker, because the checks are one shell session and the judgment is whether a frame's content matches the state it claims, which is the hardest reading in the packet. `cli-mistral-vibe` runs it at its fixed `max`, and `cli-codex` at `gpt-6-luna` with `xhigh` on the `fast` tier stays the last rung, the only route to a GPT model. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:138] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165]
 
 ### The fallback order
 

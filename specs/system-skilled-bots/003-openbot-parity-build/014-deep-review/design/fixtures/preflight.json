@@ -50,7 +50,7 @@
   ],
   "presentCount": 4,
   "fallbackUsed": true,
-  "fallbackOrder": ["pi", "opencode", "vibe", "devin", "codex"],
+  "fallbackOrder": ["vibe", "pi", "opencode", "devin", "codex"],
   "suiteBaseline": {
     "testFiles": 35,
     "tests": 381,

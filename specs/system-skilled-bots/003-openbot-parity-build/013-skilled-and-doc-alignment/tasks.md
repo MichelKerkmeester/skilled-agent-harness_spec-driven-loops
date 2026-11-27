@@ -32,7 +32,7 @@ Five shell variables this list uses: `SK` is `.skilled/skills/system-skilled-bot
 
 Both commands write outside the checkout, so no task needs a temporary state root: the run folders under `$SA` and `$DA` are the only writes either command makes, and neither stages, commits or pushes [SOURCE: .skilled/commands/local-skilled-alignment.md:15] [SOURCE: .skilled/commands/local-doc-alignment.md:17]. A run folder is named by its UTC timestamp, so `ls -d "$SA"/*/ | tail -1` is the newest run and `RUN` below always means that folder.
 
-The fallback ladder every wave walks is `cli-pi` → `cli-opencode` → `cli-devin` (probed first) → `cli-mistral-vibe` (skipped when `VIBE_SESSION=1` is set) → `cli-codex` at `gpt-6-luna` `xhigh` `fast`. `plan.md` §8 owns the roster, the effort policy and the guards. Each wave below names only its entry point and the order it falls through.
+The fallback ladder every dispatched wave walks is the parent's: `cli-mistral-vibe` (skipped when `VIBE_SESSION=1` is set, left on a `429` or `402`) → `cli-pi` → `cli-opencode` → `cli-devin` (probed first) → `cli-codex` at `gpt-6-luna` `xhigh` `fast`. The two lane waves walk the commands' `--lanes` presets instead, as their own lines say. `plan.md` §8 owns the roster, the effort policy and the guards. Each wave below names only its entry point and the order it falls through.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -91,85 +91,85 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 
 | Wave | Task ids | Executor | Model | Effort | Workers in parallel | What sets the worker count |
 |------|----------|----------|-------|--------|---------------------|----------------------------|
-| W1 | T000-T008, T024 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 4 | No task writes a file, so the bound is the four read groups, not file overlap |
-| W2 | T009 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 1 | T009 is the only writer of `topics.json`, so a second worker would race it |
-| W3 | T010-T011 | the commands' own `--lanes=deepseek` preset | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The two runs write two different output roots and neither writes the checkout |
-| W4 | T012-T015 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 4 | Four disjoint file sets: hub files, catalog, playbook, references plus the CLI help |
-| W5 | T016 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T016 is the only writer of `scratch/rebuttals.md` |
-| W6 | T017-T018 | the commands' own `--lanes=deepseek` preset | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2 | The two second runs write two different output roots and neither writes the checkout |
-| W7 | T019 | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1 | T019 is the only writer of `implementation-summary.md` |
+| W1 | T000-T008, T024 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 4 | No task writes a file, so the bound is the four read groups, not file overlap |
+| W2 | T009 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1 | T009 is the only writer of `topics.json`, so a second worker would race it |
+| W3 | T010-T011 | the commands' own `--lanes=vibe-deepseek` preset | `deepseek-flash` | `max (fixed)` | 2 | The two runs write two different output roots and neither writes the checkout |
+| W4 | T012-T015 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 4 | Four disjoint file sets: hub files, catalog, playbook, references plus the CLI help |
+| W5 | T016 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T016 is the only writer of `scratch/rebuttals.md` |
+| W6 | T017-T018 | the commands' own `--lanes=vibe-deepseek` preset | `deepseek-flash` | `max (fixed)` | 2 | The two second runs write two different output roots and neither writes the checkout |
+| W7 | T019 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T019 is the only writer of `implementation-summary.md` |
 | W8 | T020-T021 | the orchestrator, no dispatch | none | none | 1 | Both tasks are a file copy and a grep over the copy, so a dispatch would add a hop and no judgement |
 | W9 | T022-T023 | the orchestrator, no dispatch | none | none | 1 | Both tasks are read-only gates, so a dispatch would cost a run for a grep |
 
 ### W1 - Setup reads
 
 - **Task ids**: T000, T001, T002, T003, T004, T005, T006, T007, T008, T024
-- **Executor**: `cli-pi`, because it is the one row whose effort is a standalone flag and whose guard never fires for being inside Pi [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:10]
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because every task is a read and a grep
+- **Executor**: `cli-mistral-vibe`, the parent's primary for every phase since 2026-11-27 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "EXTERNAL ORCHESTRATION"]
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because every task is a read and a grep
 - **Workers in parallel**: 4. Worker A takes T000 to T002, worker B T003 and T004, worker C T005, worker D T006 to T008. No task writes a file, so file overlap does not bind and the four read groups set the count.
 - **Orchestrator verify after the wave**: the eight task verifies are the wave's evidence, and the orchestrator re-reads the two that later waves depend on: `rg -n '^const VERB_SPECS' .skilled/bin/bots.cjs` prints one line and `$BOTS --help | wc -l` prints a number, and both are recorded in `scratch/help-baseline.md`. No task in this wave writes a file, so there is no artifact to check beyond those outputs.
-- **Fallback order**: `cli-pi` → `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` → `cli-devin` at `deepseek-v4-1-flash-max` after a probe → `cli-mistral-vibe` at `deepseek-flash` unless `VIBE_SESSION=1` → `cli-codex` at `gpt-6-luna` `xhigh` `fast`. A read wave is the cheapest to re-run, so the orchestrator does the reads itself before it spends the last fallback.
+- **Fallback order**: `cli-mistral-vibe` at `deepseek-flash` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking high` → `cli-opencode` at `opencode-go/deepseek-v4.1-flash#high` → `cli-devin` at `deepseek-v4-1-flash-max` after a probe → `cli-codex` at `gpt-6-luna` `xhigh` `fast`. A read wave is the cheapest to re-run, so the orchestrator does the reads itself before it spends the last fallback.
 
 ### W2 - The topic entry
 
 - **Task ids**: T009
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, because the `terms` and `codeRoots` decide what the whole doc run reads, and a term that misses a doc hides it from every later wave
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because the `terms` and `codeRoots` decide what the whole doc run reads, and a term that misses a doc hides it from every later wave
 - **Workers in parallel**: 1. T009 is the only writer of `topics.json`, so a second worker on that file would race it.
 - **Orchestrator verify after the wave**: `node -e "const t=require('./.skilled/commands/assets/local-doc-alignment/topics.json');const x=t.topics['system-skilled-bots'];console.log(x.codeRoots.length, x.checks.length)"` prints `3 3`, and `node -e "const t=require('./.skilled/commands/assets/local-doc-alignment/topics.json');console.log(Object.keys(t.topics).length)"` prints `11`
-- **Fallback order**: `cli-pi` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-codex` at `xhigh` `fast`. This is the one wave where the last fallback is a real option, because the topic decides the whole doc run and `gpt-6-luna` at `xhigh` is the hardest-task row.
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking max` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`. This is the one wave where the last fallback is a real option, because the topic decides the whole doc run and `gpt-6-luna` at `xhigh` is the hardest-task row.
 
 ### W3 - The two first runs
 
 - **Task ids**: T010, T011
-- **Executor**: the commands' own `--lanes=deepseek` preset, which is `cli-pi` at `llmgateway/deepseek-v4.1-flash-1017` with `--thinking max` [SOURCE: .skilled/commands/assets/local-skilled-alignment/executors.json:41]
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, the preset's own tier
+- **Executor**: the commands' own `--lanes=vibe-deepseek` preset, which is a `cli-vibe` lane at `deepseek-flash` that the shared lane runner starts from its own scratch folder with a fresh home [SOURCE: .skilled/commands/assets/local-skilled-alignment/executors.json:115] [SOURCE: .skilled/commands/local-skilled-alignment.md:66] [SOURCE: .skilled/commands/assets/local-doc-alignment/local-doc-alignment-auto.yaml:79]
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`, the roster row's own tier
 - **Workers in parallel**: 2, one per command. The two runs write two different output roots and neither writes the checkout, so they cannot collide.
 - **Orchestrator verify after the wave**: `RUN=$(ls -d "$SA"/*/ | tail -1) && ls "$RUN/report.md" "$RUN/findings.json" "$RUN/fix-plan.md"` exits 0, and the same for `$DA`, and `node -e "JSON.parse(require('fs').readFileSync(process.argv[1]))" "$RUN/findings.json"` exits 0 for both
-- **Fallback order**: `--lanes=deepseek` → `--lanes=opencode-go` → `--lanes=codex` → `--lanes=devin` after a probe → `--lanes=native`, which needs no binary and is the last resort. The preset is a flag on the command, so a fallback is a re-run of the same command with a different `--lanes` value and not a different dispatch.
+- **Fallback order**: `--lanes=vibe-deepseek` → `--lanes=deepseek` → `--lanes=opencode-go` → `--lanes=codex` → `--lanes=devin` after a probe → `--lanes=native`, which needs no binary and is the last resort. `local-doc-alignment.md` does not list `vibe-deepseek` among its presets, but its workflow binds any preset in the shared `executors.json` and runs every `cli-vibe` preset through the shared lane runner. The preset is a flag on the command, so a fallback is a re-run of the same command with a different `--lanes` value and not a different dispatch.
 
 ### W4 - The fixes
 
 - **Task ids**: T012, T013, T014, T015
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, because 36 of the 40 findings the last full run over this repository reported were `judgment` against 4 `literal`, so a fix changes what a doc claims rather than a string [SOURCE: .skilled/commands/local-skilled-alignment.md:15]
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because 36 of the 40 findings the last full run over this repository reported were `judgment` against 4 `literal`, so a fix changes what a doc claims rather than a string [SOURCE: .skilled/commands/local-skilled-alignment.md:15]
 - **Workers in parallel**: 4, one per disjoint file set. Worker A takes T012 and writes `$SK/SKILL.md`, `$SK/ROUTER.md` and `$SK/README.md`. Worker B takes T013 and writes `$SK/feature-catalog/`. Worker C takes T014 and writes `$SK/manual-testing-playbook/`. Worker D takes T015 and writes `$SK/*/references/` and `.skilled/bin/bots.cjs`. No two sets share a file, which is what makes four safe.
 - **Orchestrator verify after the wave**: `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py $SK` exits 0, `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` exits 0, `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package $SK/manual-testing-playbook` prints `violations=0`, and `$BOTS --help | rg -o '^  [a-z]+' | sort -u | wc -l` prints the `VERB_SPECS` key count
-- **Fallback order**: `cli-pi` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-codex` at `xhigh` `fast`. A worker that runs out mid-fix hands its file set to the next row whole, because a half-fixed file set is worse than an unfixed one.
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking max` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`. A worker that runs out mid-fix hands its file set to the next row whole, because a half-fixed file set is worse than an unfixed one.
 
 ### W5 - The rebuttals record
 
 - **Task ids**: T016
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because the task transcribes reasons the fix pass already decided
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because the task transcribes reasons the fix pass already decided
 - **Workers in parallel**: 1. T016 is the only writer of `scratch/rebuttals.md`.
 - **Orchestrator verify after the wave**: `rg -c '^## ' scratch/rebuttals.md` prints the rebutted count the report names, and every heading names a finding id the report carries
-- **Fallback order**: `cli-pi` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-codex` at `xhigh` `fast`. The orchestrator writes this file itself before it spends the last fallback, because the reasons are already in the fix pass's own output.
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking high` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`. The orchestrator writes this file itself before it spends the last fallback, because the reasons are already in the fix pass's own output.
 
 ### W6 - The second runs and the recheck
 
 - **Task ids**: T017, T018
-- **Executor**: the commands' own `--lanes=deepseek` preset
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking max`, the preset's own tier
+- **Executor**: the commands' own `--lanes=vibe-deepseek` preset
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`, the roster row's own tier
 - **Workers in parallel**: 2, one per command. The two second runs write two different output roots and neither writes the checkout. T017 then runs its own `--recheck` against the folder its second run wrote, because a recheck of the first run would report the findings the fix pass already closed.
 - **Orchestrator verify after the wave**: `F=$(ls -t "$SA"/*/report.md | head -1) && rg -n '^- Open findings: 0' "$F"` prints one line, `rg -n '^\| (still_open|new) \| 0 \|' "${F%report.md}recheck.md"` prints two lines, and `RUN=$(ls -d "$DA"/*/ | tail -1) && rg -n '^- Open findings: 0' "$RUN/report.md"` prints one line
-- **Fallback order**: `--lanes=deepseek` → `--lanes=opencode-go` → `--lanes=codex` → `--lanes=devin` after a probe → `--lanes=native`. A re-run that reports a `new` bucket above `0` reopens W4 rather than falling back, because the finding is real and a different lane would only re-word it.
+- **Fallback order**: `--lanes=vibe-deepseek` → `--lanes=deepseek` → `--lanes=opencode-go` → `--lanes=codex` → `--lanes=devin` after a probe → `--lanes=native`. A re-run that reports a `new` bucket above `0` reopens W4 rather than falling back, because the finding is real and a different lane would only re-word it.
 
 ### W7 - The record
 
 - **Task ids**: T019
-- **Executor**: `cli-pi`
-- **Model**: `llmgateway/deepseek-v4.1-flash-1017`
-- **Effort**: `--thinking high`, because the task transcribes two paths, one criterion and two counts
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because the task transcribes two paths, one criterion and two counts
 - **Workers in parallel**: 1. T019 is the only writer of `implementation-summary.md`.
 - **Orchestrator verify after the wave**: `rg -n 'Open findings: 0' implementation-summary.md` prints one line, and `rg -n 'local-skilled-alignment|local-doc-alignment' implementation-summary.md` prints both roots
-- **Fallback order**: `cli-pi` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-codex` at `xhigh` `fast`. The orchestrator writes this file itself before it spends the last fallback.
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking high` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`. The orchestrator writes this file itself before it spends the last fallback.
 
 ### W8 - The evidence copy
 

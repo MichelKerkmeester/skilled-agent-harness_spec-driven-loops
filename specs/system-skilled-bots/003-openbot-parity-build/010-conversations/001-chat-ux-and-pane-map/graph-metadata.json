@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Phase 010 had a chat pane and a chat loop and no design artifact for either",
     "created_at": "2026-11-25T23:17:47Z",
-    "last_save_at": "2026-11-26T06:42:15.816Z",
+    "last_save_at": "2026-11-27T15:42:09.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +213,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0b18ffedd1902ef6afb68032b243e6b363040c29cec99df8448ab6f4d2a6b22",
+    "source_fingerprint": "sha256:611cc6d9382348ef5a62fd012db43e87a33c4aa6b6cdb4d11c8e1a0942ddceb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a81abf8200b2f1ed11c86d0f7e0bc931a07d42018c009b711411c0e21a64de1b",
-      "plan.md": "2885fd627ed3246a7471b05ce3c58d5dd7ba3569f60f461f1a808aa662c6bf8a",
+      "plan.md": "d83b1bd78ec7486bb530a911a9d3b8ec724d2ed4bc84374caad5def4d1117af7",
       "tasks.md": "883794bfd99f7ae4e9fa195f8b1f1070882c1682a9c97dd409a2fbfc92662882",
       "implementation-summary.md": "acb91d7faa9e4f685b0da461acb19ff1e26c8d0c58e5954c6037c62c4c8c9d3b"
     },

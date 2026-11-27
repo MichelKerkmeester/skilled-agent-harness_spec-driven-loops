@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
     "created_at": "2026-11-25T20:22:32Z",
-    "last_save_at": "2026-11-27T14:55:42.245Z",
+    "last_save_at": "2026-11-27T15:42:09.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:413485d5f98d490b1ddca83b15b5aee8b3a6408522b7a9eb2cd7464d412b6a3c",
+    "source_fingerprint": "sha256:5f570211158bbb240994f4d720e0c8ec2a96ca13666432cd2a3cb07e5095bc67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf62ef3dcae44a59010f1e5400b4d1545a5a75da4b41d34cf40d2946a1166140",
-      "plan.md": "f0c121909b22565e59867ec2ebf1f4c3b269cd24d704d46bf697ddc8f408ae12",
-      "tasks.md": "337931c546c1a45115fa2521605dd28effec1fb1d4a008d292c83cd005184f99",
+      "plan.md": "318b8c741264cf16ca0efb39cb978bc89a3f3c7c1e2c47ec6e4d9db12a5c25d7",
+      "tasks.md": "9f7a72655134fd9c6dad1eeb59527a96d379f587eae4fc1307b205bec941eb1e",
       "implementation-summary.md": "2058e2a0fb782d37979d917cde552ccd305df68192c80061e4e81607dce5b3f1"
     },
     "last_active_at": null

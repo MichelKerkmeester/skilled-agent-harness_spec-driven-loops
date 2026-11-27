@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Nothing links a chat identity to a person, so a message from a chat cannot be attributed to an actor and nothing says who may answer from one",
     "created_at": "2026-11-26T00:00:18Z",
-    "last_save_at": "2026-11-27T13:34:06.162Z",
+    "last_save_at": "2026-11-27T15:42:09.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +211,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a1742ee44f9fb8077ef4ccfe781bd6734bf2670686cb6edcf199d2f12ef09f65",
+    "source_fingerprint": "sha256:1127563f1bb19acf0d146ae89f4883c6f73aa8d49d8c3c706edf157baaf3c954",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "996109867a21ab7769606e6db93f42423cc61831c0d260d880b2effb70c760ec",
-      "plan.md": "135af17636fd777efb6820fc61b4d220f1418c7887be871dd961b21115ffade3",
+      "plan.md": "9ce5674b15b4ce581c0a472367bdc017947d3e8a178356ffa2d3d3f291ff1c6a",
       "tasks.md": "f8259530cc28d98e4429379d6a24009389910689ec15946cfaf684ffd22c16bf",
       "implementation-summary.md": "f344efaddd31c446ce1e3878682d098a8c13085de2081adf89224bac95400f24"
     },

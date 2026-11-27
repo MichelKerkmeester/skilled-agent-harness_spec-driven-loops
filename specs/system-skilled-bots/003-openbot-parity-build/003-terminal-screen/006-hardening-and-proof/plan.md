@@ -186,7 +186,7 @@ The build runs as five waves. Four dispatch external CLI workers. The fifth is t
 
 Three of those levers are narrower than the two columns suggest, and each is a fact from its own packet rather than a preference. `cli-mistral-vibe` has no reasoning flag at all: effort is the roster row's `thinking` field and `max` is a property of the row, so a Vibe dispatch cannot be lowered to `high`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] `cli-opencode`'s `opencode-go/deepseek-v4.1-flash` route is pinned to the max thinking tier by policy, so a `#high` request is upgraded rather than honored. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] `cli-devin` carries the tier in the model id and has no headless effort flag. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156]
 
-The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `high` and `max`, with `medium` and `xhigh` folding into `high`, so `--thinking high` is the only way this packet asks for the middle tier. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] `cli-codex` keeps `gpt-6-luna` and the `fast` service tier unless a task names otherwise, and `xhigh` is the tier this packet asks for on its hardest wave. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
+The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `high` and `max`, with `medium` and `xhigh` folding into `high`, so `--thinking high` is the only way this packet asks for the middle tier. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] `cli-codex` keeps `gpt-6-luna` and the `fast` service tier unless a task names otherwise, and `xhigh` is the tier this packet asks for when a wave reaches the last rung. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
 
 ### The parallelism rule
 
@@ -200,7 +200,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T001, T002, T003, T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. Four read-only probes |
+| A | T001, T002, T003, T004 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. Four read-only probes |
 
 **Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands. `cargo fmt --version` and `cargo clippy --version` each print a version. `ls crates/bots-tui/src` prints the twelve module entries. `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 
@@ -208,27 +208,27 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T005, T006, T007 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `crates/bots-tui/src/**`, `crates/bots-tui/tests/**` |
-| B | T008 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/runtime/tests/**` |
+| A | T005, T006, T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/**`, `crates/bots-tui/tests/**` |
+| B | T008 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/skills/system-skilled-bots/runtime/tests/**` |
 
-**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A takes the highest tier the roster offers. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A falls back at `max` and walks the whole ladder down to `cli-codex`. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 
 #### Wave 2b - The pseudo-terminal test
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T033 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `crates/bots-tui/tests/pty_smoke.rs` |
+| A | T033 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/tests/pty_smoke.rs` |
 
-**Workers:** 1. The lane holds one new file, so it is disjoint from Wave 2's repair lanes, and it runs after them so the repair pass does not rewrite the test it lands. It takes the highest tier the roster offers because a pseudo-terminal test that passes for the wrong reason proves nothing: the shim, the `env!("CARGO_BIN_EXE_bots-ui")` resolution and the drawn-screen read are three places a green run can be empty. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`. **Fallback:** rung 1 at `max` as a deliberate re-tier, then stop and report.
+**Workers:** 1. The lane holds one new file, so it is disjoint from Wave 2's repair lanes, and it runs after them so the repair pass does not rewrite the test it lands. It falls back at `max` and walks the whole ladder down to `cli-codex`, because a pseudo-terminal test that passes for the wrong reason proves nothing: the shim, the `env!("CARGO_BIN_EXE_bots-ui")` resolution and the drawn-screen read are three places a green run can be empty. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`. **Fallback:** rung 2 at `max`, then rungs 3, 4 and 5, then stop and report.
 
 #### Wave 3 - The two documents
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T009 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `crates/bots-tui/README.md` |
-| B | T010, T011 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `.skilled/skills/system-skilled-bots/SKILL.md` |
+| A | T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/README.md` |
+| B | T010, T011 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/skills/system-skilled-bots/SKILL.md` |
 
-**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback and the design reference without copying a line of it, so it takes the max tier. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line. `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line. `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
+**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback and the design reference without copying a line of it, so it falls back at `max`. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line. `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line. `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
 
 #### Wave 4 - Verification from the final state
 
@@ -240,7 +240,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 
 ### What every dispatch carries
 
-The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, a `cli-devin` dispatch puts `--` before the prompt, and a `cli-codex` dispatch passes `-c service_tier="fast"` explicitly rather than inheriting the caller's config. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] A `cli-mistral-vibe` dispatch runs from a scratch directory with a disposable `VIBE_HOME` that carries the repository's two roster rows, because an empty home offers one model and refuses the alias. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72]
+The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, a `cli-devin` dispatch puts `--` before the prompt, and a `cli-codex` dispatch passes `-c service_tier="fast"` explicitly rather than inheriting the caller's config. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:165] A `cli-mistral-vibe` dispatch runs from its own scratch folder inside the worktree with `--add-dir` for the worktree, and with a disposable `VIBE_HOME` outside it that carries the repository's two roster rows, because an empty home offers one model and refuses the alias. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch]
 
 A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.
 
@@ -250,15 +250,15 @@ A worker that writes `terminal.rs`, `theme.rs`, the overlay keys or the overlay 
 
 ### Fallback order when a CLI runs out of usage
 
-A wave whose named executor runs out of usage moves down this ladder from the next rung, and never lowers its effort tier: a `high` wave falls back to a `high` dispatch and a `max` wave to a `max` dispatch. A `high` wave that lands on `cli-mistral-vibe` runs at that row's `max`, because raising the tier is safe and lowering it is not. A wave already on the last rung stops and reports rather than dropping its tier.
+A wave whose named executor runs out of usage moves down this ladder from the next rung, and never lowers its effort tier: a `high` wave falls back to a `high` dispatch and a `max` wave to a `max` dispatch. Every lane starts on `cli-mistral-vibe` at that row's `max`, because raising the tier is safe and lowering it is not. A Vibe `429` or `402` counts as out of usage. A wave already on the last rung stops and reports rather than dropping its tier.
 
 | Rung | Executor | Why it sits here |
 |------|----------|------------------|
-| 1 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
-| 2 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
-| 3 | `cli-mistral-vibe` · `deepseek-flash` | The Vibe budget, which a `402 API budget exhausted` ends |
+| 1 | `cli-mistral-vibe` · `deepseek-flash` | The primary for every lane since 2026-11-27, on the Vibe budget, which a `402 API budget exhausted` ends. A `429` moves the lane down too |
+| 2 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
+| 3 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
 | 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a wave is handed to it. A free-tier model still answers when the paid quota reads 0% |
-| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The last rung, and the first choice for Wave 2's hardest lane. GPT models reach this packet only through `cli-codex` |
+| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The last rung. GPT models reach this packet only through `cli-codex` |
 
 The `cli-devin` probe is one read-only call whose reply is read as text rather than as an exit code, because quota exhaustion and a lapsed credential look the same from the exit status alone. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
 

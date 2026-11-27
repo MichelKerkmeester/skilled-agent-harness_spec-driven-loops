@@ -42,10 +42,10 @@ The tasks run in five waves. A wave's lanes hold disjoint files, so the worker c
 
 | Wave | Tasks | Executor, model, effort | Workers | Verify after the wave |
 |------|-------|-------------------------|---------|-----------------------|
-| 1 Setup probes | T001 to T004 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | 1 | The four probe commands print their expected output |
-| 2 Gate repair | T005 to T008 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` on lane A. `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
-| 2b The pseudo-terminal test | T033 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | 1 | `cargo test --release --test pty_smoke` prints `1 passed` and names `answers_one_item_in_a_pseudo_terminal` |
-| 3 Documents | T009 to T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` on lane A. `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
+| 1 Setup probes | T001 to T004 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | 1 | The four probe commands print their expected output |
+| 2 Gate repair | T005 to T008 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` on lane A. `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` on lane B | 2 | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test` exit 0, and the runtime suite prints no `failed` |
+| 2b The pseudo-terminal test | T033 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | 1 | `cargo test --release --test pty_smoke` prints `1 passed` and names `answers_one_item_in_a_pseudo_terminal` |
+| 3 Documents | T009 to T011 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` on lane A. `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` on lane B | 2 | The five README greps each print one line, the hub grep prints one line and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
 | 4 Verification | T012 to T021 | the orchestrator, no dispatch | 0 | Every gate from the final state, the licence proof, the pointer check, the eight defect checks, the pseudo-terminal run and `RESULT: PASSED` |
 
 A wave whose executor runs out of usage moves down the ladder in `plan.md`'s `External orchestration` section and never lowers its effort tier. A wave already on the last rung stops and reports rather than dropping its tier.

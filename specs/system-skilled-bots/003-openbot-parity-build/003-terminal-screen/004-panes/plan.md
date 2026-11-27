@@ -165,15 +165,15 @@ Five executors are available to this packet. Each row names the model, the lever
 
 | Executor | Model | Effort lever | This packet asks for |
 |----------|-------|--------------|----------------------|
-| `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | `high` for mechanical work, `max` for design work |
+| `cli-mistral-vibe` | `deepseek-flash` | none. The roster row's `thinking` field | the row's `max`, on every lane as the primary |
+| `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking <tier>` | the lane's fallback tier: `high` for mechanical work, `max` for design work |
 | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#<tier>` on the model id | `#max` only |
-| `cli-mistral-vibe` | `deepseek-flash` | none. The roster row's `thinking` field | the row's `max` |
 | `cli-devin` | `deepseek-v4-1-flash-max` | the model id | `max`, and only after a probe |
 | `cli-codex` | `gpt-6-luna` | `-c model_reasoning_effort="<tier>"` | `xhigh` with `-c service_tier="fast"` |
 
 Three of those levers are narrower than the table suggests, and each is a fact from its own packet rather than a preference. `cli-mistral-vibe` has no reasoning flag at all: effort is the roster row's `thinking` field and `max` is a property of the row, so a Vibe dispatch cannot be lowered to `high`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:89] `cli-opencode`'s `opencode-go/deepseek-v4.1-flash` route is pinned to the max thinking tier by policy, so a `#high` request is upgraded rather than honored. [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:146] `cli-devin` carries the tier in the model id and has no headless effort flag. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:156]
 
-The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `high` and `max`, with `medium` and `xhigh` folding into `high`, so `--thinking high` is the only way this packet asks for the middle tier. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] `cli-codex` keeps `gpt-6-luna` and the `fast` service tier unless a task names otherwise, and `xhigh` is the tier this packet asks for on its hardest wave. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
+The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `high` and `max`, with `medium` and `xhigh` folding into `high`, so `--thinking high` is the only way this packet asks for the middle tier. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:101] `cli-codex` keeps `gpt-6-luna` and the `fast` service tier unless a task names otherwise, and `xhigh` is the tier this packet asks for when a wave reaches the last rung. [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:125]
 
 ### The parallelism rule
 
@@ -187,17 +187,17 @@ A wave whose named executor runs out of usage moves down this ladder from the ne
 
 | Rung | Executor | Why it sits here |
 |------|----------|------------------|
-| 1 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
-| 2 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
-| 3 | `cli-mistral-vibe` · `deepseek-flash` | The Vibe budget, which a `402 API budget exhausted` ends |
+| 1 | `cli-mistral-vibe` · `deepseek-flash` | The primary for every lane since 2026-11-27, on the Vibe budget, which a `402 API budget exhausted` ends. A `429` moves the lane down too |
+| 2 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` | DevPass bills per token, and this route sits under the gateway's Premium threshold, so it carries no weekly cap |
+| 3 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` | The Go gateway's subsidized usage rate, and it needs its own login before it answers |
 | 4 | `cli-devin` · `deepseek-v4-1-flash-max` | A weekly quota, so it is probed with a trivial read-only call before a real task is handed to it |
-| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The most expensive reasoning on the roster, kept for the hardest wave and for last |
+| 5 | `cli-codex` · `gpt-6-luna` · `xhigh` · `fast` | The most expensive reasoning on the roster, kept for last |
 
-Rungs 2 and 3 cannot be lowered, so a `high` wave that falls to either runs at `max`. The tier rises on the way down the ladder. It never drops. That is the one asymmetry a reader should expect, and it is why the ladder is ordered by cost rather than by tier.
+Rungs 1 and 3 cannot be lowered, so every lane starts at `max` on rung 1, returns to its fallback tier on rung 2 and runs at `max` again if it falls to rung 3. Past rung 2 the tier only rises. It never drops below the lane's fallback tier. That is the one asymmetry a reader should expect, and it is why the ladder is ordered by cost rather than by tier.
 
 ### What every dispatch carries
 
-The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] A `cli-devin` dispatch is probed first, because a quota banner alone does not prove the route is spent. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
+The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch] A `cli-devin` dispatch is probed first, because a quota banner alone does not prove the route is spent. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
 
 A clean-room rule binds every lane that writes `view/panes.rs`. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished panes with the openhuman activity and render files by eye and records that it did, because `rg -n 'openhuman' crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
 

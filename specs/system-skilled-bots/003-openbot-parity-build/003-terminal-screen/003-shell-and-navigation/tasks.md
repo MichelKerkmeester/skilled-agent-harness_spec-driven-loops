@@ -86,45 +86,45 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T001, T002, T003 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | none. Three read-only probes |
+| A | T001, T002, T003 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. Three read-only probes |
 
-**Workers:** 1, because the three probes are read-only and one worker runs them in order. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("updatedAt")'` exits 0. `rg -n 'SHELL_ROWS' $CRATE/src/keys.rs` prints the empty slice 002 leaves. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`. Rung 3 is skipped in a Vibe-hosted session.
+**Workers:** 1, because the three probes are read-only and one worker runs them in order. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `bash $CRATE/tests/fixtures/bots status --json | jq -e 'has("stale") and has("updatedAt")'` exits 0. `rg -n 'SHELL_ROWS' $CRATE/src/keys.rs` prints the empty slice 002 leaves. **Fallback:** rung 2 `cli-pi` `--thinking high`, then rung 3 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`. Rung 1 is skipped in a Vibe-hosted session.
 
 ### Wave 2 - The two tables
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T004 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/src/keys.rs` |
-| B | T005 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/theme.rs` |
+| A | T004 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/keys.rs` |
+| B | T005 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/theme.rs` |
 
-**Workers:** 2. The lanes are disjoint because T004 holds `keys.rs` and T005 holds `theme.rs`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` and `--lib theme` each print `test result: ok`, and `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. **Fallback:** lane A falls to rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`. Lane B falls to rung 2 `cli-opencode` `#max`, then rung 4, then rung 5.
+**Workers:** 2. The lanes are disjoint because T004 holds `keys.rs` and T005 holds `theme.rs`. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` and `--lib theme` each print `test result: ok`, and `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. **Fallback:** both lanes fall to rung 2 `cli-pi` `--thinking max`, then rung 3 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 3 - The shell
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T009 | `cli-codex` · `gpt-6-luna` · `-c model_reasoning_effort="xhigh" -c service_tier="fast"` | `$CRATE/src/view/mod.rs` |
-| B | T006 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/header.rs` |
-| C | T007 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/tabs.rs` |
-| D | T008 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking high` | `$CRATE/src/view/footer.rs` |
+| A | T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/view/mod.rs` |
+| B | T006 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `$CRATE/src/view/header.rs` |
+| C | T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `$CRATE/src/view/tabs.rs` |
+| D | T008 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `$CRATE/src/view/footer.rs` |
 
-**Workers:** 4. This is the packet's hardest wave: lane A owns the band arithmetic, the too-small screen and the palette panel, which are the three places a mistake draws a corrupt frame or panics on a small area, so it takes the highest tier the roster offers. A module file is not compiled until `view/mod.rs` declares it, so lanes B and D verify with a grep on their own file, lane C's check is the render test that lands in Wave 5 and the wave's verify is the first compile. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0. `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line. `rg -n 'fn stale_label' $CRATE/src/view/header.rs` prints one line. `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read. **Fallback:** lane A is already on the last rung, so it stops and reports rather than dropping its tier. Lanes B, C and D fall to rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
+**Workers:** 4. This is the packet's hardest wave: lane A owns the band arithmetic, the too-small screen and the palette panel, which are the three places a mistake draws a corrupt frame or panics on a small area, so it falls back at `max` and walks the whole ladder down to `cli-codex`. A module file is not compiled until `view/mod.rs` declares it, so lanes B and D verify with a grep on their own file, lane C's check is the render test that lands in Wave 5 and the wave's verify is the first compile. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib` exits 0. `rg -nF 'Too small · Ctrl+D exit' $CRATE/src/view/mod.rs` prints one line. `rg -n 'fn stale_label' $CRATE/src/view/header.rs` prints one line. `rg -n 'keys::' $CRATE/src/view/footer.rs` prints the table read. **Fallback:** lane A falls to rung 2 `cli-pi` `--thinking max`, lanes B, C and D to rung 2 `cli-pi` `--thinking high`. Every lane then goes to rung 3 `cli-opencode` `#max`, rung 4 `cli-devin` after a probe and rung 5 `cli-codex` `xhigh`.
 
 ### Wave 4 - The palette
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T010 | `cli-pi` · `llmgateway/deepseek-v4.1-flash-1017` · `--thinking max` | `$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs` |
+| A | T010 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/src/state.rs` (`on_shell_action`), `$CRATE/src/view/mod.rs`, `$CRATE/src/keys.rs` |
 
-**Workers:** 1, because the lane holds `view/mod.rs`, which Wave 3's lane A wrote, `keys.rs`, which Wave 2's lane A wrote and `state.rs`, which 002 wrote. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`. `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `select_tab_switches_and_refreshes`. **Fallback:** rung 2 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
+**Workers:** 1, because the lane holds `view/mod.rs`, which Wave 3's lane A wrote, `keys.rs`, which Wave 2's lane A wrote and `state.rs`, which 002 wrote. **Verify:** `cargo build --manifest-path $CRATE/Cargo.toml` exits 0. `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` names `palette_filter_pauses_shortcuts`. `cargo test --manifest-path $CRATE/Cargo.toml --lib state` names `select_tab_switches_and_refreshes`. **Fallback:** rung 2 `cli-pi` `--thinking max`, then rung 3 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 5 - The key-label test
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T011 | `cli-opencode` · `opencode-go/deepseek-v4.1-flash` · `#max` | `$CRATE/tests/render_keys.rs` |
+| A | T011 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `$CRATE/tests/render_keys.rs` |
 
-**Workers:** 1, because the wave holds one file. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`. **Fallback:** rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
+**Workers:** 1, because the wave holds one file. **Verify:** `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`. **Fallback:** rung 2 `cli-pi` `--thinking max`, then rung 3 `cli-opencode` `#max`, then rung 4 `cli-devin` after a probe, then rung 5 `cli-codex` `xhigh`.
 
 ### Wave 6 - Verification gates
 

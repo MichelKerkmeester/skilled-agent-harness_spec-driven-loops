@@ -129,9 +129,9 @@ This phase uses the roster, the effort policy, the fallback order and the self-i
 | Wave | Task ids | Files | Executor | Effort | Workers in parallel | Verify |
 |------|----------|-------|----------|--------|---------------------|--------|
 | 0 | T001 to T003 | none, three reads | the orchestrator | none | 1 | T001 to T003 |
-| 1 | T004 to T009 | `src/model.rs` with `src/cli.rs`, `src/state.rs` with `src/keys.rs`, `src/data.rs` | `cli-pi` | `--thinking max` | 3 | `cargo check` exits 0 |
-| 2 | T010 to T013 | `src/view/panes.rs`, the fixtures and `design/chat-mockups.md` | `cli-pi` | `--thinking max` | 2 | T010 to T013 |
-| 3 | T014, T015 | `tests/common/frames.rs`, `tests/chat.rs`, `README.md` | `cli-pi` | `--thinking high` | 2 | T014, T015 |
+| 1 | T004 to T009 | `src/model.rs` with `src/cli.rs`, `src/state.rs` with `src/keys.rs`, `src/data.rs` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | `cargo check` exits 0 |
+| 2 | T010 to T013 | `src/view/panes.rs`, the fixtures and `design/chat-mockups.md` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 2 | T010 to T013 |
+| 3 | T014, T015 | `tests/common/frames.rs`, `tests/chat.rs`, `README.md` | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 2 | T014, T015 |
 | 4 | T016 to T020 | none | the orchestrator | none | 1 | T016 to T020 |
 <!-- /ANCHOR:external-orchestration -->
 

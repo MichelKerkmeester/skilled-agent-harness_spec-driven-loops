@@ -135,7 +135,7 @@ The executor roster, the effort policy, the fallback ladder, the dispatch rules 
 
 | Wave | Task ids | Files | Executor | Effort | Workers | Verify |
 |------|----------|-------|----------|--------|---------|--------|
-| 0 | T001 to T003 | none, three reads | `cli-pi` | `--thinking high` | 1 | The setup checks |
-| 1 | T004 to T008 | the five design documents | `cli-pi` | `--thinking max` | 5, one per file | Each document's check |
+| 0 | T001 to T003 | none, three reads | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | The setup checks |
+| 1 | T004 to T008 | the five design documents | `cli-mistral-vibe` at `deepseek-flash` | `max (fixed)`, fallback at `max` | 5, one per file | Each document's check |
 | 2 | T009 to T012 | none | the orchestrator | none | 1 | The freeze check and the validator |
 <!-- /ANCHOR:external-orchestration -->
