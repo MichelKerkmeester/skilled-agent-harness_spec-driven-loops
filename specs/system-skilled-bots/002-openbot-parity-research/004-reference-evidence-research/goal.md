@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `find specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40
-- [ ] `specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` exists and names each of the fourteen 003 phase folders in a heading
-- [ ] `grep -c "openhuman-full" specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` prints 1 or more
-- [ ] `git status --short` after the run lists no path outside `specs/system-skilled-bots/002-openbot-parity-research/`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research --strict` prints `RESULT: PASSED`
+- [x] `find specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40
+- [x] `specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` exists and names each of the fourteen 003 phase folders in a heading
+- [x] `grep -c "openhuman-full" specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` prints 1 or more
+- [x] `git status --short` after the run lists no path outside `specs/system-skilled-bots/002-openbot-parity-research/`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,7 +81,13 @@ and findings belong here.
 | T003 inputs and executors | Done | `scratch/preflight.txt`: ten repos, `vibe 3.1.2`, `pi 1.6.0` |
 | T004 provider probes | Done | `scratch/preflight.txt`: both probes answered `OK`, and Vibe's `export.json` records `exit_code` 0 and `outcome` `finished` |
 | T005 dry run | Done | `scratch/dry-run.txt`: four lineages previewed, `dry_run_halt` printed, no `research/` folder written |
-| T006 fan-out run | Pending | Waits for the operator's go |
+| T006 fan-out run | Done | `research/orchestration-summary.json` records `total_cli_lineages` 4, `succeeded` 4 and `failed` 0. The run took about 17 minutes |
+| T007 reruns | Done | None needed, `failed` is 0 |
+| T008 synthesis | Done | `research/research.md` names the fourteen phase folders in `###` headings and ranks sixteen net-new candidates |
+| T009 re-check | Done | Seven verification workers opened every cited line. 121 rows stand (90 confirmed, 31 weak) and `research/regrade-log.md` holds 332 rows. All 947 source tags in the two files resolve |
+| T010 iteration count | Done | The `find` command of the first criterion prints 40 |
+| T011 write containment | Done | `git status --short` lists paths under this packet only |
+| T012 validation | Done | `validate.sh --strict` prints `RESULT: PASSED` for this folder and for the parent with `--recursive` |
 | Continuity and decisions saved | Done | generate-context.js --full-auto exited 0 and wrote 2 operator decisions to decision-record.md |
 
 ### Deviations and findings
@@ -92,4 +98,13 @@ and findings belong here.
 | The preview shows no command for a Vibe lineage | The runner builds a Vibe command only while it writes the lineage home, so the dry run names `vibe-1` and `vibe-2` and prints a note for each |
 | The preview shows an empty frontier scope | Seeding runs after the preview, so the six seeds are dealt at the real run |
 | `openhuman-full` is more than a copy of `openhuman-main` | Its five vendored crates hold 4,471 files, and the same folders are empty in `openhuman-main` |
+| `openhuman-full` has 21 vendored crates, not five | The spec, the topic and seed F-1-003 name five. The synthesis covers all 21 in section 4, and every one is GPL-3.0 |
+| The orchestrator did not re-read every finding itself | Seven Opus workers, one per phase group, opened every cited line. The orchestrator read their tables, opened 20 load-bearing citations and reran four counts. Section 9 of the synthesis says which is which |
+| The workflow was run step by step, not as one command call | The fan-out, the merge, the closeout event, the spec write-back and the status flip each ran from `deep-research.yaml`. The context-loading step was skipped, because a fan-out root has no strategy file to inject into |
+| `/speckit:resume` ran without its confirm checkpoints | The handoff note named the packet, and the goal bars a pause |
+| `maxDurationMinutes` is 120 | The workflow default. The plan-depth run used 180. No lineage came near the limit |
+| A stray row in one lineage log | `research/lineages/pi-2/deep-research-state.jsonl` holds one `synthesis_complete` row with vibe-1's lineage id, written after vibe-1 ended. The cause is not confirmed. The iteration records are unaffected |
+| A stray folder in one lineage | `research/lineages/vibe-2/` holds a `specs` subfolder the lineage created inside its own folder. Nothing outside the packet was written |
+| 30 of 718 citations in the iteration records do not resolve | Wrong paths, ranges past the end of a file and tags with no line. Section 9 of the synthesis lists the counts per lineage |
+| The spec write-back event is not in the state log | The findings fence was written under the `questions` anchor of `spec.md`. The state gateway accepted the `synthesis_complete` event and refused the `spec_mutation` event twice with "Payload validator rejected the event". The row was not written by hand |
 <!-- /ANCHOR:log -->

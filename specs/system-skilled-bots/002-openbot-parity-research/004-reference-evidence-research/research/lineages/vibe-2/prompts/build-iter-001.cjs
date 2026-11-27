@@ -1,0 +1,113 @@
+// Builds the iteration-001 delta and gateway event file.
+const fs = require("fs");
+const path = require("path");
+
+const dir = path.resolve(__dirname, "..");
+const SID = "fanout-vibe-2-1795763950430-ek4gqy";
+const FOCUS = "Frontier node F-1-002 (depth 1, scope specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants, specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps, specs/system-skilled-bots/003-openbot-parity-build/008-vault, specs/system-skilled-bots/context/rakazo-main, specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity): Trust, phases 006-approval-grants, 007-per-bot-apps and 008-vault: which reference files implement approval grants, per-bot tool or app filtering and a secret store with injection, what should the builder lift or mirror, and which leak, bypass or precedence bugs did those repos hit that the plan does not guard against?";
+
+const findings = [
+  ["f-iter001-001", "006: OpenBot offers a standing answer only when the approval is not task-origin, not a closed kind and not a hand-off; the plan ladder has no such exclusion, so a routine check-in approval could become permanent.", "specs/system-skilled-bots/context/OpenBot-main/shared/standing-rule.ts:21-29"],
+  ["f-iter001-002", "006: a grant converts a required approval into an automatic one and never overrides a denial, a Cron external effect, reviewed reuse or a human-only tool; names are never wildcards.", "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-approval-contracts.md:35-41"],
+  ["f-iter001-003", "006: a flow-scoped grant does not approve an unlabelled effect while a whole-tool grant does, so grant strength depends on the effect class and one ordered ladder cannot express it.", "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-approval-contracts.md:91"],
+  ["f-iter001-004", "006 and 007: a policy change that widens authority must return ReviewRequired and only an authenticated human row qualifies; adding a server to apps: is a widening the plan does not re-ask.", "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-subject-policies.md:34-44"],
+  ["f-iter001-005", "008: tinysecurity is GPL-3.0, so its grant contract may be read as design evidence and never copied; the plan correctly lifts only Apache-2.0 rakazo.", "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/LICENSE:1-2"],
+  ["f-iter001-006", "008: rakazo gates its placeholder guard on RAKAZO_ALLOW_DEV_SECRETS, VITEST and NODE_ENV, so lift the placeholder list and not isDevSecretAllowed or a development shell turns the refusal off.", "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:25-30"],
+  ["f-iter001-007", "008: rakazo maps a backend error to a fixed refusal because other errors could echo the value, while the plan prints secret-store-unreadable with a free-form detail that can carry the value a failed write was storing.", "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:26-38"],
+  ["f-iter001-008", "008: the lifted one-pass matcher carries a 1,000,000-state cap and a BUILD_COST 8 fallback to per-value scanning; the plan requires the matcher and names neither bound.", "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:21"],
+  ["f-iter001-009", "007: a per-run tool filter must not remove a harness-owned tool such as ToolSearch or Read, because nobody outside the harness answers it and the run hangs instead of refusing.", "specs/system-skilled-bots/context/OpenBot-main/shared/harness-own-tools.ts:1-14"],
+  ["f-iter001-010", "006: OpenBot exports every sentence the server answers a step with and a test walks the exports so a person never reads bot-voice text; the plan has no equivalent test.", "specs/system-skilled-bots/context/OpenBot-main/shared/approval-outcomes.ts:12-16"],
+  ["f-iter001-011", "006: OpenBot counts a needs-you item by the decision tool left waiting, not by the action verb, so the plan needs both the action kind for the grant and the waiting tool for the count.", "specs/system-skilled-bots/context/OpenBot-main/shared/decision-tools.ts:13-17"],
+  ["f-iter001-012", "007 and 008: the token compare to mirror is length-first and branch-free, XOR-accumulating every code unit; the plan already requires constant time and this supplies the shape.", "specs/system-skilled-bots/context/OpenBot-main/shared/agent-authorisation.ts:2-9"],
+  ["f-iter001-013", "Evidence limit: the OpenBot snapshot has no server directory, so ladder rungs 2 to 4 rest on docs/approvals.md alone and sensitive-rule.test.ts has no module beside it.", "specs/system-skilled-bots/context/OpenBot-main/shared/standing-rule.ts:6-8"],
+];
+
+const record = {
+  type: "iteration",
+  iteration: 1,
+  runId: SID,
+  sessionId: SID,
+  lineageId: SID,
+  mode: "research",
+  target_agent: "deep-research",
+  agent_definition_loaded: true,
+  resolved_route: "Resolved route: mode=research target_agent=deep-research",
+  run: 1,
+  status: "complete",
+  focus: FOCUS,
+  findingsCount: findings.length,
+  newInfoRatio: 0.96,
+  noveltyJustification: "12 of 13 findings are new to the packet; 1 restates a plan requirement and adds only the reference shape.",
+  keyQuestions: [FOCUS],
+  answeredQuestions: [FOCUS],
+  ruledOut: [
+    "Reading the OpenBot approval engine from code: server/src/approvals is absent from the snapshot",
+    "Treating tinysecurity as a lift source: GPL-3.0 rules it out",
+    "Deriving the ladder from a ladder or rung identifier in OpenBot: no such symbol exists",
+  ],
+  focusTrack: "trust",
+  edgeCase: "missing-dependency",
+  toolsUsed: ["Read", "Grep", "Bash"],
+  sourcesQueried: [
+    "specs/system-skilled-bots/context/OpenBot-main/shared/standing-rule.ts:21-29",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/decision-tools.ts:13-17",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/approval-outcomes.ts:12-16",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/agent-authorisation.ts:2-9",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/harness-own-tools.ts:1-14",
+    "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-approval-contracts.md:35-41",
+    "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-subject-policies.md:34-44",
+    "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/LICENSE:1-2",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:25-30",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:26-38",
+    "specs/system-skilled-bots/context/rakazo-main/packages/core/src/messages/secret-matcher.ts:21",
+    "specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md:149-165",
+    "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:28-36",
+  ],
+  graphEvents: [
+    { type: "node", id: "q-trust-006-008", kind: "QUESTION", label: "Which reference files implement approval grants, per-bot filtering and a secret store" },
+    { type: "node", id: "f-grant-nonoverride", kind: "FINDING", label: "A grant may not override a denial, a Cron effect, reviewed reuse or a human-only tool" },
+    { type: "node", id: "f-standing-exclusions", kind: "FINDING", label: "A standing answer is refused for task-origin, closed and hand-off approvals" },
+    { type: "node", id: "f-detail-echo", kind: "FINDING", label: "The secret-store-unreadable detail can echo the value" },
+    { type: "node", id: "s-tinysecurity-approval", kind: "SOURCE", label: "tinysecurity approval contracts", path: "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/docs/module-approval-contracts.md" },
+    { type: "node", id: "s-openbot-standing-rule", kind: "SOURCE", label: "OpenBot standing rule", path: "specs/system-skilled-bots/context/OpenBot-main/shared/standing-rule.ts" },
+    { type: "edge", id: "e-iter001-001", source: "f-grant-nonoverride", target: "q-trust-006-008", relation: "ANSWERS" },
+    { type: "edge", id: "e-iter001-002", source: "f-standing-exclusions", target: "q-trust-006-008", relation: "ANSWERS" },
+    { type: "edge", id: "e-iter001-003", source: "f-detail-echo", target: "q-trust-006-008", relation: "ANSWERS" },
+    { type: "edge", id: "e-iter001-004", source: "f-grant-nonoverride", target: "s-tinysecurity-approval", relation: "CITES" },
+    { type: "edge", id: "e-iter001-005", source: "f-standing-exclusions", target: "s-openbot-standing-rule", relation: "CITES" },
+  ],
+};
+
+const lines = [JSON.stringify(record)];
+for (const [id, label, src] of findings) {
+  lines.push(JSON.stringify({ type: "finding", id, label, iteration: 1, sources: [src] }));
+}
+
+const proposals = [
+  {
+    type: "frontier_proposal",
+    parentId: "F-1-002",
+    question: "Does the per-run filtered UTCP config compare a tool name before or after normalisation, and can a normalised alias slip past the apps filter?",
+    scope: "specs/system-skilled-bots/context/OpenBot-main/shared/tool-name.ts, specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps",
+    evidence: "specs/system-skilled-bots/context/OpenBot-main/shared/tool-name.ts:1",
+  },
+  {
+    type: "frontier_proposal",
+    parentId: "F-1-002",
+    question: "Which of the four non-override rules does a routine-origin approval need, and does a standing answer saved from a check-in survive the next run?",
+    scope: "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer, specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants",
+    evidence: "specs/system-skilled-bots/context/OpenBot-main/shared/standing-rule.ts:21-29",
+  },
+  {
+    type: "frontier_proposal",
+    parentId: "F-1-002",
+    question: "Does the plan secret-store-unreadable detail ever carry a captured backend message, and what fixed phrase replaces it per cause?",
+    scope: "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md, specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md",
+    evidence: "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:26-38",
+  },
+];
+for (const p of proposals) lines.push(JSON.stringify(p));
+
+fs.writeFileSync(path.join(dir, "deltas", "iter-001.jsonl"), lines.join("\n") + "\n");
+fs.writeFileSync(path.join(dir, "prompts", "iter-001-event.json"), JSON.stringify(record) + "\n");
+console.log("delta lines:", lines.length, "findings:", findings.length, "proposals:", proposals.length);

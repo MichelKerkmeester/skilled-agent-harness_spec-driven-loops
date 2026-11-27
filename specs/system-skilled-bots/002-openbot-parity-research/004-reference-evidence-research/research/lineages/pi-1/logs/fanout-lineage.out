@@ -1,0 +1,8 @@
+Lineage complete: 10 iterations, 50 cited findings across all fourteen 003 phases plus a ranked net-new table, every iteration recorded through the append gateway and verified, synthesis and closeout in place.
+
+- `research/lineages/pi-1/research.md` — synthesis (per-phase coverage, net-new ranking, three failure classes, divergence map, convergence report)
+- `research/lineages/pi-1/iterations/iteration-001.md` … `iteration-010.md` — ten narratives
+- `research/lineages/pi-1/deltas/iter-001.jsonl` … `iter-010.jsonl`, `deep-research-state.jsonl` (10 iteration records, `synthesis_complete` stopReason `maxIterationsReached`), `findings-registry.json`, `deep-research-dashboard.md` (COMPLETE), `resource-map.md`
+- No writes outside the lineage; lock released; no nested dispatch; no operator questions.
+
+FANOUT_LINEAGE_COMPLETE:pi-1

@@ -1,0 +1,20 @@
+The lineage is complete. Ten iterations, 65 findings, synthesis written and closed out.
+
+**What the run produced**
+
+- `iterations/iteration-001.md` … `iteration-010.md` — ten narratives, each with cited findings, ruled-out paths, edge cases and reflection
+- `deltas/iter-001.jsonl` … `iter-010.jsonl` — 65 structured finding rows
+- `research.md` — 47 KB synthesis with a heading for each of the fourteen 003 phase folders, a ranked net-new table over `openhuman-full`'s 21 vendored crates, a twenty-row unguarded-failure table, and an Eliminated Alternatives table
+- `deep-research-state.jsonl` — gateway projection, ledger sequences 1–12, terminal record `synthesis_complete` with `stopReason: "maxIterationsReached"`
+- `deep-research-config.json` — status `complete`; reducer reports 10 iterations, 0 corruption
+
+**The four findings that carry the run**
+
+1. The plan is individually evidenced and collectively unverifiable — no phase has a reference for its acceptance criteria, and `OpenMausBot`'s freeze-then-score harness (Apache-2.0) is the artifact that fixes it.
+2. `openhuman-full` is a product stack, not a grab-bag; three of its crates carry capabilities neither the plan nor the §13 skip list covers, and all 21 are GPL-3.0.
+3. Three of the ten repos are GPL-3.0. The plan's own V9 line-comparison copy check is better than anything in the references, but the clean-room rule is trapped in phase 003 and never reaches phase 011, whose primary reference is `tinychannels`.
+4. Three premise corrections to the earlier syntheses, plus one this lineage made against itself in iteration 10.
+
+No path outside `specs/system-skilled-bots/002-openbot-parity-research/` was modified. `steer.md` never existed, so no ruling was applied. I did not run `validate.sh` — the dispatch forbids it, so the packet-level `RESULT: PASSED` check is unverified from here.
+
+FANOUT_LINEAGE_COMPLETE:vibe-1

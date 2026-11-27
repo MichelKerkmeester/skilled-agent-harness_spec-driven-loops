@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,10 +43,20 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/regrade-log.md",
       "scratch/research-topic.txt",
       "scratch/frontier-seed.json",
       "scratch/preflight.txt",
-      "scratch/dry-run.txt"
+      "scratch/dry-run.txt",
+      "research/findings-registry.json",
+      "research/resource-map.md",
+      "research/orchestration-summary.json",
+      "research/inbox.jsonl",
+      "research/frontier-seed.json",
+      "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "research/lineages/pi-2/deep-research-state.jsonl",
+      "scratch/synthesis-inputs/verify-brief.md"
     ],
     "entities": [
       {
@@ -86,6 +96,18 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "regrade-log.md",
+        "kind": "doc",
+        "path": "research/regrade-log.md",
+        "source": "derived"
+      },
+      {
         "name": "research-topic.txt",
         "kind": "file",
         "path": "scratch/research-topic.txt",
@@ -107,6 +129,36 @@
         "name": "dry-run.txt",
         "kind": "file",
         "path": "scratch/dry-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "inbox.jsonl",
+        "kind": "file",
+        "path": "research/inbox.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/pi-2/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "verify-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-inputs/verify-brief.md",
         "source": "derived"
       },
       {
@@ -150,53 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Invocation The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Seeds At",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three earlier runs settled what to build, whether the plan holds together and whether each phase is planned deeply enough",
     "created_at": "2026-11-27T06:31:17Z",
-    "last_save_at": "2026-11-27T07:15:10.986Z",
+    "last_save_at": "2026-11-27T08:12:26.143Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,16 +215,18 @@
       "tasks.md",
       "goal.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:4e42a30683cff6dfc181a20ad9589bc5eee3aed368a9b004deac5d6de01f0f6e",
+    "source_fingerprint": "sha256:55ed86897c4dbef0677b55e3a4a92fe9e469949c58b943acf0f09171f90779a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be4c30e9034135c9ac03ae281c2b71f21f2f8569b6b7d1081958f7544c64db66",
-      "plan.md": "535d12ed3e5152fe6a6a3752a9ea0f011194517ad7fa8d965bdd12040c39ecc5",
-      "tasks.md": "c6d2989c5c3617a010eeabed00baa298c4602cbaac19186642c0ac32f1616b34",
+      "spec.md": "c6cbf4b593573c5c5dadd45afab5eed0e2360ff5be47213790cb55e6fd534ee6",
+      "plan.md": "ecfb555dbd0f38528d963c869e331e9bd298398780672254b204b05ddc7da6f5",
+      "tasks.md": "67b2732cc748deaab2eb33dbbe40976bc78f73dd40397a65c346d3fc7b96906e",
       "decision-record.md": "9760513da420a571ee5522ebd530859593b8b3136b57db3ce4a77bd519ef9da4",
-      "implementation-summary.md": "af2902d04a07db4e9e302f573121e98faede5c5b0352957f953e02469888d5ee"
+      "implementation-summary.md": "44a2ea328073bb245bdf0d31c17ca795828885f7acd7477d17ff1ea04ed03ab0",
+      "research/research.md": "9ff5a699f277911624c700a5b10d944bb1bc0f4b05bfd4353dfff173b6d2b776"
     },
     "last_active_at": null
   }

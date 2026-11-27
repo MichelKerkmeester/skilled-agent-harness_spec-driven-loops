@@ -1,0 +1,1 @@
+{"event":"completed","label":"single","terminal":true,"reason":"maxIterationsReached","at":"2026-11-27T07:36:09.000Z","duration_ms":801534,"loop_type":"research","sessionId":"fanout-pi-1-1795763950430-ek4gqy","generation":1,"gauges":{"iterations":10,"elapsed_ms":801534,"score":0.55},"state_hash":"sha256:b53d98f93e3ee16220b514459beb185c9be67110af942064ee86b00c03d5bf59"}

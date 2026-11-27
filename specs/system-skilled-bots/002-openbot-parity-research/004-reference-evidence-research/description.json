@@ -6,15 +6,17 @@
     "phase",
     "reference-evidence-research"
   ],
-  "lastUpdated": "2026-11-27T07:15:00.972Z",
+  "lastUpdated": "2026-11-27T08:10:48.070Z",
   "specId": "004",
   "folderSlug": "reference-evidence-research",
   "parentChain": [
     "system-skilled-bots",
     "002-openbot-parity-research"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "27-11-26_08-14__prepared-the-40-iteration-expansive-deep-research.md"
+    "27-11-26_08-14__prepared-the-40-iteration-expansive-deep-research.md",
+    "27-11-26_09-10__the-40-iteration-reference-evidence-fan-out-ran.md",
+    "27-11-26_09-10__the-40-iteration-reference-evidence-fan-out-ran.md"
   ]
 }

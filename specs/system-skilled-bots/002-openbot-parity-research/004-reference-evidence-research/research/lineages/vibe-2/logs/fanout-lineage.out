@@ -1,0 +1,16 @@
+The lineage is complete and verified on disk.
+
+**What ran:** ten iterations, each recorded through the append gateway (ledger sequences 2–11), each followed by the reducer. The terminal synthesis record is ledger sequence 12 with `stopReason: "maxIterationsReached"`, and the dashboard reads `Status: COMPLETE`.
+
+**Coverage:** all fourteen 003 phase folders appear as `## ` headings in `research.md`; all ten reference repos were read, including `openhuman-full` first as instructed (12 mentions in the synthesis). 101 findings across 10 iteration files and 10 delta files.
+
+**The four findings that change what a builder does:**
+
+- **009 has no scan of a loaded skill body.** tinyskills' `scan_skill` blocks bidi and zero-width code points, hard-coded credentials and escaping paths; the plan scans only the draft for secret literals. A bidi override in a skill body goes straight into the prompt as instructions.
+- **006 implements the design OpenBot tried and reversed.** The reference records that it once shipped `Allow once` and `Deny` only — exactly the plan's `--scope once|deny` — and reversed it, with the PR and the reason. The conversation scope is the one answer the plan could add without the rules store it rightly defers.
+- **013 has no licence gate outside 003-terminal-screen**, and the packet's own review records that the one gate "proves nothing about the reference sources". Three of ten repos are GPL-3.0, not one, and the §14 reuse rule has no row for a copyleft source.
+- **014 has no falsifiability rule.** buzz's standard — "a guard whose removal doesn't fail any test protects nothing" — is the check the plan's review lacks, and the plan's own Problem Statement names the opposite failure.
+
+**Net-new rank 1** is OpenMausBot's three-tier offline behaviour eval harness (Apache-2.0, 81 files, 464K): "evaluate the harness, never the models". Rank 2 is the stall watchdog for the one failure an event log cannot record — the absence of an event — at one timer and one row type.
+
+`FANOUT_LINEAGE_COMPLETE:vibe-2`

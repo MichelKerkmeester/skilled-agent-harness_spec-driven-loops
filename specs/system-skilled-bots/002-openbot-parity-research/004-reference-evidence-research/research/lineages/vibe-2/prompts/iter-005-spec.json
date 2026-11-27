@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "focus": "Phases 004-computer-exposure and 005-memory: which reference files implement the same thing, what a builder should lift or mirror, where the plan differs from the reference and which side the evidence supports, and which failures the plan does not yet guard against.",
+  "newInfoRatio": 0.95,
+  "noveltyJustification": "All 9 findings are new to the packet; 2 of them confirm a plan rule the reference reached independently rather than reporting a gap.",
+  "focusTrack": "computer-and-memory",
+  "edgeCase": "ambiguous-input",
+  "answeredQuestions": [],
+  "ruledOut": [
+    "Reading computer-control.ts as 004 reference implementation: the plan excludes the browser computer",
+    "Porting tinymemory engine or namespace tree into 005: the plan two files and one bound are the right size",
+    "A three-state memory key as a gap: the plan boolean is right for a file with no inheritance chain"
+  ],
+  "sourcesQueried": [
+    "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-50",
+    "specs/system-skilled-bots/context/OpenBot-main/shared/learning.ts:1-12",
+    "specs/system-skilled-bots/context/openhuman-full/vendor/tinymemory/README.md:3-36",
+    "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:42",
+    "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:149",
+    "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:155",
+    "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:40",
+    "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:120",
+    "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148",
+    "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:150"
+  ],
+  "graphEvents": [
+    { "type": "node", "id": "q-phase-004-005", "kind": "QUESTION", "label": "Which reference files implement computer exposure and memory" },
+    { "type": "node", "id": "f-computer-naming", "kind": "FINDING", "label": "Computer means a browser container in the reference and a working place in the plan" },
+    { "type": "node", "id": "f-memory-autapprove", "kind": "FINDING", "label": "The reference auto-approves a memory proposal and the plan raises a needs-you item" },
+    { "type": "node", "id": "f-memory-budget-compile", "kind": "FINDING", "label": "The plan byte bound is the reference token-budgeted context compile at a smaller scale" },
+    { "type": "node", "id": "s-computer-control", "kind": "SOURCE", "label": "OpenBot computer control", "path": "specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts" },
+    { "type": "node", "id": "s-tinymemory", "kind": "SOURCE", "label": "tinymemory README", "path": "specs/system-skilled-bots/context/openhuman-full/vendor/tinymemory/README.md" },
+    { "type": "edge", "id": "e-iter005-001", "source": "f-computer-naming", "target": "q-phase-004-005", "relation": "ANSWERS" },
+    { "type": "edge", "id": "e-iter005-002", "source": "f-memory-autapprove", "target": "q-phase-004-005", "relation": "ANSWERS" },
+    { "type": "edge", "id": "e-iter005-003", "source": "f-memory-budget-compile", "target": "q-phase-004-005", "relation": "ANSWERS" },
+    { "type": "edge", "id": "e-iter005-004", "source": "f-computer-naming", "target": "s-computer-control", "relation": "CITES" },
+    { "type": "edge", "id": "e-iter005-005", "source": "f-memory-budget-compile", "target": "s-tinymemory", "relation": "CITES" }
+  ],
+  "findings": [
+    { "id": "f-iter005-001", "label": "004: computer means a browser container with a durable handoff in the reference and a working place in the plan, and the plan is right to exclude it but 013 must not let the phase name read as the computer.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:1-50"] },
+    { "id": "f-iter005-002", "label": "004: the reference re-checks the world on a resume through resumeSnapshotRequired and the plan refuses the resume, and the plan answer is the cheaper one because a file-backed run has no page to re-check.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:47-50"] },
+    { "id": "f-iter005-003", "label": "004: the reference has a restart-recovery rule, keepsPage set only on a request a restart interrupted, and the plan covers a resume and a refused run but nothing about a runtime restart.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/computer-control.ts:28-33"] },
+    { "id": "f-iter005-004", "label": "005: the reference memory is a token-budgeted context.md compile and the plan 60-entry 3600-byte bound is the same idea at a smaller scale, so the plan should cite the compile idea and not port an engine.", "sources": ["specs/system-skilled-bots/context/openhuman-full/vendor/tinymemory/README.md:3-6"] },
+    { "id": "f-iter005-005", "label": "005: the reference fixes memory scope at the host and the plan does the same independently, which is the strongest evidence in this phase that the rule is right.", "sources": ["specs/system-skilled-bots/context/openhuman-full/vendor/tinymemory/README.md:3-5"] },
+    { "id": "f-iter005-006", "label": "005: the reference ships a conformance suite and an in-memory reference engine and the plan has neither, and 012 should own that pattern for the two bounded stores in 005 and 008.", "sources": ["specs/system-skilled-bots/context/openhuman-full/vendor/tinymemory/README.md:33-36"] },
+    { "id": "f-iter005-007", "label": "005: the reference per-bot memory setting is three-state, missing inherits and null excludes, while the plan key is a boolean, which is right for a file with no inheritance chain and should be recorded with that condition.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/learning.ts:1-8"] },
+    { "id": "f-iter005-008", "label": "005: the reference approves a memory proposal without review by default and the plan raises a needs-you item, and the plan is right because a memory entry is read into every later prompt as an operator-confirmed fact.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/learning.ts:9-12"] },
+    { "id": "f-iter005-009", "label": "005: the plan closes the bot-writes-memory hole the reference leaves open by refusing the write forms under the child marker, and that refusal is the one line a builder must not drop.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148"] }
+  ],
+  "proposals": []
+}

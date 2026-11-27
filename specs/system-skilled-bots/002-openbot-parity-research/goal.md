@@ -84,7 +84,7 @@ string, not these files.
 - [x] `rg -c '^## 15\. Ranked Build Order' specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md` prints 1.
 - [x] `test -f specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/research.md` exits 0, and `ls specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/research/review-*-findings.md | wc -l` prints 5, one file per review round 2 to 6.
 - [x] `test -f specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md` exits 0, and that file names a verdict per 003 phase.
-- [ ] `test -f specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` exits 0, and `find specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40.
+- [x] `test -f specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md` exits 0, and `find specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -104,7 +104,7 @@ and findings belong here.
 | All three child goals authored | Done | `ls specs/system-skilled-bots/002-openbot-parity-research/00*/goal.md` lists three files |
 | Parent goal authored | Done | `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-skilled-bots/002-openbot-parity-research --workspace "$PWD"` reports `packet_budget=ok` |
 | Three child folders present | Done | `find specs/system-skilled-bots/002-openbot-parity-research -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 3 |
-| Fourth child added | In Progress | `004-reference-evidence-research/` scaffolded and prepared on 2026-11-27, its run not started |
+| Fourth child added | Done | `004-reference-evidence-research/research/research.md` exists and 40 iteration records sit under its `research/lineages/` |
 
 ### Deviations and findings
 

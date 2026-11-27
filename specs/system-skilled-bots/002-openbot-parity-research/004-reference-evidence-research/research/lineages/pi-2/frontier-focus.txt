@@ -1,0 +1,1 @@
+Frontier node F-1-004 (phase 011-messaging-channels): channel adapter seam, Telegram/Slack/Signal/WhatsApp transports, identity linking, durable queue, approvals as buttons or replies, and the delivery/retry/duplicate failures those repos hit.

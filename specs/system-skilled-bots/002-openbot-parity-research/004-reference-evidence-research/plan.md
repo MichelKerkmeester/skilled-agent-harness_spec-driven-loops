@@ -72,9 +72,9 @@ At `step_frontier_seed` the workflow writes `research/frontier-seed.json`. Copy 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `find research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40, and `validate.sh --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `find research/lineages -maxdepth 3 -path '*/iterations/iteration-*.md' | wc -l` prints 40, and `validate.sh --strict` prints `RESULT: PASSED`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

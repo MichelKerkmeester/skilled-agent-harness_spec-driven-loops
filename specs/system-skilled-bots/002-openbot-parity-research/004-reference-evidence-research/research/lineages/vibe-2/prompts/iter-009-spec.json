@@ -1,0 +1,128 @@
+{
+  "status": "complete",
+  "focus": "Net-new sweep across the five unread repos (rakazo-main, OpenMausBot-main, OpenGhost-main, hermes-muse-main, turnstone-main) and the licence table across all ten.",
+  "newInfoRatio": 0.94,
+  "noveltyJustification": "8 of 9 findings are new to the packet and 1 confirms an existing plan rule, so the ratio is 8.5/9 rounded to 0.94.",
+  "keyQuestions": [
+    "What do the ten repos have that neither the build plan nor the section-13 skip list covers, ranked by value to a small team with its size?",
+    "What is the licence of each of the ten reference repos?"
+  ],
+  "answeredQuestions": [
+    "The highest-value net-new is a three-tier offline behaviour eval harness, then a skill-adherence eval, then a plugin manifest with declared tools and hooks.",
+    "Seven of ten repos are permissive and three are GPL-3.0, so the copyleft surface is three repos and not one."
+  ],
+  "ruledOut": [
+    "turnstone-main/HYPOTHESIS.md as a rule source: it is a formal definition and the one rule it yields the plan already follows.",
+    "rakazo-main's i18n as a lift: the plan writes English docs for one team.",
+    "OpenGhost-main's layout as anything but a caution: 350 flat files with no source directory.",
+    "OpenMausBot-main/enterprise/ and connector/: both are covered by the section-13 skip list's enterprise-roles and connector-catalogue rows."
+  ],
+  "focusTrack": "net-new",
+  "edgeCase": "missing-dependency",
+  "toolsUsed": ["Read", "Grep", "Bash"],
+  "sourcesQueried": [
+    "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:1-45",
+    "specs/system-skilled-bots/context/OpenMausBot-main/ (top level)",
+    "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json:1-20",
+    "specs/system-skilled-bots/context/turnstone-main/HYPOTHESIS.md:1-20",
+    "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml:1-14",
+    "specs/system-skilled-bots/context/rakazo-main/ (top level)",
+    "specs/system-skilled-bots/context/OpenGhost-main/ (top level)",
+    "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+    "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+    "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+    "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+    "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+    "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+    "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+    "specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2",
+    "specs/system-skilled-bots/context/tinychannels-main/LICENSE:1-2",
+    "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:175",
+    "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:160-173",
+    "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/mockups.md:17",
+    "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84,88-95"
+  ],
+  "graphEvents": [],
+  "findings": [
+    {
+      "id": "f-iter009-001",
+      "label": "net-new rank 1: OpenMausBot's evals directory is a three-tier offline behaviour eval harness whose principle is evaluate the harness never the models, with a scripted engine replaying deterministic turns from a plan file so no external API is called, tier 1 scenario fixtures asserting against frozen evidence, tier 2 redacted golden-thread replay against committed baselines, tier 3 opt-in live smoke, and pure scorers that never touch a server; the 003 plan has no eval concept at all, and this is the only way to test that a bot does the right thing without calling a model. Size M, 81 files and 464K.",
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:5",
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:19-33",
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:27"
+      ]
+    },
+    {
+      "id": "f-iter009-002",
+      "label": "net-new rank 2: turnstone's eval_skill_adherence.json gives each case a skill with a name and content, a user prompt, expected actions as a list of tool names, an ordered-subset match mode, a max turn count and three runs by default, which is a behavioural test of whether loading a skill makes the agent call the tool it names, while the plan's 009 validates a skill's shape and never its effect. Size S, 56 lines.",
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json:1-20",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:160-173"
+      ]
+    },
+    {
+      "id": "f-iter009-003",
+      "label": "net-new rank 3: hermes-muse's plugin.yaml is a 14-line manifest declaring its version, kind, required host version, the two tools it provides and the four hook points it subscribes to, while the plan's 009 has skills as markdown with frontmatter and no plugin manifest, no declared tool list and no hook subscription, so a third party cannot add a capability without forking. Size S.",
+      "sources": [
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml:1-14",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:160"
+      ]
+    },
+    {
+      "id": "f-iter009-004",
+      "label": "002: OpenMausBot pins a routine due behind a busy target as stamped deferredAt while staying queued and dispatching when the target frees, while the plan's 002 has no deferredAt field and no busy-target rule and its only occurrence of the word is the P1 priority label, so this belongs to 002 rather than net-new.",
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:175"
+      ]
+    },
+    {
+      "id": "f-iter009-005",
+      "label": "net-new rank 4: the licence table shows seven of ten repos permissive (OpenBot, OpenGhost and hermes-muse MIT; OpenMausBot, rakazo, turnstone and buzz Apache-2.0) and three GPL-3.0 (openhuman-main, openhuman-full, tinychannels-main), so the copyleft surface is three repos and not one and it includes tinychannels, whose approval surface the plan's 011 mirrors most closely, while the build spec's reuse rule names MIT and Apache-2.0 only. Size S.",
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenGhost-main/LICENSE:1",
+        "specs/system-skilled-bots/context/hermes-muse-main/LICENSE:1",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:1",
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1",
+        "specs/system-skilled-bots/context/turnstone-main/LICENSE:1",
+        "specs/system-skilled-bots/context/buzz-main/LICENSE:1",
+        "specs/system-skilled-bots/context/openhuman-main/LICENSE:1-2",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE:1-2",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84"
+      ]
+    },
+    {
+      "id": "f-iter009-006",
+      "label": "net-new rank 5: turnstone's HYPOTHESIS.md argues the rejection symbol is really two, a parse failure the model can emit and an authorization rejection the gate can return, because collapsing them onto one symbol hides a proposal that parsed and was refused behind one that never parsed, and the plan already splits them with proposal-stale and proposal-secret as distinct refusals, so this is a justification rather than a rule to lift. Size L.",
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/HYPOTHESIS.md:14",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:164,173"
+      ]
+    },
+    {
+      "id": "f-iter009-007",
+      "label": "net-new rank 6: OpenMausBot keeps a static HTML preview per proposed feature at the repository root, five of them, which is a design-review artifact a non-engineer can open before the feature is built, where the plan's 010 carries text frames in a mockups document. Size S per preview.",
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/mockups.md:17"
+      ]
+    },
+    {
+      "id": "f-iter009-008",
+      "label": "net-new rank 7: rakazo ships four READMEs in four languages beside a lingui config, the only repo of the ten with a translation discipline, while the plan has one README and no i18n. Size S, value low for a small team that writes English docs.",
+      "sources": [
+        "specs/system-skilled-bots/context/rakazo-main/"
+      ]
+    },
+    {
+      "id": "f-iter009-009",
+      "label": "net-new caution: OpenGhost-main holds 350 files with roughly forty JavaScript modules at the repository root and no source directory, which is the failure mode the plan's 013 doc-alignment phase exists to prevent and the one repo of the ten with no directory discipline, so lift nothing from its layout. Size S to describe.",
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/"
+      ]
+    }
+  ],
+  "proposals": []
+}

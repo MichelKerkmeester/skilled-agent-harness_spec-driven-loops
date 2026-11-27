@@ -1,0 +1,1442 @@
+{
+  "sessionId": "fanout-pi-2-1795763950430-ek4gqy",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 1,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-27T07:34:53.404Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-phase-011-messaging-channels-which-reference-files-implement-a-channel-adapter-s",
+      "inboxId": "F-1-004",
+      "text": "Phase 011-messaging-channels: which reference files implement a channel adapter seam, Telegram, Slack, Signal and WhatsApp transports, identity linking, a durable queue and approvals rendered as buttons or replies, what should the builder lift or mirror, and which delivery, retry or duplicate-message failures did those repos hit?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered",
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-dedupe-window-does-a-transport-need-when-the-provider-offset-resets-on-rest",
+      "inboxId": "F-2-005",
+      "text": "What dedupe window does a transport need when the provider offset resets on restart, and what does the reference's bounded recent-update cache size imply for a durable seen record?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-transports-can-prove-a-send-never-left-notsent-reconciliation-from-their-o",
+      "inboxId": "F-2-006",
+      "text": "Which transports can prove a send never left (NotSent reconciliation) from their own error shape, and which must treat every ambiguous result as unknown?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-does-a-slack-envelope-redelivered-after-reconnect-double-answer-when-the-press-w",
+      "inboxId": "F-2-007",
+      "text": "Does a Slack envelope redelivered after reconnect double-answer when the press was already applied, and what acknowledgement order keeps the reply index idempotent?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-which-button-or-block-label-vocabulary-does-the-reference-already-carry-and-does",
+      "inboxId": "F-2-008",
+      "text": "Which button or block label vocabulary does the reference already carry, and does any of it pass a secret-literal check without new text?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-what-dedupe-window-does-a-transport-need-when-the-provider-offset-resets-on-rest",
+      "inboxId": "F-2-005",
+      "text": "What dedupe window does a transport need when the provider offset resets on restart, and what does the reference's bounded recent-update cache size imply for a durable seen record?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-transports-can-prove-a-send-never-left-notsent-reconciliation-from-their-o",
+      "inboxId": "F-2-006",
+      "text": "Which transports can prove a send never left (NotSent reconciliation) from their own error shape, and which must treat every ambiguous result as unknown?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-does-a-slack-envelope-redelivered-after-reconnect-double-answer-when-the-press-w",
+      "inboxId": "F-2-007",
+      "text": "Does a Slack envelope redelivered after reconnect double-answer when the press was already applied, and what acknowledgement order keeps the reply index idempotent?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-which-button-or-block-label-vocabulary-does-the-reference-already-carry-and-does",
+      "inboxId": "F-2-008",
+      "text": "Which button or block label vocabulary does the reference already carry, and does any of it pass a secret-literal check without new text?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 1,
+      "promotedQuestionId": null,
+      "addedAtIteration": 1,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-phase-011-messaging-channels-which-reference-files-implement-a-channel-adapter-s",
+      "inboxId": "F-1-004",
+      "text": "Phase 011-messaging-channels: which reference files implement a channel adapter seam, Telegram, Slack, Signal and WhatsApp transports, identity linking, a durable queue and approvals rendered as buttons or replies, what should the builder lift or mirror, and which delivery, retry or duplicate-message failures did those repos hit?",
+      "origin": "frontier",
+      "source": "frontier",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "frontierStatus": "answered"
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "What dedupe window does a transport need when the provider offset resets on restart, and what does the reference's bounded recent-update cache size imply for a durable seen record?",
+    "Which transports can prove a send never left (NotSent reconciliation) from their own error shape, and which must treat every ambiguous result as unknown?",
+    "Does a Slack envelope redelivered after reconnect double-answer when the press was already applied, and what acknowledgement order keeps the reply index idempotent?",
+    "Which button or block label vocabulary does the reference already carry, and does any of it pass a secret-literal check without new text?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-a-deduplicated-telegram-update-must-still-advance-the-offset-and-the-reference-h",
+      "text": "**A deduplicated Telegram update must still advance the offset, and the reference has a test for exactly that; the plan's offset rule does not say it.** The reference advances `offset` on the seen path before `continue`ing. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1967-1971] The named test is `a_deduplicated_update_still_advances_the_offset`, asserting the second poll carries offset 21 after a duplicate of update 20. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs:3736-3775] The plan states only \"The offset moves past an update only after the seen record is written\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:145] That phrasing is satisfied by \"seen record already existed, so skip\" — which leaves the offset pinned and re-fetches the same update forever. **Observed.** The evidence supports the reference; the plan's REQ-009 should gain the duplicate-path clause and its acceptance criteria should mirror this test.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-6-openmausbot-has-no-liftable-slack-or-telegram-transport-its-slack-surface-is-a-h",
+      "text": "**OpenMausBot has no liftable Slack or Telegram transport: its Slack surface is a hosted management URL on the enterprise tier.** `hostedSlackManagement` returns `{available:false}` unless hosted workspace configuration yields a portal membership, and when it does it returns only `https://<admin>/slack?...` — no message path, no socket, no webhook. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts:4-20] The prior synthesis already established that `enterprise/` is not Apache-2.0. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:106] **Observed.** So for phase 011, OpenMausBot is a dead end and tinychannels is the only source; the node's OpenMausBot scope entry can be closed for transport evidence.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-plan-collapses-two-distinct-send-failure-states-into-one-unknown-and-therefo",
+      "text": "**The plan collapses two distinct send-failure states into one `unknown` and therefore never retries a send that provably never started.** The reference carries three recovery states: `SendAttemptStarted` (marked before the platform I/O), `UnknownAfterSend` (an attempt reached the platform and the outcome is unknown), and nothing (a fresh entry). [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs:79-90] Its drain routes both non-empty states into a reconciliation path that asks the handler for an `UnknownSendReconciliation` — `Sent` (ack), `NotSent` (retry), `Unresolved` (leave pending, log) — instead of resending blindly. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs:190-240] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs:23-29] The plan's rule is one state: \"a `sending` entry found at the start of a drain becomes `unknown`\", and `unknown` is never retried. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md:130] That is correct at-most-once behaviour for `UnknownAfterSend`, and wrong for a process that died before issuing the HTTP request: the notice is never delivered and never retried, and the plan records it only as `unknown`. **Observed.** The evidence supports a two-state split with the reconciliation port: `send-attempt-started` is marked before the I/O, `unknown-after-send` is set when an attempt returned an ambiguous error, and only the second one is unretryable. The plan's handoff criteria (\"an uncertain send is never retried\") is satisfied by that split and by nothing less.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-plan-drops-the-reference-s-mid-poll-webhook-recovery-so-a-webhook-set-after-",
+      "text": "**The plan drops the reference's mid-poll webhook recovery, so a webhook set after start wedges the Telegram poller.** The reference clears a webhook twice: once before the first poll, and again *inside* the poll loop when `getUpdates` answers 409 whose description contains \"webhook\" — it calls `deleteWebhook` and `continue`s into a fresh poll with no backoff. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1936-1952] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs:267-272] The plan clears the webhook only in the `listen` start sequence, then says \"a `409` from Telegram waits 2 s and polls again\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:212] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:99] A 409 is not always \"another poller\": it is also \"can't use getUpdates while webhook is active\", a state anything that sets a webhook later can produce. Waiting 2 s against that condition never converges. **Observed** on both sides. The evidence supports the reference: the plan needs the in-loop branch, with the same discriminator (does the description name a webhook) so a genuine second-poller 409 still backs off rather than calling `deleteWebhook` in a loop.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-reference-commits-the-offset-after-the-provider-action-succeeds-not-after-th",
+      "text": "**The reference commits the offset after the provider action succeeds, not after the seen record is written; the plan's wording admits a crash window that loses a message.** The reference marks the update acknowledged locally \"only after its provider-owned action or typed ingress has succeeded\", and both `track_update_id` and the offset bump happen inside that closure. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1973-1981] Under the plan's wording, a crash between writing the seen record and handing the message to the runtime counts as consumed: the offset has moved, the message is gone. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:145] **Observed (reference) / inferred (plan's implementation risk).** The evidence supports the reference's ordering; the seen write should be the *last* step of ingest, or the offset should be derived from a record that is written after ingest commits.",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-reference-s-approval-surface-is-text-only-and-fail-closed-so-the-plan-s-butt",
+      "text": "**The reference's approval surface is text-only and fail-closed, so the plan's button forms have no reference implementation to mirror.** The whole prompt vocabulary is `\"Reply \\`yes\\` to approve or \\`no\\` to deny.\"`, and the surface is gated on the channel capability `chat_approvals`. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:20-26] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:44-52] When no reply context was recorded for a conversation, `surface()` returns `NoReplyContext` and the parked call \"will time out denied\". [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:54-60] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:110-125] The plan's M02 and M04 rows design button forms for `telegram` and `slack` only, with the text forms M01 and M03 on the other three. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md:44] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md:46] **Observed.** Two consequences the plan does not record: (a) the only callback machinery to lift is the reference's `acknowledge_callback` plus `callback_is_allowed` pair, which acknowledges the callback query before the item is resolved [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1978-1990]; acknowledging first means a crash after the ack loses the press, which is the opposite of the plan's index-first ordering and is worth a sentence in child 004's ordering decision. (b) The reference's fail-closed `NoReplyContext` is the failure the plan already answers better — its REQ-006 makes a press with no index entry fall through to `answerItem` rather than denying the parked call. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md:128]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/queue.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/policy.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/delivery/types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/hosted-slack.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/message-catalog.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-chunked-telegram-send-reports-exactly-which-chunks-landed-and-the-plan-s-one-e",
+      "text": "**A chunked Telegram send reports exactly which chunks landed, and the plan's one-entry-one-state queue cannot represent that.** The reference's partial-send error carries `sent_before_error` and `continuation_message_ids`, and both are set by the caller: `sent_before_error || !message_ids.is_empty()`. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_send.rs:928-946] The plan sends a prompt cut at 4,096 bytes on a code point boundary [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:99] and records one queue entry that becomes `unknown` on an ambiguous result. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md:130] If chunk 3 of 5 fails, the entry is `unknown`; if any later drain were to retry it, chunks 1 and 2 would be sent again and the person reads a duplicated prompt. **Observed (reference) / inferred (plan).** The evidence supports adding the continuation record to the queue entry: the implementation must either store the chunk ids that landed, or make a multi-chunk message unretryable after the first chunk, and the plan currently does neither explicitly.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_send.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-slack-refuses-an-over-long-or-disabled-button-before-dispatch-and-the-plan-s-but",
+      "text": "**Slack refuses an over-long or disabled button before dispatch, and the plan's button rule checks only the secret literal.** The reference caps a label at 75 characters and an action id at 255 bytes, refuses a disabled action outright, and copies the action id into the button's `value`. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs:10-11] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs:55-74] The plan derives the action id as `approval-v1:<item-id>:<index>` and requires that the choice block and button labels pass the secret-literal check; it states no length cap. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md:128] **Observed.** A truncated action id silently breaks the derived-index lookup, and the `value` field is a second place a long id is rejected, so the plan should refuse `channel-action-id-invalid` before the send rather than let the provider drop the button. This is a lift the plan can take directly: the caps are constants, not provider limits the plan has to guess.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_send.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-slack-separates-nothing-was-applied-from-the-response-could-not-be-read-and-the-",
+      "text": "**Slack separates \"nothing was applied\" from \"the response could not be read\", and the plan carries no such split for Slack.** `ApiFailure::Slack { code }` is documented \"HTTP 200 with `ok: false`; nothing was applied\", while `ApiFailure::Malformed` is \"HTTP 200 with a body that is not JSON\". [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs:15-21] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs:92-105] Under the plan's rules, a `chat.postMessage` that answers `ok: false` and one whose body cannot be parsed would both land in the same place. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md:100] **Observed.** The evidence supports the reference's split: `ok: false` is a definite `failed` (safe to retry, nothing applied) and an unparseable 200 is `unknown` (never retry). The same distinction the plan already applies to WhatsApp's `4xx` and `408` rows is missing on Slack.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_send.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-plan-fixes-where-the-seen-record-lives-but-never-how-long-it-is-kept-and-the",
+      "text": "**The plan fixes where the seen record lives but never how long it is kept, and the reference's only sizing datum is a 4,096-entry in-memory window with eviction.** The reference bounds its dedupe cache at `TELEGRAM_RECENT_UPDATE_CACHE_SIZE: usize = 4096` and evicts from the head when the window is exceeded. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs:12] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs:256-263] The offset is a process-local `let mut offset: i64 = 0`, so a restart begins at zero. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1854] The consequence is that eviction is safe only inside one process lifetime, and after a restart the reference re-processes every update the provider still holds. The plan's durable `seen/<channel>/<sha256>.json` removes that failure, but the plan names no retention horizon, so the folder grows without bound and nothing says when an entry may be dropped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md:21-30] **Observed.** The 4,096 figure is the only number in the corpus that says how many in-flight messages a single bot actually sees, so the plan should prune `seen/` against the provider's own redelivery horizon rather than leave it unbounded. A retention rule of \"older than the provider's maximum redelivery window\" is defensible for all four providers; an unbounded folder is not.",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_tests.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_send.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/spec.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-tinychannels-main-is-gpl-3-0-and-no-earlier-synthesis-names-it-the-plan-s-011-no",
+      "text": "**`tinychannels-main` is GPL-3.0, and no earlier synthesis names it; the plan's 011 notice rule is therefore load-bearing rather than cosmetic.** The reference's LICENSE is the GNU General Public License version 3. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/LICENSE:1-2] The earlier synthesis lists licences for the other nine repos and calls `openhuman` \"GPL-3.0 and design-only\", but it never mentions tinychannels, which was not in its repo set. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:120] This repository is MIT. [SOURCE: LICENSE:1-3] Phase 011's notice requirement already states \"No tinychannels code is copied, so no notice names it\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:133] **Observed.** The finding is that the rule must survive: 011 cites tinychannels on nearly every row of its wire tables, and every one of those citations is a behaviour to mirror, never a file to copy. A builder who lifts a retry table or a constant from `delivery/policy.rs` turns an MIT repository into a GPL-3 derivative. Restating the licence in the 011 section of the notices file, as a \"no code copied, behaviour mirrored from a GPL-3.0 reference\" line, is cheaper than a later audit.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE",
+        "specs/system-skilled-bots/context/openhuman-full/LICENSE",
+        "specs/system-skilled-bots/context/{OpenMausBot-main,rakazo-main,openhuman-main,OpenGhost-main,hermes-muse-main,turnstone-main,buzz-main}/LICENSE",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSING.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "finding-3-3-a-local-time-cron-slot-that-does-not-exist-or-exists-twice-has-no-rule-in-the-bu",
+      "text": "**A local-time cron slot that does not exist, or exists twice, has no rule in the built runtime, in the plan, or in the reference's own documentation.** The plan computes a next fire \"from the cron expression in the machine's local time and written as an ISO 8601 UTC instant, because no launchd surface reports one\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:173] The runtime's `cron-translator.ts` and `slot-accounting.ts` were grepped for `DST`, `daylight`, `timezone`, `timeZone` and `TZ=`: no match in either file. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts:36-45] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts:1] Plan 002 states the 15-minute floor and the skip rule but no transition rule [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:172], and OpenBot's routines document covers the floor, the cap, fatigue, missed windows and the actor, and gives no daylight-saving rule in any of them. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:107-146] **Observed (absence on all three sides) / inferred (the failure).** A `daily 02:30` routine on the spring-forward night in a zone that skips 02:00 to 03:00 has no slot to stand for, and on the fall-back night has two. The slot-accounting account function would either find no slot at or before the fire or find the same local time twice, and neither the plan's acceptance criteria nor the runtime's tests name the case. This is the one failure in either phase that no side guards.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE",
+        "specs/system-skilled-bots/context/openhuman-full/LICENSE",
+        "specs/system-skilled-bots/context/{OpenMausBot-main,rakazo-main,openhuman-main,OpenGhost-main,hermes-muse-main,turnstone-main,buzz-main}/LICENSE",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSING.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "finding-3-5-both-of-002-s-tempting-additions-are-already-deferred-with-a-citation-and-a-reve",
+      "text": "**Both of 002's tempting additions are already deferred with a citation and a reversal condition, so no builder should re-add them.** The 20-enabled cap is excluded because \"skilled bots has no per-person list, and the operator owns the repository's `bots/` folder\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:114] The first-failure notice is deferred because `delivery.onFailure` already reports each failure, with the reversal condition \"a phase that adds a notice channel reads the run records for the first failure after a completed one\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:121] **Observed.** This is a confirm, not a gap: the reference posts exactly one notice on the first failure after a success and a second at the tenth [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/routines.md:118-124], and the plan's deferral is the right call for a single-operator host. Recording it here so a later phase does not treat it as an oversight.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE",
+        "specs/system-skilled-bots/context/openhuman-full/LICENSE",
+        "specs/system-skilled-bots/context/{OpenMausBot-main,rakazo-main,openhuman-main,OpenGhost-main,hermes-muse-main,turnstone-main,buzz-main}/LICENSE",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSING.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-activity-grouping-is-a-faithful-lift-openbot-s-seven-ids-and-their-order-are",
+      "text": "**The activity grouping is a faithful lift: OpenBot's seven ids and their order are exactly the plan's, and the reference's third entry kind has no analogue here.** `ACTIVITY_GROUPS` is `needs_you`, `working`, `scheduled`, `done`, `stopped`, `failed`, `recurring`, in that order, with the ordering rationale \"what waits on the person, what is running, what is lined up, then how it ended\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts:22-48] The plan requires the same seven ids in the same order and leaves out an empty group. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:166] The reference carries three entry kinds — a task, an item and a `check_in` — where the plan's `recurring` group is fed by installed cron schedules instead. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts:50-52] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md:173] **Observed.** The lift is correct as far as it goes; the one item a builder will miss is that the reference groups a *check-in setting* as its own entry kind, which here has no store, so a host with a `does: tell` routine shows nothing under `recurring` until 002's schedule rows exist. That is intended, and worth one line in the data-model so a later reader does not read it as a bug.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE",
+        "specs/system-skilled-bots/context/openhuman-full/LICENSE",
+        "specs/system-skilled-bots/context/{OpenMausBot-main,rakazo-main,openhuman-main,OpenGhost-main,hermes-muse-main,turnstone-main,buzz-main}/LICENSE",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSING.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-five-vendored-crates-in-openhuman-full-are-under-the-same-gpl-3-0-licence-as",
+      "text": "**The five vendored crates in `openhuman-full` are under the same GPL-3.0 licence as `openhuman-main`, so they are design-only before their value is even ranked.** `openhuman-full/LICENSE` is GPL version 3. [SOURCE: specs/system-skilled-bots/context/openhuman-full/LICENSE:1-2] The earlier synthesis already treats `openhuman` as design-only for the TUI shape. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:130] **Observed.** The net-new pass that reads `tinyagents`, `tinyconnectors`, `tinymemory`, `tinyhumans-sdk` and `tinysecurity` must score each one twice: once for value to a small team, and once as \"mirror only\", because no line of any of them can enter this MIT tree. A crate that is valuable only as code therefore scores lower than its behaviour is worth.",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenBot-main/LICENSE",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/routines.md",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts",
+        "specs/system-skilled-bots/context/tinychannels-main/LICENSE",
+        "specs/system-skilled-bots/context/openhuman-full/LICENSE",
+        "specs/system-skilled-bots/context/{OpenMausBot-main,rakazo-main,openhuman-main,OpenGhost-main,hermes-muse-main,turnstone-main,buzz-main}/LICENSE",
+        "specs/system-skilled-bots/context/OpenMausBot-main/LICENSING.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md",
+        ".skilled/skills/system-skilled-bots/runtime/lib/slot-accounting.ts",
+        ".skilled/skills/system-skilled-bots/runtime/lib/cron-translator.ts",
+        "LICENSE"
+      ]
+    },
+    {
+      "id": "finding-4-4-no-reference-tells-the-model-its-working-directory-in-a-prompt-line-the-closest-",
+      "text": "**No reference tells the model its working directory in a prompt line; the closest is turnstone, which injects it into the tool descriptions at session build time.** A repository-wide search of OpenBot-main for `working directory is` and `Your working` returns no file, and its own explanation of a Bot's work describes conversations, routines and conversations' four parts without naming a directory. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md:30-50] Turnstone renders the working directory into the filesystem and shell tool descriptions through `apply_cwd_context(tools, working_dir, workspace_dir)`, applied when the session's tool list is built. [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py:208] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py:5147] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py:259] **Observed.** So 004 is net-new against both references, and its one-line design is the only surface this runtime has: the executor owns the tool list, so the working place can only reach the model through the prompt. That is the plan's answer and the evidence supports it, with one consequence worth recording — turnstone's placement survives a mid-run directory change because it is re-rendered with the tools, while a prompt line is static text, so a child that `cd`s away sees a stale sentence and nothing corrects it. **Inferred.** The plan's `evidence.branch` at least keeps the record honest about where the run started.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38,47,57",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-plan-fixes-three-frame-sizes-but-asserts-no-no-panic-property-for-a-degenera",
+      "text": "**The plan fixes three frame sizes but asserts no no-panic property for a degenerate width or a wide glyph, and the reference's own test list shows that is where a renderer breaks.** `design/mockups.md` must draw twenty-six states at 80x24 and 120x40 plus a too-small screen at 30x7, and REQ-002 asserts each block's line count and width. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md:151] The reference's render tests include `small_terminal_and_unicode_do_not_panic`, and `render.rs` measures every string with `unicode_width::UnicodeWidthStr` rather than `.len()`. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:57] [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:15] **Observed (both sides) / inferred (the gap).** The plan's sizes are all comfortable, and its too-small frame is a *drawn* screen rather than a property. A needs-you question is model-written text, so a CJK or emoji character in a 30-column pane is reachable on the first day, and nothing in 003's acceptance criteria covers a width of one column or a string whose display width exceeds its byte length. The fix is cheap and belongs in 003's child 006: one test that drives `TestBackend` at 1x1, 2x2 and 30x7 with a wide-character question and asserts no panic, mirroring the reference's property.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38,47,57",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-plan-s-resume-rule-is-stricter-than-either-reference-and-correctly-so-004-re",
+      "text": "**The plan's resume rule is stricter than either reference, and correctly so.** 004 refuses a resumed run whose parked prompt names another working place with `resume-item-invalid`, and corrects a shared run whose branch changed between park and answer. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md:149] Neither OpenBot nor turnstone has a resume path that validates a parked working place, because neither parks a run against a tree. [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py:5147] **Observed.** No change needed; recorded because the deliverable asks which side the evidence supports, and here the plan is ahead of both references.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38,47,57",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-reference-masks-a-secret-in-the-render-path-the-plan-guards-only-the-answer-",
+      "text": "**The reference masks a secret in the render path; the plan guards only the answer path, so a token a bot writes into a question is drawn verbatim.** The plan's security requirement is one-sided: the answer text reaches the runtime only through `bots answer`, which refuses a secret literal before storing it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md:255] The reference tests the render path directly with `masked_login_does_not_render_a_secret`. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38] **Observed (both sides) / inferred (the consequence).** A bot that hits an API key while diagnosing a failure can put it in a question, and the screen draws the question. The phase already has a reusable answer — `redactToken` exists on the channel side for the same reason [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md] — so the gap is one call in the pane renderer plus a test, not a new module.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38,47,57",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-reference-s-covered-control-rule-has-no-keyboard-analogue-in-the-plan-becaus",
+      "text": "**The reference's covered-control rule has no keyboard analogue in the plan, because the plan's overlay is key-driven rather than click-driven.** The reference tests `overlay_removes_covered_controls`, so a click cannot land on a control the overlay hides. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:47] The plan's screen has no mouse support at all — it is out of scope — and its key map is organised by context. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:110] **Observed / inferred.** This is a genuine difference where the evidence supports the plan: a key map with an overlay context cannot leak a key to a covered pane the way an unscoped hit rectangle can. Recorded so a later reviewer does not read the missing rule as an oversight. What the plan should still borrow is the reference's *assertion shape*: a test that enumerates the keys the overlay covers and proves none of them reaches the pane beneath.",
+      "addedAtIteration": 4,
+      "sources": [
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/spec.md",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render_tests.rs:38,47,57",
+        "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/terminal.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/how-openbot-works.md",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/tools.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/session.py",
+        "specs/system-skilled-bots/context/turnstone-main/turnstone/core/config.py"
+      ]
+    },
+    {
+      "id": "finding-5-3-openbot-hands-a-website-credential-change-to-the-person-and-the-plan-has-no-equi",
+      "text": "**OpenBot hands a website credential change to the person, and the plan has no equivalent outcome, so an operator can approve an action only the person can perform.** The reference's exception is explicit: a password or credential change on a website \"is handed to you: the card says it is yours to do, and offers **I did it myself** and **Don't do it**\", because only the person holds the secret. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:47-52] The plan makes `credentials` one of the seven action kinds and lets the ordinary answer set — allow once, deny, and the review options `confirm` and `reject` — decide it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:159] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:163] **Observed.** So a bot that asks to rotate an operator's password can be told `confirm`, the item records `grants.scope: once`, and the run then proceeds to an action the bot cannot complete. The reference's answer is a third outcome on the card, and the plan's item vocabulary already has room for one more option; the cheapest correct change is to refuse `confirm` on a `credentials` grant whose action names a secret only the person holds, and record the person's own completion as the answer. This is the highest-value gap in either phase: it makes the audit trail assert an approval for something that did not happen.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-openghost-s-bound-is-lossy-and-its-save-is-debounced-and-the-plan-s-refusal-and-",
+      "text": "**OpenGhost's bound is lossy and its save is debounced, and the plan's refusal-and-rewrite choice is the stricter one.** Loading slices the stored items to the record limit and keeps the rest nowhere. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:36] Every save is a 400 ms debounce, and a second window's write triggers a full reload that can overwrite a local change on its way. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:10] [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:29-33] The plan refuses an append that would pass the bound and leaves the file byte for byte unchanged, and `--forget` rewrites through a temp file and a rename while copying forward any bytes an append added during the rewrite. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:151] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152] **Observed.** The evidence supports the plan on both counts: a memory file whose entries an operator confirmed must not be silently truncated on load, and a copy-forward rewrite is the only way a concurrent append survives. This is the one place in the two phases where the plan is strictly better than the reference, and it is worth one line in 005's design so a builder does not \"simplify\" the rewrite into a truncate-and-write.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-plan-lifts-openghost-s-three-memory-bounds-but-not-its-compaction-so-the-ref",
+      "text": "**The plan lifts OpenGhost's three memory bounds but not its compaction, so the reference's answer to a contradiction is missing while the reference's numbers are present.** OpenGhost's limits are `{ text: 400, records: 60, crowded: 28, chars: 3600 }`. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:11] The plan refuses a text over 400 characters and an append past 60 entries or 3,600 bytes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:150] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:151] Three of those four numbers are identical, which is the provenance; the fourth, `crowded: 28`, is the trigger for OpenGhost's `TIDY` rewrite — an instruction that merges records about the same thing, drops what is said twice, and where two disagree \"keep only what the later one says, with no word of the earlier\". [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:12-15] The plan has no compaction step and no contradiction rule: at 60 entries `bots remember` refuses until the operator removes an entry by index. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152] **Observed (both sides) / inferred (the consequence).** Two memory entries that disagree are both injected into every prompt for the life of the file, and the operator's only tool is `--forget`, which names an index and not a contradiction. The evidence does not support copying OpenGhost's fix — an LLM rewrite of an operator-confirmed fact log loses the fact that a person confirmed it, and \"the later one wins\" is wrong when the earlier one is the correction. What the evidence does support is the plan saying what a contradiction means: either `bots remember` warns when a new entry's text is near-identical to an existing one, or 005's out-of-scope list names the compaction as deferred with a reversal condition, the way 002's two deferrals do. Silence is the only indefensible option, because the bound is the reference's and the reader will assume the rewrite came with it.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-plan-s-kind-precedence-is-its-own-invention-and-the-reference-s-recognizer-i",
+      "text": "**The plan's kind precedence is its own invention, and the reference's recognizer is wider than the plan's question scan.** OpenBot's order is across rungs, not among kinds: \"Kinds of action\", then \"Rules\", then \"Auto-review\", then \"Extra vigilant\", and \"the first answer wins\". [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:3-13] The plan instead returns \"the strictest kind found anywhere in it, testing `pay`, `credentials`, `delete`, `send`, `share` and `post` in that order\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:160] **Observed.** Two consequences. First, there is nothing in the reference to cite for the order among kinds, so its justification rests on the plan's own example (a payment that also deletes reads as `pay`) and needs its own test rather than a reference cite. Second, the reference recognizes a kind from three surfaces the plan's single question scan cannot see: an app's tool name, a button label (including the exact strings `Remove`, `Comment`, `Reply`), and a key chord (Cmd+Enter or Ctrl+Enter counts as \"send\"). [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:36-45] It also excludes a signed query string from making an ordinary form a credentials page. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:39] The plan's lifted `tool-name.ts` covers the first surface and nothing covers the other two. For a CLI host, button labels and key chords have no analogue and the exclusion has none either, so the honest record is that the plan's recognizer is narrower than the reference's on purpose — and that a bare `Enter` in a message box is a \"send\" the reference would catch and the plan will not.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-reference-s-an-allow-reaches-a-kind-only-when-it-was-given-on-that-kind-s-ca",
+      "text": "**The reference's \"an allow reaches a kind only when it was given on that kind's card\" is already the plan's rule, and the plan states it as a refusal.** The reference says an ordinary allow does not open a kind, and neither does a typed rule. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:29-31] The plan refuses a standing allow on an item whose `grants.kind` is `other` with `grant-kind-unknown` when a store lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164] **Observed.** No gap; recorded so a later phase does not re-derive the rule from the reference and land a second version of it.",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md"
+      ]
+    },
+    {
+      "id": "finding-6-1-a-per-bot-server-filter-does-not-stop-an-insufficient-scope-retry-loop-and-openm",
+      "text": "**A per-bot server filter does not stop an insufficient-scope retry loop, and OpenMausBot has a mechanism for exactly that case.** The reference detects Google's `ACCESS_TOKEN_SCOPE_INSUFFICIENT` (or \"insufficient authentication scopes\", or `insufficientPermissions`) and appends a second content block to the tool result naming the exact OAuth scope required and telling the model \"Do not retry\", while keeping the provider's original error block unchanged. [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts:1-5] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts:26-41] [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts:131] Its test asserts both halves: the original content survives, and the hint carries the scope URL and the words \"Do not retry\". [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.test.ts:13-20] The plan's `apps:` key narrows which servers a run's config holds, and says so carefully: \"`apps` stays a filter, not a sandbox\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:105] Nothing in 007 or 008 treats a *reachable server whose credential lacks a scope* as a separate state. **Observed.** A bot whose connector grant is correct but whose OAuth grant is short will retry the same call, because the error text reads like a transient permission failure. This is the one mechanism in either reference that a small team gets immediate value from: the hint costs one string per connector and turns a silent loop into a named fix. It fits 007's scope, because 007 owns the declaration of what a bot may reach, and the hint is the failure path of that declaration.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.test.ts",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md"
+      ]
+    },
+    {
+      "id": "finding-6-2-rakazo-scopes-a-stored-item-to-an-allow-list-of-the-owner-s-bots-and-the-plan-s-",
+      "text": "**rakazo scopes a stored item to an allow-list of the owner's bots, and the plan's equivalent is the bot's own declaration, so nothing lets an operator say which bots may use a stored secret.** The reference's model is a value on the item: `VaultBots = { allBots: boolean; botIds: string[] }`, documented as \"Which of the owner's bots may use an item: every one, or those in `botIds`\", and the access check is `allBots || botIds.every(id => bots.some(bot => bot.id === id))`. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:40-41] [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:72] The plan's control is on the other side: a bot's definition names `secrets: demo` and the runner resolves it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:155] So the authority to read a stored value is the bot author's declaration, and an operator who stores a token has no way to say \"only these two bots may use it\". **Observed.** For a repository where every bot definition is reviewed, that is a defensible simplification; for a host that accepts a definition from a git hook or a queue, it means any definition can name any stored secret. The evidence supports a second, operator-side axis — one line in the secret's index entry naming the bots allowed, checked where the name is resolved — and it composes with 007's server filter rather than duplicating it.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.test.ts",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-refusal-vocabulary-needs-a-name-for-stored-but-not-allowed-and-rakazo-s-fixe",
+      "text": "**The refusal vocabulary needs a name for \"stored but not allowed\", and rakazo's fixed-string mapping shows why.** The reference maps three distinct conditions to three fixed answers — blocked, unchosen and full — through an explicit equality test on the error message. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:25-38] The plan has one name for a name the store does not hold, `secret-unknown`, which is right while the only reason a name can fail to resolve is that nothing is stored under it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:156] **Observed / inferred.** The moment finding 2's allow-list exists, a secret that is plainly present can fail to resolve, and `secret-unknown` sends the operator to look for a secret that is already there. The reference's answer — one fixed name per condition, with the provider's own error text never shown — is the shape to copy, and it is cheap now and expensive later.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.test.ts",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md"
+      ]
+    },
+    {
+      "id": "finding-6-4-the-vault-s-own-failure-paths-are-already-measured-and-guarded-more-tightly-than",
+      "text": "**The vault's own failure paths are already measured and guarded more tightly than the reference's, so no lift is needed there.** The plan measured that `security -i` splits a line over 4,096 bytes and prints the remainder to stderr, refuses the line before the spawn, never prints the program's output, verifies a write by reading it back in constant time, and scans the child's stdout, the run folder and the receipt folder for the stored value plus its base64 and URL-encoded forms. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:203] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:165] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:168] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63] The reference's protection is the weaker one: it hides the server's error text because \"its other errors could echo the value\". [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts:25-28] **Observed.** Recorded as a confirm: the plan already reaches the reference's conclusion and goes past it, so a builder should not add a second redaction layer.",
+      "addedAtIteration": 6,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.test.ts",
+        "specs/system-skilled-bots/context/rakazo-main/packages/core/src/integrations/vault.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md"
+      ]
+    },
+    {
+      "id": "finding-7-1-a-skill-name-is-never-validated-as-a-path-segment-and-the-reference-has-a-gramma",
+      "text": "**A skill name is never validated as a path segment, and the reference has a grammar plus this packet already has the rule for bot ids.** 009 requires `skills` to parse as a list of skill names and requires an unresolvable name to refuse `skill-unknown`, and the body is read from `<skilledTree>/.skilled/skills/<name>/SKILL.md`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:160] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161] Nothing in the requirement table constrains the name's characters. The reference's grammar is `^[a-z0-9][a-z0-9-]{0,63}$` — one line, applied before any lookup. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/skills.js:10] And 005 already carries the equivalent rule for the other identifier that becomes a path: \"a bot id that is not a safe segment is refused by name instead of becoming a path\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:164] **Observed.** A definition naming `skills: [\"../../etc\"]` makes the resolver build a path outside the skills tree; a name with an uppercase letter or a dot resolves to nothing and refuses `skill-unknown`, which is a misleading refusal for a name that was never legal. The fix is the reference's grammar with a refusal name of its own (`skill-name-invalid`), validated in the same place 005 validates a bot id.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-7-2-openghost-s-hook-rules-engine-has-no-owning-phase-and-the-earlier-synthesis-defe",
+      "text": "**OpenGhost's hook rules engine has no owning phase, and the earlier synthesis defers it to \"later per-action policy\" with nothing to land on.** `rules.js` is 703 lines carrying fifteen event types with a named matcher source each — `SessionStart`, `PreToolUse`, `PermissionRequest`, `PostToolUse`, `PostToolUseFailure`, `Notification`, `SubagentStart`, `SubagentStop`, `StopFailure`, `PreCompact`, `PostCompact`, `PostModelSwitch` and the rest — plus a matcher grammar (\"empty or `*` for all; letters, digits, `_`, `-`, spaces, commas and `|` as exact names\") and a `Name(args)` rule grammar. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/rules.js:19-37] [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/rules.js:117-119] [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/rules.js:138] The earlier synthesis lists the lift as \"`/name` skill parser, hook rules engine … Skills, later per-action policy\". [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:130] Searching every phase spec for `hook` finds only the git-hook trigger, and 009 mentions no hook at all. **Observed.** So the mechanism is in neither the plan nor the skip list, and it is the largest single capability in either of these phases' sources: per-action policy is what lets a host say \"never run `rm -rf`\", \"always format after a write\" or \"ask before a push\" without a person present. It belongs in the net-new ranking (iteration 10) as well as here, because its size is known and its licensing is clean — OpenGhost is MIT.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-7-4-the-plan-excludes-bot-to-bot-handoff-and-cites-the-exact-rule-that-makes-the-exc",
+      "text": "**The plan excludes bot-to-bot handoff and cites the exact rule that makes the exclusion load-bearing.** 010 routes human messages only, and the exclusion names OpenBot's rule: a bot naming a peer `@Name` hands off \"under the same grants and caps\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md:111] [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md:189] **Observed.** The confirm matters because the alternative is posture escalation: a handoff that started a run under the *target* bot's own posture would let a `workspace-write` bot reach a `danger-full-access` peer by naming it. The plan's exclusion is the cheapest correct answer, and the reference's rule is the citation a later phase needs if it ever adds handoff.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-reference-injects-a-skill-by-mention-and-keeps-it-across-a-conversation-summ",
+      "text": "**The reference injects a skill by mention and keeps it across a conversation summary; the plan injects only declared skills, which is auditable but removes mid-conversation invocation.** OpenGhost finds a skill named in a message with `/(^|[\\s(])\\/([a-z0-9][a-z0-9-]{0,63})(?=$|[\\s.,;:!?)])/g`, hands the instructions wrapped in `<skill_content name=\"…\">`, and re-finds those blocks with a second regex so a summary of the chat keeps them. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/skills.js:9-13] The plan has no mention path: a bot's skills come from its definition, and the block is inserted at a fixed prompt position. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161] **Observed.** The evidence supports the plan for a governed host — a declared list is what makes the checker's three invariants possible and what makes a run's posture reviewable — and the loss is a person's ability to call a skill mid-conversation. The reference's second regex is the part worth keeping in mind: if a later phase adds mentions, the block must survive the conversation budget's oldest-message eviction, and a wrapper the eviction can recognise is the only way to do that.",
+      "addedAtIteration": 7,
+      "sources": [
+        "specs/system-skilled-bots/context/OpenGhost-main/skills.js",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/architecture.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-8-2-documentation-alignment-is-net-new-none-of-the-ten-references-carries-an-automat",
+      "text": "**Documentation alignment is net-new: none of the ten references carries an automated docs-versus-code check, and the phase's subject is this repository's own tooling.** 013 requires a `topics.json` topic whose `terms` reach the skill docs, the README, the catalog, the playbook and the CLI help, two alignment commands that write `report.md`, `findings.json` and `fix-plan.md`, and a clean-close criterion on each report's `Open findings:` line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:155] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:158] A search of OpenBot-main's package manifest for a documentation-check script (`markdown-link`, `link-check`, `docs:check`, `lint:docs`) returns nothing. **Observed.** The phase therefore has no reference to mirror and cannot have one: the two commands it invokes are Skilled's own, and the artefacts they write are this repository's contract. Its risk is not a missing mechanism but a missing reference point, so its acceptance criteria have to carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/package.json",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+      ]
+    },
+    {
+      "id": "finding-8-1-the-plan-s-conformance-suite-proves-the-contract-at-the-seam-and-never-the-reque",
+      "text": "**The plan's conformance suite proves the contract at the seam and never the request a transport builds, and the reference's fixture trait exists to close exactly that gap.** The reference kit's own header states the design rule: a provider test implements `AdapterFixture` \"by invoking the concrete adapter operation and reading the request and response from that provider's mocked platform\", and the kit \"never substitutes a synthetic transport for the provider fixture\". [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:1-7] The plan's suite runs on \"one object per channel name, built from that name's column of `capabilities.md` section 2\", and its fixture \"opens no socket and reads no token\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:33-35] Rule R4 asserts that \"at least one wire observation matches the operation, the channel, the conversation the intent named\" — but the observation is recorded by the fake transport at the seam. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:28] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:42] **Observed.** So nothing the plan specifies asserts a Telegram `sendMessage` body, a Slack `chat.postMessage` block, a Signal JSON-RPC envelope or a WhatsApp Graph URL — the wire tables of 005 and 006 are proven by citation only. A wrong header name, a body field spelled differently or a signature computed over the re-serialised body instead of the raw bytes passes every rule the plan names. For 012 this matters twice, because its channel scenarios run on the same fake transport. The fix is one fixture per transport that records the outbound HTTP request and compares it with a golden, which is a smaller job than the hole it closes.",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/package.json",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+      ]
+    },
+    {
+      "id": "finding-8-3-the-review-phase-is-net-new-as-well-and-its-one-borrowed-guard-is-the-recorded-s",
+      "text": "**The review phase is net-new as well, and its one borrowed guard is the recorded suite baseline rather than a quoted count.** 014 runs `/deep:review:auto` over phases 001 to 013 as a fan-out of five lineages and requires every P0 to be fixed with the command that proved it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:182] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:185] Its own measured-behaviour block states the rule that makes the review meaningful: the suite floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, because \"a floor quoted from this block would pass a build that deleted a phase's tests\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94] No reference in the corpus has a review loop, so there is nothing to lift; the recorded baseline is the phase's own guard, and it is the one item in the three phases that a reviewer should check is actually enforced. **Observed.**",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/OpenBot-main/package.json",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-6-tinydocs-turns-a-validated-document-spec-into-office-format-bytes-which-no-phase",
+      "text": "**`tinydocs` turns a validated document spec into office-format bytes, which no phase covers.** Its header: \"Agent-friendly document synthesis and text extraction in Rust… turns a typed, validated document spec into real office-format bytes… the spec types are the JSON tool schema, validation rejects a malformed spec with a structured `Error::InvalidInput` naming the exact field\". [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs:1-6] **Observed.** Size: 83,976 lines, 226 files, GPL-3.0 — mirror only. Value: medium for a team whose bots produce reports; the pattern worth mirroring is validating a spec before writing bytes, which is the same discipline the plan applies to records.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-2-tinyeventqueues-is-the-highest-value-net-new-mechanism-for-this-build-a-durable-",
+      "text": "**`tinyeventqueues` is the highest-value net-new mechanism for this build: a durable inbound event queue that filters noise before an agent runs.** Its header is explicit: it will \"durably queue noisy inbound events and filter them the way a person filters noise, before they reach an agent\", with events arriving from \"chat channels (web chat, Telegram, Discord, Slack), connector triggers (X replies through Composio), webhooks\". [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs:1-4] The build plan has an outbound queue (011's `channel-queue.ts`) and an inbound dedupe record, but no inbound queue: a channel message becomes an `enqueueRequest` immediately. So every message a bot's chat receives costs a run. **Observed.** Size: 89,431 lines, 262 files, GPL-3.0 — mirror only. Value to a small team: high, because run cost is dominated by inbound volume and the plan's only lever is the roster.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-4-tinyjuice-is-the-alternative-to-the-plan-s-refuse-at-budget-policy-and-it-is-the",
+      "text": "**`tinyjuice` is the alternative to the plan's refuse-at-budget policy, and it is the largest single mechanism in the tree.** \"Pluggable token compression for OpenHuman and other Rust hosts. TinyJuice owns the reusable TokenJuice compression engine. Hosts provide configuration mapping, optional ML callbacks, savings attribution, and their own RPC/tool surfaces.\" [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs:1-5] The plan's answer to an over-budget prompt is a refusal with a name, and its overflow rule drops the oldest conversation message. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162] **Observed.** Size: 636,193 lines, 2,158 files, GPL-3.0 — mirror only, and far too large to reimplement. Value: high in principle, low in practice: a small team cannot build a compression engine, and the cheap approximation is the plan's own caps. Recorded so the ranking is honest about the difference between valuable and reachable.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-5-tinymcp-is-a-different-mcp-model-from-007-s-static-filter-it-dials-servers-and-b",
+      "text": "**`tinymcp` is a different MCP model from 007's static filter: it dials servers and browses registries rather than narrowing one config file.** It is \"a Model Context Protocol client, packaged as an installable `TinyBus` module… This crate knows how to *talk to* MCP servers. It dials them over Streamable HTTP or as a subprocess, browses the upstream registries, keeps track of what…\" [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs:1-6] 007 writes a per-run `.utcp_config.json` holding only the servers a bot declared and explicitly calls itself \"a filter, not a sandbox\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md:105] **Observed.** Size: 150,644 lines, 436 files, GPL-3.0 — mirror only. Value: medium — registry browsing and a health check per server are the parts a small team would want, and both are cheaper than the crate.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-3-tinyskills-carries-deterministic-discovery-and-a-collision-precedence-rule-for-s",
+      "text": "**`tinyskills` carries deterministic discovery and a collision-precedence rule for skill bundles, neither of which 009 has.** The crate \"owns the host-independent parts of skill handling: document parsing (YAML for discovery, `parse_flat` for documents a host stores and re-serves), metadata, deterministic discovery, collision precedence, safe\" — the header continues past that line. [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs:1-6] 009's model is a declared `skills:` list read from one tree, with a name grammar to be added (iteration 7, finding 1) and no precedence rule between two skills that resolve to the same name. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:160] **Observed.** Size: 78,138 lines, 237 files, GPL-3.0 — mirror only. Value: medium. Collision precedence is the part worth copying, because a `.skilled/skills/<name>` in a checkout and a same-named one in a user tree is exactly the failure a discovery model creates.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-9-1-the-tree-carries-twenty-one-vendored-crates-totalling-about-4-38-million-lines-o",
+      "text": "**The tree carries twenty-one vendored crates totalling about 4.38 million lines of Rust, not five, and both trees already have the TUI crate.** `openhuman-full/Cargo.toml` lists `\"vendor\"` among the workspace members alongside `crates/openhuman-tinyhumans`. [SOURCE: specs/system-skilled-bots/context/openhuman-full/Cargo.toml:21-25] `vendor/` holds `tiny-artifacts`, `tinyagents`, `tinybox`, `tinybus`, `tinychannels`, `tinycomputer`, `tinyconnectors`, `tinydocs`, `tinyeventqueues`, `tinyflows`, `tinyhosts`, `tinyhumans-sdk`, `tinyjuice`, `tinymcp`, `tinymemory`, `tinysearch`, `tinysecurity`, `tinyskills`, `tinystoragedrivers`, `tinyvoice` and `tinywallet`, a directory listing of `vendor/` read on 2026-11-27. [SOURCE: specs/system-skilled-bots/context/openhuman-full/Cargo.toml:25] The five the topic names are the small end of the tree: `tinyhumans-sdk` is 13,407 lines and `tinyartifacts` 6,720, while `tinycomputer` is 630,174 and `tinyjuice` 636,193. And `crates/openhuman-tui` exists in both trees — `openhuman-main/crates/openhuman-tui` and `openhuman-full/crates/openhuman-tui` — so \"a built `openhuman-tui` crate that `openhuman-main` lacks\" is false as stated: both have the crate, and what `openhuman-full` has is a workspace whose path dependencies resolve, which is why it was the one that built. **Observed.** The correction matters for the ranking below: ranking only the five named crates would have missed every large one.",
+      "addedAtIteration": 9,
+      "sources": [
+        "specs/system-skilled-bots/context/openhuman-full/Cargo.toml",
+        "specs/system-skilled-bots/context/openhuman-full/vendor (all twenty-one crate directories, sized by file and line count)",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyjuice/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinydocs/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinymcp/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysearch/src/lib.rs",
+        "specs/system-skilled-bots/context/openhuman-main/crates",
+        "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md"
+      ]
+    },
+    {
+      "id": "finding-10-6-buzz-carries-an-information-flow-control-crate-that-blocks-a-leak-before-it-happ",
+      "text": "**`buzz` carries an information-flow-control crate that blocks a leak before it happens, where the plan's only defence is a post-run scan.** `ifc-core` is \"generic information-flow control over reader-set confidentiality labels\", with a `ConfidentialityLabel` that is `restricted(universe, readers)`, `restricted_to(universe, reader)` or `public(universe)`, a `FlowState` that accumulates what a session has observed, and an `EgressError` for a send that would widen the reader set. [SOURCE: specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs:1-18] [SOURCE: specs/system-skilled-bots/context/buzz-main/Cargo.toml:2-7] The plan's equivalent is retrospective: after the child exits, the runner scans its stdout and the run folder for known secret values and withholds the delivery. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:168] **Observed.** Size: one crate in a 7,184-file repository. Value: high, and it is the only mechanism in the corpus that addresses the *multi-channel* version of the problem — a bot that read a private chat and replies into a public one leaks by audience, not by secret literal, and no scan can find that.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-7-a-second-buzz-crate-verifies-a-runtime-trace-against-a-formal-spec-instead-of-as",
+      "text": "**A second `buzz` crate verifies a runtime trace against a formal spec instead of asserting that a model passed.** `buzz-conformance` is a \"runtime trace schema + independent replay checker\" for the repository's TLA+ relay spec, with the north star stated in its own header: \"don't ask 'did the model pass'; ask 'did the running code emit a trace the model accepts'\". [SOURCE: specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs:1-8] **Observed.** Size: one crate. Value: medium — the plan's proof phases (012, 014) assert CLI behaviour and acceptance criteria, and a trace-plus-replay checker is a heavier discipline than a small team will adopt; the transferable idea is the trace *schema*, which is cheap and makes a replay test possible later.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-3-a-second-repository-declares-per-call-hooks-in-a-manifest-which-corroborates-ite",
+      "text": "**A second repository declares per-call hooks in a manifest, which corroborates iteration 7's finding that the hooks engine has no owning phase.** `plugin.yaml` declares `provides_hooks: [pre_llm_call, post_llm_call, pre_tool_call, post_tool_call]` beside `provides_tools: [muse_manage, muse_job]`, under `manifest_version: 2`. [SOURCE: specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml:1-12] OpenGhost's `rules.js` implements the same family as fifteen event types. [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/rules.js:19-37] **Observed.** Two of ten repositories independently implement per-call hooks, and the build plan's fourteen phases name no owner for them (iteration 7, finding 2). This raises that item's rank: the mechanism is not one project's idiosyncrasy.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-2-hermes-muse-s-health-check-is-a-scheduled-probe-whose-empty-output-is-silence-an",
+      "text": "**hermes-muse's health check is a scheduled probe whose empty output is silence, and the plan's routines fire bots but nothing probes the host.** The plugin's `health_entry.py` is eleven lines with a docstring that states the contract exactly: \"Called only by the native `muse-health` no_agent Cron launcher; stdout is delivered, empty is silent.\" [SOURCE: specs/system-skilled-bots/context/hermes-muse-main/health_entry.py:1-11] **Observed.** Size: 11 lines of entry point plus a `hermes_muse.health` module, in a 125-file plugin. Value: high for a host that runs unattended — 002's routines schedule a bot's work and 014 reviews a build, but nothing on a schedule asks \"is this host healthy, and if it is, say nothing\". The \"empty is silent\" rule is the part worth copying: it composes with the notification-fatigue discipline the reference keeps trying to teach (OpenBot posts once on a first failure, 002 defers that).",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-4-the-plugin-manifest-itself-is-net-new-a-portable-declaration-of-what-a-package-p",
+      "text": "**The plugin manifest itself is net-new: a portable declaration of what a package provides, where the plan has one BOT.md per bot and no package unit.** `plugin.yaml` carries `manifest_version`, `name`, `version`, `description`, `license`, `homepage`, `kind: standalone`, `requires_hermes`, `tags`, `provides_tools` and `provides_hooks`. [SOURCE: specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml:1-12] **Observed.** Size: 12 lines of YAML. Value: medium. It is the only packaging contract in the corpus, and the case for it here is that a skill plus a hook plus a tool set is a distributable unit; the plan distributes bots through a checked-in `bots/` folder instead, which is simpler and is the right call for one repository. Recorded because it is the shape a later distribution step would need.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-5-the-remaining-repositories-add-nothing-the-skip-list-does-not-already-answer-and",
+      "text": "**The remaining repositories add nothing the skip list does not already answer, and their sizes settle it.** `buzz` is a Rust platform whose workspace members include `buzz-relay`, `buzz-core` and `buzz-conformance` beside an `admin-web` folder and a desktop shell — the relay, admin and desktop surfaces the skip list covers, with two exceptions taken as findings 6 and 7. [SOURCE: specs/system-skilled-bots/context/buzz-main/Cargo.toml:1-7] `rakazo`'s package list is `adapter-kit`, `adapters`, `auth`, `chat-ui`, `contracts`, `core`, `db`, `i18n`, `logging`, `memory`, `page-kit`, `testkit`, `ui-tokens` and `ui-web` — a multi-tenant app whose memory and vault the plan already mirrors, and whose auth and DB are skipped. [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json:1] `OpenMausBot`'s distinctive folders are `relay`, `companion`, `devices`, `apps`, `skills` and `announcements`; mobile and the shared-host relay are skipped, and its connector-scope hint was already taken in iteration 6. `tinychannels` is 011's source and `openhuman-main` is iteration 9's. **Observed (lists) / inferred (the verdict).**",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-10-1-turnstone-ships-a-declarative-eval-harness-for-skill-adherence-and-the-plan-has-",
+      "text": "**turnstone ships a declarative eval harness for skill adherence, and the plan has no mechanism that tests whether a bot obeys a skill.** `eval_skill_adherence.json` is a 56-line suite of cases, each naming a skill, its content, a user prompt, `expected_actions` and a `match_mode` of `ordered_subset`, with `n_runs: 3` as the default repeat count. [SOURCE: specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json:1-20] The scoring lives in the package's own eval module and is covered by two test files, including one for scoring itself. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py:1] 009 loads a skill body into the prompt and caps its size, and 012's scenarios assert CLI behaviour; neither asserts that a model given a skill *used* it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:161] **Observed.** Size: 56 lines of data plus one scoring module inside a 1,378-file repository. Value: high, and unusually cheap — the case format is the whole design, and a host that already records run tool calls can score an `ordered_subset` assertion over them.",
+      "addedAtIteration": 10,
+      "sources": [
+        "specs/system-skilled-bots/context/turnstone-main/eval_skill_adherence.json",
+        "specs/system-skilled-bots/context/turnstone-main/tests/test_scoring.py",
+        "specs/system-skilled-bots/context/hermes-muse-main/plugin.yaml",
+        "specs/system-skilled-bots/context/hermes-muse-main/health_entry.py",
+        "specs/system-skilled-bots/context/OpenGhost-main/rules.js",
+        "specs/system-skilled-bots/context/buzz-main/Cargo.toml",
+        "specs/system-skilled-bots/context/buzz-main/crates/ifc-core/src/lib.rs",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-conformance/src/lib.rs",
+        "specs/system-skilled-bots/context/rakazo-main/packages/contracts/package.json",
+        "specs/system-skilled-bots/context/OpenMausBot-main/server/connector-scope-hint.ts",
+        "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-22771e08a95c",
+      "text": "**Mining OpenMausBot for channel transports.** Grepped the tree for `telegram`/`slack` path components and found none; the only Slack code is the hosted management URL of finding 6. Not retried.",
+      "contentHash": "22771e08a95c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-195273334cdf",
+      "text": "**Re-deriving the wire facts (endpoints, limits, backoff constants).** The plan's children 005 and 006 already cite those lines, and re-deriving them would repeat the earlier syntheses. This iteration read only the control flow around them.",
+      "contentHash": "195273334cdf",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-c4ac1e02d1f7",
+      "text": "`openhuman-full/vendor/tinyconnectors` was in the node scope but not opened: the iteration budget went to tinychannels, which is the only repo holding all four transports. Carried to the net-new iteration rather than promoted to Exhausted Approaches.",
+      "contentHash": "c4ac1e02d1f7",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3c2515b27e41",
+      "text": "tinychannels `whatsapp_web/` (a linked-device client) exists and is explicitly out of scope for phase 011; not opened.",
+      "contentHash": "3c2515b27e41",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9196cb78c0a5",
+      "text": "**Re-deriving the plan's inbound acknowledge sequence.** The 002 design already fixes the seven steps, the per-transport dedupe key, and the `after-seen-record` policy for four transports, citing the reference adapter policy. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md:62-93] Not a gap.",
+      "contentHash": "9196cb78c0a5",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ff80b49449df",
+      "text": "**Searching for a reference-side durable seen store.** There is none: `TelegramUpdateWindow` is in-memory with an eviction path, and the WhatsApp and Signal paths carry no seen store at all.",
+      "contentHash": "ff80b49449df",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ad286ef39c95",
+      "text": "**Treating Slack's \"do not acknowledge an envelope we could not retain\" as new.** The plan already cites that exact line and relies on the reconnect redelivery. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/inbound-sequence.md:73] No finding added.",
+      "contentHash": "ad286ef39c95",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-a0d935395555",
+      "text": "No reference attempts to size a seen store from provider retention, so finding 1's recommendation is inference from the reference's bound plus the plan's own provider facts, not a lifted constant.",
+      "contentHash": "a0d935395555",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8bb2c2c3002d",
+      "text": "The reference's `whatsapp_web/identity.rs` exists but is the linked-device client the phase puts out of scope; not opened beyond confirming its name.",
+      "contentHash": "8bb2c2c3002d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-5ce0426b729c",
+      "text": "**Re-deriving the fatigue rule's ten-failure count.** Plan 002 states it with the run-record citations and the `enabledAt` reset; nothing new to add.",
+      "contentHash": "5ce0426b729c",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-92d437e23aad",
+      "text": "**The 20-enabled cap as a gap.** It is an explicit exclusion with a citation and a reason. Re-adding it would contradict a frozen scope decision.",
+      "contentHash": "92d437e23aad",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fd4d6f121282",
+      "text": "**The first-failure notice as a gap.** Explicitly deferred with a reversal condition.",
+      "contentHash": "fd4d6f121282",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-e4b0df57e30d",
+      "text": "Grepping the runtime for DST support found nothing to cite beyond the absence; the finding rests on that absence on three sides plus the plan's own local-time sentence.",
+      "contentHash": "e4b0df57e30d",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0c0152c0f3d4",
+      "text": "OpenBot's activity `queries.ts` and `mutations.ts` were not opened: the plan lifts only `activity-groups.ts` and `shared/activity-rows.ts`, and reading the screen-side mutations would not change the grouping rule.",
+      "contentHash": "0c0152c0f3d4",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fc5470994555",
+      "text": "**Re-deriving the 24-column and 8-row floor.** The plan already lifts it from `openhuman-tui/src/render.rs:26` and draws the 30x7 frame from it.",
+      "contentHash": "fc5470994555",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4a98cae5aa56",
+      "text": "**Reading OpenBot for a worktree or per-run directory model.** It is a server whose conversations share one deployment; there is no per-run tree to mirror, which is why 004 has no reference implementation.",
+      "contentHash": "4a98cae5aa56",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-de223a35f45b",
+      "text": "**Treating the missing mouse hit-target rule as a gap.** The plan has no mouse support, so the reference's rule does not apply.",
+      "contentHash": "de223a35f45b",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-c45ef9d8e2c4",
+      "text": "A repository-wide grep of `openhuman-tui` for a panic-free resize property beyond the one test name found no second guard; the test name is the evidence.",
+      "contentHash": "c45ef9d8e2c4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-5b9b86e88414",
+      "text": "OpenBot's `agent-langgraph-ts` prompt modules were not opened in depth: the two prompt-line searches returned nothing, and reading the whole prompt builder would not have changed the negative.",
+      "contentHash": "5b9b86e88414",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f0f49502bcdc",
+      "text": "**Copying OpenGhost's LLM tidy as the memory bound's answer.** It rewrites operator-confirmed facts with no record of the rewrite, which contradicts 005's own premise that an entry records who said it.",
+      "contentHash": "f0f49502bcdc",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-9b00e06637e9",
+      "text": "**Re-deriving the rung order.** The plan takes the reference's four rungs and adds a `bot` fallback; the reference has no fallback value, so the addition is the plan's and is already documented.",
+      "contentHash": "9b00e06637e9",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-c0efb1c7c095",
+      "text": "**Treating 006's unimplemented rungs 2 to 4 as a gap.** The plan names them as not implemented in this phase, with the reason (no store supplies them).",
+      "contentHash": "c0efb1c7c095",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b47ca76400fb",
+      "text": "hermes-muse's staged-write note was not opened beyond its path: the prior synthesis already carries it as a lift for proposal review, and 005's proposal path cites it.",
+      "contentHash": "b47ca76400fb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-7d221582ff93",
+      "text": "OpenBot's `shared/tool-name.ts` was not re-read: the prior synthesis names it as the lifted classifier and the plan's `classifyAction` cites it.",
+      "contentHash": "7d221582ff93",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-905a8e3b533a",
+      "text": "**Finding a per-run MCP config equivalent in a reference.** None of the ten repos narrows a connector list per run; they narrow per user or per item. 007 is net-new on the mechanism and borrows only the failure path of finding 1.",
+      "contentHash": "905a8e3b533a",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-773dd19cb9d4",
+      "text": "**Reading OpenMausBot's `connector/` host directory for a second implementation.** It is a connector marketplace host, not a per-bot filter.",
+      "contentHash": "773dd19cb9d4",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-1d9c7e1c3ba7",
+      "text": "**Treating the plan's missing echo guard as a gap.** It is measured and guarded three ways: the length refusal, the never-print rule and the post-run scan.",
+      "contentHash": "1d9c7e1c3ba7",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-d900273c0864",
+      "text": "rakazo's `secret-matcher.ts` was located but not read: 008's known-secret map is built from stored values rather than from pattern matching, so the matcher's pattern list would not have changed any finding.",
+      "contentHash": "d900273c0864",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-84e84e93d973",
+      "text": "The `connector-scope-hint` mechanism is reachable only where a connector's OAuth scopes are known per tool slug; the plan would need a per-connector scope table to use it, which is worth naming in 007's design as the cost of finding 1.",
+      "contentHash": "84e84e93d973",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a3e7a77f863a",
+      "text": "**Reading `rules.js` in full.** The event table, the matcher grammar and the rule grammar are enough to size and characterise the missing capability; the evaluation loop would not change the finding.",
+      "contentHash": "a3e7a77f863a",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-f6e7be1ba05f",
+      "text": "**Reading OpenBot's `shared/activity-rows.ts` for 009.** It belongs to 001's activity lift and carries nothing about skills.",
+      "contentHash": "f6e7be1ba05f",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-d7300a53c122",
+      "text": "**Treating the missing mention path as a defect.** It is a deliberate design difference with a stated auditing benefit; recorded as such.",
+      "contentHash": "d7300a53c122",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-8f1a793444bc",
+      "text": "010's transcript envelope and message-record rules are entirely packet-internal (`contracts/records.md` section 10, `contracts/cli-json.md` section 3.1), so there is no reference to compare them with; the only reference-side transcript facts are the shared-transcript attribution and the handoff rule.",
+      "contentHash": "8f1a793444bc",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-2708c2ac8d14",
+      "text": "A grep for `hook` across all fourteen phase specs and their children produced only git-hook matches, which is the negative evidence for finding 2.",
+      "contentHash": "2708c2ac8d14",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-17f7c81e4ac0",
+      "text": "**Comparing the plan's eight capability keys with the reference's `ConformanceFeature` enum.** The plan flattens a nested record to eight booleans and says why, and it is GPL-3.0 code either way; the count difference is not a gap.",
+      "contentHash": "17f7c81e4ac0",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a580de37fed5",
+      "text": "**Looking for a manual test script in the references.** None carries one; the closest artefact is the conformance kit, which is a library rather than a playbook.",
+      "contentHash": "a580de37fed5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-224b3e6422f3",
+      "text": "**Re-deriving the five conformance rules from the reference.** The plan already numbers the reference's five assertions and cites the line ranges of the reference's kit for each.",
+      "contentHash": "224b3e6422f3",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-77acb25077a5",
+      "text": "012's scenario table is 30-plus rows that cite their own phases; verifying each would have repeated phase evidence this run already carries in iterations 1 to 7.",
+      "contentHash": "77acb25077a5",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a223fbad4cb4",
+      "text": "Searching OpenBot-main for a docs check produced one negative. A second search for a review or audit loop was not worth a call: the earlier iterations found its audit rows described as product behaviour, not as a review process.",
+      "contentHash": "a223fbad4cb4",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-f9d71a4ea590",
+      "text": "**Ranking only the five crates the topic names.** The measurement in finding 1 makes that set the smallest end of the tree; the ranking above covers all twenty-one.",
+      "contentHash": "f9d71a4ea590",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-2a918f08a842",
+      "text": "**Reading `tinyartifacts`.** The directory is `tiny-artifacts` and the crate is 6,720 lines; its value is below the resolution of this ranking.",
+      "contentHash": "2a918f08a842",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-7d585cdf3355",
+      "text": "**Reading `tinycomputer` and `tinyvoice`.** Both are excluded surfaces in the parity synthesis, and their sizes settle the ranking without reading them.",
+      "contentHash": "7d585cdf3355",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-02524f0d0e64",
+      "text": "`tinyagents`'s internal `vendor/tinytools` is patched into the workspace through three `[patch]` entries; [SOURCE: specs/system-skilled-bots/context/openhuman-full/Cargo.toml:50-64] the redirection is a build detail with no product value.",
+      "contentHash": "02524f0d0e64",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-8eab0fd01088",
+      "text": "No crate in the tree is permissively licensed; the licence check is one file for all twenty-one.",
+      "contentHash": "8eab0fd01088",
+      "addedAtIteration": 9
+    },
+    {
+      "id": "ruled-out-47bb79a9072b",
+      "text": "**`buzz`'s admin surface, `rakazo`'s auth and DB, `OpenMausBot`'s relay and devices.** Every one is named in the parity synthesis's skip list, and their sizes are platform-sized.",
+      "contentHash": "47bb79a9072b",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-e65643eb3884",
+      "text": "**Re-reading `hermes-muse`'s skills folder.** It is a companion's prompt skills, which the plan already handles as skill bodies.",
+      "contentHash": "e65643eb3884",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-3702639ab68e",
+      "text": "**Treating `OpenMausBot`'s `announcements` folder as a new capability.** It is a notification surface, and iteration 6 already took the discipline worth having from the reference.",
+      "contentHash": "3702639ab68e",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-6a0d080b898a",
+      "text": "`buzz`'s benchmarks and `HYPOTHESIS.md`/`lint_hypothesis.py` in turnstone are interesting process artefacts and no capability; not ranked.",
+      "contentHash": "6a0d080b898a",
+      "addedAtIteration": 10
+    },
+    {
+      "id": "ruled-out-acdf79710978",
+      "text": "A full read of `turnstone`'s eval module was not needed: the case format and the two scoring tests establish both the mechanism and that it is tested.",
+      "contentHash": "acdf79710978",
+      "addedAtIteration": 10
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 4,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 49,
+    "sourceFindings": 49,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.92,
+    "coverageBySources": {
+      "code": 1,
+      "other": 88
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "frontier": {
+    "nodes": [
+      {
+        "nodeId": "F-1-004",
+        "parentId": "root",
+        "depth": 1,
+        "scope": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels, specs/system-skilled-bots/context/tinychannels-main, specs/system-skilled-bots/context/OpenMausBot-main, specs/system-skilled-bots/context/openhuman-full/vendor/tinyconnectors",
+        "question": "Phase 011-messaging-channels: which reference files implement a channel adapter seam, Telegram, Slack, Signal and WhatsApp transports, identity linking, a durable queue and approvals rendered as buttons or replies, what should the builder lift or mirror, and which delivery, retry or duplicate-message failures did those repos hit?",
+        "status": "answered",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-005",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_core.rs, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts",
+        "question": "What dedupe window does a transport need when the provider offset resets on restart, and what does the reference's bounded recent-update cache size imply for a durable seen record?",
+        "status": "open",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-006",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/api.rs, specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue",
+        "question": "Which transports can prove a send never left (NotSent reconciliation) from their own error shape, and which must treat every ambiguous result as unknown?",
+        "status": "open",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-007",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/socket.rs, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue",
+        "question": "Does a Slack envelope redelivered after reconnect double-answer when the press was already applied, and what acknowledgement order keeps the reply index idempotent?",
+        "status": "open",
+        "reason": null,
+        "iteration": 1
+      },
+      {
+        "nodeId": "F-2-008",
+        "parentId": "F-1-004",
+        "depth": 2,
+        "scope": "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/blocks.rs, specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map",
+        "question": "Which button or block label vocabulary does the reference already carry, and does any of it pass a secret-literal check without new text?",
+        "status": "open",
+        "reason": null,
+        "iteration": 1
+      }
+    ],
+    "stats": {
+      "total": 5,
+      "open": 4,
+      "active": 0,
+      "answered": 1,
+      "blocked": 0,
+      "exhausted": 0,
+      "abstained": 0,
+      "pruned": 0
+    },
+    "activeNodeId": "F-2-006",
+    "budget": {
+      "depth1": {
+        "allotted": 5,
+        "spent": 1
+      },
+      "depth2": {
+        "allotted": 7.5,
+        "spent": 1
+      },
+      "depth3": {
+        "allotted": 1.5,
+        "spent": 0
+      }
+    }
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
