@@ -46,7 +46,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "crates/bots-tui/src/keys.rs",
+      "crates/bots-tui/src/theme.rs",
+      "crates/bots-tui/src/state.rs",
+      "crates/bots-tui/src/view/mod.rs",
+      "crates/bots-tui/src/view/header.rs",
+      "crates/bots-tui/src/view/tabs.rs",
+      "crates/bots-tui/src/view/footer.rs",
+      "crates/bots-tui/tests/render_keys.rs",
+      "crates/bots-tui/src/app.rs"
     ],
     "entities": [
       {
@@ -83,6 +92,60 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "keys.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "theme.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/theme.rs",
+        "source": "derived"
+      },
+      {
+        "name": "state.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/state.rs",
+        "source": "derived"
+      },
+      {
+        "name": "mod.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/view/mod.rs",
+        "source": "derived"
+      },
+      {
+        "name": "header.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/view/header.rs",
+        "source": "derived"
+      },
+      {
+        "name": "tabs.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/view/tabs.rs",
+        "source": "derived"
+      },
+      {
+        "name": "footer.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/view/footer.rs",
+        "source": "derived"
+      },
+      {
+        "name": "render_keys.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/tests/render_keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "app.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/app.rs",
         "source": "derived"
       },
       {
@@ -138,65 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Waves Six",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 leaves an empty frame: the crate builds, the loop runs and the terminal is restored, but no key is bound and nothing on screen says which key does what",
     "created_at": "2026-11-25T20:22:33Z",
-    "last_save_at": "2026-11-27T15:42:09.582Z",
+    "last_save_at": "2026-11-27T20:27:03.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b49ffc20521f46b5aa48ac4a6d23fd6a8bc1b2817e00c2cc17dcaa4046e7f3aa",
+    "source_fingerprint": "sha256:f704d6115e84803e72bdaed03991a15c33a9d2e9276f7e39798d128a1e28ac9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "86e00e837b9cc7b152e4312c1583e0892dfc7ebd19551cf79d8c7a062a21bb91",
-      "plan.md": "a616d02c49c56117f5ac0d5e2b0f51b9ebf5ac843baf61b245c93ed2b1efeab2",
-      "tasks.md": "af07d930abf93db2ad72640d0eef39918da0b1107fea2da8af8119e04526bbcf",
-      "implementation-summary.md": "109b5ec1a6d0c1c2d377fd99265b9d58fe13161ecb6b910b8b30ce1f99d90d1a"
+      "plan.md": "837f8ba2e7f04490166bce57a21d01aadd9abbb81aab136449c8cbc933acb064",
+      "tasks.md": "a2db8338dfd2726b549213ee38ecaeda091c1920712edb5f1e7a6bf59cd56782",
+      "implementation-summary.md": "b241c7c27a2c90c6c865424200c3428bcfccb511d2819bbc8963509ca234f1c3"
     },
     "last_active_at": null
   }

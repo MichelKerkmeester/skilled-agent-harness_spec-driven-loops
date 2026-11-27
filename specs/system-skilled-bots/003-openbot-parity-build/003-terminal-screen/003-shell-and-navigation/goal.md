@@ -57,12 +57,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii`, `every_marker_has_an_ascii_counterpart` and `marker_draws_one_glyph_per_state`.
-- [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [ ] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii`, `every_marker_has_an_ascii_counterpart` and `marker_draws_one_glyph_per_state`.
+- [x] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,10 +79,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet authored | Done | `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` carry no unfilled token |
-| Key table | Pending | `ls crates/bots-tui/src/keys.rs` exits 1 |
-| Theme and glyph table | Pending | `ls crates/bots-tui/src/theme.rs` exits 1 |
-| Shell frame | Pending | `ls crates/bots-tui/src/view` exits 1 |
-| Key-label test and snapshots | Pending | `ls crates/bots-tui/tests/render_keys.rs` exits 1 |
+| Key table | Done | `SHELL_ROWS` holds the 29 approved rows and `cargo test --lib keys` printed `test result: ok. 18 passed` on 2026-11-27 |
+| Theme and glyph table | Done | `cargo test --lib theme` printed `test result: ok. 7 passed` on 2026-11-27 |
+| Shell frame | Done | `view/mod.rs`, `header.rs`, `tabs.rs` and `footer.rs` build, and `cargo test --lib view::tests` printed `test result: ok. 8 passed` on 2026-11-27 |
+| Key-label test and snapshots | Done | `cargo test --test render_keys` printed `test result: ok. 16 passed` on 2026-11-27 |
 | Review 1 fixes applied | Done | U1-P0-1, U1-P0-2, U1-P1-3, U1-P1-9, U1-P1-10 and U1-P1-11 applied here. The rest of `research/ui-review-1.md` belongs to 001, 002, 004, 005, 006 and the parent |
 | Review 2 fixes applied | Done | N-P1-1, N-P1-2, N-P1-3, N-P1-4, N-P1-11, N-P1-14, N-P1-16 and N-P2-19 applied here, with the footer ruling. The rest of `research/ui-review-2.md` belongs to 001, 002, 004, 005, 006 and the parent |
 | Integration wave applied | Done | `design/architecture.md` section 6.3, `design/state-machines.md` section 6.6 and `design/contracts.md` section 12.5 applied: `SHELL_ROWS` replaces the created table, `theme.rs` and `view/mod.rs` are 002's stubs, `state.rs` gains `on_shell_action`, the `lib.rs` row and T012 are gone because 002 owns the flags, the header reads `updatedAt`, and the palette's Enter, Esc and Ctrl+C rule is REQ-015's. R12's clean-room rule is in `plan.md` |
@@ -104,4 +104,8 @@ and findings belong here.
 | `marker` is named here | F-047: T005 writes `marker(state, ascii)` and its test `marker_draws_one_glyph_per_state` asserts one glyph and one ASCII character per row state, so 004 calls a function this phase owns and tests. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The palette Enter rule is defined | F-070: REQ-015 now says a label that covers several rows contributes one row and Enter runs the action of the first row in `keys::rows()` order that carries it, so Enter is never undefined. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The prose rules were applied | O-021 and O-022: every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this child's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The band modules take a theme | `header::draw`, `tabs::draw` and `footer::draw` take a fourth `theme: &Theme` argument beside the signature `design/architecture.md` section 1.13 froze, and `footer::draw_status` draws the status row. Only `view/mod.rs` calls them, so no other lane sees the change. Taken by the unit orchestrator on 2026-11-27 |
+| `stale_label` lives in `view/header.rs` only | T005 and `design/architecture.md` section 1.13 name it in `theme.rs`. REQ-013, `design/contracts.md` section 3 and T006 name `view/header.rs`, which won. `theme.rs` holds no copy |
+| `marker` takes `&RunState` | The architecture names a `RowState` the crate never defines. `RunState` is the activity row state in `model.rs` and holds an `Unknown(String)`, so it is passed by reference |
+| The frame is empty until the first resize | `view::draw` clears and returns while `state.size` is 0x0. The event source sends a resize before anything else, and the 002 test `empty_frame_draws` draws a default state and expects a blank frame |
 <!-- /ANCHOR:log -->
