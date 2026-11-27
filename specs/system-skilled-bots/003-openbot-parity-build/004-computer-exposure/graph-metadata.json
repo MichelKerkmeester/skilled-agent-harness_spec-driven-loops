@@ -59,8 +59,8 @@
       ".skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
-      "design/prompt-line.md",
-      "design/records.md"
+      "design/sequences.md",
+      "design/prompt-line.md"
     ],
     "entities": [
       {
@@ -172,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "prompt-line.md",
+        "name": "sequences.md",
         "kind": "doc",
-        "path": "design/prompt-line.md",
+        "path": "design/sequences.md",
         "source": "derived"
       },
       {
-        "name": "records.md",
+        "name": "prompt-line.md",
         "kind": "doc",
-        "path": "design/records.md",
+        "path": "design/prompt-line.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot run starts in a directory its prompt never names",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-27T15:32:06.592Z",
+    "last_save_at": "2026-11-27T19:28:11.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ee06abe7dcbe8fc9d8d192061230994dfb2ad90db18b016cad5585f986c4c3e",
+    "source_fingerprint": "sha256:39a0bbaa99f562d2ab50bf69f6c45f596f749b32bd9030e989b7efae9ed1aff3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b84e6fc031995ea6df5666d775a383344fbb2c935d466e179a231c77c6ccbf6",
       "plan.md": "23e81b914e1c18ccc1d60fe60dd13e69cf4527b2913d8a44150bdc472d294cca",
-      "tasks.md": "f4437bce84b560e92ff5b5cfbae0340b8b8334d0019104592035094e85a8159d",
-      "implementation-summary.md": "c527b9a6057fbb3a88200339287e92ce9f9e5894837567d128e8b3a8b9b5989b"
+      "tasks.md": "c829d70af2f888539c7d62ba4d614a412a7f5f55165cb6be9f5aa81f750b8e2e",
+      "implementation-summary.md": "819d77441d8c33c0e38bee821534e3e42e59d613df8062fe5512e93b2453a550"
     },
     "last_active_at": null
   }

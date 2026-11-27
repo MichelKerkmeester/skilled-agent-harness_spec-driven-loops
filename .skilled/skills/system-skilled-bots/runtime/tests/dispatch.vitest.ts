@@ -1,16 +1,18 @@
-import { chmodSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { chmodSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   SCHEDULED_RUN_LINE,
+  WORKING_PLACE_PREFIX,
   buildBotPrompt,
   collectKnownSecrets,
   finalAnswerText,
   findSecretLiteral,
   parseDecisionMarker,
   removeLineageFolder,
+  workingPlaceLine,
 } from '../lib/dispatch.js';
 import { cleanupTemp, tempDir } from './support.js';
 
@@ -192,6 +194,106 @@ describe('lineage folder removal', () => {
     } finally {
       warn.mockRestore();
       chmodSync(parent, 0o700);
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// WORKING PLACE LINE
+// ───────────────────────────────────────────────────────────────────
+//
+// The line names the directory a run works in, the branch it is on and the
+// run folder, so an operator can tell where an unattended run worked. Its
+// slot is fixed: after the spec-folder line and before the checkout line, so
+// a later block lands after it without moving it. The three goldens are the
+// whole prompt for each shape, compared line by line rather than by a
+// substring, so a moved line fails here.
+
+/** A repository-relative path from a fixture, resolved from this file. */
+function repoPath(path: string): string {
+  return resolve(import.meta.dirname, '..', '..', '..', '..', '..', path);
+}
+
+const FIXTURES = 'specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design/fixtures';
+
+/** The lines of a golden prompt. Each golden ends with one newline, which is not a line. */
+function goldenLines(name: string): string[] {
+  const text = readFileSync(repoPath(`${FIXTURES}/${name}`), 'utf8');
+  return text.replace(/\n$/, '').split('\n');
+}
+
+const RF = '/Users/ada/code/hello/.skilled/skills/.state/system-skilled-bots/skilled-scratch%2Fhello/runs/20261125T211204Z-7c1e9a40';
+const BODY = '<the BOT.md body>';
+
+describe('working place line', () => {
+  it('both shapes', () => {
+    const onBranch = workingPlaceLine({ path: '/tmp/wt', branch: 'worktrees/004-bot-hello', runFolder: '/state/runs/r1' });
+    expect(onBranch).toBe("Your working place is /tmp/wt on branch worktrees/004-bot-hello. This run's folder is /state/runs/r1.");
+    const detached = workingPlaceLine({ path: '/tmp/wt', branch: null, runFolder: '/state/runs/r1' });
+    expect(detached).toBe("Your working place is /tmp/wt. This run's folder is /state/runs/r1.");
+    expect(detached).toBe(onBranch.replace(' on branch worktrees/004-bot-hello', ''));
+    expect(onBranch.startsWith(WORKING_PLACE_PREFIX)).toBe(true);
+    expect(detached.startsWith(WORKING_PLACE_PREFIX)).toBe(true);
+
+    const shared = buildBotPrompt({
+      body: BODY,
+      specFolder: null,
+      workingPlace: { path: '/Users/ada/code/hello', branch: 'main', runFolder: RF },
+    });
+    expect(shared.split('\n')).toEqual(goldenLines('prompt.shared.txt'));
+
+    const detachedPrompt = buildBotPrompt({
+      body: BODY,
+      specFolder: null,
+      workingPlace: { path: '/Users/ada/code/hello', branch: null, runFolder: RF },
+    });
+    expect(detachedPrompt.split('\n')).toEqual(goldenLines('prompt.detached.txt'));
+  });
+
+  it('absent', () => {
+    const prompts = [
+      buildBotPrompt({ body: 'x', specFolder: null }),
+      buildBotPrompt({ body: 'x', specFolder: null, workingPlace: null }),
+    ];
+    for (const prompt of prompts) {
+      expect(prompt.split('\n').filter((line) => line.startsWith(WORKING_PLACE_PREFIX))).toEqual([]);
+    }
+  });
+
+  it('slot', () => {
+    const checkoutPrompt = buildBotPrompt({
+      body: BODY,
+      specFolder: null,
+      checkoutRoot: '/Users/ada/worktrees/004-bot-hello',
+      workingPlace: { path: '/Users/ada/worktrees/004-bot-hello', branch: 'worktrees/004-bot-hello', runFolder: RF },
+    });
+    expect(checkoutPrompt.split('\n')).toEqual(goldenLines('prompt.worktree.txt'));
+
+    const prompts = [
+      checkoutPrompt,
+      buildBotPrompt({
+        body: BODY,
+        specFolder: null,
+        scheduled: true,
+        workingPlace: { path: '/Users/ada/worktrees/004-bot-hello', branch: 'worktrees/004-bot-hello', runFolder: RF },
+      }),
+      buildBotPrompt({
+        body: '[NEEDS-DECISION] a line in the body',
+        specFolder: null,
+        workingPlace: { path: '/Users/ada/worktrees/004-bot-hello', branch: 'worktrees/004-bot-hello', runFolder: RF },
+      }),
+    ];
+    for (const prompt of prompts) {
+      const lines = prompt.split('\n');
+      const wp = lines.findIndex((line) => line.startsWith(WORKING_PLACE_PREFIX));
+      const spec = lines.findIndex((line) => line.startsWith('Bound spec folder: '));
+      const marker = lines.findIndex((line) => line.startsWith('If you reach a decision only a person can make'));
+      const checkout = lines.findIndex((line) => line.startsWith('The repository checkout is '));
+      const needs = lines.findIndex((line) => line.startsWith('[NEEDS-DECISION]'));
+      expect(wp).toBe(spec + 1);
+      expect(wp).toBeLessThan(marker);
+      if (checkout !== -1) expect(wp).toBeLessThan(checkout);
+      if (needs !== -1) expect(wp).toBeLessThan(needs);
     }
   });
 });

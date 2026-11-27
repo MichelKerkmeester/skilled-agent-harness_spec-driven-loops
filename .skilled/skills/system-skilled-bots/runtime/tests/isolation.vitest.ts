@@ -32,15 +32,16 @@ import {
   resolveWorktreeBase,
   worktreeSlug,
 } from '../lib/isolation.js';
-import { checkoutLine } from '../lib/dispatch.js';
+import { checkoutLine, WORKING_PLACE_PREFIX, workingPlaceLine } from '../lib/dispatch.js';
 import { leaseFile, leaseKey, runBot } from '../lib/runner.js';
 import { readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { readRunRecord } from '../lib/run-record.js';
-import { identityStatePaths } from '../lib/state-root.js';
+import { identityStatePaths, recordFile } from '../lib/state-root.js';
 import { cleanupTemp, isolatedEnv, REAL_CHECKOUT, tempDir, tempRepo, tempSkilledTree } from './support.js';
 import { approveBots, botWorld, IDENTITY, stubReceipt, waitFor, writeBot } from './runner-support.js';
 
 import type { CreateWorktreeInput } from '../lib/isolation.js';
+import type { RunRecord } from '../lib/run-record.js';
 import type { BotWorld } from './runner-support.js';
 
 const FIXTURES = resolve(import.meta.dirname, 'fixtures');
@@ -657,4 +658,44 @@ describe('a parked worktree run and its resume', () => {
     expect(stubReceipt(world, resumed.runId as string)).toBeNull();
     expect(worktreePaths(world.checkoutRoot)).toEqual([world.checkoutRoot]);
   }, 90_000);
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Working place
+// ───────────────────────────────────────────────────────────────────
+
+describe('working place line', () => {
+  it('worktree run', async () => {
+    const world = botWorld({ SPECKIT_WORKTREE_BASE: tempDir('bots-wt-base-') });
+    const outcome = await runBot(world.input('worktree-posture', { senders: {} }));
+    expect(outcome.kind).toBe('completed');
+    const runId = outcome.runId as string;
+    const record = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, runId), 'utf8')) as RunRecord;
+    const { evidence } = record;
+    expect(typeof evidence.worktreePath).toBe('string');
+    expect(evidence.branch).toMatch(/^worktrees\/\d{3}-bot-worktree-posture$/);
+
+    // The line is built from the record's own values, so the prompt and the record cannot disagree.
+    const line = workingPlaceLine({ path: evidence.worktreePath as string, branch: evidence.branch, runFolder: evidence.runFolder });
+    const prompt = stubReceipt(world, runId)?.prompt ?? '';
+    expect(prompt.split('\n').filter((entry) => entry.startsWith(WORKING_PLACE_PREFIX))).toEqual([line]);
+    // The child started in the directory the line names.
+    expect(stubCwd(world, runId)).toBe(evidence.worktreePath);
+  });
+});
+
+describe('working place', () => {
+  it('refusal keeps the tree', async () => {
+    const world = botWorld({ SPECKIT_WORKTREE_BASE: tempDir('bots-wt-base-') });
+    const outcome = await runBot(world.input('worktree-posture', { namingScript: HALF_PROVISIONED_STUB, senders: {} }));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'worktree-setup-failed' });
+    const runId = outcome.runId as string;
+    const record = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, runId), 'utf8')) as RunRecord;
+    const { evidence } = record;
+    // A refusal at the isolation step still records the tree it kept and the branch it is on.
+    expect(typeof evidence.worktreePath).toBe('string');
+    expect(existsSync(evidence.worktreePath as string)).toBe(true);
+    expect(evidence.branch).toMatch(/^worktrees\/\d{3}-bot-/);
+    expect(stubReceipt(world, runId)).toBeNull();
+  });
 });

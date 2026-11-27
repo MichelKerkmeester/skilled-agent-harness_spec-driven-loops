@@ -88,6 +88,10 @@ export interface LastRun {
   exitClass: string | null;
   needsYouItemId: string | null;
   delivery: Array<{ channel: string; state: string }>;
+  /** The branch the run worked on, or null. */
+  branch: string | null;
+  /** The tree the run worked in, or null for a run in the shared checkout. */
+  worktreePath: string | null;
 }
 
 export interface BotStatusRow {
@@ -264,6 +268,9 @@ function lastRunOf(runs: RunRow[], snapshot: IndexSnapshot): LastRun | null {
     delivery: snapshot.deliveries
       .filter((entry) => entry.identityKey === last.identityKey && entry.runId === last.runId)
       .map((entry) => ({ channel: entry.channel, state: entry.state })),
+    // A summary stored before these fields existed has neither key, and each must read as null rather than vanish from the payload.
+    branch: typeof summary.branch === 'string' ? summary.branch : null,
+    worktreePath: typeof summary.worktreePath === 'string' ? summary.worktreePath : null,
   };
 }
 
@@ -790,6 +797,9 @@ export function formatStatus(report: StatusReport): string[] {
     if (row.flags.length > 1) parts.push(`flags ${row.flags.join(',')}`);
     if (row.heldBy !== null) parts.push(`held by ${row.heldBy}`);
     if (row.fix !== null) parts.push(`needs-reinstall (${row.reinstall.join(', ')}): ${row.fix}`);
+    // Appended after every existing part, so no consumer reading the row by position sees a part move.
+    if (row.lastRun !== null && row.lastRun.branch !== null) parts.push(`branch ${row.lastRun.branch}`);
+    if (row.lastRun !== null && row.lastRun.worktreePath !== null) parts.push(`worktree ${row.lastRun.worktreePath}`);
     lines.push(parts.join('\t'));
   }
   for (const duplicate of report.duplicateRoots) lines.push(`two checkouts for ${duplicate.identity}: ${duplicate.paths.join(' and ')}; no row was moved`);

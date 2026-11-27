@@ -1,11 +1,12 @@
+import { execFileSync } from 'node:child_process';
 import { chmodSync, existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { buildExecutorDispatchEnv } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js';
 import { parseExecutorConfig } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
-import { RUN_MARKER_ENV } from '../lib/dispatch.js';
+import { RUN_MARKER_ENV, WORKING_PLACE_PREFIX, workingPlaceLine } from '../lib/dispatch.js';
 import { listNeedsYouItems, needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import {
   EXIT_CODES,
@@ -18,14 +19,15 @@ import {
 import { readRunRecord } from '../lib/run-record.js';
 import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
 import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, writeRoutineState } from '../lib/routine-state.js';
-import { identityStatePaths, receiptFolder, sharedStatePaths } from '../lib/state-root.js';
+import { identityStatePaths, receiptFolder, recordFile, sharedStatePaths } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
-import { cleanupTemp } from './support.js';
-import { approveBots, botWorld, filesUnder, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { cleanupTemp, isolatedEnv, tempDir } from './support.js';
+import { approveBots, botWorld, filesUnder, IDENTITY, runCli, STUB_DIR, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
 import { writeRecord } from './status-support.js';
 
 import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { RunOutcome } from '../lib/runner.js';
+import type { RunRecord } from '../lib/run-record.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
@@ -654,5 +656,127 @@ describe('lineage folder cleanup', () => {
       // A failed cleanup would leave the tree behind and break the temp-folder teardown.
       if (lineage !== undefined && existsSync(lineage)) makeOwnerWritable(lineage);
     }
+  });
+});
+
+describe('working place', () => {
+  const PARK_EDIT_BOT = '---\nid: park-edit\ntrigger: {kind: manual}\nruntime: {kind: cli-codex}\nisolation: worktree\n---\nEdit the notes and ask before keeping them.\nSTUB:park-edit=parked.md\n';
+
+  /** The record's evidence, read from the record file rather than from a copy in the run folder. */
+  function evidenceOf(world: BotWorld, runId: string) {
+    return (JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, runId), 'utf8')) as RunRecord).evidence;
+  }
+
+  /** The branch the checkout is on, read the way the runner reads it. */
+  function checkoutBranchOf(checkoutRoot: string): string {
+    return execFileSync('git', ['-C', checkoutRoot, 'rev-parse', '--abbrev-ref', 'HEAD'], { encoding: 'utf8', env: isolatedEnv() }).trim();
+  }
+
+  function placeLines(prompt: string): string[] {
+    return prompt.split('\n').filter((entry) => entry.startsWith(WORKING_PLACE_PREFIX));
+  }
+
+  it('shared run branch', async () => {
+    const world = botWorld();
+    const outcome = await runBot(world.input('manual-ok'));
+    expect(outcome.kind).toBe('completed');
+    const runId = outcome.runId as string;
+    const evidence = evidenceOf(world, runId);
+    const branch = checkoutBranchOf(world.checkoutRoot);
+    expect(evidence.branch).toBe(branch);
+    expect(evidence.worktreePath).toBeNull();
+    const line = workingPlaceLine({ path: world.checkoutRoot, branch, runFolder: evidence.runFolder });
+    expect(placeLines(stubReceipt(world, runId)?.prompt ?? '')).toEqual([line]);
+  });
+
+  it('detached head', async () => {
+    const world = botWorld();
+    execFileSync('git', ['-C', world.checkoutRoot, 'checkout', '-q', '--detach'], { env: isolatedEnv(), stdio: 'ignore' });
+    const outcome = await runBot(world.input('manual-ok'));
+    expect(outcome.kind).toBe('completed');
+    const runId = outcome.runId as string;
+    const evidence = evidenceOf(world, runId);
+    expect(evidence.branch).toBeNull();
+    const line = workingPlaceLine({ path: world.checkoutRoot, branch: null, runFolder: evidence.runFolder });
+    const lines = placeLines(stubReceipt(world, runId)?.prompt ?? '');
+    expect(lines).toEqual([line]);
+    expect(lines[0]).not.toContain(' on branch ');
+  });
+
+  it('unreadable branch', async () => {
+    const realGit = execFileSync('sh', ['-c', 'command -v git'], { encoding: 'utf8' }).trim();
+    const folder = tempDir('bots-git-');
+    const fake = join(folder, 'git');
+    writeFileSync(fake, ['#!/bin/sh', 'for a in "$@"; do [ "$a" = "--abbrev-ref" ] && exit 1; done', `exec ${realGit} "$@"`, ''].join('\n'));
+    chmodSync(fake, 0o755);
+    const world = botWorld({ PATH: [folder, STUB_DIR, dirname(process.execPath), '/usr/bin', '/bin'].join(':') });
+    const outcome = await runBot(world.input('manual-ok'));
+    // A git that cannot answer the branch question never refuses the run.
+    expect(outcome.kind).toBe('completed');
+    expect(stubRunCount(world)).toBe(1);
+    expect(evidenceOf(world, outcome.runId as string).branch).toBeNull();
+  });
+
+  it('refusal records neither', async () => {
+    const world = botWorld({ PLANTED_TOKEN: 'leaky-value-77xq9' });
+    writeBot(world, 'leaky', '---\nid: leaky\ntrigger: {kind: manual}\nruntime: {kind: cli-codex}\nisolation: shared\n---\nLog in with leaky-value-77xq9.\n');
+    const outcome = await runBot(world.input('leaky'));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'body-secret' });
+    const evidence = evidenceOf(world, outcome.runId as string);
+    expect(evidence.branch).toBeNull();
+    expect(evidence.worktreePath).toBeNull();
+  });
+
+  it('parked prompt gains the line', async () => {
+    const world = botWorld({ SPECKIT_WORKTREE_BASE: tempDir('bots-wt-base-') });
+    writeBot(world, 'park-edit', PARK_EDIT_BOT);
+    const parked = await runBot(world.input('park-edit', { senders: {} }));
+    if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
+    const parkedEvidence = evidenceOf(world, parked.runId);
+    const tree = parkedEvidence.worktreePath as string;
+    const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
+    if (!item.ok) throw new Error(item.reason);
+    // A prompt parked before the line existed carries no working-place line at all.
+    const stripped = item.value.prompt.split('\n').filter((line) => !line.startsWith(WORKING_PLACE_PREFIX)).join('\n');
+    expect(stripped).not.toBe(item.value.prompt);
+    writeNeedsYouItem(world.stateRoot, { ...item.value, prompt: stripped, answer: { text: 'keep it', answeredAt: new Date().toISOString() } });
+
+    const resumed = await runBot(world.input('park-edit', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
+    expect(resumed.kind, JSON.stringify(resumed)).toBe('completed');
+    const resumedEvidence = evidenceOf(world, resumed.runId as string);
+    expect(resumedEvidence.worktreePath).toBe(tree);
+    const line = workingPlaceLine({ path: tree, branch: parkedEvidence.branch, runFolder: resumedEvidence.runFolder });
+    const prompt = stubReceipt(world, resumed.runId as string)?.prompt ?? '';
+    expect(placeLines(prompt)).toEqual([line]);
+    const lines = prompt.split('\n');
+    expect(lines[lines.findIndex((entry) => entry.startsWith('Bound spec folder: ')) + 1]).toBe(line);
+  }, 90_000);
+
+  it('parked prompt same path', async () => {
+    const world = botWorld();
+    approveBots(world);
+    const prompt = 'Bound spec folder: specs/demo/001-tidy.\n' + workingPlaceLine({ path: world.checkoutRoot, branch: 'an-old-branch', runFolder: '/old/run/folder' }) + '\n\nTidy the notes folder.';
+    writeNeedsYouItem(world.stateRoot, item(world, { prompt, answer: { text: 'keep them', answeredAt: new Date().toISOString() } }));
+    const outcome = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'rq-resume', itemId: 'parked-1' } }));
+    expect(outcome.kind).toBe('completed');
+    const evidence = evidenceOf(world, outcome.runId as string);
+    const line = workingPlaceLine({ path: world.checkoutRoot, branch: checkoutBranchOf(world.checkoutRoot), runFolder: evidence.runFolder });
+    const seen = stubReceipt(world, outcome.runId as string)?.prompt ?? '';
+    expect(placeLines(seen)).toEqual([line]);
+    expect(seen).not.toContain('/old/run/folder');
+    expect(seen).not.toContain('an-old-branch');
+  });
+
+  it('parked prompt another path', async () => {
+    const world = botWorld();
+    approveBots(world);
+    const elsewhere = workingPlaceLine({ path: join(tempDir('bots-elsewhere-'), 'old-tree'), branch: 'main', runFolder: '/old/run/folder' });
+    const prompt = 'Bound spec folder: specs/demo/001-tidy.\n' + elsewhere + '\n\nTidy the notes folder.';
+    writeNeedsYouItem(world.stateRoot, item(world, { prompt, answer: { text: 'keep them', answeredAt: new Date().toISOString() } }));
+    const outcome = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'rq-resume', itemId: 'parked-1' } }));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'resume-item-invalid', detail: 'the parked prompt names another working place' });
+    expect(stubRunCount(world)).toBe(0);
+    const written = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, outcome.runId as string), 'utf8')) as RunRecord;
+    expect(written.exit.reason).toBe('resume-item-invalid');
   });
 });
