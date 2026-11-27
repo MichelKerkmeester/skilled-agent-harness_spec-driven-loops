@@ -1,0 +1,185 @@
+{
+  "topic": "Review: Review the finished reference evidence research in specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/: the synthesis research.md, its regrade-log.md and the 40 iteration records under research/lineages/. Check that each recommendation is backed by the reference and plan lines it cites, that grades are right, that rejected findings were rightly rejected, that no well-supported finding was missed, and that recommendations do not contradict each other, the packet decisions or the licence rules. Read-only against the research, the 003 build plan and the reference repos.",
+  "sessionId": "2026-11-27T09:14:53.505Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "depthMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": {
+      "depth1": 0.5,
+      "depth2": 0.35,
+      "depth3": 0.15
+    },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research",
+  "createdAt": "2026-11-27T09:14:53.505Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "Review the finished reference evidence research in specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/: the synthesis research.md, its regrade-log.md and the 40 iteration records under research/lineages/. Check that each recommendation is backed by the reference and plan lines it cites, that grades are right, that rejected findings were rightly rejected, that no well-supported finding was missed, and that recommendations do not contradict each other, the packet decisions or the licence rules. Read-only against the research, the 003 build plan and the reference repos.",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": null,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.depthMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/regrade-log.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-001.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-002.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-003.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-004.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-005.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-006.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-007.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-008.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-009.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/iterations/iteration-010.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-001.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-002.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-003.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-004.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-005.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-006.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-007.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-008.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-009.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-2/iterations/iteration-010.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-001.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-002.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-003.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-004.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-005.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-006.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-007.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-008.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-009.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-1/iterations/iteration-010.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-001.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-002.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-003.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-004.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-005.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-006.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-007.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-008.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-009.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/vibe-2/iterations/iteration-010.md"
+  ],
+  "stopPolicy": "max-iterations",
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-mistral-vibe",
+        "model": "deepseek-flash",
+        "label": "vibe",
+        "count": 2,
+        "iterations": 10
+      }
+    ],
+    "concurrency": 2
+  },
+  "resource_map": {
+    "emit": true
+  }
+}

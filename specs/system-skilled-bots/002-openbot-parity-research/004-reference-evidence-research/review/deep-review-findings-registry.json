@@ -1,0 +1,1549 @@
+{
+  "mergedFrom": [
+    "vibe-1",
+    "vibe-2"
+  ],
+  "lineageExecutors": {
+    "vibe-1": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    },
+    "vibe-2": {
+      "kind": "cli-mistral-vibe",
+      "model": "deepseek-flash",
+      "reasoningEffort": null
+    }
+  },
+  "mergedVerdict": "CONDITIONAL",
+  "failedRequiredGateIds": [],
+  "openFindings": [
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "A fifth row says a claim is inferred, which section 2's inventory does not name",
+      "file": "research/research.md",
+      "line": 62,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 6,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "Nine origin ids resolve to no finding in the record they name, and eight of the sixteen net-new candidates carry one",
+      "file": "research/research.md",
+      "line": 24,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Section 1 says a finding graded wrong is not in the document, and 27 wrong origins are credited in the Origin column of surviving rows",
+      "file": "research/research.md",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-001",
+      "severity": "P2",
+      "title": "Section 11 says nine depth-2 nodes and its own table accounts for ten",
+      "file": "research/research.md",
+      "line": 690,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Section 12 says the table states where each of the 13 registry questions stands, and the table holds 12 rows",
+      "file": "research/research.md",
+      "line": 707,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R4-P2-001",
+      "severity": "P2",
+      "title": "Section 12's table is described as covering the thirteen registry questions but holds twelve rows, and the four resolved questions are named only in section 11",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 707,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-001",
+      "severity": "P2",
+      "title": "Section 14 reports the resource map's 28 \"missing\" entries as 28 missing files, and 22 of them are citation forms no file could satisfy",
+      "file": "research/research.md",
+      "line": 745,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Section 2 says the plan lacks about twenty guards, and section 3 pitfall tables hold 32 rows",
+      "file": "research/research.md",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Section 2's guard 3 repeats the incomplete encoded-forms list, so the gap appears in two places",
+      "file": "research/research.md",
+      "line": 278,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 5,
+          "from": "P2",
+          "to": "P2",
+          "reason": "Refinement of an earlier finding"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R6-P2-002",
+      "severity": "P2",
+      "title": "Section 7 says the plan closed all three S2 vault findings, and the third was accepted as a residual rather than closed",
+      "file": "research/research.md",
+      "line": 583,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Section 9 says the checker resolved every source tag in the 40 records, and 3 tags are in neither column",
+      "file": "research/research.md",
+      "line": 663,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R1-P2-002",
+      "severity": "P2",
+      "title": "The 002 lift row names contracts/prompt-sections.md as the owner of the prompt order, and that file says phase 005 owns it",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 196,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R1-P2-001",
+      "severity": "P2",
+      "title": "The 003 lift row says the full checkout adds a build log, but the log sits outside the checkout",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 186,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R5-P2-001",
+      "severity": "P2",
+      "title": "The 005 opening says the references add two design checks and one test while the section carries six rows, and the three it omits include a confirmed plan defect",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 175,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R6-P2-001",
+      "severity": "P2",
+      "title": "The 006 kind-list row catches the plan kind order but not its kind count, so the plan OpenBot six kinds stands against a reference type that declares seven",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 206,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The 008 hex justification cites a value-file line for a keychain read",
+      "file": "research/research.md",
+      "line": 278,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R2-P2-001",
+      "severity": "P2",
+      "title": "The 008 pitfall 1 guard does not say whether lib/secrets-guard.ts is still lifted, so T013 and AC-012 lose their file",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 305,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R9-P2-001",
+      "severity": "P2",
+      "title": "The 009 opening counts the name-and-description list among what is worth taking, but no lift row takes it and the differences table defers it",
+      "file": "research.md",
+      "line": 286,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The 010 paste row calls its mechanism an inference when the 003 row in the same document establishes it with two citations",
+      "file": "research/research.md",
+      "line": 336,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R10-P2-001",
+      "severity": "P2",
+      "title": "The Bottom Line calls 303 raw findings and partitions them into 121 kept plus a 332-row remainder, which cannot close",
+      "file": "research.md",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "The bottom line's lift list names 4 of the 20 lift rows section 3 carries and does not say it is a selection",
+      "file": "research/research.md",
+      "line": 38,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-002",
+      "severity": "P2",
+      "title": "The licence paragraph says every row names the licence, and 49 of 101 numbered rows do not",
+      "file": "research/research.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R8-P2-001",
+      "severity": "P2",
+      "title": "The licence summary collapses Apache-2.0's obligations into \"its notice\", erasing the distinction the plan draws",
+      "file": "research/research.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-001",
+      "severity": "P2",
+      "title": "The ranked order flags two of the four weak candidates and ranks the other two in the top four without a flag",
+      "file": "research/research.md",
+      "line": 499,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R9-P2-002",
+      "severity": "P2",
+      "title": "The reading guide names two of the six regrade outcomes, leaving 144 findings with no stated home",
+      "file": "research/research.md",
+      "line": 22,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "V2-R3-P2-001",
+      "severity": "P2",
+      "title": "The regrade log's outcome vocabulary is never defined, and `wrong` covers both a false fact and a true fact with a false implication",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/regrade-log.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-2"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-2",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    },
+    {
+      "findingId": "R7-P2-002",
+      "severity": "P2",
+      "title": "The tinychannels row says diff -rq prints only wiki/ lines, and it prints 34 lines of which 13 are wiki/",
+      "file": "research/research.md",
+      "line": 448,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-1"
+      ],
+      "_untrusted": [
+        {
+          "lineage": "vibe-1",
+          "reason": "runner_failed:exit"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 26
+  },
+  "openFindingsCount": 27,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 1,
+  "activeP2": 26,
+  "searchDebt": [],
+  "dimensionCoverage": {},
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 3,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "C/openhuman-full/vendor/tinysecurity/crates/tinysecurity-policy/src/host_tool.rs",
+          "C/openhuman-full/vendor/tinysecurity/crates/tinysecurity-redact",
+          "C/buzz-main/crates/ifc-core/src/lib.rs",
+          "C/OpenBot-main/shared/what-if.ts",
+          "C/hermes-muse-main/plugin.yaml"
+        ],
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "C/tinychannels-main",
+          "C/openhuman-full/vendor/tinychannels"
+        ],
+        "protocolId": "integration_naming",
+        "status": "pass",
+        "gateClass": "advisory"
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "research/research.md:440",
+          "research/research.md:444-464"
+        ],
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard"
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "divergenceByLineage": {
+    "vibe-1": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    },
+    "vibe-2": {
+      "started": [],
+      "completed": [],
+      "failed": [],
+      "overrides": [],
+      "saturatedDirections": [],
+      "remainingFrontier": [],
+      "currentFocus": ""
+    }
+  },
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:214",
+        "research/research.md:222",
+        "research/research.md:230",
+        "research/research.md:238"
+      ],
+      "bugClass": "grade_inflation",
+      "disposition": "ruled_out",
+      "rationale": "Eleven confirmed rows across phases 001-004 were read against their cited lines and all hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/shared/routine-firing.ts:9-13",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/terminal.rs:34-47",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-acp/src/pool.rs:2284-2289"
+      ],
+      "reason": "verified by direct read of each cited reference and plan line",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:222"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "The two pitfall rows that name a plan-side gap name a window the plan does not cover, not a rule it already has",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/data-model.md:88",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md:68"
+      ],
+      "reason": "the plan-side searches in the rows reproduce",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:1-60"
+      ],
+      "bugClass": "licence_misgrade",
+      "disposition": "ruled_out",
+      "rationale": "All ten LICENSE files and the two Cargo.toml licence lines were read and match the document",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1-2",
+        "specs/system-skilled-bots/context/tinychannels-main/Cargo.toml:55",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/Cargo.toml:24"
+      ],
+      "reason": "Every repo licence matches the map, including the OpenMausBot enterprise carve-out and the two GPL-3.0-only declarations",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:307"
+      ],
+      "bugClass": "secret_leak_gap",
+      "disposition": "ruled_out",
+      "rationale": "The reference builds four base64 forms and the plan scans one padded form plus encodeURIComponent",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/crates/tinysecurity-redact/src/patterns.rs:248-249",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:73"
+      ],
+      "reason": "patterns.rs:248-249 imports STANDARD, STANDARD_NO_PAD, URL_SAFE and URL_SAFE_NO_PAD, so the gap is real",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:452"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "records.md:181-184 names no order and the error field at :173 carries both flags with no precedence",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md:181-184"
+      ],
+      "reason": "The plan states no precedence, so the guard is needed",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "All 332 rows parsed by script and grouped by table heading; every cell matches",
+      "evidenceRefs": [
+        "research/regrade-log.md:1-372",
+        "research/research.md:625-636"
+      ],
+      "reason": "All seven group rows and the totals row are exact in all six outcome columns and in the kept/confirmed/weak columns",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/regrade-log.md:29",
+        "research/regrade-log.md:338",
+        "research/regrade-log.md:339",
+        "research/regrade-log.md:341",
+        "research/regrade-log.md:343",
+        "research/regrade-log.md:344",
+        "research/regrade-log.md:362"
+      ],
+      "bugClass": "rejection_correctness",
+      "disposition": "ruled_out",
+      "rationale": "Seven rows re-read against their cited lines and all seven hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-main/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tiny-artifacts/README.md:1-4",
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:21",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/routines/plan.ts:54-60"
+      ],
+      "reason": "openhuman-main/vendor holds 21 empty folders, tiny-artifacts has a README, tinywallet is recorded at research.md:464, the 012 stub executor exists, the scorer line is evals/README.md:21, cron_refuses sits at host_tool.rs:19-26, and plan.ts:54-60 records the empty-subject match",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "Section 3 holds 84 rows 57 confirmed 27 weak, section 4 holds 21 confirmed, section 5 holds 16 rows 12 confirmed 4 weak; the sums are 121/90/31",
+      "evidenceRefs": [
+        "research/research.md:64-437",
+        "research/research.md:438-467",
+        "research/research.md:468-515"
+      ],
+      "reason": "Every group row and the totals row match to the cell",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:64-437"
+      ],
+      "bugClass": "heading_completeness",
+      "disposition": "ruled_out",
+      "rationale": "All fourteen headings were compared with the fourteen 003 folders",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/"
+      ],
+      "reason": "001-activity-and-actor through 014-deep-review match character for character",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:173-300"
+      ],
+      "bugClass": "citation_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Twenty-eight rows were read against their cited lines and every reference half and plan half resolves",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/turnstone-main/docs/memory.md:38-39",
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js:11",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:5",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63-65"
+      ],
+      "reason": "turnstone memory.md:38-39, OpenGhost memory.js:11 and :37, approvals.md:5 and :40, approval-outcomes.ts:22-23, app-grants queries.ts:6-12, 008 spec:151 and :169, backends.md:47 and :63-65, leak-checks.md:61 all say what the rows claim",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:206-231"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "Each differences row was read against the plan line it names and the discrepancy is real",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:99",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/design/fixtures/action-kinds.json:19",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:96"
+      ],
+      "reason": "The kind order differs from approvals.md:5, remove sits in the delete list against approvals.md:40, and memory false contradicts REQ-010",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:350",
+        "research/research.md:360"
+      ],
+      "bugClass": "transport_retry_map",
+      "disposition": "ruled_out",
+      "rationale": "channel_ops.rs:1975-1977 moves the offset before continuing, channel_types.rs:12 is 4096, and slack api.rs:150-190 retries ratelimited plus exactly four transient codes",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1975-1977",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs:12",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs:150-190"
+      ],
+      "reason": "All three reproduce in the reference source",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:220"
+      ],
+      "bugClass": "grant_bound",
+      "disposition": "ruled_out",
+      "rationale": "approvals.ts:62-69 is a type declaration and the file holds no classify function",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/approvals.ts:62-69"
+      ],
+      "reason": "A search for classifyAction and function classify in approvals.ts returns no hit",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "tag_resolution",
+      "disposition": "ruled_out",
+      "rationale": "All 616 tags in research.md and all 331 in regrade-log.md were expanded through the six section 1 prefixes and checked against the files",
+      "evidenceRefs": [
+        "research/research.md",
+        "research/regrade-log.md"
+      ],
+      "reason": "947 of 947 resolve, with no missing path, no out-of-range line and no tag without a line",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "count_recompute",
+      "disposition": "ruled_out",
+      "rationale": "The tag counts, the licence counts and the openhuman-tui counts were each recomputed",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui"
+      ],
+      "reason": "616 and 331 tags, 20 manifests with a licence line of which 18 are GPL-3.0-only and 2 GPL-3.0-or-later, tinyvoice with none, and 55 files 9601 lines 9526 under src in both checkouts",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:529-620"
+      ],
+      "bugClass": "quote_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "The two S3 lines section 7 quotes were read directly",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:111",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:221"
+      ],
+      "reason": "S3:111 reads Reference code to study first none in C, and S3:221 reads Reference to study first no context repository applies, both as quoted",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:468-515"
+      ],
+      "bugClass": "rank_permutation",
+      "disposition": "ruled_out",
+      "rationale": "The sixteen bracket numbers were read in order and compared with the two changes the paragraph states",
+      "evidenceRefs": [
+        "research/research.md:495",
+        "research/research.md:497-512"
+      ],
+      "reason": "The order is 1,2,3,11,4,5,7,6,8,9,10,12,13,14,15,16, a permutation of 1 to 16 with exactly candidate 11 up and candidate 7 above candidate 6",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:516-528"
+      ],
+      "bugClass": "skip_row_evidence",
+      "disposition": "ruled_out",
+      "rationale": "All seven bullets were read against their cited lines",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinybox/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinycomputer/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyhosts/README.md:3-4",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:168",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:99"
+      ],
+      "reason": "The three crate READMEs, LICENSING.md:6-9, S1:168, B/spec.md:99, L/posture.ts:5-6 and 002 spec:168 all say what the rows claim, and the regrade pointer resolves to :312",
+      "lineage": "vibe-2"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-026",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:470"
+      ],
+      "bugClass": "candidate_claim",
+      "disposition": "ruled_out",
+      "rationale": "Candidate 3 was read against configuration.md:190-194 and its plan-side search",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/configuration.md:190-194",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:82"
+      ],
+      "reason": "AGENT_STALL_TIMEOUT_MS watches the stall, writes agent.stream_stalled and switches off when unset or 0, as the row says",
+      "lineage": "vibe-2"
+    }
+  ],
+  "untrustedLineages": [
+    {
+      "lineage": "vibe-1",
+      "runnerStatus": "failed",
+      "failureClass": "exit",
+      "unexaminedPasses": []
+    },
+    {
+      "lineage": "vibe-2",
+      "runnerStatus": "failed",
+      "failureClass": "exit",
+      "unexaminedPasses": []
+    }
+  ]
+}

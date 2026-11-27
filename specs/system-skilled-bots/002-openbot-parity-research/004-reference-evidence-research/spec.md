@@ -165,8 +165,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 Abridged from `research/research.md`, which is the source of truth.
 
-- The run finished: 4 lineages, 40 iterations, 303 raw findings. After every finding was re-checked against its cited line, 121 rows stand (90 confirmed, 31 weak). The regrade log holds 332 rows, 106 of them wrong.
-- The plan already carries most of what the references offer. The gain is four lifts, about twenty guards, six places where the plan contradicts itself and five corrections to the earlier syntheses.
+- The run finished: 4 lineages, 40 iterations, 303 raw findings. After every finding was re-checked against its cited line, 121 rows stand (86 confirmed, 35 weak, after two reviews of the synthesis moved four rows to weak). The regrade log holds 332 rows from the verification pass, 106 of them wrong.
+- The plan already carries most of what the references offer. The gain is a short list of lifts, about thirty guards, six places where the plan contradicts itself and five corrections to the earlier syntheses.
 - `openhuman-full` holds 21 vendored crates, not the five this spec names, and all 21 are GPL-3.0. `tinychannels-main` is GPL-3.0 too. Both are design references only. The `openhuman-tui` crate is identical in both checkouts.
 - Highest-stakes guards: bracketed paste in 003 and 010, the unknown-before-retryable order in 011, the scan forms and the placeholder gate in 008, the deny wording in 006 and the skill label in 009.
 - Sixteen net-new candidates are ranked. The first three are a per-bot cap on runs per hour, inbound coalescing with one outcome per message and a stall watchdog. Nothing contradicts the skip list.

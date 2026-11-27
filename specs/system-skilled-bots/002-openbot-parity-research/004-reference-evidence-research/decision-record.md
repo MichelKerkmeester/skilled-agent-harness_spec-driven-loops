@@ -36,6 +36,7 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Research both angles: per planned 003 phase the reference code to lift or mirror and its pitfalls, plus what the ten repos have that the plan and the skip list both miss, with openhuman-full read first. | Not stated. | None | spec.md Scope, scratch/research-topic.txt |
 | Q002 | Run four parallel lineages of 10 iterations: two on cli-mistral-vibe deepseek-flash and two on cli-pi deepseek-v4.1-flash-1017, all at max thinking. | Not stated. | None | goal.md D1, plan.md Invocation |
+| Q003 | Review the finished research with two cli-mistral-vibe deepseek-flash lineages of 10 iterations each. | The runtime refuses a single Vibe lineage, and two full lineages give two independent reads to compare. | None | review/fanout-config.json |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -84,6 +85,25 @@ Options:
 Answer:
 ```text
 4 x 10, vibe + pi (Recommended)
+```
+
+### Q003
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01XRKfaKwDniA3PaFBnvH1mE:0 -->
+
+Question:
+```text
+Deep review cannot run a single Vibe lineage. The runtime refuses it with "cli-mistral-vibe runs only as a fan-out lineage; rerun with --count=2" (workflow-steps.cjs:458). The only Vibe-only shape is two Vibe lineages on deepseek-flash, which always runs at max thinking. How should the 10 iterations be split?
+```
+
+Options:
+```text
+2 lineages x 10 (Recommended)
+2 lineages x 5
+```
+
+Answer:
+```text
+2 lineages x 10 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

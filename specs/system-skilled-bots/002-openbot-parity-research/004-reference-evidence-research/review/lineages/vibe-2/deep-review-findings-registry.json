@@ -1,0 +1,1271 @@
+{
+  "sessionId": "fanout-vibe-2-1795770902266-zziqbr",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "timestamp": "2026-11-27T09:36:27.768Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "V2-R1-P2-001",
+      "severity": "P2",
+      "title": "The 003 lift row says the full checkout adds a build log, but the log sits outside the checkout",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 186,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R1-P2-002",
+      "severity": "P2",
+      "title": "The 002 lift row names contracts/prompt-sections.md as the owner of the prompt order, and that file says phase 005 owns it",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 196,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R10-P2-001",
+      "severity": "P2",
+      "title": "The Bottom Line calls 303 raw findings and partitions them into 121 kept plus a 332-row remainder, which cannot close",
+      "file": "research.md",
+      "line": 34,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R2-P2-001",
+      "severity": "P2",
+      "title": "The 008 pitfall 1 guard does not say whether lib/secrets-guard.ts is still lifted, so T013 and AC-012 lose their file",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 305,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R3-P2-001",
+      "severity": "P2",
+      "title": "The regrade log's outcome vocabulary is never defined, and `wrong` covers both a false fact and a true fact with a false implication",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/regrade-log.md",
+      "line": 3,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R4-P2-001",
+      "severity": "P2",
+      "title": "Section 12's table is described as covering the thirteen registry questions but holds twelve rows, and the four resolved questions are named only in section 11",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 707,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R5-P2-001",
+      "severity": "P2",
+      "title": "The 005 opening says the references add two design checks and one test while the section carries six rows, and the three it omits include a confirmed plan defect",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 175,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R6-P2-001",
+      "severity": "P2",
+      "title": "The 006 kind-list row catches the plan kind order but not its kind count, so the plan OpenBot six kinds stands against a reference type that declares seven",
+      "file": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "line": 206,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "V2-R9-P2-001",
+      "severity": "P2",
+      "title": "The 009 opening counts the name-and-description list among what is worth taking, but no lift row takes it and the differences table defers it",
+      "file": "research.md",
+      "line": 286,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": null,
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 9
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "citation_mismatch",
+      "count_arithmetic",
+      "count_recompute",
+      "heading_completeness",
+      "kind_set_mismatch",
+      "licence_misgrade",
+      "outcome_vocabulary",
+      "question_accounting",
+      "rank_permutation",
+      "rejection_correctness",
+      "secret_leak_gap",
+      "skip_row_evidence",
+      "summary_undercount",
+      "tag_resolution",
+      "transport_retry_map"
+    ],
+    "ruledOut": [
+      "candidate_claim",
+      "citation_mismatch",
+      "count_arithmetic",
+      "count_recompute",
+      "grade_inflation",
+      "grant_bound",
+      "heading_completeness",
+      "licence_misgrade",
+      "plan_side_miss",
+      "quote_accuracy",
+      "rank_permutation",
+      "rejection_correctness",
+      "secret_leak_gap",
+      "skip_row_evidence",
+      "tag_resolution",
+      "transport_retry_map"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "citation_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "grade_inflation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "plan_side_miss": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "licence_misgrade": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_leak_gap": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "rejection_correctness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_arithmetic": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          4
+        ]
+      },
+      "outcome_vocabulary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "heading_completeness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "question_accounting": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "summary_undercount": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "kind_set_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "transport_retry_map": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "grant_bound": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "tag_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "count_recompute": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "quote_accuracy": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "iteration_record_tag_rerun": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "rank_permutation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "skip_row_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "candidate_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:214",
+        "research/research.md:222",
+        "research/research.md:230",
+        "research/research.md:238"
+      ],
+      "bugClass": "grade_inflation",
+      "disposition": "ruled_out",
+      "rationale": "Eleven confirmed rows across phases 001-004 were read against their cited lines and all hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/shared/routine-firing.ts:9-13",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/terminal.rs:34-47",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-acp/src/pool.rs:2284-2289"
+      ],
+      "reason": "verified by direct read of each cited reference and plan line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:222"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "The two pitfall rows that name a plan-side gap name a window the plan does not cover, not a rule it already has",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/data-model.md:88",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md:68"
+      ],
+      "reason": "the plan-side searches in the rows reproduce"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:1-60"
+      ],
+      "bugClass": "licence_misgrade",
+      "disposition": "ruled_out",
+      "rationale": "All ten LICENSE files and the two Cargo.toml licence lines were read and match the document",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1-2",
+        "specs/system-skilled-bots/context/tinychannels-main/Cargo.toml:55",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/Cargo.toml:24"
+      ],
+      "reason": "Every repo licence matches the map, including the OpenMausBot enterprise carve-out and the two GPL-3.0-only declarations"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:307"
+      ],
+      "bugClass": "secret_leak_gap",
+      "disposition": "ruled_out",
+      "rationale": "The reference builds four base64 forms and the plan scans one padded form plus encodeURIComponent",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/crates/tinysecurity-redact/src/patterns.rs:248-249",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:73"
+      ],
+      "reason": "patterns.rs:248-249 imports STANDARD, STANDARD_NO_PAD, URL_SAFE and URL_SAFE_NO_PAD, so the gap is real"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:452"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "records.md:181-184 names no order and the error field at :173 carries both flags with no precedence",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md:181-184"
+      ],
+      "reason": "The plan states no precedence, so the guard is needed"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "All 332 rows parsed by script and grouped by table heading; every cell matches",
+      "evidenceRefs": [
+        "research/regrade-log.md:1-372",
+        "research/research.md:625-636"
+      ],
+      "reason": "All seven group rows and the totals row are exact in all six outcome columns and in the kept/confirmed/weak columns"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/regrade-log.md:29",
+        "research/regrade-log.md:338",
+        "research/regrade-log.md:339",
+        "research/regrade-log.md:341",
+        "research/regrade-log.md:343",
+        "research/regrade-log.md:344",
+        "research/regrade-log.md:362"
+      ],
+      "bugClass": "rejection_correctness",
+      "disposition": "ruled_out",
+      "rationale": "Seven rows re-read against their cited lines and all seven hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-main/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tiny-artifacts/README.md:1-4",
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:21",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/routines/plan.ts:54-60"
+      ],
+      "reason": "openhuman-main/vendor holds 21 empty folders, tiny-artifacts has a README, tinywallet is recorded at research.md:464, the 012 stub executor exists, the scorer line is evals/README.md:21, cron_refuses sits at host_tool.rs:19-26, and plan.ts:54-60 records the empty-subject match"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "Section 3 holds 84 rows 57 confirmed 27 weak, section 4 holds 21 confirmed, section 5 holds 16 rows 12 confirmed 4 weak; the sums are 121/90/31",
+      "evidenceRefs": [
+        "research/research.md:64-437",
+        "research/research.md:438-467",
+        "research/research.md:468-515"
+      ],
+      "reason": "Every group row and the totals row match to the cell"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:64-437"
+      ],
+      "bugClass": "heading_completeness",
+      "disposition": "ruled_out",
+      "rationale": "All fourteen headings were compared with the fourteen 003 folders",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/"
+      ],
+      "reason": "001-activity-and-actor through 014-deep-review match character for character"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:173-300"
+      ],
+      "bugClass": "citation_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Twenty-eight rows were read against their cited lines and every reference half and plan half resolves",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/turnstone-main/docs/memory.md:38-39",
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js:11",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:5",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63-65"
+      ],
+      "reason": "turnstone memory.md:38-39, OpenGhost memory.js:11 and :37, approvals.md:5 and :40, approval-outcomes.ts:22-23, app-grants queries.ts:6-12, 008 spec:151 and :169, backends.md:47 and :63-65, leak-checks.md:61 all say what the rows claim"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:206-231"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "Each differences row was read against the plan line it names and the discrepancy is real",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:99",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/design/fixtures/action-kinds.json:19",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:96"
+      ],
+      "reason": "The kind order differs from approvals.md:5, remove sits in the delete list against approvals.md:40, and memory false contradicts REQ-010"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:350",
+        "research/research.md:360"
+      ],
+      "bugClass": "transport_retry_map",
+      "disposition": "ruled_out",
+      "rationale": "channel_ops.rs:1975-1977 moves the offset before continuing, channel_types.rs:12 is 4096, and slack api.rs:150-190 retries ratelimited plus exactly four transient codes",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1975-1977",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs:12",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs:150-190"
+      ],
+      "reason": "All three reproduce in the reference source"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:220"
+      ],
+      "bugClass": "grant_bound",
+      "disposition": "ruled_out",
+      "rationale": "approvals.ts:62-69 is a type declaration and the file holds no classify function",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/approvals.ts:62-69"
+      ],
+      "reason": "A search for classifyAction and function classify in approvals.ts returns no hit"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "tag_resolution",
+      "disposition": "ruled_out",
+      "rationale": "All 616 tags in research.md and all 331 in regrade-log.md were expanded through the six section 1 prefixes and checked against the files",
+      "evidenceRefs": [
+        "research/research.md",
+        "research/regrade-log.md"
+      ],
+      "reason": "947 of 947 resolve, with no missing path, no out-of-range line and no tag without a line"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "count_recompute",
+      "disposition": "ruled_out",
+      "rationale": "The tag counts, the licence counts and the openhuman-tui counts were each recomputed",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui"
+      ],
+      "reason": "616 and 331 tags, 20 manifests with a licence line of which 18 are GPL-3.0-only and 2 GPL-3.0-or-later, tinyvoice with none, and 55 files 9601 lines 9526 under src in both checkouts"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:529-620"
+      ],
+      "bugClass": "quote_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "The two S3 lines section 7 quotes were read directly",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:111",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:221"
+      ],
+      "reason": "S3:111 reads Reference code to study first none in C, and S3:221 reads Reference to study first no context repository applies, both as quoted"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:468-515"
+      ],
+      "bugClass": "rank_permutation",
+      "disposition": "ruled_out",
+      "rationale": "The sixteen bracket numbers were read in order and compared with the two changes the paragraph states",
+      "evidenceRefs": [
+        "research/research.md:495",
+        "research/research.md:497-512"
+      ],
+      "reason": "The order is 1,2,3,11,4,5,7,6,8,9,10,12,13,14,15,16, a permutation of 1 to 16 with exactly candidate 11 up and candidate 7 above candidate 6"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:516-528"
+      ],
+      "bugClass": "skip_row_evidence",
+      "disposition": "ruled_out",
+      "rationale": "All seven bullets were read against their cited lines",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinybox/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinycomputer/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyhosts/README.md:3-4",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:168",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:99"
+      ],
+      "reason": "The three crate READMEs, LICENSING.md:6-9, S1:168, B/spec.md:99, L/posture.ts:5-6 and 002 spec:168 all say what the rows claim, and the regrade pointer resolves to :312"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-026",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:470"
+      ],
+      "bugClass": "candidate_claim",
+      "disposition": "ruled_out",
+      "rationale": "Candidate 3 was read against configuration.md:190-194 and its plan-side search",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/configuration.md:190-194",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:82"
+      ],
+      "reason": "AGENT_STALL_TIMEOUT_MS watches the stall, writes agent.stream_stalled and switches off when unset or 0, as the row says"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:214",
+        "research/research.md:222",
+        "research/research.md:230",
+        "research/research.md:238"
+      ],
+      "bugClass": "grade_inflation",
+      "disposition": "ruled_out",
+      "rationale": "Eleven confirmed rows across phases 001-004 were read against their cited lines and all hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/shared/routine-firing.ts:9-13",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/terminal.rs:34-47",
+        "specs/system-skilled-bots/context/buzz-main/crates/buzz-acp/src/pool.rs:2284-2289"
+      ],
+      "proof": "verified by direct read of each cited reference and plan line"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:203",
+        "research/research.md:222"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "The two pitfall rows that name a plan-side gap name a window the plan does not cover, not a rule it already has",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/design/data-model.md:88",
+        "specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md:68"
+      ],
+      "proof": "the plan-side searches in the rows reproduce"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:1-60"
+      ],
+      "bugClass": "licence_misgrade",
+      "disposition": "ruled_out",
+      "rationale": "All ten LICENSE files and the two Cargo.toml licence lines were read and match the document",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/rakazo-main/LICENSE:1-2",
+        "specs/system-skilled-bots/context/tinychannels-main/Cargo.toml:55",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/Cargo.toml:24"
+      ],
+      "proof": "Every repo licence matches the map, including the OpenMausBot enterprise carve-out and the two GPL-3.0-only declarations"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:307"
+      ],
+      "bugClass": "secret_leak_gap",
+      "disposition": "ruled_out",
+      "rationale": "The reference builds four base64 forms and the plan scans one padded form plus encodeURIComponent",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinysecurity/crates/tinysecurity-redact/src/patterns.rs:248-249",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:73"
+      ],
+      "proof": "patterns.rs:248-249 imports STANDARD, STANDARD_NO_PAD, URL_SAFE and URL_SAFE_NO_PAD, so the gap is real"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:452"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "records.md:181-184 names no order and the error field at :173 carries both flags with no precedence",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/records.md:181-184"
+      ],
+      "proof": "The plan states no precedence, so the guard is needed"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "All 332 rows parsed by script and grouped by table heading; every cell matches",
+      "evidenceRefs": [
+        "research/regrade-log.md:1-372",
+        "research/research.md:625-636"
+      ],
+      "proof": "All seven group rows and the totals row are exact in all six outcome columns and in the kept/confirmed/weak columns"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/regrade-log.md:29",
+        "research/regrade-log.md:338",
+        "research/regrade-log.md:339",
+        "research/regrade-log.md:341",
+        "research/regrade-log.md:343",
+        "research/regrade-log.md:344",
+        "research/regrade-log.md:362"
+      ],
+      "bugClass": "rejection_correctness",
+      "disposition": "ruled_out",
+      "rationale": "Seven rows re-read against their cited lines and all seven hold",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-main/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tiny-artifacts/README.md:1-4",
+        "specs/system-skilled-bots/context/OpenMausBot-main/evals/README.md:21",
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/routines/plan.ts:54-60"
+      ],
+      "proof": "openhuman-main/vendor holds 21 empty folders, tiny-artifacts has a README, tinywallet is recorded at research.md:464, the 012 stub executor exists, the scorer line is evals/README.md:21, cron_refuses sits at host_tool.rs:19-26, and plan.ts:54-60 records the empty-subject match"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:621-644"
+      ],
+      "bugClass": "count_arithmetic",
+      "disposition": "ruled_out",
+      "rationale": "Section 3 holds 84 rows 57 confirmed 27 weak, section 4 holds 21 confirmed, section 5 holds 16 rows 12 confirmed 4 weak; the sums are 121/90/31",
+      "evidenceRefs": [
+        "research/research.md:64-437",
+        "research/research.md:438-467",
+        "research/research.md:468-515"
+      ],
+      "proof": "Every group row and the totals row match to the cell"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:64-437"
+      ],
+      "bugClass": "heading_completeness",
+      "disposition": "ruled_out",
+      "rationale": "All fourteen headings were compared with the fourteen 003 folders",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/"
+      ],
+      "proof": "001-activity-and-actor through 014-deep-review match character for character"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:173-300"
+      ],
+      "bugClass": "citation_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "Twenty-eight rows were read against their cited lines and every reference half and plan half resolves",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/turnstone-main/docs/memory.md:38-39",
+        "specs/system-skilled-bots/context/OpenGhost-main/memory.js:11",
+        "specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:5",
+        "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63-65"
+      ],
+      "proof": "turnstone memory.md:38-39, OpenGhost memory.js:11 and :37, approvals.md:5 and :40, approval-outcomes.ts:22-23, app-grants queries.ts:6-12, 008 spec:151 and :169, backends.md:47 and :63-65, leak-checks.md:61 all say what the rows claim"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        "research/research.md:206-231"
+      ],
+      "bugClass": "plan_side_miss",
+      "disposition": "ruled_out",
+      "rationale": "Each differences row was read against the plan line it names and the discrepancy is real",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:99",
+        "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/design/fixtures/action-kinds.json:19",
+        "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:96"
+      ],
+      "proof": "The kind order differs from approvals.md:5, remove sits in the delete list against approvals.md:40, and memory false contradicts REQ-010"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:350",
+        "research/research.md:360"
+      ],
+      "bugClass": "transport_retry_map",
+      "disposition": "ruled_out",
+      "rationale": "channel_ops.rs:1975-1977 moves the offset before continuing, channel_types.rs:12 is 4096, and slack api.rs:150-190 retries ratelimited plus exactly four transient codes",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1975-1977",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_types.rs:12",
+        "specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/api.rs:150-190"
+      ],
+      "proof": "All three reproduce in the reference source"
+    },
+    {
+      "iteration": 6,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        "research/research.md:220"
+      ],
+      "bugClass": "grant_bound",
+      "disposition": "ruled_out",
+      "rationale": "approvals.ts:62-69 is a type declaration and the file holds no classify function",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/app/src/lib/approvals.ts:62-69"
+      ],
+      "proof": "A search for classifyAction and function classify in approvals.ts returns no hit"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-021",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "tag_resolution",
+      "disposition": "ruled_out",
+      "rationale": "All 616 tags in research.md and all 331 in regrade-log.md were expanded through the six section 1 prefixes and checked against the files",
+      "evidenceRefs": [
+        "research/research.md",
+        "research/regrade-log.md"
+      ],
+      "proof": "947 of 947 resolve, with no missing path, no out-of-range line and no tag without a line"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-022",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:645-664"
+      ],
+      "bugClass": "count_recompute",
+      "disposition": "ruled_out",
+      "rationale": "The tag counts, the licence counts and the openhuman-tui counts were each recomputed",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/",
+        "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui"
+      ],
+      "proof": "616 and 331 tags, 20 manifests with a licence line of which 18 are GPL-3.0-only and 2 GPL-3.0-or-later, tinyvoice with none, and 55 files 9601 lines 9526 under src in both checkouts"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        "research/research.md:529-620"
+      ],
+      "bugClass": "quote_accuracy",
+      "disposition": "ruled_out",
+      "rationale": "The two S3 lines section 7 quotes were read directly",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:111",
+        "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:221"
+      ],
+      "proof": "S3:111 reads Reference code to study first none in C, and S3:221 reads Reference to study first no context repository applies, both as quoted"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-024",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:468-515"
+      ],
+      "bugClass": "rank_permutation",
+      "disposition": "ruled_out",
+      "rationale": "The sixteen bracket numbers were read in order and compared with the two changes the paragraph states",
+      "evidenceRefs": [
+        "research/research.md:495",
+        "research/research.md:497-512"
+      ],
+      "proof": "The order is 1,2,3,11,4,5,7,6,8,9,10,12,13,14,15,16, a permutation of 1 to 16 with exactly candidate 11 up and candidate 7 above candidate 6"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-025",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:516-528"
+      ],
+      "bugClass": "skip_row_evidence",
+      "disposition": "ruled_out",
+      "rationale": "All seven bullets were read against their cited lines",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinybox/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinycomputer/README.md:3",
+        "specs/system-skilled-bots/context/openhuman-full/vendor/tinyhosts/README.md:3-4",
+        "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:168",
+        "specs/system-skilled-bots/003-openbot-parity-build/spec.md:99"
+      ],
+      "proof": "The three crate READMEs, LICENSING.md:6-9, S1:168, B/spec.md:99, L/posture.ts:5-6 and 002 spec:168 all say what the rows claim, and the regrade pointer resolves to :312"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-026",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "research/research.md:470"
+      ],
+      "bugClass": "candidate_claim",
+      "disposition": "ruled_out",
+      "rationale": "Candidate 3 was read against configuration.md:190-194 and its plan-side search",
+      "evidenceRefs": [
+        "specs/system-skilled-bots/context/OpenBot-main/docs/configuration.md:190-194",
+        ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts:82"
+      ],
+      "proof": "AGENT_STALL_TIMEOUT_MS watches the stall, writes agent.stream_stalled and switches off when unset or 0, as the row says"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 1,
+      "executed": 1,
+      "pass": 1,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "level": "core",
+        "notes": "The document own stated rules were checked against its content: the licence rule at research.md:26 against all 20 lift rows, D3 against the working tree, D4 against the phase and net-new placement of every row, D5 against section 7 citation rule, and the Bottom Line counts against sections 8 and 13. One gap, recorded as V2-R10-P2-001.",
+        "protocol": "spec_code",
+        "status": "pass",
+        "protocolId": "spec_code",
+        "gateClass": "hard",
+        "applicable": true
+      },
+      {
+        "level": "core",
+        "notes": "The packet has no checklist.md at Level 1, so there is no checklist to trace against.",
+        "protocol": "checklist_evidence",
+        "status": "notApplicable",
+        "protocolId": "checklist_evidence",
+        "gateClass": "hard",
+        "applicable": false
+      }
+    ],
+    "unfinishedCoreProtocols": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 9,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 9,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 10,
+      "rule": "findingsNew-shape",
+      "detail": "findingsNew must be an array of findings or an object with P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

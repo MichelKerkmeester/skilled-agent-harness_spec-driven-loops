@@ -8,19 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research"
-    last_updated_at: "2026-11-27T08:10:48Z"
+    last_updated_at: "2026-11-27T10:14:05Z"
     last_updated_by: "generate-context"
-    recent_action: "Wrote the verified synthesis and closed the packet"
+    recent_action: "Reviewed the synthesis twice and fixed every finding that held"
     next_safe_action: "Review research/research.md before the 003 build starts"
     packet_purpose: "Purpose: A per-phase evidence pack and a ranked list of net-new features, so each build phase starts from cited reference code and known pitfalls."
     blockers: []
     key_files:
       - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md"
       - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/regrade-log.md"
-      - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/findings-registry.json"
-      - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/scratch/synthesis-inputs/verify-brief.md"
+      - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/review-report.md"
+      - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/fix-log.md"
     session_dedup:
-      fingerprint: "sha256:8be1ea3090aff2da799b1bd67e8667fd51a568c7d687836c480f27482f643cef"
+      fingerprint: "sha256:6c170f7f328eb91cab8850c348d579131050fae08543e7beb57165e4b1e65f54"
       session_id: "scaffold-004-reference-evidence-research"
       parent_session_id: null
     session_ref:
@@ -61,7 +61,7 @@ The research ran and its synthesis is written. Four lineages completed 10 iterat
 
 ### Phase 4: reference-evidence-research
 
-You get `research/research.md`: one evidence section per 003 build phase with the code to lift or mirror, where the plan differs from the references and the pitfalls the plan does not guard against. 121 rows stand, 90 confirmed and 31 weak. The synthesis also covers `openhuman-full`, which holds 21 vendored crates and not the five the preparation counted, all of them GPL-3.0 and so design references only. Sixteen net-new candidates are ranked, and the skip list holds. `research/regrade-log.md` records the 332 rows that were wrong, out of scope, downgraded, corrected or already carried by an earlier run.
+You get `research/research.md`: one evidence section per 003 build phase with the code to lift or mirror, where the plan differs from the references and the pitfalls the plan does not guard against. 121 rows stand, 86 confirmed and 35 weak after two reviews of the synthesis. The reviews and their fixes are in `review/review-report.md` and `review/fix-log.md`. The synthesis also covers `openhuman-full`, which holds 21 vendored crates and not the five the preparation counted, all of them GPL-3.0 and so design references only. Sixteen net-new candidates are ranked, and the skip list holds. `research/regrade-log.md` records the 332 rows that were wrong, out of scope, downgraded, corrected or already carried by an earlier run.
 
 ### Files Changed
 
@@ -117,6 +117,7 @@ The fan-out ran with the invocation in `plan.md`: two `cli-mistral-vibe` and two
 | Source tags in the synthesis and the regrade log | PASS: 616 and 331 tags, all resolve to an existing file and line |
 | Source tags in the 40 iteration records | 688 of 718 resolve. The 30 that do not are counted per lineage in section 9 of the synthesis |
 | Hand check by the orchestrator | PASS: 20 citations and four counts, all matched their rows |
+| Review of the synthesis | Done: a single-pass Opus review and a two-lineage Vibe deep review (CONDITIONAL, 1 P1 and 26 P2). All 47 items were re-checked and every one that held is fixed. Source tags after the fixes: 658 in `research.md` and 336 in `regrade-log.md`, all resolve |
 | Write containment | PASS: `git status --short` lists paths under this packet's parent only |
 | Packet validation | PASS: `validate.sh --strict` prints `RESULT: PASSED` for this folder and for the parent with `--recursive` |
 <!-- /ANCHOR:verification -->

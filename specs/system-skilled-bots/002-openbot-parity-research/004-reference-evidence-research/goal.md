@@ -84,7 +84,8 @@ and findings belong here.
 | T006 fan-out run | Done | `research/orchestration-summary.json` records `total_cli_lineages` 4, `succeeded` 4 and `failed` 0. The run took about 17 minutes |
 | T007 reruns | Done | None needed, `failed` is 0 |
 | T008 synthesis | Done | `research/research.md` names the fourteen phase folders in `###` headings and ranks sixteen net-new candidates |
-| T009 re-check | Done | Seven verification workers opened every cited line. 121 rows stand (90 confirmed, 31 weak) and `research/regrade-log.md` holds 332 rows. All 947 source tags in the two files resolve |
+| T009 re-check | Done | Seven verification workers opened every cited line. 121 rows stood (90 confirmed, 31 weak) and `research/regrade-log.md` held 332 rows. After the two reviews below, 86 are confirmed and 35 weak, and all 994 source tags in the two files resolve |
+| Synthesis reviewed twice and fixed | Done | A single-pass Opus review raised 20 items. A deep review by two cli-mistral-vibe lineages of 10 iterations each returned CONDITIONAL with 1 P1 and 26 P2. A separate Opus worker checked all 47: 43 hold, 3 partly hold, 1 skipped as outside the repository. Every one that held is fixed in `research/research.md` and `research/regrade-log.md`. Record: `review/review-report.md` and `review/fix-log.md` |
 | T010 iteration count | Done | The `find` command of the first criterion prints 40 |
 | T011 write containment | Done | `git status --short` lists paths under this packet only |
 | T012 validation | Done | `validate.sh --strict` prints `RESULT: PASSED` for this folder and for the parent with `--recursive` |
@@ -106,5 +107,6 @@ and findings belong here.
 | A stray row in one lineage log | `research/lineages/pi-2/deep-research-state.jsonl` holds one `synthesis_complete` row with vibe-1's lineage id, written after vibe-1 ended. The cause is not confirmed. The iteration records are unaffected |
 | A stray folder in one lineage | `research/lineages/vibe-2/` holds a `specs` subfolder the lineage created inside its own folder. Nothing outside the packet was written |
 | 30 of 718 citations in the iteration records do not resolve | Wrong paths, ranges past the end of a file and tags with no line. Section 9 of the synthesis lists the counts per lineage |
+| Both review lineages are marked failed | Each ran 10 iterations and wrote its report, but neither state log holds a `terminal_gates` row, so the runner marked both failed and the merge carries their findings as untrusted. vibe-1 also wrote its closeout row with the root session id. Every finding was re-checked before any fix. The defect belongs to the deep-loop runtime |
 | The spec write-back event is not in the state log | The findings fence was written under the `questions` anchor of `spec.md`. The state gateway accepted the `synthesis_complete` event and refused the `spec_mutation` event twice with "Payload validator rejected the event". The row was not written by hand |
 <!-- /ANCHOR:log -->

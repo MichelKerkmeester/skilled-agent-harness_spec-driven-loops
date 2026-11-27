@@ -44,6 +44,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
+      "review/review-report.md",
+      "review/fix-log.md",
       "research/regrade-log.md",
       "scratch/research-topic.txt",
       "scratch/frontier-seed.json",
@@ -54,9 +56,7 @@
       "research/orchestration-summary.json",
       "research/inbox.jsonl",
       "research/frontier-seed.json",
-      "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
-      "research/lineages/pi-2/deep-research-state.jsonl",
-      "scratch/synthesis-inputs/verify-brief.md"
+      "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md"
     ],
     "entities": [
       {
@@ -99,6 +99,18 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-log.md",
+        "kind": "doc",
+        "path": "review/fix-log.md",
         "source": "derived"
       },
       {
@@ -150,18 +162,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/lineages/pi-2/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "verify-brief.md",
-        "kind": "doc",
-        "path": "scratch/synthesis-inputs/verify-brief.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The three earlier runs settled what to build, whether the plan holds together and whether each phase is planned deeply enough",
     "created_at": "2026-11-27T06:31:17Z",
-    "last_save_at": "2026-11-27T08:12:26.143Z",
+    "last_save_at": "2026-11-27T10:14:05.342Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,15 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:55ed86897c4dbef0677b55e3a4a92fe9e469949c58b943acf0f09171f90779a5",
+    "source_fingerprint": "sha256:16fc9e1fad6d804d708604f83ea6635fe04145204a606bcf5e10c7ab01c419c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6cbf4b593573c5c5dadd45afab5eed0e2360ff5be47213790cb55e6fd534ee6",
+      "spec.md": "72923eadd32e8e9ce02ffd8c20434c861fca34593ae5be9a0e5be195542f6f80",
       "plan.md": "ecfb555dbd0f38528d963c869e331e9bd298398780672254b204b05ddc7da6f5",
       "tasks.md": "67b2732cc748deaab2eb33dbbe40976bc78f73dd40397a65c346d3fc7b96906e",
-      "decision-record.md": "9760513da420a571ee5522ebd530859593b8b3136b57db3ce4a77bd519ef9da4",
-      "implementation-summary.md": "44a2ea328073bb245bdf0d31c17ca795828885f7acd7477d17ff1ea04ed03ab0",
-      "research/research.md": "9ff5a699f277911624c700a5b10d944bb1bc0f4b05bfd4353dfff173b6d2b776"
+      "decision-record.md": "a47c450735d0f65cade16a9f0feaef1bc9784f44068b4f2bebd75c29eaca085e",
+      "implementation-summary.md": "d67a6e9543cad2e6fd90caef79f1af6f49d68409bf1b3cda58d664d4af354a90",
+      "research/research.md": "46c3ef74f252717e54231d87510c934da13dcb89725d39691a3582f1b6423666"
     },
     "last_active_at": null
   }

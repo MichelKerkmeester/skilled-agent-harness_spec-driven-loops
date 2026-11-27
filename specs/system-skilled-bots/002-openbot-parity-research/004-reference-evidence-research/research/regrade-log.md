@@ -1,6 +1,17 @@
 # Regrade Log of the Reference Evidence Research
 
-Every lineage finding that is not a row in `research.md`, or that changed on its way in, with the outcome and the reason. Origin ids, grades and path prefixes are explained in section 1 of `research.md`. Outcomes are `wrong`, `not verified`, `downgraded to weak`, `citation corrected`, `dropped as duplicate of an earlier synthesis` and `dropped as out of scope`. A row can group several origins. The counts per phase group are in section 8 of `research.md`.
+Every lineage finding that is not a row in `research.md`, or that changed on its way in, with the outcome and the reason. Origin ids, grades and path prefixes are explained in section 1 of `research.md`, including the eight ids whose number runs past the record's last finding. A row can group several origins, and one origin can be split over several rows when its parts met different outcomes. The counts per phase group are in section 8 of `research.md`.
+
+The six outcomes judge the finding as the lineage stated it, its conclusion included:
+
+- `wrong`: the claim does not hold against the lines it cites or against the plan. This covers a false fact and also a true fact that the lineage used for a conclusion the plan or the reference does not support. The reason says which part failed. For example, `THIRD_PARTY_NOTICES.md` is indeed absent, but V1-10-1 is `wrong` because the file is a planned Create, not a gap.
+- `not verified`: a line the claim needs was not read, so the claim was not judged.
+- `downgraded to weak`: the claim holds only in part. The part that held is a `weak` row in `research.md`.
+- `citation corrected`: the claim holds but a citation did not. The row in `research.md` carries the corrected line.
+- `dropped as duplicate of an earlier synthesis`: S1, S2 or S3 already carries it. The reason or section 7 of `research.md` names the line.
+- `dropped as out of scope`: the claim is about another phase or slice, or it is not a claim about a phase at all, such as a count of the lineage's own findings. The reason says where it belongs.
+
+Only the first two and the last two keep a finding out of `research.md` as a row of its own. An origin with any outcome can still be credited on a row built from the part of it that held.
 
 ## Regrade log for 001-activity-and-actor and 002-routine-layer
 
@@ -370,3 +381,14 @@ A row's grade above is the grade of the claim as the row now states it. An outco
 | P2-10-8 | Deduplicated proactive notices (rank 6) | dropped as out of scope | 002 defers the first-failure notice by name [SOURCE: B/002-routine-layer/spec.md:121] |
 | P2-10-8 | Connector scope hint (rank 7) | dropped as out of scope | Tied to OAuth connections, which the skip list skips [SOURCE: S1/research.md:116] |
 | P2-10-8 | rakazo adapter kit and test kit (rank 14) | dropped as out of scope | The lineage itself says 011's fake transport and fixtures already do this |
+
+## Regrades after review
+
+Two reviews of `research.md` moved four rows from `confirmed` to `weak` after the verification pass. These rows are not counted in the outcome columns of section 8, which count the verification pass. The grade columns of section 8 count the grades as they now stand.
+
+| Origin | Row in `research.md` | Outcome | Reason |
+|---|---|---|---|
+| P1-6-3 | 010 pitfall 1, a paste in `bots chat` starts one run per line | downgraded to weak | The three-runs claim is about the readline loop [SOURCE: B/010-conversations/002-conversation-runtime-and-chat-verb/spec.md:156], and the row infers it from how a terminal delivers a paste. The crossterm evidence of 003 pitfall 1 covers the pane, which reads keys through the screen, and not the loop |
+| V2-1-8, V1-5-1 | 008 lift row 1, rakazo's matcher | downgraded to weak | The reference reading holds. The gap it claimed is mostly absent: the plan lifts the file whole with a statement of changes [SOURCE: B/008-vault/tasks.md:78] and tests the state-cap fallback [SOURCE: B/008-vault/plan.md:142] |
+| P1-9-3, P1-10-3 | Net-new candidate 1, the hourly cap | downgraded to weak | The reference's budget caps tool actions in a registered command scope [SOURCE: C/openhuman-full/vendor/tinysecurity/crates/tinysecurity-policy/src/host_tool.rs:1-7]. A cap on dispatched runs is this plan's translation, not a line the reference states |
+| P1-5-6, P1-10-3 | Net-new candidate 12, tool-name wording | downgraded to weak | No surface in this build prints a tool name. 001's activity rows hold none [SOURCE: B/001-activity-and-actor/spec.md:167], which is also why V2-3-3 is `wrong` above |
