@@ -52,6 +52,7 @@ Frozen choices. Changing one is an amendment.
 | D6 | The hand check is the final operator acceptance step after 006, not a completion criterion, because a criterion that needs a tty cannot decide closure in this environment. |
 | D7 | The overlay opens in shortcut mode and a drawn `t` row enters text mode, so `y` and `n` are shortcuts only outside text mode and a typed line may begin with either. |
 | D8 | The overlay draws a grant's kind and rung only when the item carries them and draws no grant row otherwise, so the frame builds before packet phase 006 and lights up after it. |
+| D9 | A bracketed paste never sends an answer. In text mode it is appended to the typed line, each carriage return or line feed written as one space. In shortcut mode, in every other overlay phase and on the inbox tab with no overlay open it does nothing, so a pasted `y` cannot approve and a pasted line feed cannot open the selected row. This child adds the `Msg::Paste` arm in `state.rs`, and the event source and the guard that deliver the paste are 002's. |
 
 <!-- /ANCHOR:directive -->
 
@@ -61,12 +62,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `argv_is_exactly_answer_id_text_scope`, and the argv it recorded for a deny is exactly `answer --scope deny --repo <repo> -- <item-id> deny`.
-- [ ] The same suite names `esc_closes_overlay_and_writes_nothing`, `closed_input_writes_nothing`, `ctrl_c_closes_overlay_and_writes_nothing`, `unbound_key_writes_nothing` and `second_press_writes_nothing`, each of which asserts the fixture recorded no `answer` argv.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `grant_row_draws_only_when_present`.
+- [ ] The same suite names `esc_closes_overlay_and_writes_nothing`, `closed_input_writes_nothing`, `ctrl_c_closes_overlay_and_writes_nothing`, `unbound_key_writes_nothing`, `second_press_writes_nothing` and `paste_never_answers`, each of which asserts the fixture recorded no `answer` argv. In `paste_never_answers` a pasted `y` and line feed in text mode leaves the typed line reading `y ` and sends nothing.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `grant_row_draws_only_when_present`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` and names `outcome_word_stays_until_the_next_poll`, and a successful answer issues no read of its own.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `free_text_answer_writes_typed_line`, `typing_pauses_single_key_shortcuts` and `text_mode_accepts_a_leading_y`, and the argv it recorded for the typed line `hold` is exactly `answer --scope once --repo <repo> -- <item-id> hold`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `refusal_shows_stderr_and_keeps_item`, and the status row carries `bots: answer-not-approver` while the overlay and the item both stay open.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `gone_class_refusal_moves_to_gone`, and the overlay is gone while the status row carries the line.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` and names `outcome_word_stays_until_the_next_poll`, and a successful answer issues no read of its own.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` names `refusal_shows_stderr_and_keeps_item`, and the status row carries `bots: answer-not-approver` while the overlay and the item both stay open. The same suite names `gone_class_refusal_moves_to_gone`, and the overlay is gone while the status row carries the line.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->

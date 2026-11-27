@@ -45,8 +45,9 @@ Frozen choices. Changing one is an amendment.
 | D2 | The drain has `channel-approval.ts` write the index entry before the entry goes `sending`. |
 | D3 | The action id `approval-v1:<item-id>:<index>` is derived with a 1-based index and never stored. |
 | D4 | The choice block is appended before the literal check, and a hit withholds the whole prompt. |
-| D5 | An uncertain send and a `sending` entry found at start are `unknown`, never resent and written to the run record. |
+| D5 | An uncertain send and a `sending` entry found at start are `unknown`, never resent and written to the run record. A send error with `sentBeforeError: true` is uncertain whatever `retryable` says, so a landed chunk is never sent twice. |
 | D6 | The index holds one channel per item. |
+| D7 | A Slack prompt with an option over 75 characters is queued in the M01 text form and raises no refusal. The reply grammar answers it on Slack, and any other typed Slack line is a chat message. |
 
 <!-- /ANCHOR:directive -->
 
@@ -93,4 +94,5 @@ and findings belong here.
 | F-064, the missing entry | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: a press or a reply whose item has no entry falls through to `answerItem`, so the reply is the existing answered or expired row. |
 | F-071, the counter reader | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `bots channel list` prints one `notApprover <actor> <count>` line per actor with a count above zero, which is the only reader of the counter, and `--json` gains no key because `contracts/cli-json.md` section 3.3 is frozen. |
 | F-012, the terminal exception | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `DELIVERY_CHANNELS` keeps its four chat names and never gains `terminal`, because the terminal transport reads the open needs-you items directly and writes no index entry. |
+| The queue and Slack rules, amended on 2026-11-27 | D5 gains the maybe-sent rule of REQ-013 and AC-013. D7 records operator answer Q015 in the packet decision record, carried by REQ-008, REQ-028, AC-008 and AC-028. The F-013 row above predates it: the button form is also skipped on Slack when an option is over 75 characters. |
 <!-- /ANCHOR:log -->

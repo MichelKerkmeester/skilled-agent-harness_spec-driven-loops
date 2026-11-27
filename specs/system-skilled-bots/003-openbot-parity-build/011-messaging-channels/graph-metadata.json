@@ -213,7 +213,7 @@
     ],
     "causal_summary": "A bot reaches a person only through a macOS desktop notice and asks a question only through `bots inbox` on the host, so a team that works in a chat client walks to the machine to answer",
     "created_at": "2026-11-25T07:51:30Z",
-    "last_save_at": "2026-11-27T13:27:26.753Z",
+    "last_save_at": "2026-11-27T14:22:36.838Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a4b29345f3139041837b59d62ef2b3263d66eaf530a56ea2f72aa4ba2ed99b82",
+    "source_fingerprint": "sha256:e02a85e7fc820f4f2b54d54e8afbe93ce661d5917929aedf834439ee3076d749",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52dd9162be81b3909644b9625c42e0da136e2bee21950b7fae7ba98c44b8fc7f",

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "A parked run's question reaches only a desktop notice today, because `desktop` is the one delivery channel [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:45]",
     "created_at": "2026-11-26T00:00:19Z",
-    "last_save_at": "2026-11-27T13:34:06.167Z",
+    "last_save_at": "2026-11-27T14:22:49.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:683888eba0633a1915a817649598561f17e80923c94797831a5089ac71b71679",
+    "source_fingerprint": "sha256:0dc2edf6b5c58c7da38422d8d839e22211249fe8cb1f9c2fb9d980a605a6b059",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f804b043f33fc0e980fa5633e5dcf2d9cb2617c404bb4af7e8c990702f81db2c",

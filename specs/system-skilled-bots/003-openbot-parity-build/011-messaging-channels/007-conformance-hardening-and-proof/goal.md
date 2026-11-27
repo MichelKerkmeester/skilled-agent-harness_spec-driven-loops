@@ -45,6 +45,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | A failing case is fixed in the child that owns the module, and this child changes no runtime module. |
 | D3 | The operator reference is built from `../002-adapter-and-record-contracts/design/operator-runbook.md` and keeps its Signal UNKNOWN. |
 | D4 | No tinychannels code is copied, so no notice names it. |
+| D5 | Each case runs the real transport over a fake platform that stands where the provider's API stands and records each wire call. The scripted fake transport of child 003 is not the conformance fixture. |
 
 <!-- /ANCHOR:directive -->
 
@@ -81,4 +82,5 @@ and findings belong here.
 |------|------|
 | Tasks moved from the pre-expansion list | T006, T041, T043 to T049, T061, T062, T068 and T073. Each new task names its old id. |
 | The fake transport | The work order places it here. Child 003 creates it, because every test from 003 on needs it and this child adds the matrix driver. |
+| The fixture rule, amended on 2026-11-27 | D5 follows `plan.md` and `../002-adapter-and-record-contracts/design/conformance-rules.md` section 2. The fake transport in the row above stays for the queue and verb tests of children 003 and 004. The conformance cases and the hardening cases run over the fake platform. |
 <!-- /ANCHOR:log -->

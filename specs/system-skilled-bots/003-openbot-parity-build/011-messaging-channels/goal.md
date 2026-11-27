@@ -82,7 +82,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "R2"` prints `18 passed`.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 "` prints `Tests  18 passed`.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict --recursive` prints `RESULT: PASSED`.
@@ -112,4 +112,6 @@ and findings belong here.
 | The pre-expansion decisions | D1 to D8 of the pre-expansion goal are kept in substance: D2 and D3 here, D4 in children 003 and 004, D5 and D6 in D4 here, D7 in D5 and D8 in D6. |
 | Documents moved | The pre-expansion `plan.md`, `tasks.md`, `acceptance-criteria.md` and `implementation-summary.md` were split by file into children 003 to 007. Each task names its old id. |
 | D7 | Recorded in `spec.md` section 5 and asked in section 7. |
+| Slack redelivery, open | `spec.md` section 7 asks whether a Slack press redelivered after a reconnect carries the same `envelope_id` and so could answer an approval twice. It is UNKNOWN and is settled before child 005 is dispatched. |
+| The R2 check, aligned on 2026-11-27 | The first criterion now uses child 007's anchored filter `-t "^R2 "` and its `Tests  18 passed` line, because an unanchored `R2` filter can match more test names. |
 <!-- /ANCHOR:log -->

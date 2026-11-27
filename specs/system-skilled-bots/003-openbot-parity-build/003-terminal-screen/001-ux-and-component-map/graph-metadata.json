@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The screen has no agreed shape",
     "created_at": "2026-11-25T20:22:31Z",
-    "last_save_at": "2026-11-26T08:25:57.775Z",
+    "last_save_at": "2026-11-27T14:21:27.180Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b013e9bf0105074b186ca8d2c742513010c89e95e6cb13da8513dafa76999424",
+    "source_fingerprint": "sha256:b84d192929175b1344703d38743da4923a473055dddc4fbc591c7b87791d5ebc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aceb98d546ec5c23a8d147c3dd656aa69338400432759daafe0cccb5bcae3a82",

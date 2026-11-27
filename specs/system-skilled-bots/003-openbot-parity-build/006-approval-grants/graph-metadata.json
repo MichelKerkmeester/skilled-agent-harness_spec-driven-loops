@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-27T13:27:11.495Z",
+    "last_save_at": "2026-11-27T14:23:10.719Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be1b5929ac6753997760bf01135c14e4bf1a5ec5a18fa0984c7b5e76ac97f379",
+    "source_fingerprint": "sha256:1e1f75498912bac49d92ca4f297a8c00f5cdff624198d48508a93c0b9cdafe97",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8adccdd72f4170dc397f28bbb260d5d1a32dd610f89b0893743f73525e5c2cbb",

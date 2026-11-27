@@ -41,12 +41,15 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Every acknowledge, offset move or `envelope_id` echo follows the seen record. |
+| D1 | Every acknowledge, offset move or `envelope_id` echo follows the seen record. The Telegram offset also moves past a duplicate the seen record drops, so the poll after a dropped duplicate of update 20 carries `offset` 21. |
 | D2 | Every network call is injected, so every test replays a recorded fixture and none reaches a network. |
 | D3 | An inbound message that is not an answer is rendered through `conversation.ts` as a `<conversation channel="...">` block. |
 | D4 | The terminal transport answers with the OS user on the surface `channel`, so the roster must name that user. |
 | D5 | A rejected credential at the probe exits 1 with a plain line until the contract names a refusal. |
 | D6 | This child creates `tests/channel-transports.vitest.ts` and edits `bots.cjs` before child 006. |
+| D7 | Telegram and Slack sort a send error three ways. A transport error, an unreadable `200` body and a `5xx` set `sentBeforeError: true`. A `429` or Slack's `ratelimited` sets `retryable: true`. Every other error sets both false. Once any chunk of the entry landed, `sentBeforeError` is `true` whatever the later error is. |
+| D8 | Slack text is cut at 3,900 characters, and the chunk that carries the buttons is cut again at 3,000. |
+| D9 | One worker reads the tinychannels source and writes `design/wire-notes.md` in its own words with one `[SOURCE:]` per fact. A different worker writes the Telegram and Slack transports from that note and the Wire Table, and its brief names no tinychannels path. |
 
 <!-- /ANCHOR:directive -->
 
@@ -90,4 +93,6 @@ and findings belong here.
 | F-062, the drain tick | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `listen` runs one drain pass for its own channel after each inbound turn and on a 60 s tick. |
 | O-001, the anchored filters | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: every filter names its full test name and states its pass count, and the file gains a sixth `transport shared` block so a per-transport filter cannot match a shared rule. |
 | O-019, the legacy ids | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: T016 is `was T058's proof and the token half of T071` and T017 is `was T060 and the injection half of T071`. |
+| The wire and worker rules, amended on 2026-11-27 | D1 gains the offset clause of REQ-009 and AC-009. D7 is REQ-036 and AC-036. D8 is REQ-010 and AC-010. D9 is the GPL rule of `../003-link-roster-and-answer-gate/plan.md`, applied by T002, T003, T005 and T007. |
+| Before dispatch | `../spec.md` section 7 asks whether a Slack press redelivered after a reconnect carries the same `envelope_id`. It is UNKNOWN and is settled before this child is dispatched. |
 <!-- /ANCHOR:log -->

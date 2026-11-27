@@ -52,6 +52,7 @@ Frozen choices. Changing one is an amendment.
 | D6 | The view root is `crates/bots-tui/src/view/mod.rs`, which 003 creates. This child adds one `mod panes;` line to it and no second root. |
 | D7 | The sanitizer is 003's `theme.rs`, one behaviour that replaces each control character with `?`. This child routes every drawn string through it and keeps no second copy. |
 | D8 | The `list` rows live in 003's `keys.rs` and the movement arms in 002's `state.rs`. This child adds both, so a key cannot be bound without a label and the selection moves by each pane's row key rather than by row index. |
+| D9 | `clip` in `view/panes.rs` is written fresh and cuts by display width. A cut string ends with `…` inside the width, or with `...` under `--ascii`, so a clipped question never draws as if it were complete, and the cut never splits a double-width cell. |
 
 <!-- /ANCHOR:directive -->
 
@@ -61,11 +62,10 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one buffer snapshot per pane per state at 80x24 and at 120x40, sixteen per size.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell`.
 - [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`.
 - [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->

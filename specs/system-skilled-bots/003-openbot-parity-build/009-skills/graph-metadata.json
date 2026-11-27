@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger, a runtime, a budget, a posture and a body, and the parser's key set holds twelve keys with no `skills` among them [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107]",
     "created_at": "2026-11-25T07:13:43Z",
-    "last_save_at": "2026-11-27T13:27:22.563Z",
+    "last_save_at": "2026-11-27T14:20:28.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e0687703fb900dcb564af4136527ef4bc5c07dbc47daddec6205b79609f90773",
+    "source_fingerprint": "sha256:fb1b8e9e6b1f4502bf6a0f2a154f2a896d5d591b1ad9d25fa41934a858207a17",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a156922aa4e2b8163fea682a84ae751f25f07d5668df0cdda683540ff8c8599",

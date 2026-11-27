@@ -47,6 +47,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | A WhatsApp `4xx` other than `408` left the account untouched: `429` retries and any other is `failed`. A `5xx`, `408` or lost response is `unknown`. |
 | D5 | Signal's JSON-RPC id is no idempotency key, so an uncertain send is `unknown`. |
 | D6 | Child 005's token, injection and golden rules hold unchanged for both transports. |
+| D7 | One worker reads the tinychannels source and writes `design/wire-notes.md` in its own words with one `[SOURCE:]` per fact. A different worker writes the Signal and WhatsApp transports from that note and the Wire Table, and its brief names no tinychannels path. |
 
 <!-- /ANCHOR:directive -->
 
@@ -87,4 +88,5 @@ and findings belong here.
 | F-023, the failed status | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: a `statuses` entry whose status is `failed` for a known platform message id maps onto that queue entry and the run record, so a prompt Meta accepted and then rejected is never left `delivered`. |
 | F-064, the two addresses | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: both loopback addresses are injected arguments of the transport, fixed at `127.0.0.1:8787` and `127.0.0.1:8080` in production, so a test binds an ephemeral port. |
 | O-001, the anchored filters | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: every filter names its full test name and states its pass count, and the shared cases are one `transport shared` block that runs over every transport in the table. |
+| The worker rule, amended on 2026-11-27 | D7 is the GPL rule of `../003-link-roster-and-answer-gate/plan.md`, applied by T002 to T005. D4 already matches the Telegram `5xx` rule child 005 now cites. |
 <!-- /ANCHOR:log -->

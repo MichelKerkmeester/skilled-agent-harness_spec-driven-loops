@@ -45,8 +45,10 @@ Frozen choices. Changing one is an amendment.
 | D2 | A channel with several credentials derives each further secret name by a fixed suffix on its configured name. `contracts/` is not edited. |
 | D3 | Every transport with an acknowledge runs the durable step, then the seen record, then the acknowledge. |
 | D4 | The action id index is 1-based, so a button and a numbered reply send the same number. |
-| D5 | A queue entry's state only moves forward, a `sending` entry found at start becomes `unknown` and a retry waits the larger of the backoff step and the provider's own wait. |
+| D5 | A queue entry's state only moves forward, a `sending` entry found at start becomes `unknown` and a retry waits the larger of the backoff step and the provider's own wait. A send error with `sentBeforeError: true` makes the entry `unknown` whatever `retryable` says. |
 | D6 | Only a six-digit attempt that is not the pending code counts toward the pairing lockout. |
+| D7 | Telegram and Slack sort a send error three ways. A transport error, an unreadable `200` body and a `5xx` set `sentBeforeError: true`. A `429` or Slack's `ratelimited` sets `retryable: true`. Every other error sets both false and the entry ends `failed`. |
+| D8 | The conformance fixture runs each real transport over a fake platform that stands where the provider's API stands and records each wire call. A scripted fake transport is not the fixture. |
 
 <!-- /ANCHOR:directive -->
 
@@ -74,7 +76,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Five design documents | Written | On 2026-11-26 T004 printed 11 and 14, T005 printed 9, 8 and 1, T006 printed 5 and 4, T007 printed 5, 18 and 7, T008 printed 12 and 12 and T009 printed nothing |
-| Base commit | Recorded | base commit dbcd1c2ce1e8776ea5b9d344fc2dd1559e4b5e1c, the commit this phase started from. T009 and AC-007 read it from here |
+| Base commit | Recorded | base commit 7b3c6c26929326ed5a851f9a3f0c0fa4a323a9cd, the commit this phase starts from. T009 and AC-007 read it from here |
 
 ### Deviations and findings
 
@@ -90,4 +92,6 @@ and findings belong here.
 | The copy check compares lines, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-011's first alternative replaces the keyword grep with a `comm -12` comparison of the design's lines against the reference sources. |
 | The backoff check reads the file, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-012's first alternative drops the constant arithmetic and greps the table out of `records.md`. |
 | The contract check reads a base commit, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-013's first alternative replaces `git status --short` with a diff from the base commit recorded above, so a contract edit this phase commits is caught too. |
+| The records and fixture rules, amended on 2026-11-27 | D5 gains the rule from `design/records.md` section 4 that maybe sent wins over retry. D7 is the three-way error rule from the same section. D8 is the fixture rule of `design/conformance-rules.md` section 2. On 2026-11-27 T004 to T008 printed the counts the progress row records. |
+| The base commit moves to the amendment pass, on 2026-11-27 | The phase has not started, and the amendment pass that applied the final parity recommendations changed twelve `contracts/` files on purpose. The check guards against this phase's own contract edits, so the base is now that pass's commit. Re-record it if the contracts change again before the phase starts. |
 <!-- /ANCHOR:log -->

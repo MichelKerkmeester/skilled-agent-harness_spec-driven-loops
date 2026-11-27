@@ -45,6 +45,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | The send runs on a chat worker of its own with no deadline, and quit does not wait for it. |
 | D3 | The crate files are phase 003's names, `state.rs` and `view/panes.rs`, never the `ui_state.rs` and `render/panes.rs` the pre-expansion phase named. |
 | D4 | The approved frames are copied into the crate as `design/chat-mockups.md`, so the screen's frame loader reads them without reaching into a spec folder. |
+| D5 | A bracketed paste into the composer follows the screen's paste rule in `../../003-terminal-screen/005-answer-flow/spec.md` REQ-022. It is appended to the draft with each carriage return or line feed as one space, and it never sends. Only Enter sends the draft. |
 
 <!-- /ANCHOR:directive -->
 

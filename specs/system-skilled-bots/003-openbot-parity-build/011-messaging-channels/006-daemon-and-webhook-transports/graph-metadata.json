@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Signal has no hosted bot API, so a bot speaks through a `signal-cli` daemon the operator runs",
     "created_at": "2026-11-26T00:00:20Z",
-    "last_save_at": "2026-11-27T13:34:06.170Z",
+    "last_save_at": "2026-11-27T14:22:57.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfa0f771c1b24be4d2cb119898516090454aef29fc3322f7932c6fd3a6c505f7",
+    "source_fingerprint": "sha256:ca7b620df525d656c1936a169132d4ee73d932da3d021ccbedb52c4435044ed4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bc648dfbad98e5366102c0c658f9a1310dd59e4dd403e1b0aec0cf3f75370b77",

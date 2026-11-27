@@ -49,6 +49,7 @@ Frozen choices. Changing one is an amendment.
 | D6 | `conversationId` is one field with three readers, the item, the resume request and the drain and `ITEM_KEYS` and `RECORD_KEYS` gain it with their two validators in the same change. |
 | D7 | `bots chat` lives in the run mode beside `bots answer`, because it dispatches runs. No fifth hub mode is added. |
 | D8 | The transcript prints as the three-key object of `contracts/cli-json.md` section 3.1, never a bare array, per `contracts/decisions.md` D2. |
+| D9 | A bracketed paste is one draft with its line feeds kept, and the next Enter sends that draft as one message, so a pasted stack trace starts one run and not one run per line. When stdin is a terminal the loop turns bracketed paste on at start and off at exit. The design mirrors a GPL reference, so no code is copied. |
 
 <!-- /ANCHOR:directive -->
 
@@ -58,7 +59,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/conversation.vitest.ts` prints a `Test Files` line with no `failed` count, covering the message shape, the append, the torn line, the routing rules, the bound, the block and its `channel` form.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-chat.vitest.ts` prints a `Test Files` line with no `failed` count, covering the one-message path, `/exit`, `bot-unknown`, the duplicate send, the resumed answer and `body-secret`.
+- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-chat.vitest.ts` prints a `Test Files` line with no `failed` count, covering the one-message path, `/exit`, `bot-unknown`, the duplicate send, the resumed answer, `body-secret` and the three-line paste that dispatches exactly one run and appends one human message holding the three lines.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/queued-run.vitest.ts tests/runner.vitest.ts` prints a `Test Files` line with no `failed` count.
 - [ ] `printf '/exit\n' | node .skilled/bin/bots.cjs chat my-bot; echo "exit=$?"` prints `exit=0` on a state root holding a `my-bot` `BOT.md`, and appends no message.
 - [ ] `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r 'keys | join(" ")'` prints `conversationId messages version`.

@@ -51,6 +51,7 @@ Frozen choices. Changing one is an amendment.
 | D5 | This child draws one empty frame and no pane, so the loop, the guard and the process boundary are proven before any surface draws into them. |
 | D6 | The `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable and every no-env::var check holds. |
 | D7 | 001's four design documents are copied unchanged into `crates/bots-tui/design/` when the crate is created, so the mockups ship beside the code and 006's pointer check has a folder to read. |
+| D8 | The terminal guard turns bracketed paste on when it starts and its restore turns it off with raw mode and the alternate screen. A paste reaches the reducer as one `Msg::Paste` holding the whole pasted text, never split into keys. This child's reducer arm for it does nothing, and 005 adds the one arm that appends in text mode. |
 
 <!-- /ANCHOR:directive -->
 
@@ -60,8 +61,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints `crates/bots-tui/target/release/bots-ui`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets and no `FAILED`.
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
+- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets, names `paste_is_one_event` and prints no `FAILED`. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
 - [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR`, the `--ascii` case and the `ui-contract-mismatch` case.
 - [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.

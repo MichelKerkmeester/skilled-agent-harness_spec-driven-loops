@@ -46,7 +46,8 @@ Frozen choices. Changing one is an amendment.
 | D3 | Every reply a channel sends of its own is a fixed string with named fields and no bot-authored text. The echo names the choice number. |
 | D4 | A chat sees the run's outcome and record pointer, not the reply text. The terminal keeps the reply through 010's chat path. |
 | D5 | A typed reply answers the newest open prompt in its conversation. A typed `YES` on a prompt with options gets M20. |
-| D6 | A text over the chunk limit is cut at the limit on a code point boundary, and the answer surface rides on the last chunk. |
+| D6 | A text over the chunk limit is cut at the limit on a code point boundary, and the answer surface rides on the last chunk. On Slack the chunk that carries the buttons holds at most 3,000 characters. |
+| D7 | On Telegram and Slack a typed line is a chat message and the buttons are the answer surface. The one exception is a Slack prompt with an option label over 75 characters. It goes out in the M01 text form, and the reply grammar answers it. |
 
 <!-- /ANCHOR:directive -->
 
@@ -87,4 +88,5 @@ and findings belong here.
 | M23 added, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-020's fix makes an ambiguous reply answer nothing and names the open item ids in a new catalog row. M23 is that row. It also covers `NO`, which the finding does not name, because a `NO` with two prompts open is as ambiguous as a number. |
 | The mockup check reads the file, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-012's first alternative drops the constant arithmetic from the check. The six chunk sizes are now searched for in `mockups.md`, and the arithmetic stays as a note. |
 | The copy check compares lines, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-011's first alternative replaces the keyword grep with a `comm -12` comparison of the design's lines against the reference sources. |
+| The Slack limits, amended on 2026-11-27 | D6 gains the 3,000-character cap on the Slack button chunk from `design/mockups.md`. D7 records operator answer Q015 in the packet decision record, carried by `design/reply-grammar.md`. On 2026-11-27 the catalog check printed 40 and 23, the mockup check printed 12 and 0 and the grammar check printed 5. |
 <!-- /ANCHOR:log -->

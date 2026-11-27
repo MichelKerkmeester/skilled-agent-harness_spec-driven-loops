@@ -200,7 +200,7 @@
     ],
     "causal_summary": "No message a person reads in a chat was designed",
     "created_at": "2026-11-26T00:00:16Z",
-    "last_save_at": "2026-11-26T06:38:37.365Z",
+    "last_save_at": "2026-11-27T14:22:40.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f4de9c7a64f58424dce1b78478c01c045a4dc33b194309f96aec92280d19722",
+    "source_fingerprint": "sha256:2402e65bf60e078dc9db316827932b4b9ea0a42013afdb5336dab296eaa16431",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7447e6910761434429403a9becae469b1d6131ac3abb7de9a4db78d71792fdef",
