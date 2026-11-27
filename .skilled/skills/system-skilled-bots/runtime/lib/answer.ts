@@ -72,11 +72,10 @@ export interface AnswerInput {
   /** The name to record as the answer's by, as --as or a channel gives it. Absent means the OS user. */
   actor?: string | null;
   /**
-   * The surface the answer came from. On channel an absent, unreadable or empty roster refuses the answer, and on
-   * terminal it refuses nothing. A present roster must name the actor on both. Absent reads as terminal for the
-   * callers that predate chat answers, and every chat transport passes channel by name.
+   * The surface the answer came from, required with no default. On channel an absent, unreadable or empty roster
+   * refuses the answer, and on terminal it refuses nothing. A present roster must name the actor on both.
    */
-  surface?: AnswerSurface;
+  surface: AnswerSurface;
   /** once or deny. Absent records once, never an allow beyond this run. */
   scope?: AnswerScope;
   /** False records the answer and queues nothing. Absent or true queues the resume. */
@@ -240,8 +239,9 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (input.text.trim() === '') return { ok: false, reason: 'answer-empty' };
 
   if (input.scope !== undefined && !ANSWER_SCOPES.includes(input.scope)) return { ok: false, reason: 'scope-invalid', detail: String(input.scope) };
-  if (input.surface !== undefined && !ANSWER_SURFACES.includes(input.surface)) return { ok: false, reason: 'surface-invalid', detail: String(input.surface) };
-  const surface: AnswerSurface = input.surface ?? 'terminal';
+  // A caller that names no surface is refused rather than read as terminal, so a chat transport cannot skip the roster by omission.
+  if (!ANSWER_SURFACES.includes(input.surface)) return { ok: false, reason: 'surface-invalid', detail: String(input.surface) };
+  const surface: AnswerSurface = input.surface;
   // A NO records deny even when once was given, so a refusal is never recorded as an approval.
   const scope = grantScopeFor(input.text, input.scope ?? null);
   const actor = resolveActor({ as: input.actor ?? null, env, scheduled: false });

@@ -171,7 +171,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Only the ten files of the spec's Files to Change table change. Verify: `git status --short .skilled` lists no other path
+- [x] CHK-050 [P1] Only the ten files of the spec's Files to Change table change. Verify: `git status --short .skilled` lists no other path. The follow-up that made `surface` required also changed `runner.vitest.ts`, `quarantine.vitest.ts` and `resume.vitest.ts`, one line each, by the top orchestrator's leave once 007 merged
 - [x] CHK-051 [P1] scratch/ cleaned before completion. Verify: `find specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/scratch -type f ! -name .gitkeep` prints nothing
 <!-- /ANCHOR:file-org -->
 

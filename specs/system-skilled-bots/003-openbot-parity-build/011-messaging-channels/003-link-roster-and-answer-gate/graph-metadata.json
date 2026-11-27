@@ -56,7 +56,8 @@
       ".skilled/skills/system-skilled-bots/runtime/tests/channel.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/channel-link.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/cli-channel.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-channel.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts"
     ],
     "entities": [
       {
@@ -156,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing links a chat identity to a person, so a message from a chat cannot be attributed to an actor and nothing says who may answer from one",
     "created_at": "2026-11-26T00:00:18Z",
-    "last_save_at": "2026-11-27T23:17:34.752Z",
+    "last_save_at": "2026-11-27T23:24:21.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7521bd3682bb89513774c593e2ee83dd6e3a4f77b9343ee353e44a84ac4b448",
+    "source_fingerprint": "sha256:97222875376acdbed5784f7d808e2c7ddef10154c23542b90799d826db80bcaa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "996109867a21ab7769606e6db93f42423cc61831c0d260d880b2effb70c760ec",
       "plan.md": "9ce5674b15b4ce581c0a472367bdc017947d3e8a178356ffa2d3d3f291ff1c6a",
-      "tasks.md": "c38a0735ea9a005eb03cb39b304614924424c8bfc7046ef5bce8e6216a30bc8e",
-      "implementation-summary.md": "0229c57d6d4678c5febb9aaceda2541fd578dc7acb3bb8b566545b7b6560f0cf"
+      "tasks.md": "5f64d8078e6ffc630e6a5e9b9140dedfa0dedc546a6b89721f3800b0e956cf1d",
+      "implementation-summary.md": "4abaf1539bb133c07bb0478509dfb97528fb8b4f455349e2eb670df7399fc7be"
     },
     "last_active_at": null
   }
