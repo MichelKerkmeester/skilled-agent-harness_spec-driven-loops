@@ -44,6 +44,15 @@ const DEFECTS: Record<string, string> = {
   'reserved-id': 'reserved-id',
   'executor-kind-native': 'executor-kind-native',
   'posture-unhonorable': 'posture-unhonorable',
+  'routine-trigger-conflict': 'definition.routine-trigger-conflict',
+  'routine-tell-with-targets': 'definition.routine-tell-with-targets',
+  'routine-starts-empty': 'definition.routine-starts-empty',
+  'routine-starts-multiple-cron': 'definition.routine-starts-multiple-cron',
+  'routine-starts-cron-not-first': 'definition.routine-starts-cron-not-first',
+  'routine-starts-multiple': 'definition.routine-starts-multiple',
+  'routine-until-check-without-outcome': 'definition.routine-until-check-without-outcome',
+  'routine-until-shell-metacharacters': 'definition.routine-until-shell-metacharacters',
+  'routine-floor': 'routine-floor-15-minutes',
 };
 
 interface Run {
@@ -84,18 +93,23 @@ function lineChanges(before: string, after: string): number {
   return a.filter((line) => !b.includes(line)).length + b.filter((line) => !a.includes(line)).length;
 }
 
+/** The clean checkout a defect fixture is a copy of: routine-clean for a routine fixture, clean for the rest. */
+function baseOf(name: string): string {
+  return name.startsWith('routine-') ? 'routine-clean' : 'clean';
+}
+
 afterEach(() => cleanupTemp());
 
 describe('fixtures', () => {
-  it('has one defect fixture per hard invariant, plus the clean one', () => {
+  it('has one defect fixture per hard invariant, plus the two clean ones', () => {
     expect(Object.values(DEFECTS).sort()).toEqual([...HARD_INVARIANTS].sort());
     const folders = readdirSync(FIXTURES).filter((name) => statSync(join(FIXTURES, name)).isDirectory()).sort();
-    expect(folders).toEqual(['clean', ...Object.keys(DEFECTS)].sort());
+    expect(folders).toEqual(['clean', 'routine-clean', ...Object.keys(DEFECTS)].sort());
   });
 
   it('differs from the clean fixture by one injected defect each', () => {
-    const clean = tree(join(FIXTURES, 'clean'));
     for (const name of Object.keys(DEFECTS)) {
+      const clean = tree(join(FIXTURES, baseOf(name)));
       const defect = tree(join(FIXTURES, name));
       const added = [...defect.keys()].filter((path) => !clean.has(path));
       const removed = [...clean.keys()].filter((path) => !defect.has(path));
@@ -106,6 +120,20 @@ describe('fixtures', () => {
       for (const path of changed) {
         expect(lineChanges(clean.get(path) ?? '', defect.get(path) ?? ''), `${name}: ${path}`).toBeLessThanOrEqual(2);
       }
+    }
+  });
+
+  it('prints the routine invariant for each defect fixture', () => {
+    const clean = run(copyFixture('routine-clean'));
+    expect(clean.status).toBe(0);
+    expect(clean.lines.some((line) => line.startsWith('FAIL:'))).toBe(false);
+    expect(clean.lines.some((line) => line.startsWith('PASS: routine-floor-15-minutes: '))).toBe(true);
+
+    for (const [name, id] of Object.entries(DEFECTS)) {
+      if (!name.startsWith('routine-')) continue;
+      const result = run(copyFixture(name));
+      expect(result.status, name).toBe(1);
+      expect(result.lines.some((line) => line.startsWith(`FAIL: ${id}: `)), name).toBe(true);
     }
   });
 });

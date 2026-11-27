@@ -32,8 +32,10 @@ import { printLabel, UNKNOWN } from './launchctl-print.js';
 import { parseLabel } from './label.js';
 import { DEFAULT_RETENTION, IDENTITY_PATTERN } from './repo-config.js';
 import { validateRequest } from './request-record.js';
+import { describeStart } from './routine.js';
 import { listSlots } from './slot-lister.js';
-import { identityStatePaths, readRegisteredRoots, readRetiredIdentities, recordFile, retireIdentityRoots } from './state-root.js';
+import { identityStatePaths, isSafeSegment, readRegisteredRoots, readRetiredIdentities, recordFile, retireIdentityRoots } from './state-root.js';
+import { readSwitch } from './switches.js';
 import {
   identityKeys,
   indexRunRecord,
@@ -67,6 +69,7 @@ export const BOT_ROW_STATES = [
   'unreadable',
   'needs-reinstall',
   'held',
+  'completed',
   'launchd-failed',
   'run-folder-gone',
   'unknown',
@@ -149,7 +152,7 @@ export interface StatusInput extends IndexOptions {
 }
 
 export interface ActivityInput extends StatusInput {
-  /** Phrases a schedule's start. Absent until the routine layer wires one, so every schedule reads null. */
+  /** Phrases a schedule's start. Absent means the routine layer's describeStart. */
   describe?: DescribeStart;
 }
 
@@ -304,6 +307,8 @@ function botRow(
   if (pathState === 'unreadable') flags.push('unreadable');
   if (check?.status === 'needs-reinstall') flags.push('needs-reinstall');
   if (openItem !== undefined) flags.push('held');
+  // The completed switch is set when a routine's until check exits 0, so the row reads from the switch itself.
+  if (isSafeSegment(botId) && readSwitch(input.stateRoot, context.identity, botId, 'completed') !== null) flags.push('completed');
   if (lastRow === undefined && isInstalled) {
     const failed = launchd.some((entry) => entry.presence === 'loaded' && typeof entry.lastExitCode === 'number' && entry.lastExitCode !== 0);
     const unreadable = launchd.some((entry) => entry.presence === UNKNOWN || entry.lastExitCode === UNKNOWN);
@@ -717,7 +722,7 @@ export function activityReport(input: ActivityInput): Result<ActivityPayload> {
     queued.push(...queuedRequestsFor(input, identity));
     fires.push(...scheduleFiresFor(input, identity, key, snapshot, now));
   }
-  return { ok: true, value: buildActivity({ snapshot, live, queued, fires, now, describe: input.describe }) };
+  return { ok: true, value: buildActivity({ snapshot, live, queued, fires, now, describe: input.describe ?? describeStart }) };
 }
 
 /** Drop the index and build it again from the run records and needs-you items. */

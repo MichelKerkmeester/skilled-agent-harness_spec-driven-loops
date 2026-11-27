@@ -7,8 +7,9 @@
 // nobody is watching. This checker audits a repository's bots/ folder
 // before anything installs it, and it imports the very predicates the
 // runner and installer use: the definition parser, the config reader, the
-// identity resolver, the executor bounds, the cron translator, the label
-// grammar, the worktree shared-path resolver and the delivery channel list.
+// identity resolver, the executor bounds, the cron translator, the routine
+// floor, the label grammar, the worktree shared-path resolver and the
+// delivery channel list.
 // It restates no field rule, so it cannot pass a file the runtime would
 // refuse. It only reads.
 //
@@ -55,6 +56,15 @@ const HARD_INVARIANTS = Object.freeze([
   'reserved-id',
   'executor-kind-native',
   'posture-unhonorable',
+  'definition.routine-trigger-conflict',
+  'definition.routine-tell-with-targets',
+  'definition.routine-starts-empty',
+  'definition.routine-starts-multiple-cron',
+  'definition.routine-starts-cron-not-first',
+  'definition.routine-starts-multiple',
+  'definition.routine-until-check-without-outcome',
+  'definition.routine-until-shell-metacharacters',
+  'routine-floor-15-minutes',
 ]);
 
 /**
@@ -86,7 +96,7 @@ async function loadRuntime() {
   const loader = register({ namespace: 'bot-check' });
   const lib = (name) => loader.import(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
   try {
-    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture] = await Promise.all([
+    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting] = await Promise.all([
       lib('definition'),
       lib('repo-config'),
       lib('identity'),
@@ -95,8 +105,10 @@ async function loadRuntime() {
       lib('isolation'),
       lib('delivery'),
       lib('posture'),
+      lib('routine'),
+      lib('slot-accounting'),
     ]);
-    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture };
+    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting };
   } finally {
     await loader.unregister();
   }
@@ -244,6 +256,10 @@ async function runCheck(checkoutRoot, options = {}) {
           ? `StartInterval ${translation.value.startInterval}`
           : `${translation.value.entries.length} calendar dictionaries`;
         pass('schedule', `${shown}: "${bot.trigger.expression}" translates to ${shape}`);
+        // The floor binds every cron trigger, with or without a routine block.
+        const floor = runtime.routine.checkRoutineFloor(bot.trigger.expression, runtime.slotAccounting.schedulePeriodSeconds(translation.value, new Date()));
+        if (floor.ok) pass('routine-floor-15-minutes', `${shown}: "${bot.trigger.expression}" fires at most every 15 minutes`);
+        else fail(floor.reason, `${shown}: ${floor.detail}`);
         if (identity !== null && !runtime.label.RESERVED_BOT_IDS.includes(bot.id)) {
           const built = runtime.label.buildBotLabel(identity, bot.id, 0);
           if (built.ok) pass('label', `${shown}: ${built.value}`);

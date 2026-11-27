@@ -51,7 +51,9 @@ import { FULL_ACCESS_ENV, pinnedFromPlist, renderBotPlist, renderDrainPlist, sam
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { drainQueue } from './request-drain.js';
+import { checkRoutineFloor } from './routine.js';
 import { definitionPath } from './runner.js';
+import { schedulePeriodSeconds } from './slot-accounting.js';
 import {
   agentLogFile,
   checkRunFolder,
@@ -443,7 +445,7 @@ function isExecutableFile(path: string): boolean {
  *
  * Order: identity, runner and interpreter, the Skilled tree's run root, the
  * switches, the registered-roots file, then for a bot the checker, the
- * definition's schedule, its label and its posture.
+ * definition's schedule and its fifteen-minute floor, its label and its posture.
  *
  * @returns What the transaction needs, or a refusal naming the failed check.
  */
@@ -555,6 +557,7 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
     if (agent === 'bot') {
       readSwitch(stateRoot, identity.value.identity, input.botId, 'disabled');
       readSwitch(stateRoot, identity.value.identity, input.botId, 'paused');
+      readSwitch(stateRoot, identity.value.identity, input.botId, 'completed');
     }
   } catch (error: unknown) {
     return { ok: false, reason: 'switches-unreadable', detail: (error as NodeJS.ErrnoException | null)?.code ?? String(error) };
@@ -602,6 +605,9 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
     const translated = translateCron(trigger.expression);
     if (!translated.ok) return { ok: false, reason: 'schedule-untranslatable', detail: translated.reason };
     translation = translated.value;
+    // Refused here, before any job file is written, whether or not the bot carries a routine block.
+    const floor = checkRoutineFloor(trigger.expression, schedulePeriodSeconds(translation, new Date()));
+    if (!floor.ok) return { ok: false, reason: floor.reason, detail: `bots/${input.botId}/BOT.md: ${floor.detail ?? ''}` };
   }
   const label = buildBotLabel(identity.value.identity, input.botId, 0);
   if (!label.ok) return label;

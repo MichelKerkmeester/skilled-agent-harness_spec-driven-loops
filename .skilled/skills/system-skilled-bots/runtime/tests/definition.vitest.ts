@@ -38,6 +38,7 @@ describe('worked shapes', () => {
     expect(result.value).toEqual({
       id: 'tidy-notes',
       trigger: { kind: 'manual' },
+      routine: null,
       runtime: { kind: 'native' },
       budget: DEFAULT_BUDGET,
       enabled: true,
@@ -47,6 +48,43 @@ describe('worked shapes', () => {
       specFolder: null,
       body: 'Tidy the notes folder when asked.',
     });
+  });
+
+  it('carries the routine block and derives the trigger', () => {
+    const text = [
+      '---',
+      'id: nightly-report',
+      'routine:',
+      '  what: the nightly report',
+      '  starts:',
+      '    - {kind: cron, expression: "0 2 * * *"}',
+      '  does: act',
+      '  until: the report is filed',
+      '  until_check: test -f reports/nightly.md',
+      'runtime: {kind: cli-codex}',
+      'isolation: shared',
+      '---',
+      'Write the nightly report.',
+    ].join('\n');
+
+    const result = parseDefinition(text);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.value.trigger).toEqual({ kind: 'cron', expression: '0 2 * * *' });
+    expect(result.value.routine).toEqual({
+      what: 'the nightly report',
+      starts: [{ kind: 'cron', expression: '0 2 * * *' }],
+      does: 'act',
+      until: 'the report is filed',
+      untilCheck: 'test -f reports/nightly.md',
+    });
+    expect(result.value.delivery).toEqual({ mode: 'targets', targets: [], onFailure: null });
+
+    const conflicted = text.replace('id: nightly-report', 'id: nightly-report\ntrigger: {kind: manual}');
+    expect(parseDefinition(conflicted)).toMatchObject({ ok: false, reason: 'routine-trigger-conflict' });
+
+    const told = parseDefinition(text.replace('does: act', 'does: tell'));
+    if (!told.ok) throw new Error(told.reason);
+    expect(told.value.delivery).toEqual({ mode: 'local-only' });
   });
 });
 

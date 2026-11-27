@@ -9,18 +9,22 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { userInfo } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
 import { defaultSeams, installSchedule, readInstallRecord } from '../lib/installer.js';
-import { needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
+import { needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
+import { requestIdFor } from '../lib/request-record.js';
+import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, routineStateFile, writeRoutineState } from '../lib/routine-state.js';
 import { EXIT_CODES, newRunId, runBot } from '../lib/runner.js';
 import { installFile, PINNED_STATE_ROOT_ENV, slotSnapshotFile } from '../lib/state-root.js';
-import { writeItem } from './queue-support.js';
+import { readSwitch, setSwitch } from '../lib/switches.js';
+import { entries, queueOf, writeItem } from './queue-support.js';
 import { botWorld, BOTS_CLI, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { writeRecord } from './status-support.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
 import type { InstallerSeams } from '../lib/installer.js';
@@ -276,6 +280,124 @@ describe('bots inbox', () => {
     const text = runCli(world, ['inbox', '--all']);
     expect(text.status).toBe(0);
     expect(text.stdout).toContain(`\tanswered ${shiftedInstant(digestItem.answer.answeredAt)} by ada scope once`);
+  }, 60_000);
+});
+
+describe('bots routines', () => {
+  it('lists the routines and their switches', () => {
+    const world = botWorld();
+    writeBot(world, 'digest', ['---', 'id: digest', 'routine:', '  what: the morning digest', '  starts:', '    - {kind: cron, expression: "15 */6 * * *"}', '  does: tell', '  until: the digest is sent', 'runtime: {kind: cli-codex}', 'isolation: shared', '---', 'Summarize the commits.', ''].join('\n'));
+    writeBot(world, 'nightly-report', ['---', 'id: nightly-report', 'routine:', '  what: the nightly report', '  starts:', '    - {kind: cron, expression: "0 2 * * *"}', '  does: act', '  until: the report is filed', '  until_check: test -f reports/nightly.md', 'runtime: {kind: cli-codex}', 'isolation: shared', '---', 'Write the nightly report.', ''].join('\n'));
+
+    // The fixture bots carry no routine block, so none of them is a row.
+    const listed = runCli(world, ['routines']);
+    expect(listed.status).toBe(0);
+    expect(listed.stdout).toBe('digest\tevery 6h\ttell\tthe digest is sent\t-\tenabled\tstreak 0\nnightly-report\tdaily 02:00\tact\tthe report is filed\t-\tenabled\tstreak 0\n');
+
+    setSwitch(world.stateRoot, IDENTITY, 'nightly-report', 'paused');
+    writeRecord(world.stateRoot, {
+      identity: IDENTITY,
+      botId: 'nightly-report',
+      runId: 'fail-1',
+      dispatchedAt: new Date(Date.now() - 60_000).toISOString(),
+      repositoryPath: world.checkoutRoot,
+      exit: { reason: 'crash', class: 'environment', needsYouItemId: null, refusal: null },
+    });
+
+    const json = runCli(world, ['routines', '--json']);
+    expect(json.status).toBe(0);
+    expect(json.stderr).not.toContain('did not read');
+    const payload = JSON.parse(json.stdout) as { version: number; routines: Record<string, unknown>[] };
+    expect(payload.version).toBe(1);
+    expect(payload.routines).toHaveLength(2);
+    expect(payload.routines.map((row) => row.botId)).toEqual(['digest', 'nightly-report']);
+    for (const row of payload.routines) {
+      expect(Object.keys(row)).toEqual(['botId', 'what', 'starts', 'does', 'until', 'untilMetAt', 'failureStreak', 'switch']);
+    }
+    expect(payload.routines[0].starts).toEqual([{ kind: 'cron', expression: '15 */6 * * *', summary: 'every 6h' }]);
+    expect(payload.routines[1]).toMatchObject({ switch: 'paused', failureStreak: 1, untilMetAt: null, does: 'act' });
+
+    // A state file that does not read is named on stderr and never hides the row.
+    const damaged = routineStateFile(world.stateRoot, IDENTITY, 'digest');
+    mkdirSync(dirname(damaged), { recursive: true });
+    writeFileSync(damaged, '{bad');
+    const damagedRun = runCli(world, ['routines']);
+    expect(damagedRun.status).toBe(0);
+    expect(damagedRun.stdout.trimEnd().split('\n')).toHaveLength(2);
+    expect(damagedRun.stderr).toContain('bots: routine state digest did not read');
+
+    expect(runCli(world, ['routines', 'extra']).status).toBe(2);
+  }, 60_000);
+});
+
+describe('bots enable', () => {
+  it('answers the fatigue item with no resume', () => {
+    const world = botWorld();
+    const now = new Date();
+    const item: NeedsYouItem = {
+      id: 'fatigue-1',
+      runId: 'fatigue-1',
+      botId: 'crash',
+      identity: IDENTITY,
+      question: FATIGUE_QUESTION,
+      options: null,
+      createdAt: now.toISOString(),
+      expiresAt: needsYouExpiry(now, 7),
+      evidence: [],
+      prompt: 'Exit with a failure status.',
+      specFolder: null,
+      answer: null,
+      resumeRequestId: null,
+    };
+    const written = writeNeedsYouItem(world.stateRoot, item);
+    if (!written.ok) throw new Error(written.reason);
+    const fatigued = writeRoutineState(world.stateRoot, IDENTITY, 'crash', { ...EMPTY_ROUTINE_STATE, fatiguedAt: now.toISOString(), fatigueItemId: 'fatigue-1' });
+    if (!fatigued.ok) throw new Error(fatigued.reason);
+    setSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled');
+    setSwitch(world.stateRoot, IDENTITY, 'crash', 'completed');
+
+    const enabled = runCli(world, ['enable', 'crash']);
+    expect(enabled.status).toBe(0);
+    expect(enabled.stdout).toContain('bots: crash no longer disabled');
+
+    const answered = readNeedsYouItem(world.stateRoot, IDENTITY, 'fatigue-1');
+    if (!answered.ok) throw new Error(answered.reason);
+    expect(needsYouState(answered.value)).toBe('answered');
+    expect(answered.value.answer?.text).toBe('enabled');
+    expect(answered.value.resumeRequestId).toBe(requestIdFor('crash', 'fatigue-1'));
+    // The answer is recorded and no resume is queued, so nothing waits on a run.
+    // The root holds the request folders themselves, so only the folders are read.
+    for (const [name, folder] of Object.entries(queueOf(world))) {
+      if (name === 'root' || typeof folder !== 'string') continue;
+      expect(entries(folder), name).toEqual([]);
+    }
+
+    const state = readRoutineState(world.stateRoot, IDENTITY, 'crash').state;
+    expect(state.fatiguedAt).toBeNull();
+    expect(state.fatigueItemId).toBeNull();
+    expect(typeof state.enabledAt).toBe('string');
+    expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled')).toBeNull();
+    expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'completed')).toBeNull();
+
+    const again = runCli(world, ['enable', 'crash']);
+    expect(again.status).toBe(0);
+    const after = readRoutineState(world.stateRoot, IDENTITY, 'crash').state;
+    expect(after.fatiguedAt).toBeNull();
+    expect(after.fatigueItemId).toBeNull();
+
+    // A notice past its expiry is named and left unanswered, and the bot still enables.
+    const eightDaysAgo = new Date(now.getTime() - 8 * 24 * 60 * 60 * 1000);
+    const expired: NeedsYouItem = { ...item, id: 'fatigue-2', runId: 'fatigue-2', createdAt: eightDaysAgo.toISOString(), expiresAt: needsYouExpiry(eightDaysAgo, 7) };
+    const writtenExpired = writeNeedsYouItem(world.stateRoot, expired);
+    if (!writtenExpired.ok) throw new Error(writtenExpired.reason);
+    const refatigued = writeRoutineState(world.stateRoot, IDENTITY, 'crash', { ...EMPTY_ROUTINE_STATE, fatiguedAt: now.toISOString(), fatigueItemId: 'fatigue-2' });
+    if (!refatigued.ok) throw new Error(refatigued.reason);
+    setSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled');
+
+    const lapsed = runCli(world, ['enable', 'crash']);
+    expect(lapsed.status).toBe(0);
+    expect(lapsed.stderr).toContain('bots: item fatigue-2 expired; not answered');
+    expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled')).toBeNull();
   }, 60_000);
 });
 

@@ -193,6 +193,11 @@ export interface DeliveryEntry {
   itemId?: string;
 }
 
+/** What one completed run measured with its routine's until check. The durable outcome lives in the routine state file, so this holds nothing else. */
+export interface UntilObservation {
+  met: boolean;
+}
+
 export interface RunRecord {
   schemaVersion: 1;
   identity: RecordIdentity;
@@ -207,6 +212,8 @@ export interface RunRecord {
   actor?: string | null;
   /** Who answered the needs-you item this run continues, or the parked run's own item once answered. Absent or null when no answer is involved. */
   answeredBy?: string | null;
+  /** The until check of a completed run whose routine carries one. Absent or null for every other run. */
+  until?: UntilObservation | null;
 }
 
 /** A record read back, with whether its run folder still exists. */
@@ -324,6 +331,12 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
   for (const key of ['actor', 'answeredBy'] as const) {
     if (!isNullableString(raw[key] ?? null)) return { ok: false, reason: 'record-field-invalid', detail: key };
   }
+  const until = raw.until as unknown;
+  if (until !== undefined && until !== null) {
+    if (!isPlainObject(until) || Object.keys(until).length !== 1 || typeof until.met !== 'boolean') {
+      return { ok: false, reason: 'record-field-invalid', detail: 'until' };
+    }
+  }
 
   const worktree = record.evidence.worktree as unknown;
   if (worktree !== undefined && worktree !== null) {
@@ -401,8 +414,8 @@ export function readRunRecord(stateRoot: string, identity: string, runId: string
   const valid = validateRunRecord(parsed);
   if (!valid.ok) return valid;
 
-  // A record written before the two fields reads them as null.
-  const record = { ...valid.value, actor: valid.value.actor ?? null, answeredBy: valid.value.answeredBy ?? null };
+  // A record written before these fields reads them as null.
+  const record = { ...valid.value, actor: valid.value.actor ?? null, answeredBy: valid.value.answeredBy ?? null, until: valid.value.until ?? null };
   const folder = record.evidence.runFolder;
   return { ok: true, value: { record, runFolder: { path: folder, present: existsSync(folder) } } };
 }

@@ -63,6 +63,8 @@ export interface IdentityStatePaths {
   installs: string;
   /** Dispatch receipts, one folder per run. */
   receipts: string;
+  /** Per-bot routine state files, made by their writer on first write. */
+  routines: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
@@ -128,6 +130,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     records: join(base, 'records'),
     installs: join(base, 'installs'),
     receipts: join(base, 'receipts'),
+    routines: join(base, 'routines'),
   };
 }
 

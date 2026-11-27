@@ -10,7 +10,9 @@
 // leaves an answered item with no request, and running the same answer again
 // sends the request; because the key is the item id, sending it twice stores
 // it once. The answer is checked for secret literals before it is stored,
-// because it reaches the resumed run's prompt.
+// because it reaches the resumed run's prompt. An answer given with the
+// no-resume option records the answer, writes the request id the resume would
+// have had and queues nothing.
 //
 // The answer carries the name of whoever gave it and a scope of once or deny,
 // and the parked run's record is stamped with that same name so a reader of
@@ -26,7 +28,7 @@
 import { resolveActor } from './actor.js';
 import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { ANSWER_SCOPES, needsYouState, normalizeAnswer, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
-import { ANSWER_SOURCE, buildRequest } from './request-record.js';
+import { ANSWER_SOURCE, buildRequest, requestIdFor } from './request-record.js';
 import { enqueueRequest, queueContext } from './request-queue.js';
 import { readRunRecord, writeRunRecord } from './run-record.js';
 import { writeGenerationStamp } from './runner.js';
@@ -52,12 +54,15 @@ export interface AnswerInput {
   actor?: string | null;
   /** once or deny. Absent records once, never an allow beyond this run. */
   scope?: AnswerScope;
+  /** False records the answer and queues nothing. Absent or true queues the resume. */
+  resume?: boolean;
   /** Replaces the queue write; only tests use it. */
   enqueue?: typeof enqueueRequest;
 }
 
 export interface AnswerResult {
-  status: EnqueueResult['status'];
+  /** `reviewed` means the answer was recorded and no resume was queued. */
+  status: EnqueueResult['status'] | 'reviewed';
   requestId: string;
   itemId: string;
 }
@@ -75,15 +80,17 @@ export interface AnswerResult {
  * scope are a different answer.
  *
  * @returns `enqueued`, or `duplicate` when the same answer was sent before,
- *   with the request id the item names. A refusal is `answer-empty`,
- *   `scope-invalid`, `actor-invalid`, `item-unknown`, `item-expired`,
- *   `item-answered-differently`, `answer-secret` (named by key, never by
- *   value) or a queue refusal.
+ *   with the request id the item names. The no-resume option returns
+ *   `reviewed` instead, with the request id the resume would have carried. A
+ *   refusal is `answer-empty`, `scope-invalid`, `actor-invalid`,
+ *   `item-unknown`, `item-expired`, `item-answered-differently`,
+ *   `answer-secret` (named by key, never by value) or a queue refusal.
  */
 export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const env = input.env ?? process.env;
   const now = input.now ?? new Date();
   const enqueue = input.enqueue ?? enqueueRequest;
+  const noResume = input.resume === false;
   if (input.text.trim() === '') return { ok: false, reason: 'answer-empty' };
 
   const scope = input.scope ?? 'once';
@@ -104,7 +111,7 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
 
   const state = needsYouState(item, now);
   if (state === 'expired') return { ok: false, reason: 'item-expired', detail: `expired at ${item.expiresAt}` };
-  if (state === 'answered' && item.answer !== null) {
+  if (state === 'answered' && item.answer !== null && !noResume) {
     const stored = normalizeAnswer(item.answer);
     if (stored.text !== input.text || stored.scope !== scope) {
       return { ok: false, reason: 'item-answered-differently', detail: `answered at ${stored.answeredAt}` };
@@ -124,6 +131,18 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
 
   const answeredBy = item.answer === null ? null : normalizeAnswer(item.answer).by;
   if (stampAnsweredBy(stateRoot, identity, item.runId, answeredBy)) changed = true;
+
+  if (noResume) {
+    // The id the resume would have carried, so nothing waits on a request that was never queued.
+    const requestId = item.resumeRequestId ?? requestIdFor(item.botId, item.id);
+    if (item.resumeRequestId === null) {
+      const written = writeNeedsYouItem(stateRoot, { ...item, resumeRequestId: requestId });
+      if (!written.ok) return written;
+      changed = true;
+    }
+    if (changed) writeGenerationStamp(stateRoot, identity, now);
+    return { ok: true, value: { status: 'reviewed', requestId, itemId: item.id } };
+  }
 
   const request = buildRequest({
     kind: 'resume',

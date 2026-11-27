@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  SCHEDULED_RUN_LINE,
   buildBotPrompt,
   collectKnownSecrets,
   finalAnswerText,
@@ -76,6 +77,15 @@ describe('bot prompt', () => {
 
   it('says so when no spec folder is bound', () => {
     expect(buildBotPrompt({ body: 'x', specFolder: null })).toContain('Bound spec folder: none.');
+  });
+
+  it('tells a scheduled run that it is a firing', () => {
+    const lines = buildBotPrompt({ body: 'Do the work.', specFolder: null, scheduled: true }).split('\n');
+    expect(lines[0]?.startsWith('You are a non-interactive bot run')).toBe(true);
+    expect(lines[1]).toBe('This run was started by its schedule. Do the work now. Do not create or change a schedule.');
+    expect(lines[1]).toBe(SCHEDULED_RUN_LINE);
+    expect(buildBotPrompt({ body: 'Do the work.', specFolder: null })).not.toContain('This run was started by its schedule');
+    expect(buildBotPrompt({ body: 'Do the work.', specFolder: null, scheduled: false })).not.toContain('This run was started by its schedule');
   });
 });
 

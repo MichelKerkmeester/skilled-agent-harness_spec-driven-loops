@@ -2,7 +2,7 @@
 // MODULE: Bot Runner
 // ───────────────────────────────────────────────────────────────────
 //
-// Runs one bot once, in a fixed order: approval, disable switch, needs-you
+// Runs one bot once, in a fixed order: approval, disable and completed switches, needs-you
 // hold, lease, pause switch, precheck, posture, secret check, dispatch, result.
 // An unattended run (scheduled, queued or a resume) runs only a definition and
 // config whose hashes an operator approved, so a run that edited either file
@@ -70,6 +70,7 @@ import { SCHEDULED_FIRE_ENV } from './plist-render.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
+import { disabledCause, evaluateFatigue, readRoutineState, recordUntilOutcome } from './routine-state.js';
 import { AWAITING_DECISION, readRunRecord, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
 import { HELD_SLOT_REASON, recordScheduledFire } from './slot-accounting.js';
 import {
@@ -86,7 +87,7 @@ import {
   userStateRoot,
   writeGenerationStamp,
 } from './state-root.js';
-import { readSwitch } from './switches.js';
+import { readSwitch, setSwitch } from './switches.js';
 
 import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import type { BotDefinition, Delivery } from './definition.js';
@@ -95,7 +96,7 @@ import type { CommandBuilder } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
-import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, RunRecord, SkippedSlotSummary, WorktreeEvidence } from './run-record.js';
+import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -131,6 +132,8 @@ export const REFUSAL_CAUSES = Object.freeze({
   'identity-unknown': { reason: 'identity-unknown', class: 'operator' },
   'run-folder-refused': { reason: 'run-folder-refused', class: 'environment' },
   disabled: { reason: 'disabled', class: null },
+  'routine-fatigued': { reason: 'routine-fatigued', class: null },
+  'routine-completed': { reason: 'routine-completed', class: null },
   'awaiting-decision-hold': { reason: STOP.blockedStop as string, class: null },
   'awaiting-resume-hold': { reason: STOP.blockedStop as string, class: null },
   'needs-you-unreadable': { reason: STOP.blockedStop as string, class: 'operator' },
@@ -357,7 +360,7 @@ function evidenceFor(runFolder: string, receiptDir: string): EvidenceLocations {
 function buildRecord(
   seed: RecordSeed,
   exit: RunRecord['exit'],
-  extra: { leaseNonce: string | null; resultEventId: string | null; iterations: number | null; elapsedMs: number | null },
+  extra: { leaseNonce: string | null; resultEventId: string | null; iterations: number | null; elapsedMs: number | null; until?: UntilObservation | null },
 ): RunRecord {
   return {
     schemaVersion: 1,
@@ -400,6 +403,7 @@ function buildRecord(
     delivery: resolveDeliveryEntries(seed.delivery ?? null, exit),
     actor: seed.actor ?? null,
     answeredBy: seed.answeredBy ?? null,
+    until: extra.until ?? null,
   };
 }
 
@@ -846,8 +850,15 @@ async function runSeeded(
     seed.firedSlot = scheduledAt;
   }
 
+  // A bot ten failed runs switched off reads as fatigued rather than disabled, decided here because
+  // this check refuses before anything else could name it. Disabled is read first, so a bot that is
+  // both fatigued and completed reports the state the operator has to act on.
   if (readSwitch(context.stateRoot, context.identity, input.botId, 'disabled') !== null) {
-    return refusalRecord(context.stateRoot, seed, 'disabled', null, null, null);
+    const cause = disabledCause(readRoutineState(context.stateRoot, context.identity, input.botId).state);
+    return refusalRecord(context.stateRoot, seed, cause, null, null, null);
+  }
+  if (readSwitch(context.stateRoot, context.identity, input.botId, 'completed') !== null) {
+    return refusalRecord(context.stateRoot, seed, 'routine-completed', null, null, null);
   }
 
   let resumeItem: NeedsYouItem | null = null;
@@ -1073,6 +1084,7 @@ async function runSeeded(
         body: definition.body,
         specFolder,
         checkoutRoot: runsOutsideCheckout(kind) ? workDir : null,
+        scheduled: request.kind === 'scheduled',
       });
       // The request adds to the bot's standing instructions and never replaces them.
       if (requestPrompt !== null) prompt = [prompt, '', REQUEST_PROMPT_HEADER, requestPrompt].join('\n');
@@ -1192,6 +1204,22 @@ async function runSeeded(
       seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
       observe(seed, 'worktree', finished.disposition, { reason: finished.keptReason });
     }
+    // The routine's until_check runs only after a completed run, in the bound checkout or the identity's
+    // state folder when the checkout is gone, with the precheck's own environment and bound.
+    let until: UntilObservation | null = null;
+    const untilCheck = definition.routine?.untilCheck ?? null;
+    if (result.kind === 'completed' && untilCheck !== null) {
+      const cwd = existsSync(context.checkoutRoot) ? context.checkoutRoot : identityStatePaths(context.stateRoot, context.identity).base;
+      const checked = await runPrecheck(untilCheck, cwd, env, input.precheckTimeoutMs ?? PRECHECK_TIMEOUT_MS);
+      // The helper reports a printed [SILENT] marker as precheck-silent, but for this check only the exit code counts.
+      const met = checked === null || checked.cause === 'precheck-silent';
+      until = { met };
+      if (met) {
+        recordUntilOutcome(context.stateRoot, context.identity, input.botId, true);
+        setSwitch(context.stateRoot, context.identity, input.botId, 'completed');
+      }
+      observe(seed, 'until-check', met ? 'met' : 'not-met', checked !== null && !met ? { detail: checked.detail } : {});
+    }
     observe(seed, 'terminal', 'stopped', {
       reason: exit.reason,
       duration_ms: outcome.elapsedMs,
@@ -1204,8 +1232,25 @@ async function runSeeded(
         resultEventId,
         iterations: outcome.dispatched ? 1 : 0,
         elapsedMs: outcome.elapsedMs,
+        until,
       }),
     );
+    // The streak counts this run, so the rule is read after its record is written. A refused
+    // evaluation leaves the bot running, which is the side a later failed run repairs.
+    if (result.kind === 'failed') {
+      const fatigue = evaluateFatigue({
+        stateRoot: context.stateRoot,
+        identity: context.identity,
+        botId: input.botId,
+        runId,
+        prompt,
+        expiryDays: context.config.needsYou.expiryDays,
+      });
+      if (fatigue.ok && fatigue.value !== null) {
+        writeGenerationStamp(context.stateRoot, context.identity);
+        observe(seed, 'fatigue', 'disabled', { item: fatigue.value });
+      }
+    }
     return { ...result, recordPath };
   } catch (error: unknown) {
     const tree = seed.evidence.worktree;

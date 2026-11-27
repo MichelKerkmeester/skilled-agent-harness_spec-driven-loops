@@ -15,8 +15,10 @@ import { parse as parseYaml } from 'yaml';
 import { EXECUTOR_KINDS, executorConfigSchema } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 
 import { ISOLATION_VALUES } from './repo-config.js';
+import { parseRoutine, renderTrigger, routineDelivery } from './routine.js';
 
 import type { Isolation, RepoConfig, Result } from './repo-config.js';
+import type { Routine } from './routine.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -60,6 +62,8 @@ export interface Posture {
 export interface BotDefinition {
   id: string;
   trigger: Trigger;
+  /** The authored routine block, whose first start is `trigger`. Null for a bot that declares `trigger` itself. */
+  routine: Routine | null;
   runtime: RuntimeBlock;
   budget: Budget;
   enabled: boolean;
@@ -92,6 +96,7 @@ const DOC_VERSION_PATTERN = /^\d+\.\d+\.\d+\.\d+$/;
 const FRONTMATTER_KEYS = new Set([
   'id',
   'trigger',
+  'routine',
   'runtime',
   'budget',
   'enabled',
@@ -216,7 +221,7 @@ function optionalString(raw: Record<string, unknown>, key: string): Result<strin
  * Parse BOT.md text into a definition with its defaults filled.
  *
  * @param text - The whole file.
- * @returns The definition, or a refusal such as `missing-id`, `missing-trigger` or `empty-body`.
+ * @returns The definition, or a refusal such as `missing-id`, `missing-trigger`, `routine-trigger-conflict` or `empty-body`, or one the routine block names itself.
  */
 export function parseDefinition(text: string): Result<BotDefinition> {
   const match = FRONTMATTER.exec(text);
@@ -236,7 +241,17 @@ export function parseDefinition(text: string): Result<BotDefinition> {
   if (raw.id === undefined || raw.id === null || raw.id === '') return { ok: false, reason: 'missing-id' };
   if (typeof raw.id !== 'string' || !BOT_ID_PATTERN.test(raw.id)) return { ok: false, reason: 'id-invalid' };
 
-  const trigger = parseTrigger(raw.trigger);
+  // One source decides when a bot runs: a routine renders its own trigger, so the two keys never meet.
+  let routine: Routine | null = null;
+  if (raw.routine !== undefined) {
+    if (raw.trigger !== undefined) {
+      return { ok: false, reason: 'routine-trigger-conflict', detail: 'a routine renders its own trigger, so remove the trigger key' };
+    }
+    const parsedRoutine = parseRoutine(raw.routine, parseTrigger);
+    if (!parsedRoutine.ok) return parsedRoutine;
+    routine = parsedRoutine.value;
+  }
+  const trigger: Result<Trigger> = routine !== null ? { ok: true, value: renderTrigger(routine) } : parseTrigger(raw.trigger);
   if (!trigger.ok) return trigger;
 
   const body = (match[2] ?? '').trim();
@@ -248,6 +263,13 @@ export function parseDefinition(text: string): Result<BotDefinition> {
   if (!budget.ok) return budget;
   const delivery = parseDelivery(raw.delivery);
   if (!delivery.ok) return delivery;
+  // does: tell sends nothing, and a delivery key beside it would name a second policy.
+  let resolvedDelivery = delivery.value;
+  if (routine !== null) {
+    const mapped = routineDelivery(routine, delivery.value, raw.delivery !== undefined);
+    if (!mapped.ok) return mapped;
+    resolvedDelivery = mapped.value;
+  }
 
   if (raw.version !== undefined && !(typeof raw.version === 'string' && DOC_VERSION_PATTERN.test(raw.version))) {
     return { ok: false, reason: 'version-invalid', detail: 'expected X.Y.Z.W' };
@@ -271,10 +293,11 @@ export function parseDefinition(text: string): Result<BotDefinition> {
     value: {
       id: raw.id,
       trigger: trigger.value,
+      routine,
       runtime: runtime.value,
       budget: budget.value,
       enabled: raw.enabled === undefined ? true : raw.enabled,
-      delivery: delivery.value,
+      delivery: resolvedDelivery,
       posture: {
         isolation: (raw.isolation as Isolation | undefined) ?? null,
         sandbox: strings.sandbox ?? null,

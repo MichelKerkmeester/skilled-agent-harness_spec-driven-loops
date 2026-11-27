@@ -39,7 +39,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "design/records.md",
-      "design/state-machines.md",
-      "design/refusals.md",
-      "design/fixtures.md",
-      "design/mockups.md",
-      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/routine.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts"
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/routine.vitest.ts",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      "runtime/lib/README.md"
     ],
     "entities": [
       {
@@ -100,39 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "records.md",
-        "kind": "doc",
-        "path": "design/records.md",
+        "name": "routine.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/routine.ts",
         "source": "derived"
       },
       {
-        "name": "state-machines.md",
-        "kind": "doc",
-        "path": "design/state-machines.md",
-        "source": "derived"
-      },
-      {
-        "name": "refusals.md",
-        "kind": "doc",
-        "path": "design/refusals.md",
-        "source": "derived"
-      },
-      {
-        "name": "fixtures.md",
-        "kind": "doc",
-        "path": "design/fixtures.md",
-        "source": "derived"
-      },
-      {
-        "name": "mockups.md",
-        "kind": "doc",
-        "path": "design/mockups.md",
-        "source": "derived"
-      },
-      {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "name": "routine-state.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts",
         "source": "derived"
       },
       {
@@ -142,15 +118,9 @@
         "source": "derived"
       },
       {
-        "name": "switches.ts",
+        "name": "run-record.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
-        "source": "derived"
-      },
-      {
-        "name": "state-root.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
         "source": "derived"
       },
       {
@@ -166,21 +136,51 @@
         "source": "derived"
       },
       {
-        "name": "run-record.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "answer.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-        "source": "derived"
-      },
-      {
         "name": "installer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "switches.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routine.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/routine.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger and a body, so it says when a bot runs and nothing about what the run is for, whether it acts or only tells, or when it is done",
     "created_at": "2026-11-25T07:13:38Z",
-    "last_save_at": "2026-11-27T15:39:44.413Z",
+    "last_save_at": "2026-11-27T18:45:09.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83937bb196a9fa3e9182a811d4ee0b975e1de1d2e598220e11273736de168810",
+    "source_fingerprint": "sha256:87dd9d9b0eb0d08f77a83af0247b753e598e68b691497520710e81bffe9c8683",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a787aab6aa159378ff2b81da745de4f390875a88450effffc0a9f22652861e6",
+      "spec.md": "51a12a65fe6c868a401e79d00b4725fe16d2a5b473e0de50bc03122417b76ddf",
       "plan.md": "d3c7ad9d20baf99f331b593b3b42b2f118c108295b59a8f71c29dd0604516625",
-      "tasks.md": "5c1cb1448ec0c924fe5adfeaed7c881d7e1b62e16053e68db4b2f334d3435d63",
-      "implementation-summary.md": "0d7f921d1001c8f065113d46e668e1fcaf25dadaf4218e7c56971b76197947b8"
+      "tasks.md": "9221a939c37c6b71527cd60df052accb7900d5566e7478ca6f3c9c3f9d1e11ad",
+      "implementation-summary.md": "b32c2d35e6c6d9e959f0c5c48add99c2ec96cbce03d741d467dd5c27003203ee"
     },
     "last_active_at": null
   }

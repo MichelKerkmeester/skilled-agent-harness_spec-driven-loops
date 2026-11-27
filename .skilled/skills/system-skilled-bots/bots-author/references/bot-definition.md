@@ -7,7 +7,7 @@ trigger_phrases:
   - "bot template fields"
 importance_tier: normal
 contextType: reference
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Bot Definition: Writing a BOT.md
@@ -45,7 +45,7 @@ Run folders and control state never live in the consumer checkout. The runtime k
 
 ## 3. THE TEMPLATE
 
-Copy `assets/bot-template.txt` at the hub root. Its comments name every field and its default: `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
+Copy `assets/bot-template.txt` at the hub root. Its comments name every field and its default: `id`, `trigger`, `routine`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. A bot carries `trigger` or a `routine` block and never both: the block says `what` the bot is for, holds its one `starts` entry, says whether it `does` act or tell, names the `until` outcome in prose and may add an `until_check` command whose exit 0 switches the bot off once the outcome holds. A cron start fires at most every 15 minutes. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
 
 The template is the field reference. This file does not restate a field rule, because the runtime owns every one of them.
 

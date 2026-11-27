@@ -7,7 +7,8 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { answerItem } from '../lib/answer.js';
-import { needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
+import { itemAwaitingResume, needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
+import { requestIdFor } from '../lib/request-record.js';
 import { readRunRecord } from '../lib/run-record.js';
 import { generationStampFile, runBot } from '../lib/runner.js';
 import { botWorld, IDENTITY, runCli } from './runner-support.js';
@@ -202,4 +203,34 @@ describe('bots answer', () => {
     if (!item.ok) throw new Error(item.reason);
     expect(item.value.answer?.by).toBe('ada');
   }, 120_000);
+
+  it('answers with no resume', async () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    const calls: string[] = [];
+    const enqueue = () => {
+      calls.push('called');
+      throw new Error('a no-resume answer must not queue a request');
+    };
+
+    const result = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'enabled', resume: false, env: world.env, enqueue });
+    const requestId = requestIdFor(item.botId, item.id);
+    expect(result).toMatchObject({ ok: true, value: { status: 'reviewed', requestId } });
+    expect(calls).toEqual([]);
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer?.text).toBe('enabled');
+    expect(stored.value.answer?.scope).toBe('once');
+    expect(stored.value.resumeRequestId).toBe(requestId);
+    expect(needsYouState(stored.value)).toBe('answered');
+    expect(itemAwaitingResume(world.stateRoot, IDENTITY, item.botId)).toBeNull();
+
+    const again = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'something else', resume: false, env: world.env, enqueue });
+    expect(again).toMatchObject({ ok: true, value: { status: 'reviewed' } });
+    const after = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!after.ok) throw new Error(after.reason);
+    expect(after.value.answer?.text).toBe('enabled');
+  }, 60_000);
 });
