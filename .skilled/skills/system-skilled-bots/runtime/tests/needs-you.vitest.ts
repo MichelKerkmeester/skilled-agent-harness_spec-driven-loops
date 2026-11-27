@@ -1,4 +1,5 @@
 import { chmodSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -10,18 +11,24 @@ import {
   needsYouState,
   openItemForBot,
   readNeedsYouItem,
+  validateNeedsYouItem,
   writeNeedsYouItem,
 } from '../lib/needs-you.js';
 import { defaultRepoConfig } from '../lib/repo-config.js';
 import { identityStatePaths, userStateRoot } from '../lib/state-root.js';
-import { cleanupTemp, tempDir } from './support.js';
+import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
-import type { NeedsYouItem } from '../lib/needs-you.js';
+import type { NeedsYouAnswer, NeedsYouItem } from '../lib/needs-you.js';
 
 afterEach(cleanupTemp);
 
 const IDENTITY = 'acme/tool';
 const CREATED = new Date('2026-11-22T10:00:00Z');
+
+// The answer shape stored before answers named anyone.
+const LEGACY = JSON.parse(
+  readFileSync(join(REAL_CHECKOUT, 'specs', 'system-skilled-bots', '003-openbot-parity-build', '001-activity-and-actor', 'design', 'fixtures', 'legacy-records.json'), 'utf8'),
+) as { answerBefore001: NeedsYouAnswer; answerBefore001ReadsAs: NeedsYouAnswer };
 
 function item(): NeedsYouItem {
   return {
@@ -140,5 +147,34 @@ describe('needs-you item', () => {
 
   it('refuses an item with no prompt', () => {
     expect(writeNeedsYouItem(stateRoot(), { ...item(), prompt: '' })).toEqual({ ok: false, reason: 'item-field-invalid', detail: 'prompt' });
+  });
+
+  it('reads an old answer as by null and scope once', () => {
+    const root = stateRoot();
+    const written = writeNeedsYouItem(root, { ...item(), answer: LEGACY.answerBefore001 });
+    if (!written.ok) throw new Error(written.reason);
+    const read = readNeedsYouItem(root, IDENTITY, 'r1');
+    if (!read.ok) throw new Error(read.reason);
+    expect(read.value.answer).toEqual(LEGACY.answerBefore001ReadsAs);
+    const onDisk = JSON.parse(readFileSync(written.value, 'utf8')) as { answer: Record<string, unknown> };
+    expect(onDisk.answer).not.toHaveProperty('by');
+    expect(onDisk.answer).not.toHaveProperty('scope');
+  });
+
+  it('checks the answer by and scope and accepts kind as a key only', () => {
+    const answeredAt = LEGACY.answerBefore001.answeredAt;
+    expect(validateNeedsYouItem({ ...item(), answer: { text: 'yes', answeredAt, by: 'a/b' } })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'answer.by',
+    });
+    expect(validateNeedsYouItem({ ...item(), answer: { text: 'yes', answeredAt, scope: 'always' } })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'answer.scope',
+    });
+    expect(validateNeedsYouItem({ ...item(), kind: null }).ok).toBe(true);
+    expect(validateNeedsYouItem({ ...item(), kind: 'decision' }).ok).toBe(true);
+    expect(validateNeedsYouItem({ ...item(), kind: 7 })).toMatchObject({ ok: false, reason: 'item-field-invalid', detail: 'kind' });
   });
 });

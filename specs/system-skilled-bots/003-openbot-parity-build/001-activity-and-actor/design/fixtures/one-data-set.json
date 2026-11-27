@@ -141,12 +141,13 @@
   "installs": [
     { "botId": "digest", "agent": "bot", "schedule": { "expression": "15 */6 * * *", "scheduleIndex": 0 }, "hold": null, "operator": "ada", "fullAccess": false },
     { "botId": "archive", "agent": "bot", "schedule": { "expression": "0 3 * * *", "scheduleIndex": 0 }, "hold": "operator", "operator": "ada", "fullAccess": false },
+    { "botId": "nightly-report", "agent": "bot", "schedule": { "expression": "0 2 * * *", "scheduleIndex": 0 }, "hold": null, "operator": "ada", "fullAccess": false },
     { "botId": "drain", "agent": "drain", "schedule": null, "hold": null, "operator": "ada", "fullAccess": false }
   ],
-  "describe": { "15 */6 * * *": "every 6h" },
+  "describe": { "15 */6 * * *": "every 6h", "0 2 * * *": "daily 02:00" },
   "expect": {
     "activityWithDescribe": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/payloads/activity.json",
-    "activityWithoutDescribe": "the same file with groups[2].rows[0].schedule and groups[6].rows[0].schedule set to null",
+    "activityWithoutDescribe": "the same file with the schedule of every row in groups[2] and groups[6] set to null",
     "inbox": "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/payloads/inbox.json",
     "activityTextIds": ["needs_you", "working", "scheduled", "done", "stopped", "failed", "recurring"]
   }

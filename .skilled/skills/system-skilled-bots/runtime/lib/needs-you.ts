@@ -12,6 +12,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { ACTOR_PATTERN } from './actor.js';
 import { IDENTITY_PATTERN } from './repo-config.js';
 import { ensureIdentityState, identityStatePaths, isSafeSegment, needsYouFile } from './state-root.js';
 
@@ -21,9 +22,17 @@ import type { Result } from './repo-config.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** The scopes an answer may carry. A missing scope reads as once, never as an allow beyond this run. */
+export const ANSWER_SCOPES = ['once', 'deny'] as const;
+export type AnswerScope = (typeof ANSWER_SCOPES)[number];
+
 export interface NeedsYouAnswer {
   text: string;
   answeredAt: string;
+  /** Who answered, by name. Null on an answer stored before answers named anyone. */
+  by?: string | null;
+  /** once or deny. An answer stored without one reads as once. */
+  scope?: AnswerScope;
 }
 
 export interface NeedsYouItem {
@@ -44,6 +53,8 @@ export interface NeedsYouItem {
   answer: NeedsYouAnswer | null;
   /** Set once an answer has enqueued its resume request. */
   resumeRequestId: string | null;
+  /** The review kind. No writer sets it yet, and absent or null reads as a plain decision. */
+  kind?: string | null;
 }
 
 export type NeedsYouState = 'open' | 'answered' | 'expired';
@@ -62,6 +73,7 @@ const ITEM_KEYS = [
   'specFolder',
   'answer',
   'resumeRequestId',
+  'kind',
 ] as const;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -118,9 +130,18 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
     if (!isPlainObject(answer) || typeof answer.text !== 'string' || !isInstant(answer.answeredAt)) {
       return { ok: false, reason: 'item-field-invalid', detail: 'answer' };
     }
+    if (answer.by !== undefined && answer.by !== null && !(typeof answer.by === 'string' && ACTOR_PATTERN.test(answer.by))) {
+      return { ok: false, reason: 'item-field-invalid', detail: 'answer.by' };
+    }
+    if (answer.scope !== undefined && !(ANSWER_SCOPES as readonly unknown[]).includes(answer.scope)) {
+      return { ok: false, reason: 'item-field-invalid', detail: 'answer.scope' };
+    }
   }
   if (raw.resumeRequestId !== null && !nonEmptyString(raw.resumeRequestId)) {
     return { ok: false, reason: 'item-field-invalid', detail: 'resumeRequestId' };
+  }
+  if (raw.kind !== undefined && raw.kind !== null && !nonEmptyString(raw.kind)) {
+    return { ok: false, reason: 'item-field-invalid', detail: 'kind' };
   }
   return { ok: true, value: raw as unknown as NeedsYouItem };
 }
@@ -166,6 +187,15 @@ export function writeNeedsYouItem(stateRoot: string, item: NeedsYouItem): Result
 }
 
 /**
+ * Fill in an answer's optional fields. A read never rewrites the file on disk,
+ * so an answer stored before answers named anyone, or before a scope existed,
+ * keeps its stored shape and reads here as `by: null` and `scope: 'once'`.
+ */
+export function normalizeAnswer(answer: NeedsYouAnswer): Required<NeedsYouAnswer> {
+  return { text: answer.text, answeredAt: answer.answeredAt, by: answer.by ?? null, scope: answer.scope ?? 'once' };
+}
+
+/**
  * Read one item back.
  *
  * @returns The item, or a refusal (`item-missing`, `item-unreadable`, a validation reason).
@@ -186,7 +216,15 @@ export function readNeedsYouItem(stateRoot: string, identity: string, itemId: st
   } catch {
     return { ok: false, reason: 'item-invalid', detail: 'not valid JSON' };
   }
-  return validateNeedsYouItem(parsed);
+  const valid = validateNeedsYouItem(parsed);
+  if (!valid.ok) return valid;
+  return {
+    ok: true,
+    value: {
+      ...valid.value,
+      answer: valid.value.answer === null ? null : normalizeAnswer(valid.value.answer),
+    },
+  };
 }
 
 // ───────────────────────────────────────────────────────────────────

@@ -57,6 +57,25 @@ describe('posture matrix', () => {
     }
   });
 
+  it('caps a declared danger-full-access without full access', () => {
+    // cli-codex carries an OS-level sandbox, so it is the kind that can honor the class at all.
+    const capped = validatePosture(definition('cli-codex', 'danger-full-access'), defaultRepoConfig());
+    expect(capped).toMatchObject({
+      ok: true,
+      value: { posture: { sandbox: 'workspace-write' }, executor: { sandboxMode: 'workspace-write' } },
+    });
+    const granted = validatePosture(definition('cli-codex', 'danger-full-access'), defaultRepoConfig(), { fullAccess: true });
+    expect(granted).toMatchObject({
+      ok: true,
+      value: { posture: { sandbox: 'danger-full-access' }, executor: { sandboxMode: 'danger-full-access' } },
+    });
+    // A class the definition may ask for on its own reads the same either way.
+    for (const sandbox of ['read-only', 'workspace-write']) {
+      expect(validatePosture(definition('cli-codex', sandbox), defaultRepoConfig())).toMatchObject({ ok: true, value: { posture: { sandbox } } });
+      expect(validatePosture(definition('cli-codex', sandbox), defaultRepoConfig(), { fullAccess: true })).toMatchObject({ ok: true, value: { posture: { sandbox } } });
+    }
+  });
+
   it('honors worktree isolation and refuses undeclared isolation before any kind is weighed', () => {
     expect(validatePosture(definition('cli-codex', null, 'worktree'), defaultRepoConfig())).toMatchObject({
       ok: true,

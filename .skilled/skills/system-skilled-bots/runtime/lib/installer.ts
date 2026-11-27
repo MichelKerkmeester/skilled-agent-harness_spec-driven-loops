@@ -41,12 +41,13 @@ import { delimiter, dirname, isAbsolute, join, relative, resolve, sep } from 'no
 
 import { writeStateAtomic, writeTextAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import { EXECUTOR_ADAPTER_CAPABILITIES } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import { PINNED_OPERATOR_ENV, resolveActor } from './actor.js';
 import { approveDefinition, digestOf } from './approval.js';
 import { translateCron } from './cron-translator.js';
 import { parseDefinition } from './definition.js';
 import { identityGuard, identityKey, PINNED_IDENTITY_ENV } from './identity.js';
 import { buildBotLabel, buildDrainLabel, LABEL_PREFIX, parseLabel, RESERVED_BOT_IDS } from './label.js';
-import { pinnedFromPlist, renderBotPlist, renderDrainPlist, sameSchedule, scheduleFromPlist, stateHomeFromPlist } from './plist-render.js';
+import { FULL_ACCESS_ENV, pinnedFromPlist, renderBotPlist, renderDrainPlist, sameSchedule, scheduleFromPlist, stateHomeFromPlist } from './plist-render.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { drainQueue } from './request-drain.js';
@@ -214,6 +215,10 @@ export interface InstallRecord {
   hold: Hold | null;
   installedAt: string;
   enabledAt: string | null;
+  /** The installing operator, the actor a scheduled run of this bot records. Absent in a record written before installs named anyone, which reads as null. */
+  operator?: string | null;
+  /** True only when the operator installed the bot with full access. Absent reads as false, so a declared danger-full-access is capped. */
+  fullAccess?: boolean;
 }
 
 /** An executor kind and the absolute path its binary resolved to at install. */
@@ -238,6 +243,8 @@ export interface InstallInput {
   env?: NodeJS.ProcessEnv;
   /** The interpreter written into the job; defaults to this process's own. */
   interpreter?: string;
+  /** The operator's full-access grant, from bots schedule install --full-access. The command line refuses it without a tty. */
+  fullAccess?: boolean;
   seams?: Partial<InstallerSeams>;
   now?: Date;
 }
@@ -252,6 +259,8 @@ export interface InstallReport {
   nextFire: typeof NEXT_FIRE_UNKNOWN;
   record: InstallRecord;
   check: InstallCheck;
+  /** Set when only the full-access grant was recorded, for a bot whose trigger is not cron, so no job file was written. */
+  recordedOnly?: { triggerKind: string };
 }
 
 /** The check's verdict for one bot. */
@@ -582,17 +591,24 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   const definition = parseDefinition(bytes.toString('utf8'));
   if (!definition.ok) return { ok: false, reason: 'definition-malformed', detail: definition.reason };
   if (definition.value.id !== input.botId) return { ok: false, reason: 'definition-malformed', detail: 'id-mismatch' };
-  if (definition.value.trigger.kind !== 'cron') {
-    return { ok: false, reason: 'trigger-not-cron', detail: `${input.botId} has a ${definition.value.trigger.kind} trigger; nothing to schedule` };
+  const trigger = definition.value.trigger;
+  if (trigger.kind !== 'cron' && input.fullAccess !== true) {
+    return { ok: false, reason: 'trigger-not-cron', detail: `${input.botId} has a ${trigger.kind} trigger; nothing to schedule` };
   }
-  const translation = translateCron(definition.value.trigger.expression);
-  if (!translation.ok) return { ok: false, reason: 'schedule-untranslatable', detail: translation.reason };
+  // A bot with no cron trigger has no job file to write, so the grant is the only thing an install
+  // can record. Its label and posture are still vetted, because the grant is what a run reads.
+  let translation: Translation | null = null;
+  if (trigger.kind === 'cron') {
+    const translated = translateCron(trigger.expression);
+    if (!translated.ok) return { ok: false, reason: 'schedule-untranslatable', detail: translated.reason };
+    translation = translated.value;
+  }
   const label = buildBotLabel(identity.value.identity, input.botId, 0);
   if (!label.ok) return label;
   const posture = validatePosture(definition.value, config.value);
   if (!posture.ok) return { ok: false, reason: 'posture-refused', detail: `${posture.reason}${posture.detail !== undefined ? `: ${posture.detail}` : ''}` };
 
-  return { ok: true, value: { ...base, definition: definition.value, definitionDigest, translation: translation.value, label: label.value } };
+  return { ok: true, value: { ...base, definition: definition.value, definitionDigest, translation, label: label.value } };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -716,9 +732,10 @@ function checkoutJobs(seams: InstallerSeams, checkoutRoot: string): CheckoutJob[
 
 /**
  * The environment a job file gives its fires that bears on resolution: the
- * state home and the pinned state root and identity it carries, under
- * launchd's own. A schedule's fire marker is left out, so a verb resolving
- * under this environment is never taken for a scheduled fire.
+ * state home and the pinned state root, identity, operator and full-access
+ * grant it carries, under launchd's own. A schedule's fire marker is left
+ * out, so a verb resolving under this environment is never taken for a
+ * scheduled fire.
  */
 function jobFileEnv(seams: InstallerSeams, job: Record<string, unknown>): NodeJS.ProcessEnv {
   const stateHome = stateHomeFromPlist(job);
@@ -728,15 +745,30 @@ function jobFileEnv(seams: InstallerSeams, job: Record<string, unknown>): NodeJS
     environmentVariables: {
       ...(stateHome === null ? {} : { XDG_STATE_HOME: stateHome }),
       ...(pinned === null ? {} : { [PINNED_STATE_ROOT_ENV]: pinned.stateRoot, [PINNED_IDENTITY_ENV]: pinned.identity }),
+      ...(pinned === null || typeof pinned.operator !== 'string' ? {} : { [PINNED_OPERATOR_ENV]: pinned.operator }),
+      ...(pinned === null || pinned.fullAccess !== true ? {} : { [FULL_ACCESS_ENV]: '1' }),
     },
   });
 }
 
-/** The pinned state root and identity an environment carries, as job environment entries; empty when it carries none. */
+/**
+ * The pinned values an environment carries, as job environment entries: the
+ * state root and identity, plus the operator and the full-access grant when
+ * it carries them. Empty unless it carries both the state root and the
+ * identity, since a job pins those two together.
+ */
 function pinsOf(env: NodeJS.ProcessEnv): Record<string, string> {
   const stateRoot = env[PINNED_STATE_ROOT_ENV];
   const identity = env[PINNED_IDENTITY_ENV];
-  return stateRoot !== undefined && identity !== undefined ? { [PINNED_STATE_ROOT_ENV]: stateRoot, [PINNED_IDENTITY_ENV]: identity } : {};
+  if (stateRoot === undefined || identity === undefined) return {};
+  const operator = env[PINNED_OPERATOR_ENV];
+  const fullAccess = env[FULL_ACCESS_ENV];
+  return {
+    [PINNED_STATE_ROOT_ENV]: stateRoot,
+    [PINNED_IDENTITY_ENV]: identity,
+    ...(operator === undefined ? {} : { [PINNED_OPERATOR_ENV]: operator }),
+    ...(fullAccess === undefined ? {} : { [FULL_ACCESS_ENV]: fullAccess }),
+  };
 }
 
 /**
@@ -745,7 +777,7 @@ function pinsOf(env: NodeJS.ProcessEnv): Record<string, string> {
  * checkout compares under this, since under the pins the job always agrees.
  */
 function withoutPins(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
-  const { [PINNED_STATE_ROOT_ENV]: _root, [PINNED_IDENTITY_ENV]: _identity, ...rest } = env;
+  const { [PINNED_STATE_ROOT_ENV]: _root, [PINNED_IDENTITY_ENV]: _identity, [PINNED_OPERATOR_ENV]: _operator, [FULL_ACCESS_ENV]: _fullAccess, ...rest } = env;
   return rest;
 }
 
@@ -859,11 +891,64 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
   const checked = preflight(input, seams);
   if (!checked.ok) return checked;
   const pre = checked.value;
+  // A bot whose trigger is not cron has no job file to write, so an install with the full-access
+  // grant records the grant and stops: nothing is rendered, linted, moved or handed to the scheduler.
+  if (pre.agent === 'bot' && pre.translation === null) {
+    const installer = resolveActor({ env: input.env ?? process.env, scheduled: false });
+    const operator = installer.ok ? installer.value : null;
+    registerRoot(pre.stateRoot, pre.identity, pre.checkoutRoot);
+    const record: InstallRecord = {
+      schemaVersion: 1,
+      agent: 'bot',
+      botId: input.botId,
+      identity: pre.identity,
+      labels: [],
+      plistPaths: [],
+      checkoutRoot: realpathSync(pre.checkoutRoot),
+      interpreter: pre.interpreter,
+      plistRunnerPath: pre.tree.repoRunnerRealPath,
+      repoRunnerPath: pre.tree.repoRunnerPath,
+      repoRunnerRealPath: pre.tree.repoRunnerRealPath,
+      treeRoot: pre.tree.treeRoot,
+      skilledTree: pre.skilledTree,
+      skilledKind: pre.tree.kind,
+      pinCommit: pre.tree.kind === 'vendored' ? pre.tree.pinCommit : null,
+      executor: pre.definition !== null ? pinExecutor(pre.definition.runtime.kind, input.env ?? process.env) : null,
+      schedule: null,
+      hold: null,
+      installedAt: now.toISOString(),
+      enabledAt: null,
+      operator,
+      fullAccess: true,
+    };
+    writeStateAtomic(installFile(pre.stateRoot, pre.identity, input.botId), record);
+    if (pre.definitionDigest !== null) {
+      approveDefinition({ stateRoot: pre.stateRoot, identity: pre.identity, checkoutRoot: pre.checkoutRoot, botId: input.botId, definitionDigest: pre.definitionDigest, by: 'install', now });
+    }
+    return {
+      ok: true,
+      value: {
+        botId: input.botId,
+        labels: [],
+        plistPaths: [],
+        hold: null,
+        loaded: false,
+        steps: [],
+        nextFire: NEXT_FIRE_UNKNOWN,
+        record,
+        check: { botId: input.botId, labels: [], status: 'ok', reasons: [] },
+        recordedOnly: { triggerKind: pre.definition?.trigger.kind ?? 'unknown' },
+      },
+    };
+  }
   const steps: StepRecord[] = [];
 
   const logPath = agentLogFile(pre.stateRoot, pre.identity, pre.label);
   const runnerPath = pre.tree.repoRunnerRealPath;
-  const pinned: PinnedJobValues = { stateRoot: pre.stateRoot, identity: pre.identity };
+  const installer = resolveActor({ env: input.env ?? process.env, scheduled: false });
+  const operator = installer.ok ? installer.value : null;
+  const fullAccess = pre.agent === 'bot' && input.fullAccess === true;
+  const pinned: PinnedJobValues = { stateRoot: pre.stateRoot, identity: pre.identity, operator, fullAccess };
   let rendered: Result<string>;
   if (pre.agent === 'drain') {
     const queue = identityStatePaths(pre.stateRoot, pre.identity).requests;
@@ -1028,6 +1113,8 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     hold,
     installedAt: now.toISOString(),
     enabledAt: previous?.enabledAt ?? null,
+    operator,
+    fullAccess,
   };
   writeStateAtomic(installFile(pre.stateRoot, pre.identity, input.botId), record);
   if (pre.definitionDigest !== null) {
@@ -1078,7 +1165,8 @@ export function enableSchedule(input: InstallInput): Result<SwitchReport> {
   if (!context.ok) return context;
   const record = readInstallRecord(context.value.stateRoot, context.value.identity, input.botId);
   const approvalTarget = { stateRoot: context.value.stateRoot, identity: context.value.identity, checkoutRoot: input.checkoutRoot, botId: input.botId };
-  if (record === null) {
+  // A record with no labels is a grant recorded for a bot with no job file, so it answers like no record at all.
+  if (record === null || record.labels.length === 0) {
     // Enabling a bot with no schedule still approves its definition, so its queued requests may run.
     if (input.botId !== DRAIN_ID) {
       let bytes: Buffer | null = null;
@@ -1137,7 +1225,8 @@ export function disableSchedule(input: Omit<InstallInput, 'skilledTree'>): Resul
   // A job of this checkout installed under an identity it no longer resolves is stopped too.
   const found = checkoutJobs(seams, input.checkoutRoot).filter((job) => job.botId === input.botId);
   const record = readInstallRecord(context.value.stateRoot, context.value.identity, input.botId);
-  if (record === null) return disableUnrecorded(seams, context.value.identity, input.botId, found.map((job) => job.label));
+  // A record with no labels is a grant recorded for a bot with no job file, so it answers like no record at all.
+  if (record === null || record.labels.length === 0) return disableUnrecorded(seams, context.value.identity, input.botId, found.map((job) => job.label));
 
   const labels = [...new Set([...record.labels, ...found.map((job) => job.label)])];
   const steps: StepRecord[] = [];

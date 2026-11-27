@@ -273,8 +273,8 @@ describe('needs-you rows', () => {
     expect(bot(cleared, 'acme/tool', 'alpha').flags).not.toContain('held');
     expect(bot(cleared, 'acme/tool', 'alpha').heldBy).toBeNull();
     expect(bot(cleared, 'acme/tool', 'beta').flags).not.toContain('held');
-    // The runs were not re-read, so the index still says it is stale.
-    expect(cleared.staleIdentities).toEqual(['acme/tool']);
+    // The read re-read the runs and the items, so nothing is left stale.
+    expect(cleared.staleIdentities).toEqual([]);
   });
 });
 
@@ -357,15 +357,58 @@ describe('bots status', () => {
     expect(bots(before)).toHaveLength(3);
     rmSync(statusIndexFile(world.stateRoot));
     const after = cliJson(world, checkout, ['--rebuild']);
-    const { builtAt: _before, ...beforeRest } = before;
-    const { builtAt: _after, ...afterRest } = after;
+    // Two builds stamp their own times, so both are left out of the comparison.
+    const { builtAt: _beforeBuiltAt, updatedAt: _beforeUpdatedAt, ...beforeRest } = before;
+    const { builtAt: _afterBuiltAt, updatedAt: _afterUpdatedAt, ...afterRest } = after;
     expect(afterRest).toEqual(beforeRest);
 
+    // A refresh that cannot list the needs-you folder leaves the identity stale.
     writeGenerationStamp(world.stateRoot, 'acme/tool');
-    const text = cli(world, checkout, []);
+    const needsYou = identityStatePaths(world.stateRoot, 'acme/tool').needsYou;
+    mkdirSync(needsYou, { recursive: true });
+    chmodSync(needsYou, 0o000);
+    let text: ReturnType<typeof cli>;
+    try {
+      text = cli(world, checkout, []);
+    } finally {
+      chmodSync(needsYou, 0o700);
+    }
     expect(text.status).toBe(0);
     expect(text.stdout).toContain('stale');
     expect(text.stdout).toContain(after.builtAt ?? 'missing builtAt');
+  });
+
+  it('reports stale only after a refresh that could not complete', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, 'acme/tool');
+    writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'nightly', runId: 'f1', dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    rebuild(world);
+    writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'nightly', runId: 'f2', dispatchedAt: at(2), repositoryPath: checkout, skilledTree: world.skilledTree });
+    writeGenerationStamp(world.stateRoot, 'acme/tool');
+
+    // A read brings the new run in with no rebuild, so nothing is left stale.
+    const refreshed = report(world);
+    expect(refreshed.stale).toBe(false);
+    expect(refreshed.staleIdentities).toEqual([]);
+    expect(refreshed.version).toBe(1);
+    expect(typeof refreshed.updatedAt).toBe('string');
+    expect(bot(refreshed, 'acme/tool', 'nightly').lastRun).toMatchObject({ runId: 'f2' });
+
+    // A refresh that cannot list the needs-you folder leaves the identity stale, and the read still answers.
+    writeGenerationStamp(world.stateRoot, 'acme/tool');
+    const needsYou = identityStatePaths(world.stateRoot, 'acme/tool').needsYou;
+    mkdirSync(needsYou, { recursive: true });
+    chmodSync(needsYou, 0o000);
+    let blocked: ReturnType<typeof statusReport>;
+    try {
+      blocked = statusReport({ stateRoot: world.stateRoot, seams: world.seams, env: { PATH: process.env.PATH, HOME: world.home } });
+    } finally {
+      chmodSync(needsYou, 0o700);
+    }
+    expect(blocked.ok).toBe(true);
+    if (!blocked.ok) throw new Error(`${blocked.reason} ${blocked.detail ?? ''}`);
+    expect(blocked.value.stale).toBe(true);
+    expect(blocked.value.staleIdentities).toEqual(['acme/tool']);
   });
 
   it('shows run-folder-gone, needs-you, needs-reinstall and held from one state root, and exits 0', () => {

@@ -203,6 +203,10 @@ export interface RunRecord {
   exit: RunExit;
   evidence: EvidenceLocations;
   delivery: DeliveryEntry[];
+  /** Who the run was recorded as: the operator at a terminal, or the operator pinned at install for a scheduled run. Absent on a record written before records named anyone. */
+  actor?: string | null;
+  /** Who answered the needs-you item this run continues, or the parked run's own item once answered. Absent or null when no answer is involved. */
+  answeredBy?: string | null;
 }
 
 /** A record read back, with whether its run folder still exists. */
@@ -317,6 +321,9 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
   if (!isNullableString(record.request.resumedItemId ?? null)) {
     return { ok: false, reason: 'record-field-invalid', detail: 'request.resumedItemId' };
   }
+  for (const key of ['actor', 'answeredBy'] as const) {
+    if (!isNullableString(raw[key] ?? null)) return { ok: false, reason: 'record-field-invalid', detail: key };
+  }
 
   const worktree = record.evidence.worktree as unknown;
   if (worktree !== undefined && worktree !== null) {
@@ -394,6 +401,8 @@ export function readRunRecord(stateRoot: string, identity: string, runId: string
   const valid = validateRunRecord(parsed);
   if (!valid.ok) return valid;
 
-  const folder = valid.value.evidence.runFolder;
-  return { ok: true, value: { record: valid.value, runFolder: { path: folder, present: existsSync(folder) } } };
+  // A record written before the two fields reads them as null.
+  const record = { ...valid.value, actor: valid.value.actor ?? null, answeredBy: valid.value.answeredBy ?? null };
+  const folder = record.evidence.runFolder;
+  return { ok: true, value: { record, runFolder: { path: folder, present: existsSync(folder) } } };
 }

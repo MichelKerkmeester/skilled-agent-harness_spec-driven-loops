@@ -9,19 +9,20 @@
 // rebuild named, never answered from the run folders. Every case runs in
 // temp folders.
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { identityKey } from '../lib/identity.js';
+import { writeRunRecord } from '../lib/run-record.js';
 import { identityStatePaths, runRoot, statusIndexFile, writeGenerationStamp } from '../lib/state-root.js';
 import { formatStatus, statusReport } from '../lib/status.js';
-import { applyRetention, indexRunRecord, openIndex, readIndex, rebuildIndex } from '../lib/status-index.js';
+import { applyRetention, indexRunRecord, openIndex, readIndex, rebuildIndex, recordUpdatedAt } from '../lib/status-index.js';
 import { statusCheckout, statusWorld, writeRecord, writeStatusItem } from './status-support.js';
 import { cleanupTemp, tempDir } from './support.js';
 
-import type { IndexSnapshot } from '../lib/status-index.js';
+import type { IndexSnapshot, RunSummary } from '../lib/status-index.js';
 
 afterEach(cleanupTemp);
 
@@ -35,8 +36,9 @@ function runId(n: number): string {
   return `r${String(n).padStart(3, '0')}`;
 }
 
-function withoutBuiltAt(snapshot: IndexSnapshot): Omit<IndexSnapshot, 'builtAt'> {
-  const { builtAt: _builtAt, ...rest } = snapshot;
+/** The snapshot without its two build times, which differ between two builds. */
+function withoutBuiltAt(snapshot: IndexSnapshot): Omit<IndexSnapshot, 'builtAt' | 'updatedAt'> {
+  const { builtAt: _builtAt, updatedAt: _updatedAt, ...rest } = snapshot;
   return rest;
 }
 
@@ -98,6 +100,41 @@ describe('opening the index', () => {
     expect(noBinding).toMatchObject({ ok: false, reason: 'index-binding-failed' });
     if (!noBinding.ok) expect(noBinding.detail).toContain('--rebuild');
   });
+
+  it('accepts a write into an index built by the old DDL', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, IDENTITY);
+    writeRecord(world.stateRoot, { identity: IDENTITY, botId: 'nightly', runId: runId(1), dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    rebuildOrThrow(world.stateRoot, new Date('2026-11-21T00:00:00Z'));
+
+    // An index built before the row existed carries a schema version and a builtAt and no updatedAt.
+    const opened = openIndex(world.stateRoot);
+    if (!opened.ok) throw new Error(opened.reason);
+    try {
+      opened.value.db.prepare("DELETE FROM meta WHERE key = 'updatedAt'").run();
+    } finally {
+      opened.value.close();
+    }
+
+    const reopened = openIndex(world.stateRoot);
+    if (!reopened.ok) throw new Error(`${reopened.reason} ${reopened.detail ?? ''}`);
+    try {
+      expect(readIndex(reopened.value).updatedAt).toBeNull();
+      const columns = reopened.value.db.prepare('PRAGMA table_info(runs)').all();
+      const second = writeRecord(world.stateRoot, { identity: IDENTITY, botId: 'nightly', runId: runId(2), dispatchedAt: at(2), repositoryPath: checkout, skilledTree: world.skilledTree });
+      indexRunRecord(reopened.value, { ...second, actor: 'ada' }, { skippedSlotsPerSummary: 10 });
+      recordUpdatedAt(reopened.value, '2026-11-23T12:00:00.000Z');
+      const snapshot = readIndex(reopened.value);
+      const row = snapshot.runs.find((candidate) => candidate.runId === runId(2));
+      expect(JSON.parse(row?.summary ?? '{}')).toMatchObject({ actor: 'ada' });
+      expect(snapshot.updatedAt).toBe('2026-11-23T12:00:00.000Z');
+      expect(snapshot.builtAt).toBe('2026-11-21T00:00:00.000Z');
+      // The row lives in the meta table, so the runs table keeps the columns it was built with.
+      expect(reopened.value.db.prepare('PRAGMA table_info(runs)').all()).toEqual(columns);
+    } finally {
+      reopened.value.close();
+    }
+  });
 });
 
 describe('building and rebuilding', () => {
@@ -132,13 +169,42 @@ describe('building and rebuilding', () => {
     expect(fresh).toMatchObject({ ok: true, value: { stale: false } });
 
     writeGenerationStamp(world.stateRoot, IDENTITY);
-    const stale = statusReport({ stateRoot: world.stateRoot, seams: world.seams });
-    if (!stale.ok) throw new Error(stale.reason);
-    expect(stale.value.stale).toBe(true);
-    expect(stale.value.staleIdentities).toEqual([IDENTITY]);
-    const text = formatStatus(stale.value).join('\n');
-    expect(text).toContain('stale');
-    expect(text).toContain('2026-11-21T00:00:00.000Z');
+    // A read brings a stale identity up to date, so a moved stamp alone no longer leaves the index stale.
+    const moved = statusReport({ stateRoot: world.stateRoot, seams: world.seams });
+    expect(moved).toMatchObject({ ok: true, value: { stale: false } });
+
+    // Stale now means a refresh that could not complete, so the stamp moves again and the item folder stops listing.
+    writeGenerationStamp(world.stateRoot, IDENTITY);
+    const needsYou = identityStatePaths(world.stateRoot, IDENTITY).needsYou;
+    mkdirSync(needsYou, { recursive: true });
+    chmodSync(needsYou, 0o000);
+    try {
+      const stale = statusReport({ stateRoot: world.stateRoot, seams: world.seams });
+      if (!stale.ok) throw new Error(stale.reason);
+      expect(stale.value.stale).toBe(true);
+      expect(stale.value.staleIdentities).toEqual([IDENTITY]);
+      const text = formatStatus(stale.value).join('\n');
+      expect(text).toContain('stale');
+      expect(text).toContain('2026-11-21T00:00:00.000Z');
+    } finally {
+      chmodSync(needsYou, 0o700);
+    }
+  });
+
+  it('carries the actor in the run summary', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, IDENTITY);
+    writeRecord(world.stateRoot, { identity: IDENTITY, botId: 'nightly', runId: runId(2), dispatchedAt: at(2), repositoryPath: checkout, skilledTree: world.skilledTree });
+    const first = writeRecord(world.stateRoot, { identity: IDENTITY, botId: 'nightly', runId: runId(1), dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    const named = writeRunRecord(world.stateRoot, { ...first, actor: 'ada' });
+    if (!named.ok) throw new Error(named.reason);
+
+    rebuildOrThrow(world.stateRoot, new Date('2026-11-21T00:00:00Z'));
+    const snapshot = snapshotOf(world.stateRoot);
+    const summaries = snapshot.runs.map((row) => JSON.parse(row.summary) as RunSummary);
+    expect(summaries.map((summary) => summary.actor)).toEqual(['ada', null]);
+    // A build stamps both times with the same instant.
+    expect(snapshot.updatedAt).toBe(snapshot.builtAt);
   });
 });
 

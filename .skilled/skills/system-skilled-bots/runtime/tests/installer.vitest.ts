@@ -14,6 +14,7 @@ import { dirname, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { osActor, PINNED_OPERATOR_ENV } from '../lib/actor.js';
 import { buildBotLabel, buildDrainLabel } from '../lib/label.js';
 import {
   accountHome,
@@ -41,7 +42,7 @@ import {
   uninstallSchedule,
 } from '../lib/installer.js';
 import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
-import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
+import { FULL_ACCESS_ENV, renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
 import { lineageCommandBuilder } from '../lib/dispatch.js';
 import { drainQueue } from '../lib/request-drain.js';
 import { resolveBotContext } from '../lib/runner.js';
@@ -261,11 +262,13 @@ describe('install transaction', () => {
       expect(path.startsWith('/')).toBe(true);
     }
     expect(readFileSync(report.plistPaths[0] as string, 'utf8')).not.toMatch(/~|\$HOME/);
-    // The shell's state home, the pinned state root and identity, and the fire marker are the job's whole environment.
+    // The job's whole environment is the shell's state home, the pinned state root, identity and operator plus the fire marker.
+    const operator = osActor();
     expect(job.EnvironmentVariables).toEqual({
       XDG_STATE_HOME: world.env.XDG_STATE_HOME,
       [PINNED_STATE_ROOT_ENV]: world.stateRoot,
       [PINNED_IDENTITY_ENV]: IDENTITY,
+      ...(operator === null ? {} : { [PINNED_OPERATOR_ENV]: operator }),
       [SCHEDULED_FIRE_ENV]: '1',
     });
     expect((job.StartCalendarInterval as unknown[]).length).toBe(12);
@@ -596,6 +599,35 @@ describe('install record', () => {
     const detected = detectSkilledTree(world.checkoutRoot);
     expect(detected.ok && detected.value.kind).toBe('symlink');
   });
+
+  it('pins the operator and the full-access flag', () => {
+    // The operator is the OS user that ran the install, and absent when there is none to name.
+    const operator = osActor();
+    const operatorPin = operator === null ? {} : { [PINNED_OPERATOR_ENV]: operator };
+    const granted = installWorld();
+    const plain = installWorld();
+    const grantedReport = mustInstall(granted, 'digest', { fullAccess: true });
+    const plainReport = mustInstall(plain);
+
+    expect(readInstallRecord(granted.stateRoot, IDENTITY, 'digest')).toMatchObject({ operator, fullAccess: true });
+    expect(readInstallRecord(plain.stateRoot, IDENTITY, 'digest')).toMatchObject({ operator, fullAccess: false });
+
+    const grantedJob = plistJson(grantedReport.plistPaths[0] as string).EnvironmentVariables as Record<string, string>;
+    expect(grantedJob).toMatchObject({ ...operatorPin, [FULL_ACCESS_ENV]: '1' });
+    const plainJob = plistJson(plainReport.plistPaths[0] as string).EnvironmentVariables as Record<string, string>;
+    expect(plainJob).toMatchObject(operatorPin);
+    expect(Object.keys(plainJob)).not.toContain(FULL_ACCESS_ENV);
+
+    // Every verb resolves under the job's own environment, so the operator and the grant reach it too.
+    const verbs = jobEnv({ checkoutRoot: granted.checkoutRoot, botId: 'digest', env: granted.env, seams: granted.seams });
+    expect(verbs).toMatchObject({ ...operatorPin, [FULL_ACCESS_ENV]: '1' });
+
+    // The drain job names the operator and never carries the grant, which belongs to one bot.
+    const drain = installWorld();
+    const drainJob = plistJson(mustInstall(drain, DRAIN_ID).plistPaths[0] as string).EnvironmentVariables as Record<string, string>;
+    expect(drainJob).toMatchObject(operatorPin);
+    expect(Object.keys(drainJob)).not.toContain(FULL_ACCESS_ENV);
+  });
 });
 
 describe('needs-reinstall check', () => {
@@ -846,8 +878,14 @@ describe('a rendered job', () => {
     writeFileSync(join(checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] bare path probe'\""]));
     const report = mustInstall(world);
     const job = plistJson(report.plistPaths[0] as string);
-    // A config state root needs no state home; the job still pins that root and the identity, and marks its fires.
-    expect(job.EnvironmentVariables).toEqual({ [PINNED_STATE_ROOT_ENV]: stateRoot, [PINNED_IDENTITY_ENV]: IDENTITY, [SCHEDULED_FIRE_ENV]: '1' });
+    // A config state root needs no state home. The job still pins that root, the identity and the operator, plus its fire marker.
+    const operator = osActor();
+    expect(job.EnvironmentVariables).toEqual({
+      [PINNED_STATE_ROOT_ENV]: stateRoot,
+      [PINNED_IDENTITY_ENV]: IDENTITY,
+      ...(operator === null ? {} : { [PINNED_OPERATOR_ENV]: operator }),
+      [SCHEDULED_FIRE_ENV]: '1',
+    });
 
     const run = fireJob(report.plistPaths[0] as string, tempDir('bots-home-'));
     expect(run.stderr).toContain('refused before dispatch (precheck-silent)');
@@ -1234,7 +1272,9 @@ describe('an install from a shell with another HOME and no state home', () => {
 
     const report = mustInstall(world, 'digest', { env: shell });
     const job = plistJson(report.plistPaths[0] as string);
-    const pins = { [PINNED_STATE_ROOT_ENV]: shellRoot, [PINNED_IDENTITY_ENV]: IDENTITY };
+    // The operator is the OS user that ran the install, and absent when there is none to name.
+    const operator = osActor();
+    const pins = { [PINNED_STATE_ROOT_ENV]: shellRoot, [PINNED_IDENTITY_ENV]: IDENTITY, ...(operator === null ? {} : { [PINNED_OPERATOR_ENV]: operator }) };
     expect(job.EnvironmentVariables).toEqual({ XDG_STATE_HOME: join(shell.HOME as string, '.local', 'state'), ...pins, [SCHEDULED_FIRE_ENV]: '1' });
     expect(readInstallRecord(shellRoot, IDENTITY, 'digest')).not.toBeNull();
 

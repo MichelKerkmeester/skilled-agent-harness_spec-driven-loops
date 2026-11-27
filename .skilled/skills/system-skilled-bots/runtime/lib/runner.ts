@@ -46,6 +46,7 @@ import {
   startHeartbeat,
   stopHeartbeat,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/loop-lock.js';
+import { resolveActor } from './actor.js';
 import { approveDefinition, checkApproval, digestOf } from './approval.js';
 import { parseDefinition } from './definition.js';
 import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
@@ -65,6 +66,7 @@ import {
 import { resolveIdentity } from './identity.js';
 import { createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
 import { buildResumedPrompt, holdForBot, itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
+import { SCHEDULED_FIRE_ENV } from './plist-render.js';
 import { validatePosture } from './posture.js';
 import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
@@ -74,6 +76,7 @@ import {
   ensureIdentityState,
   generationStampFile,
   identityStatePaths,
+  installFile,
   isSafeSegment,
   receiptFolder,
   recordFile,
@@ -187,6 +190,8 @@ export interface RunBotInput {
   env?: NodeJS.ProcessEnv;
   /** The environment identity and the state root are resolved under; defaults to `env`. */
   resolveEnv?: NodeJS.ProcessEnv;
+  /** The name a person passed with --as. Absent means the pinned operator on a scheduled run, else the OS user. */
+  actor?: string | null;
   request?: RunRequest;
   /** Replaces the deep-loop lineage command builder. */
   buildCommand?: CommandBuilder;
@@ -218,13 +223,13 @@ export interface BotContext {
 }
 
 /** What the lease side file holds, so a reclaimer can close a killed run's record. */
-interface LeaseSideFile {
+export interface LeaseSideFile {
   ownerPid: number;
   acquireNonce: string | null;
   seed: RecordSeed;
 }
 
-interface RecordSeed {
+export interface RecordSeed {
   identity: string;
   checkoutRoot: string;
   botId: string;
@@ -232,6 +237,10 @@ interface RecordSeed {
   definitionDigest: string;
   requestId: string | null;
   resumedItemId: string | null;
+  /** Who the run is recorded as. Absent in a lease side file written before runs named anyone. */
+  actor?: string | null;
+  /** Who answered the item a resumed run continues. */
+  answeredBy?: string | null;
   /** Absent in a lease side file written before queued runs carried a slot. */
   firedSlot?: string | null;
   source: string;
@@ -389,6 +398,8 @@ function buildRecord(
     exit,
     evidence: seed.evidence,
     delivery: resolveDeliveryEntries(seed.delivery ?? null, exit),
+    actor: seed.actor ?? null,
+    answeredBy: seed.answeredBy ?? null,
   };
 }
 
@@ -655,6 +666,16 @@ function loadResumeItem(context: BotContext, botId: string, itemId: string): Res
   return item;
 }
 
+/** Whether the operator installed this bot with full access. The record is read directly because the installer imports the drain, which imports this module. A bot with no install record, or one that does not read, has none. */
+function installGrantsFullAccess(stateRoot: string, identity: string, botId: string): boolean {
+  try {
+    const parsed: unknown = JSON.parse(readFileSync(installFile(stateRoot, identity, botId), 'utf8'));
+    return typeof parsed === 'object' && parsed !== null && (parsed as { fullAccess?: unknown }).fullAccess === true;
+  } catch {
+    return false;
+  }
+}
+
 /** The class of an error thrown inside a run: a system call failure is the environment's, anything else the runner's own. */
 function thrownClass(error: unknown): FailureClass {
   const code = (error as NodeJS.ErrnoException | null)?.code;
@@ -724,6 +745,10 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
   ensureIdentityState(context.stateRoot, context.identity);
   const evidence = evidenceFor(runFolder.value, receiptFolder(context.stateRoot, context.identity, runId));
 
+  // A scheduled fire carries the job's marker, and a queued or resume run is only started by the drain, so both run under a job's environment where the pinned operator is the actor. A run a person types is the OS user or --as.
+  const scheduled = env[SCHEDULED_FIRE_ENV] === '1' || request.kind === 'scheduled' || request.kind === 'queued' || request.kind === 'resume';
+  const resolvedActor = resolveActor({ as: input.actor ?? null, env, scheduled });
+
   const seed: RecordSeed = {
     identity: context.identity,
     checkoutRoot: context.checkoutRoot,
@@ -739,6 +764,8 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
     posture: declaredPosture(definition, context.config),
     evidence,
     delivery: definition?.delivery ?? null,
+    actor: resolvedActor.ok ? resolvedActor.value : null,
+    answeredBy: null,
   };
 
   // From here on a run has a seed, so a throw anywhere still ends in one record.
@@ -828,6 +855,7 @@ async function runSeeded(
     const item = loadResumeItem(context, input.botId, request.itemId);
     if (!item.ok) return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', item.reason, request.itemId, null);
     resumeItem = item.value;
+    seed.answeredBy = resumeItem.answer?.by ?? null;
   }
   const hold = holdForBot(context.stateRoot, context.identity, input.botId);
   if (hold?.kind === 'open') {
@@ -933,7 +961,7 @@ async function runSeeded(
       if (skipped !== null) return refusalRecord(context.stateRoot, seed, skipped.cause, skipped.detail, null, nonce);
     }
 
-    const posture = validatePosture(definition, context.config);
+    const posture = validatePosture(definition, context.config, { fullAccess: installGrantsFullAccess(context.stateRoot, context.identity, input.botId) });
     if (!posture.ok) {
       return refusalRecord(context.stateRoot, seed, 'posture-refused', `${posture.reason}: ${posture.detail ?? ''}`.trim(), null, nonce);
     }

@@ -82,7 +82,8 @@ describe('run record', () => {
     expect(written.value.startsWith(runFolder)).toBe(false);
 
     const read = readRunRecord(stateRoot, IDENTITY, 'r1');
-    expect(read).toEqual({ ok: true, value: { record, runFolder: { path: runFolder, present: true } } });
+    // The written record named neither actor, so the read carries both as null.
+    expect(read).toEqual({ ok: true, value: { record: { ...record, actor: null, answeredBy: null }, runFolder: { path: runFolder, present: true } } });
     expect(JSON.parse(readFileSync(written.value, 'utf8')).budget.measured.costUsd).toBeNull();
   });
 
@@ -101,7 +102,7 @@ describe('run record', () => {
     const read = readRunRecord(stateRoot, IDENTITY, 'r1');
     if (!read.ok) throw new Error(read.reason);
     expect(read.value.runFolder).toEqual({ path: runFolder, present: false });
-    expect(read.value.record).toEqual(fullRecord(runFolder));
+    expect(read.value.record).toEqual({ ...fullRecord(runFolder), actor: null, answeredBy: null });
   });
 
   it('refuses a record that drops a field group or turns cost into a string', () => {
@@ -127,6 +128,24 @@ describe('run record', () => {
 
   it('reports a missing record by name', () => {
     expect(readRunRecord(tempDir(), IDENTITY, 'nope')).toEqual({ ok: false, reason: 'record-missing' });
+  });
+
+  it('reads a record written before the actor as null', () => {
+    const { stateRoot, runFolder } = setup();
+    // A record written before records named anyone carries neither key.
+    expect(writeRunRecord(stateRoot, fullRecord(runFolder)).ok).toBe(true);
+    const legacy = readRunRecord(stateRoot, IDENTITY, 'r1');
+    if (!legacy.ok) throw new Error(legacy.reason);
+    expect({ actor: legacy.value.record.actor, answeredBy: legacy.value.record.answeredBy }).toEqual({ actor: null, answeredBy: null });
+
+    const notAString = { ...fullRecord(runFolder), actor: 7 } as unknown as RunRecord;
+    expect(writeRunRecord(stateRoot, notAString)).toEqual({ ok: false, reason: 'record-field-invalid', detail: 'actor' });
+
+    const named = { ...fullRecord(runFolder), actor: 'ada', answeredBy: 'bob' };
+    expect(writeRunRecord(stateRoot, named).ok).toBe(true);
+    const read = readRunRecord(stateRoot, IDENTITY, 'r1');
+    if (!read.ok) throw new Error(read.reason);
+    expect({ actor: read.value.record.actor, answeredBy: read.value.record.answeredBy }).toEqual({ actor: 'ada', answeredBy: 'bob' });
   });
 });
 

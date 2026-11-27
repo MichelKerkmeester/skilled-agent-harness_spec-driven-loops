@@ -20,7 +20,7 @@ const USAGE = [
   'usage: bots <verb> [id] [--repo <path>] [--skilled-tree <path>]',
   '',
   'verbs:',
-  '  run <id> [--schedule-index <n>]',
+  '  run <id> [--schedule-index <n>] [--as <name>]',
   '                 run one bot now, in the shared checkout or, for a worktree',
   '                 bot, in its own worktree; only the installed schedule passes',
   '                 --schedule-index, so the run records the slot it fired for',
@@ -28,7 +28,9 @@ const USAGE = [
   '  enable <id>    lift a disable; for an installed schedule, recheck it and let it fire',
   '  pause <id>     hold a bot\'s runs after the lease until resumed',
   '  resume <id>    lift a pause (not the resume of a parked run)',
-  '  inbox          list open and expired needs-you items',
+  '  inbox [--json] [--all]',
+  '                 list open and expired needs-you items; --all adds the answered',
+  '                 ones, --json prints one document',
   '  enqueue <id> --source <name> (--event-id <id> | --key <key>)',
   '                 [--prompt <text>] [--origin <text>] [--fired-slot <slot>]',
   '                 queue one run request; an event sent twice is a duplicate',
@@ -38,48 +40,67 @@ const USAGE = [
   '  drain [--scheduled]',
   '                 claim every queued request once, run it, and route the outcome;',
   '                 --scheduled backs off after a setup fault (the drain job uses it)',
-  '  schedule install <id>',
+  '  schedule install <id> [--full-access]',
   '                 install a cron bot\'s schedule, held disabled until bots enable;',
   '                 the id drain installs this repository\'s queue-drain job',
+  '                 --full-access lets a definition\'s danger-full-access sandbox run',
+  '                 and needs a tty',
   '  schedule uninstall <id>',
   '                 remove a schedule and sweep this repository\'s orphaned ones',
-  '  answer <item-id> <text>',
-  '                 answer a needs-you item and queue the run that continues it',
+  '  answer <item-id> <text> [--as <name>] [--scope once|deny]',
+  '                 answer a needs-you item and queue the run that continues it;',
+  '                 --as records who answered and needs a tty unless it is you,',
+  '                 and --scope deny records a denial',
   '  status [--json] [--rebuild] [--all] [--unregister <owner/name>]',
   '                 show every installed bot, its last run and delivery, and open',
   '                 needs-you items, from the status index; --rebuild rebuilds the',
   '                 index from run records, --unregister hides an identity\'s rows',
   '                 and deletes nothing, --all shows hidden identities too',
+  '  activity [--json]',
+  '                 what every bot is doing, grouped: needs you, working, scheduled,',
+  '                 done, stopped, failed and recurring, and --json prints one document',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
 ].join('\n');
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
-const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all']);
+const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
 const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
 // How many positional arguments each verb takes, and the options it accepts beyond the common ones.
 const VERB_SPECS = {
-  run: { ids: 1, options: ['schedule-index'] },
+  run: { ids: 1, options: ['schedule-index', 'as'] },
   disable: { ids: 1, options: [] },
   enable: { ids: 1, options: [] },
   pause: { ids: 1, options: [] },
   resume: { ids: 1, options: [] },
-  inbox: { ids: 0, options: [] },
+  inbox: { ids: 0, options: ['json', 'all'] },
   enqueue: { ids: 1, options: ENQUEUE_OPTIONS },
   drain: { ids: 0, options: ['scheduled'] },
-  answer: { ids: 2, options: [] },
-  schedule: { ids: 2, options: [] },
+  answer: { ids: 2, options: ['as', 'scope'] },
+  schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
+  activity: { ids: 0, options: ['json'] },
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
+// The names an actor may take, mirroring ACTOR_PATTERN in the runtime's actor module. The pattern
+// is repeated here because these refusals run before the runtime loads.
+const ACTOR_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+// The operator pinned into a job at install time, the runtime's PINNED_OPERATOR_ENV.
+const PINNED_OPERATOR_ENV = 'SKILLED_BOTS_OPERATOR';
+// Scopes that would grant more than one answer, which this command cannot record.
+const UNSUPPORTED_SCOPES = new Set(['always', 'conversation']);
+// The scopes an answer may record.
+const ANSWER_SCOPES = new Set(['once', 'deny']);
+// The write verbs a bot child may not run. Each later write verb joins this list.
+const CHILD_REFUSED_VERBS = new Set(['answer', 'enable']);
 // Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
 // A value that is itself one of this CLI's flags still means the value was left out.
 const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
@@ -95,6 +116,52 @@ function usageExit(message) {
   if (message) process.stderr.write(`bots: ${message}\n`);
   process.stderr.write(`${USAGE}\n`);
   return 2;
+}
+
+// The OS user's name, or null when the lookup fails, so a name that cannot be read never matches.
+function osUser() {
+  try {
+    return require('node:os').userInfo().username;
+  } catch {
+    return null;
+  }
+}
+
+// Whether this process is a bot's own child, which the dispatcher marks with a run id and a
+// dispatched session marks with the child flag. A child runs as the same OS user as the operator,
+// so the marker is the only thing that tells them apart. It is a bar against the ordinary case and
+// not an authentication: a child that clears the marker is not stopped by it.
+function isBotChild(env) {
+  const runId = env.SKILLED_BOT_RUN_ID;
+  if (typeof runId === 'string' && runId !== '') return true;
+  return env.AI_SESSION_CHILD === '1';
+}
+
+// The refusals that keep a script from claiming another person's name. They run here, before the
+// runtime loads, so no caller reaches the answer or the run with a borrowed name.
+function checkActorOptions(parsed) {
+  const { options } = parsed;
+  const isAnswer = parsed.verb === 'answer';
+  const given = options.as !== undefined;
+  const actor = given ? options.as.trim() : '';
+  if (given && actor === '') return { message: 'option --as needs a value' };
+  if (given && !ACTOR_PATTERN.test(actor)) return { message: '--as takes a name' };
+  if (isAnswer && options.scope !== undefined) {
+    if (UNSUPPORTED_SCOPES.has(options.scope)) return { message: 'grant-scope-unsupported' };
+    if (!ANSWER_SCOPES.has(options.scope)) return { message: '--scope takes once or deny' };
+  }
+  const me = osUser();
+  const tty = process.stdin.isTTY === true;
+  if (given && !(me !== null && actor === me.trim()) && !tty) return { message: '--as needs a tty' };
+  if (isAnswer && !given) {
+    const pinned = process.env[PINNED_OPERATOR_ENV];
+    const name = pinned === undefined ? '' : pinned.trim();
+    const mine = me !== null && name === me.trim();
+    if (ACTOR_PATTERN.test(name) && process.env[SCHEDULED_FIRE_ENV] !== '1' && !mine && !tty) {
+      return { message: '--as needs a tty' };
+    }
+  }
+  return null;
 }
 
 function checkEnqueue(options, ids) {
@@ -290,7 +357,15 @@ async function drainVerb(rt, checkoutRoot, skilledTree, scheduled, resolveEnv) {
 }
 
 function answerVerb(rt, parsed, checkoutRoot, resolveEnv) {
-  const result = rt.answer.answerItem({ checkoutRoot, itemId: parsed.id, text: parsed.args[0], env: process.env, resolveEnv });
+  const result = rt.answer.answerItem({
+    checkoutRoot,
+    itemId: parsed.id,
+    text: parsed.args[0],
+    env: process.env,
+    resolveEnv,
+    actor: parsed.options.as === undefined ? undefined : parsed.options.as.trim(),
+    scope: parsed.options.scope,
+  });
   if (!result.ok) {
     process.stderr.write(`${describeRefusal(result)}\n`);
     return rt.runner.EXIT_CODES.refused;
@@ -325,8 +400,12 @@ function scheduleVerb(rt, parsed, checkoutRoot, skilledTree) {
     process.stdout.write('bots: run folders and run records were left in place\n');
     return 0;
   }
-  const result = rt.installer.installSchedule(input);
+  const result = rt.installer.installSchedule({ ...input, fullAccess: parsed.options['full-access'] === true });
   if (!result.ok) return installerRefusal(rt, result);
+  if (result.value.recordedOnly !== undefined) {
+    process.stdout.write(`bots: ${parsed.id} has a ${result.value.recordedOnly.triggerKind} trigger, so full access is recorded and no schedule is installed\n`);
+    return 0;
+  }
   const { labels, plistPaths, hold, loaded, steps, nextFire, check } = result.value;
   printSteps(steps);
   process.stdout.write(`bots: installed ${labels.join(', ')} at ${plistPaths.join(', ')}\n`);
@@ -391,6 +470,51 @@ async function statusVerb(rt, parsed, checkoutRoot, resolveEnv) {
   return 0;
 }
 
+// The activity read reads the same index status builds, so it loads the status
+// modules the same way and formats through the pure activity module, which keeps
+// the grouping rules out of this file.
+async function activityVerb(rt, parsed, checkoutRoot, resolveEnv) {
+  const { options } = parsed;
+  let status;
+  let repoConfig;
+  let stateRootModule;
+  let activityModule;
+  try {
+    [status, repoConfig, stateRootModule, activityModule] = await Promise.all([
+      runtimeModule('status'),
+      runtimeModule('repo-config'),
+      runtimeModule('state-root'),
+      runtimeModule('activity'),
+    ]);
+  } catch (error) {
+    process.stderr.write(`bots: the status modules did not load: ${error instanceof Error ? error.message : String(error)}\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  }
+  const config = repoConfig.readRepoConfig(checkoutRoot);
+  if (!config.ok) {
+    process.stderr.write(`${describeRefusal(config)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  // The state root the installed jobs use, resolved under the job's environment like every other verb.
+  const stateRoot = stateRootModule.userStateRoot(config.value, resolveEnv);
+  const report = status.activityReport({ stateRoot, env: process.env });
+  if (!report.ok) {
+    process.stderr.write(`bots: ${report.reason}${report.detail ? `: ${report.detail}` : ''}\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  }
+  if (options.json === true) {
+    process.stdout.write(`${JSON.stringify(report.value, null, 2)}\n`);
+    return 0;
+  }
+  const lines = activityModule.formatActivity(report.value);
+  if (lines.length === 0) {
+    process.stdout.write('bots: no activity\n');
+    return 0;
+  }
+  for (const line of lines) process.stdout.write(`${line}\n`);
+  return 0;
+}
+
 function describeOutcome(id, outcome) {
   switch (outcome.kind) {
     case 'completed':
@@ -415,8 +539,24 @@ async function main(argv) {
     return 0;
   }
   if (parsed.error) return usageExit(parsed.error);
+  // A refusal that reads the run marker for answer and enable belongs here, before any
+  // runtime work, so a bot's own child cannot answer or re-enable itself.
+  if (CHILD_REFUSED_VERBS.has(parsed.verb) && isBotChild(process.env)) {
+    process.stderr.write('bots: child-write-refused\n');
+    return 2;
+  }
   if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
     return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
+  }
+  if (parsed.verb === 'answer' || parsed.verb === 'run') {
+    const actorProblem = checkActorOptions(parsed);
+    if (actorProblem) return usageExit(actorProblem.message);
+  }
+  if (parsed.verb === 'schedule' && parsed.args[0] === 'uninstall' && parsed.options['full-access'] === true) {
+    return usageExit('schedule uninstall takes no --full-access');
+  }
+  if (parsed.verb === 'schedule' && parsed.args[0] === 'install' && parsed.options['full-access'] === true && process.stdin.isTTY !== true) {
+    return usageExit('--full-access needs a tty');
   }
 
   const rt = await loadRuntime();
@@ -436,13 +576,22 @@ async function main(argv) {
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
 
   if (parsed.verb === 'run') {
     const index = parsed.options['schedule-index'];
     const request = index === undefined ? undefined : { kind: 'scheduled', scheduleIndex: Number(index) };
     // launchd starts the job with a bare PATH, so a fire takes the executor path pinned at install.
     const runEnv = request ? rt.installer.scheduledRunEnv({ checkoutRoot, botId: parsed.id, env }) : env;
-    const outcome = await runner.runBot({ checkoutRoot, skilledTree, botId: parsed.id, env: runEnv, resolveEnv, ...(request ? { request } : {}) });
+    const outcome = await runner.runBot({
+      checkoutRoot,
+      skilledTree,
+      botId: parsed.id,
+      env: runEnv,
+      resolveEnv,
+      actor: parsed.options.as === undefined ? undefined : parsed.options.as.trim(),
+      ...(request ? { request } : {}),
+    });
     const line = describeOutcome(parsed.id, outcome);
     (outcome.kind === 'completed' || outcome.kind === 'awaiting-decision' ? process.stdout : process.stderr).write(`${line}\n`);
     return runner.exitCodeFor(outcome);
@@ -462,12 +611,41 @@ async function main(argv) {
       process.stderr.write(`bots: the needs-you folder could not be listed (${listError}); open items may be hidden\n`);
       return runner.EXIT_CODES.runFailure;
     }
-    const shown = items.filter((listing) => listing.state !== 'answered');
-    if (shown.length === 0) process.stdout.write('bots: no open or expired needs-you items\n');
-    for (const { item, state } of shown) {
-      process.stdout.write(`${state}\t${item.id}\t${item.botId}\tcreated ${item.createdAt}\texpires ${item.expiresAt}\n`);
-      process.stdout.write(`\t${item.question}\n`);
-      for (const option of item.options ?? []) process.stdout.write(`\t- ${option}\n`);
+    const all = parsed.options.all === true;
+    const shown = items.filter((listing) => listing.state !== 'answered' || all);
+    if (parsed.options.json === true) {
+      // One document, grouped by state: what still needs a person, then what lapsed,
+      // then what was answered. Newest first inside a group, so the top row is the
+      // one to act on, and the id breaks a tie so the order never depends on the
+      // order the folder was listed.
+      const newestFirst = (left, right) => {
+        if (left.item.createdAt !== right.item.createdAt) return left.item.createdAt < right.item.createdAt ? 1 : -1;
+        if (left.item.id === right.item.id) return 0;
+        return left.item.id < right.item.id ? -1 : 1;
+      };
+      const inState = (state) => shown.filter((listing) => listing.state === state).sort(newestFirst);
+      const ordered = [...inState('open'), ...inState('expired'), ...(all ? inState('answered') : [])];
+      const payload = ordered.map(({ item, state }) => ({
+        id: item.id,
+        botId: item.botId,
+        kind: item.kind ?? null,
+        question: item.question,
+        state,
+        at: item.createdAt,
+        options: item.options,
+        createdAt: item.createdAt,
+        expiresAt: item.expiresAt,
+        answer: item.answer,
+      }));
+      process.stdout.write(`${JSON.stringify({ version: 1, items: payload }, null, 2)}\n`);
+    } else {
+      if (shown.length === 0) process.stdout.write(all ? 'bots: no needs-you items\n' : 'bots: no open or expired needs-you items\n');
+      for (const { item, state } of shown) {
+        process.stdout.write(`${state}\t${item.id}\t${item.botId}\tcreated ${item.createdAt}\texpires ${item.expiresAt}\n`);
+        process.stdout.write(`\t${item.question}\n`);
+        for (const option of item.options ?? []) process.stdout.write(`\t- ${option}\n`);
+        if (state === 'answered') process.stdout.write(`\tanswered ${item.answer.answeredAt} by ${item.answer.by ?? '-'} scope ${item.answer.scope}\n`);
+      }
     }
     for (const id of unreadable) process.stderr.write(`bots: item ${id} did not read\n`);
     return 0;

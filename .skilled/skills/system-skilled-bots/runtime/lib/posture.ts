@@ -75,12 +75,15 @@ export function kindsHonoring(sandbox: SandboxMode): ExecutorKind[] {
 /**
  * Check a definition's declared posture against its executor kind.
  *
+ * @param access The install record's full-access grant, false for a bot
+ *   installed without it or not installed at all.
  * @returns The honored posture and executor config, or a refusal such as
  *   `isolation-undeclared`, `executor-kind-native` or `posture-unhonorable`.
  */
 export function validatePosture(
   definition: Pick<BotDefinition, 'posture' | 'runtime' | 'budget'>,
   config: Pick<RepoConfig, 'defaultIsolation' | 'allowedExecutorKinds'>,
+  access: { fullAccess: boolean } = { fullAccess: false },
 ): Result<PostureVerdict> {
   // Both isolation values are honored; the runner turns `worktree` into a
   // real tree after this check. Only an undeclared answer is refused here.
@@ -100,7 +103,9 @@ export function validatePosture(
   if (declared !== null && !SANDBOX_VALUES.includes(declared as SandboxMode)) {
     return { ok: false, reason: 'sandbox-invalid', detail: `expected one of ${SANDBOX_VALUES.join(', ')}` };
   }
-  const sandbox = resolveSandboxMode(declared as SandboxMode | null);
+  const requested = resolveSandboxMode(declared as SandboxMode | null);
+  // A definition cannot grant itself full access: only the operator's install-time flag can.
+  const sandbox: SandboxMode = requested === 'danger-full-access' && !access.fullAccess ? 'workspace-write' : requested;
   if (!kindHonorsSandbox(kind, sandbox)) {
     const honoring = kindsHonoring(sandbox);
     return {

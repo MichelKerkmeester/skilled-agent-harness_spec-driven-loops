@@ -47,6 +47,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `repo-config.ts` | Contracts and state | The one reader of a repository's bots config. A missing file yields defaults, and a malformed one is a refusal. Also loads the shared repository identity resolver. |
 | `definition.ts` | Contracts and state | Parses one BOT.md into a `BotDefinition`: trigger kind (`cron`, `queue`, `git-hook`, `manual`), runtime block, budget, isolation, sandbox and delivery. |
 | `identity.ts` | Contracts and state | `resolveIdentity` takes the identity an installed job pins in `SKILLED_BOTS_IDENTITY` first, then the declared config identity, then the shared resolver, and refuses when none gives an answer. |
+| `actor.ts` | Contracts and state | The actor name pattern and `resolveActor`, which takes an explicit `--as` name first, then the operator pinned into a job's environment on a scheduled fire or drain only, then the OS user. |
 | `state-root.ts` | Contracts and state | Names the user-level state root and the per-identity folders for requests, leases, switches, items and records. The root is the absolute path an installed job pins in `SKILLED_BOTS_STATE_ROOT`, else the config's `stateRoot` when set, else a `system-skilled-bots` folder under `XDG_STATE_HOME` or the home `.local/state` folder. Also names each bot's approval file in the identity's approvals folder. |
 | `approval.ts` | Contracts and state | Hashes a bot's `BOT.md` and the checkout's bots config. `approveDefinition` records both hashes at an operator act (install, enable, manual run), and `checkApproval` refuses an unattended run as `definition-unapproved` or `definition-drifted`. |
 | `run-record.ts` | Contracts and state | The one record per run that the queue, delivery and status index all read. Adds the `awaiting-decision` exit for a parked run. |
@@ -71,6 +72,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `launchctl-print.ts` | launchd installer | Reads state, run count and last exit code from `launchctl print` and answers `unknown` for anything it cannot parse. |
 | `status-index.ts` | Status index | One derived SQLite file under the state root, built from run records and needs-you items. `rebuildIndex` restores it from those sources. |
 | `status.ts` | Status index | `statusReport` joins index rows, install records and `launchctl print` so a bot that never ran still shows. |
+| `activity.ts` | Status index | The seven activity groups and their order, and the pure grouping of index runs and items, live leases, queued requests and schedule fires into the bots activity payload and its text lines. It reads no file and imports status-index types only. |
 | `better-sqlite3.d.ts` | Status index | Ambient types for the slice of `better-sqlite3` the status index calls, since the package ships none. |
 
 ---
