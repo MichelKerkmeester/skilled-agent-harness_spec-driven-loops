@@ -36,14 +36,14 @@ Every run message is `deliveryMessage()`'s title and body, unchanged, so the cat
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `rg -n 'export function deliveryMessage' .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` prints line 171, the source of every run message
-- [ ] The nine files in `specs/system-skilled-bots/003-openbot-parity-build/contracts/` exist
+- [x] `rg -n 'export function deliveryMessage' .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts` prints line 171, the source of every run message
+- [x] The nine contract files in `specs/system-skilled-bots/003-openbot-parity-build/contracts/` exist beside its `README.md`
 
 ### Definition of Done
-- [ ] The catalog check in `tasks.md` prints 40 and 23 and its loops print nothing
-- [ ] The mockup check in `tasks.md` prints 12, 0 and the six chunk numbers
-- [ ] Every acceptance criterion reads `Met`
-- [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`
+- [x] The catalog check in `tasks.md` prints 40 and 23 and its loops print nothing
+- [x] The mockup check in `tasks.md` prints 12, 0 and no `MISSING` line for the six chunk numbers
+- [x] Every acceptance criterion reads `Met`
+- [x] `validate.sh --strict` on this folder prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---

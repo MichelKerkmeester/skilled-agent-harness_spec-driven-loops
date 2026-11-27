@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The catalog check in `tasks.md` prints 40 and 23 and no `MISSING` or `DRIFT` line.
-- [ ] The mockup check in `tasks.md` prints 12, 0 and no `MISSING` line.
-- [ ] `rg -c '^\| [1-5] \| ' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md` prints 5.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map --strict` prints `RESULT: PASSED`.
+- [x] The catalog check in `tasks.md` prints 40 and 23 and no `MISSING` or `DRIFT` line.
+- [x] The mockup check in `tasks.md` prints 12, 0 and no `MISSING` line.
+- [x] `rg -c '^\| [1-5] \| ' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md` prints 5.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,6 +76,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Catalog, mockups, grammar and goldens | Written | On 2026-11-26 the catalog check printed 40 and 23 with no other line, the mockup check printed 12, 0 and no `MISSING` line and the grammar check printed 5 |
+| Build run against the merged capability matrix | Complete | On 2026-11-27, after 011.002 merged, every chunk size in `design/mockups.md` matched `../002-adapter-and-record-contracts/design/capabilities.md` section 2. One Vibe worker named the Slack surface of rows M01 and M02 in the catalog. The catalog check then printed 40 and 23 with no other line, the mockup check printed 12, 0 and no `MISSING` line, the grammar check printed 5, the copy check printed 0 and `validate.sh --strict` printed `RESULT: PASSED` |
 
 ### Deviations and findings
 
@@ -89,4 +90,8 @@ and findings belong here.
 | The mockup check reads the file, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-012's first alternative drops the constant arithmetic from the check. The six chunk sizes are now searched for in `mockups.md`, and the arithmetic stays as a note. |
 | The copy check compares lines, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-011's first alternative replaces the keyword grep with a `comm -12` comparison of the design's lines against the reference sources. |
 | The Slack limits, amended on 2026-11-27 | D6 gains the 3,000-character cap on the Slack button chunk from `design/mockups.md`. D7 records operator answer Q015 in the packet decision record, carried by `design/reply-grammar.md`. On 2026-11-27 the catalog check printed 40 and 23, the mockup check printed 12 and 0 and the grammar check printed 5. |
+| The catalog names Slack for the text form, on 2026-11-27 | The merged `capabilities.md` line 85 and Q015 send a Slack prompt with an option label over 75 characters in the M01 text form. The catalog's M01 row named only Signal, WhatsApp and the terminal, so REQ-001's surface was incomplete. The M01 and M02 surface cells and the choice-lines paragraph now name the exception. No golden changed. |
+| Two stale verify expectations, on 2026-11-27 | T002 counted every `.md` file in `contracts/`, which holds nine contracts and `README.md`, so it printed 10. Its command now leaves `README.md` out and prints 9. T005 expected 15 one-line rows, which predates M22 and M23. It prints 17, which matches the catalog check's 40 as 23 plus 17. `spec.md` SC-002 and the plan's Definition of Done now match the mockup check as `tasks.md` writes it. |
+| The status stays Draft, on 2026-11-27 | With the status at Complete, `validate.sh --strict` failed `SCAFFOLD_NEVER_TOUCHED` on the scaffold continuity block of `implementation-summary.md`. Continuity frontmatter is written only by the continuity save the build runs per unit at the end, so `spec.md` and `acceptance-criteria.md` keep the status Draft until then. Every acceptance row is Met and the packet is closeable. |
+| Waves 0 and 2 not dispatched, on 2026-11-27 | Wave 0 is three reads and wave 2's two files were already written and passing, so the orchestrator ran their verifies and sent no worker. A Vibe run that writes nothing counts as a failed rung under the build plan. |
 <!-- /ANCHOR:log -->
