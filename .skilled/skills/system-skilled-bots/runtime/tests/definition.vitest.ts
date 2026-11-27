@@ -44,7 +44,7 @@ describe('worked shapes', () => {
       enabled: true,
       memory: true,
       delivery: { mode: 'targets', targets: [], onFailure: null },
-      posture: { isolation: null, sandbox: null, secrets: null },
+      posture: { isolation: null, sandbox: null, secrets: null, apps: null },
       precheck: null,
       specFolder: null,
       body: 'Tidy the notes folder when asked.',
@@ -146,7 +146,7 @@ describe('resolveIsolation', () => {
   it('takes the repository default, and the definition over it', () => {
     const config = { ...defaultRepoConfig(), defaultIsolation: 'shared' as const };
     expect(resolveIsolation(manual(), config)).toEqual({ ok: true, value: 'shared' });
-    const declared = { ...manual(), posture: { isolation: 'worktree' as const, sandbox: null, secrets: null } };
+    const declared = { ...manual(), posture: { isolation: 'worktree' as const, sandbox: null, secrets: null, apps: null } };
     expect(resolveIsolation(declared, config)).toEqual({ ok: true, value: 'worktree' });
   });
 });

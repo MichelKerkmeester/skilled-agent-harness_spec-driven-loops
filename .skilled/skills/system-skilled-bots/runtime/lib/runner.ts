@@ -32,9 +32,9 @@
 // environment from the installer's `jobEnv` as `resolveEnv`, so the run
 // lands where the scheduled job would, whatever the calling shell sets.
 
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
-import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
 
@@ -50,6 +50,7 @@ import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
 import { decideApproval } from './approval-ladder.js';
 import { approveDefinition, checkApproval, digestOf } from './approval.js';
+import { resolveApps, UTCP_CONFIG_NAME, writeRunUtcpConfig } from './apps.js';
 import { parseDefinition } from './definition.js';
 import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
 import {
@@ -102,7 +103,7 @@ import { readSwitch, setSwitch } from './switches.js';
 import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import type { BotDefinition, Delivery } from './definition.js';
 import type { DeliverySenders } from './delivery.js';
-import type { CommandBuilder, WorkingPlace } from './dispatch.js';
+import type { CommandBuilder, DispatchOutcome, WorkingPlace } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
 import type { MemoryType } from './memory.js';
 import type { NeedsYouItem } from './needs-you.js';
@@ -155,6 +156,8 @@ export const REFUSAL_CAUSES = Object.freeze({
   'precheck-failed': { reason: 'precheck-failed', class: null },
   'precheck-silent': { reason: 'precheck-silent', class: null },
   'posture-refused': { reason: 'posture-refused', class: 'author' },
+  'apps-unenforceable': { reason: 'apps-unenforceable', class: 'author' },
+  'apps-refused': { reason: 'apps-refused', class: 'author' },
   'body-secret': { reason: 'body-secret', class: 'author' },
   'prompt-over-budget': { reason: 'prompt-over-budget', class: 'author' },
   'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
@@ -614,6 +617,7 @@ function declaredPosture(definition: BotDefinition | null, config: RepoConfig): 
     sandbox: definition?.posture.sandbox ?? null,
     executorKind: definition?.runtime.kind ?? 'unknown',
     model: typeof definition?.runtime.model === 'string' ? definition.runtime.model : null,
+    apps: [],
   };
 }
 
@@ -696,6 +700,42 @@ function settleUnusedTree(
     seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
   }
   observe(seed, 'worktree', seed.evidence.worktree.disposition, { reason: seed.evidence.worktree.keptReason });
+}
+
+/**
+ * Put a tree's own UTCP config back once its child is done: the text taken before the
+ * filtered copy was written, or no file when the tree held none. Only the working tree is
+ * restored, so a commit the child made stays as the child made it.
+ */
+function restoreTreeUtcpConfig(treePath: string, original: string | null): void {
+  const path = join(treePath, UTCP_CONFIG_NAME);
+  if (original === null) rmSync(path, { force: true });
+  else writeFileSync(path, original);
+}
+
+/**
+ * Restore a reopened tree's UTCP config when it differs from the checkout's, which is what a
+ * run killed before its restore leaves behind. The tree's own git index says what the file
+ * should hold, so no marker file is needed. A file the index does not track was left by a run,
+ * so it is removed.
+ */
+function restoreOrphanedUtcpConfig(checkoutRoot: string, treePath: string, env: NodeJS.ProcessEnv): Result<null> {
+  const read = (path: string): string | null => (existsSync(path) ? readFileSync(path, 'utf8') : null);
+  const treeFile = join(treePath, UTCP_CONFIG_NAME);
+  if (read(treeFile) === read(join(checkoutRoot, UTCP_CONFIG_NAME))) return { ok: true, value: null };
+  const gitEnv: NodeJS.ProcessEnv = { ...env };
+  for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR']) delete gitEnv[key];
+  const git = (args: string[]) => spawnSync('git', ['-C', treePath, ...args], { encoding: 'utf8', env: gitEnv, timeout: 30_000 });
+  const tracked = git(['ls-files', '--error-unmatch', '--', UTCP_CONFIG_NAME]);
+  if (tracked.status === 1) {
+    rmSync(treeFile, { force: true });
+    return { ok: true, value: null };
+  }
+  const restored = tracked.status === 0 ? git(['checkout', '--', UTCP_CONFIG_NAME]) : tracked;
+  if (restored.status !== 0) {
+    return { ok: false, reason: 'utcp-config-unrestored', detail: (restored.stderr ?? '').trim() || 'git did not restore the file' };
+  }
+  return { ok: true, value: null };
 }
 
 /** The line every prompt this runtime composes names its spec folder on, which gives a parked prompt a fixed place for the working-place line. */
@@ -1052,6 +1092,27 @@ async function runSeeded(
     }
     seed.posture = posture.value.posture;
 
+    // A filtered config narrows only a child that starts in its own tree, because the project
+    // pin resolves against the child's working folder. A declaration anywhere else is refused
+    // before any config is read, so the refusal names the isolation the author can change.
+    const declaredApps = definition.posture.apps;
+    if (declaredApps !== null && posture.value.posture.isolation !== 'worktree') {
+      return refusalRecord(
+        context.stateRoot,
+        seed,
+        'apps-unenforceable',
+        `apps is declared and isolation is ${posture.value.posture.isolation}, so a filtered config needs a worktree`,
+        null,
+        nonce,
+      );
+    }
+    const apps = resolveApps(context.checkoutRoot, declaredApps);
+    if (!apps.ok) return refusalRecord(context.stateRoot, seed, 'apps-refused', `${apps.reason}: ${apps.detail ?? ''}`.trim(), null, nonce);
+    // Every run writes its copy before any tree exists: it is the evidence the child's UTCP_CONFIG_FILE names.
+    const utcp = writeRunUtcpConfig({ runFolder: runFolderPath, source: apps.value.source, honored: apps.value.honored });
+    if (!utcp.ok) return refusalRecord(context.stateRoot, seed, 'apps-refused', `${utcp.reason}: ${utcp.detail ?? ''}`.trim(), null, nonce);
+    seed.posture = { ...seed.posture, apps: apps.value.honored };
+
     // Memory reaches only a freshly composed prompt: a resumed run re-sends its parked prompt as it was.
     const memory: Array<{ path: string; block: string }> = [];
     if (resumeItem === null && definition.memory) {
@@ -1114,6 +1175,12 @@ async function runSeeded(
       const reopened = reopenBotWorktree(context.checkoutRoot, parkedHandle, env);
       if (!reopened.ok) {
         return refusalRecord(context.stateRoot, seed, 'parked-worktree-missing', reopened.detail ?? reopened.reason, resumeItem?.id ?? null, nonce);
+      }
+      // A run killed between writing the filtered copy and putting the tree's own file back
+      // leaves the copy behind, so the tree's file is restored before this run writes anything.
+      const restored = restoreOrphanedUtcpConfig(context.checkoutRoot, parkedHandle.path, env);
+      if (!restored.ok) {
+        return refusalRecord(context.stateRoot, seed, 'apps-refused', `${restored.reason}: ${restored.detail ?? ''}`.trim(), resumeItem?.id ?? null, nonce);
       }
       if (prompt !== null && runsOutsideCheckout(kind) && !prompt.includes(checkoutLine(parkedHandle.path))) {
         // A child that starts outside the checkout reads files only through the
@@ -1202,23 +1269,41 @@ async function runSeeded(
       prompt = fitted.value;
     }
 
+    // The tree's copy is written last before the child starts, so no earlier refusal leaves a
+    // tree holding it, and the tree's own file is put back the moment the child is done.
+    let treeOriginal: string | null | undefined;
+    if (tree !== null) {
+      const treeCopy = writeRunUtcpConfig({ runFolder: runFolderPath, worktree: tree.path });
+      if (!treeCopy.ok) {
+        settleUnusedTree(seed, tree, parkedTree !== null && parkedTree.value !== null, context.checkoutRoot, env);
+        return refusalRecord(context.stateRoot, seed, 'apps-refused', `${treeCopy.reason}: ${treeCopy.detail ?? ''}`.trim(), null, nonce);
+      }
+      treeOriginal = treeCopy.value.treeOriginal;
+    }
+
     mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
     seed.dispatchedAt = new Date().toISOString();
     observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
-    const outcome = dispatchHeadless({
-      executor: posture.value.executor,
-      prompt,
-      cwd: workDir,
-      runId,
-      parentEnv: env,
-      boundSeconds,
-      boundIsBudget,
-      stateLogPath: join(evidence.ledgerDir as string, 'state.jsonl'),
-      receiptDir: evidence.receiptDir as string,
-      stdoutLogPath: join(runFolderPath, 'stdout.log'),
-      ...(input.buildCommand !== undefined ? { buildCommand: input.buildCommand } : {}),
-      ...(input.guard !== undefined ? { guard: input.guard } : {}),
-    });
+    let outcome: DispatchOutcome;
+    try {
+      outcome = dispatchHeadless({
+        executor: posture.value.executor,
+        prompt,
+        cwd: workDir,
+        runId,
+        parentEnv: env,
+        boundSeconds,
+        boundIsBudget,
+        stateLogPath: join(evidence.ledgerDir as string, 'state.jsonl'),
+        receiptDir: evidence.receiptDir as string,
+        stdoutLogPath: join(runFolderPath, 'stdout.log'),
+        extraEnv: { UTCP_CONFIG_FILE: utcp.value.path },
+        ...(input.buildCommand !== undefined ? { buildCommand: input.buildCommand } : {}),
+        ...(input.guard !== undefined ? { guard: input.guard } : {}),
+      });
+    } finally {
+      if (tree !== null && treeOriginal !== undefined) restoreTreeUtcpConfig(tree.path, treeOriginal);
+    }
 
     // The builder resolved the agent a read-only OpenCode child would run and found a
     // write action left open, so no child was started: a refusal, not a failed run.

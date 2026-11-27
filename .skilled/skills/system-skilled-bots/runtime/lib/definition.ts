@@ -57,6 +57,8 @@ export interface Posture {
   isolation: Isolation | null;
   sandbox: string | null;
   secrets: string | null;
+  /** The declared connector server names, null when the key is absent or null. */
+  apps: string[] | null;
 }
 
 export interface BotDefinition {
@@ -107,6 +109,7 @@ const FRONTMATTER_KEYS = new Set([
   'isolation',
   'sandbox',
   'secrets',
+  'apps',
   'precheck',
   'spec_folder',
   // The document edition sk-doc stamps on every authored asset, the template
@@ -216,6 +219,23 @@ function optionalString(raw: Record<string, unknown>, key: string): Result<strin
   return { ok: true, value: (raw[key] as string).trim() };
 }
 
+/**
+ * Parse the declared server list. A name is matched exactly later, so an entry is never
+ * trimmed: a blank name passes here and fails the name check instead.
+ */
+function parseApps(raw: unknown): Result<string[] | null> {
+  if (raw === undefined || raw === null) return { ok: true, value: null };
+  let detail: string | null = null;
+  if (!Array.isArray(raw)) {
+    detail = 'apps: expected a list of server names';
+  } else {
+    const bad = raw.findIndex((entry: unknown) => typeof entry !== 'string' || entry === '');
+    if (bad !== -1) detail = `apps: entry ${bad} is not a non-empty string`;
+  }
+  if (detail !== null) return { ok: false, reason: 'apps-invalid', detail };
+  return { ok: true, value: [...(raw as string[])] };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. PARSE
 // ───────────────────────────────────────────────────────────────────
@@ -294,6 +314,9 @@ export function parseDefinition(text: string): Result<BotDefinition> {
     strings[key] = value.value;
   }
 
+  const apps = parseApps(raw.apps);
+  if (!apps.ok) return apps;
+
   return {
     ok: true,
     value: {
@@ -309,6 +332,7 @@ export function parseDefinition(text: string): Result<BotDefinition> {
         isolation: (raw.isolation as Isolation | undefined) ?? null,
         sandbox: strings.sandbox ?? null,
         secrets: strings.secrets ?? null,
+        apps: apps.value,
       },
       precheck: strings.precheck ?? null,
       specFolder: strings.spec_folder ?? null,

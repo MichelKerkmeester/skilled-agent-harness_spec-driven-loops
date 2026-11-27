@@ -7,7 +7,7 @@ trigger_phrases:
   - "bot template fields"
 importance_tier: normal
 contextType: reference
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Bot Definition: Writing a BOT.md
@@ -45,7 +45,9 @@ Run folders and control state never live in the consumer checkout. The runtime k
 
 ## 3. THE TEMPLATE
 
-Copy `assets/bot-template.txt` at the hub root. Its comments name every field and its default: `id`, `trigger`, `routine`, `runtime`, `budget`, `enabled`, `memory`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and `version`. A bot carries `trigger` or a `routine` block and never both: the block says `what` the bot is for, holds its one `starts` entry, says whether it `does` act or tell, names the `until` outcome in prose and may add an `until_check` command whose exit 0 switches the bot off once the outcome holds. `memory` defaults to `true`, and `false` keeps the shared memory file and the bot's own out of its prompt, while any other value is refused `memory-invalid`. A cron start fires at most every 15 minutes. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
+Copy `assets/bot-template.txt` at the hub root. Its comments name every field and its default: `id`, `trigger`, `routine`, `runtime`, `budget`, `enabled`, `memory`, `delivery`, `isolation`, `sandbox`, `secrets`, `apps`, `precheck`, `spec_folder` and `version`. A bot carries `trigger` or a `routine` block and never both: the block says `what` the bot is for, holds its one `starts` entry, says whether it `does` act or tell, names the `until` outcome in prose and may add an `until_check` command whose exit 0 switches the bot off once the outcome holds. `memory` defaults to `true`, and `false` keeps the shared memory file and the bot's own out of its prompt, while any other value is refused `memory-invalid`. A cron start fires at most every 15 minutes. Replace the `<your-bot-id>` placeholder, because the parser rejects it as written, and write a body: an empty body fails the check.
+
+`apps` names the connector servers the run may reach, by `manual_call_templates[].name` from the checkout's `.utcp_config.json`. Omit it and the run reaches no server. A name the config does not hold is refused `apps-unknown-server` by the checker and `apps-refused` by the run, never dropped. The field narrows a run with its own worktree: a shared run's child reads the repository config through the project pin, so a shared bot that declares `apps` is refused `apps-unenforceable` and a shared bot that declares none still reaches every server.
 
 The template is the field reference. This file does not restate a field rule, because the runtime owns every one of them.
 

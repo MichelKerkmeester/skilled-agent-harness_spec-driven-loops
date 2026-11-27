@@ -6,7 +6,7 @@ trigger_phrases:
   - "bot definition fields"
   - "bot template"
   - "/bots:author"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # BOT.md definition contract (/bots:author)
@@ -23,7 +23,7 @@ A bot is one `bots/<id>/BOT.md` file: YAML frontmatter for the machine fields an
 
 ### Fields
 
-The frontmatter accepts `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `precheck`, `spec_folder` and the document `version`, which is checked and dropped because it describes the file and not the bot. An unknown key is refused. A bot id is label-safe: lowercase letters, digits and hyphens, starting with a letter or digit. The body must not be empty, because it is the prompt the executor receives.
+The frontmatter accepts `id`, `trigger`, `runtime`, `budget`, `enabled`, `delivery`, `isolation`, `sandbox`, `secrets`, `apps`, `precheck`, `spec_folder` and the document `version`, which is checked and dropped because it describes the file and not the bot. An unknown key is refused. A bot id is label-safe: lowercase letters, digits and hyphens, starting with a letter or digit. The body must not be empty, because it is the prompt the executor receives. `apps` lists the connector servers a run may reach by name from the checkout's `.utcp_config.json`. Absent means none, and a name the config does not hold is refused.
 
 ### Triggers And Runtime
 

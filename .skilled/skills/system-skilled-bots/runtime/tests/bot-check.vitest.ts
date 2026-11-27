@@ -7,7 +7,7 @@
 // never from this checkout's own remote.
 
 import { spawnSync } from 'node:child_process';
-import { cpSync, mkdirSync, readdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, relative, resolve } from 'node:path';
 
@@ -18,6 +18,9 @@ import { cleanupTemp, isolatedEnv, tempRepo } from './support.js';
 const SCRIPTS = resolve(import.meta.dirname, '..', '..', 'scripts');
 const CHECKER = join(SCRIPTS, 'bot-check.cjs');
 const FIXTURES = join(SCRIPTS, 'fixtures');
+
+/** A fixture's root UTCP config is the config its checker run reads, not an injected defect. */
+const UTCP_CONFIG = '.utcp_config.json';
 
 const { HARD_INVARIANTS, ADVISORY_INVARIANTS } = createRequire(import.meta.url)(CHECKER) as {
   HARD_INVARIANTS: readonly string[];
@@ -44,6 +47,7 @@ const DEFECTS: Record<string, string> = {
   'reserved-id': 'reserved-id',
   'executor-kind-native': 'executor-kind-native',
   'posture-unhonorable': 'posture-unhonorable',
+  'apps-unknown-server': 'apps-unknown-server',
   'routine-trigger-conflict': 'definition.routine-trigger-conflict',
   'routine-tell-with-targets': 'definition.routine-tell-with-targets',
   'routine-starts-empty': 'definition.routine-starts-empty',
@@ -65,10 +69,12 @@ function run(target: string, ...flags: string[]): Run {
   return { lines: result.stdout.split('\n').filter((line) => line !== ''), status: result.status };
 }
 
-/** A copy of one fixture inside a temp repository with no remote. */
+/** A copy of one fixture inside a temp repository with no remote, with the fixture's root UTCP config when it has one. */
 function copyFixture(name: string): string {
   const repo = tempRepo();
   cpSync(join(FIXTURES, name, 'bots'), join(repo, 'bots'), { recursive: true });
+  const utcp = join(FIXTURES, name, UTCP_CONFIG);
+  if (existsSync(utcp)) cpSync(utcp, join(repo, UTCP_CONFIG));
   return repo;
 }
 
@@ -111,7 +117,7 @@ describe('fixtures', () => {
     for (const name of Object.keys(DEFECTS)) {
       const clean = tree(join(FIXTURES, baseOf(name)));
       const defect = tree(join(FIXTURES, name));
-      const added = [...defect.keys()].filter((path) => !clean.has(path));
+      const added = [...defect.keys()].filter((path) => !clean.has(path) && path !== UTCP_CONFIG);
       const removed = [...clean.keys()].filter((path) => !defect.has(path));
       const changed = [...clean.keys()].filter((path) => defect.has(path) && defect.get(path) !== clean.get(path));
       expect(removed, name).toEqual([]);

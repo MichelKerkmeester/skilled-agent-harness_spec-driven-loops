@@ -136,7 +136,7 @@ export function validatePosture(
   return {
     ok: true,
     value: {
-      posture: { isolation: isolation.value, sandbox, executorKind: kind, model: executor.model },
+      posture: { isolation: isolation.value, sandbox, executorKind: kind, model: executor.model, apps: [] },
       executor,
     },
   };

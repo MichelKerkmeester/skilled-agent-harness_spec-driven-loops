@@ -9,7 +9,7 @@ import type { BotDefinition } from '../lib/definition.js';
 
 function definition(kind: string, sandbox: string | null, isolation: 'shared' | 'worktree' | null = 'shared') {
   return {
-    posture: { isolation, sandbox, secrets: null },
+    posture: { isolation, sandbox, secrets: null, apps: null },
     runtime: { kind },
     budget: { ...DEFAULT_BUDGET },
   } satisfies Pick<BotDefinition, 'posture' | 'runtime' | 'budget'>;

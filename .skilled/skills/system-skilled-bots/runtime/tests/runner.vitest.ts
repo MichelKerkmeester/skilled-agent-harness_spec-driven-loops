@@ -112,7 +112,7 @@ describe('manual run, happy path', () => {
     const rec = record(world, outcome);
     expect(readdirSync(identityStatePaths(world.stateRoot, IDENTITY).records)).toEqual([`${outcome.runId}.json`]);
     expect(rec.exit).toMatchObject({ reason: 'converged', class: null, needsYouItemId: null });
-    expect(rec.posture).toEqual({ isolation: 'shared', sandbox: 'workspace-write', executorKind: 'cli-codex', model: null });
+    expect(rec.posture).toEqual({ isolation: 'shared', sandbox: 'workspace-write', executorKind: 'cli-codex', model: null, apps: [] });
     expect(rec.request.leaseNonce).toEqual(expect.any(String));
     expect(rec.request.resultEventId).toBe(`${outcome.runId}:result`);
     expect(rec.budget.measured.costUsd).toBeNull();

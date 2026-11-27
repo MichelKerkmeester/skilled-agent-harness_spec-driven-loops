@@ -187,7 +187,7 @@ export function writeRecord(stateRoot: string, options: RecordOptions): RunRecor
       declared: { maxIterations: 1, maxDurationMinutes: 5, timeoutSeconds: 60 },
       measured: { iterations: 1, elapsedMinutes: 0.1, costUsd: null, costSource: null },
     },
-    posture: { isolation: 'shared', sandbox: 'read-only', executorKind: 'cli-codex', model: null },
+    posture: { isolation: 'shared', sandbox: 'read-only', executorKind: 'cli-codex', model: null, apps: [] },
     exit: options.exit ?? { reason: 'converged', class: null, needsYouItemId: null },
     evidence: { runFolder, ledgerDir: null, receiptDir: null, observabilityStream: null, worktreePath: null, branch: null },
     delivery: options.delivery ?? [{ channel: 'desktop', target: 'https://hooks.example.invalid/T0KEN', state: 'delivered', evidence: null }],

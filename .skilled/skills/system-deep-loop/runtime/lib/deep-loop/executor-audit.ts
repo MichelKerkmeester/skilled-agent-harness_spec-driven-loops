@@ -277,10 +277,14 @@ type RunAuditedExecutorCommandInput = {
   // home and spec-folder marker are keys the per-kind allowlist drops on purpose, and the
   // cli-opencode workspace-write deny replaces any inherited inline config. They are merged
   // after the filter, so the value the caller names is the one the child sees. Another kind
-  // that needs a key widens its allowlist instead. The allowed keys are exactly those in
-  // DISPATCH_ENV_KEYS for the kind; any other key is refused before a receipt is written or
+  // that needs a key widens its allowlist instead. The allowed keys are those in DISPATCH_ENV_KEYS
+  // for the kind and those the caller lists in the field below. Any other key is refused before a receipt is written or
   // a child is spawned. Only the synchronous runner reads this field and completionCheck.
   dispatchEnv?: Record<string, string>;
+  // Keys the caller names for this one dispatch, beside the kind's own list. Each must sit in
+  // the bounded caller namespace the gate checks, so a key built from a bot-controlled name
+  // cannot reach a child by being listed here.
+  dispatchEnvKeys?: string[];
   // The harness prints a JSON event stream the orchestrator never reads, so a caller can
   // keep that stream off the terminal and record only how many bytes it held.
   echoStdout?: boolean;
@@ -1493,7 +1497,7 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
 
 // A dispatchEnv key is merged after the per-kind env filter, so it reaches the child even
 // when the filter drops it and overrides any inherited value the filter admits. This list
-// is therefore the only place that says which keys a caller may name. A kind with no
+// and the caller namespace below are the only places that say which keys a caller may name. A kind with no
 // entry allows none: a caller that needs one widens this list for that kind first.
 const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]>>> = {
   'cli-deepseek-harness': ['DSH_HOME', 'DSH_SPEC_FOLDER', 'SYSTEM_SPEC_GATE_DISABLED', 'AI_SESSION_CHILD'],
@@ -1503,13 +1507,23 @@ const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]
   'cli-mistral-vibe': ['VIBE_HOME', 'SPECKIT_DIST_AUTO_REBUILD'],
 };
 
+// The one namespace a caller may name keys in for a single dispatch: the bot runtime's per-run
+// UTCP config path and its per-bot secret keys. A key outside it is refused even when listed.
+const CALLER_DISPATCH_ENV_KEY = /^(?:UTCP_CONFIG_FILE|SKILLED_BOT_SECRET_[A-Z0-9_]+)$/;
+
 // Check the caller-named keys at the one boundary that merges them, so no later caller can
 // slip PATH or a secret past the per-kind filter.
 function assertDispatchEnvAllowed(input: RunAuditedExecutorCommandInput): void {
   const kind = getExecutorKind(input.executor);
   const allowed = DISPATCH_ENV_KEYS[kind] ?? [];
+  const named = input.dispatchEnvKeys ?? [];
+  for (const key of named) {
+    if (!CALLER_DISPATCH_ENV_KEY.test(key)) {
+      throw new Error(`caller-named key ${key} is outside the bounded caller namespace`);
+    }
+  }
   for (const key of Object.keys(input.dispatchEnv ?? {})) {
-    if (!allowed.includes(key)) {
+    if (!allowed.includes(key) && !named.includes(key)) {
       throw new Error(`dispatchEnv key ${key} is not allowed for ${kind}`);
     }
   }

@@ -141,6 +141,8 @@ export interface HonoredPosture {
   sandbox: string | null;
   executorKind: string;
   model: string | null;
+  /** The honored connector server names in the source config's order, empty when none was declared. A record written before the field reads as empty. */
+  apps: string[];
 }
 
 export interface RunExit {
