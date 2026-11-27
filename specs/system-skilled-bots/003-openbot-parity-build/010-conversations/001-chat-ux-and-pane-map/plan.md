@@ -36,14 +36,14 @@ The chat surface is designed in the screen's own terms. The frames reuse the sev
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `rg -n '^\| 6 \| Chat' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md` prints the placeholder row, the gap this phase closes
-- [ ] The nine files in `specs/system-skilled-bots/003-openbot-parity-build/contracts/` exist, and `contracts/decisions.md` row D2 reads `Taken`
+- [x] `rg -n '^\| 6 \| Chat' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md` prints the placeholder row, the gap this phase closes
+- [x] The ten files in `specs/system-skilled-bots/003-openbot-parity-build/contracts/` exist, and `contracts/decisions.md` row D2 reads `Taken`
 
 ### Definition of Done
-- [ ] The frame check in `tasks.md` prints `frames=26 bad=0`
-- [ ] The label check in `tasks.md` prints `0`
-- [ ] Every acceptance criterion reads `Met`, or `Unmet` only for AC-008 while the operator's approval is outstanding
-- [ ] `validate.sh --strict` on this folder prints `RESULT: PASSED`
+- [x] The frame check in `tasks.md` prints `frames=26 bad=0`
+- [x] The label check in `tasks.md` prints `0`
+- [x] Every acceptance criterion reads `Met`, or `Unmet` only for AC-008 while the operator's approval is outstanding
+- [x] `validate.sh --strict` on this folder prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
