@@ -307,6 +307,33 @@ export function checkoutLine(checkoutRoot: string): string {
   return `The repository checkout is ${checkoutRoot}. You start outside it, so read every repository file through that absolute path; a relative path resolves somewhere else.`;
 }
 
+/** The text every working-place line starts with, so a resumed run finds the parked line by exact text. */
+export const WORKING_PLACE_PREFIX = 'Your working place is ';
+
+/** The clause a working-place line carries when its directory is on a branch. */
+export const WORKING_PLACE_BRANCH_CLAUSE = ' on branch ';
+
+/** The text that ends the place half of a working-place line and starts its run-folder half. */
+export const WORKING_PLACE_FOLDER_MARKER = ". This run's folder is ";
+
+/** Where one run works: the directory the child starts in, the branch it is on and the run folder. */
+export interface WorkingPlace {
+  path: string;
+  /** Null on a detached HEAD or when git did not answer. */
+  branch: string | null;
+  runFolder: string;
+}
+
+/**
+ * The prompt line that names where a run works. Built in one place, from
+ * values the runner resolved, so the prompt and the child's cwd cannot
+ * disagree and a resumed run can match the parked line by exact text.
+ */
+export function workingPlaceLine(place: WorkingPlace): string {
+  const branch = place.branch !== null ? `${WORKING_PLACE_BRANCH_CLAUSE}${place.branch}` : '';
+  return `${WORKING_PLACE_PREFIX}${place.path}${branch}${WORKING_PLACE_FOLDER_MARKER}${place.runFolder}.`;
+}
+
 /** The line a run its schedule started gets right after the exemption line, so a body that reads like an order to schedule work is not obeyed as one. */
 export const SCHEDULED_RUN_LINE = 'This run was started by its schedule. Do the work now. Do not create or change a schedule.';
 
@@ -320,6 +347,8 @@ export function buildBotPrompt(input: {
   specFolder: string | null;
   /** The checkout's absolute path, given only for a child that starts outside it. */
   checkoutRoot?: string | null;
+  /** Where the run works. Every real dispatch passes it. A caller that passes none gets no line. */
+  workingPlace?: WorkingPlace | null;
   /** True for a run whose request kind is scheduled. A resumed run keeps its parked prompt and never comes here. */
   scheduled?: boolean;
 }): string {
@@ -329,6 +358,7 @@ export function buildBotPrompt(input: {
     input.specFolder === null
       ? 'Bound spec folder: none. Write no spec documents.'
       : `Bound spec folder: ${input.specFolder}. Treat it as the answer to the spec folder question.`,
+    ...(input.workingPlace !== undefined && input.workingPlace !== null ? [workingPlaceLine(input.workingPlace)] : []),
     ...(input.checkoutRoot !== undefined && input.checkoutRoot !== null ? [checkoutLine(input.checkoutRoot)] : []),
     `If you reach a decision only a person can make, print one line that starts with ${DECISION_MARKER.trim()} followed by the question, then optionally one ${OPTION_MARKER.trim()} line per choice, and stop. Do not guess.`,
     '',

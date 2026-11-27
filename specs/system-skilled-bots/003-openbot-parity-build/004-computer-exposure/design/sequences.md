@@ -133,9 +133,9 @@ sequenceDiagram
   alt no such line
     Rn->>Rn: insert the current line after the spec-folder line
     Rn->>Rn: the prompt now names the place this run works in
-  else the line equals the current line
-    Rn->>Rn: nothing changes
-  else the line differs from the current line
+  else the line names the same path
+    Rn->>Rn: replace the parked line with the current line
+  else the line names another path
     Rn-->>Dr: refused resume-item-invalid, no child starts
   end
   Rn->>Rn: the budget check runs on the prompt as it now stands

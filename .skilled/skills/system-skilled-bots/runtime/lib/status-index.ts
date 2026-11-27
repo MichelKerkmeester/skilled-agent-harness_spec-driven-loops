@@ -85,6 +85,10 @@ export interface RunSummary {
   requestId: string | null;
   /** Who the run was recorded as. Null for a record written before records named anyone. */
   actor: string | null;
+  /** The tree the run worked in. Null for a run in the shared checkout, and absent on a summary written before the field existed. */
+  worktreePath?: string | null;
+  /** The branch the run worked on. Null on a detached HEAD or a failed read, and absent on an older summary. */
+  branch?: string | null;
 }
 
 export interface RunRow {
@@ -296,6 +300,8 @@ export function summarizeRecord(record: RunRecord, skippedSlotsPerSummary: numbe
     runFolder: record.evidence.runFolder,
     requestId: record.request.requestId,
     actor: record.actor ?? null,
+    worktreePath: record.evidence.worktreePath ?? null,
+    branch: record.evidence.branch ?? null,
   };
 }
 

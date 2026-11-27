@@ -62,9 +62,13 @@ import {
   READ_ONLY_UNCONFINED,
   runsOutsideCheckout,
   VIBE_RUN_UNFINISHED,
+  WORKING_PLACE_BRANCH_CLAUSE,
+  WORKING_PLACE_FOLDER_MARKER,
+  WORKING_PLACE_PREFIX,
+  workingPlaceLine,
 } from './dispatch.js';
 import { resolveIdentity } from './identity.js';
-import { createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
+import { checkoutBranch, createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
 import { buildResumedPrompt, holdForBot, itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { SCHEDULED_FIRE_ENV } from './plist-render.js';
 import { validatePosture } from './posture.js';
@@ -92,7 +96,7 @@ import { readSwitch, setSwitch } from './switches.js';
 import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import type { BotDefinition, Delivery } from './definition.js';
 import type { DeliverySenders } from './delivery.js';
-import type { CommandBuilder } from './dispatch.js';
+import type { CommandBuilder, WorkingPlace } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
@@ -660,6 +664,37 @@ function parkedTreeFor(
   };
 }
 
+/** The line every prompt this runtime composes names its spec folder on, which gives a parked prompt a fixed place for the working-place line. */
+const SPEC_FOLDER_LINE_START = 'Bound spec folder: ';
+
+/**
+ * Give a parked prompt the current working-place line. A prompt parked before
+ * the line existed gains it after its spec-folder line. A parked line naming
+ * the same directory is replaced, because a resume always has a new run folder
+ * and a shared checkout's branch may have moved. A line naming another
+ * directory is refused, because the child would be told to work where it does
+ * not start. The line is placed by position and never by replacing body text.
+ */
+function placeWorkingLine(prompt: string, place: WorkingPlace): Result<string> {
+  const current = workingPlaceLine(place);
+  const lines = prompt.split('\n');
+  const at = lines.findIndex((line) => line.startsWith(WORKING_PLACE_PREFIX));
+  if (at === -1) {
+    const specAt = lines.findIndex((line) => line.startsWith(SPEC_FOLDER_LINE_START));
+    lines.splice(specAt === -1 ? 1 : specAt + 1, 0, current);
+    return { ok: true, value: lines.join('\n') };
+  }
+  const parked = lines[at] as string;
+  const cut = parked.indexOf(WORKING_PLACE_FOLDER_MARKER);
+  const parkedPlace = cut === -1 ? parked : parked.slice(0, cut);
+  const placeHead = `${WORKING_PLACE_PREFIX}${place.path}`;
+  if (parkedPlace !== placeHead && !parkedPlace.startsWith(`${placeHead}${WORKING_PLACE_BRANCH_CLAUSE}`)) {
+    return { ok: false, reason: 'the parked prompt names another working place' };
+  }
+  lines[at] = current;
+  return { ok: true, value: lines.join('\n') };
+}
+
 function loadResumeItem(context: BotContext, botId: string, itemId: string): Result<NeedsYouItem> {
   if (!isSafeSegment(itemId)) return { ok: false, reason: 'item-id-invalid' };
   const item = readNeedsYouItem(context.stateRoot, context.identity, itemId);
@@ -1076,6 +1111,22 @@ async function runSeeded(
     }
     const workDir = tree?.path ?? context.checkoutRoot;
 
+    // A tree keeps the branch it was made on, so only a shared run reads git. One value feeds the record and the prompt, so they cannot disagree.
+    const branch = tree !== null ? tree.branch : checkoutBranch(context.checkoutRoot, env);
+    seed.evidence = { ...seed.evidence, branch };
+    const workingPlace: WorkingPlace = { path: workDir, branch, runFolder: runFolderPath };
+
+    if (prompt !== null) {
+      // Only a resumed run has a prompt here, and it is the parked one, so it is checked rather than recomposed.
+      const placed = placeWorkingLine(prompt, workingPlace);
+      if (!placed.ok) {
+        // A resumed tree goes back to waiting with its item, so the refusal never records it as active.
+        if (seed.evidence.worktree) seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
+        return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', placed.reason, resumeItem?.id ?? null, nonce);
+      }
+      prompt = placed.value;
+    }
+
     mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
     seed.dispatchedAt = new Date().toISOString();
     observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
@@ -1083,6 +1134,7 @@ async function runSeeded(
       prompt = buildBotPrompt({
         body: definition.body,
         specFolder,
+        workingPlace,
         checkoutRoot: runsOutsideCheckout(kind) ? workDir : null,
         scheduled: request.kind === 'scheduled',
       });

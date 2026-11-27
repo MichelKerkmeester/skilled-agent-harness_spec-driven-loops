@@ -10,7 +10,7 @@
 // temp folders.
 
 import { chmodSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -18,7 +18,7 @@ import { identityKey } from '../lib/identity.js';
 import { writeRunRecord } from '../lib/run-record.js';
 import { identityStatePaths, runRoot, statusIndexFile, writeGenerationStamp } from '../lib/state-root.js';
 import { formatStatus, statusReport } from '../lib/status.js';
-import { applyRetention, indexRunRecord, openIndex, readIndex, rebuildIndex, recordUpdatedAt } from '../lib/status-index.js';
+import { applyRetention, indexRunRecord, openIndex, readIndex, rebuildIndex, recordUpdatedAt, summarizeRecord } from '../lib/status-index.js';
 import { statusCheckout, statusWorld, writeRecord, writeStatusItem } from './status-support.js';
 import { cleanupTemp, tempDir } from './support.js';
 
@@ -389,5 +389,55 @@ describe('an empty state root', () => {
     expect(report.value.rows).toEqual([]);
     expect(report.value.builtAt).not.toBeNull();
     expect(report.value.stale).toBe(false);
+  });
+});
+
+const FIXTURES = 'specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design/fixtures';
+
+/** A repository-relative path from a fixture, resolved from this file. */
+function repoPath(path: string): string {
+  return resolve(import.meta.dirname, '..', '..', '..', '..', '..', path);
+}
+
+describe('working place', () => {
+  it('summary fields', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, IDENTITY);
+    const worktreeRun = runId(2);
+    const goldens = [
+      { file: 'evidence.shared-branch.json', runId: runId(1) },
+      { file: 'evidence.worktree-branch.json', runId: worktreeRun },
+      { file: 'evidence.detached.json', runId: runId(3) },
+    ];
+    for (const [index, golden] of goldens.entries()) {
+      const evidence = JSON.parse(readFileSync(repoPath(`${FIXTURES}/${golden.file}`), 'utf8')) as { worktreePath: string | null; branch: string | null };
+      const written = writeRecord(world.stateRoot, {
+        identity: IDENTITY,
+        botId: 'nightly',
+        runId: golden.runId,
+        dispatchedAt: at(index + 1),
+        repositoryPath: checkout,
+        skilledTree: world.skilledTree,
+      });
+      const placed = { ...written, evidence: { ...written.evidence, worktreePath: evidence.worktreePath, branch: evidence.branch } };
+      const saved = writeRunRecord(world.stateRoot, placed);
+      if (!saved.ok) throw new Error(saved.reason);
+      const summary = summarizeRecord(placed, 10);
+      expect(summary.worktreePath).toBe(evidence.worktreePath);
+      expect(summary.branch).toBe(evidence.branch);
+    }
+
+    rebuildOrThrow(world.stateRoot, new Date('2026-11-21T00:00:00Z'));
+    const stored = snapshotOf(world.stateRoot).runs.find((row) => row.runId === worktreeRun);
+    const withFields = JSON.parse(readFileSync(repoPath(`${FIXTURES}/run-summary.with-fields.json`), 'utf8')) as { worktreePath: string; branch: string };
+    const storedSummary = JSON.parse(stored?.summary ?? '{}') as RunSummary;
+    // The stored summary carries more keys than the golden, so only the two fields are compared.
+    expect(storedSummary.worktreePath).toBe(withFields.worktreePath);
+    expect(storedSummary.branch).toBe(withFields.branch);
+
+    const withoutFields = JSON.parse(readFileSync(repoPath(`${FIXTURES}/run-summary.without-fields.json`), 'utf8')) as Record<string, unknown>;
+    // An index built before the fields existed holds a summary with neither key.
+    expect('worktreePath' in withoutFields).toBe(false);
+    expect('branch' in withoutFields).toBe(false);
   });
 });

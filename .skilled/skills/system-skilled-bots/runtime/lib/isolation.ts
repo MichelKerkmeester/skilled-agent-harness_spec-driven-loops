@@ -597,6 +597,20 @@ export function reopenBotWorktree(checkoutRoot: string, tree: Pick<TreeHandle, '
 // ───────────────────────────────────────────────────────────────────
 
 /**
+ * The branch a checkout is on, read once for a run that works in the shared
+ * checkout. Null on a detached HEAD, a non-zero status, a failed spawn or
+ * empty output, and never a refusal: a missing branch costs the record one
+ * value and never costs a run.
+ */
+export function checkoutBranch(root: string, env: NodeJS.ProcessEnv): string | null {
+  const read = git(root, ['rev-parse', '--abbrev-ref', 'HEAD'], env);
+  if (read.status !== 0) return null;
+  const name = read.stdout.trim();
+  // A detached HEAD prints the literal HEAD rather than a branch name.
+  return name === '' || name === 'HEAD' ? null : name;
+}
+
+/**
  * Status entries of a tree, minus the links this module made and the folders it made to hold
  * them, split into changes git tracks or would track and files that match an ignore line. The
  * ignored ones count too: `git worktree remove` deletes them with the tree, and a bot's report

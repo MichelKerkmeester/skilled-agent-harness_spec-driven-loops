@@ -12,12 +12,14 @@
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { chmodSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { identityKey } from '../lib/identity.js';
 import { parseLaunchctlPrint, printLabel } from '../lib/launchctl-print.js';
+import { writeRunRecord } from '../lib/run-record.js';
 import { identityStatePaths, needsYouFile, registerRoot, runRoot, statusIndexFile, writeGenerationStamp } from '../lib/state-root.js';
 import { checkPath, formatStatus, statusReport, unregisterIdentity } from '../lib/status.js';
 import { rebuildIndex } from '../lib/status-index.js';
@@ -26,7 +28,10 @@ import { BOTS_CLI, filesUnder } from './runner-support.js';
 import { fakeInstall, linkedCheckout, printOutput, skilledTreeWithRunner, statusCheckout, statusWorld, writeRecord, writeStatusItem } from './status-support.js';
 import { cleanupTemp, tempDir } from './support.js';
 
-import type { BotStatusRow, ItemStatusRow, StatusReport } from '../lib/status.js';
+import type BetterSqlite3 from 'better-sqlite3';
+
+import type { RunRecord } from '../lib/run-record.js';
+import type { BotStatusRow, ItemStatusRow, LastRun, StatusReport } from '../lib/status.js';
 import type { StatusWorld } from './status-support.js';
 
 const INTERCEPT = resolve(import.meta.dirname, 'fixtures', 'launchctl-intercept.cjs');
@@ -519,5 +524,207 @@ describe('bots status', () => {
     expect(broken.stderr).toContain('--rebuild');
     expect(bots(cliJson(world, checkout, ['--rebuild']))).toHaveLength(1);
     expect(readdirSync(join(world.stateRoot, 'index'))).toEqual(['status.sqlite']);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// Working place
+// ───────────────────────────────────────────────────────────────────
+
+describe('working place', () => {
+  const FIXTURES = 'specs/system-skilled-bots/003-openbot-parity-build/004-computer-exposure/design/fixtures';
+
+  /** A repository-relative path from a fixture, resolved from this file. */
+  function repoPath(path: string): string {
+    return resolve(import.meta.dirname, '..', '..', '..', '..', '..', path);
+  }
+
+  function golden<T>(name: string): T {
+    return JSON.parse(readFileSync(repoPath(`${FIXTURES}/${name}`), 'utf8')) as T;
+  }
+
+  /** A last-run golden's two new keys, with the rest of its keys left open so the key set is compared whole. */
+  interface LastRunGolden {
+    branch: string | null;
+    worktreePath: string | null;
+    [key: string]: unknown;
+  }
+
+  function runOf(overrides: Partial<LastRun> = {}): LastRun {
+    return {
+      runId: '20261125T211204Z-7c1e9a40',
+      dispatchedAt: '2026-11-25T21:12:04.000Z',
+      exitReason: 'completed',
+      exitClass: null,
+      needsYouItemId: null,
+      delivery: [],
+      branch: null,
+      worktreePath: null,
+      ...overrides,
+    };
+  }
+
+  function rowOf(overrides: Partial<BotStatusRow> = {}): BotStatusRow {
+    return {
+      kind: 'bot',
+      identity: 'skilled-scratch/hello',
+      botId: 'hello',
+      state: 'ok',
+      flags: ['ok'],
+      path: '/Users/ada/code/hello',
+      pathState: 'present',
+      previousPath: null,
+      installed: false,
+      labels: [],
+      launchd: [],
+      reinstall: [],
+      fix: null,
+      heldBy: null,
+      lastRun: runOf(),
+      ...overrides,
+    };
+  }
+
+  function itemOf(): ItemStatusRow {
+    return {
+      kind: 'needs-you',
+      identity: 'skilled-scratch/hello',
+      itemId: '20261125T211204Z-7c1e9a40',
+      botId: 'hello',
+      runId: '20261125T211204Z-7c1e9a40',
+      state: 'needs-you',
+      createdAt: '2026-11-25T21:12:04.000Z',
+      expiresAt: '2026-11-26T21:12:04.000Z',
+    };
+  }
+
+  /** The tab-separated parts of the one line formatStatus printed for a bot. */
+  function partsOf(value: StatusReport, identity: string, botId: string): string[] {
+    const line = formatStatus(value).find((candidate) => candidate.includes(`\t${identity}\t${botId}\t`));
+    if (line === undefined) throw new Error(`no line for ${identity} ${botId}`);
+    return line.split('\t');
+  }
+
+  /** Rewrite a run record's working place, the way a dispatch records it. */
+  function place(stateRoot: string, record: RunRecord, evidence: { branch: string | null; worktreePath: string | null }): void {
+    const written = writeRunRecord(stateRoot, { ...record, evidence: { ...record.evidence, ...evidence } });
+    if (!written.ok) throw new Error(`${written.reason} ${written.detail ?? ''}`);
+  }
+
+  function lastRunIn(value: StatusReport, identity: string, botId: string): LastRun {
+    const found = bot(value, identity, botId).lastRun;
+    if (found === null) throw new Error(`no last run for ${identity} ${botId}`);
+    return found;
+  }
+
+  it('row parts', () => {
+    const goldenRows = readFileSync(repoPath(`${FIXTURES}/status-rows.txt`), 'utf8').split('\n').filter((line) => line !== '');
+    expect(goldenRows).toHaveLength(7);
+
+    // The golden's item row names the inbox's own state word, so the row is built with it rather than the status row's narrower pair.
+    const item = { ...itemOf(), state: 'open' as string } as ItemStatusRow;
+    const value: StatusReport = {
+      version: 1,
+      indexPath: '/Users/ada/.local/state/system-skilled-bots/index/status.sqlite',
+      builtAt: '2026-11-25T21:14:04.000Z',
+      updatedAt: '2026-11-25T21:14:04.000Z',
+      stale: false,
+      staleIdentities: [],
+      rows: [
+        rowOf(),
+        rowOf({ lastRun: runOf({ branch: 'main' }) }),
+        rowOf({ lastRun: runOf({ branch: 'worktrees/004-bot-hello', worktreePath: '/Users/ada/worktrees/004-bot-hello' }) }),
+        rowOf(),
+        rowOf({ botId: 'digest', lastRun: null }),
+        rowOf({
+          state: 'needs-reinstall',
+          flags: ['needs-reinstall', 'held'],
+          previousPath: '/Users/ada/code/hello-old',
+          lastRun: runOf({
+            branch: 'worktrees/004-bot-hello',
+            worktreePath: '/Users/ada/worktrees/004-bot-hello',
+            delivery: [{ channel: 'local-only', state: 'not-attempted' }],
+          }),
+          heldBy: 'hello',
+          reinstall: ['com.skilled.bots.skilled-scratch_2fhello.hello.0'],
+          fix: 'the definition changed',
+        }),
+        item,
+      ],
+      duplicateRoots: [],
+      notes: [],
+    };
+    // The header names the index, so the seven row lines are what the golden holds.
+    expect(formatStatus(value).slice(1)).toEqual(goldenRows);
+
+    const world = statusWorld();
+    const checkout = statusCheckout(world, 'acme/tool');
+    const shared = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'shared', runId: 'w1', dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, shared, { branch: 'main', worktreePath: null });
+    const tree = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'tree', runId: 'w2', dispatchedAt: at(2), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, tree, { branch: 'worktrees/004-bot-hello', worktreePath: '/Users/ada/worktrees/004-bot-hello' });
+    const plain = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'plain', runId: 'w3', dispatchedAt: at(3), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, plain, { branch: null, worktreePath: null });
+    rebuild(world);
+
+    const real = report(world);
+    expect(partsOf(real, 'acme/tool', 'shared').at(-1)).toBe('branch main');
+    expect(partsOf(real, 'acme/tool', 'tree').slice(-2)).toEqual(['branch worktrees/004-bot-hello', 'worktree /Users/ada/worktrees/004-bot-hello']);
+    const neither = partsOf(real, 'acme/tool', 'plain');
+    expect(neither.some((part) => part.startsWith('branch '))).toBe(false);
+    expect(neither.some((part) => part.startsWith('worktree '))).toBe(false);
+  });
+
+  it('json keys', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, 'acme/tool');
+    const shared = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'shared', runId: 'j1', dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, shared, { branch: 'main', worktreePath: null });
+    const tree = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'tree', runId: 'j2', dispatchedAt: at(2), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, tree, { branch: 'worktrees/004-bot-hello', worktreePath: '/Users/ada/worktrees/004-bot-hello' });
+    rebuild(world);
+
+    const value = report(world);
+    const sharedGolden = golden<LastRunGolden>('lastrun.shared.json');
+    const treeGolden = golden<LastRunGolden>('lastrun.worktree.json');
+    const sharedRun = lastRunIn(value, 'acme/tool', 'shared');
+    const treeRun = lastRunIn(value, 'acme/tool', 'tree');
+    expect(Object.keys(sharedRun).sort()).toEqual(Object.keys(sharedGolden).sort());
+    expect(sharedRun.branch).toBe(sharedGolden.branch);
+    expect(sharedRun.worktreePath).toBe(sharedGolden.worktreePath);
+    expect(Object.keys(treeRun).sort()).toEqual(Object.keys(treeGolden).sort());
+    expect(treeRun.branch).toBe(treeGolden.branch);
+    expect(treeRun.worktreePath).toBe(treeGolden.worktreePath);
+  });
+
+  it('old index', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, 'acme/tool');
+    const record = writeRecord(world.stateRoot, { identity: 'acme/tool', botId: 'hello', runId: 'o1', dispatchedAt: at(1), repositoryPath: checkout, skilledTree: world.skilledTree });
+    place(world.stateRoot, record, { branch: 'main', worktreePath: null });
+    rebuild(world);
+
+    // An index built before these fields existed holds a summary without them.
+    const Database = createRequire(import.meta.url)('better-sqlite3') as typeof BetterSqlite3;
+    const db = new Database(statusIndexFile(world.stateRoot));
+    try {
+      const row = db.prepare('SELECT summary FROM runs').get() as { summary: string };
+      const summary = JSON.parse(row.summary) as Record<string, unknown>;
+      delete summary.branch;
+      delete summary.worktreePath;
+      db.prepare('UPDATE runs SET summary = ?').run(JSON.stringify(summary));
+    } finally {
+      db.close();
+    }
+
+    const value = report(world);
+    const found = lastRunIn(value, 'acme/tool', 'hello');
+    const oldGolden = golden<LastRunGolden>('lastrun.old-index.json');
+    expect(Object.keys(found).sort()).toEqual(Object.keys(oldGolden).sort());
+    expect(found.branch).toBeNull();
+    expect(found.worktreePath).toBeNull();
+    const parts = partsOf(value, 'acme/tool', 'hello');
+    expect(parts.some((part) => part.startsWith('branch '))).toBe(false);
+    expect(parts.some((part) => part.startsWith('worktree '))).toBe(false);
   });
 });

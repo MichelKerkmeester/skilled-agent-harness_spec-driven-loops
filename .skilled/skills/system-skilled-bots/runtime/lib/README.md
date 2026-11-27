@@ -60,10 +60,10 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `slot-lister.ts` | Schedule | `listSlots` lists the wall-clock slots a set of calendar dictionaries covers, reading translator output only. |
 | `slot-accounting.ts` | Schedule | `accountFire` names the slot a scheduled fire stood for, how late it ran and which missed slots it replaced. Missed slots are summarized and never run. |
 | `runner.ts` | Runner and dispatch | `runBot` runs one bot in a fixed order: approval, disable switch, needs-you hold, lease, pause switch, precheck, posture, secret check, dispatch, result. The precheck runs in its own process group, which a timeout ends as a whole. Defines `EXIT_CODES` 0 to 5. |
-| `dispatch.ts` | Runner and dispatch | Builds the child prompt and filtered environment, checks the prompt for secret literals and reads the child's output for a decision marker. The spawn goes through the deep-loop executor audit. |
+| `dispatch.ts` | Runner and dispatch | Builds the child prompt and filtered environment, checks the prompt for secret literals and reads the child's output for a decision marker. The prompt names the run's working place: the directory the child starts in, its branch and the run folder. The spawn goes through the deep-loop executor audit. |
 | `posture.ts` | Runner and dispatch | `validatePosture` refuses an isolation and sandbox pair the chosen executor kind cannot honor. The `native` kind is never admitted. |
 | `result-ledger.ts` | Runner and dispatch | Writes each run's single result event through the deep-loop mode append gateway, keyed so a resent event is stored once. |
-| `isolation.ts` | Isolation and delivery | `createBotWorktree` and `finishBotWorktree` give a worktree bot its own tree through sk-git's numbering script, never through git branch primitives. A tree holding only gitignored changes is kept as `ignored-changes`, because removing it would delete them. |
+| `isolation.ts` | Isolation and delivery | `createBotWorktree` and `finishBotWorktree` give a worktree bot its own tree through sk-git's numbering script, never through git branch primitives. A tree holding only gitignored changes is kept as `ignored-changes`, because removing it would delete them. `checkoutBranch` reads the checkout branch of a shared run once and returns null on a detached HEAD or a failed read, never a refusal. |
 | `delivery.ts` | Isolation and delivery | `deliverRecord` tells a run's declared targets what happened, at most once. The one channel is `desktop`, sent through `osascript`. |
 | `request-record.ts` | Request pipeline | Builds and validates a `run` or `resume` request. The idempotency key comes from the event source and id, never a hash of the body. |
 | `request-queue.ts` | Request pipeline | File queue keyed by identity. Every state change is one rename between sibling folders, so only one consumer can claim a request. |
@@ -74,7 +74,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `label.ts` | launchd installer | Builds and parses job labels under `com.skilled.bots.` from identity, bot id and schedule index. Holds the reserved ids. |
 | `launchctl-print.ts` | launchd installer | Reads state, run count and last exit code from `launchctl print` and answers `unknown` for anything it cannot parse. |
 | `status-index.ts` | Status index | One derived SQLite file under the state root, built from run records and needs-you items. `rebuildIndex` restores it from those sources. |
-| `status.ts` | Status index | `statusReport` joins index rows, install records and `launchctl print` so a bot that never ran still shows. |
+| `status.ts` | Status index | `statusReport` joins index rows, install records and `launchctl print` so a bot that never ran still shows. A row ends with `branch <name>` when the last run recorded its tree or checkout branch and `worktree <path>` when it ran in a tree. |
 | `activity.ts` | Status index | The seven activity groups and their order, and the pure grouping of index runs and items, live leases, queued requests and schedule fires into the bots activity payload and its text lines. It reads no file and imports status-index types only. |
 | `better-sqlite3.d.ts` | Status index | Ambient types for the slice of `better-sqlite3` the status index calls, since the package ships none. |
 
