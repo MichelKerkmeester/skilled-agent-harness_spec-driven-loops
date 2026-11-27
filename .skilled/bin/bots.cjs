@@ -62,13 +62,16 @@ const USAGE = [
   '  routines [--json]',
   '                 every bot with a routine block: its start, what it does, its',
   '                 outcome, the switch it reads as and its failure streak',
+  '  ui [--ascii]   open the terminal screen; the binary is built from crates/bots-tui',
+  '                 with cargo build --release, NO_COLOR draws it without colour and',
+  '                 --ascii draws plain ASCII glyphs',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
 ].join('\n');
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
-const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access']);
+const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
 const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
@@ -87,6 +90,7 @@ const VERB_SPECS = {
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
   routines: { ids: 0, options: ['json'] },
+  ui: { ids: 0, options: ['ascii'] },
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
@@ -265,6 +269,16 @@ async function loadRuntime() {
     load('installer'),
   ]);
   return { runner, switches, needsYou, queue, drain, answer, installer };
+}
+
+// The payload contract the screen binary must speak. It is read from the runtime
+// module rather than repeated here, so the verb and the binary cannot drift apart
+// on a number this file would have to remember.
+async function readPayloadContract() {
+  const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
+  register();
+  const contract = await runtimeModule('contract');
+  return contract.PAYLOAD_CONTRACT;
 }
 
 // Refusals that mean the request itself was written wrong, as opposed to a repository that cannot enqueue.
@@ -529,11 +543,13 @@ async function routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
   let definition;
   let routineModule;
   let routineState;
+  let contract;
   try {
-    [definition, routineModule, routineState] = await Promise.all([
+    [definition, routineModule, routineState, contract] = await Promise.all([
       runtimeModule('definition'),
       runtimeModule('routine'),
       runtimeModule('routine-state'),
+      runtimeModule('contract'),
     ]);
   } catch (error) {
     process.stderr.write(`bots: the routine modules did not load: ${error instanceof Error ? error.message : String(error)}\n`);
@@ -577,7 +593,7 @@ async function routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
     });
   }
   if (options.json === true) {
-    process.stdout.write(`${JSON.stringify({ version: 1, routines: rows }, null, 2)}\n`);
+    process.stdout.write(`${JSON.stringify({ version: contract.PAYLOAD_CONTRACT, routines: rows }, null, 2)}\n`);
     return 0;
   }
   if (rows.length === 0) {
@@ -589,6 +605,55 @@ async function routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
     process.stdout.write(`${fields.join('\t')}\n`);
   }
   return 0;
+}
+
+// The screen is a separate binary, so this verb resolves it, refuses when it is
+// missing or speaks another payload contract, and only then hands over the
+// terminal. It never loads the runtime: a screen that cannot start must not
+// depend on the modules a run needs.
+async function uiVerb(parsed) {
+  const fs = require('node:fs');
+  const checkoutRoot = checkoutRootFrom(parsed.options.repo);
+  const skilledTree = path.resolve(parsed.options['skilled-tree'] || DEFAULT_SKILLED_TREE);
+  // A test seam only: the shipped path resolves the binary from the skilled tree.
+  const override = process.env.BOTS_UI_BIN;
+  let bin;
+  if (typeof override === 'string' && override !== '') {
+    bin = path.resolve(override);
+  } else {
+    const crateDir = path.join(skilledTree, 'crates', 'bots-tui');
+    if (!fs.existsSync(crateDir)) {
+      process.stderr.write(`bots: ui-unavailable: no crates/bots-tui in ${skilledTree}. The screen ships only in a source checkout, so build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+      return 4;
+    }
+    bin = path.join(crateDir, 'target', 'release', 'bots-ui');
+    if (!fs.existsSync(bin)) {
+      process.stderr.write(`bots: ui-not-built: no bots-ui binary at ${bin}. Build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+      return 4;
+    }
+  }
+  const contract = await readPayloadContract();
+  const version = spawnSync(bin, ['--version'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 10000 });
+  const firstLine = typeof version.stdout === 'string' ? version.stdout.split('\n')[0] : '';
+  const match = /\scontract (\d+)\s*$/.exec(firstLine);
+  const speaks = version.error !== undefined || firstLine === '' || match === null ? 'unknown' : match[1];
+  if (speaks !== String(contract)) {
+    process.stderr.write(`bots: ui-contract-mismatch: ${bin} speaks contract ${speaks}, this verb speaks contract ${contract}. Rebuild it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+    return 4;
+  }
+  // The binary reads no environment variable of its own, so the two display
+  // choices travel as flags.
+  const args = ['--repo', checkoutRoot, '--skilled-tree', skilledTree];
+  const noColor = process.env.NO_COLOR;
+  if (typeof noColor === 'string' && noColor !== '') args.push('--mono');
+  if (parsed.options.ascii === true) args.push('--ascii');
+  const run = spawnSync(bin, args, { stdio: 'inherit' });
+  if (run.error) {
+    process.stderr.write(`bots: ui did not start: ${run.error.message}\n`);
+    return 1;
+  }
+  if (run.signal) return 128 + require('node:os').constants.signals[run.signal];
+  return run.status;
 }
 
 function describeOutcome(id, outcome) {
@@ -615,6 +680,9 @@ async function main(argv) {
     return 0;
   }
   if (parsed.error) return usageExit(parsed.error);
+  // The screen starts a separate binary and reads no bot state, so it runs before
+  // the child refusals and before the runtime loads.
+  if (parsed.verb === 'ui') return uiVerb(parsed);
   // A refusal that reads the run marker for answer and enable belongs here, before any
   // runtime work, so a bot's own child cannot answer or re-enable itself.
   if (CHILD_REFUSED_VERBS.has(parsed.verb) && isBotChild(process.env)) {

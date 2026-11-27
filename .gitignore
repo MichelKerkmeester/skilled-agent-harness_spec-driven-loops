@@ -60,6 +60,7 @@ build/
 dist/
 .opencode/output/
 .skilled/output/
+/crates/bots-tui/target/
 
 # ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor

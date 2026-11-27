@@ -1,0 +1,27 @@
+[package]
+name = "bots-tui"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.92"
+license = "MIT"
+description = "The terminal screen for skilled bots, drawn from the bots CLI's JSON verbs."
+publish = false
+
+[lib]
+name = "bots_tui"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bots-ui"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.30"
+crossterm = "0.29"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+unicode-width = "0.2"
+libc = "0.2"
+
+[profile.release]
+panic = "unwind"

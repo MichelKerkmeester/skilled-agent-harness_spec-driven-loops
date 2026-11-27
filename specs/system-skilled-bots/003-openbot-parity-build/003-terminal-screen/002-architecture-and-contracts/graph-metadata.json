@@ -47,11 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/bin/bots.cjs",
-      ".github/workflows/bots-runtime.yml",
-      "design/contracts.md",
       "design/architecture.md",
-      "design/payloads/activity.json"
+      "crates/bots-tui/Cargo.toml",
+      "crates/bots-tui/src/lib.rs",
+      "crates/bots-tui/src/state.rs",
+      "crates/bots-tui/src/model.rs",
+      "crates/bots-tui/src/keys.rs",
+      "crates/bots-tui/src/cli.rs",
+      "crates/bots-tui/src/data.rs",
+      "crates/bots-tui/src/event.rs",
+      "crates/bots-tui/src/terminal.rs",
+      "crates/bots-tui/src/app.rs",
+      "crates/bots-tui/src/theme.rs",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/contract.ts"
     ],
     "entities": [
       {
@@ -91,33 +100,87 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "bots-runtime.yml",
-        "kind": "config",
-        "path": ".github/workflows/bots-runtime.yml",
-        "source": "derived"
-      },
-      {
-        "name": "contracts.md",
-        "kind": "doc",
-        "path": "design/contracts.md",
-        "source": "derived"
-      },
-      {
         "name": "architecture.md",
         "kind": "doc",
         "path": "design/architecture.md",
         "source": "derived"
       },
       {
-        "name": "activity.json",
-        "kind": "config",
-        "path": "design/payloads/activity.json",
+        "name": "Cargo.toml",
+        "kind": "file",
+        "path": "crates/bots-tui/Cargo.toml",
+        "source": "derived"
+      },
+      {
+        "name": "lib.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/lib.rs",
+        "source": "derived"
+      },
+      {
+        "name": "state.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/state.rs",
+        "source": "derived"
+      },
+      {
+        "name": "model.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/model.rs",
+        "source": "derived"
+      },
+      {
+        "name": "keys.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "cli.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/cli.rs",
+        "source": "derived"
+      },
+      {
+        "name": "data.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/data.rs",
+        "source": "derived"
+      },
+      {
+        "name": "event.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/event.rs",
+        "source": "derived"
+      },
+      {
+        "name": "terminal.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/terminal.rs",
+        "source": "derived"
+      },
+      {
+        "name": "app.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/app.rs",
+        "source": "derived"
+      },
+      {
+        "name": "theme.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/theme.rs",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "contract.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/contract.ts",
         "source": "derived"
       },
       {
@@ -143,65 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Pure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "An Esc",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
     "created_at": "2026-11-25T20:22:32Z",
-    "last_save_at": "2026-11-27T15:42:09.637Z",
+    "last_save_at": "2026-11-27T19:38:54.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f570211158bbb240994f4d720e0c8ec2a96ca13666432cd2a3cb07e5095bc67",
+    "source_fingerprint": "sha256:529180633d530817fe28fd9ff7e6123c8187cc70641720b01417b3139a3b5b19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf62ef3dcae44a59010f1e5400b4d1545a5a75da4b41d34cf40d2946a1166140",
       "plan.md": "318b8c741264cf16ca0efb39cb978bc89a3f3c7c1e2c47ec6e4d9db12a5c25d7",
-      "tasks.md": "9f7a72655134fd9c6dad1eeb59527a96d379f587eae4fc1307b205bec941eb1e",
-      "implementation-summary.md": "2058e2a0fb782d37979d917cde552ccd305df68192c80061e4e81607dce5b3f1"
+      "tasks.md": "0b3a9c423aadf0f1ac690ef5ab1d572c9fa3fe88554b73f82e9858b664a72d92",
+      "implementation-summary.md": "8b4e1d9dfc3881c3dad76defe886cf3aa5fccb78ab41ae4511dfbd830c726d87"
     },
     "last_active_at": null
   }

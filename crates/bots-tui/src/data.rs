@@ -1,0 +1,397 @@
+use std::collections::VecDeque;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::mpsc::{self, Receiver, Sender};
+use std::sync::Arc;
+use std::thread::JoinHandle;
+
+use crate::cli::{self, Program};
+use crate::state::{Effect, ItemId, Msg, Scope, Surface};
+
+/// One unit of work the worker thread runs.
+#[derive(Clone, Debug, PartialEq)]
+pub enum Job {
+    /// One read of one surface.
+    Fetch {
+        /// The surface to read.
+        surface: Surface,
+        /// The generation the read is issued at.
+        generation: u64,
+    },
+    /// The one write.
+    Answer {
+        /// The answered item.
+        id: ItemId,
+        /// The text the answer carries.
+        text: String,
+        /// The scope the answer carries.
+        scope: Scope,
+    },
+}
+
+/// The thread that runs every call, so the loop never blocks on one.
+pub struct Worker {
+    jobs: Option<Sender<Job>>,
+    shutting_down: Arc<AtomicBool>,
+    handle: Option<JoinHandle<()>>,
+}
+
+impl Worker {
+    /// Starts the worker thread and returns the handle the loop keeps.
+    ///
+    /// The thread is named, so a panic report says which one died, and it
+    /// holds a guard that reports the loss on the message channel. A thread
+    /// that cannot start leaves no handle, and every later submit is dropped
+    /// because the job channel has no receiver.
+    pub fn spawn(program: Program, tx: Sender<Msg>) -> Worker {
+        let (jobs, queue) = mpsc::channel::<Job>();
+        let shutting_down = Arc::new(AtomicBool::new(false));
+        let flag = Arc::clone(&shutting_down);
+        let handle = std::thread::Builder::new()
+            .name("bots-ui-worker".to_string())
+            .spawn(move || run(program, queue, tx, flag))
+            .ok();
+        Worker {
+            jobs: Some(jobs),
+            shutting_down,
+            handle,
+        }
+    }
+
+    /// Hands one effect to the worker, when the effect is a call.
+    ///
+    /// The send never blocks and never starts a thread, so the caller's
+    /// thread only ever queues work. A closed channel means the worker has
+    /// gone, and that loss reaches the loop through the guard instead.
+    pub fn submit(&self, effect: &Effect) {
+        let job = match effect {
+            Effect::Fetch {
+                surface,
+                generation,
+            } => Job::Fetch {
+                surface: *surface,
+                generation: *generation,
+            },
+            Effect::Answer { id, text, scope } => Job::Answer {
+                id: id.clone(),
+                text: text.clone(),
+                scope: *scope,
+            },
+            Effect::Quit { .. } => return,
+        };
+        if let Some(jobs) = &self.jobs {
+            let _ = jobs.send(job);
+        }
+    }
+
+    /// Stops the worker and waits for its thread.
+    ///
+    /// The flag stops a read that is already running and the dropped sender
+    /// ends a thread that is waiting for work. A join error is ignored,
+    /// because a panicked worker has already reported itself through its
+    /// guard.
+    pub fn shutdown(self) {
+        self.shutting_down.store(true, Ordering::Relaxed);
+        drop(self.jobs);
+        if let Some(handle) = self.handle {
+            let _ = handle.join();
+        }
+    }
+}
+
+/// The worker thread's whole life, from the first job to the closed channel.
+///
+/// One job runs at a time, so a reply always describes the state the next job
+/// starts from. Every waiting job moves into a local queue before the next one
+/// is picked, so an answer that arrived while a read ran is seen and taken
+/// ahead of the reads behind it.
+fn run(program: Program, jobs: Receiver<Job>, tx: Sender<Msg>, shutting_down: Arc<AtomicBool>) {
+    let _guard = ThreadGuard::new(tx.clone(), "worker");
+    let mut queue: VecDeque<Job> = VecDeque::new();
+    loop {
+        match jobs.recv() {
+            Ok(job) => queue.push_back(job),
+            // The loop dropped its sender, so no further job can arrive.
+            Err(_) => return,
+        }
+        drain_waiting(&jobs, &mut queue);
+        while !queue.is_empty() {
+            if shutting_down.load(Ordering::Relaxed) {
+                abandon(&program, queue);
+                return;
+            }
+            let index = first_answer(&queue);
+            if let Some(job) = queue.remove(index) {
+                run_job(&program, &tx, &shutting_down, job);
+            }
+            drain_waiting(&jobs, &mut queue);
+        }
+    }
+}
+
+/// Moves every job already waiting into the local queue.
+fn drain_waiting(jobs: &Receiver<Job>, queue: &mut VecDeque<Job>) {
+    while let Ok(job) = jobs.try_recv() {
+        queue.push_back(job);
+    }
+}
+
+/// The index of the first answer in the queue, or the front when none waits.
+fn first_answer(queue: &VecDeque<Job>) -> usize {
+    queue
+        .iter()
+        .position(|job| matches!(job, Job::Answer { .. }))
+        .unwrap_or(0)
+}
+
+/// Runs one job and sends its reply, ignoring a send nobody reads.
+fn run_job(program: &Program, tx: &Sender<Msg>, shutting_down: &AtomicBool, job: Job) {
+    match job {
+        Job::Fetch {
+            surface,
+            generation,
+        } => {
+            let outcome = cli::read(program, surface, shutting_down);
+            let _ = tx.send(Msg::Fetched {
+                surface,
+                generation,
+                outcome,
+            });
+        }
+        Job::Answer { id, text, scope } => {
+            let outcome = cli::answer(program, &id, &text, scope, shutting_down);
+            let _ = tx.send(Msg::Answered {
+                id,
+                text,
+                scope,
+                outcome,
+            });
+        }
+    }
+}
+
+/// Ends the queue at quit: reads are dropped and answers are started detached.
+///
+/// A detached answer is never waited for, because the write outlives the
+/// screen and the quit path must not hold it open. A read that is already
+/// running is stopped by the flag the call watches, so nothing here waits on
+/// one either.
+fn abandon(program: &Program, queue: VecDeque<Job>) {
+    for job in queue {
+        if let Job::Answer { id, text, scope } = job {
+            let _ = cli::answer_detached(program, &id, &text, scope);
+        }
+    }
+}
+
+/// Reports a thread that died by panicking, so the loop can leave with 1.
+pub struct ThreadGuard {
+    tx: Sender<Msg>,
+    thread: &'static str,
+}
+
+impl ThreadGuard {
+    /// Builds the guard around the channel and the thread's name.
+    pub fn new(tx: Sender<Msg>, thread: &'static str) -> ThreadGuard {
+        ThreadGuard { tx, thread }
+    }
+}
+
+impl Drop for ThreadGuard {
+    fn drop(&mut self) {
+        if std::thread::panicking() {
+            let _ = self.tx.send(Msg::ThreadLost {
+                thread: self.thread,
+            });
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::cli::{test_dir, test_program};
+    use crate::state::FailKind;
+    use std::path::Path;
+    use std::time::{Duration, Instant};
+
+    /// The verbs the fixture logged, in the order it logged them.
+    fn logged_verbs(log: &Path) -> Vec<String> {
+        std::fs::read_to_string(log)
+            .unwrap_or_default()
+            .lines()
+            .filter_map(|line| line.split_whitespace().next().map(str::to_string))
+            .collect()
+    }
+
+    /// The next message the worker sends, or a panic when none arrives.
+    fn next(rx: &Receiver<Msg>) -> Msg {
+        rx.recv_timeout(Duration::from_secs(15))
+            .expect("the worker replies")
+    }
+
+    #[test]
+    fn answer_jumps_queued_reads() {
+        let dir = test_dir("answer-jumps-queued-reads");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "slow");
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Status,
+            generation: 1,
+        });
+        // Long enough for the worker to have started the status read, so the
+        // three jobs below are queued behind a read that is already running.
+        std::thread::sleep(Duration::from_millis(300));
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Activity,
+            generation: 1,
+        });
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Inbox,
+            generation: 1,
+        });
+        worker.submit(&Effect::Answer {
+            id: ItemId("20261125T211204Z-7c1e9a40".to_string()),
+            text: "approve".to_string(),
+            scope: Scope::Once,
+        });
+
+        let first = next(&rx);
+        assert!(
+            matches!(
+                &first,
+                Msg::Fetched {
+                    surface: Surface::Status,
+                    generation: 1,
+                    ..
+                }
+            ),
+            "{first:?}"
+        );
+        let second = next(&rx);
+        assert!(matches!(&second, Msg::Answered { .. }), "{second:?}");
+        let third = next(&rx);
+        assert!(
+            matches!(
+                &third,
+                Msg::Fetched {
+                    surface: Surface::Activity,
+                    ..
+                }
+            ),
+            "{third:?}"
+        );
+        let fourth = next(&rx);
+        assert!(
+            matches!(
+                &fourth,
+                Msg::Fetched {
+                    surface: Surface::Inbox,
+                    ..
+                }
+            ),
+            "{fourth:?}"
+        );
+
+        assert_eq!(
+            logged_verbs(&log),
+            vec!["status", "answer", "activity", "inbox"]
+        );
+        worker.shutdown();
+    }
+
+    #[test]
+    fn child_past_timeout_is_killed() {
+        let dir = test_dir("child-past-timeout-is-killed");
+        let log = dir.join("argv.log");
+        let mut program = test_program(&log, "slow");
+        program.read_timeout = Duration::from_secs(1);
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        let started = Instant::now();
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Status,
+            generation: 1,
+        });
+        let reply = next(&rx);
+        let elapsed = started.elapsed();
+
+        match reply {
+            Msg::Fetched {
+                surface,
+                generation,
+                outcome,
+            } => {
+                assert_eq!(surface, Surface::Status);
+                assert_eq!(generation, 1);
+                let error = outcome.expect_err("the slow read is killed at its deadline");
+                assert_eq!(error.kind, FailKind::Timeout);
+            }
+            other => panic!("expected a fetch reply, got {other:?}"),
+        }
+        assert!(elapsed < Duration::from_millis(1900), "{elapsed:?}");
+        worker.shutdown();
+    }
+
+    #[test]
+    fn loop_thread_spawns_nothing() {
+        let dir = test_dir("loop-thread-spawns-nothing");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "slow");
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        let started = Instant::now();
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Status,
+            generation: 1,
+        });
+        let elapsed = started.elapsed();
+        assert!(elapsed < Duration::from_millis(100), "{elapsed:?}");
+
+        let reply = rx
+            .recv_timeout(Duration::from_secs(5))
+            .expect("the worker replies");
+        match reply {
+            Msg::Fetched {
+                surface, outcome, ..
+            } => {
+                assert_eq!(surface, Surface::Status);
+                assert!(outcome.is_ok(), "{outcome:?}");
+            }
+            other => panic!("expected a fetch reply, got {other:?}"),
+        }
+        worker.shutdown();
+    }
+
+    #[test]
+    fn shutdown_drops_queued_reads() {
+        let dir = test_dir("shutdown-drops-queued-reads");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "slow");
+        let (tx, _rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Status,
+            generation: 1,
+        });
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Activity,
+            generation: 1,
+        });
+        // Long enough for the status read to be running and the activity read
+        // to be waiting behind it.
+        std::thread::sleep(Duration::from_millis(300));
+
+        let started = Instant::now();
+        worker.shutdown();
+        let elapsed = started.elapsed();
+
+        assert!(elapsed < Duration::from_millis(1500), "{elapsed:?}");
+        assert_eq!(logged_verbs(&log), vec!["status"]);
+    }
+}

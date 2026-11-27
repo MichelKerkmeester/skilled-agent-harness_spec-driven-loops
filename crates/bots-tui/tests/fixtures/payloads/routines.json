@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "routines": [
+    {
+      "botId": "digest",
+      "what": "the morning digest",
+      "starts": [
+        { "kind": "cron", "expression": "15 */6 * * *", "summary": "every 6h" }
+      ],
+      "does": "tell",
+      "until": "the digest is sent",
+      "untilMetAt": null,
+      "failureStreak": 0,
+      "switch": "enabled"
+    },
+    {
+      "botId": "nightly-report",
+      "what": "the nightly report",
+      "starts": [
+        { "kind": "cron", "expression": "0 2 * * *", "summary": "daily 02:00" }
+      ],
+      "does": "act",
+      "until": "the report is filed",
+      "untilMetAt": null,
+      "failureStreak": 1,
+      "switch": "enabled"
+    }
+  ]
+}
