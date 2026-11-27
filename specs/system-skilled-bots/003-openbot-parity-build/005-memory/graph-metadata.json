@@ -37,7 +37,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,20 +45,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/memory.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md"
+      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md"
     ],
     "entities": [
       {
@@ -98,9 +98,39 @@
         "source": "derived"
       },
       {
+        "name": "memory.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/memory.ts",
+        "source": "derived"
+      },
+      {
         "name": "state-root.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "label.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
+        "source": "derived"
+      },
+      {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
         "source": "derived"
       },
       {
@@ -116,33 +146,9 @@
         "source": "derived"
       },
       {
-        "name": "run-record.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-        "source": "derived"
-      },
-      {
         "name": "answer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "definition.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
-        "source": "derived"
-      },
-      {
-        "name": "label.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
         "source": "derived"
       },
       {
@@ -164,21 +170,15 @@
         "source": "derived"
       },
       {
-        "name": "run-queue-and-answer.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "bot-definition.md",
+        "name": "run-queue-and-answer.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A bot starts every run with its BOT.md body, the bound spec folder and the decision rule, and nothing else [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:315]",
     "created_at": "2026-11-25T07:13:40Z",
-    "last_save_at": "2026-11-27T15:39:52.205Z",
+    "last_save_at": "2026-11-27T20:33:29.817Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:880ee440eaaec43a4bb66eb550dab8b41e6266b7178d91425547525e12d906f6",
+    "source_fingerprint": "sha256:28a825fbc2ac6cdf365fbf3e8b753d8e808247a47ea4538c2351eb0109e87d30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e363b2f7ba947779237dd10d296480761176b227f6b114a8296059d5b6a8925a",
+      "spec.md": "fcff74ac6754ff8f0b6e8660e4e0f01c1b2c7d6971b5a6582206f48a5bcde73c",
       "plan.md": "5ae05dd79bbf9678b0512d5b5cb0a3c79224de954d9011a84b899c287c4edf42",
-      "tasks.md": "8fc426f649870aebe54d44202b86104de3a31089d9822a307df6d7c3de896ca0",
-      "implementation-summary.md": "12dde933b0dda4d061df10fe502c0abe1634bbbb8dae044f93eb2a13df4aa3a2"
+      "tasks.md": "24959d9723f7f21155ce86ceedc8bb5f1ad50bf1262a2861c9f61659fb43a0ff",
+      "implementation-summary.md": "feb251b4fd5bd2de5f6a83956053a559e743eb9be1ddc8459616ba68dcceae24"
     },
     "last_active_at": null
   }

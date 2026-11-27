@@ -65,6 +65,8 @@ export interface IdentityStatePaths {
   receipts: string;
   /** Per-bot routine state files, made by their writer on first write. */
   routines: string;
+  /** Per-bot memory files, made owner-only by the first append and never by a read. */
+  memory: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
@@ -131,6 +133,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     installs: join(base, 'installs'),
     receipts: join(base, 'receipts'),
     routines: join(base, 'routines'),
+    memory: join(base, 'memory'),
   };
 }
 
@@ -141,6 +144,11 @@ export function sharedStatePaths(stateRoot: string): SharedStatePaths {
     registeredRoots: join(stateRoot, 'registered-roots'),
     authority: join(stateRoot, 'authority'),
   };
+}
+
+/** The memory file every bot of every identity reads, beside the identity folders. Creates nothing. */
+export function sharedMemoryFile(stateRoot: string): string {
+  return join(stateRoot, 'memory', 'shared.md');
 }
 
 /**
@@ -163,6 +171,14 @@ export function ensureIdentityState(stateRoot: string, identity: string): Identi
   ];
   for (const folder of folders) mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
   return paths;
+}
+
+/**
+ * Create a memory folder owner-only, with the state root above it. A memory file is made by
+ * its first append, never by a read, so only the writer calls this.
+ */
+export function ensureMemoryFolder(folder: string): void {
+  mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
 }
 
 /** Reject an id that could escape its folder or hide as a dot file. */

@@ -21,6 +21,8 @@ runtime: {kind: cli-codex}
 budget: {maxIterations: 10, maxDurationMinutes: 120, timeoutSeconds: 900}
 # Default: true. false keeps the definition but runs nothing.
 enabled: true
+# Default: true. false keeps the shared memory file and this bot's own out of its prompt.
+memory: true
 # Default: no target. Use local-only to send nothing, or {targets: [...], onFailure: [...]}.
 delivery: {targets: [], onFailure: null}
 # worktree or shared. Omit to use defaultIsolation from bots/config.json; with neither, the run is refused.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "answer the bot"
 importance_tier: normal
 contextType: reference
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Bot Runs: Run, Queue, Drain and Answer
@@ -40,6 +40,10 @@ Give the run mode the four verbs that start or continue a run, and the exit code
 | `bots answer <item-id> <text>` | Answers a needs-you item and queues the run that continues it |
 | `bots answer <item-id> <text> --as <name>` | Records who answered as the answer's `by`. Without it the answer records the OS user. A name is letters, digits, dot, dash and underscore, at most 64 characters, starting with a letter or digit. Outside a tty the CLI refuses a name that is not the OS user with `bots: --as needs a tty`, so a script cannot answer under another person's name. Two names match only exactly, so `Ada` and `ada` are two people |
 | `bots answer <item-id> <text> --scope once\|deny` | Records the answer's scope. With no `--scope` the answer records `once`. `--scope always` and `--scope conversation` are refused `bots: grant-scope-unsupported`, and any other value `bots: --scope takes once or deny`, both exit 2. The same text with another scope is refused `item-answered-differently` |
+| `bots answer <item-id> confirm` or `reject` | On a `memory-proposal` item, `confirm` appends the fact to the proposing bot's memory file with the answering operator as its actor and `bot:<botId> (run <runId>)` as its source, and `reject` appends nothing. A NO (`deny`, `no` or `n`) reads as `reject`. Both close the item, queue no run and print `bots: item <id> answered; memory-proposal review recorded`. Any other text exits 4 with `bots: review-answer-invalid: <text>`, and a confirm into a full file exits 4 with `bots: memory-full` and leaves the item open |
+| `bots remember <fact> [--bot <id>] [--type <type>] [--as <name>]` | Appends one fact to the shared memory file, or to the bot's own file with `--bot`, and prints its index and the file path. `--type` is `user`, `general`, `feedback` or `reference`, default `general`, and `--as` follows the same tty rule as `bots answer`. A fact over 400 characters exits 2 with `bots: memory-entry-too-long: <n>`, a full file exits 4 with `bots: memory-full` and a fact holding a known secret exits 4 with `bots: memory-secret: <key>`. Inside a bot run it exits 2 with `bots: child-write-refused: remember runs no write inside a bot run` |
+| `bots remember --list [--bot <id>] [--json]` | Prints each entry with its 8-hex id, type, date, actor, source and text, then the path with its entry and byte counts, and writes nothing. `--json` prints one document. A bot run may read it |
+| `bots remember --forget <entry-id> [--bot <id>]` | Removes the entry whose id `--list` printed. An id that is not eight lowercase hex characters exits 2 with `bots: --forget takes an entry id`, and an id that names no entry exits 2 with `bots: memory-entry-unknown: <entry-id>` |
 | `bots schedule install <id> --full-access` | The only way a definition's `danger-full-access` sandbox is honored. Without it a declared `danger-full-access` runs at `workspace-write`. It needs a tty (`bots: --full-access needs a tty`). For a bot whose trigger is not cron it records the grant in the install record and installs no schedule, printing `bots: <id> has a <kind> trigger, so full access is recorded and no schedule is installed`. Without the flag such a bot is still refused `trigger-not-cron` |
 
 Each verb takes `--repo <path>` for the consumer checkout. Read the item id for `bots answer` from `bots inbox`, which the status mode owns.

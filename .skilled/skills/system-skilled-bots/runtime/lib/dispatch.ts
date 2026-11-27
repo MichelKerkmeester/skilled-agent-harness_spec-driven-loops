@@ -29,6 +29,7 @@ import type {
   ExecutorLogFormat,
   SandboxMode,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import type { Result } from './repo-config.js';
 import type { FailureClass } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -43,6 +44,9 @@ export const DECISION_MARKER = '[NEEDS-DECISION] ';
 
 /** An optional choice line after the decision marker. */
 export const OPTION_MARKER = '[OPTION] ';
+
+/** The line a child prints to propose one fact for its memory, naming the fact's type first. */
+export const REMEMBER_MARKER = '[REMEMBER] ';
 
 /** The failure of a Vibe child that exited 0 while its export record says it did not finish. */
 export const VIBE_RUN_UNFINISHED = 'vibe-run-unfinished';
@@ -83,6 +87,9 @@ export type DecisionSignal =
   | { kind: 'none' }
   | { kind: 'empty' }
   | { kind: 'question'; question: string; options: string[] | null };
+
+/** What a child proposed to remember: the first [REMEMBER] line's type word and the rest of the line. */
+export type RememberSignal = { kind: 'none' } | { kind: 'remember'; type: string; fact: string };
 
 /** What a command builder returns: the command, and the working folder and extra environment it needs. */
 export interface BuiltCommand {
@@ -298,6 +305,12 @@ export function findSecretLiteral(text: string, known: KnownSecrets): SecretMatc
 // 3. PROMPT & ENVIRONMENT
 // ───────────────────────────────────────────────────────────────────
 
+/** The line that joins a queued request's own text to the bot's standing instructions. */
+export const REQUEST_PROMPT_HEADER = '--- Request prompt: added by the queued request that started this run ---';
+
+/** The most characters a composed prompt may hold, wrappers and labels included. */
+export const PROMPT_BUDGET_CHARS = 32_000;
+
 /**
  * The prompt line that tells a child starting outside the checkout where it
  * is. Built in one place so a resumed run can swap the parked folder's line
@@ -338,9 +351,63 @@ export function workingPlaceLine(place: WorkingPlace): string {
 export const SCHEDULED_RUN_LINE = 'This run was started by its schedule. Do the work now. Do not create or change a schedule.';
 
 /**
+ * Apply the one cut the budget allows: the conversation block gives way from
+ * its oldest message. A prompt already inside the bound, or one with no
+ * conversation block, comes back unchanged.
+ */
+function fitConversation(prompt: string): string {
+  const lines = prompt.split('\n');
+  const header = lines.lastIndexOf(REQUEST_PROMPT_HEADER);
+  if (header === -1) return prompt;
+  const open = header + 1;
+  if (!(lines[open] ?? '').startsWith('<conversation')) return prompt;
+  const closeOf = (): number => lines.findIndex((line, index) => index > open && line === '</conversation>');
+  if (closeOf() === -1) return prompt;
+  while (lines.join('\n').length > PROMPT_BUDGET_CHARS) {
+    const close = closeOf();
+    const oldest = lines.findIndex(
+      (line, index) => index > open && index < close && (line.startsWith('<human> ') || line.startsWith('<bot> ')),
+    );
+    if (oldest !== -1) {
+      lines.splice(oldest, 1);
+      continue;
+    }
+    // Nothing left to give: the block goes whole, with its header and the blank line above it.
+    lines.splice(open, close - open + 1);
+    lines.splice(header, 1);
+    if (lines[header - 1] === '') lines.splice(header - 1, 1);
+    break;
+  }
+  return lines.join('\n');
+}
+
+/**
+ * The one budget check, run on a joined prompt right before dispatch. The conversation gives
+ * way first, from its oldest message, and nothing else is ever cut, so a prompt still over the
+ * bound is refused rather than half rendered. A resumed run's parked prompt is one string, so
+ * its refusal names the block resume.
+ */
+export function checkPromptBudget(prompt: string, block = 'resume'): Result<string> {
+  const fitted = fitConversation(prompt);
+  if (fitted.length <= PROMPT_BUDGET_CHARS) return { ok: true, value: fitted };
+  return {
+    ok: false,
+    reason: 'prompt-over-budget',
+    detail: `${block} at ${fitted.length} of ${PROMPT_BUDGET_CHARS} characters`,
+  };
+}
+
+/**
  * The prompt one bot run is dispatched with. The exemption and the decision
  * rule sit in the prompt as well as the environment, because a child that
  * stops to ask and exits 0 would otherwise read as a clean run.
+ *
+ * The blocks land in one order: the exemption, the spec folder, the working
+ * place, the checkout, the memory, the decision marker, the body and the
+ * request prompt. An absent block adds nothing, so a bot with no memory file
+ * and no queued request gets the prompt it always did. The bound is checked
+ * on the joined output, never on a block, so a refusal names the block that
+ * crossed the line.
  */
 export function buildBotPrompt(input: {
   body: string;
@@ -351,20 +418,70 @@ export function buildBotPrompt(input: {
   workingPlace?: WorkingPlace | null;
   /** True for a run whose request kind is scheduled. A resumed run keeps its parked prompt and never comes here. */
   scheduled?: boolean;
-}): string {
-  const lines = [
-    'You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.',
-    ...(input.scheduled === true ? [SCHEDULED_RUN_LINE] : []),
-    input.specFolder === null
-      ? 'Bound spec folder: none. Write no spec documents.'
-      : `Bound spec folder: ${input.specFolder}. Treat it as the answer to the spec folder question.`,
-    ...(input.workingPlace !== undefined && input.workingPlace !== null ? [workingPlaceLine(input.workingPlace)] : []),
-    ...(input.checkoutRoot !== undefined && input.checkoutRoot !== null ? [checkoutLine(input.checkoutRoot)] : []),
-    `If you reach a decision only a person can make, print one line that starts with ${DECISION_MARKER.trim()} followed by the question, then optionally one ${OPTION_MARKER.trim()} line per choice, and stop. Do not guess.`,
-    '',
-    input.body,
+  /** The rendered memory blocks, the shared file's first. Absent or empty adds nothing. */
+  memoryBlocks?: readonly string[];
+  /** A queued request's own text, joined under REQUEST_PROMPT_HEADER after the body. */
+  requestPrompt?: string | null;
+}): Result<string> {
+  const blocks: Array<{ name: string; lines: string[] }> = [
+    {
+      name: 'exemption',
+      lines: [
+        'You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.',
+        ...(input.scheduled === true ? [SCHEDULED_RUN_LINE] : []),
+      ],
+    },
+    {
+      name: 'spec-folder',
+      lines: [
+        input.specFolder === null
+          ? 'Bound spec folder: none. Write no spec documents.'
+          : `Bound spec folder: ${input.specFolder}. Treat it as the answer to the spec folder question.`,
+      ],
+    },
+    {
+      name: 'working-place',
+      lines:
+        input.workingPlace !== undefined && input.workingPlace !== null ? [workingPlaceLine(input.workingPlace)] : [],
+    },
+    {
+      name: 'checkout',
+      lines: input.checkoutRoot !== undefined && input.checkoutRoot !== null ? [checkoutLine(input.checkoutRoot)] : [],
+    },
+    { name: 'memory', lines: [...(input.memoryBlocks ?? [])] },
+    {
+      name: 'decision-marker',
+      lines: [
+        `If you reach a decision only a person can make, print one line that starts with ${DECISION_MARKER.trim()} followed by the question, then optionally one ${OPTION_MARKER.trim()} line per choice, and stop. Do not guess.`,
+      ],
+    },
+    { name: 'body', lines: ['', input.body] },
+    {
+      name: 'request-prompt',
+      lines:
+        typeof input.requestPrompt === 'string' && input.requestPrompt.trim() !== ''
+          ? ['', REQUEST_PROMPT_HEADER, input.requestPrompt]
+          : [],
+    },
   ];
-  return lines.join('\n');
+  const present = blocks.filter((block) => block.lines.length > 0);
+  const joined = present.flatMap((block) => block.lines).join('\n');
+  const fitted = fitConversation(joined);
+  if (fitted.length <= PROMPT_BUDGET_CHARS) return { ok: true, value: fitted };
+  let name = present.at(-1)?.name ?? 'body';
+  let prefix: string[] = [];
+  for (const block of present) {
+    prefix = [...prefix, ...block.lines];
+    if (prefix.join('\n').length > PROMPT_BUDGET_CHARS) {
+      name = block.name;
+      break;
+    }
+  }
+  return {
+    ok: false,
+    reason: 'prompt-over-budget',
+    detail: `${name} at ${fitted.length} of ${PROMPT_BUDGET_CHARS} characters`,
+  };
 }
 
 /**
@@ -478,6 +595,24 @@ export function parseDecisionMarker(output: string): DecisionSignal {
     if (option !== '') options.push(option);
   }
   return { kind: 'question', question, options: options.length > 0 ? options : null };
+}
+
+/**
+ * Read the first [REMEMBER] line from a child's final answer text. A later line is ignored, so
+ * one run proposes at most one fact. The parse is grammar only: the caller checks the type
+ * against the memory types and the fact against the memory bound, so this module stays free
+ * of the memory module.
+ */
+export function parseRememberMarker(output: string): RememberSignal {
+  const lines = output.split(/\r?\n/);
+  const marker = REMEMBER_MARKER.trim();
+  const line = lines.find((candidate) => candidate.startsWith(REMEMBER_MARKER) || candidate.trimEnd() === marker);
+  if (line === undefined) return { kind: 'none' };
+  // A line that only equals the marker after trimming its end carries no text past it.
+  const rest = (line.startsWith(marker) ? line.slice(marker.length) : '').trim();
+  const split = rest.search(/\s/);
+  if (split === -1) return { kind: 'remember', type: rest, fact: '' };
+  return { kind: 'remember', type: rest.slice(0, split), fact: rest.slice(split).trim() };
 }
 
 // ───────────────────────────────────────────────────────────────────

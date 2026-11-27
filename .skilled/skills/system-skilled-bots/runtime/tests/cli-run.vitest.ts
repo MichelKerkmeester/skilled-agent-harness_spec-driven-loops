@@ -6,6 +6,7 @@
 // scheduled fire accounts belongs to the installed job alone, so a hand-typed
 // `--schedule-index` must never reach slot accounting.
 
+import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { userInfo } from 'node:os';
@@ -15,6 +16,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
 import { defaultSeams, installSchedule, readInstallRecord } from '../lib/installer.js';
+import { botMemoryFile, readMemoryFile, sharedMemoryFile } from '../lib/memory.js';
 import { needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
 import { requestIdFor } from '../lib/request-record.js';
@@ -453,6 +455,39 @@ describe('bots answer', () => {
     expect(unknown.status).toBe(4);
     expect(firstLine(unknown.stderr)).toMatch(/^bots: item-unknown: /);
   }, 60_000);
+
+  it('review recorded', () => {
+    const world = botWorld();
+    const created = new Date();
+    const id = newRunId(created);
+    const item: NeedsYouItem = {
+      id,
+      runId: id,
+      botId: 'memory-proposals',
+      identity: IDENTITY,
+      question: 'Remember this fact for manual-ok: Prefers ISO dates.',
+      options: ['confirm', 'reject'],
+      createdAt: created.toISOString(),
+      expiresAt: needsYouExpiry(created, 7),
+      evidence: [],
+      prompt: 'Read the sales sheet and report the quarter.',
+      specFolder: null,
+      answer: null,
+      resumeRequestId: null,
+      kind: 'memory-proposal',
+      proposalType: 'user',
+      proposalFact: 'Prefers ISO dates.',
+      proposalBotId: 'manual-ok',
+    };
+    const written = writeNeedsYouItem(world.stateRoot, item);
+    if (!written.ok) throw new Error(written.reason);
+
+    const answered = runCli(world, ['answer', id, 'confirm']);
+    expect(answered.status).toBe(0);
+    expect(answered.stdout).toBe(`bots: item ${id} answered; memory-proposal review recorded\n`);
+    // A review settles in place, so nothing waits in the inbox for a run to consume.
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+  }, 60_000);
 });
 
 describe('bots schedule install', () => {
@@ -830,5 +865,128 @@ describe('bots activity and inbox', () => {
       ...activityProblems(samples.activity, 'activity.json'),
       ...inboxProblems(samples.inbox, 'inbox.json'),
     ]).toEqual([]);
+  }, 120_000);
+});
+
+// ───────────────────────────────────────────────────────────────────
+// REMEMBER AND THE MEMORY PROPOSAL REVIEW
+// ───────────────────────────────────────────────────────────────────
+//
+// A fact is appended as one whole line and the file is bounded, so a caller
+// past a bound reads a refusal rather than a rewritten file. A review item
+// settles in place and queues no run, so the inbox stays empty.
+
+describe('bots remember', () => {
+  it('as', () => {
+    const world = botWorld();
+    const shared = sharedMemoryFile(world.stateRoot);
+    const me = userInfo().username;
+
+    const first = runCli(world, ['remember', 'the sales sheet is Q3']);
+    expect(first.status).toBe(0);
+    expect(first.stdout).toMatch(/^bots: entry 1 in .*shared\.md \(1 of 60 entries, \d+ of 3600 bytes\)\n$/);
+    const one = readMemoryFile(shared);
+    expect(one.entries).toHaveLength(1);
+    expect(one.entries[0]).toMatchObject({ actor: me, type: 'general', source: 'bots remember' });
+
+    // A name that is not the OS user needs a terminal, so a script cannot claim one.
+    const foreign = me === 'ada' ? 'grace' : 'ada';
+    const refused = runCli(world, ['remember', 'the second fact', '--as', foreign]);
+    expect(refused.status).toBe(2);
+    expect(firstLine(refused.stderr)).toBe('bots: --as needs a tty');
+    expect(readMemoryFile(shared).entries).toHaveLength(1);
+
+    if (process.platform === 'darwin') {
+      // The pty is the child's, so script's own stdin is a file: a socket there makes script fail.
+      const pty = spawnSync('script', ['-q', '/dev/null', process.execPath, BOTS_CLI, 'remember', 'the second fact', '--as', 'ada', '--repo', world.checkoutRoot, '--skilled-tree', world.skilledTree], {
+        env: world.env,
+        encoding: 'utf8',
+        timeout: 60_000,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+      expect(pty.status).toBe(0);
+      const two = readMemoryFile(shared);
+      expect(two.entries).toHaveLength(2);
+      expect(two.entries[1].actor).toBe('ada');
+    }
+
+    // A name that is the OS user needs no terminal, so a script may claim its own name.
+    const third = runCli(world, ['remember', 'a third fact', '--as', me]);
+    expect(third.status).toBe(0);
+    const withThird = readMemoryFile(shared).entries;
+    expect(withThird[withThird.length - 1].actor).toBe(me);
+
+    const listed = runCli(world, ['remember', '--list', '--json']);
+    expect(listed.status).toBe(0);
+    const document = JSON.parse(listed.stdout) as { version: number; botId: string | null; entryCount: number };
+    expect(document.version).toBe(1);
+    expect(document.botId).toBeNull();
+    expect(document.entryCount).toBe(readMemoryFile(shared).entries.length);
+  }, 120_000);
+
+  it('remember too long', () => {
+    const world = botWorld();
+    const shared = sharedMemoryFile(world.stateRoot);
+
+    // The length check runs before any file is read, so a refused fact leaves no file behind.
+    const tooLong = runCli(world, ['remember', 'x'.repeat(401)]);
+    expect(tooLong.status).toBe(2);
+    expect(firstLine(tooLong.stderr)).toBe('bots: memory-entry-too-long: 401');
+    expect(existsSync(shared)).toBe(false);
+
+    const atBound = runCli(world, ['remember', 'x'.repeat(400)]);
+    expect(atBound.status).toBe(0);
+
+    const both = runCli(world, ['remember', '--list', '--forget', '0000beef']);
+    expect(both.status).toBe(2);
+    expect(firstLine(both.stderr)).toBe('bots: remember takes --list or --forget, not both');
+
+    const shortId = runCli(world, ['remember', '--forget', '1']);
+    expect(shortId.status).toBe(2);
+    expect(firstLine(shortId.stderr)).toBe('bots: --forget takes an entry id');
+
+    const noFact = runCli(world, ['remember']);
+    expect(noFact.status).toBe(2);
+    expect(firstLine(noFact.stderr)).toBe('bots: remember needs a fact');
+  }, 60_000);
+
+  it('remember bot id', () => {
+    const world = botWorld();
+    const shared = sharedMemoryFile(world.stateRoot);
+
+    const unsafe = runCli(world, ['remember', 'x', '--bot', '../etc']);
+    expect(unsafe.status).toBe(2);
+    expect(firstLine(unsafe.stderr)).toBe('bots: bot-id-invalid: ../etc');
+
+    // A bot's own file sits inside its identity folder, so the shared file stays absent.
+    const own = runCli(world, ['remember', 'Prefers ISO dates.', '--bot', 'manual-ok']);
+    expect(own.status).toBe(0);
+    const file = botMemoryFile(world.stateRoot, IDENTITY, 'manual-ok');
+    if (!file.ok) throw new Error(file.reason);
+    const mine = readMemoryFile(file.value).entries;
+    expect(mine).toHaveLength(1);
+    expect(mine[0]).toMatchObject({ text: 'Prefers ISO dates.', type: 'general', source: 'bots remember' });
+    expect(existsSync(shared)).toBe(false);
+
+    const unknown = runCli(world, ['remember', '--forget', '0000beef', '--bot', 'manual-ok']);
+    expect(unknown.status).toBe(2);
+    expect(firstLine(unknown.stderr)).toBe('bots: memory-entry-unknown: 0000beef');
+
+    // A bot run's child may read memory and may not write it, so the marker refuses the write form.
+    const childEnv = { ...world.env, AI_SESSION_CHILD: '1' };
+    const childWrite = spawnSync(process.execPath, [BOTS_CLI, 'remember', 'x', '--repo', world.checkoutRoot, '--skilled-tree', world.skilledTree], {
+      env: childEnv,
+      encoding: 'utf8',
+      timeout: 60_000,
+    });
+    expect(childWrite.status).toBe(2);
+    expect(firstLine(childWrite.stderr)).toBe('bots: child-write-refused: remember runs no write inside a bot run');
+
+    const childList = spawnSync(process.execPath, [BOTS_CLI, 'remember', '--list', '--repo', world.checkoutRoot, '--skilled-tree', world.skilledTree], {
+      env: childEnv,
+      encoding: 'utf8',
+      timeout: 60_000,
+    });
+    expect(childList.status).toBe(0);
   }, 120_000);
 });

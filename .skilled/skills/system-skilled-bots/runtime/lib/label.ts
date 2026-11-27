@@ -24,8 +24,11 @@ export const LABEL_PREFIX = 'com.skilled.bots.';
 /** The suffix of the one queue-drain agent per repository identity. */
 export const DRAIN_SUFFIX = 'drain';
 
-/** Bot ids a definition may not take, because a label part already means something else. */
-export const RESERVED_BOT_IDS: readonly string[] = [DRAIN_SUFFIX];
+/** The bot id every memory proposal item carries, so a review item names a queue and never a real bot. */
+export const MEMORY_PROPOSALS_BOT_ID = 'memory-proposals';
+
+/** Bot ids a definition may not take, because a label part or a review queue already means something else. */
+export const RESERVED_BOT_IDS: readonly string[] = [DRAIN_SUFFIX, MEMORY_PROPOSALS_BOT_ID];
 
 export type ParsedLabel =
   | { kind: 'bot'; identity: string; botId: string; scheduleIndex: number }

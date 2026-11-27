@@ -198,6 +198,16 @@ export interface UntilObservation {
   met: boolean;
 }
 
+/** The post-run causes this runtime records. Each names a finding after the child ran, so the run keeps its own exit. */
+export const POST_RUN_CAUSES = ['memory-proposal-secret', 'remember-type-invalid', 'remember-fact-too-long'] as const;
+
+/** One finding after the child ran. names lists secret names or known-secret keys, never a value. */
+export interface PostRunCause {
+  cause: string;
+  names: string[];
+  detail: string | null;
+}
+
 export interface RunRecord {
   schemaVersion: 1;
   identity: RecordIdentity;
@@ -214,6 +224,8 @@ export interface RunRecord {
   answeredBy?: string | null;
   /** The until check of a completed run whose routine carries one. Absent or null for every other run. */
   until?: UntilObservation | null;
+  /** Findings after the child ran. Absent on a record written before the field, which reads as none. */
+  postRunCauses?: PostRunCause[];
 }
 
 /** A record read back, with whether its run folder still exists. */
@@ -337,6 +349,21 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
       return { ok: false, reason: 'record-field-invalid', detail: 'until' };
     }
   }
+  const postRunCauses = raw.postRunCauses as unknown;
+  if (postRunCauses !== undefined) {
+    if (
+      !Array.isArray(postRunCauses)
+      || !postRunCauses.every((entry) => isPlainObject(entry)
+        && Object.keys(entry).length === 3
+        && typeof entry.cause === 'string'
+        && entry.cause !== ''
+        && Array.isArray(entry.names)
+        && entry.names.every((name) => typeof name === 'string')
+        && isNullableString(entry.detail))
+    ) {
+      return { ok: false, reason: 'record-field-invalid', detail: 'postRunCauses' };
+    }
+  }
 
   const worktree = record.evidence.worktree as unknown;
   if (worktree !== undefined && worktree !== null) {
@@ -418,4 +445,9 @@ export function readRunRecord(stateRoot: string, identity: string, runId: string
   const record = { ...valid.value, actor: valid.value.actor ?? null, answeredBy: valid.value.answeredBy ?? null, until: valid.value.until ?? null };
   const folder = record.evidence.runFolder;
   return { ok: true, value: { record, runFolder: { path: folder, present: existsSync(folder) } } };
+}
+
+/** A record's post-run causes, an empty list for a record written before the field. */
+export function postRunCausesOf(record: Pick<RunRecord, 'postRunCauses'>): PostRunCause[] {
+  return record.postRunCauses ?? [];
 }
