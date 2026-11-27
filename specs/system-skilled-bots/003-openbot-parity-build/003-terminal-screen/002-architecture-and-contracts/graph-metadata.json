@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
     "created_at": "2026-11-25T20:22:32Z",
-    "last_save_at": "2026-11-27T19:35:57.703Z",
+    "last_save_at": "2026-11-27T19:38:54.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7969ce950f228dfa0dfd1eb01012ae476874b66ccfd3aa8a1c23974ed496a95b",
+    "source_fingerprint": "sha256:529180633d530817fe28fd9ff7e6123c8187cc70641720b01417b3139a3b5b19",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf62ef3dcae44a59010f1e5400b4d1545a5a75da4b41d34cf40d2946a1166140",
