@@ -45,7 +45,7 @@ function fullRecord(runFolder: string, runId = 'r1'): RunRecord {
       declared: { maxIterations: 6, maxDurationMinutes: 120, timeoutSeconds: 900 },
       measured: { iterations: 3, elapsedMinutes: 12.5, costUsd: null, costSource: null },
     },
-    posture: { isolation: 'worktree', sandbox: 'workspace-write', executorKind: 'cli-opencode', model: 'deepseek-v4-flash' },
+    posture: { isolation: 'worktree', sandbox: 'workspace-write', executorKind: 'cli-opencode', model: 'deepseek-v4-flash', apps: [] },
     exit: { reason: 'converged', class: null, needsYouItemId: null },
     evidence: {
       runFolder,

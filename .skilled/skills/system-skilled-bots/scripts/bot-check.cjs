@@ -8,8 +8,8 @@
 // before anything installs it, and it imports the very predicates the
 // runner and installer use: the definition parser, the config reader, the
 // identity resolver, the executor bounds, the cron translator, the routine
-// floor, the label grammar, the worktree shared-path resolver and the
-// delivery channel list.
+// floor, the label grammar, the worktree shared-path resolver, the
+// delivery channel list and the apps resolver.
 // It restates no field rule, so it cannot pass a file the runtime would
 // refuse. It only reads.
 //
@@ -56,6 +56,7 @@ const HARD_INVARIANTS = Object.freeze([
   'reserved-id',
   'executor-kind-native',
   'posture-unhonorable',
+  'apps-unknown-server',
   'definition.routine-trigger-conflict',
   'definition.routine-tell-with-targets',
   'definition.routine-starts-empty',
@@ -96,7 +97,7 @@ async function loadRuntime() {
   const loader = register({ namespace: 'bot-check' });
   const lib = (name) => loader.import(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
   try {
-    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting] = await Promise.all([
+    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps] = await Promise.all([
       lib('definition'),
       lib('repo-config'),
       lib('identity'),
@@ -107,8 +108,9 @@ async function loadRuntime() {
       lib('posture'),
       lib('routine'),
       lib('slot-accounting'),
+      lib('apps'),
     ]);
-    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting };
+    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps };
   } finally {
     await loader.unregister();
   }
@@ -235,6 +237,17 @@ async function runCheck(checkoutRoot, options = {}) {
         if (shared.ok) pass('worktree-shared-paths', `${shown}: links ${shared.value.paths.length} shared paths from ${shared.value.source}`);
         else fail(shared.reason, describe(shown, shared));
       }
+    }
+
+    // The runner's own resolver, so a name the runner would refuse fails here first. A checkout
+    // with no readable config is a checkout defect rather than a definition defect, so it is
+    // reported and never failed.
+    if (bot.posture.apps !== null) {
+      const appsId = 'apps-unknown-server';
+      const apps = runtime.apps.resolveApps(root, bot.posture.apps);
+      if (!apps.ok && apps.reason === appsId) fail(appsId, `${shown}: ${apps.detail}`);
+      else if (!apps.ok && apps.reason === 'utcp-config-missing') info(appsId, `${apps.detail} is not there, so no server name can be checked`);
+      else if (!apps.ok) info(appsId, `${join(root, runtime.apps.UTCP_CONFIG_NAME)} does not read (${apps.reason}: ${apps.detail}), so no server name can be checked`);
     }
 
     if (bot.delivery.mode === 'targets') {

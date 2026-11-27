@@ -142,6 +142,8 @@ export interface DispatchInput {
   stateLogPath: string;
   receiptDir: string;
   stdoutLogPath: string;
+  /** Keys the caller sets on the child for this one run, each named to the executor's gate. */
+  extraEnv?: Record<string, string>;
   buildCommand?: CommandBuilder;
   /** Replaces the process-ancestry and lockfile reads of the recursion guard. */
   guard?: { ancestryCmdlines?: string[]; statePaths?: string[] };
@@ -768,6 +770,10 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
     };
   }
 
+  // The caller's keys travel with the kind's own, and the gate is told which ones the caller named.
+  const dispatchEnv = { ...(built.env ?? {}), ...(input.extraEnv ?? {}) };
+  const callerKeys = Object.keys(input.extraEnv ?? {});
+
   let stdout = '';
   const runnerExit = runAuditedExecutorCommand({
     command: built.command,
@@ -780,7 +786,8 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
     ...(built.input !== undefined ? { input: built.input } : {}),
     // A kind's own keys, such as OpenCode's inline permission config, carry its
     // tool narrowing, so they must reach the child past the allowlist.
-    ...(built.env !== undefined ? { dispatchEnv: built.env } : {}),
+    ...(Object.keys(dispatchEnv).length > 0 ? { dispatchEnv } : {}),
+    ...(callerKeys.length > 0 ? { dispatchEnvKeys: callerKeys } : {}),
     guardContext: { env: guardEnv, ...(input.guard ?? {}) },
     receiptDir: input.receiptDir,
     dispatchId: input.runId,

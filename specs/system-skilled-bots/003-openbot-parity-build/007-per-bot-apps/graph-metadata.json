@@ -45,18 +45,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".claude/mcp.json",
-      ".codex/config.toml",
-      ".cursor/mcp.json",
+      ".skilled/skills/system-skilled-bots/runtime/lib/apps.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
-      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/apps.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md"
     ],
@@ -98,15 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
+        "name": "apps.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/apps.ts",
         "source": "derived"
       },
       {
@@ -122,12 +116,6 @@
         "source": "derived"
       },
       {
-        "name": "runner.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
-        "source": "derived"
-      },
-      {
         "name": "posture.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
@@ -137,6 +125,12 @@
         "name": "dispatch.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
         "source": "derived"
       },
       {
@@ -152,15 +146,27 @@
         "source": "derived"
       },
       {
-        "name": "runner.vitest.ts",
+        "name": "apps.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/apps.vitest.ts",
         "source": "derived"
       },
       {
         "name": "bot-check.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "definition.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every bot reaches every connector server the repository configures, because one repository-wide UTCP config is the only config any run reads",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-27T15:32:19.415Z",
+    "last_save_at": "2026-11-27T23:10:14.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e784316773441383f9a3babf52b980c4dc91dec46e4242eb9f58483f05779bfb",
+    "source_fingerprint": "sha256:a6d03fbda1f98314258474f248e02975233e82644ac9455d4fd24ddeccc2b8ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "462811a30a61e32a746de2494224cf78258ae652a68c27b68309a3a734345507",
       "plan.md": "a036e034a43a022e337cda57695aec2abce4e497200e318ce20938d0519e6781",
-      "tasks.md": "362dc864e121f3d22577b83add7b17af8b3a6723b6d06853e5da0252b98db39b",
-      "implementation-summary.md": "a0fd7249b82ee831aad2f9882229e895e8d780423528094c00a46c93b1543d59"
+      "tasks.md": "8e3db1a5e77e8ad2ed01cd11a13c638c2bb76051b8d137112d36df4e52889af7",
+      "implementation-summary.md": "1fad40f802b1e86017b3fd31a77029a7cd151ffb25d464e4a40982cc369317b8"
     },
     "last_active_at": null
   }
