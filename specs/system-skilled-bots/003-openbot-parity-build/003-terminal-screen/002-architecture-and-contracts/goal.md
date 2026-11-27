@@ -60,13 +60,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints `crates/bots-tui/target/release/bots-ui`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets, names `paste_is_one_event` and prints no `FAILED`. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
-- [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR`, the `--ascii` case and the `ui-contract-mismatch` case.
-- [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps.
-- [ ] `ls crates/bots-tui/design` prints 001's four documents plus `architecture.md` and `contracts.md`, `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing.
+- [x] `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints `crates/bots-tui/target/release/bots-ui`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for the `lib`, `cli_client` and doc targets, names `paste_is_one_event` and prints no `FAILED`. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
+- [x] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-ui.vitest.ts` prints no `failed`, including the `--mono` case under `NO_COLOR`, the `--ascii` case and the `ui-contract-mismatch` case.
+- [x] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
+- [x] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, `rg -n 'dtolnay/rust-toolchain@1.92.0' .github/workflows/bots-runtime.yml` prints the toolchain step, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps.
+- [x] `ls crates/bots-tui/design` prints 001's four documents plus `architecture.md` and `contracts.md`, `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -83,11 +83,11 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child spec, plan, tasks and acceptance criteria authored | Done | `spec.md` carries 17 requirements, `tasks.md` carries 30 tasks in 8 waves, and `acceptance-criteria.md` carries a row for every requirement |
-| Crate scaffolded | Pending | `ls crates` prints `ls: crates: No such file or directory` |
-| `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
-| Fixture committed | Pending | No `crates/bots-tui/tests/fixtures/bots` exists yet |
-| Design copied | Pending | No `crates/bots-tui/design` exists yet |
-| CI job added | Pending | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` exits 1 with no match |
+| Crate scaffolded | Done | `cargo test --locked` prints lib 57 passed, `cli_client` 8 passed and doc 0, and the release build writes `crates/bots-tui/target/release/bots-ui` |
+| `ui` verb added | Done | `ui-unavailable` and `ui-not-built` exit 4 against a temp tree, and `cli-ui.vitest.ts` prints `Tests  8 passed (8)` |
+| Fixture committed | Done | The six AC-008 `jq` checks exit 0 and `git ls-files -s` prints `100755` |
+| Design copied | Done | `ls crates/bots-tui/design` prints the six names and every diff prints nothing |
+| CI job added | Done | `rg -n '^  bots-tui:'` prints line 128 and both path counts print 2 |
 | Second review applied | Done | `research/ui-review-2.md` N-P1-10 and the 002 items of N-P2-22 are applied: the workflow check names the job and the two path entries rather than counting a string, the parent decisions read `Q002 to Q009`, and the `--mono` proof is the vitest case rather than a binary that prints nothing |
 | Integration wave applied | Done | The rulings of the terminal screen integration wave are applied: a successful answer issues no read and the outcome word waits for the next poll, `routines --json` is an object with a `routines` array, the fixture takes its log and its scenario as leading arguments, the design folder carries six files, and the verb refuses a binary whose contract number differs |
 | Third review applied | Done | `research/ui-review-3.md`'s P0-3, P0-4, P0-5, P0-8, P1-1 to P1-4, P1-7, P1-10, P1-11 and the P2 items that edit this child are applied. The footer gains `NotSending` and the contract number gains a value and a Rust owner. Quit never waits for an answer child, the fixture's scenario names are fixed, and the `ui` verb's exit passthrough is proven by the vitest cases rather than by `/bin/true` |
@@ -123,4 +123,8 @@ and findings belong here.
 | The design diff is per file | F-077: the AFFECTED SURFACES row uses `diff -r -x architecture.md -x contracts.md` plus the two per-file diffs, so the two copies are compared without a false positive. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | Every payload check reads `version` | O-014: AC-008 checks `.version == 1` on all four payloads. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The prose rules were applied | O-021 and O-022: every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this child's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The skeleton froze every type first | The wave table put `event.rs` and `cli.rs` before `state.rs`, but both use its `Msg`, `Read` and `ReadError`. So the skeleton task wrote every type and signature `design/architecture.md` freezes, with stub bodies, and each module task then filled one file. Taken by the unit orchestrator on 2026-11-27. |
+| `contract.ts` was created | REQ-001 names `PAYLOAD_CONTRACT` in `runtime/lib/contract.ts`, and no task created it. The `ui` and `routines` verbs read it. `status.ts`, `activity.ts` and the inbox verb still print a literal `1`, because unit 004 holds `status.ts` in this wave. Taken by the unit orchestrator on 2026-11-27. |
+| The design paths sit under `push` only | AC-009 counts exactly 2 design path entries, so they cannot sit under both triggers. `push` is where this repository lands work. Taken by the unit orchestrator on 2026-11-27. |
+| AC-015's grep matches `--ascii` | `rg -n '\-\-as'` also prints the `src/lib.rs` lines for the required `--ascii` flag. `rg -n -e '--as\b'` prints only test lines. Recorded by the unit orchestrator on 2026-11-27. |
 <!-- /ANCHOR:log -->

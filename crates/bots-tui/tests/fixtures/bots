@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+# Fake bots CLI for the crate's tests.
+#
+# Prints canned payloads instead of reading a real index, so a test never
+# needs the runtime, a state folder or a live schedule. The payloads sit in
+# the payloads folder beside this script.
+#
+# Usage:
+#   bash bots [--fixture-log FILE] [--fixture-scenario NAME] VERB [ARGS...]
+#
+# Scenarios:
+#   ok                answer normally, the default
+#   slow              sleep two seconds then answer normally
+#   fail-VERB         exit 1 with "bots: index locked" for that one verb
+#   refuse-REASON     exit 4 with "bots: REASON" when the verb is answer
+#   empty             the four read verbs print empty payloads
+#   warn              inbox prints its payload plus a did-not-read warning
+#
+# Any other scenario name answers normally.
+
+set -u
+
+LOG=""
+SCENARIO="ok"
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --fixture-log|--fixture-scenario)
+      if [ "$#" -lt 2 ]; then
+        break
+      fi
+      if [ "$1" = "--fixture-log" ]; then
+        LOG="$2"
+      else
+        SCENARIO="$2"
+      fi
+      shift 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+VERB="${1-}"
+
+# Record the call before anything can fail or stall, so a test still sees
+# what was asked for.
+if [ -n "$LOG" ]; then
+  printf '%s\n' "$*" >> "$LOG"
+fi
+
+PAYLOADS="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/payloads"
+
+ok_answer() {
+  case "$VERB" in
+    status)
+      cat "$PAYLOADS/status.json"
+      ;;
+    activity)
+      cat "$PAYLOADS/activity.json"
+      ;;
+    inbox)
+      cat "$PAYLOADS/inbox.json"
+      ;;
+    routines)
+      cat "$PAYLOADS/routines.json"
+      ;;
+    answer)
+      printf 'bots: answered\n'
+      ;;
+    *)
+      printf 'bots: unknown verb: %s\n' "$VERB" >&2
+      exit 2
+      ;;
+  esac
+  exit 0
+}
+
+if [ "$SCENARIO" = "slow" ]; then
+  sleep 2
+  SCENARIO="ok"
+fi
+
+if [ "$SCENARIO" = "fail-$VERB" ]; then
+  printf 'bots: index locked\n' >&2
+  exit 1
+fi
+
+if [ "${SCENARIO#refuse-}" != "$SCENARIO" ] && [ "$VERB" = "answer" ]; then
+  printf 'bots: %s\n' "${SCENARIO#refuse-}" >&2
+  exit 4
+fi
+
+if [ "$SCENARIO" = "empty" ]; then
+  case "$VERB" in
+    status)
+      printf '%s\n' '{"version":1,"indexPath":"/tmp/bots-tui-fixture/status.sqlite","builtAt":null,"updatedAt":null,"stale":false,"staleIdentities":[],"rows":[],"duplicateRoots":[],"notes":[]}'
+      exit 0
+      ;;
+    activity)
+      printf '%s\n' '{"version":1,"groups":[]}'
+      exit 0
+      ;;
+    inbox)
+      printf '%s\n' '{"version":1,"items":[]}'
+      exit 0
+      ;;
+    routines)
+      printf '%s\n' '{"version":1,"routines":[]}'
+      exit 0
+      ;;
+  esac
+fi
+
+if [ "$SCENARIO" = "warn" ] && [ "$VERB" = "inbox" ]; then
+  cat "$PAYLOADS/inbox.json"
+  printf 'bots: item 20261124T090000Z-0badf00d did not read\n' >&2
+  exit 0
+fi
+
+ok_answer
