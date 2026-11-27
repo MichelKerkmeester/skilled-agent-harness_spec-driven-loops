@@ -146,7 +146,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The catalog check in `tasks.md` prints 40 and 23 and its two loops print nothing
-- **SC-002**: The mockup check in `tasks.md` prints 12, 0 and `4749 653 849 4761 761 665`
+- **SC-002**: The mockup check in `tasks.md` prints 12, 0 and no `MISSING` line, so the six chunk sizes `4,749`, `653`, `849`, `4,761`, `761` and `665` are all in `design/mockups.md`
 - **SC-003**: `rg -c '^\| [1-5] \| ' design/reply-grammar.md` prints 5
 - **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:success-criteria -->

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Every channel message now has one approved text, one mockup per surface and one golden file, checked against the merged capability matrix, and the catalog names the Slack text form the matrix sends for a long option label."
 trigger_phrases:
   - "channel ux and message map implementation summary"
 importance_tier: "normal"
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-channel-ux-and-message-map |
-| **Completed** | 2026-11-26 |
+| **Completed** | 2026-11-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,75 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The build children of the messaging phase now compare every channel message byte for byte instead of choosing words. The catalog, the twelve mockups, the reply grammar and the 23 goldens pass every check against the capability matrix 011.002 merged, and the catalog now names the Slack text form that matrix sends for a long option label.
 
 ### Phase 1: channel-ux-and-message-map
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The three documents in `design/` and the 23 goldens were written before the build started and committed before the unit worktree was cut. This build run checked them against the merged `../002-adapter-and-record-contracts/design/capabilities.md` rather than rewriting them. Every chunk size in the mockups follows from that matrix's limits, and the reply grammar already carried operator answer Q015. One gap remained. A Slack button label holds at most 75 characters, so the matrix sends a Slack prompt with a longer option label in the M01 text form, but the catalog's M01 row named only Signal, WhatsApp and the terminal. You can now read the Slack case from the catalog row itself when you build the Slack transport.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `design/message-catalog.md` | Modified | The M01 and M02 surface cells and the choice-lines paragraph name the Slack text form for an option label over 75 characters |
+| `tasks.md` | Modified | Marks every task and check verified, makes T002 leave `README.md` out of its count, sets T005 to 17 and fixes the summary totals |
+| `acceptance-criteria.md` | Modified | Marks the nine rows Met with the observed output and sets the packet closeable |
+| `goal.md` | Modified | Ticks the four completion criteria and logs the run and its deviations |
+| `spec.md` | Modified | Aligns SC-002 with the mockup check. The status stays Draft until the continuity save |
+| `plan.md` | Modified | Ticks the quality gates and aligns the Definition of Done with the mockup check |
+| `implementation-summary.md` | Modified | This summary |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+The unit orchestrator ran every task and checklist command in the unit worktree and read each output and exit status. T002 first printed 10 and T005 printed 17, which are stale expectations and not defects. The contracts folder holds nine contracts beside its `README.md`, and M22 and M23 joined the one-line table after T005 was written. One `cli-mistral-vibe` worker on `deepseek-flash` made the catalog edit in wave 1 and finished with `exit_code` 0 and `outcome` `finished`. Its diff held exactly the three briefed lines, and the orchestrator reran the catalog check, T004 to T007, CHK-031 and T013 after it. Waves 0 and 2 needed no worker. Wave 0 is three reads, and wave 2's two files already passed their checks, so a run there would have written nothing. A scratch copy of the design with one planted reference line made T013 print 1, so its 0 is real. No runtime code changed, so the runtime gate was not run.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Check the committed design against the merged matrix instead of rewriting it | The documents already passed their counts, so a rewrite could only move a count or let reference wording in. The matrix was what this unit waited for |
+| Name the Slack text form in the catalog rows | REQ-001 asks each row to name its surfaces, and the merged matrix and Q015 add Slack to M01 for an option label over 75 characters |
+| Fix the T002 command and the T005 number rather than tick them as printed | A task is ticked only against what its verify says, and both expectations predate files the packet added on purpose |
+| Leave the mockups unchanged | The reply grammar and the matrix already state the Slack exception, and the twelve mockups the check counts cover the four situations REQ-004 names |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| T001 | PASS, `171:export function deliveryMessage(` |
+| T002 | PASS, 9 and 8 with the corrected command |
+| T003 | PASS, `ok` |
+| T004 | PASS, 23 |
+| T005 | PASS, 17 |
+| T006 | PASS, 23 |
+| T007 | PASS, 2 |
+| T008 and T011, the mockup check | PASS, 12, 0 and no `MISSING` line |
+| T009 | PASS, 5 |
+| T010, the catalog check | PASS, 40, 23 and no `MISSING` or `DRIFT` line. All 23 goldens also matched their catalog blocks in full |
+| T012 | PASS, 0 |
+| T013 | PASS, 0 against 48968 reference lines. A planted line printed 1 |
+| T014 | PASS, `RESULT: PASSED` |
+| CHK-001 to CHK-051 | PASS, each printed what it says |
+| Acceptance rows | 9 Met, 0 Unmet |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The Slack chunk count before or after escaping is not fixed.** Slack escapes `<bots state>` as `&lt;bots state&gt;` on the wire, which adds six characters, and the mockups' 4,749 and 849 count the text before escaping. No document says whether the 3,900 and 3,000 cuts count before or after the escape. `005-polling-transports` builds the Slack transport and settles it there, and the design here then states the answer.
 <!-- /ANCHOR:limitations -->
-
----
-
-

@@ -60,15 +60,15 @@ The catalog check and the mockup check are written out once in `tasks.md` under 
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the catalog, When each row is read, Then it names a surface, a producer, whether it carries bot-authored text, its varying fields and its golden | `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md \| rg -c '^\| M[0-9]{2} \| '` prints 23 | Unmet | - |
-| AC-002 | REQ-002 | Given the goldens, When each is compared to the catalog, Then there is one per row and each first line is in the catalog | The catalog check prints 23 as its second line and no `DRIFT` line | Unmet | - |
-| AC-003 | REQ-003 | Given the chat refusals of `contracts/refusals.md` section 3.10 and the channel refusals of `contracts/answer-seam.md` section 1, When the catalog is searched for each name, Then each has a row | The catalog check prints no `MISSING` line | Unmet | - |
-| AC-004 | REQ-004 | Given three surfaces and four situations, When the mockups are counted and measured, Then there are twelve and no view line is wider than 73 columns | The mockup check prints 12 and then 0 | Unmet | - |
-| AC-005 | REQ-005 | Given the reply grammar, When it is read, Then it has five rows, names the open prompt a reply answers and what an unmatched line becomes | `rg -c '^\| [1-5] \| ' $D/reply-grammar.md` prints 5 and `rg -n '^## 3\. WHAT A LINE THAT MATCHES NONE BECOMES' $D/reply-grammar.md` prints one line | Unmet | - |
-| AC-006 | REQ-006 | Given the catalog, When it is searched, Then it states the fatigue rule and the reply-text decision | `rg -c 'fatigue notice never reaches a chat\|The run.s reply text is not sent' $D/message-catalog.md` prints 2 | Unmet | - |
-| AC-007 | REQ-007 | Given the limits and the cut rule, When the six chunk sizes are searched for, Then each is in the mockups | The mockup check prints no `MISSING` line | Unmet | - |
-| AC-008 | REQ-008 | Given the tinychannels sources, When the design's lines are compared with theirs, Then no line of reference source appears | `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + \| sort -u \| awk 'length>30') <(sort -u $D/*.md) \| wc -l \| tr -d ' '` prints 0 | Unmet | - |
-| AC-009 | REQ-009 | Given every row above, When its Verification cell is read, Then it names a command that runs here without a tty, a token or a network | `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 9 | Unmet | - |
+| AC-001 | REQ-001 | Given the catalog, When each row is read, Then it names a surface, a producer, whether it carries bot-authored text, its varying fields and its golden | `awk '/^## 2\. THE CATALOG/,/^## 3\./' $D/message-catalog.md \| rg -c '^\| M[0-9]{2} \| '` prints 23. Observed 2026-11-27: 23, and the M01 and M02 rows name the Slack surface each one takes | Met | - |
+| AC-002 | REQ-002 | Given the goldens, When each is compared to the catalog, Then there is one per row and each first line is in the catalog | The catalog check prints 23 as its second line and no `DRIFT` line. Observed 2026-11-27: 40, 23 and no `DRIFT` line. A whole-file comparison of all 23 goldens against their catalog blocks also matched | Met | - |
+| AC-003 | REQ-003 | Given the chat refusals of `contracts/refusals.md` section 3.10 and the channel refusals of `contracts/answer-seam.md` section 1, When the catalog is searched for each name, Then each has a row | The catalog check prints no `MISSING` line. Observed 2026-11-27: no `MISSING` line | Met | - |
+| AC-004 | REQ-004 | Given three surfaces and four situations, When the mockups are counted and measured, Then there are twelve and no view line is wider than 73 columns | The mockup check prints 12 and then 0. Observed 2026-11-27: 12 and 0 | Met | - |
+| AC-005 | REQ-005 | Given the reply grammar, When it is read, Then it has five rows, names the open prompt a reply answers and what an unmatched line becomes | `rg -c '^\| [1-5] \| ' $D/reply-grammar.md` prints 5 and `rg -n '^## 3\. WHAT A LINE THAT MATCHES NONE BECOMES' $D/reply-grammar.md` prints one line. Observed 2026-11-27: 5 and `45:## 3. WHAT A LINE THAT MATCHES NONE BECOMES` | Met | - |
+| AC-006 | REQ-006 | Given the catalog, When it is searched, Then it states the fatigue rule and the reply-text decision | `rg -c 'fatigue notice never reaches a chat\|The run.s reply text is not sent' $D/message-catalog.md` prints 2. Observed 2026-11-27: 2 | Met | - |
+| AC-007 | REQ-007 | Given the limits and the cut rule, When the six chunk sizes are searched for, Then each is in the mockups | The mockup check prints no `MISSING` line. Observed 2026-11-27: no `MISSING` line, and each size follows from the merged limits of `../002-adapter-and-record-contracts/design/capabilities.md` section 2 | Met | - |
+| AC-008 | REQ-008 | Given the tinychannels sources, When the design's lines are compared with theirs, Then no line of reference source appears | `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + \| sort -u \| awk 'length>30') <(sort -u $D/*.md) \| wc -l \| tr -d ' '` prints 0. Observed 2026-11-27: 0 against 48968 reference lines. A scratch copy with one planted reference line printed 1 | Met | - |
+| AC-009 | REQ-009 | Given every row above, When its Verification cell is read, Then it names a command that runs here without a tty, a token or a network | `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 9. Observed 2026-11-27: 9 | Met | - |
 
 ### Status values
 
@@ -93,7 +93,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is unmet until the checks are run and the rows marked with the output observed. The design is written and the checks printed their expected output on 2026-11-26, as `goal.md` section 4 records.
+All nine rows are Met. The unit orchestrator ran each command in the unit worktree on 2026-11-27 and read its output and exit status, after the one catalog edit that names the Slack surface of rows M01 and M02. No task in `tasks.md` is blocked.
 <!-- /ANCHOR:closure -->
