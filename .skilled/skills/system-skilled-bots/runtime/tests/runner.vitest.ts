@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { buildExecutorDispatchEnv } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js';
 import { parseExecutorConfig } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import { RUN_MARKER_ENV } from '../lib/dispatch.js';
-import { needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
+import { listNeedsYouItems, needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import {
   EXIT_CODES,
   exitCodeFor,
@@ -17,10 +17,12 @@ import {
 } from '../lib/runner.js';
 import { readRunRecord } from '../lib/run-record.js';
 import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
+import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, writeRoutineState } from '../lib/routine-state.js';
 import { identityStatePaths, receiptFolder, sharedStatePaths } from '../lib/state-root.js';
-import { setSwitch } from '../lib/switches.js';
+import { readSwitch, setSwitch } from '../lib/switches.js';
 import { cleanupTemp } from './support.js';
 import { approveBots, botWorld, filesUnder, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { writeRecord } from './status-support.js';
 
 import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { RunOutcome } from '../lib/runner.js';
@@ -58,6 +60,11 @@ function item(world: BotWorld, overrides: Partial<NeedsYouItem> = {}): NeedsYouI
     resumeRequestId: null,
     ...overrides,
   };
+}
+
+/** A routine bot that runs by hand and checks its outcome with the given command. */
+function routineBot(id: string, untilCheck: string): string {
+  return ['---', `id: ${id}`, 'routine:', '  what: the tidy notes', '  starts:', '    - {kind: manual}', '  does: act', '  until: the notes are tidy', `  until_check: ${untilCheck}`, 'runtime: {kind: cli-codex}', 'isolation: shared', '---', 'Tidy the notes folder.', ''].join('\n');
 }
 
 describe('manual run, happy path', () => {
@@ -185,6 +192,29 @@ describe('manual run, happy path', () => {
     expect(run.stdout).toMatch(/manual-ok run \S+ completed/);
     expect(readdirSync(identityStatePaths(world.stateRoot, IDENTITY).records)).toHaveLength(1);
   });
+
+  it('runs the until check after a completed run', async () => {
+    const world = botWorld();
+    writeBot(world, 'routine-met', routineBot('routine-met', 'test -d bots'));
+    writeBot(world, 'routine-open', routineBot('routine-open', 'exit 1'));
+
+    const met = await runBot(world.input('routine-met'));
+    expect(met.kind).toBe('completed');
+    expect(record(world, met).until).toEqual({ met: true });
+    expect(typeof readRoutineState(world.stateRoot, IDENTITY, 'routine-met').state.untilMetAt).toBe('string');
+    expect(readSwitch(world.stateRoot, IDENTITY, 'routine-met', 'completed')).not.toBeNull();
+    expect(await runBot(world.input('routine-met'))).toMatchObject({ kind: 'refused', cause: 'routine-completed' });
+
+    const open = await runBot(world.input('routine-open'));
+    expect(open.kind).toBe('completed');
+    expect(record(world, open).until).toEqual({ met: false });
+    expect(readRoutineState(world.stateRoot, IDENTITY, 'routine-open').state.untilMetAt).toBeNull();
+    expect(readSwitch(world.stateRoot, IDENTITY, 'routine-open', 'completed')).toBeNull();
+
+    const plain = await runBot(world.input('manual-ok'));
+    expect(plain.kind).toBe('completed');
+    expect(record(world, plain).until).toBeNull();
+  });
 });
 
 describe('refusals before dispatch', () => {
@@ -290,6 +320,24 @@ describe('refusals before dispatch', () => {
     expect(exitCodeFor(outcome)).toBe(EXIT_CODES.recursionGuard);
     expect(stubRunCount(world)).toBe(0);
   });
+
+  it('refuses a completed routine', async () => {
+    const world = botWorld();
+    setSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'completed');
+    const done = await runBot(world.input('manual-ok'));
+    expect(done).toMatchObject({ kind: 'refused', cause: 'routine-completed' });
+    expect(record(world, done).exit).toMatchObject({ reason: 'routine-completed', class: null, refusal: { cause: 'routine-completed' } });
+    expect(stubRunCount(world)).toBe(0);
+
+    writeRoutineState(world.stateRoot, IDENTITY, 'crash', { ...EMPTY_ROUTINE_STATE, fatiguedAt: new Date().toISOString(), fatigueItemId: 'old-item' });
+    setSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled');
+    expect(await runBot(world.input('crash'))).toMatchObject({ kind: 'refused', cause: 'routine-fatigued' });
+    expect(stubRunCount(world)).toBe(0);
+
+    // The disabled check reads first, and this bot has no fatigue record.
+    setSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'disabled');
+    expect(await runBot(world.input('manual-ok'))).toMatchObject({ kind: 'refused', cause: 'disabled' });
+  });
 });
 
 describe('stops during dispatch', () => {
@@ -308,6 +356,34 @@ describe('stops during dispatch', () => {
     expect(outcome).toMatchObject({ kind: 'failed', reason: 'crash', class: 'environment' });
     expect(stubRunCount(world)).toBe(1);
   });
+
+  it('evaluates the fatigue rule after a failed run', async () => {
+    const world = botWorld();
+    const start = Date.now() - 2 * 60 * 60 * 1000;
+    for (let index = 1; index <= 9; index += 1) {
+      writeRecord(world.stateRoot, {
+        identity: IDENTITY,
+        botId: 'crash',
+        runId: `old-${String(index).padStart(2, '0')}`,
+        dispatchedAt: new Date(start + (index - 1) * 60_000).toISOString(),
+        repositoryPath: world.checkoutRoot,
+        exit: { reason: 'crash', class: 'environment', needsYouItemId: null, refusal: null },
+      });
+    }
+
+    const outcome = await runBot(world.input('crash'));
+    if (outcome.kind !== 'failed') throw new Error('expected a failed run');
+    expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled')).not.toBeNull();
+    const state = readRoutineState(world.stateRoot, IDENTITY, 'crash').state;
+    expect(state.fatigueItemId).toBe(outcome.runId);
+    expect(typeof state.fatiguedAt).toBe('string');
+    const items = listNeedsYouItems(world.stateRoot, IDENTITY).items;
+    expect(items).toHaveLength(1);
+    expect(items[0]?.item).toMatchObject({ botId: 'crash', id: outcome.runId, runId: outcome.runId, question: FATIGUE_QUESTION, options: null });
+
+    expect(await runBot(world.input('crash'))).toMatchObject({ kind: 'refused', cause: 'routine-fatigued' });
+    expect(stubRunCount(world)).toBe(1);
+  }, 30_000);
 });
 
 describe('needs-you decisions', () => {

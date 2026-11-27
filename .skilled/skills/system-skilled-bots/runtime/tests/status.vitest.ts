@@ -21,6 +21,7 @@ import { parseLaunchctlPrint, printLabel } from '../lib/launchctl-print.js';
 import { identityStatePaths, needsYouFile, registerRoot, runRoot, statusIndexFile, writeGenerationStamp } from '../lib/state-root.js';
 import { checkPath, formatStatus, statusReport, unregisterIdentity } from '../lib/status.js';
 import { rebuildIndex } from '../lib/status-index.js';
+import { setSwitch } from '../lib/switches.js';
 import { BOTS_CLI, filesUnder } from './runner-support.js';
 import { fakeInstall, linkedCheckout, printOutput, skilledTreeWithRunner, statusCheckout, statusWorld, writeRecord, writeStatusItem } from './status-support.js';
 import { cleanupTemp, tempDir } from './support.js';
@@ -219,6 +220,19 @@ describe('row states', () => {
     const value = report(world);
     expect(bots(value).map((row) => row.botId)).toEqual(['kept', 'lost']);
     expect(bot(value, 'acme/tool', 'kept').flags).toEqual(['ok']);
+  });
+
+  it('reports the completed switch', () => {
+    const world = statusWorld();
+    const checkout = statusCheckout(world, 'acme/done');
+    fakeInstall(world, 'acme/done', 'tick', checkout);
+    rebuild(world);
+    expect(bot(report(world), 'acme/done', 'tick').state).not.toBe('completed');
+    expect(setSwitch(world.stateRoot, 'acme/done', 'tick', 'completed')).toMatchObject({ ok: true });
+    rebuild(world);
+    const row = bot(report(world), 'acme/done', 'tick');
+    expect(row.state).toBe('completed');
+    expect(row.flags).toContain('completed');
   });
 });
 

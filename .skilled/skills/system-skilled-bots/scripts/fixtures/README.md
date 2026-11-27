@@ -14,13 +14,15 @@ trigger_phrases:
 
 Each folder here is a miniature repository holding a bots folder with a config file and one or two BOT.md definitions. The `clean` folder passes `../bot-check.cjs` with exit 0. Every other folder injects exactly one defect into a copy of `clean` and must fail with exit 1 and a `FAIL:` line naming its hard invariant.
 
-`../../runtime/tests/bot-check.vitest.ts` enforces two rules over this folder. The set of folders must equal `clean` plus one folder per hard invariant, so a new invariant cannot land without its fixture. Each defect folder must differ from `clean` by one added or changed file, with at most two changed lines.
+`../../runtime/tests/bot-check.vitest.ts` enforces two rules over this folder. The set of folders must equal `clean` plus `routine-clean` plus one folder per hard invariant, so a new invariant cannot land without its fixture. Each defect folder must differ from `clean` by one added or changed file, with at most two changed lines.
+
+`routine-clean` is a second clean checkout with two routine bots and one plain bot, and each `routine-*` defect differs from `routine-clean`, not from `clean`, by one changed file.
 
 ---
 
 ## 2. DIRECTORY TREE
 
-Every folder has the shape of `clean`. Only `duplicate-id` adds a file.
+Every folder has the shape of `clean` or `routine-clean`. Only `duplicate-id` adds a file.
 
 ```text
 fixtures/
@@ -34,6 +36,12 @@ fixtures/
 │       ├── config.json
 │       ├── nightly-digest/
 │       └── nightly-digest-copy/
+├── routine-clean/
+│   └── bots/
+│       ├── config.json
+│       ├── digest/
+│       ├── nightly-report/
+│       └── plain/
 ├── bad-budget/
 ├── cron-untranslatable/
 ├── delivery-channel-unknown/
@@ -47,6 +55,15 @@ fixtures/
 ├── no-identity/
 ├── posture-unhonorable/
 ├── reserved-id/
+├── routine-floor/
+├── routine-starts-cron-not-first/
+├── routine-starts-empty/
+├── routine-starts-multiple/
+├── routine-starts-multiple-cron/
+├── routine-tell-with-targets/
+├── routine-trigger-conflict/
+├── routine-until-check-without-outcome/
+├── routine-until-shell-metacharacters/
 ├── timeout-over-bound/
 ├── unknown-executor-kind/
 ├── unknown-trigger-kind/
@@ -79,6 +96,16 @@ The clean bot is `nightly-digest`: a `cron` trigger at `0 9 * * *`, the `cli-cod
 | `reserved-id/` | `reserved-id` |
 | `executor-kind-native/` | `executor-kind-native` |
 | `posture-unhonorable/` | `posture-unhonorable` |
+| `routine-clean/` | none, it passes |
+| `routine-trigger-conflict/` | `definition.routine-trigger-conflict` |
+| `routine-tell-with-targets/` | `definition.routine-tell-with-targets` |
+| `routine-starts-empty/` | `definition.routine-starts-empty` |
+| `routine-starts-multiple-cron/` | `definition.routine-starts-multiple-cron` |
+| `routine-starts-cron-not-first/` | `definition.routine-starts-cron-not-first` |
+| `routine-starts-multiple/` | `definition.routine-starts-multiple` |
+| `routine-until-check-without-outcome/` | `definition.routine-until-check-without-outcome` |
+| `routine-until-shell-metacharacters/` | `definition.routine-until-shell-metacharacters` |
+| `routine-floor/` | `routine-floor-15-minutes` |
 
 `no-identity` passes once an identity is set. The suite checks that too, in a temp repository with no remote.
 

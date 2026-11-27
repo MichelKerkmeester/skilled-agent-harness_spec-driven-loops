@@ -59,6 +59,9 @@ const USAGE = [
   '  activity [--json]',
   '                 what every bot is doing, grouped: needs you, working, scheduled,',
   '                 done, stopped, failed and recurring, and --json prints one document',
+  '  routines [--json]',
+  '                 every bot with a routine block: its start, what it does, its',
+  '                 outcome, the switch it reads as and its failure streak',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
 ].join('\n');
@@ -83,6 +86,7 @@ const VERB_SPECS = {
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
+  routines: { ids: 0, options: ['json'] },
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
@@ -515,6 +519,78 @@ async function activityVerb(rt, parsed, checkoutRoot, resolveEnv) {
   return 0;
 }
 
+// The routine read loads the definition, routine and routine-state modules
+// itself, so a routine that does not read can only break this verb. It reads
+// the state root and never creates one: a bot with no state yet is a bot whose
+// routine has not run, which is a row and not an error.
+async function routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
+  const { options } = parsed;
+  const fs = require('node:fs');
+  let definition;
+  let routineModule;
+  let routineState;
+  try {
+    [definition, routineModule, routineState] = await Promise.all([
+      runtimeModule('definition'),
+      runtimeModule('routine'),
+      runtimeModule('routine-state'),
+    ]);
+  } catch (error) {
+    process.stderr.write(`bots: the routine modules did not load: ${error instanceof Error ? error.message : String(error)}\n`);
+    return rt.runner.EXIT_CODES.runFailure;
+  }
+  const context = rt.runner.resolveBotContext({ checkoutRoot, skilledTree, env: resolveEnv });
+  if (!context.ok) {
+    process.stderr.write(`${describeRefusal(context)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const { stateRoot, identity } = context.value;
+  let names;
+  try {
+    names = fs.readdirSync(path.join(checkoutRoot, 'bots'));
+  } catch {
+    names = [];
+  }
+  const botIds = names.filter((name) => fs.existsSync(rt.runner.definitionPath(checkoutRoot, name))).sort();
+  const rows = [];
+  for (const botId of botIds) {
+    const read = definition.readDefinition(rt.runner.definitionPath(checkoutRoot, botId));
+    if (!read.ok) {
+      process.stderr.write(`bots: ${botId} did not read: ${read.reason}\n`);
+      continue;
+    }
+    const routine = read.value.routine;
+    if (routine === null) continue;
+    // A damaged file reads as every field null, so its row shows the switches
+    // alone and never claims an outcome was reached.
+    const { state, damaged } = routineState.readRoutineState(stateRoot, identity, botId);
+    if (damaged) process.stderr.write(`bots: routine state ${botId} did not read\n`);
+    rows.push({
+      botId,
+      what: routine.what,
+      starts: routine.starts.map((start) => ({ ...start, summary: routineModule.describeStart(start) })),
+      does: routine.does,
+      until: routine.until,
+      untilMetAt: state.untilMetAt,
+      failureStreak: routineState.failureStreak(stateRoot, identity, botId),
+      switch: routineState.routineSwitch(stateRoot, identity, botId, state),
+    });
+  }
+  if (options.json === true) {
+    process.stdout.write(`${JSON.stringify({ version: 1, routines: rows }, null, 2)}\n`);
+    return 0;
+  }
+  if (rows.length === 0) {
+    process.stdout.write('bots: no routines\n');
+    return 0;
+  }
+  for (const row of rows) {
+    const fields = [row.botId, row.starts[0].summary ?? '-', row.does, row.until ?? '-', row.untilMetAt ?? '-', row.switch, `streak ${row.failureStreak}`];
+    process.stdout.write(`${fields.join('\t')}\n`);
+  }
+  return 0;
+}
+
 function describeOutcome(id, outcome) {
   switch (outcome.kind) {
     case 'completed':
@@ -577,6 +653,7 @@ async function main(argv) {
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'routines') return routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
 
   if (parsed.verb === 'run') {
     const index = parsed.options['schedule-index'];
@@ -686,6 +763,31 @@ async function main(argv) {
     if (!scheduled.ok) return installerRefusal(rt, scheduled);
     printSteps(scheduled.value.steps);
     if (!scheduled.value.installed) noScheduleWarning(parsed.id);
+    // The notice first, then the streak restart, then the switches: a stop
+    // between them leaves the bot still stopped, and the restart lands before
+    // the switch clears so the old failures are never counted again.
+    const routineState = await runtimeModule('routine-state');
+    const { state } = routineState.readRoutineState(stateRoot, identity, parsed.id);
+    if (state.fatigueItemId !== null) {
+      const answered = rt.answer.answerItem({
+        checkoutRoot,
+        itemId: state.fatigueItemId,
+        text: 'enabled',
+        env: process.env,
+        resolveEnv,
+        resume: false,
+      });
+      if (!answered.ok && answered.reason !== 'item-expired' && answered.reason !== 'item-unknown') {
+        process.stderr.write(`${describeRefusal(answered)}\n`);
+        return runner.EXIT_CODES.refused;
+      }
+      if (!answered.ok) process.stderr.write(`bots: item ${state.fatigueItemId} expired; not answered\n`);
+    }
+    const enabled = routineState.recordEnable(stateRoot, identity, parsed.id);
+    if (!enabled.ok) {
+      process.stderr.write(`bots: ${enabled.reason}\n`);
+      return runner.EXIT_CODES.refused;
+    }
   }
   const result = set
     ? switches.setSwitch(stateRoot, identity, parsed.id, kind)
@@ -695,6 +797,13 @@ async function main(argv) {
     return runner.EXIT_CODES.refused;
   }
   process.stdout.write(`bots: ${parsed.id} ${set ? kind : `no longer ${kind}`}\n`);
+  if (parsed.verb === 'enable') {
+    const cleared = switches.clearSwitch(stateRoot, identity, parsed.id, 'completed');
+    if (!cleared.ok) {
+      process.stderr.write(`bots: ${cleared.reason}\n`);
+      return runner.EXIT_CODES.refused;
+    }
+  }
   // The run-layer switch is already set, so a scheduler step that fails still leaves the bot stopped.
   if (parsed.verb === 'disable') {
     const scheduled = rt.installer.disableSchedule({ checkoutRoot, botId: parsed.id, env });

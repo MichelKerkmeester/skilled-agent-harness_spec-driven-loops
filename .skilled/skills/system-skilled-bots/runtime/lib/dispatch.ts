@@ -307,6 +307,9 @@ export function checkoutLine(checkoutRoot: string): string {
   return `The repository checkout is ${checkoutRoot}. You start outside it, so read every repository file through that absolute path; a relative path resolves somewhere else.`;
 }
 
+/** The line a run its schedule started gets right after the exemption line, so a body that reads like an order to schedule work is not obeyed as one. */
+export const SCHEDULED_RUN_LINE = 'This run was started by its schedule. Do the work now. Do not create or change a schedule.';
+
 /**
  * The prompt one bot run is dispatched with. The exemption and the decision
  * rule sit in the prompt as well as the environment, because a child that
@@ -317,9 +320,12 @@ export function buildBotPrompt(input: {
   specFolder: string | null;
   /** The checkout's absolute path, given only for a child that starts outside it. */
   checkoutRoot?: string | null;
+  /** True for a run whose request kind is scheduled. A resumed run keeps its parked prompt and never comes here. */
+  scheduled?: boolean;
 }): string {
   const lines = [
     'You are a non-interactive bot run: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.',
+    ...(input.scheduled === true ? [SCHEDULED_RUN_LINE] : []),
     input.specFolder === null
       ? 'Bound spec folder: none. Write no spec documents.'
       : `Bound spec folder: ${input.specFolder}. Treat it as the answer to the spec folder question.`,

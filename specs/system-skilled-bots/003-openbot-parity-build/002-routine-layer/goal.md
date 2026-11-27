@@ -12,7 +12,7 @@ _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/002-routine-layer"
     last_updated_at: "2026-11-25T19:53:07Z"
-    last_updated_by: "scaffold"
+    last_updated_by: "unit-002-orchestrator"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "w3-002-routine-layer"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,13 +59,13 @@ Frozen choices. Changing one is an amendment.
 
 `R` is `.skilled/skills/system-skilled-bots/runtime`, `F` is `.skilled/skills/system-skilled-bots/scripts/fixtures` and `S` is a fresh `mktemp -d` folder holding a copy of `$F/routine-clean` at `$S/checkout`, as in `tasks.md`. A vitest filter is anchored `^<full name>$` and states its pass count, and a `bots.cjs` command that reads or writes state passes `--repo "$S/checkout"`, per `contracts/verification.md` V1, V2 and V10.
 
-- [ ] `for d in .skilled/skills/system-skilled-bots/scripts/fixtures/routine-*; do node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs "$d" >/dev/null 2>&1; rc=$?; echo "${d##*/} $rc"; done` prints ten lines: `routine-clean 0`, and `1` for each of the nine defect fixtures.
-- [ ] `node .skilled/bin/bots.cjs routines --repo "$S/checkout"` exits 0 and prints two rows, and `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e '(.version == 1) and (.routines | length == 2) and (.routines[0].botId != null)'` exits 0.
-- [ ] `(cd $R && npx vitest run tests/routine.vitest.ts -t "^routine block ")` prints `Tests  5 passed` and `(cd $R && npx vitest run tests/routine-state.vitest.ts -t "^routine state ")` prints `Tests  6 passed`. `(cd $R && npx vitest run tests/runner.vitest.ts -t "^manual run, happy path runs the until check after a completed run$")`, `(cd $R && npx vitest run tests/installer.vitest.ts -t "^preflight refuses a cron start under fifteen minutes$")`, `(cd $R && npx vitest run tests/cli-run.vitest.ts -t "^bots routines lists the routines and their switches$")`, `(cd $R && npx vitest run tests/answer.vitest.ts -t "^bots answer answers with no resume$")` and `(cd $R && npx vitest run tests/dispatch.vitest.ts -t "^bot prompt tells a scheduled run that it is a firing$")` each print `Tests  1 passed`. `rg -c 'This run was started by its schedule' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints 1.
-- [ ] `(cd $R && npm test)` exits 0 and `(cd $R && npm run typecheck)` exits 0.
-- [ ] `rg -c 'routine' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints 1, `rg -c 'routine' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1, and `rg -c 'bots routines' .skilled/skills/system-skilled-bots/bots-status/SKILL.md` prints at least 1.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer --strict` prints `RESULT: PASSED`, and `rg -c '\| Unmet \|' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 0.
-- [ ] The five `design/` documents agree with the code: `rg -c '^(sequenceDiagram|stateDiagram-v2)$' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md` prints 5, `rg -c '^\| [0-9]+ \| `routine-' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/refusals.md` prints 11, and `rg -c '^\| `routine-[a-z-]+` \| `digest/BOT\.md`' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/fixtures.md` prints 9.
+- [x] `for d in .skilled/skills/system-skilled-bots/scripts/fixtures/routine-*; do node .skilled/skills/system-skilled-bots/scripts/bot-check.cjs "$d" >/dev/null 2>&1; rc=$?; echo "${d##*/} $rc"; done` prints ten lines: `routine-clean 0`, and `1` for each of the nine defect fixtures.
+- [x] `node .skilled/bin/bots.cjs routines --repo "$S/checkout"` exits 0 and prints two rows, and `T=$(mktemp -d) && cp -R .skilled/skills/system-skilled-bots/scripts/fixtures/routine-clean "$T/checkout" && XDG_STATE_HOME="$T/state" node .skilled/bin/bots.cjs routines --json --repo "$T/checkout" | jq -e '(.version == 1) and (.routines | length == 2) and (.routines[0].botId != null)'` exits 0.
+- [x] `(cd $R && npx vitest run tests/routine.vitest.ts -t "^routine block ")` prints `Tests  5 passed` and `(cd $R && npx vitest run tests/routine-state.vitest.ts -t "^routine state ")` prints `Tests  6 passed`. `(cd $R && npx vitest run tests/runner.vitest.ts -t "^manual run, happy path runs the until check after a completed run$")`, `(cd $R && npx vitest run tests/installer.vitest.ts -t "^preflight refuses a cron start under fifteen minutes$")`, `(cd $R && npx vitest run tests/cli-run.vitest.ts -t "^bots routines lists the routines and their switches$")`, `(cd $R && npx vitest run tests/answer.vitest.ts -t "^bots answer answers with no resume$")` and `(cd $R && npx vitest run tests/dispatch.vitest.ts -t "^bot prompt tells a scheduled run that it is a firing$")` each print `Tests  1 passed`. `rg -c 'This run was started by its schedule' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints 1.
+- [x] `(cd $R && npm test)` exits 0 and `(cd $R && npm run typecheck)` exits 0.
+- [x] `rg -c 'routine' .skilled/skills/system-skilled-bots/assets/bot-template.txt` prints 1, `rg -c 'routine' .skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` prints at least 1, and `rg -c 'bots routines' .skilled/skills/system-skilled-bots/bots-status/SKILL.md` prints at least 1.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer --strict` prints `RESULT: PASSED`, and `rg -c '\| Unmet \|' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md` prints 0.
+- [x] The five `design/` documents agree with the code: `rg -c '^(sequenceDiagram|stateDiagram-v2)$' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/state-machines.md` prints 5, `rg -c '^\| [0-9]+ \| `routine-' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/refusals.md` prints 11, and `rg -c '^\| `routine-[a-z-]+` \| `digest/BOT\.md`' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/design/fixtures.md` prints 9.
 
 <!-- /ANCHOR:completion -->
 
@@ -86,7 +86,7 @@ and findings belong here.
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer` printed `RESULT: PASSED (5/5 checks)` |
 | External orchestration | Done | `plan.md` §8 names the roster, the eight waves W0-W7 and the fallback ladder |
 | Design artifacts | Done | `design/records.md`, `design/state-machines.md`, `design/refusals.md`, `design/fixtures.md` and `design/mockups.md` hold every shape, transition, refusal, fixture and printed line the phase ships |
-| Tasks T001-T046 | Pending | `rg -c '^- \[ \] T[0-9]' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/tasks.md` prints 46 |
+| Tasks T001-T046 | Done | Built 2026-11-27 by 42 `cli-mistral-vibe` deepseek-flash runs, every one exit 0. `npm test` passed 39 files and 456 tests against the 37 and 424 baseline, typecheck exited 0 and all fourteen acceptance rows are Met |
 
 ### Deviations and findings
 
@@ -105,4 +105,8 @@ and findings belong here.
 | The `routines --json` check asserts `version` | The `jq -e` expression opens with `.version == 1`, so a payload that drops the version fails the check rather than passing on its rows alone. The choice was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive, as the first alternative the finding named. |
 | Scheduled-run line and fatigue skip | The final parity recommendations added REQ-012 and AC-014, the fixed line a scheduled run gets after the exemption line, and made the fatigue streak skip a refusal whose `exit.class` is null. Criterion 3 carries the scheduled-line test and its `rg` check, and its `routine state` count of six includes `skips a refusal with no failure class`. |
 | Semicolons split and serial commas dropped | Every prose semicolon in this phase's documents became a full stop or a conjunction, and no list carries a comma before its last item. A semicolon inside a code span, a shell command or a literal printed line stays, because it is code. The choice was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive, as the first alternative the finding named. |
+| The routines folder is made by its writer | `design/records.md` section 1 has `ensureIdentityState` create it, but `state-root.vitest.ts` pins that function's folder list. `state-root.ts` names the folder and `writeRoutineState` makes it at 0700 on first write. |
+| The activity test moved with the describe default | `bots activity` passes no `describe`, so `status.ts` defaults it to `describeStart`. The `one data set` test in `activity.vitest.ts`, a file no task names, now expects the phrase without a describe argument and its `withoutSchedule` helper is gone. |
+| Two verify cells do not read as written | T021 points `bots routines` at the in-repo fixture, which the CLI resolves to the git toplevel, so the evidence is the `$S/checkout` copy the notation requires. CHK-050's pattern matches this folder's own `system-skilled-bots/` path segment until the commit lands. |
+| Grouped briefs | T009 shipped with `recordEnable`, T010 with T034 and T035 and the runner half of T045 and the answer half of T021 shipped early, each in a brief that owned the file at the time. |
 <!-- /ANCHOR:log -->

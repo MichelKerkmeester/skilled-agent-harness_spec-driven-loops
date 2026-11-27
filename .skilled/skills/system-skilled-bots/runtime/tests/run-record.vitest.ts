@@ -9,6 +9,7 @@ import {
   AWAITING_DECISION_STOP_REASON,
   readRunRecord,
   RESULT_EVENT_UNRECORDED,
+  validateRunRecord,
   writeRunRecord,
 } from '../lib/run-record.js';
 import { identityStatePaths, resolveRunFolder, userStateRoot } from '../lib/state-root.js';
@@ -83,7 +84,7 @@ describe('run record', () => {
 
     const read = readRunRecord(stateRoot, IDENTITY, 'r1');
     // The written record named neither actor, so the read carries both as null.
-    expect(read).toEqual({ ok: true, value: { record: { ...record, actor: null, answeredBy: null }, runFolder: { path: runFolder, present: true } } });
+    expect(read).toEqual({ ok: true, value: { record: { ...record, actor: null, answeredBy: null, until: null }, runFolder: { path: runFolder, present: true } } });
     expect(JSON.parse(readFileSync(written.value, 'utf8')).budget.measured.costUsd).toBeNull();
   });
 
@@ -102,7 +103,7 @@ describe('run record', () => {
     const read = readRunRecord(stateRoot, IDENTITY, 'r1');
     if (!read.ok) throw new Error(read.reason);
     expect(read.value.runFolder).toEqual({ path: runFolder, present: false });
-    expect(read.value.record).toEqual({ ...fullRecord(runFolder), actor: null, answeredBy: null });
+    expect(read.value.record).toEqual({ ...fullRecord(runFolder), actor: null, answeredBy: null, until: null });
   });
 
   it('refuses a record that drops a field group or turns cost into a string', () => {
@@ -146,6 +147,26 @@ describe('run record', () => {
     const read = readRunRecord(stateRoot, IDENTITY, 'r1');
     if (!read.ok) throw new Error(read.reason);
     expect({ actor: read.value.record.actor, answeredBy: read.value.record.answeredBy }).toEqual({ actor: 'ada', answeredBy: 'bob' });
+  });
+
+  it('carries the until observation', () => {
+    const { stateRoot, runFolder } = setup();
+    for (const met of [true, false]) {
+      expect(writeRunRecord(stateRoot, { ...fullRecord(runFolder), until: { met } }).ok).toBe(true);
+      const read = readRunRecord(stateRoot, IDENTITY, 'r1');
+      if (!read.ok) throw new Error(read.reason);
+      expect(read.value.record.until).toEqual({ met });
+    }
+
+    // A run whose routine carries no until check writes no key and reads it as null.
+    expect(writeRunRecord(stateRoot, fullRecord(runFolder)).ok).toBe(true);
+    const silent = readRunRecord(stateRoot, IDENTITY, 'r1');
+    if (!silent.ok) throw new Error(silent.reason);
+    expect(silent.value.record.until).toBeNull();
+
+    for (const until of [{ met: 'yes' }, { met: true, extra: 1 }, 'met']) {
+      expect(validateRunRecord({ ...fullRecord(runFolder), until })).toEqual({ ok: false, reason: 'record-field-invalid', detail: 'until' });
+    }
   });
 });
 

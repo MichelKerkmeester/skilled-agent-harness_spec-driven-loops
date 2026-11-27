@@ -3,6 +3,16 @@
 id: <your-bot-id>
 # Required. kind is cron (with expression), queue (with name), git-hook (needs gitHookTrigger in bots/config.json) or manual.
 trigger: {kind: manual}
+# Optional, in place of trigger: say what the bot is for, its one start, whether it acts or only tells,
+# and the outcome that ends it. Uncomment the block below and delete the trigger line. A cron start
+# fires at most every 15 minutes. until is prose and never runs, and until_check exits 0 once it holds.
+# routine:
+#   what: the nightly report
+#   starts:
+#     - {kind: cron, expression: "0 2 * * *"}
+#   does: act
+#   until: the report is filed
+#   until_check: test -f reports/nightly.md
 # Executor block. Pick a cli-* kind: native is refused, since its child inherits your full environment.
 # Only cli-codex, cli-cursor and cli-deepseek-harness can write. The others need sandbox: read-only.
 # Keys past kind (model and the like) go to the executor as written.

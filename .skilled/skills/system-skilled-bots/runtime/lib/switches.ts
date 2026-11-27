@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Stop Switches (disable and pause)
+// MODULE: Stop Switches (disable, pause and completed)
 // ───────────────────────────────────────────────────────────────────
 //
 // The run and invocation stop layers are plain files under the user-level
@@ -7,6 +7,8 @@
 // bot run, which may write its checkout, can never clear its own stop.
 // Disable keeps a bot from running at all and is read before the lease;
 // pause is read after the lease, so a paused run still shows who asked.
+// Completed is set when a routine's until check exits 0, and it is read beside
+// disable, before the lease.
 
 import { existsSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
@@ -20,9 +22,9 @@ import type { Result } from './repo-config.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
-export type SwitchKind = 'disabled' | 'paused';
+export type SwitchKind = 'disabled' | 'paused' | 'completed';
 
-export const SWITCH_KINDS: readonly SwitchKind[] = ['disabled', 'paused'];
+export const SWITCH_KINDS: readonly SwitchKind[] = ['disabled', 'paused', 'completed'];
 
 /** What a switch file holds: when it was set, so a reader can report it. */
 export interface SwitchState {

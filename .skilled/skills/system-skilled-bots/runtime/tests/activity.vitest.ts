@@ -197,18 +197,6 @@ function buildOneDataSet(): { stateRoot: string; clock: Date; identity: string; 
   return { stateRoot, clock, identity: data.identity, describe: describeStart };
 }
 
-/** The payload with the schedule of every scheduled and recurring row cleared. */
-function withoutSchedule(payload: ActivityPayload): ActivityPayload {
-  return {
-    ...payload,
-    groups: payload.groups.map((group) => (
-      group.id === 'scheduled' || group.id === 'recurring'
-        ? { ...group, rows: group.rows.map((row) => ({ ...row, schedule: null })) }
-        : group
-    )),
-  };
-}
-
 /** The payload, or the refusal as a thrown error so a broken read names itself. */
 function activityOrThrow(input: ActivityInput): ActivityPayload {
   const report = activityReport(input);
@@ -502,7 +490,7 @@ describe('bots activity', () => {
     expect(withDescribe).toEqual(expected);
 
     const withoutDescribe = activityOrThrow({ stateRoot: data.stateRoot, now: data.clock });
-    expect(withoutDescribe).toEqual(withoutSchedule(expected));
+    expect(withoutDescribe).toEqual(expected);
   });
 
   it('refresh on read', () => {

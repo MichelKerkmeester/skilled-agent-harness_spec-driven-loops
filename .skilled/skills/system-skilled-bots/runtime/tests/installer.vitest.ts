@@ -131,7 +131,7 @@ function realPlutil(calls: string[][]): (args: string[]) => CommandResult {
 // WORLDS
 // ───────────────────────────────────────────────────────────────────
 
-function cronBot(id: string, expression = '*/5 * * * *', runtime = 'cli-codex', extra: string[] = []): string {
+function cronBot(id: string, expression = '*/15 * * * *', runtime = 'cli-codex', extra: string[] = []): string {
   return ['---', `id: ${id}`, `trigger: {kind: cron, expression: "${expression}"}`, `runtime: {kind: ${runtime}}`, 'isolation: shared', ...extra, '---', 'Count the open notes.', ''].join('\n');
 }
 
@@ -271,7 +271,7 @@ describe('install transaction', () => {
       ...(operator === null ? {} : { [PINNED_OPERATOR_ENV]: operator }),
       [SCHEDULED_FIRE_ENV]: '1',
     });
-    expect((job.StartCalendarInterval as unknown[]).length).toBe(12);
+    expect((job.StartCalendarInterval as unknown[]).length).toBe(4);
     // The installer writes only to the agents folder and the state root, never into a checkout or a Skilled tree.
     expect([folderHash(world.checkoutRoot), folderHash(world.skilledTree)]).toEqual(treesBefore);
   });
@@ -414,14 +414,14 @@ describe('preflight', () => {
 
   it('refuses a definition the real checker fails', () => {
     const world = installWorld();
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-nothing'));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-nothing'));
     const { checker: _stub, ...realChecker } = world.seams;
     expectRefusal(world, world.input('digest', { seams: realChecker }), 'checker-failed');
   }, 60_000);
 
   it('refuses a posture the runner would refuse at the real checker, naming it', () => {
     const world = installWorld();
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'native'));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'native'));
     const { checker: _stub, ...realChecker } = world.seams;
     const input = world.input('digest', { seams: realChecker });
     expectRefusal(world, input, 'checker-failed');
@@ -430,8 +430,17 @@ describe('preflight', () => {
 
   it('still refuses a posture the runner would refuse when the checker passes it', () => {
     const world = installWorld();
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'native'));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'native'));
     expectRefusal(world, world.input('digest'), 'posture-refused');
+  });
+
+  it('refuses a cron start under fifteen minutes', () => {
+    const world = installWorld();
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *'));
+    expectRefusal(world, world.input(), 'routine-floor-15-minutes');
+    expect(installSchedule(world.input())).toMatchObject({ detail: 'bots/digest/BOT.md: "*/5 * * * *" is under the 900-second floor' });
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *'));
+    expect(installSchedule(world.input())).toMatchObject({ ok: true });
   });
 
   it('refuses a Skilled tree that is a linked worktree, naming the fix', () => {
@@ -749,7 +758,7 @@ describe('executor pin', () => {
     const bin = stubExecutor();
     const world = installWorld();
     mustInstall(world, 'digest', { env: { ...world.env, PATH: `${bin}:${LAUNCHD_PATH}` } });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-claude-code'));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-claude-code'));
     const bare = { ...world.env, PATH: LAUNCHD_PATH };
     expect(scheduledRunEnv({ checkoutRoot: world.checkoutRoot, botId: 'digest', env: bare, seams: world.seams }).PATH).toBe(LAUNCHD_PATH);
   });
@@ -875,7 +884,7 @@ describe('a rendered job', () => {
     const world = installWorld({ checkoutRoot });
     const stateRoot = tempDir('bots-pinned-state-');
     writeConfig(checkoutRoot, { identity: IDENTITY, stateRoot });
-    writeFileSync(join(checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] bare path probe'\""]));
+    writeFileSync(join(checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] bare path probe'\""]));
     const report = mustInstall(world);
     const job = plistJson(report.plistPaths[0] as string);
     // A config state root needs no state home. The job still pins that root, the identity and the operator, plus its fire marker.
@@ -897,9 +906,9 @@ describe('a rendered job', () => {
     expect(record.dispatch.source).toBe('schedule');
     expect(typeof record.dispatch.scheduledAt).toBe('string');
     expect(record.request.firedSlot).toBe(record.dispatch.scheduledAt);
-    // Started by hand, not at a slot: the class depends on where in the 5-minute period the test runs.
+    // Started by hand, not at a slot: the class depends on where in the 15-minute period the test runs.
     expect(['on-time', 'late']).toContain(record.dispatch.latenessClass);
-    expect(record.dispatch.latenessSeconds as number).toBeLessThan(300);
+    expect(record.dispatch.latenessSeconds as number).toBeLessThan(900);
   }, 60_000);
 });
 
@@ -909,7 +918,7 @@ describe('a job installed from a shell state home', () => {
     const world = botWorld();
     symlinkSync(resolve(BOTS_CLI, '..', '..'), join(world.checkoutRoot, '.skilled'));
     mkdirSync(join(world.checkoutRoot, 'bots', 'digest'), { recursive: true });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] state home probe'\""]));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] state home probe'\""]));
     const seams: Partial<InstallerSeams> = {
       agentsDir: tempDir('bots-agents-'),
       accountHome: tempDir('bots-account-'),
@@ -955,7 +964,7 @@ describe('operator verbs from a shell with another state home', () => {
     const world = botWorld();
     symlinkSync(resolve(BOTS_CLI, '..', '..'), join(world.checkoutRoot, '.skilled'));
     mkdirSync(join(world.checkoutRoot, 'bots', 'digest'), { recursive: true });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] stop probe'\""]));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] stop probe'\""]));
     const scheduler = new FakeScheduler();
     const seams: Partial<InstallerSeams> = {
       agentsDir: tempDir('bots-agents-'),
@@ -1044,7 +1053,7 @@ describe('the CLI from a shell with another state home', () => {
     const world = botWorld();
     symlinkSync(resolve(BOTS_CLI, '..', '..'), join(world.checkoutRoot, '.skilled'));
     mkdirSync(join(world.checkoutRoot, 'bots', 'digest'), { recursive: true });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] cli probe'\""]));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] cli probe'\""]));
     // The job file sits where the CLI's own default seams look: the temp HOME's agents folder.
     const installed = installSchedule({
       checkoutRoot: world.checkoutRoot,
@@ -1219,7 +1228,7 @@ describe('the CLI from a shell that names a CI repository', () => {
     spawnSync('git', ['-C', world.checkoutRoot, 'remote', 'add', 'origin', origin], { env: isolatedEnv() });
     symlinkSync(resolve(BOTS_CLI, '..', '..'), join(world.checkoutRoot, '.skilled'));
     mkdirSync(join(world.checkoutRoot, 'bots', 'digest'), { recursive: true });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] ci probe'\""]));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] ci probe'\""]));
     const home = tempDir('bots-account-');
     const installed = installSchedule({
       checkoutRoot: world.checkoutRoot,
@@ -1299,7 +1308,7 @@ describe('a job installed before the checkout\'s identity changed', () => {
     spawnSync('git', ['-C', world.checkoutRoot, 'remote', 'add', 'origin', `https://github.com/${OLD}.git`], { env: isolatedEnv() });
     symlinkSync(resolve(BOTS_CLI, '..', '..'), join(world.checkoutRoot, '.skilled'));
     mkdirSync(join(world.checkoutRoot, 'bots', 'digest'), { recursive: true });
-    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/5 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] rename probe'\""]));
+    writeFileSync(join(world.checkoutRoot, 'bots', 'digest', 'BOT.md'), cronBot('digest', '*/15 * * * *', 'cli-codex', ["precheck: \"echo '[SILENT] rename probe'\""]));
     const home = tempDir('bots-account-');
     const agentsDir = join(home, 'Library', 'LaunchAgents');
     const seams: Partial<InstallerSeams> = { agentsDir, accountHome: home, domain: DOMAIN, launchctl: new FakeScheduler().launchctl, plutil: realPlutil([]), checker: () => ({ exitCode: 0, lines: [] }) };
@@ -1487,7 +1496,7 @@ describe('a job pins its state root and identity', () => {
       configDigest: configDigest(world.checkoutRoot),
     });
 
-    writeFileSync(botPath, cronBot('digest', '*/10 * * * *'));
+    writeFileSync(botPath, cronBot('digest', '*/30 * * * *'));
     expect(readApproval(world.stateRoot, IDENTITY, 'digest')?.definitionDigest).not.toBe(digestOf(readFileSync(botPath)));
     const enabled = enableSchedule(world.input());
     expect(enabled.ok).toBe(true);

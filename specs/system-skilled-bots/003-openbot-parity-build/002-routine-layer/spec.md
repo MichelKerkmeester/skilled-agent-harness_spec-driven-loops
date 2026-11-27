@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-25 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
