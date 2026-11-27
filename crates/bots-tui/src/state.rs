@@ -1,5 +1,5 @@
 use crate::keys::{self, Action, Cond, Context, Key};
-use crate::model::{ActivityGroup, InboxItem, Routine, StatusPayload};
+use crate::model::{ActivityGroup, ActivityRow, InboxItem, Routine, StatusPayload};
 
 /// Milliseconds since the Unix epoch, UTC.
 pub type EpochMs = i64;
@@ -911,15 +911,282 @@ pub fn on_shell_action(state: &mut State, action: Action) -> Vec<Effect> {
 }
 
 /// The list's move actions on the active tab's pane view.
-pub fn on_list_action(_state: &mut State, _action: Action) -> Vec<Effect> {
+pub fn on_list_action(state: &mut State, action: Action) -> Vec<Effect> {
+    let page = state.page_rows();
+    match state.active_tab {
+        Tab::Activity => {
+            let keys = activity_keys(state);
+            if keys.is_empty() {
+                return Vec::new();
+            }
+            let position = keys
+                .iter()
+                .position(|key| state.activity_view.selected.as_ref() == Some(key));
+            let current = match position {
+                Some(index) => index,
+                None => state.activity_view.anchor.min(keys.len() - 1),
+            };
+            let next = match action {
+                Action::MoveUp => current.saturating_sub(1),
+                Action::MoveDown => (current + 1).min(keys.len() - 1),
+                Action::PageUp => current.saturating_sub(page),
+                Action::PageDown => (current + page).min(keys.len() - 1),
+                _ => current,
+            };
+            state.activity_view.selected = Some(keys[next].clone());
+            state.activity_view.anchor = next;
+        }
+        Tab::Inbox => {
+            let keys = inbox_keys(state);
+            if keys.is_empty() {
+                return Vec::new();
+            }
+            let position = keys
+                .iter()
+                .position(|key| state.inbox_view.selected.as_ref() == Some(key));
+            let current = match position {
+                Some(index) => index,
+                None => state.inbox_view.anchor.min(keys.len() - 1),
+            };
+            let next = match action {
+                Action::MoveUp => current.saturating_sub(1),
+                Action::MoveDown => (current + 1).min(keys.len() - 1),
+                Action::PageUp => current.saturating_sub(page),
+                Action::PageDown => (current + page).min(keys.len() - 1),
+                _ => current,
+            };
+            state.inbox_view.selected = Some(keys[next].clone());
+            state.inbox_view.anchor = next;
+        }
+        Tab::Routines => {
+            let keys = routine_keys(state);
+            if keys.is_empty() {
+                return Vec::new();
+            }
+            let position = keys
+                .iter()
+                .position(|key| state.routines_view.selected.as_ref() == Some(key));
+            let current = match position {
+                Some(index) => index,
+                None => state.routines_view.anchor.min(keys.len() - 1),
+            };
+            let next = match action {
+                Action::MoveUp => current.saturating_sub(1),
+                Action::MoveDown => (current + 1).min(keys.len() - 1),
+                Action::PageUp => current.saturating_sub(page),
+                Action::PageDown => (current + page).min(keys.len() - 1),
+                _ => current,
+            };
+            state.routines_view.selected = Some(keys[next].clone());
+            state.routines_view.anchor = next;
+        }
+        Tab::Chat => return Vec::new(),
+    }
+    clamp_scroll(state);
     Vec::new()
 }
 
 /// Keeps the selection when it survives a read, else falls to the nearest row.
-pub fn reconcile_selection(_state: &mut State, _surface: Surface) {}
+pub fn reconcile_selection(state: &mut State, surface: Surface) {
+    match surface {
+        Surface::Status => return,
+        Surface::Activity => {
+            let keys = activity_keys(state);
+            if keys.is_empty() {
+                state.activity_view.selected = None;
+                state.activity_view.anchor = 0;
+                state.activity_view.scroll = 0;
+            } else {
+                let position = keys
+                    .iter()
+                    .position(|key| state.activity_view.selected.as_ref() == Some(key));
+                match position {
+                    Some(index) => state.activity_view.anchor = index,
+                    None => {
+                        let index = state.activity_view.anchor.min(keys.len() - 1);
+                        state.activity_view.selected = Some(keys[index].clone());
+                        state.activity_view.anchor = index;
+                    }
+                }
+            }
+        }
+        Surface::Inbox => {
+            let keys = inbox_keys(state);
+            if keys.is_empty() {
+                state.inbox_view.selected = None;
+                state.inbox_view.anchor = 0;
+                state.inbox_view.scroll = 0;
+            } else {
+                let position = keys
+                    .iter()
+                    .position(|key| state.inbox_view.selected.as_ref() == Some(key));
+                match position {
+                    Some(index) => state.inbox_view.anchor = index,
+                    None => {
+                        let index = state.inbox_view.anchor.min(keys.len() - 1);
+                        state.inbox_view.selected = Some(keys[index].clone());
+                        state.inbox_view.anchor = index;
+                    }
+                }
+            }
+        }
+        Surface::Routines => {
+            let keys = routine_keys(state);
+            if keys.is_empty() {
+                state.routines_view.selected = None;
+                state.routines_view.anchor = 0;
+                state.routines_view.scroll = 0;
+            } else {
+                let position = keys
+                    .iter()
+                    .position(|key| state.routines_view.selected.as_ref() == Some(key));
+                match position {
+                    Some(index) => state.routines_view.anchor = index,
+                    None => {
+                        let index = state.routines_view.anchor.min(keys.len() - 1);
+                        state.routines_view.selected = Some(keys[index].clone());
+                        state.routines_view.anchor = index;
+                    }
+                }
+            }
+        }
+    }
+    clamp_scroll(state);
+}
 
 /// Moves each scroll so its selected row stays visible.
-pub fn clamp_scroll(_state: &mut State) {}
+pub fn clamp_scroll(state: &mut State) {
+    let page = state.page_rows();
+    let keys = activity_keys(state);
+    let position = keys
+        .iter()
+        .position(|key| state.activity_view.selected.as_ref() == Some(key));
+    match position {
+        None => state.activity_view.scroll = 0,
+        Some(index) => {
+            let line = activity_line(state, index);
+            if line < state.activity_view.scroll {
+                state.activity_view.scroll = line;
+            } else if line >= state.activity_view.scroll + page {
+                state.activity_view.scroll = line + 1 - page;
+            }
+        }
+    }
+
+    let keys = inbox_keys(state);
+    let position = keys
+        .iter()
+        .position(|key| state.inbox_view.selected.as_ref() == Some(key));
+    match position {
+        None => state.inbox_view.scroll = 0,
+        Some(index) => {
+            let line = inbox_line(index);
+            if line < state.inbox_view.scroll {
+                state.inbox_view.scroll = line;
+            } else if line >= state.inbox_view.scroll + page {
+                state.inbox_view.scroll = line + 1 - page;
+            }
+        }
+    }
+
+    let keys = routine_keys(state);
+    let position = keys
+        .iter()
+        .position(|key| state.routines_view.selected.as_ref() == Some(key));
+    match position {
+        None => state.routines_view.scroll = 0,
+        Some(index) => {
+            let line = routine_line(index);
+            if line < state.routines_view.scroll {
+                state.routines_view.scroll = line;
+            } else if line >= state.routines_view.scroll + page {
+                state.routines_view.scroll = line + 1 - page;
+            }
+        }
+    }
+}
+
+/// The selection key of one activity row, so the selection follows a run as it moves between groups.
+pub fn activity_key(group: &ActivityGroup, row: &ActivityRow) -> ActivityKey {
+    match &row.run_id {
+        Some(run_id) => ActivityKey::Run {
+            identity: row.identity.clone(),
+            bot_id: row.bot_id.clone(),
+            run_id: run_id.clone(),
+        },
+        None => ActivityKey::Slot {
+            identity: row.identity.clone(),
+            bot_id: row.bot_id.clone(),
+            group: group.id.clone(),
+            at: row.at.clone(),
+        },
+    }
+}
+
+/// The selection keys of the activity pane, in the order the pane draws its rows.
+fn activity_keys(state: &State) -> Vec<ActivityKey> {
+    let mut keys = Vec::new();
+    for group in state
+        .activity
+        .rows
+        .iter()
+        .filter(|group| !group.rows.is_empty())
+    {
+        for row in &group.rows {
+            keys.push(activity_key(group, row));
+        }
+    }
+    keys
+}
+
+/// The selection keys of the inbox pane, in the order the pane draws its rows.
+fn inbox_keys(state: &State) -> Vec<ItemId> {
+    state
+        .inbox
+        .rows
+        .iter()
+        .map(|item| item.id.clone())
+        .collect()
+}
+
+/// The selection keys of the routines pane, in the order the pane draws its rows.
+fn routine_keys(state: &State) -> Vec<BotId> {
+    state
+        .routines
+        .rows
+        .iter()
+        .map(|routine| routine.bot_id.clone())
+        .collect()
+}
+
+/// The first display line of one activity row, counting the heading line each kept group draws.
+fn activity_line(state: &State, index: usize) -> usize {
+    let mut line = 0;
+    let mut seen = 0;
+    for group in state
+        .activity
+        .rows
+        .iter()
+        .filter(|group| !group.rows.is_empty())
+    {
+        if index < seen + group.rows.len() {
+            return line + 1 + (index - seen);
+        }
+        seen += group.rows.len();
+        line += 1 + group.rows.len();
+    }
+    line
+}
+
+/// The first display line of one inbox row, one line per item.
+fn inbox_line(index: usize) -> usize {
+    index
+}
+
+/// The first display line of one routine, four lines per routine.
+fn routine_line(index: usize) -> usize {
+    4 * index
+}
 
 /// The overlay's own actions, the answer flow.
 pub fn on_overlay_action(_state: &mut State, _action: Action) -> Vec<Effect> {

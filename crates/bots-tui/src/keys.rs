@@ -402,8 +402,49 @@ pub const SHELL_ROWS: &[Row] = &[
     },
 ];
 
-/// The panes' rows, filled by the list work.
-pub const LIST_ROWS: &[Row] = &[];
+/// The panes' rows: the list moves on every data pane, and Enter opens an item on the inbox only.
+pub const LIST_ROWS: &[Row] = &[
+    Row {
+        context: Context::List,
+        key: KeyMatch::Exact(Key::Up),
+        when: &[],
+        action: Action::MoveUp,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::List,
+        key: KeyMatch::Exact(Key::Down),
+        when: &[],
+        action: Action::MoveDown,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::List,
+        key: KeyMatch::Exact(Key::PageUp),
+        when: &[],
+        action: Action::PageUp,
+        label: "PgUp/PgDn page",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::List,
+        key: KeyMatch::Exact(Key::PageDown),
+        when: &[],
+        action: Action::PageDown,
+        label: "PgUp/PgDn page",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::List,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[When::InboxTab],
+        action: Action::OpenItem,
+        label: "Enter open",
+        line: FooterLine::One,
+    },
+];
 
 /// The overlay's rows, filled by the answer-flow work.
 pub const OVERLAY_ROWS: &[Row] = &[];
@@ -1031,5 +1072,115 @@ mod tests {
         let palette = state.palette.as_ref().expect("the palette is open");
         assert_eq!(palette.selected, 0);
         assert_eq!(palette.scroll, 0);
+    }
+
+    /// The list keys move each pane's selection by its row key, and the footer names them where they bind.
+    #[test]
+    fn list_keys_move_the_selection() {
+        use crate::model::InboxItem;
+        use crate::state::{on_fetched, update, ItemId, Msg, Payload, Read, Size, State, Surface};
+
+        let mut state = State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Inbox,
+            ..State::default()
+        };
+        state.inbox.generation = 1;
+        let items: Vec<InboxItem> = (0..20)
+            .map(|n| InboxItem {
+                id: ItemId(format!("i{n}")),
+                ..InboxItem::default()
+            })
+            .collect();
+        on_fetched(
+            &mut state,
+            Surface::Inbox,
+            1,
+            Ok(Read {
+                payload: Payload::Inbox(items),
+                warning: None,
+            }),
+        );
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i0".to_string())));
+        assert_eq!(state.inbox_view.anchor, 0);
+
+        update(&mut state, Msg::Key(Key::Down));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i1".to_string())));
+        update(&mut state, Msg::Key(Key::Up));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i0".to_string())));
+        update(&mut state, Msg::Key(Key::Up));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i0".to_string())));
+
+        update(&mut state, Msg::Key(Key::PageDown));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i15".to_string())));
+        assert_eq!(state.inbox_view.scroll, 1);
+        update(&mut state, Msg::Key(Key::PageDown));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i19".to_string())));
+        update(&mut state, Msg::Key(Key::PageUp));
+        assert_eq!(state.inbox_view.selected, Some(ItemId("i4".to_string())));
+
+        assert_eq!(
+            resolve(
+                &[Context::Inbox, Context::List],
+                &Key::Enter,
+                &Cond {
+                    inbox_tab: true,
+                    ..Cond::default()
+                }
+            ),
+            Some(Action::OpenItem)
+        );
+        assert_eq!(
+            resolve(
+                &[Context::Main, Context::List],
+                &Key::Enter,
+                &Cond::default()
+            ),
+            None
+        );
+
+        assert_eq!(
+            crate::view::footer::labels(&state, FooterLine::One),
+            [
+                "Alt+1..4 tabs",
+                "[ ] cycle",
+                "↑↓ select",
+                "PgUp/PgDn page",
+                "Enter open"
+            ]
+        );
+
+        state.active_tab = Tab::Activity;
+        assert_eq!(
+            crate::view::footer::labels(&state, FooterLine::One),
+            ["Alt+1..4 tabs", "[ ] cycle", "↑↓ select", "PgUp/PgDn page"]
+        );
+
+        state.active_tab = Tab::Routines;
+        assert_eq!(
+            crate::view::footer::labels(&state, FooterLine::One),
+            ["Alt+1..4 tabs", "[ ] cycle", "↑↓ select", "PgUp/PgDn page"]
+        );
+
+        state.active_tab = Tab::Chat;
+        assert_eq!(
+            crate::view::footer::labels(&state, FooterLine::One),
+            ["Alt+1..4 tabs", "[ ] cycle"]
+        );
+
+        let before = (
+            state.activity_view.clone(),
+            state.inbox_view.clone(),
+            state.routines_view.clone(),
+        );
+        update(&mut state, Msg::Key(Key::Down));
+        assert_eq!(
+            (
+                state.activity_view.clone(),
+                state.inbox_view.clone(),
+                state.routines_view.clone()
+            ),
+            before
+        );
     }
 }
