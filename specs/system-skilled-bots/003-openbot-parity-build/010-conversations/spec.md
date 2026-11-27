@@ -188,7 +188,7 @@ Requirement ids are unique across the three children. Child 002 holds REQ-001 to
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-chat-ux-and-pane-map/ | Seven design documents: thirteen states at both sizes, the `chat` key context, component rows, the pane contract, the loop transcript, the routing grammar and the prompt boundary | Draft, awaiting the key map approval |
+| 1 | 001-chat-ux-and-pane-map/ | Seven design documents: thirteen states at both sizes, the `chat` key context, component rows, the pane contract, the loop transcript, the routing grammar and the prompt boundary | Complete. The key map delta approval is recorded at `design/key-map-delta.md` line 118 |
 | 2 | 002-conversation-runtime-and-chat-verb/ | `conversation.ts`, the `chat` verb, `@bot` routing, the resumed answer and the renderer phase 011 reuses | Draft |
 | 3 | 003-chat-pane-and-proof/ | The chat tab of `bots ui`, its worker and 26 frame snapshots | Draft |
 
@@ -213,7 +213,7 @@ Requirement ids are unique across the three children. Child 002 holds REQ-001 to
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- The operator's approval of `001-chat-ux-and-pane-map/design/key-map-delta.md` is outstanding, and it gates child 003.
+- The operator's approval of `001-chat-ux-and-pane-map/design/key-map-delta.md` is recorded, from the build packet's decision Q001, so child 003 is no longer gated on it.
 - The two contract goldens, `contracts/fixtures/chat-transcript.json` and `conversation.jsonl`, now read in order: the human message at 21:12:00 and the bot message at 21:12:04. The earlier finding that the bot message came first is closed.
 <!-- /ANCHOR:questions -->
 
