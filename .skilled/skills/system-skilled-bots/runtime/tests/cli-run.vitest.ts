@@ -14,6 +14,8 @@ import { dirname, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { classifyAction, clipAction } from '../lib/action-kind.js';
+import { decideApproval } from '../lib/approval-ladder.js';
 import { PINNED_IDENTITY_ENV } from '../lib/identity.js';
 import { defaultSeams, installSchedule, readInstallRecord } from '../lib/installer.js';
 import { botMemoryFile, readMemoryFile, sharedMemoryFile } from '../lib/memory.js';
@@ -24,13 +26,13 @@ import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, routineStateFi
 import { EXIT_CODES, newRunId, runBot } from '../lib/runner.js';
 import { installFile, PINNED_STATE_ROOT_ENV, slotSnapshotFile } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
-import { entries, queueOf, writeItem } from './queue-support.js';
+import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
 import { botWorld, BOTS_CLI, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
 import { writeRecord } from './status-support.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
 import type { InstallerSeams } from '../lib/installer.js';
-import type { NeedsYouItem } from '../lib/needs-you.js';
+import type { NeedsYouGrant, NeedsYouItem } from '../lib/needs-you.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
@@ -154,6 +156,7 @@ interface FixtureRow {
   createdAt: string;
   expiresAt: string;
   answer: FixtureAnswer | null;
+  grants: null;
 }
 
 interface FixturePayload {
@@ -204,6 +207,7 @@ function shiftedRow(row: FixtureRow): FixtureRow {
     createdAt: shiftedInstant(row.createdAt),
     expiresAt: shiftedInstant(row.expiresAt),
     answer: shiftedAnswer(row.answer),
+    grants: null,
   };
 }
 
@@ -241,6 +245,31 @@ function installerSeams(agentsDir: string): Partial<InstallerSeams> {
     plutil: defaultSeams().plutil,
     checker: () => ({ exitCode: 0, lines: ['PASS: stub: checker stubbed'] }),
   };
+}
+
+/** Write one open item carrying a grant, so the grant's own columns can be read back. */
+function writeGrantedItem(world: BotWorld, botId: string, question: string, grants: NeedsYouGrant | null): NeedsYouItem {
+  const created = new Date();
+  const id = newRunId(created);
+  const item: NeedsYouItem = {
+    id,
+    runId: id,
+    botId,
+    identity: IDENTITY,
+    question,
+    options: null,
+    createdAt: created.toISOString(),
+    expiresAt: needsYouExpiry(created, 7),
+    evidence: [],
+    prompt: 'The parked prompt.',
+    specFolder: null,
+    answer: null,
+    resumeRequestId: null,
+    grants,
+  };
+  const written = writeNeedsYouItem(world.stateRoot, item);
+  if (!written.ok) throw new Error(written.reason);
+  return item;
 }
 
 describe('bots activity', () => {
@@ -281,7 +310,35 @@ describe('bots inbox', () => {
     if (digestItem?.answer == null) throw new Error('the fixture holds no answered digest item');
     const text = runCli(world, ['inbox', '--all']);
     expect(text.status).toBe(0);
+    // The fixture items carry no grant, so the three grant columns read as dashes.
+    expect(text.stdout).toContain(`answered\t${digestItem.id}\tdigest\t-\t-\t-\tcreated `);
     expect(text.stdout).toContain(`\tanswered ${shiftedInstant(digestItem.answer.answeredAt)} by ada scope once`);
+  }, 60_000);
+
+  it('prints the grant on the item line and its json row', () => {
+    const world = botWorld();
+    const born: NeedsYouGrant = { kind: 'post', action: 'Ship the release?', rung: 'kind', scope: null, grantedBy: null, grantedAt: null };
+    const granted = writeGrantedItem(world, 'manual-ok', 'Ship the release?', born);
+    const bare = writeGrantedItem(world, 'manual-ok', 'Ship the release?', null);
+
+    const text = runCli(world, ['inbox']);
+    expect(text.status).toBe(0);
+    const lines = text.stdout.split('\n');
+    expect(lines).toContain(`open\t${granted.id}\tmanual-ok\tpost\tkind\t-\tcreated ${granted.createdAt}\texpires ${granted.expiresAt}`);
+    expect(lines).toContain(`open\t${bare.id}\tmanual-ok\t-\t-\t-\tcreated ${bare.createdAt}\texpires ${bare.expiresAt}`);
+
+    const json = runCli(world, ['inbox', '--json']);
+    expect(json.status).toBe(0);
+    const payload = JSON.parse(json.stdout) as { version: number; items: Record<string, unknown>[] };
+    expect(payload.items.find((row) => row.id === granted.id)?.grants).toEqual(born);
+    expect(payload.items.find((row) => row.id === bare.id)?.grants).toBeNull();
+
+    // A NO with no scope records deny, so the answered item's grant names the scope it granted.
+    const answered = runCli(world, ['answer', granted.id, 'no']);
+    expect(answered.status).toBe(0);
+    const all = runCli(world, ['inbox', '--all']);
+    expect(all.status).toBe(0);
+    expect(all.stdout.split('\n').some((line) => line.startsWith(`answered\t${granted.id}\tmanual-ok\tpost\tkind\tdeny\t`))).toBe(true);
   }, 60_000);
 });
 
@@ -332,30 +389,51 @@ describe('bots routines', () => {
   }, 60_000);
 });
 
+/** The grant the runtime writes on a fatigue item, so a test item matches what a stopped run leaves. */
+function fatigueGrant(): NeedsYouGrant {
+  const classified = classifyAction(FATIGUE_QUESTION);
+  if (!classified.ok) throw new Error(classified.reason);
+  return {
+    kind: classified.value,
+    action: clipAction(FATIGUE_QUESTION),
+    rung: decideApproval({ kind: classified.value }).rung,
+    scope: null,
+    grantedBy: null,
+    grantedAt: null,
+  };
+}
+
+/** Write the fatigue item a stopped routine bot leaves, and stop the bot the way the streak did. */
+function writeFatiguedCrash(world: BotWorld, now: Date): NeedsYouItem {
+  const item: NeedsYouItem = {
+    id: 'fatigue-1',
+    runId: 'fatigue-1',
+    botId: 'crash',
+    identity: IDENTITY,
+    question: FATIGUE_QUESTION,
+    options: null,
+    createdAt: now.toISOString(),
+    expiresAt: needsYouExpiry(now, 7),
+    evidence: [],
+    prompt: 'Exit with a failure status.',
+    specFolder: null,
+    answer: null,
+    resumeRequestId: null,
+    grants: fatigueGrant(),
+  };
+  const written = writeNeedsYouItem(world.stateRoot, item);
+  if (!written.ok) throw new Error(written.reason);
+  const fatigued = writeRoutineState(world.stateRoot, IDENTITY, 'crash', { ...EMPTY_ROUTINE_STATE, fatiguedAt: now.toISOString(), fatigueItemId: item.id });
+  if (!fatigued.ok) throw new Error(fatigued.reason);
+  setSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled');
+  return item;
+}
+
 describe('bots enable', () => {
-  it('answers the fatigue item with no resume', () => {
+  it('answers the fatigue item with a grant and no resume', () => {
     const world = botWorld();
     const now = new Date();
-    const item: NeedsYouItem = {
-      id: 'fatigue-1',
-      runId: 'fatigue-1',
-      botId: 'crash',
-      identity: IDENTITY,
-      question: FATIGUE_QUESTION,
-      options: null,
-      createdAt: now.toISOString(),
-      expiresAt: needsYouExpiry(now, 7),
-      evidence: [],
-      prompt: 'Exit with a failure status.',
-      specFolder: null,
-      answer: null,
-      resumeRequestId: null,
-    };
-    const written = writeNeedsYouItem(world.stateRoot, item);
-    if (!written.ok) throw new Error(written.reason);
-    const fatigued = writeRoutineState(world.stateRoot, IDENTITY, 'crash', { ...EMPTY_ROUTINE_STATE, fatiguedAt: now.toISOString(), fatigueItemId: 'fatigue-1' });
-    if (!fatigued.ok) throw new Error(fatigued.reason);
-    setSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled');
+    const item = writeFatiguedCrash(world, now);
     setSwitch(world.stateRoot, IDENTITY, 'crash', 'completed');
 
     const enabled = runCli(world, ['enable', 'crash']);
@@ -367,6 +445,14 @@ describe('bots enable', () => {
     expect(needsYouState(answered.value)).toBe('answered');
     expect(answered.value.answer?.text).toBe('enabled');
     expect(answered.value.resumeRequestId).toBe(requestIdFor('crash', 'fatigue-1'));
+    // The answer's scope, actor and instant land on the grant in the same write.
+    const answer = answered.value.answer;
+    if (answer == null) throw new Error('the fatigue item carries no answer');
+    expect(answered.value.grants?.kind).toBe('other');
+    expect(answered.value.grants?.rung).toBe('bot');
+    expect(answered.value.grants?.scope).toBe('once');
+    expect(answered.value.grants?.grantedBy).toBe(answer.by);
+    expect(answered.value.grants?.grantedAt).toBe(answer.answeredAt);
     // The answer is recorded and no resume is queued, so nothing waits on a run.
     // The root holds the request folders themselves, so only the folders are read.
     for (const [name, folder] of Object.entries(queueOf(world))) {
@@ -401,6 +487,45 @@ describe('bots enable', () => {
     expect(lapsed.stderr).toContain('bots: item fatigue-2 expired; not answered');
     expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled')).toBeNull();
   }, 60_000);
+
+  it('drops a queued resume before the next drain', async () => {
+    const world = botWorld();
+    writeFatiguedCrash(world, new Date());
+
+    const answered = runCli(world, ['answer', 'fatigue-1', 'enabled']);
+    expect(answered.status).toBe(0);
+    expect(entries(queueOf(world).inbox)).toEqual([`${requestIdFor('crash', 'fatigue-1')}.json`]);
+
+    // The enable answers the same item with no resume, so the queued one is dropped rather than left to run.
+    const enabled = runCli(world, ['enable', 'crash']);
+    expect(enabled.status).toBe(0);
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+
+    const report = await drain(world);
+    if (!report.ok) throw new Error(report.reason);
+    expect(stubRunCount(world)).toBe(0);
+    expect(records(world).some((record) => record.request.resumedItemId === 'fatigue-1')).toBe(false);
+  }, 120_000);
+
+  it('refuses the run routine-fatigued before enable', async () => {
+    const world = botWorld();
+    writeFatiguedCrash(world, new Date());
+
+    const answered = runCli(world, ['answer', 'fatigue-1', 'enabled']);
+    expect(answered.status).toBe(0);
+
+    // The switch is still set, so the queued resume is refused before it dispatches anything.
+    const report = await drain(world);
+    if (!report.ok) throw new Error(report.reason);
+    const resumed = records(world).find((record) => record.request.resumedItemId === 'fatigue-1');
+    if (resumed === undefined) throw new Error('no record resumed the fatigue item');
+    expect(resumed.exit.refusal?.cause).toBe('routine-fatigued');
+    expect(stubRunCount(world)).toBe(0);
+    expect(readSwitch(world.stateRoot, IDENTITY, 'crash', 'disabled')).not.toBeNull();
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, 'fatigue-1');
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(needsYouState(stored.value)).toBe('answered');
+  }, 120_000);
 });
 
 describe('bots answer', () => {
@@ -427,7 +552,7 @@ describe('bots answer', () => {
 
     const always = runCli(world, ['answer', item.id, 'yes', '--scope', 'always']);
     expect(always.status).toBe(2);
-    expect(firstLine(always.stderr)).toBe('bots: grant-scope-unsupported');
+    expect(firstLine(always.stderr)).toBe('bots: grant-scope-unsupported: no rule store lands in this phase');
 
     const sometimes = runCli(world, ['answer', item.id, 'yes', '--scope', 'sometimes']);
     expect(sometimes.status).toBe(2);
@@ -488,6 +613,40 @@ describe('bots answer', () => {
     // A review settles in place, so nothing waits in the inbox for a run to consume.
     expect(entries(queueOf(world).inbox)).toEqual([]);
   }, 60_000);
+
+  it('grant-scope-unsupported', () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+
+    const refused = runCli(world, ['answer', item.id, 'yes', '--scope', 'conversation']);
+    expect(refused.status).toBe(2);
+    expect(firstLine(refused.stderr)).toBe('bots: grant-scope-unsupported: no rule store lands in this phase');
+    expect(refused.stdout).toBe('');
+  }, 60_000);
+});
+
+describe('bots answer --scope', () => {
+  it('grant-scope-unsupported', () => {
+    const world = botWorld();
+    const born: NeedsYouGrant = { kind: 'post', action: 'Ship the release?', rung: 'kind', scope: null, grantedBy: null, grantedAt: null };
+    const item = writeGrantedItem(world, 'manual-ok', 'Ship the release?', born);
+
+    // A standing allow needs a rule store, so both scopes are refused and the item keeps its born grant.
+    for (const scope of ['always', 'conversation']) {
+      const refused = runCli(world, ['answer', item.id, 'yes', '--scope', scope]);
+      expect(refused.status).toBe(2);
+      expect(firstLine(refused.stderr)).toBe('bots: grant-scope-unsupported: no rule store lands in this phase');
+      const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+      if (!stored.ok) throw new Error(stored.reason);
+      expect(needsYouState(stored.value)).toBe('open');
+      expect(stored.value.grants).toEqual(born);
+    }
+
+    const once = writeGrantedItem(world, 'manual-ok', 'Ship the release?', born);
+    expect(runCli(world, ['answer', once.id, 'yes', '--scope', 'once']).status).toBe(0);
+    const deny = writeGrantedItem(world, 'manual-ok', 'Ship the release?', born);
+    expect(runCli(world, ['answer', deny.id, 'yes', '--scope', 'deny']).status).toBe(0);
+  }, 60_000);
 });
 
 describe('bots schedule install', () => {
@@ -532,7 +691,7 @@ describe('the activity and inbox payloads', () => {
     const payload = JSON.parse(all.stdout) as { version: number; items: Record<string, unknown>[] };
     expect(payload).toEqual(shiftedPayload(INBOX_FIXTURE.expectAll));
 
-    const keys = ['id', 'botId', 'kind', 'question', 'state', 'at', 'options', 'createdAt', 'expiresAt', 'answer'];
+    const keys = ['id', 'botId', 'kind', 'question', 'state', 'at', 'options', 'createdAt', 'expiresAt', 'answer', 'grants'];
     expect(payload.items).toHaveLength(3);
     for (const item of payload.items) expect(Object.keys(item)).toEqual(keys);
   }, 60_000);

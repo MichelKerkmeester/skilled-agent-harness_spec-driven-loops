@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { buildExecutorDispatchEnv } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js';
 import { parseExecutorConfig } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import { answerItem } from '../lib/answer.js';
 import { RUN_MARKER_ENV, WORKING_PLACE_PREFIX, workingPlaceLine } from '../lib/dispatch.js';
 import { appendMemoryEntry, botMemoryFile } from '../lib/memory.js';
 import { listNeedsYouItems, needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
@@ -64,6 +65,18 @@ function item(world: BotWorld, overrides: Partial<NeedsYouItem> = {}): NeedsYouI
     answer: null,
     resumeRequestId: null,
     ...overrides,
+  };
+}
+
+/** The item as a real answer leaves it: the answer and its grant written together, with one scope, actor and instant. */
+function answeredAs(item: NeedsYouItem, text: string, extra: Partial<NeedsYouItem> = {}): NeedsYouItem {
+  const answeredAt = new Date().toISOString();
+  const grants = item.grants ?? null;
+  return {
+    ...item,
+    ...extra,
+    answer: { text, answeredAt, by: 'ada', scope: 'once' },
+    grants: grants === null ? null : { ...grants, scope: 'once', grantedBy: 'ada', grantedAt: answeredAt },
   };
 }
 
@@ -616,6 +629,63 @@ describe('needs-you decisions', () => {
     expect(outcome.detail).toContain('answer holds a literal of key PLANTED_TOKEN');
     expect(stubRunCount(world)).toBe(0);
   });
+
+  it('writes the grant from the parked question', async () => {
+    const world = botWorld();
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak('[NEEDS-DECISION] delete the stale branch?\n') }));
+    expect(outcome.kind).toBe('awaiting-decision');
+    if (outcome.kind !== 'awaiting-decision') throw new Error('expected a parked run');
+    const parked = readNeedsYouItem(world.stateRoot, IDENTITY, outcome.itemId);
+    if (!parked.ok) throw new Error(parked.reason);
+    expect(parked.value.grants).toEqual({
+      kind: 'delete',
+      action: 'delete the stale branch?',
+      rung: 'kind',
+      scope: null,
+      grantedBy: null,
+      grantedAt: null,
+    });
+
+    // A declaration outside the seven kinds is the bot's own mistake, so the run fails and parks nothing.
+    const invalidWorld = botWorld();
+    const invalid = await runBot(invalidWorld.input('manual-ok', { buildCommand: speak('[NEEDS-DECISION] [ACTION: transfer] Move the balance?\n') }));
+    expect(invalid).toMatchObject({ kind: 'failed', reason: 'action-kind-invalid', class: 'author' });
+    expect(readdirSync(identityStatePaths(invalidWorld.stateRoot, IDENTITY).needsYou)).toEqual([]);
+  }, 30_000);
+
+  it('fills the grant on the memory-proposal branch', async () => {
+    const world = botWorld();
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak('done\n[REMEMBER] user Prefers ISO dates.\n') }));
+    expect(outcome.kind).toBe('completed');
+    const items = listNeedsYouItems(world.stateRoot, IDENTITY).items;
+    expect(items).toHaveLength(1);
+    const proposal = items[0]?.item;
+    if (proposal === undefined) throw new Error('no proposal');
+    expect(proposal.question).toBe('Remember this fact for manual-ok: Prefers ISO dates.');
+    expect(proposal.grants).toEqual({
+      kind: 'other',
+      action: proposal.question.slice(0, 120),
+      rung: 'bot',
+      scope: null,
+      grantedBy: null,
+      grantedAt: null,
+    });
+  }, 30_000);
+
+  it('carries one grant line on the resumed record', async () => {
+    const world = botWorld();
+    const parked = await runBot(world.input('manual-ok', { buildCommand: speak('[NEEDS-DECISION] delete the stale branch?\n') }));
+    if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
+    const itemId = parked.itemId;
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'no', env: world.env, actor: 'ada' });
+    expect(answered.ok).toBe(true);
+
+    const resumed = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'rq-resume', itemId }, buildCommand: speak('done\n') }));
+    expect(resumed.kind).toBe('completed');
+    expect(record(world, resumed).request.grant).toEqual({ itemId, kind: 'delete', scope: 'deny', by: 'ada' });
+    // A run that resumed no granted item carries no grant key at all.
+    expect(record(world, parked).request).not.toHaveProperty('grant');
+  }, 30_000);
 });
 
 describe('state the run cannot reach', () => {
@@ -758,7 +828,7 @@ describe('working place', () => {
     // A prompt parked before the line existed carries no working-place line at all.
     const stripped = item.value.prompt.split('\n').filter((line) => !line.startsWith(WORKING_PLACE_PREFIX)).join('\n');
     expect(stripped).not.toBe(item.value.prompt);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, prompt: stripped, answer: { text: 'keep it', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'keep it', { prompt: stripped }));
 
     const resumed = await runBot(world.input('park-edit', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
     expect(resumed.kind, JSON.stringify(resumed)).toBe('completed');
@@ -841,7 +911,7 @@ describe('memory in a run', () => {
       question: 'Remember this fact for manual-ok: Prefers ISO dates.',
       answer: null,
     });
-    expect(items[0]?.item).not.toHaveProperty('grants');
+    expect(items[0]?.item.grants).toMatchObject({ kind: 'other', rung: 'bot', scope: null });
 
     const rec = record(world, outcome);
     expect(rec.exit.reason).toBe(plainReason);
@@ -973,11 +1043,7 @@ describe('memory in a run', () => {
     const tree = record(resumeWorld, parked).evidence.worktreePath as string;
     const parkedItem = readNeedsYouItem(resumeWorld.stateRoot, IDENTITY, parked.itemId);
     if (!parkedItem.ok) throw new Error(parkedItem.reason);
-    writeNeedsYouItem(resumeWorld.stateRoot, {
-      ...parkedItem.value,
-      prompt: `${parkedItem.value.prompt}\n${'x'.repeat(32_500)}`,
-      answer: { text: 'keep them', answeredAt: new Date().toISOString() },
-    });
+    writeNeedsYouItem(resumeWorld.stateRoot, answeredAs(parkedItem.value, 'keep them', { prompt: `${parkedItem.value.prompt}\n${'x'.repeat(32_500)}` }));
     const resumed = await runBot(resumeWorld.input('park-tree', { senders: {}, request: { kind: 'resume', requestId: 'rq-budget-tree', itemId: parked.itemId } }));
     expect(resumed).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
     if (resumed.kind !== 'refused') throw new Error('expected a refusal');

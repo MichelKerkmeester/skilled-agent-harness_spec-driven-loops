@@ -14,9 +14,22 @@ import { approveBots, botWorld, IDENTITY, stubRunCount, writeBot } from './runne
 import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
 import { cleanupTemp } from './support.js';
 
+import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
+
+/** The item as a real answer leaves it: the answer and its grant written together, with one scope, actor and instant. */
+function answeredAs(item: NeedsYouItem, text: string, extra: Partial<NeedsYouItem> = {}): NeedsYouItem {
+  const answeredAt = new Date().toISOString();
+  const grants = item.grants ?? null;
+  return {
+    ...item,
+    ...extra,
+    answer: { text, answeredAt, by: 'ada', scope: 'once' },
+    grants: grants === null ? null : { ...grants, scope: 'once', grantedBy: 'ada', grantedAt: answeredAt },
+  };
+}
 
 function enqueueResume(world: BotWorld, botId: string, itemId: string) {
   return enqueueFromCheckout(world.checkoutRoot, { kind: 'resume', workflowId: botId, source: 'answer', eventId: itemId }, world.env);
@@ -29,7 +42,7 @@ describe('resume requests', () => {
     if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'merge', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'merge'));
 
     const first = enqueueResume(world, 'needs-decision', parked.itemId);
     const second = enqueueResume(world, 'needs-decision', parked.itemId);
@@ -73,7 +86,7 @@ describe('resume requests', () => {
     if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'merge', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'merge'));
     const sent = enqueueResume(world, botId, parked.itemId);
     if (!sent.ok) throw new Error(sent.reason);
 

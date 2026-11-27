@@ -1,8 +1,10 @@
 // bots answer: the answer is recorded before one resume request keyed by the item, and the item can expire.
 
-import { existsSync, readFileSync } from 'node:fs';
+import { spawn, spawnSync } from 'node:child_process';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { userInfo } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -12,11 +14,12 @@ import { itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, wr
 import { requestIdFor } from '../lib/request-record.js';
 import { readRunRecord } from '../lib/run-record.js';
 import { generationStampFile, newRunId, runBot } from '../lib/runner.js';
+import { identityStatePaths } from '../lib/state-root.js';
 import { botWorld, IDENTITY, runCli } from './runner-support.js';
 import { entries, queueOf, records, writeItem } from './queue-support.js';
-import { cleanupTemp, REAL_CHECKOUT, writeConfig } from './support.js';
+import { cleanupTemp, REAL_CHECKOUT, tempDir, writeConfig } from './support.js';
 
-import type { NeedsYouItem } from '../lib/needs-you.js';
+import type { AnswerScope, NeedsYouItem } from '../lib/needs-you.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
@@ -27,6 +30,20 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const LEGACY = JSON.parse(
   readFileSync(join(REAL_CHECKOUT, 'specs', 'system-skilled-bots', '003-openbot-parity-build', '001-activity-and-actor', 'design', 'fixtures', 'legacy-records.json'), 'utf8'),
 ) as { answerBefore001: { text: string; answeredAt: string } };
+
+// The child that races one answer: it announces itself, waits for the other child, then answers.
+const ANSWER_CHILD = `
+import { existsSync, writeFileSync } from 'node:fs';
+
+const [answerUrl, mineReady, otherReady, checkoutRoot, itemId, text] = process.argv.slice(2);
+const { answerItem } = await import(answerUrl);
+writeFileSync(mineReady, '');
+const sleeper = new Int32Array(new SharedArrayBuffer(4));
+const until = Date.now() + 15_000;
+while (!existsSync(otherReady) && Date.now() < until) Atomics.wait(sleeper, 0, 0, 5);
+const result = answerItem({ checkoutRoot, itemId, text, env: process.env });
+process.stdout.write(JSON.stringify(result));
+`;
 
 function generation(world: BotWorld): number {
   const path = generationStampFile(world.stateRoot, IDENTITY);
@@ -263,6 +280,142 @@ describe('bots answer', () => {
     if (!after.ok) throw new Error(after.reason);
     expect(after.value.answer?.text).toBe('enabled');
   }, 60_000);
+
+  it('records the scope the answer grants', () => {
+    const world = botWorld();
+    const cases: Array<{ text: string; scope?: AnswerScope; expected: AnswerScope }> = [
+      { text: 'yes', scope: 'deny', expected: 'deny' },
+      { text: 'yes', expected: 'once' },
+      { text: 'no', expected: 'deny' },
+      { text: 'n', expected: 'deny' },
+      { text: '  NO  ', scope: 'once', expected: 'deny' },
+    ];
+    for (const one of cases) {
+      const item = writeItem(world, 'manual-ok');
+      const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: one.text, env: world.env, actor: 'ada', scope: one.scope });
+      expect(answered.ok, one.text).toBe(true);
+      const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+      if (!stored.ok) throw new Error(stored.reason);
+      expect(stored.value.answer?.scope, one.text).toBe(one.expected);
+      expect(stored.value.grants?.scope, one.text).toBe(one.expected);
+      expect(stored.value.grants?.grantedBy, one.text).toBe('ada');
+      expect(stored.value.grants?.grantedAt, one.text).toBe(stored.value.answer?.answeredAt);
+    }
+
+    const rejected = proposal(world);
+    const rejection = answerItem({ checkoutRoot: world.checkoutRoot, itemId: rejected.id, text: 'reject', env: world.env, actor: 'ada', scope: 'once' });
+    expect(rejection.ok).toBe(true);
+    const rejectedStored = readNeedsYouItem(world.stateRoot, IDENTITY, rejected.id);
+    if (!rejectedStored.ok) throw new Error(rejectedStored.reason);
+    expect(rejectedStored.value.grants?.scope).toBe('deny');
+
+    const confirmed = proposal(world);
+    const confirmation = answerItem({ checkoutRoot: world.checkoutRoot, itemId: confirmed.id, text: 'confirm', env: world.env, actor: 'ada', scope: 'deny' });
+    expect(confirmation.ok).toBe(true);
+    const confirmedStored = readNeedsYouItem(world.stateRoot, IDENTITY, confirmed.id);
+    if (!confirmedStored.ok) throw new Error(confirmedStored.reason);
+    expect(confirmedStored.value.grants?.scope).toBe('once');
+  }, 60_000);
+
+  it('refuses a second answer with another scope', () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    const first = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    expect(first.ok).toBe(true);
+
+    const second = runCli(world, ['answer', item.id, 'yes', '--scope', 'deny']);
+    expect(second.status).toBe(4);
+    expect(second.stderr.startsWith('bots: item-answered-differently')).toBe(true);
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer?.scope).toBe('once');
+    expect(stored.value.grants?.scope).toBe('once');
+  }, 60_000);
+
+  it('two answers one lands', async () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    const folder = tempDir('bots-answer-race-');
+    const childPath = join(folder, 'child.mts');
+    writeFileSync(childPath, ANSWER_CHILD);
+    const runtime = resolve(import.meta.dirname, '..');
+    const answerUrl = pathToFileURL(resolve(runtime, 'lib', 'answer.ts')).href;
+    const readyYes = join(folder, 'yes.ready');
+    const readyNo = join(folder, 'no.ready');
+
+    const start = (text: string, mineReady: string, otherReady: string) => {
+      const child = spawn(process.execPath, ['--import', 'tsx', childPath, answerUrl, mineReady, otherReady, world.checkoutRoot, item.id, text], {
+        cwd: runtime,
+        env: world.env,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+      let stdout = '';
+      let stderr = '';
+      child.stdout.on('data', (chunk: Buffer) => {
+        stdout += chunk.toString();
+      });
+      child.stderr.on('data', (chunk: Buffer) => {
+        stderr += chunk.toString();
+      });
+      return new Promise<{ code: number | null; stdout: string; stderr: string }>((done) =>
+        child.on('close', (code) => done({ code, stdout, stderr })),
+      );
+    };
+
+    const [yes, no] = await Promise.all([start('yes', readyYes, readyNo), start('no', readyNo, readyYes)]);
+    expect(yes.code, yes.stderr).toBe(0);
+    expect(no.code, no.stderr).toBe(0);
+    const results = [JSON.parse(yes.stdout), JSON.parse(no.stdout)] as Array<Record<string, unknown>>;
+    expect(results.filter((result) => result.ok === true)).toHaveLength(1);
+    expect(results.filter((result) => result.ok === false)).toMatchObject([{ ok: false, reason: 'item-answered-differently' }]);
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect([['yes', 'once'], ['no', 'deny']]).toContainEqual([stored.value.answer?.text, stored.value.grants?.scope]);
+    const locks = readdirSync(identityStatePaths(world.stateRoot, IDENTITY).needsYou).filter((name) => name.endsWith('.lock'));
+    expect(locks).toEqual([]);
+  }, 60_000);
+
+  it('a stale lock does not block the next answer', () => {
+    const world = botWorld();
+    const folder = identityStatePaths(world.stateRoot, IDENTITY).needsYou;
+    const lockFor = (itemId: string, pid: number, createdAt: string) => {
+      const path = join(folder, `${itemId}.lock`);
+      writeFileSync(path, JSON.stringify({ pid, nonce: '9f2c1a7b4e8d0356c1b9a4f7e2d8063b', createdAt }));
+      return path;
+    };
+
+    const dead = spawnSync(process.execPath, ['-e', '']).pid;
+    const first = writeItem(world, 'manual-ok');
+    const firstLock = lockFor(first.id, dead, new Date().toISOString());
+    const firstAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    expect(firstAnswer.ok).toBe(true);
+    const firstStored = readNeedsYouItem(world.stateRoot, IDENTITY, first.id);
+    if (!firstStored.ok) throw new Error(firstStored.reason);
+    expect(firstStored.value.grants?.scope).toBe('once');
+    expect(existsSync(firstLock)).toBe(false);
+
+    const second = writeItem(world, 'manual-ok');
+    const aged = new Date(Date.now() - 2 * 60 * 1000).toISOString();
+    const secondLock = lockFor(second.id, process.pid, aged);
+    const secondAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    expect(secondAnswer.ok).toBe(true);
+    expect(existsSync(secondLock)).toBe(false);
+
+    const third = writeItem(world, 'manual-ok');
+    const fresh = new Date().toISOString();
+    const thirdLock = lockFor(third.id, process.pid, fresh);
+    const started = Date.now();
+    const busy = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    const elapsed = Date.now() - started;
+    expect(busy).toMatchObject({ ok: false, reason: 'item-busy', detail: `held by pid ${process.pid} since ${fresh}` });
+    expect(elapsed).toBeGreaterThanOrEqual(1_900);
+    const thirdStored = readNeedsYouItem(world.stateRoot, IDENTITY, third.id);
+    if (!thirdStored.ok) throw new Error(thirdStored.reason);
+    expect(needsYouState(thirdStored.value)).toBe('open');
+    expect(existsSync(thirdLock)).toBe(true);
+  }, 30_000);
 });
 
 describe('memory proposal answer', () => {
@@ -352,7 +505,8 @@ describe('memory proposal answer', () => {
     if (!stored.ok) throw new Error(stored.reason);
     expect(stored.value.answer?.by).toBe('ada');
     expect(stored.value.answer?.scope).toBe('once');
-    expect(Object.keys(stored.value)).not.toContain('grants');
+    expect(stored.value.grants?.scope).toBe('once');
+    expect(stored.value.grants?.grantedBy).toBe(stored.value.answer?.by);
 
     const denied = proposal(world);
     const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied.id, text: 'deny', env: world.env, actor: 'ada' });

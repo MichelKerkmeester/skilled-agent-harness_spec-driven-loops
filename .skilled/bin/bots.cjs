@@ -29,8 +29,9 @@ const USAGE = [
   '  pause <id>     hold a bot\'s runs after the lease until resumed',
   '  resume <id>    lift a pause (not the resume of a parked run)',
   '  inbox [--json] [--all]',
-  '                 list open and expired needs-you items; --all adds the answered',
-  '                 ones, --json prints one document',
+  '                 list open and expired needs-you items, each with the kind of',
+  '                 action it approves, the rung that made the bot ask and the',
+  '                 scope granted; --all adds the answered ones, --json prints one document',
   '  enqueue <id> --source <name> (--event-id <id> | --key <key>)',
   '                 [--prompt <text>] [--origin <text>] [--fired-slot <slot>]',
   '                 queue one run request; an event sent twice is a duplicate',
@@ -50,7 +51,10 @@ const USAGE = [
   '  answer <item-id> <text> [--as <name>] [--scope once|deny]',
   '                 answer a needs-you item and queue the run that continues it, or',
   '                 confirm or reject a memory proposal; --as records who answered',
-  '                 and needs a tty unless it is you, and --scope deny records a denial',
+  '                 and needs a tty unless it is you; --scope records what the',
+  '                 answer grants, once or deny, and a NO with no --scope records',
+  '                 deny; always and conversation are refused grant-scope-unsupported',
+  '                 because no rule store lands',
   '  remember <fact> [--bot <id>] [--type <type>] [--as <name>]',
   '                 add one fact to the shared memory file, or with --bot to that',
   '                 bot\'s own; --type is user, general, feedback or reference',
@@ -74,6 +78,11 @@ const USAGE = [
   '                 --ascii draws plain ASCII glyphs',
   '',
   'exit codes: 0 completed, 1 run failure, 2 usage, 3 recursion guard, 4 refused before dispatch, 5 awaiting decision',
+  '',
+  'approvals: a bot asks before an action in this order, and the first answer wins:',
+  '  1. a kind of action: pay, credentials, delete, send, share or post',
+  '  2. a rule, 3. auto-review, 4. extra vigilant',
+  'rungs 2 to 4 are not implemented in this phase, because no store supplies them.',
 ].join('\n');
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
@@ -167,7 +176,8 @@ function checkActorOptions(parsed) {
   if (given && actor === '') return { message: 'option --as needs a value' };
   if (given && !ACTOR_PATTERN.test(actor)) return { message: '--as takes a name' };
   if (isAnswer && options.scope !== undefined) {
-    if (UNSUPPORTED_SCOPES.has(options.scope)) return { message: 'grant-scope-unsupported' };
+    // The refusal stays a parse refusal at exit 2, and its detail says why a standing allow cannot be recorded.
+    if (UNSUPPORTED_SCOPES.has(options.scope)) return { message: 'grant-scope-unsupported: no rule store lands in this phase' };
     if (!ANSWER_SCOPES.has(options.scope)) return { message: '--scope takes once or deny' };
   }
   const me = osUser();
@@ -955,12 +965,18 @@ async function main(argv) {
         createdAt: item.createdAt,
         expiresAt: item.expiresAt,
         answer: item.answer,
+        grants: item.grants ?? null,
       }));
       process.stdout.write(`${JSON.stringify({ version: 1, items: payload }, null, 2)}\n`);
     } else {
       if (shown.length === 0) process.stdout.write(all ? 'bots: no needs-you items\n' : 'bots: no open or expired needs-you items\n');
       for (const { item, state } of shown) {
-        process.stdout.write(`${state}\t${item.id}\t${item.botId}\tcreated ${item.createdAt}\texpires ${item.expiresAt}\n`);
+        // The grant sits after the bot id, so a field search still finds a bot's items and the next one finds a kind's.
+        const grant = item.grants ?? null;
+        const grantKind = grant === null ? '-' : grant.kind;
+        const grantRung = grant === null ? '-' : grant.rung;
+        const grantScope = grant === null || grant.scope === null ? '-' : grant.scope;
+        process.stdout.write(`${state}\t${item.id}\t${item.botId}\t${grantKind}\t${grantRung}\t${grantScope}\tcreated ${item.createdAt}\texpires ${item.expiresAt}\n`);
         process.stdout.write(`\t${item.question}\n`);
         for (const option of item.options ?? []) process.stdout.write(`\t- ${option}\n`);
         if (state === 'answered') process.stdout.write(`\tanswered ${item.answer.answeredAt} by ${item.answer.by ?? '-'} scope ${item.answer.scope}\n`);

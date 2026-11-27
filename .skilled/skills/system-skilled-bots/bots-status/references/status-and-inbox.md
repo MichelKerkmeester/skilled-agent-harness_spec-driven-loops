@@ -7,7 +7,7 @@ trigger_phrases:
   - "which bots are installed"
 importance_tier: normal
 contextType: reference
-version: 1.0.3.0
+version: 1.0.3.1
 ---
 
 # Bot Status and Inbox
@@ -47,6 +47,14 @@ Give the status mode the two read verbs and the flags that change what they show
 Each verb takes `--repo <path>` for the consumer checkout. A row can also report a missing checkout, a changed runner path that needs a reinstall, or a run folder that vanished. `bots status` and `bots activity` bring the index up to date on every read with no retention, so a run that ended after the build shows without `--rebuild`.
 
 A `bots status` row ends with `branch <name>` when the last run recorded a branch and `worktree <path>` when it ran in a worktree, after every part the row already shows. `bots status --json` carries the same two facts as `lastRun.branch` and `lastRun.worktreePath`, each a string or null. A run on a detached HEAD records no branch, so its row shows neither part.
+
+A `bots inbox` item line carries three columns after the bot id: the grant's kind, its rung and its scope. A scope not yet granted reads `-`, and an item with no grant reads `-` in all three. For example:
+
+```text
+open	20261125T211204Z-7c1e9a40	hello	post	kind	-	created 2026-11-25T21:12:04.000Z	expires 2026-11-26T21:12:04.000Z
+```
+
+`bots inbox --json` carries the same object as a `grants` key on each item row, or `null` when the item has no grant. `grants.kind` is the kind of action the question asks about, not the item's review `kind`.
 
 ---
 

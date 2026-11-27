@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "20261125T211204Z-7c1e9a40",
+      "botId": "hello",
+      "kind": null,
+      "question": "Ship the release?",
+      "state": "open",
+      "at": "2026-11-25T21:12:04.000Z",
+      "options": null,
+      "createdAt": "2026-11-25T21:12:04.000Z",
+      "expiresAt": "2026-11-26T21:12:04.000Z",
+      "answer": null,
+      "grants": {
+        "kind": "post",
+        "action": "Ship the release?",
+        "rung": "kind",
+        "scope": null,
+        "grantedBy": null,
+        "grantedAt": null
+      }
+    },
+    {
+      "id": "20261125T210504Z-3f9d2b11",
+      "botId": "digest",
+      "kind": null,
+      "question": "Which channel?",
+      "state": "open",
+      "at": "2026-11-25T21:05:04.000Z",
+      "options": ["email", "chat"],
+      "createdAt": "2026-11-25T21:05:04.000Z",
+      "expiresAt": "2026-11-26T21:05:04.000Z",
+      "answer": null,
+      "grants": {
+        "kind": "other",
+        "action": "Which channel?",
+        "rung": "bot",
+        "scope": null,
+        "grantedBy": null,
+        "grantedAt": null
+      }
+    },
+    {
+      "id": "20261124T201404Z-c8f3a6e2",
+      "botId": "archive",
+      "kind": null,
+      "question": "Delete the old runs?",
+      "state": "expired",
+      "at": "2026-11-24T20:14:04.000Z",
+      "options": null,
+      "createdAt": "2026-11-24T20:14:04.000Z",
+      "expiresAt": "2026-11-25T20:14:04.000Z",
+      "answer": null,
+      "grants": {
+        "kind": "delete",
+        "action": "Delete the old runs?",
+        "rung": "kind",
+        "scope": null,
+        "grantedBy": null,
+        "grantedAt": null
+      }
+    }
+  ]
+}

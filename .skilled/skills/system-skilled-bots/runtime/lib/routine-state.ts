@@ -13,6 +13,8 @@ import { chmodSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { classifyAction, clipAction } from './action-kind.js';
+import { decideApproval } from './approval-ladder.js';
 import { listNeedsYouItems, needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { AWAITING_DECISION, readRunRecord } from './run-record.js';
 import { identityStatePaths, isSafeSegment, STATE_DIR_MODE } from './state-root.js';
@@ -337,6 +339,9 @@ export function evaluateFatigue(input: FatigueInput): Result<string | null> {
   const itemId = state.fatigueItemId ?? open?.item.id ?? input.runId;
 
   if (!readNeedsYouItem(stateRoot, identity, itemId).ok) {
+    // The question is fixed text, so a refusal here is a broken constant and fails loudly.
+    const classified = classifyAction(FATIGUE_QUESTION);
+    if (!classified.ok) return classified;
     const item = {
       id: itemId,
       runId: itemId,
@@ -351,6 +356,14 @@ export function evaluateFatigue(input: FatigueInput): Result<string | null> {
       specFolder: null,
       answer: null,
       resumeRequestId: null,
+      grants: {
+        kind: classified.value,
+        action: clipAction(FATIGUE_QUESTION),
+        rung: decideApproval({ kind: classified.value }).rung,
+        scope: null,
+        grantedBy: null,
+        grantedAt: null,
+      },
     } satisfies NeedsYouItem;
     const written = writeNeedsYouItem(stateRoot, item);
     if (!written.ok) return written;
