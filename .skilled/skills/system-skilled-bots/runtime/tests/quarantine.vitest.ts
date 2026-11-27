@@ -59,7 +59,7 @@ describe('drain quarantine', () => {
     expect(stubRunCount(world)).toBe(0);
 
     // Answering the held item queues its own resume run; the held request stays in quarantine and is not replayed.
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: held.id, text: 'merge', env: world.env });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: held.id, text: 'merge', env: world.env, surface: 'terminal' });
     expect(answered.ok).toBe(true);
     expect(entries(queue.inbox)).toEqual([`${answered.ok ? answered.value.requestId : ''}.json`]);
     expect(entries(queue.quarantine)).toContain(`${sent.get('held-bot') as string}.json`);

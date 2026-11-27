@@ -9,12 +9,13 @@ import { pathToFileURL } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { answerItem } from '../lib/answer.js';
+import { rosterAdd } from '../lib/channel-link.js';
 import { appendMemoryEntry, botMemoryFile, forgetMemoryEntry, MEMORY_LIMITS, readMemoryFile } from '../lib/memory.js';
 import { itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { requestIdFor } from '../lib/request-record.js';
 import { readRunRecord } from '../lib/run-record.js';
 import { generationStampFile, newRunId, runBot } from '../lib/runner.js';
-import { identityStatePaths } from '../lib/state-root.js';
+import { identityStatePaths, needsYouFile } from '../lib/state-root.js';
 import { botWorld, IDENTITY, runCli } from './runner-support.js';
 import { entries, queueOf, records, writeItem } from './queue-support.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir, writeConfig } from './support.js';
@@ -35,13 +36,13 @@ const LEGACY = JSON.parse(
 const ANSWER_CHILD = `
 import { existsSync, writeFileSync } from 'node:fs';
 
-const [answerUrl, mineReady, otherReady, checkoutRoot, itemId, text] = process.argv.slice(2);
+const [answerUrl, mineReady, otherReady, checkoutRoot, itemId, text, surface = 'terminal', actor] = process.argv.slice(2);
 const { answerItem } = await import(answerUrl);
 writeFileSync(mineReady, '');
 const sleeper = new Int32Array(new SharedArrayBuffer(4));
 const until = Date.now() + 15_000;
 while (!existsSync(otherReady) && Date.now() < until) Atomics.wait(sleeper, 0, 0, 5);
-const result = answerItem({ checkoutRoot, itemId, text, env: process.env });
+const result = answerItem({ checkoutRoot, itemId, text, env: process.env, surface, ...(actor === undefined ? {} : { actor }) });
 process.stdout.write(JSON.stringify(result));
 `;
 
@@ -122,6 +123,7 @@ describe('bots answer', () => {
       itemId,
       text: 'merge',
       env: world.env,
+      surface: 'terminal',
       enqueue: (stateRoot, request) => {
         const item = readNeedsYouItem(stateRoot, IDENTITY, itemId);
         seen = item.ok ? needsYouState(item.value) : item.reason;
@@ -168,7 +170,7 @@ describe('bots answer', () => {
     expect(needsYouState(item.value, new Date(expiresAt - 1))).toBe('open');
     expect(needsYouState(item.value, new Date(expiresAt))).toBe('expired');
     expect(
-      answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'merge', env: world.env, now: new Date(expiresAt) }),
+      answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'merge', env: world.env, surface: 'terminal', now: new Date(expiresAt) }),
     ).toMatchObject({ ok: false, reason: 'item-expired' });
 
     const stale = writeItem(world, 'manual-ok', { createdAt: new Date(Date.now() - 3 * DAY_MS), expiryDays: 2 });
@@ -182,7 +184,7 @@ describe('bots answer', () => {
   it('records the actor in by', async () => {
     const world = botWorld();
     const first = await parkedItemId(world);
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first, text: 'merge', env: world.env, actor: 'ada' });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(answered.ok).toBe(true);
     const firstItem = readNeedsYouItem(world.stateRoot, IDENTITY, first);
     if (!firstItem.ok) throw new Error(firstItem.reason);
@@ -192,7 +194,7 @@ describe('bots answer', () => {
     expect(record.value.record.answeredBy).toBe('ada');
 
     const second = await parkedItemId(world);
-    const anonymous = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second, text: 'merge', env: world.env });
+    const anonymous = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second, text: 'merge', env: world.env, surface: 'terminal' });
     expect(anonymous.ok).toBe(true);
     const secondItem = readNeedsYouItem(world.stateRoot, IDENTITY, second);
     if (!secondItem.ok) throw new Error(secondItem.reason);
@@ -200,7 +202,7 @@ describe('bots answer', () => {
     expect(secondItem.value.answer?.by).toBe(/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(osName) ? osName : null);
 
     const third = await parkedItemId(world);
-    const cased = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third, text: 'merge', env: world.env, actor: 'Ada' });
+    const cased = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third, text: 'merge', env: world.env, surface: 'terminal', actor: 'Ada' });
     expect(cased.ok).toBe(true);
     const thirdItem = readNeedsYouItem(world.stateRoot, IDENTITY, third);
     if (!thirdItem.ok) throw new Error(thirdItem.reason);
@@ -211,32 +213,32 @@ describe('bots answer', () => {
   it('records the scope and refuses another', async () => {
     const world = botWorld();
     const denied = await parkedItemId(world);
-    const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied, text: 'merge', env: world.env, actor: 'ada', scope: 'deny' });
+    const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada', scope: 'deny' });
     expect(deniedAnswer.ok).toBe(true);
     const deniedItem = readNeedsYouItem(world.stateRoot, IDENTITY, denied);
     if (!deniedItem.ok) throw new Error(deniedItem.reason);
     expect(deniedItem.value.answer?.scope).toBe('deny');
 
     const fresh = await parkedItemId(world);
-    const onceAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada' });
+    const onceAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(onceAnswer.ok).toBe(true);
     const freshItem = readNeedsYouItem(world.stateRoot, IDENTITY, fresh);
     if (!freshItem.ok) throw new Error(freshItem.reason);
     expect(freshItem.value.answer?.scope).toBe('once');
 
-    const duplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada', scope: 'once' });
+    const duplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     expect(duplicate.ok && duplicate.value.status).toBe('duplicate');
-    const other = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada', scope: 'deny' });
+    const other = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada', scope: 'deny' });
     expect(other).toMatchObject({ ok: false, reason: 'item-answered-differently' });
 
     const legacy = writeItem(world, 'manual-ok');
     const written = writeNeedsYouItem(world.stateRoot, { ...legacy, answer: LEGACY.answerBefore001 });
     if (!written.ok) throw new Error(written.reason);
-    const legacySent = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada' });
+    const legacySent = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, surface: 'terminal', actor: 'ada' });
     expect(legacySent.ok && legacySent.value.status).toBe('enqueued');
-    const legacyDuplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada' });
+    const legacyDuplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, surface: 'terminal', actor: 'ada' });
     expect(legacyDuplicate.ok && legacyDuplicate.value.status).toBe('duplicate');
-    const legacyOther = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada', scope: 'deny' });
+    const legacyOther = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, surface: 'terminal', actor: 'ada', scope: 'deny' });
     expect(legacyOther).toMatchObject({ ok: false, reason: 'item-answered-differently' });
   }, 120_000);
 
@@ -244,7 +246,7 @@ describe('bots answer', () => {
     expect(process.stdin.isTTY).not.toBe(true);
     const world = botWorld();
     const itemId = await parkedItemId(world);
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'merge', env: world.env, actor: 'ada' });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(answered.ok).toBe(true);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, itemId);
     if (!item.ok) throw new Error(item.reason);
@@ -260,7 +262,7 @@ describe('bots answer', () => {
       throw new Error('a no-resume answer must not queue a request');
     };
 
-    const result = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'enabled', resume: false, env: world.env, enqueue });
+    const result = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'enabled', resume: false, env: world.env, surface: 'terminal', enqueue });
     const requestId = requestIdFor(item.botId, item.id);
     expect(result).toMatchObject({ ok: true, value: { status: 'reviewed', requestId } });
     expect(calls).toEqual([]);
@@ -274,7 +276,7 @@ describe('bots answer', () => {
     expect(needsYouState(stored.value)).toBe('answered');
     expect(itemAwaitingResume(world.stateRoot, IDENTITY, item.botId)).toBeNull();
 
-    const again = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'something else', resume: false, env: world.env, enqueue });
+    const again = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'something else', resume: false, env: world.env, surface: 'terminal', enqueue });
     expect(again).toMatchObject({ ok: true, value: { status: 'reviewed' } });
     const after = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
     if (!after.ok) throw new Error(after.reason);
@@ -292,7 +294,7 @@ describe('bots answer', () => {
     ];
     for (const one of cases) {
       const item = writeItem(world, 'manual-ok');
-      const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: one.text, env: world.env, actor: 'ada', scope: one.scope });
+      const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: one.text, env: world.env, surface: 'terminal', actor: 'ada', scope: one.scope });
       expect(answered.ok, one.text).toBe(true);
       const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
       if (!stored.ok) throw new Error(stored.reason);
@@ -303,14 +305,14 @@ describe('bots answer', () => {
     }
 
     const rejected = proposal(world);
-    const rejection = answerItem({ checkoutRoot: world.checkoutRoot, itemId: rejected.id, text: 'reject', env: world.env, actor: 'ada', scope: 'once' });
+    const rejection = answerItem({ checkoutRoot: world.checkoutRoot, itemId: rejected.id, text: 'reject', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     expect(rejection.ok).toBe(true);
     const rejectedStored = readNeedsYouItem(world.stateRoot, IDENTITY, rejected.id);
     if (!rejectedStored.ok) throw new Error(rejectedStored.reason);
     expect(rejectedStored.value.grants?.scope).toBe('deny');
 
     const confirmed = proposal(world);
-    const confirmation = answerItem({ checkoutRoot: world.checkoutRoot, itemId: confirmed.id, text: 'confirm', env: world.env, actor: 'ada', scope: 'deny' });
+    const confirmation = answerItem({ checkoutRoot: world.checkoutRoot, itemId: confirmed.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada', scope: 'deny' });
     expect(confirmation.ok).toBe(true);
     const confirmedStored = readNeedsYouItem(world.stateRoot, IDENTITY, confirmed.id);
     if (!confirmedStored.ok) throw new Error(confirmedStored.reason);
@@ -320,7 +322,7 @@ describe('bots answer', () => {
   it('refuses a second answer with another scope', () => {
     const world = botWorld();
     const item = writeItem(world, 'manual-ok');
-    const first = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    const first = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'yes', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     expect(first.ok).toBe(true);
 
     const second = runCli(world, ['answer', item.id, 'yes', '--scope', 'deny']);
@@ -389,7 +391,7 @@ describe('bots answer', () => {
     const dead = spawnSync(process.execPath, ['-e', '']).pid;
     const first = writeItem(world, 'manual-ok');
     const firstLock = lockFor(first.id, dead, new Date().toISOString());
-    const firstAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    const firstAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first.id, text: 'yes', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     expect(firstAnswer.ok).toBe(true);
     const firstStored = readNeedsYouItem(world.stateRoot, IDENTITY, first.id);
     if (!firstStored.ok) throw new Error(firstStored.reason);
@@ -399,7 +401,7 @@ describe('bots answer', () => {
     const second = writeItem(world, 'manual-ok');
     const aged = new Date(Date.now() - 2 * 60 * 1000).toISOString();
     const secondLock = lockFor(second.id, process.pid, aged);
-    const secondAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    const secondAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second.id, text: 'yes', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     expect(secondAnswer.ok).toBe(true);
     expect(existsSync(secondLock)).toBe(false);
 
@@ -407,7 +409,7 @@ describe('bots answer', () => {
     const fresh = new Date().toISOString();
     const thirdLock = lockFor(third.id, process.pid, fresh);
     const started = Date.now();
-    const busy = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third.id, text: 'yes', env: world.env, actor: 'ada', scope: 'once' });
+    const busy = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third.id, text: 'yes', env: world.env, surface: 'terminal', actor: 'ada', scope: 'once' });
     const elapsed = Date.now() - started;
     expect(busy).toMatchObject({ ok: false, reason: 'item-busy', detail: `held by pid ${process.pid} since ${fresh}` });
     expect(elapsed).toBeGreaterThanOrEqual(1_900);
@@ -416,6 +418,109 @@ describe('bots answer', () => {
     expect(needsYouState(thirdStored.value)).toBe('open');
     expect(existsSync(thirdLock)).toBe(true);
   }, 30_000);
+
+  it('refuses a channel answer from an actor off the roster', () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'ada', 'owner').ok).toBe(true);
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'bob', 'member').ok).toBe(true);
+    const before = readFileSync(needsYouFile(world.stateRoot, IDENTITY, item.id), 'utf8');
+    expect(process.stdin.isTTY).not.toBe(true);
+
+    const refused = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'merge', env: world.env, surface: 'channel', actor: 'mallory' });
+    expect(refused).toEqual({ ok: false, reason: 'answer-not-approver', detail: 'mallory' });
+    expect(readFileSync(needsYouFile(world.stateRoot, IDENTITY, item.id), 'utf8')).toBe(before);
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+
+    const member = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'merge', env: world.env, surface: 'channel', actor: 'bob' });
+    expect(member.ok && member.value.status).toBe('enqueued');
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer?.by).toBe('bob');
+  });
+
+  it('writes a terminal answer on no roster', () => {
+    const world = botWorld();
+    const first = writeItem(world, 'manual-ok');
+    const second = writeItem(world, 'manual-ok');
+    const before = readFileSync(needsYouFile(world.stateRoot, IDENTITY, second.id), 'utf8');
+
+    const terminal = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first.id, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada' });
+    expect(terminal.ok).toBe(true);
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, first.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer?.by).toBe('ada');
+
+    const channel = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second.id, text: 'merge', env: world.env, surface: 'channel', actor: 'ada' });
+    expect(channel).toMatchObject({ ok: false, reason: 'channel-roster-missing' });
+    expect(readFileSync(needsYouFile(world.stateRoot, IDENTITY, second.id), 'utf8')).toBe(before);
+  });
+
+  it('refuses a terminal answer from an actor off a present roster', () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'ada', 'owner').ok).toBe(true);
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'bob', 'member').ok).toBe(true);
+    const before = readFileSync(needsYouFile(world.stateRoot, IDENTITY, item.id), 'utf8');
+
+    const refused = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'merge', env: world.env, surface: 'terminal', actor: 'mallory' });
+    expect(refused).toEqual({ ok: false, reason: 'answer-not-approver', detail: 'mallory' });
+    expect(readFileSync(needsYouFile(world.stateRoot, IDENTITY, item.id), 'utf8')).toBe(before);
+
+    const osName = userInfo().username;
+    if (osName !== 'ada' && osName !== 'bob') {
+      const cli = runCli(world, ['answer', item.id, 'merge']);
+      expect(cli.status).toBe(4);
+      expect(cli.stderr).toContain(`bots: answer-not-approver: ${osName}`);
+      expect(readFileSync(needsYouFile(world.stateRoot, IDENTITY, item.id), 'utf8')).toBe(before);
+    }
+  }, 120_000);
+
+  it('refuses the loser of two concurrent answers', async () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'ada', 'owner').ok).toBe(true);
+    expect(rosterAdd(world.stateRoot, IDENTITY, 'bob', 'member').ok).toBe(true);
+    const folder = tempDir('bots-answer-roster-race-');
+    const childPath = join(folder, 'child.mts');
+    writeFileSync(childPath, ANSWER_CHILD);
+    const runtime = resolve(import.meta.dirname, '..');
+    const answerUrl = pathToFileURL(resolve(runtime, 'lib', 'answer.ts')).href;
+    const readyYes = join(folder, 'yes.ready');
+    const readyNo = join(folder, 'no.ready');
+
+    const start = (text: string, actor: string, mineReady: string, otherReady: string) => {
+      const child = spawn(process.execPath, ['--import', 'tsx', childPath, answerUrl, mineReady, otherReady, world.checkoutRoot, item.id, text, 'channel', actor], {
+        cwd: runtime,
+        env: world.env,
+        stdio: ['ignore', 'pipe', 'pipe'],
+      });
+      let stdout = '';
+      let stderr = '';
+      child.stdout.on('data', (chunk: Buffer) => {
+        stdout += chunk.toString();
+      });
+      child.stderr.on('data', (chunk: Buffer) => {
+        stderr += chunk.toString();
+      });
+      return new Promise<{ code: number | null; stdout: string; stderr: string }>((done) =>
+        child.on('close', (code) => done({ code, stdout, stderr })),
+      );
+    };
+
+    const [yes, no] = await Promise.all([start('yes', 'ada', readyYes, readyNo), start('no', 'bob', readyNo, readyYes)]);
+    expect(yes.code, yes.stderr).toBe(0);
+    expect(no.code, no.stderr).toBe(0);
+    const results = [JSON.parse(yes.stdout), JSON.parse(no.stdout)] as Array<Record<string, unknown>>;
+    expect(results.filter((result) => result.ok === true)).toHaveLength(1);
+    expect(results.filter((result) => result.ok === false)).toMatchObject([{ ok: false, reason: 'item-answered-differently' }]);
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect([['yes', 'ada'], ['no', 'bob']]).toContainEqual([stored.value.answer?.text, stored.value.answer?.by]);
+    const locks = readdirSync(identityStatePaths(world.stateRoot, IDENTITY).needsYou).filter((name) => name.endsWith('.lock'));
+    expect(locks).toEqual([]);
+  }, 60_000);
 });
 
 describe('memory proposal answer', () => {
@@ -425,7 +530,7 @@ describe('memory proposal answer', () => {
     const path = botMemoryFile(world.stateRoot, IDENTITY, 'manual-ok');
     if (!path.ok) throw new Error(path.reason);
 
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, actor: 'ada' });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(answered).toMatchObject({ ok: true, value: { status: 'reviewed', kind: 'memory-proposal', itemId: item.id } });
     const appended = readMemoryFile(path.value).entries;
     expect(appended).toHaveLength(1);
@@ -442,7 +547,7 @@ describe('memory proposal answer', () => {
     expect(entries(queueOf(world).inbox)).toEqual([]);
     expect(itemAwaitingResume(world.stateRoot, IDENTITY, 'manual-ok')).toBeNull();
 
-    const again = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, actor: 'ada' });
+    const again = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(again).toMatchObject({ ok: true, value: { status: 'reviewed' } });
     expect(readMemoryFile(path.value).entries).toHaveLength(1);
 
@@ -458,7 +563,7 @@ describe('memory proposal answer', () => {
     if (!path.ok) throw new Error(path.reason);
     for (const text of ['reject', 'No', 'n']) {
       const item = proposal(world);
-      const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text, env: world.env, actor: 'ada' });
+      const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text, env: world.env, surface: 'terminal', actor: 'ada' });
       expect(answered).toMatchObject({ ok: true, value: { status: 'reviewed', kind: 'memory-proposal' } });
       const stored = readNeedsYouItem(world.stateRoot, IDENTITY, item.id);
       if (!stored.ok) throw new Error(stored.reason);
@@ -471,7 +576,7 @@ describe('memory proposal answer', () => {
   it('seam', () => {
     const world = botWorld();
     const item = proposal(world);
-    expect(answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'maybe', env: world.env, actor: 'ada' })).toEqual({
+    expect(answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'maybe', env: world.env, surface: 'terminal', actor: 'ada' })).toEqual({
       ok: false,
       reason: 'review-answer-invalid',
       detail: 'maybe',
@@ -481,7 +586,7 @@ describe('memory proposal answer', () => {
 
     const secretWorld = botWorld({ DEMO_TOKEN: 'demo-secret-value-91kq' });
     const secretItem = proposal(secretWorld, { proposalFact: 'the key is demo-secret-value-91kq' });
-    expect(answerItem({ checkoutRoot: secretWorld.checkoutRoot, itemId: secretItem.id, text: 'confirm', env: secretWorld.env, actor: 'ada' })).toEqual({
+    expect(answerItem({ checkoutRoot: secretWorld.checkoutRoot, itemId: secretItem.id, text: 'confirm', env: secretWorld.env, surface: 'terminal', actor: 'ada' })).toEqual({
       ok: false,
       reason: 'memory-secret',
       detail: 'DEMO_TOKEN',
@@ -493,13 +598,13 @@ describe('memory proposal answer', () => {
     expect(existsSync(secretPath.value)).toBe(false);
 
     const decision = writeItem(world, 'manual-ok');
-    const merged = answerItem({ checkoutRoot: world.checkoutRoot, itemId: decision.id, text: 'merge', env: world.env, actor: 'ada' });
+    const merged = answerItem({ checkoutRoot: world.checkoutRoot, itemId: decision.id, text: 'merge', env: world.env, surface: 'terminal', actor: 'ada' });
     if (!merged.ok) throw new Error(merged.reason);
     expect(merged.value.status).not.toBe('reviewed');
     expect(merged.value.kind).toBeNull();
 
     const confirmed = proposal(world);
-    const confirmedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: confirmed.id, text: 'confirm', env: world.env, actor: 'ada' });
+    const confirmedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: confirmed.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(confirmedAnswer).toMatchObject({ ok: true, value: { status: 'reviewed', kind: 'memory-proposal' } });
     const stored = readNeedsYouItem(world.stateRoot, IDENTITY, confirmed.id);
     if (!stored.ok) throw new Error(stored.reason);
@@ -509,7 +614,7 @@ describe('memory proposal answer', () => {
     expect(stored.value.grants?.grantedBy).toBe(stored.value.answer?.by);
 
     const denied = proposal(world);
-    const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied.id, text: 'deny', env: world.env, actor: 'ada' });
+    const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied.id, text: 'deny', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(deniedAnswer).toMatchObject({ ok: true, value: { status: 'reviewed' } });
     const deniedStored = readNeedsYouItem(world.stateRoot, IDENTITY, denied.id);
     if (!deniedStored.ok) throw new Error(deniedStored.reason);
@@ -538,7 +643,7 @@ describe('memory proposal answer', () => {
     }
     const before = readFileSync(path.value);
 
-    const refused = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, actor: 'ada' });
+    const refused = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(refused).toMatchObject({ ok: false, reason: 'memory-full' });
     if (refused.ok) throw new Error('expected a memory-full refusal');
     expect(refused.detail?.endsWith(' --bot manual-ok')).toBe(true);
@@ -547,13 +652,13 @@ describe('memory proposal answer', () => {
     expect(readFileSync(path.value).equals(before)).toBe(true);
 
     const rejected = proposal(world);
-    const rejection = answerItem({ checkoutRoot: world.checkoutRoot, itemId: rejected.id, text: 'reject', env: world.env, actor: 'ada' });
+    const rejection = answerItem({ checkoutRoot: world.checkoutRoot, itemId: rejected.id, text: 'reject', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(rejection).toMatchObject({ ok: true, value: { status: 'reviewed', kind: 'memory-proposal' } });
     expect(readFileSync(path.value).equals(before)).toBe(true);
 
     const first = readMemoryFile(path.value).entries[0];
     expect(forgetMemoryEntry(path.value, first.id).ok).toBe(true);
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, actor: 'ada' });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'confirm', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(answered).toMatchObject({ ok: true, value: { status: 'reviewed' } });
     const after = readMemoryFile(path.value).entries;
     expect(after).toHaveLength(MEMORY_LIMITS.entries);

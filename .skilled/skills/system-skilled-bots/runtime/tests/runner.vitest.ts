@@ -677,7 +677,7 @@ describe('needs-you decisions', () => {
     const parked = await runBot(world.input('manual-ok', { buildCommand: speak('[NEEDS-DECISION] delete the stale branch?\n') }));
     if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
     const itemId = parked.itemId;
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'no', env: world.env, actor: 'ada' });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'no', env: world.env, surface: 'terminal', actor: 'ada' });
     expect(answered.ok).toBe(true);
 
     const resumed = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'rq-resume', itemId }, buildCommand: speak('done\n') }));

@@ -15,8 +15,9 @@
 // Every caller takes its paths from here, so no caller joins a state path
 // by hand.
 
+import { randomBytes } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, realpathSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 
@@ -44,6 +45,9 @@ export const PINNED_STATE_ROOT_ENV = 'SKILLED_BOTS_STATE_ROOT';
 
 /** Owner-only, the same rule the env-secret guard applies to its state. */
 export const STATE_DIR_MODE = 0o700;
+
+/** Owner-only, the mode every channel and roster file is written with. */
+export const STATE_FILE_MODE = 0o600;
 
 const GIT_TIMEOUT_MS = 10_000;
 
@@ -179,6 +183,67 @@ export function ensureIdentityState(stateRoot: string, identity: string): Identi
  */
 export function ensureMemoryFolder(folder: string): void {
   mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
+}
+
+/**
+ * The folder that holds one identity's channel config, links, approval index,
+ * send queue and seen records. Creates nothing.
+ *
+ * @param stateRoot - The resolved user-level state root.
+ * @param identity - An `owner/name` identity.
+ */
+export function channelFolder(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'channels');
+}
+
+/**
+ * The roster of who may answer from a chat. It sits beside the identity
+ * folders and outside the channel folder, because the roster gates every
+ * answer surface. Creates nothing.
+ *
+ * @param stateRoot - The resolved user-level state root.
+ * @param identity - An `owner/name` identity.
+ */
+export function operatorsFile(stateRoot: string, identity: string): string {
+  return join(identityStatePaths(stateRoot, identity).base, 'operators.json');
+}
+
+/**
+ * Create the channel folder with its queue and seen folders owner-only.
+ *
+ * @param stateRoot - The resolved user-level state root.
+ * @param identity - An `owner/name` identity.
+ * @returns The channel folder path.
+ */
+export function ensureChannelState(stateRoot: string, identity: string): string {
+  const channels = channelFolder(stateRoot, identity);
+  mkdirSync(stateRoot, { recursive: true, mode: STATE_DIR_MODE });
+  mkdirSync(channels, { recursive: true, mode: STATE_DIR_MODE });
+  mkdirSync(join(channels, 'queue'), { recursive: true, mode: STATE_DIR_MODE });
+  mkdirSync(join(channels, 'seen'), { recursive: true, mode: STATE_DIR_MODE });
+  return channels;
+}
+
+/**
+ * Write one JSON state file by temp file and rename, owner-only. The mode is
+ * set on the temp file before the rename, so the file is never visible with a
+ * wider mode, and it is set on every write because a file that already exists
+ * keeps its old mode across a plain write.
+ *
+ * @param path - The state file to write.
+ * @param data - The value serialized as JSON.
+ */
+export function writeStateFile(path: string, data: unknown): void {
+  mkdirSync(dirname(path), { recursive: true, mode: STATE_DIR_MODE });
+  const temp = `${path}.${process.pid}.${randomBytes(6).toString('hex')}.tmp`;
+  try {
+    writeFileSync(temp, `${JSON.stringify(data, null, 2)}\n`, { mode: STATE_FILE_MODE });
+    chmodSync(temp, STATE_FILE_MODE);
+    renameSync(temp, path);
+  } catch (error) {
+    rmSync(temp, { force: true });
+    throw error;
+  }
 }
 
 /** Reject an id that could escape its folder or hide as a dot file. */

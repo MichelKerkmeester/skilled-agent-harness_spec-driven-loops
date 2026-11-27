@@ -152,7 +152,7 @@ describe('resume requests', () => {
     expect(held.value.lines).toMatchObject([{ requestId: queued.value.requestId, outcome: 'retry' }]);
     expect(stubRunCount(world)).toBe(0);
 
-    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: open.id, text: 'merge', env: world.env });
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: open.id, text: 'merge', env: world.env, surface: 'terminal' });
     if (!answered.ok) throw new Error(answered.reason);
     // Inbox order follows request ids, so the queued request may meet the hold once more before the resume runs.
     for (let pass = 0; pass < 2 && entries(queueOf(world).inbox).length > 0; pass += 1) {

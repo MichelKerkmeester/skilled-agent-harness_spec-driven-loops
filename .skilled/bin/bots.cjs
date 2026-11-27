@@ -62,6 +62,18 @@ const USAGE = [
   '                 list the facts with their ids; --json prints one document',
   '  remember --forget <entry-id> [--bot <id>]',
   '                 remove the fact whose id --list printed',
+  '  channel link <channel> [--secret <name>] [--as <name>]',
+  '                 print a one-time code that a chat sends back to link itself to',
+  '                 you, or with --as to a roster member, which needs a tty unless',
+  '                 it is you; the channel is telegram, slack, signal or whatsapp and',
+  '                 --secret names the vault secret it reads, the channel name by default',
+  '  channel unlink <channel>',
+  '                 switch a channel off and remove its linked chats',
+  '  channel roster add <name> [--role owner|member]',
+  '  channel roster remove <name>',
+  '  channel roster list',
+  '                 the only way to write operators.json, who may answer from a chat;',
+  '                 --role defaults to member and an owner add replaces the owner',
   '  status [--json] [--rebuild] [--all] [--unregister <owner/name>]',
   '                 show every installed bot, its last run and delivery, and open',
   '                 needs-you items, from the status index; --rebuild rebuilds the',
@@ -92,6 +104,10 @@ const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
 const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
 const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
+// The transports a channel verb can name, mirroring CONFIGURED_CHANNELS in the runtime's channel
+// module. The list is repeated here because these refusals run before the runtime loads.
+const CHANNEL_NAMES = ['telegram', 'slack', 'signal', 'whatsapp'];
+const ROSTER_ROLES = ['owner', 'member'];
 // How many positional arguments each verb takes, and the options it accepts beyond the common ones.
 const VERB_SPECS = {
   run: { ids: 1, options: ['schedule-index', 'as'] },
@@ -104,6 +120,7 @@ const VERB_SPECS = {
   drain: { ids: 0, options: ['scheduled'] },
   answer: { ids: 2, options: ['as', 'scope'] },
   remember: { ids: 1, options: REMEMBER_OPTIONS },
+  channel: { ids: 0, options: ['role', 'secret', 'as'] },
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
@@ -112,7 +129,7 @@ const VERB_SPECS = {
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
@@ -224,6 +241,41 @@ function checkEnqueue(options, ids) {
   return null;
 }
 
+// The channel group takes a subverb and its operands, so its argv is checked here rather than by
+// the id count every other verb uses.
+function parseChannel(verb, ids, options) {
+  const [sub, ...rest] = ids;
+  if (!sub) return { error: 'channel needs link, unlink or roster' };
+  if (sub === 'link' || sub === 'unlink') {
+    if (rest.length === 0) return { error: `channel ${sub} needs a channel: ${CHANNEL_NAMES.join(', ')}` };
+    if (rest.length > 1) return { error: `unexpected argument: ${rest[1]}` };
+    if (!CHANNEL_NAMES.includes(rest[0])) return { error: `channel ${sub} takes ${CHANNEL_NAMES.join(', ')}` };
+    if (options.role !== undefined) return { error: `channel ${sub} takes no --role` };
+    if (sub === 'unlink' && options.secret !== undefined) return { error: 'channel unlink takes no --secret' };
+    if (sub === 'unlink' && options.as !== undefined) return { error: 'channel unlink takes no --as' };
+    return { verb, id: undefined, args: [sub, rest[0]], options };
+  }
+  if (sub === 'roster') {
+    const [action, ...names] = rest;
+    if (!action) return { error: 'channel roster needs add, remove or list' };
+    if (!['add', 'remove', 'list'].includes(action)) return { error: `unknown channel roster verb: ${action}` };
+    if (options.secret !== undefined) return { error: 'channel roster takes no --secret' };
+    if (options.as !== undefined) return { error: 'channel roster takes no --as' };
+    if (action !== 'add' && options.role !== undefined) return { error: `channel roster ${action} takes no --role` };
+    if (action === 'list') {
+      if (names.length > 0) return { error: `unexpected argument: ${names[0]}` };
+      return { verb, id: undefined, args: ['roster', 'list'], options };
+    }
+    if (names.length === 0) return { error: `channel roster ${action} needs a name` };
+    if (names.length > 1) return { error: `unexpected argument: ${names[1]}` };
+    const name = names[0].trim();
+    if (!ACTOR_PATTERN.test(name)) return { error: 'channel roster takes a name' };
+    if (options.role !== undefined && !ROSTER_ROLES.includes(options.role)) return { error: '--role takes owner or member' };
+    return { verb, id: undefined, args: ['roster', action, name], options };
+  }
+  return { error: `unknown channel verb: ${sub}` };
+}
+
 function parseArgs(argv) {
   const options = {};
   const positional = [];
@@ -276,6 +328,7 @@ function parseArgs(argv) {
     if (ids.length > 2) return { error: `unexpected argument: ${ids[2]}` };
     return { verb, id: ids[0], args: [ids[1]], options };
   }
+  if (verb === 'channel') return parseChannel(verb, ids, options);
   if (verb === 'remember') {
     if (ids.length > 1) return { error: `unexpected argument: ${ids[1]}` };
     return { verb, id: undefined, args: ids.slice(0, 1), options };
@@ -430,6 +483,7 @@ function answerVerb(rt, parsed, checkoutRoot, resolveEnv) {
     text: parsed.args[0],
     env: process.env,
     resolveEnv,
+    surface: 'terminal',
     actor: parsed.options.as === undefined ? undefined : parsed.options.as.trim(),
     scope: parsed.options.scope,
   });
@@ -564,6 +618,54 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
     process.stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);
     return 1;
   }
+}
+
+// The channel verbs write the roster, the channel config and the link record under the drain job's
+// environment, the same place the answer path reads the roster from, so the two never disagree.
+async function channelVerb(rt, parsed, checkoutRoot, resolveEnv) {
+  const context = rt.queue.queueContext(checkoutRoot, resolveEnv);
+  if (!context.ok) {
+    process.stderr.write(`${describeRefusal(context)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const { identity, stateRoot } = context.value;
+  const [channel, link] = await Promise.all([runtimeModule('channel'), runtimeModule('channel-link')]);
+  const [sub, first, second] = parsed.args;
+  let result;
+  if (sub === 'link') {
+    const actor = rt.actor.resolveActor({
+      as: parsed.options.as === undefined ? null : parsed.options.as.trim(),
+      env: process.env,
+      scheduled: false,
+    });
+    if (!actor.ok) {
+      process.stderr.write(`${describeRefusal(actor)}\n`);
+      return 2;
+    }
+    result = link.startLink({ stateRoot, identity, channel: first, actor: actor.value, secret: parsed.options.secret ?? null });
+    if (result.ok) process.stdout.write(`${channel.REPLIES.M09({ channel: first, code: result.value.code })}\n`);
+  } else if (sub === 'unlink') {
+    result = link.unlinkChannel(stateRoot, identity, first);
+  } else if (first === 'list') {
+    const roster = link.readRoster(stateRoot, identity);
+    if (roster === null) {
+      process.stderr.write('bots: no roster\n');
+      return 0;
+    }
+    process.stdout.write(`owner ${roster.owner}\n`);
+    for (const member of roster.members) process.stdout.write(`member ${member}\n`);
+    return 0;
+  } else if (first === 'add') {
+    result = link.rosterAdd(stateRoot, identity, second, parsed.options.role ?? 'member');
+  } else {
+    result = link.rosterRemove(stateRoot, identity, second);
+    if (result.ok && !result.value.removed) process.stderr.write(`bots: ${second} is not on the roster\n`);
+  }
+  if (!result.ok) {
+    process.stderr.write(`${describeRefusal(result)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  return 0;
 }
 
 function printSteps(steps) {
@@ -872,10 +974,17 @@ async function main(argv) {
     process.stderr.write('bots: child-write-refused\n');
     return 2;
   }
+  // A bot child that linked a chat or wrote the roster could answer its own questions, so the
+  // channel group writes nothing inside a bot run. Listing the roster is a read and stays open.
+  const channelRead = parsed.verb === 'channel' && parsed.args[0] === 'roster' && parsed.args[1] === 'list';
+  if (parsed.verb === 'channel' && !channelRead && isBotChild(process.env)) {
+    process.stderr.write('bots: child-write-refused: channel runs no write inside a bot run\n');
+    return 2;
+  }
   if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
     return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
   }
-  if (parsed.verb === 'answer' || parsed.verb === 'run' || parsed.verb === 'remember') {
+  if (parsed.verb === 'answer' || parsed.verb === 'run' || parsed.verb === 'remember' || parsed.verb === 'channel') {
     const actorProblem = checkActorOptions(parsed);
     if (actorProblem) return usageExit(actorProblem.message);
   }
@@ -903,6 +1012,7 @@ async function main(argv) {
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'remember') return rememberVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'channel') return channelVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'routines') return routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
@@ -1033,6 +1143,7 @@ async function main(argv) {
         text: 'enabled',
         env: process.env,
         resolveEnv,
+        surface: 'terminal',
         resume: false,
       });
       if (!answered.ok && answered.reason !== 'item-expired' && answered.reason !== 'item-unknown') {
