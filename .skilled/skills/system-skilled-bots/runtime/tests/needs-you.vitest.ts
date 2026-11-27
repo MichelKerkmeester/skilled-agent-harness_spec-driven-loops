@@ -293,7 +293,13 @@ describe('needs-you item', () => {
     refused({ ...grant, scope: 'always' });
     refused({ ...grant, grantedBy: null });
     refused({ ...grant, grantedAt: 'not a date' });
-    expect(validateNeedsYouItem({ ...answered, grants: { ...grant, scope: null, grantedBy: null, grantedAt: null } }).ok).toBe(true);
+    // A born-open grant on an answered item is refused, since a real answer writes the answer and the grant in one write.
+    expect(validateNeedsYouItem({ ...answered, grants: { ...grant, scope: null, grantedBy: null, grantedAt: null } })).toEqual({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'grants',
+    });
+    expect(validateNeedsYouItem({ ...answered, grants: { ...grant, scope: 'once', grantedBy: 'ada', grantedAt: answeredAt } }).ok).toBe(true);
   });
 });
 

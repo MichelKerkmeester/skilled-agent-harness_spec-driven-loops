@@ -55,10 +55,10 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/bots-run/references/approval-ladder.md",
       "runtime/lib/README.md",
+      "crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
+      ".skilled/skills/system-skilled-bots/leaf-manifest.json",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
-      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-items.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md"
+      ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md"
     ],
     "entities": [
       {
@@ -158,6 +158,18 @@
         "source": "derived"
       },
       {
+        "name": "inbox.grant.json",
+        "kind": "config",
+        "path": "crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-bots/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "run-queue-and-answer.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
@@ -167,18 +179,6 @@
         "name": "status-and-inbox.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you-items.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-items.md",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you-answer.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-27T21:23:55.700Z",
+    "last_save_at": "2026-11-27T22:20:30.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c22f44e3a66d054133c17f1be3427293e778d3e79afed64a17e1cdde2d726d7",
+    "source_fingerprint": "sha256:f969329c0fe91554d67b38525225756b8f1ede665ded59967f69e1eb4bdf804a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8adccdd72f4170dc397f28bbb260d5d1a32dd610f89b0893743f73525e5c2cbb",
       "plan.md": "1044002a1c85bd956a9d8c9f111bb40cbff159052c658ce579c3f2263b2be748",
-      "tasks.md": "211895e87c7f6205a7457a61f89475edc12044caf16dad09e24669b3644bf436",
-      "implementation-summary.md": "00391d73eea735269969df151bbcf471457ea9f82133f3e4d2635f70d732d286"
+      "tasks.md": "a2e4d6b571cda9e547d7b0cb1370adc299260a9cdf0ad98afb21c8ca292a3be0",
+      "implementation-summary.md": "66d28fbc37bf9d04aaef9c5445974ed687083ec75feaea1591bbb379b551f739"
     },
     "last_active_at": null
   }

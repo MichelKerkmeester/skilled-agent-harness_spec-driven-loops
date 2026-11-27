@@ -147,10 +147,10 @@ function isStringList(value: unknown): value is string[] {
 /**
  * Check a grant. The first three keys are set when the item is written and the
  * last three stay null until it is answered, so a grant that names a scope
- * with no actor is a torn record and is refused. When the grant names a scope
- * on an answered item, that scope must equal the answer's, because the two are
- * written in one write and a stored disagreement means a writer bypassed it. A
- * grant still born open on an answered item is read as it is.
+ * with no actor is a torn record and is refused. When the item is answered the
+ * grant's scope must equal the answer's, because the two are written in one
+ * write. A grant still born open on an answered item is refused too, since a
+ * writer that bypassed that write would leave it unstamped.
  *
  * @param grants - The grant as stored, or null on an item written before items carried one.
  * @param answer - The item's answer, so a stored grant can be checked against it.
@@ -168,7 +168,7 @@ function validGrant(grants: unknown, answer: unknown): boolean {
   if (grants.grantedAt !== null && !isInstant(grants.grantedAt)) return false;
   const written = [grants.scope, grants.grantedBy, grants.grantedAt];
   if (written.some((value) => value === null) && written.some((value) => value !== null)) return false;
-  if (isPlainObject(answer) && grants.scope !== null && grants.scope !== (answer.scope ?? 'once')) return false;
+  if (isPlainObject(answer) && grants.scope !== (answer.scope ?? 'once')) return false;
   return true;
 }
 

@@ -41,6 +41,7 @@ import { cleanupTemp, isolatedEnv, REAL_CHECKOUT, tempDir, tempRepo, tempSkilled
 import { approveBots, botWorld, IDENTITY, stubReceipt, waitFor, writeBot } from './runner-support.js';
 
 import type { CreateWorktreeInput } from '../lib/isolation.js';
+import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { RunRecord } from '../lib/run-record.js';
 import type { BotWorld } from './runner-support.js';
 
@@ -50,6 +51,18 @@ const RUNTIME = resolve(import.meta.dirname, '..');
 const HALF_PROVISIONED_STUB = join(FIXTURES, 'naming-stub', 'half-provisioned.sh');
 const RECORD_CALLS_STUB = join(FIXTURES, 'naming-stub', 'record-calls.sh');
 const REAPER = resolve(import.meta.dirname, '..', '..', '..', '..', 'bin', 'worktree-reaper.sh');
+
+/** The item as a real answer leaves it: the answer and its grant written together, with one scope, actor and instant. */
+function answeredAs(item: NeedsYouItem, text: string, extra: Partial<NeedsYouItem> = {}): NeedsYouItem {
+  const answeredAt = new Date().toISOString();
+  const grants = item.grants ?? null;
+  return {
+    ...item,
+    ...extra,
+    answer: { text, answeredAt, by: 'ada', scope: 'once' },
+    grants: grants === null ? null : { ...grants, scope: 'once', grantedBy: 'ada', grantedAt: answeredAt },
+  };
+}
 
 let realWorktreesBefore: string[] = [];
 
@@ -543,7 +556,7 @@ describe('a parked worktree run and its resume', () => {
     if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'keep it', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'keep it'));
     const parkedRecord = readRunRecord(world.stateRoot, IDENTITY, parked.runId);
     if (!parkedRecord.ok) throw new Error(parkedRecord.reason);
     const resumed = await runBot(world.input(botId, { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
@@ -582,7 +595,7 @@ describe('a parked worktree run and its resume', () => {
     git(world.checkoutRoot, ['worktree', 'remove', '--force', tree]);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'keep it', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'keep it'));
 
     const resumed = await runBot(world.input('park-edit', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
     expect(resumed).toMatchObject({ kind: 'refused', cause: 'parked-worktree-missing', itemId: parked.itemId });
@@ -628,7 +641,7 @@ describe('a parked worktree run and its resume', () => {
     // A stored prompt that names some other folder must never reach the child.
     const stale = item.value.prompt.replace(checkoutLine(tree), checkoutLine(join(tempDir('bots-elsewhere-'), 'old-tree')));
     expect(stale).not.toBe(item.value.prompt);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, prompt: stale, answer: { text: 'keep them', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'keep them', { prompt: stale }));
 
     const resumed = await runBot(world.input('vibe-tree', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
     expect(resumed).toMatchObject({ kind: 'refused', cause: 'resume-item-invalid', itemId: parked.itemId });
@@ -649,7 +662,7 @@ describe('a parked worktree run and its resume', () => {
     approveBots(world);
     const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
     if (!item.ok) throw new Error(item.reason);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'merge', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'merge'));
 
     const resumed = await runBot(world.input('needs-decision', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
     expect(resumed).toMatchObject({ kind: 'refused', cause: 'resume-posture-changed' });

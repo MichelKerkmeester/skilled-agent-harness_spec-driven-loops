@@ -68,6 +68,18 @@ function item(world: BotWorld, overrides: Partial<NeedsYouItem> = {}): NeedsYouI
   };
 }
 
+/** The item as a real answer leaves it: the answer and its grant written together, with one scope, actor and instant. */
+function answeredAs(item: NeedsYouItem, text: string, extra: Partial<NeedsYouItem> = {}): NeedsYouItem {
+  const answeredAt = new Date().toISOString();
+  const grants = item.grants ?? null;
+  return {
+    ...item,
+    ...extra,
+    answer: { text, answeredAt, by: 'ada', scope: 'once' },
+    grants: grants === null ? null : { ...grants, scope: 'once', grantedBy: 'ada', grantedAt: answeredAt },
+  };
+}
+
 /**
  * A child that ignores the stub and prints a fixed answer, so a test can pin
  * what the runner reads back. `seen` captures the prompt the child was given.
@@ -816,7 +828,7 @@ describe('working place', () => {
     // A prompt parked before the line existed carries no working-place line at all.
     const stripped = item.value.prompt.split('\n').filter((line) => !line.startsWith(WORKING_PLACE_PREFIX)).join('\n');
     expect(stripped).not.toBe(item.value.prompt);
-    writeNeedsYouItem(world.stateRoot, { ...item.value, prompt: stripped, answer: { text: 'keep it', answeredAt: new Date().toISOString() } });
+    writeNeedsYouItem(world.stateRoot, answeredAs(item.value, 'keep it', { prompt: stripped }));
 
     const resumed = await runBot(world.input('park-edit', { senders: {}, request: { kind: 'resume', requestId: 'rq-resume', itemId: parked.itemId } }));
     expect(resumed.kind, JSON.stringify(resumed)).toBe('completed');
@@ -1031,11 +1043,7 @@ describe('memory in a run', () => {
     const tree = record(resumeWorld, parked).evidence.worktreePath as string;
     const parkedItem = readNeedsYouItem(resumeWorld.stateRoot, IDENTITY, parked.itemId);
     if (!parkedItem.ok) throw new Error(parkedItem.reason);
-    writeNeedsYouItem(resumeWorld.stateRoot, {
-      ...parkedItem.value,
-      prompt: `${parkedItem.value.prompt}\n${'x'.repeat(32_500)}`,
-      answer: { text: 'keep them', answeredAt: new Date().toISOString() },
-    });
+    writeNeedsYouItem(resumeWorld.stateRoot, answeredAs(parkedItem.value, 'keep them', { prompt: `${parkedItem.value.prompt}\n${'x'.repeat(32_500)}` }));
     const resumed = await runBot(resumeWorld.input('park-tree', { senders: {}, request: { kind: 'resume', requestId: 'rq-budget-tree', itemId: parked.itemId } }));
     expect(resumed).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
     if (resumed.kind !== 'refused') throw new Error('expected a refusal');
