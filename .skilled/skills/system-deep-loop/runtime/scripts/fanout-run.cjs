@@ -2817,7 +2817,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `Perform each iteration yourself in THIS session — read the sources, then write the iteration`,
     `file, its delta, and the synthesis into the lineage directory below.`,
     `State records go through the append gateway instead: hand every one, from the run-opening`,
-    `config row (step_create_state_log) to the terminal synthesis record, to`,
+    `config row (step_create_state_log) to the synthesis closeout record, to`,
     `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.`,
     `Never create, append to, or rewrite ${stateLogName} yourself: a row written there beside the`,
     `ledger makes the gateway refuse every later projection, and the lineage fails.`,
@@ -2945,6 +2945,24 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
           ``,
         ]
       : [];
+  // A leaf that writes its own config has been seen copying the root run's config from the
+  // parent folder, session id included, and carrying a value between tool calls in a fixed
+  // /tmp file the other lineages also read. Either way its rows name another run.
+  const runIdentityLines = [
+    `Run identity: step_create_config writes ${sessionId} as this lineage's session id (sessionId, or lineage.sessionId in a research config), and every state record you hand the gateway is scoped by it.`,
+    `Never build this lineage's config from the root config in a parent folder: the gateway refuses a lineage row scoped by the root run's session id.`,
+    `Keep every working file, a file that carries a value between tool calls included, inside ${promptDir}: a fixed path under /tmp is shared with the lineages running beside this one, and the gateway refuses a closeout event another run staged.`,
+  ];
+  // A review lineage that counts its iterations to the cap and jumps to synthesis never
+  // reaches the stop branch that records the terminal gates, and that gate row is what the
+  // runner reads as the review's stop.
+  const reviewStopGateLines = loopType === 'review'
+    ? [
+        `Stop gate (binds every review stop, the iteration cap included): before phase_synthesis, run record_terminal_gates from step_handle_convergence exactly as the YAML runs it:`,
+        `node .skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs --config-path "${promptDir}/deep-review-config.json" --state-log "${promptDir}/${stateLogName}" --registry-path "${promptDir}/deep-review-findings-registry.json"`,
+        `then hand its deep_review.terminal_gates_recorded event, scoped by runId and sessionId ${sessionId}, to the gateway. That row, not the synthesis record, is this lineage's stop: the runner fails a review lineage whose state log holds no terminal_gates row, even when its synthesis is complete.`,
+      ]
+    : [];
   const prompt = [
     `GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.`,
     `You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.`,
@@ -2981,9 +2999,11 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `Before init, before each iteration, and before resolving any conflict, read ${path.join(promptDir, 'steer.md')} when it exists.`,
     `It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.`,
     `It grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
+    ...runIdentityLines,
+    ...reviewStopGateLines,
     ...(hasIterationCap && stopPolicy === 'max-iterations'
       ? [
-          `The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner`,
+          `The synthesis closeout record must carry stopReason "maxIterationsReached"; the runner`,
           `rejects a lineage whose synthesis reaches the cap without recording that reason.`,
         ]
       : []),

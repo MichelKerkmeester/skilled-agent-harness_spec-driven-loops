@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-deep-loop/review-lineage/005-vibe-review-terminal-gates",
+  "description": "Fan-out review lineages that skip the terminal stop gate and record rows under the wrong run",
+  "keywords": [
+    "fan-out",
+    "review",
+    "lineages",
+    "skip",
+    "terminal",
+    "stop",
+    "gate",
+    "record",
+    "rows",
+    "wrong",
+    "run"
+  ],
+  "lastUpdated": "2026-11-27T10:43:02.899Z",
+  "specId": "005",
+  "folderSlug": "vibe-review-terminal-gates",
+  "parentChain": [
+    "system-deep-loop",
+    "review-lineage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

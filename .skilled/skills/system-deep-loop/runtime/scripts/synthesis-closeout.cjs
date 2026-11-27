@@ -340,6 +340,26 @@ function runScope(mode, stateLog) {
   return { runId, lineageId: parentSessionId };
 }
 
+// The fan-out runner reads a review lineage's terminal_gates row as its stop and fails a
+// lineage that closes out without one. A lineage that counted its iterations to the cap and
+// jumped to synthesis never ran that gate, so the close-out refuses here, while the lineage
+// can still run the gate, instead of finishing a lineage the runner will reject.
+function assertReviewLineageStopGate(mode, stateLog, lineageLogs) {
+  if (mode !== 'review' || lineageLogs.length > 0) return;
+  const lineageDir = dirname(resolve(stateLog));
+  if (basename(dirname(lineageDir)) !== 'lineages') return;
+  const hasStopGate = readJsonl(stateLog).records.some((record) => record
+    && record.type === 'event'
+    && record.event === 'terminal_gates');
+  if (hasStopGate) return;
+  throw new Error(
+    `review lineage ${basename(lineageDir)} holds no terminal_gates row in ${stateLog}: run `
+    + 'record_terminal_gates first (terminal-gates.cjs, then its deep_review.terminal_gates_recorded '
+    + 'event through the append gateway), then rerun this close-out. The fan-out runner fails a '
+    + 'review lineage whose state log holds no terminal stop row.',
+  );
+}
+
 function buildStem(mode, eventName, scope) {
   const builders = {
     research: (name) => ({
@@ -384,6 +404,7 @@ function closeOut(args) {
       .flat()
     : [];
   const lineageLogs = lineageStateLogs(args.artifactDir, mode);
+  assertReviewLineageStopGate(mode, args.stateLog, lineageLogs);
   const parsedState = (lineageLogs.length > 0 ? lineageLogs : [args.stateLog])
     .map((stateLog) => ({ stateLog, ...readJsonl(stateLog) }))
     .map((entry) => ({ ...entry, records: latestIterationRecords(entry.records) }));

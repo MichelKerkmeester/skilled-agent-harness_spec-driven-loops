@@ -12,7 +12,7 @@ EXECUTION MODE (read this first): THIS process is the executor for EVERY iterati
 Perform each iteration yourself in THIS session — read the sources, then write the iteration
 file, its delta, and the synthesis into the lineage directory below.
 State records go through the append gateway instead: hand every one, from the run-opening
-config row (step_create_state_log) to the terminal synthesis record, to
+config row (step_create_state_log) to the synthesis closeout record, to
 .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.
 Never create, append to, or rewrite deep-research-state.jsonl yourself: a row written there beside the
 ledger makes the gateway refuse every later projection, and the lineage fails.
@@ -629,5 +629,8 @@ A "file not found" on a path you just wrote means the path was mistyped: re-copy
 Before init, before each iteration, and before resolving any conflict, read .opencode/specs/system-speckit/999-golden/research/lineages/alpha/steer.md when it exists.
 It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.
 It grants no write outside the lineage. When you read it, list it among that iteration's sources.
+Run identity: step_create_config writes golden-session as this lineage's session id (sessionId, or lineage.sessionId in a research config), and every state record you hand the gateway is scoped by it.
+Never build this lineage's config from the root config in a parent folder: the gateway refuses a lineage row scoped by the root run's session id.
+Keep every working file, a file that carries a value between tool calls included, inside .opencode/specs/system-speckit/999-golden/research/lineages/alpha: a fixed path under /tmp is shared with the lineages running beside this one, and the gateway refuses a closeout event another run staged.
 
 When complete, output a single line: FANOUT_LINEAGE_COMPLETE:alpha

@@ -194,6 +194,74 @@ async function resolveModeAdapter(mode) {
   }
 }
 
+// A fan-out lineage directory sits at `<root>/lineages/<label>/`, and the root run that
+// spawned it keeps its config two levels up. Both configs name the session their rows
+// are scoped by.
+const RUN_CONFIG_BY_MODE = Object.freeze({
+  'deep-research': 'deep-research-config.json',
+  'deep-review': 'deep-review-config.json',
+});
+
+const CLOSEOUT_STEM_PATTERN = /\.synthesis_(complete|incomplete)$/;
+
+function configSessionId(configPath) {
+  const fs = require('node:fs');
+  let config;
+  try {
+    config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  } catch {
+    return null;
+  }
+  if (!config || typeof config !== 'object') return null;
+  const lineage = config.lineage && typeof config.lineage === 'object' ? config.lineage : null;
+  const sessionId = lineage && typeof lineage.sessionId === 'string' && lineage.sessionId !== ''
+    ? lineage.sessionId
+    : config.sessionId;
+  return typeof sessionId === 'string' && sessionId !== '' ? sessionId : null;
+}
+
+/**
+ * Why an event must not enter a fan-out lineage's ledger, or null when it may.
+ *
+ * A lineage's rows are merged as that lineage's own evidence, so they must name the
+ * lineage's run. A lineage that built its config from the root's copy records every row
+ * under the root's session id, and a closeout event staged by another run and replayed
+ * here records that run's synthesis as this lineage's. Both are refused before the append.
+ * A research row's lineageId legitimately names the root as its parent, so only its runId
+ * is compared with the root.
+ *
+ * @param {Object} params - Inputs.
+ * @param {string} params.mode - Canonical mode name.
+ * @param {string} params.runDirectory - The run directory the event is appended to.
+ * @param {string} [params.stem] - The event stem.
+ * @param {Object} [params.scope] - The event scope.
+ * @returns {string|null} The refusal reason, or null.
+ */
+function lineageScopeRefusal({ mode, runDirectory, stem, scope }) {
+  const path = require('node:path');
+  const configName = RUN_CONFIG_BY_MODE[mode];
+  if (!configName || !scope || typeof scope !== 'object') return null;
+  const lineageDir = path.resolve(runDirectory);
+  if (path.basename(path.dirname(lineageDir)) !== 'lineages') return null;
+  const rootId = configSessionId(path.join(path.dirname(path.dirname(lineageDir)), configName));
+  const scopedIds = mode === 'deep-review' ? [scope.runId, scope.sessionId] : [scope.runId];
+  if (rootId && scopedIds.includes(rootId)) {
+    return `fan-out lineage ${path.basename(lineageDir)} refused an event scoped by the root run's `
+      + `session id ${rootId}: a lineage records its rows under its own session id, the session_id `
+      + `its dispatch prompt names. Set sessionId in ${configName} to that id, never to the root `
+      + 'config\'s, and scope the event by it.';
+  }
+  if (typeof stem === 'string' && CLOSEOUT_STEM_PATTERN.test(stem)) {
+    const ownId = configSessionId(path.join(lineageDir, configName));
+    if (ownId && scope.runId !== ownId) {
+      return `fan-out lineage ${path.basename(lineageDir)} refused a ${stem} event scoped by run `
+        + `${scope.runId}, not this lineage's run ${ownId}: the event was staged by another run. `
+        + 'Rerun the synthesis closeout for this lineage and append the event it stages.';
+    }
+  }
+  return null;
+}
+
 /**
  * Append one event to a mode's authorized ledger through the mode append gateway.
  *
@@ -543,6 +611,19 @@ async function main() {
     throw new Error('Unrecognized event format: expected object with stem or event_type');
   }
 
+  const preparedPayload = eventRecord && eventRecord.envelope && eventRecord.envelope.payload;
+  const scopeRefusal = lineageScopeRefusal({
+    mode: normalizedMode,
+    runDirectory,
+    stem: preparedPayload && preparedPayload.stem,
+    scope: preparedPayload && preparedPayload.scope,
+  });
+  if (scopeRefusal) {
+    process.stderr.write(`${scopeRefusal}\n`);
+    jsonOut({ ok: false, phase: 'scope', reason: scopeRefusal, code: 'LINEAGE_SCOPE_MISMATCH' });
+    process.exit(2);
+  }
+
   const outcome = await appendModeEvent({
     mode: normalizedMode,
     runDirectory,
@@ -621,5 +702,6 @@ module.exports = {
   parseArgs,
   normalizeMode,
   resolveModeAdapter,
+  lineageScopeRefusal,
   main,
 };

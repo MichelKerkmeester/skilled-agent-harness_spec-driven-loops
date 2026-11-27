@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/review-lineage/005-vibe-review-terminal-gates",
+  "spec_folder": "system-deep-loop/review-lineage/005-vibe-review-terminal-gates",
+  "parent_id": "system-deep-loop/review-lineage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe review terminal gates",
+      "fan out review lineages that skip the terminal",
+      "lineage scoped by the root session id",
+      "vibe review terminal gates plan",
+      "vibe review terminal gates tasks",
+      "vibe review terminal gates implementation summary"
+    ],
+    "key_topics": [
+      "vibe",
+      "review",
+      "terminal",
+      "gates",
+      "fan",
+      "lineages",
+      "skip",
+      "lineage",
+      "scoped",
+      "root",
+      "session",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-lineage-run-identity.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/lineage-prompt.txt",
+      ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-research-default/lineage-prompt.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-closeout.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-lineage-run-identity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-lineage-run-identity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "lineage-prompt.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/golden-review-default/lineage-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A `/deep:review:auto` fan-out of two `cli-mistral-vibe` lineages ran ten iterations each and wrote a review report each, but the runner marked both failed: \"the state log holds no terminal stop row (terminalgates)\"",
+    "created_at": "2026-11-27T10:43:02Z",
+    "last_save_at": "2026-11-27T11:01:40.732Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d5120ee467a443913b560424c9774fe603f597e11eba1f53db0d098d4517082b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "196c040eba5e391d740623fed049ab534fa1ce0c5fec94020c9d4bad27e14c68",
+      "plan.md": "7060097895963c068c9debb85511e116283e0ed5edfa04c5129166a2f67bfd7c",
+      "tasks.md": "95fcf6abf422d63f50ef374ae18104a9a3034552992c0e5a8f326f3934f671ce",
+      "implementation-summary.md": "9cda06d3ac2c1f7b42314c0c7216f06c0f672a0f4920435718c8836f35994c1e"
+    },
+    "last_active_at": null
+  }
+}
