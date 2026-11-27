@@ -42,6 +42,7 @@ describe('worked shapes', () => {
       runtime: { kind: 'native' },
       budget: DEFAULT_BUDGET,
       enabled: true,
+      memory: true,
       delivery: { mode: 'targets', targets: [], onFailure: null },
       posture: { isolation: null, sandbox: null, secrets: null },
       precheck: null,
@@ -178,5 +179,28 @@ describe('checkExecutorBounds', () => {
     expect(checkExecutorBounds({ runtime: { ...DEFAULT_RUNTIME }, budget: { ...DEFAULT_BUDGET, timeoutSeconds: ceiling } }).ok).toBe(true);
     expect(checkExecutorBounds({ runtime: { ...DEFAULT_RUNTIME }, budget: { ...DEFAULT_BUDGET, timeoutSeconds: ceiling + 1 } }))
       .toMatchObject({ ok: false, reason: 'budget.timeoutSeconds-out-of-bounds' });
+  });
+});
+
+describe('memory key', () => {
+  it('boolean', () => {
+    // A cli runtime keeps the memory key the only thing the definition varies.
+    const bot = (...lines: string[]) =>
+      ['---', 'id: b', 'trigger: {kind: manual}', 'runtime: {kind: cli-codex}', ...lines, '---', 'body', ''].join('\n');
+
+    const absent = parseDefinition(bot());
+    if (!absent.ok) throw new Error(absent.reason);
+    expect(absent.value.memory).toBe(true);
+
+    const off = parseDefinition(bot('memory: false'));
+    if (!off.ok) throw new Error(off.reason);
+    expect(off.value.memory).toBe(false);
+
+    const on = parseDefinition(bot('memory: true'));
+    if (!on.ok) throw new Error(on.reason);
+    expect(on.value.memory).toBe(true);
+
+    expect(parseDefinition(bot('memory: maybe'))).toMatchObject({ ok: false, reason: 'memory-invalid' });
+    expect(parseDefinition(bot('memory: 1'))).toMatchObject({ reason: 'memory-invalid' });
   });
 });

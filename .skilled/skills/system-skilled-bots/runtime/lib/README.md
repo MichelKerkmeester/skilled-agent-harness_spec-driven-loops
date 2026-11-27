@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder holds the bots domain logic as 31 flat modules, one concern per file. The front door CLI and the definition checker load these files through the runtime's own `tsx` and hold no rules themselves. A defect in a definition, a config or a request comes back as a refusal with a named reason, not a throw, so a caller can report it and keep going.
+This folder holds the bots domain logic as 32 flat modules, one concern per file. The front door CLI and the definition checker load these files through the runtime's own `tsx` and hold no rules themselves. A defect in a definition, a config or a request comes back as a refusal with a named reason, not a throw, so a caller can report it and keep going.
 
 The modules lean on the deep-loop runtime for the parts a bot run shares with a loop iteration: atomic state writes, the executor tables, the audited spawn, the loop lock and the mode append gateway. They add the bot-specific layers on top: BOT.md parsing, cron translation, the file queue, launchd jobs, delivery and the status index.
 
@@ -23,7 +23,7 @@ The modules lean on the deep-loop runtime for the parts a bot run shares with a 
 ```text
 contracts and state   repo-config, definition, identity, state-root,
                       approval, run-record, switches, needs-you,
-                      routine, routine-state
+                      routine, routine-state, memory
         ▲
         │ every other group reads these
         │
@@ -54,6 +54,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `run-record.ts` | Contracts and state | The one record per run that the queue, delivery and status index all read. Adds the `awaiting-decision` exit for a parked run. |
 | `switches.ts` | Contracts and state | The `disabled`, `paused` and `completed` stop files, kept outside every checkout so a run cannot clear its own stop. |
 | `needs-you.ts` | Contracts and state | Items a run leaves for an operator decision. State (open, answered, expired) is derived on every read and never stored. |
+| `memory.ts` | Contracts and state | The two bounded memory files, the shared one beside the identity folders and one per bot in its identity's `memory` folder, both owner-only and made by the first append. One entry is one line, `- <type> \| <YYYY-MM-DD> \| <actor> \| <source> \| <text>`, split on its first four delimiters, with an 8-hex id from the SHA-256 of the line. A file holds at most 60 entries and 3,600 bytes and a text at most 400 characters, and an append past either bound is refused `memory-full` rather than rewritten. `renderMemoryBlock` writes the labelled `<memory>` block the prompt carries. Imports `state-root.ts` only. |
 | `routine.ts` | Contracts and state | The optional BOT.md `routine` block: `parseRoutine` takes the trigger parser as an argument, `renderTrigger` makes the first start the bot's trigger, `describeStart` phrases a start such as `every 6h`, `routineDelivery` maps `does: tell` to local-only and `checkRoutineFloor` refuses a cron start under 900 seconds from a period its caller measures. Pure, and imports `definition.ts` for types only. |
 | `routine-state.ts` | Contracts and state | The per-bot routine state file under the identity's `routines` folder, owner-only: `untilMetAt`, `fatiguedAt`, `fatigueItemId` and `enabledAt`. Counts the failure streak from the run records and, at ten failures in a row, raises one needs-you item and sets the `disabled` switch. |
 | `cron-translator.ts` | Schedule | The only cron reader. `translateCron` turns a cron string into launchd calendar dictionaries that fire exactly as cron would, or refuses with a named id. |

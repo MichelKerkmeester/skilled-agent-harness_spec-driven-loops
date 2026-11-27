@@ -26,6 +26,14 @@ import type { Result } from './repo-config.js';
 export const ANSWER_SCOPES = ['once', 'deny'] as const;
 export type AnswerScope = (typeof ANSWER_SCOPES)[number];
 
+/** The review kinds an item may carry. An absent or null kind reads as decision. */
+export const ITEM_KINDS = ['decision', 'memory-proposal', 'skill-proposal'] as const;
+export type ItemKind = (typeof ITEM_KINDS)[number];
+/** The four types a memory proposal may name, the same four a memory entry carries. */
+export const PROPOSAL_TYPES = ['user', 'general', 'feedback', 'reference'] as const;
+/** The longest fact a memory proposal may carry, the memory entry's own text bound. */
+export const PROPOSAL_FACT_MAX = 400;
+
 export interface NeedsYouAnswer {
   text: string;
   answeredAt: string;
@@ -53,8 +61,14 @@ export interface NeedsYouItem {
   answer: NeedsYouAnswer | null;
   /** Set once an answer has enqueued its resume request. */
   resumeRequestId: string | null;
-  /** The review kind. No writer sets it yet, and absent or null reads as a plain decision. */
-  kind?: string | null;
+  /** The review kind. Absent or null reads as decision. */
+  kind?: ItemKind | null;
+  /** The entry type a memory proposal names. Null or absent on every other kind. */
+  proposalType?: (typeof PROPOSAL_TYPES)[number] | null;
+  /** The fact a memory proposal asks to store, at most 400 characters. Null or absent on every other kind. */
+  proposalFact?: string | null;
+  /** The bot whose memory file a confirmed proposal appends to. Null or absent on every other kind. */
+  proposalBotId?: string | null;
 }
 
 export type NeedsYouState = 'open' | 'answered' | 'expired';
@@ -74,6 +88,9 @@ const ITEM_KEYS = [
   'answer',
   'resumeRequestId',
   'kind',
+  'proposalType',
+  'proposalFact',
+  'proposalBotId',
 ] as const;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -140,10 +157,40 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
   if (raw.resumeRequestId !== null && !nonEmptyString(raw.resumeRequestId)) {
     return { ok: false, reason: 'item-field-invalid', detail: 'resumeRequestId' };
   }
-  if (raw.kind !== undefined && raw.kind !== null && !nonEmptyString(raw.kind)) {
+  if (raw.kind !== undefined && raw.kind !== null && !(ITEM_KINDS as readonly unknown[]).includes(raw.kind)) {
     return { ok: false, reason: 'item-field-invalid', detail: 'kind' };
   }
+  if (raw.proposalType !== undefined && raw.proposalType !== null && !(PROPOSAL_TYPES as readonly unknown[]).includes(raw.proposalType)) {
+    return { ok: false, reason: 'item-field-invalid', detail: 'proposalType' };
+  }
+  if (raw.proposalFact !== undefined && raw.proposalFact !== null) {
+    const fact = raw.proposalFact;
+    if (!nonEmptyString(fact) || fact.length > PROPOSAL_FACT_MAX) {
+      return { ok: false, reason: 'item-field-invalid', detail: 'proposalFact' };
+    }
+  }
+  if (raw.proposalBotId !== undefined && raw.proposalBotId !== null) {
+    const botId = raw.proposalBotId;
+    if (typeof botId !== 'string' || !isSafeSegment(botId)) {
+      return { ok: false, reason: 'item-field-invalid', detail: 'proposalBotId' };
+    }
+  }
+  if (raw.kind === 'memory-proposal') {
+    for (const key of ['proposalType', 'proposalFact', 'proposalBotId'] as const) {
+      if (raw[key] === undefined || raw[key] === null) {
+        return { ok: false, reason: 'item-field-invalid', detail: key };
+      }
+    }
+  }
   return { ok: true, value: raw as unknown as NeedsYouItem };
+}
+
+/**
+ * An item's review kind. A stored item keeps whatever it holds, and absent or
+ * null reads as kind: 'decision'.
+ */
+export function itemKind(item: Pick<NeedsYouItem, 'kind'>): ItemKind {
+  return item.kind ?? 'decision';
 }
 
 /**
@@ -326,7 +373,11 @@ export function holdForBot(stateRoot: string, identity: string, botId: string, n
   const { items, unreadable, listError } = listNeedsYouItems(stateRoot, identity, now);
   // Any item in a folder that cannot be listed may be this bot's open question.
   if (listError !== null) return { kind: 'unlistable', code: listError };
-  const open = items.find((listing) => listing.item.botId === botId && listing.state === 'open');
+  const open = items.find((listing) => {
+    // A review item asks about a fact or a draft and never about the bot's own work, so it holds no bot and needs no resume.
+    const kind = itemKind(listing.item);
+    return kind === 'decision' && listing.item.botId === botId && listing.state === 'open';
+  });
   if (open !== undefined) return { kind: 'open', item: open.item };
   const mine = unreadable.filter((itemId) => {
     const named = peekBotId(stateRoot, identity, itemId);
@@ -356,10 +407,16 @@ export function resumeRequestPending(stateRoot: string, identity: string, reques
  * @returns The oldest such item, or null.
  */
 export function itemAwaitingResume(stateRoot: string, identity: string, botId: string, now: Date = new Date()): NeedsYouItem | null {
-  const waiting = listNeedsYouItems(stateRoot, identity, now).items.find(
-    ({ item, state }) =>
-      item.botId === botId && state === 'answered' && (item.resumeRequestId === null || resumeRequestPending(stateRoot, identity, item.resumeRequestId)),
-  );
+  const waiting = listNeedsYouItems(stateRoot, identity, now).items.find(({ item, state }) => {
+    // A review item asks about a fact or a draft and never about the bot's own work, so it holds no bot and needs no resume.
+    const kind = itemKind(item);
+    return (
+      kind === 'decision' &&
+      item.botId === botId &&
+      state === 'answered' &&
+      (item.resumeRequestId === null || resumeRequestPending(stateRoot, identity, item.resumeRequestId))
+    );
+  });
   return waiting?.item ?? null;
 }
 

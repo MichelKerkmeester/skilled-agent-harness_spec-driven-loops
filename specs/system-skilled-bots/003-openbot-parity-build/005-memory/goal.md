@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/005-memory"
-    last_updated_at: "2026-11-25T19:52:52Z"
+    last_updated_at: "2026-11-27T22:00:00Z"
     last_updated_by: "create-goal"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Built the phase and met every completion criterion"
+    next_safe_action: "Merge the unit branch into the build branch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "w3-005-memory"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -60,13 +60,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/memory.vitest.ts` prints a `Test Files` line with no `failed` count, so `memory.ts` parses and renders an entry, refuses an append at 60 entries or 3,600 bytes with a `free a line with bots remember --forget <entry-id>` hint, lists each entry with its 8-hex id, forgets `94a99780` from `design/fixtures/shared.md` while `7071ee7d` keeps its id, refuses `--forget 1` with `bots: --forget takes an entry id`, creates a 0700 folder with a 0600 file, round trips a fact holding a pipe and a newline as one text field and leaves 61 entries after two appends at 59 with the next append refused.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/dispatch.vitest.ts` prints a `Test Files` line with no `failed` count, so `buildBotPrompt` places both `<memory>` blocks after `checkoutLine`, returns today's string for a bot with no file, keeps an injection line inside one `<memory>` block, and refuses `prompt-over-budget` past 32,000 characters.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/needs-you.vitest.ts tests/answer.vitest.ts` prints a `Test Files` line with no `failed` count, so `holdForBot` and `itemAwaitingResume` skip a `memory-proposal`, `confirm` appends `proposalFact` to `proposalBotId`'s file, and `reject` appends nothing.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/runner.vitest.ts` prints a `Test Files` line with no `failed` count, so a run reads both files into `buildBotPrompt`, refuses a memory file holding a secret literal as `body-secret`, and writes one `memory-proposal` item for a `[REMEMBER]` line.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs remember "the sales sheet is Q3" --repo "$T/checkout"` exits 0 and prints an entry index and a file path.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/005-memory --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/memory.vitest.ts` prints a `Test Files` line with no `failed` count, so `memory.ts` parses and renders an entry, refuses an append at 60 entries or 3,600 bytes with a `free a line with bots remember --forget <entry-id>` hint, lists each entry with its 8-hex id, forgets `94a99780` from `design/fixtures/shared.md` while `7071ee7d` keeps its id, refuses `--forget 1` with `bots: --forget takes an entry id`, creates a 0700 folder with a 0600 file, round trips a fact holding a pipe and a newline as one text field and leaves 61 entries after two appends at 59 with the next append refused.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/dispatch.vitest.ts` prints a `Test Files` line with no `failed` count, so `buildBotPrompt` places both `<memory>` blocks after `checkoutLine`, returns today's string for a bot with no file, keeps an injection line inside one `<memory>` block, and refuses `prompt-over-budget` past 32,000 characters.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/needs-you.vitest.ts tests/answer.vitest.ts` prints a `Test Files` line with no `failed` count, so `holdForBot` and `itemAwaitingResume` skip a `memory-proposal`, `confirm` appends `proposalFact` to `proposalBotId`'s file, and `reject` appends nothing.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/runner.vitest.ts` prints a `Test Files` line with no `failed` count, so a run reads both files into `buildBotPrompt`, refuses a memory file holding a secret literal as `body-secret`, and writes one `memory-proposal` item for a `[REMEMBER]` line.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `T=$(mktemp -d) && mkdir -p "$T/checkout/bots" && printf '{"stateRoot":"%s/state"}\n' "$T" > "$T/checkout/bots/config.json" && node .skilled/bin/bots.cjs remember "the sales sheet is Q3" --repo "$T/checkout"` exits 0 and prints an entry index and a file path.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/005-memory --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -84,8 +84,8 @@ and findings belong here.
 |------|-------|----------|
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/005-memory` prints `RESULT: PASSED` |
 | Packet validates | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/005-memory --strict` prints `RESULT: PASSED` |
-| Implementation | Pending | `rg -n -i 'memory' .skilled/skills/system-skilled-bots/runtime/lib/*.ts` exits 1, so no module holds the word |
-| Acceptance criteria | Pending | All twenty-six rows in `acceptance-criteria.md` read `Unmet` |
+| Implementation | Done | `npm test` prints `Test Files  41 passed (41)` and `Tests  519 passed (519)`, and `npm run typecheck` exits 0 |
+| Acceptance criteria | Done | All twenty-six rows read `Met`, each command run verbatim on 2026-11-27 printing `Tests  1 passed`, and `rg -c '\| Unmet \|' acceptance-criteria.md` finds nothing |
 
 ### Deviations and findings
 
@@ -109,4 +109,10 @@ and findings belong here.
 | Forget by entry id | The final parity recommendations made `--forget` take an entry's 8-hex id instead of its index and added the forget hint to `memory-full`. Criterion 1 now names the id, the two fixture ids and the `--forget 1` refusal from AC-003 to AC-005. Criterion 6 now pins its state root through the scratch `config.json` recipe T039 uses. |
 | Design folder authored | `design/` holds `record-schemas.md`, `module-contract.md`, `state-machines.md`, `refusals.md`, `mockups.md` and `fixtures/` with nine files. Every requirement, criterion and task cites one of them rather than restating it. |
 | Citation drift for WO-15 | Every edit to the requirements table in `spec.md` and to the Prompt Section Order paragraph in `plan.md` was made in place, one line each, so the citations in `contracts/` that point at those requirements still resolve. Four citations drifted and WO-15 repoints them: `contracts/cli-json.md` section 3.2, row `skippedLines`, `contracts/refusals.md` section 3.4, row `remember-type-invalid`, and `contracts/prompt-sections.md` section 6, which cites the join rule in `plan.md`. The fourth pointed at the sentence `contracts/decisions.md` D1 replaced, and that sentence no longer exists, so nothing needs a repoint. |
+| Criterion 1, CLI clause | The `--forget 1` refusal `bots: --forget takes an entry id` is a CLI check, so `cli-run.vitest.ts` proves it under `^bots remember remember too long$`. `memory.vitest.ts` proves the module half, where `forgetMemoryEntry` refuses the id `1` as `memory-entry-unknown`. |
+| Four checklist commands amended | CHK-001 now expects 17 requirement rows, the count `spec.md` holds since REQ-016 and REQ-017. CHK-032 now greps the template label `memory ${path}`, because the design's `body-secret` detail needs the path in the label. CHK-034 now greps `memory.ts`, where T007 puts the renderer. CHK-051 now allows the scaffold's `scratch/.gitkeep`. T009, T016 and T020 keep their commands with the real evidence beside them. |
+| Memory folder creation | The spec's Risks row puts the memory folder in `ensureIdentityState`. The build makes it in its writer through `ensureMemoryFolder`, because `state-root.vitest.ts` asserts the exact folder list and 002 set the same precedent. |
+| AC-024 test name | T029 named a `bots answer review` block, while AC-024 and T051 run `^bots answer review recorded$`. The test sits in the existing `describe('bots answer')`, so the acceptance command matches. |
+| Handoff to 008 | `POST_RUN_CAUSES` in `run-record.ts` lists this phase's three causes. 008 appends `secret-in-output` to it. |
+| Handoff to the contracts writer | `contracts/refusals.md` section 3.4 still lacks `remember-fact-too-long`, which `contracts/records.md` now names. |
 <!-- /ANCHOR:log -->

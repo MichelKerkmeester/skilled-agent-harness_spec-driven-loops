@@ -6,6 +6,8 @@ import { describe, expect, it } from 'vitest';
 
 import {
   LABEL_PREFIX,
+  MEMORY_PROPOSALS_BOT_ID,
+  RESERVED_BOT_IDS,
   buildBotLabel,
   buildDrainLabel,
   identityFromSlug,
@@ -57,5 +59,15 @@ describe('drain labels and foreign labels', () => {
     expect(parseLabel(`${LABEL_PREFIX}acme_2fweb.review`)).toMatchObject({ ok: false, reason: 'label-invalid' });
     expect(parseLabel(`${LABEL_PREFIX}acme_2fweb.review.01`)).toMatchObject({ ok: false, reason: 'label-invalid' });
     expect(parseLabel(`${LABEL_PREFIX}acme_2fweb.drain.0`)).toMatchObject({ ok: false, reason: 'label-invalid' });
+  });
+});
+
+describe('memory proposals sentinel', () => {
+  it('reserved', () => {
+    expect(MEMORY_PROPOSALS_BOT_ID).toBe('memory-proposals');
+    expect(RESERVED_BOT_IDS).toContain(MEMORY_PROPOSALS_BOT_ID);
+    expect(RESERVED_BOT_IDS[0]).toBe('drain');
+    expect(buildBotLabel('acme/web', 'memory-proposals', 0)).toMatchObject({ ok: false, reason: 'bot-id-reserved', detail: 'memory-proposals' });
+    expect(parseLabel(`${LABEL_PREFIX}${identitySlug('acme/web')}.memory-proposals.0`)).toMatchObject({ ok: false, reason: 'label-invalid' });
   });
 });

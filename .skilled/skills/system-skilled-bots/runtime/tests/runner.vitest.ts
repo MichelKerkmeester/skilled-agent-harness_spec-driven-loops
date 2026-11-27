@@ -7,6 +7,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { buildExecutorDispatchEnv } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js';
 import { parseExecutorConfig } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import { RUN_MARKER_ENV, WORKING_PLACE_PREFIX, workingPlaceLine } from '../lib/dispatch.js';
+import { appendMemoryEntry, botMemoryFile } from '../lib/memory.js';
 import { listNeedsYouItems, needsYouExpiry, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import {
   EXIT_CODES,
@@ -16,15 +17,17 @@ import {
   leaseKey,
   runBot,
 } from '../lib/runner.js';
-import { readRunRecord } from '../lib/run-record.js';
+import { postRunCausesOf, readRunRecord } from '../lib/run-record.js';
 import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
 import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, writeRoutineState } from '../lib/routine-state.js';
-import { identityStatePaths, receiptFolder, recordFile, sharedStatePaths } from '../lib/state-root.js';
+import { identityStatePaths, receiptFolder, recordFile, sharedMemoryFile, sharedStatePaths } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { cleanupTemp, isolatedEnv, tempDir } from './support.js';
-import { approveBots, botWorld, filesUnder, IDENTITY, runCli, STUB_DIR, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { approveBots, botWorld, filesUnder, FIXTURE_BOTS, IDENTITY, runCli, STUB_DIR, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
 import { writeRecord } from './status-support.js';
 
+import type { CommandBuilder } from '../lib/dispatch.js';
+import type { MemoryEntryInput } from '../lib/memory.js';
 import type { NeedsYouItem } from '../lib/needs-you.js';
 import type { RunOutcome } from '../lib/runner.js';
 import type { RunRecord } from '../lib/run-record.js';
@@ -62,6 +65,22 @@ function item(world: BotWorld, overrides: Partial<NeedsYouItem> = {}): NeedsYouI
     resumeRequestId: null,
     ...overrides,
   };
+}
+
+/**
+ * A child that ignores the stub and prints a fixed answer, so a test can pin
+ * what the runner reads back. `seen` captures the prompt the child was given.
+ */
+function speak(text: string, seen: string[] = [], exit = 0): CommandBuilder {
+  return ({ prompt }) => {
+    seen.push(prompt);
+    return { command: process.execPath, args: ['-e', `process.stdout.write(${JSON.stringify(text)}); process.exit(${exit})`] };
+  };
+}
+
+/** One memory entry, in the shape an append takes. */
+function memoryEntry(text: string): MemoryEntryInput {
+  return { type: 'general', date: '2026-11-25', actor: 'ada', source: 'bots remember', text };
 }
 
 /** A routine bot that runs by hand and checks its outcome with the given command. */
@@ -778,5 +797,208 @@ describe('working place', () => {
     expect(stubRunCount(world)).toBe(0);
     const written = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, outcome.runId as string), 'utf8')) as RunRecord;
     expect(written.exit.reason).toBe('resume-item-invalid');
+  });
+});
+
+describe('memory in a run', () => {
+  it('remember', async () => {
+    const world = botWorld();
+    // A plain completed run first, so the remember run's exit has one to be compared with.
+    const plain = await runBot(world.input('manual-ok'));
+    expect(plain.kind).toBe('completed');
+    const plainReason = record(world, plain).exit.reason;
+
+    const shared = sharedMemoryFile(world.stateRoot);
+    const own = botMemoryFile(world.stateRoot, IDENTITY, 'manual-ok');
+    if (!own.ok) throw new Error(own.reason);
+    expect(appendMemoryEntry(shared, memoryEntry('the sales sheet is Q3')).ok).toBe(true);
+    expect(appendMemoryEntry(own.value, memoryEntry('keep replies short')).ok).toBe(true);
+
+    const seen: string[] = [];
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak('done\n[REMEMBER] user Prefers ISO dates.\n', seen) }));
+    expect(outcome.kind).toBe('completed');
+    const runId = outcome.runId as string;
+
+    // Both files reach the prompt, the shared one first.
+    const prompt = seen[0] ?? '';
+    const sharedTag = `<memory file="${shared}">`;
+    const ownTag = `<memory file="${own.value}">`;
+    expect(prompt).toContain(sharedTag);
+    expect(prompt).toContain(ownTag);
+    expect(prompt.indexOf(sharedTag)).toBeLessThan(prompt.indexOf(ownTag));
+
+    const items = listNeedsYouItems(world.stateRoot, IDENTITY).items;
+    expect(items).toHaveLength(1);
+    expect(items[0]?.item).toMatchObject({
+      id: runId,
+      runId,
+      botId: 'memory-proposals',
+      kind: 'memory-proposal',
+      proposalType: 'user',
+      proposalFact: 'Prefers ISO dates.',
+      proposalBotId: 'manual-ok',
+      options: ['confirm', 'reject'],
+      question: 'Remember this fact for manual-ok: Prefers ISO dates.',
+      answer: null,
+    });
+    expect(items[0]?.item).not.toHaveProperty('grants');
+
+    const rec = record(world, outcome);
+    expect(rec.exit.reason).toBe(plainReason);
+    expect(rec.postRunCauses).toEqual([]);
+
+    // A run that parked a question has not finished its work, so its remember line proposes nothing.
+    const parkedWorld = botWorld();
+    const parked = await runBot(parkedWorld.input('manual-ok', { buildCommand: speak('[NEEDS-DECISION] Ship it?\n[REMEMBER] user Prefers ISO dates.\n') }));
+    expect(parked.kind).toBe('awaiting-decision');
+    const parkedItems = listNeedsYouItems(parkedWorld.stateRoot, IDENTITY).items;
+    expect(parkedItems).toHaveLength(1);
+    expect(parkedItems[0]?.item.kind).not.toBe('memory-proposal');
+
+    // A failed run proposes nothing either.
+    const failedWorld = botWorld();
+    const failed = await runBot(failedWorld.input('manual-ok', { buildCommand: speak('[REMEMBER] user Prefers ISO dates.\n', [], 3) }));
+    expect(failed.kind).toBe('failed');
+    expect(listNeedsYouItems(failedWorld.stateRoot, IDENTITY).items).toEqual([]);
+  });
+
+  it('remember type', async () => {
+    const world = botWorld();
+    const invalid = [{ cause: 'remember-type-invalid', names: [], detail: null }];
+
+    const untyped = await runBot(world.input('manual-ok', { buildCommand: speak('[REMEMBER] Prefers ISO dates.') }));
+    expect(untyped.kind).toBe('completed');
+    expect(listNeedsYouItems(world.stateRoot, IDENTITY).items).toEqual([]);
+    expect(record(world, untyped).postRunCauses).toEqual(invalid);
+
+    const unknown = await runBot(world.input('manual-ok', { buildCommand: speak('[REMEMBER] maybe Prefers ISO dates.') }));
+    expect(unknown.kind).toBe('completed');
+    expect(listNeedsYouItems(world.stateRoot, IDENTITY).items).toEqual([]);
+    expect(record(world, unknown).postRunCauses).toEqual(invalid);
+
+    // The first line wins, so a second one proposes nothing.
+    const two = await runBot(world.input('manual-ok', { buildCommand: speak('[REMEMBER] user First fact.\n[REMEMBER] user Second fact.\n') }));
+    expect(two.kind).toBe('completed');
+    const items = listNeedsYouItems(world.stateRoot, IDENTITY).items;
+    expect(items).toHaveLength(1);
+    expect(items[0]?.item.proposalFact).toBe('First fact.');
+  });
+
+  it('proposal secret', async () => {
+    const world = botWorld();
+    const secret = 'ghp_abcdefghijklmnopqrstuvwx';
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak(`[REMEMBER] user the token is ${secret}`) }));
+    expect(outcome.kind).toBe('completed');
+    expect(listNeedsYouItems(world.stateRoot, IDENTITY).items).toEqual([]);
+    expect(record(world, outcome).postRunCauses).toEqual([{ cause: 'memory-proposal-secret', names: ['ghp_'], detail: null }]);
+    expect(readFileSync(recordFile(world.stateRoot, IDENTITY, outcome.runId as string), 'utf8')).not.toContain(secret);
+    for (const file of filesUnder(identityStatePaths(world.stateRoot, IDENTITY).needsYou)) {
+      expect(readFileSync(file, 'utf8'), file).not.toContain(secret);
+    }
+  });
+
+  it('remember fact too long', async () => {
+    const world = botWorld();
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak(`[REMEMBER] user ${'x'.repeat(401)}`) }));
+    expect(outcome.kind).toBe('completed');
+    expect(listNeedsYouItems(world.stateRoot, IDENTITY).items).toEqual([]);
+    expect(record(world, outcome).postRunCauses).toEqual([{ cause: 'remember-fact-too-long', names: [], detail: '401' }]);
+  });
+
+  it('post run causes', async () => {
+    const world = botWorld();
+    const plain = await runBot(world.input('manual-ok'));
+    expect(plain.kind).toBe('completed');
+    const stored = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, plain.runId as string), 'utf8')) as RunRecord;
+    expect(stored).toHaveProperty('postRunCauses');
+    expect(stored.postRunCauses).toEqual([]);
+
+    // A refusal is written by the same builder, so it carries the field too.
+    setSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'paused');
+    const refused = await runBot(world.input('manual-ok'));
+    expect(refused).toMatchObject({ kind: 'refused', cause: 'paused' });
+    const refusedStored = JSON.parse(readFileSync(recordFile(world.stateRoot, IDENTITY, refused.runId as string), 'utf8')) as RunRecord;
+    expect(refusedStored.postRunCauses).toEqual([]);
+
+    // A record written before the field reads as none.
+    expect(postRunCausesOf({})).toEqual([]);
+  });
+
+  it('memory secret', async () => {
+    const world = botWorld({ DEMO_TOKEN: 'demo-secret-value-91kq' });
+    const shared = sharedMemoryFile(world.stateRoot);
+    expect(appendMemoryEntry(shared, memoryEntry('the key is demo-secret-value-91kq')).ok).toBe(true);
+
+    const refused = await runBot(world.input('manual-ok'));
+    expect(refused).toMatchObject({ kind: 'refused', cause: 'body-secret' });
+    if (refused.kind !== 'refused') throw new Error('expected a refusal');
+    expect(refused.detail?.startsWith(`memory ${shared} holds a literal of key DEMO_TOKEN`)).toBe(true);
+    expect(stubRunCount(world)).toBe(0);
+    expect(readFileSync(recordFile(world.stateRoot, IDENTITY, refused.runId as string), 'utf8')).not.toContain('demo-secret-value-91kq');
+
+    // memory: false keeps both files out of the prompt, so the same secret never reaches the check.
+    const manualOk = readFileSync(join(FIXTURE_BOTS, 'manual-ok', 'BOT.md'), 'utf8');
+    writeBot(world, 'memory-off', manualOk.replace('id: manual-ok', 'id: memory-off').replace('\nisolation: shared\n', '\nisolation: shared\nmemory: false\n'));
+    const seen: string[] = [];
+    const outcome = await runBot(world.input('memory-off', { buildCommand: speak('done\n', seen) }));
+    expect(outcome.kind).toBe('completed');
+    expect(seen[0] ?? '').not.toContain('<memory');
+  });
+
+  it('budget refusal', async () => {
+    const world = botWorld();
+    const manualOk = readFileSync(join(FIXTURE_BOTS, 'manual-ok', 'BOT.md'), 'utf8');
+    const frontmatter = manualOk.slice(0, manualOk.indexOf('\n---\n') + 5);
+    writeBot(world, 'long-body', `${frontmatter.replace('id: manual-ok', 'id: long-body')}Tidy.${'x'.repeat(32_500)}\n`);
+    const refused = await runBot(world.input('long-body'));
+    expect(refused).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
+    if (refused.kind !== 'refused') throw new Error('expected a refusal');
+    expect(refused.detail).toMatch(/^body at \d+ of 32000 characters$/);
+    expect(stubRunCount(world)).toBe(0);
+
+    // A fresh tree is finished before the refusal is written, so no record names it as active.
+    const treeWorld = botWorld({ SPECKIT_WORKTREE_BASE: tempDir('bots-wt-base-') });
+    const posture = readFileSync(join(FIXTURE_BOTS, 'worktree-posture', 'BOT.md'), 'utf8');
+    const postureFrontmatter = posture.slice(0, posture.indexOf('\n---\n') + 5);
+    writeBot(treeWorld, 'long-tree', `${postureFrontmatter.replace('id: worktree-posture', 'id: long-tree')}${'x'.repeat(32_500)}\n`);
+    const treeRefused = await runBot(treeWorld.input('long-tree', { senders: {} }));
+    expect(treeRefused).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
+    expect(record(treeWorld, treeRefused).evidence.worktree).toMatchObject({ disposition: 'removed' });
+
+    // A resumed tree goes back to waiting with its item, so the refusal never records it as active.
+    const resumeWorld = botWorld({ SPECKIT_WORKTREE_BASE: tempDir('bots-wt-base-') });
+    writeBot(resumeWorld, 'park-tree', '---\nid: park-tree\ntrigger: {kind: manual}\nruntime: {kind: cli-codex}\nisolation: worktree\n---\nReview the notes and ask before deleting any.\nSTUB:decide=Delete the stale notes?\n');
+    const parked = await runBot(resumeWorld.input('park-tree', { senders: {} }));
+    if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
+    const tree = record(resumeWorld, parked).evidence.worktreePath as string;
+    const parkedItem = readNeedsYouItem(resumeWorld.stateRoot, IDENTITY, parked.itemId);
+    if (!parkedItem.ok) throw new Error(parkedItem.reason);
+    writeNeedsYouItem(resumeWorld.stateRoot, {
+      ...parkedItem.value,
+      prompt: `${parkedItem.value.prompt}\n${'x'.repeat(32_500)}`,
+      answer: { text: 'keep them', answeredAt: new Date().toISOString() },
+    });
+    const resumed = await runBot(resumeWorld.input('park-tree', { senders: {}, request: { kind: 'resume', requestId: 'rq-budget-tree', itemId: parked.itemId } }));
+    expect(resumed).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
+    if (resumed.kind !== 'refused') throw new Error('expected a refusal');
+    expect(resumed.detail?.startsWith('resume at ')).toBe(true);
+    expect(record(resumeWorld, resumed).evidence.worktree).toMatchObject({ disposition: 'kept', keptReason: 'awaiting-decision' });
+    expect(existsSync(tree)).toBe(true);
+  }, 90_000);
+
+  it('resume over budget', async () => {
+    const world = botWorld();
+    approveBots(world);
+    const parked = item(world);
+    writeNeedsYouItem(world.stateRoot, {
+      ...parked,
+      prompt: `${parked.prompt}\n${'x'.repeat(32_500)}`,
+      answer: { text: 'keep them', answeredAt: new Date().toISOString() },
+    });
+    const outcome = await runBot(world.input('manual-ok', { request: { kind: 'resume', requestId: 'req-budget', itemId: 'parked-1' } }));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'prompt-over-budget' });
+    if (outcome.kind !== 'refused') throw new Error('expected a refusal');
+    expect(outcome.detail?.startsWith('resume at ')).toBe(true);
+    expect(stubRunCount(world)).toBe(0);
   });
 });

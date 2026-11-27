@@ -6,6 +6,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildResumedPrompt,
   holdForBot,
+  itemAwaitingResume,
+  itemKind,
   listNeedsYouItems,
   needsYouExpiry,
   needsYouState,
@@ -176,5 +178,76 @@ describe('needs-you item', () => {
     expect(validateNeedsYouItem({ ...item(), kind: null }).ok).toBe(true);
     expect(validateNeedsYouItem({ ...item(), kind: 'decision' }).ok).toBe(true);
     expect(validateNeedsYouItem({ ...item(), kind: 7 })).toMatchObject({ ok: false, reason: 'item-field-invalid', detail: 'kind' });
+  });
+});
+
+describe('memory proposal item', () => {
+  const PROPOSAL = JSON.parse(
+    readFileSync(join(REAL_CHECKOUT, 'specs', 'system-skilled-bots', '003-openbot-parity-build', '005-memory', 'design', 'fixtures', 'proposal-item.json'), 'utf8'),
+  ) as NeedsYouItem;
+  const PROPOSAL_IDENTITY = 'skilled-scratch/hello';
+  const NOW = new Date('2026-11-25T22:00:00Z');
+
+  it('holds nothing', () => {
+    const root = stateRoot();
+    expect(validateNeedsYouItem(PROPOSAL).ok).toBe(true);
+    const written = writeNeedsYouItem(root, PROPOSAL);
+    if (!written.ok) throw new Error(written.reason);
+    expect(holdForBot(root, PROPOSAL_IDENTITY, 'hello', NOW)).toBeNull();
+    expect(holdForBot(root, PROPOSAL_IDENTITY, 'memory-proposals', NOW)).toBeNull();
+    const answered = writeNeedsYouItem(root, {
+      ...PROPOSAL,
+      answer: { text: 'confirm', answeredAt: '2026-11-25T21:30:00.000Z' },
+      resumeRequestId: null,
+    });
+    if (!answered.ok) throw new Error(answered.reason);
+    expect(itemAwaitingResume(root, PROPOSAL_IDENTITY, 'hello', NOW)).toBeNull();
+    expect(itemAwaitingResume(root, PROPOSAL_IDENTITY, 'memory-proposals', NOW)).toBeNull();
+    const decision = writeNeedsYouItem(root, { ...item(), identity: PROPOSAL_IDENTITY, botId: 'hello' });
+    if (!decision.ok) throw new Error(decision.reason);
+    expect(holdForBot(root, PROPOSAL_IDENTITY, 'hello', NOW)).toMatchObject({ kind: 'open' });
+  });
+
+  it('kind filter', () => {
+    const root = stateRoot();
+    const review = writeNeedsYouItem(root, {
+      ...item(),
+      identity: PROPOSAL_IDENTITY,
+      botId: 'hello',
+      kind: 'skill-proposal',
+      proposalType: null,
+      proposalFact: null,
+      proposalBotId: null,
+    });
+    if (!review.ok) throw new Error(review.reason);
+    expect(holdForBot(root, PROPOSAL_IDENTITY, 'hello', NOW)).toBeNull();
+    expect(itemKind({})).toBe('decision');
+    expect(itemKind({ kind: null })).toBe('decision');
+    expect(itemKind({ kind: 'memory-proposal' })).toBe('memory-proposal');
+    expect(validateNeedsYouItem({ ...PROPOSAL, kind: 'maybe' })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'kind',
+    });
+    expect(validateNeedsYouItem({ ...PROPOSAL, proposalFact: null })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'proposalFact',
+    });
+    expect(validateNeedsYouItem({ ...PROPOSAL, proposalFact: 'x'.repeat(401) })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'proposalFact',
+    });
+    expect(validateNeedsYouItem({ ...PROPOSAL, proposalBotId: '../x' })).toMatchObject({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'proposalBotId',
+    });
+    const stored = writeNeedsYouItem(root, { ...item(), identity: PROPOSAL_IDENTITY, id: 'r2', runId: 'r2' });
+    if (!stored.ok) throw new Error(stored.reason);
+    const read = readNeedsYouItem(root, PROPOSAL_IDENTITY, 'r2');
+    if (!read.ok) throw new Error(read.reason);
+    expect(Object.keys(read.value)).not.toContain('kind');
   });
 });

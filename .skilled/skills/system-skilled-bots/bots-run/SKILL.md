@@ -7,7 +7,7 @@ version: 1.0.0.0
 
 # Bots Run
 
-The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one.
+The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one. `bots remember` lives here too, because it writes a bot's memory, and `bots answer` confirms or rejects a fact a bot proposed.
 
 ---
 
@@ -47,7 +47,7 @@ The machine router, its intent signals and its resource map live in
 ## 3. HOW IT WORKS
 
 1. Confirm the bot id, or the needs-you item id for an answer, and the repository.
-2. Run the one verb the request names: `bots run <id>`, `bots enqueue <id> ...`, `bots drain` or `bots answer <item-id> <text>`, with `--repo <path>`.
+2. Run the one verb the request names: `bots run <id>`, `bots enqueue <id> ...`, `bots drain`, `bots answer <item-id> <text>` or `bots remember <fact>`, with `--repo <path>`.
 3. Read the exit code against the table in `references/run-queue-and-answer.md`.
 4. Report the verb, its exit code and what the code means.
 

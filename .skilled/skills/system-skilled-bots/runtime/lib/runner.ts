@@ -53,12 +53,14 @@ import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
 import {
   buildBotPrompt,
   checkoutLine,
+  checkPromptBudget,
   collectKnownSecrets,
   commonEnv,
   dispatchHeadless,
   finalAnswerText,
   findSecretLiteral,
   parseDecisionMarker,
+  parseRememberMarker,
   READ_ONLY_UNCONFINED,
   runsOutsideCheckout,
   VIBE_RUN_UNFINISHED,
@@ -69,6 +71,8 @@ import {
 } from './dispatch.js';
 import { resolveIdentity } from './identity.js';
 import { checkoutBranch, createBotWorktree, finishBotWorktree, inspectWorktree, reopenBotWorktree } from './isolation.js';
+import { MEMORY_PROPOSALS_BOT_ID } from './label.js';
+import { botMemoryFile, collapseText, MEMORY_LIMITS, MEMORY_TYPES, readMemoryFile, renderMemoryBlock, sharedMemoryFile } from './memory.js';
 import { buildResumedPrompt, holdForBot, itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { SCHEDULED_FIRE_ENV } from './plist-render.js';
 import { validatePosture } from './posture.js';
@@ -98,9 +102,10 @@ import type { BotDefinition, Delivery } from './definition.js';
 import type { DeliverySenders } from './delivery.js';
 import type { CommandBuilder, WorkingPlace } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
+import type { MemoryType } from './memory.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
-import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
+import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, PostRunCause, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -149,6 +154,7 @@ export const REFUSAL_CAUSES = Object.freeze({
   'precheck-silent': { reason: 'precheck-silent', class: null },
   'posture-refused': { reason: 'posture-refused', class: 'author' },
   'body-secret': { reason: 'body-secret', class: 'author' },
+  'prompt-over-budget': { reason: 'prompt-over-budget', class: 'author' },
   'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
   'result-ledger-unbound': { reason: 'result-ledger-unbound', class: 'environment' },
   'worktree-refused': { reason: 'worktree-refused', class: 'operator' },
@@ -186,7 +192,7 @@ export type RunRequest =
 export const SCHEDULE_SOURCE = 'schedule';
 
 /** The line that sets a queued request's own prompt apart from the bot body it follows. */
-export const REQUEST_PROMPT_HEADER = '--- Request prompt: added by the queued request that started this run ---';
+export { REQUEST_PROMPT_HEADER } from './dispatch.js';
 
 export interface RunBotInput {
   /** The repository checkout that holds `bots/`. */
@@ -364,7 +370,7 @@ function evidenceFor(runFolder: string, receiptDir: string): EvidenceLocations {
 function buildRecord(
   seed: RecordSeed,
   exit: RunRecord['exit'],
-  extra: { leaseNonce: string | null; resultEventId: string | null; iterations: number | null; elapsedMs: number | null; until?: UntilObservation | null },
+  extra: { leaseNonce: string | null; resultEventId: string | null; iterations: number | null; elapsedMs: number | null; until?: UntilObservation | null; postRunCauses?: PostRunCause[] },
 ): RunRecord {
   return {
     schemaVersion: 1,
@@ -408,6 +414,7 @@ function buildRecord(
     actor: seed.actor ?? null,
     answeredBy: seed.answeredBy ?? null,
     until: extra.until ?? null,
+    postRunCauses: extra.postRunCauses ?? [],
   };
 }
 
@@ -662,6 +669,28 @@ function parkedTreeFor(
       },
     },
   };
+}
+
+/**
+ * Settle a tree a refusal leaves before any child ran. A resumed tree goes back to waiting with
+ * its item, and a fresh one is finished by the normal rules, so no refusal records a tree as active.
+ */
+function settleUnusedTree(
+  seed: RecordSeed,
+  tree: BotWorktree | null,
+  resumed: boolean,
+  checkoutRoot: string,
+  env: NodeJS.ProcessEnv,
+): void {
+  if (tree === null || !seed.evidence.worktree) return;
+  if (resumed) {
+    seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
+  } else {
+    const finished = finishBotWorktree(checkoutRoot, tree, env);
+    const detail = [seed.evidence.worktree.detail, finished.detail].filter((part): part is string => part !== null && part !== '').join('; ');
+    seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
+  }
+  observe(seed, 'worktree', seed.evidence.worktree.disposition, { reason: seed.evidence.worktree.keptReason });
 }
 
 /** The line every prompt this runtime composes names its spec folder on, which gives a parked prompt a fixed place for the working-place line. */
@@ -1013,8 +1042,19 @@ async function runSeeded(
     }
     seed.posture = posture.value.posture;
 
+    // Memory reaches only a freshly composed prompt: a resumed run re-sends its parked prompt as it was.
+    const memory: Array<{ path: string; block: string }> = [];
+    if (resumeItem === null && definition.memory) {
+      const own = botMemoryFile(context.stateRoot, context.identity, input.botId);
+      if (!own.ok) throw new Error(own.reason);
+      for (const path of [sharedMemoryFile(context.stateRoot), own.value]) {
+        const block = renderMemoryBlock(path, readMemoryFile(path).entries);
+        if (block !== null) memory.push({ path, block });
+      }
+    }
     const known = collectKnownSecrets(env, context.checkoutRoot);
     const texts: Array<[string, string]> = [['body', definition.body]];
+    for (const { path, block } of memory) texts.push([`memory ${path}`, block]);
     if (resumeItem !== null) {
       texts.push(['question', resumeItem.question], ['answer', resumeItem.answer?.text ?? '']);
     }
@@ -1127,20 +1167,34 @@ async function runSeeded(
       prompt = placed.value;
     }
 
-    mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
-    seed.dispatchedAt = new Date().toISOString();
-    observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
     if (prompt === null) {
-      prompt = buildBotPrompt({
+      const built = buildBotPrompt({
         body: definition.body,
         specFolder,
         workingPlace,
         checkoutRoot: runsOutsideCheckout(kind) ? workDir : null,
         scheduled: request.kind === 'scheduled',
+        memoryBlocks: memory.map(({ block }) => block),
+        requestPrompt,
       });
-      // The request adds to the bot's standing instructions and never replaces them.
-      if (requestPrompt !== null) prompt = [prompt, '', REQUEST_PROMPT_HEADER, requestPrompt].join('\n');
+      if (!built.ok) {
+        settleUnusedTree(seed, tree, false, context.checkoutRoot, env);
+        return refusalRecord(context.stateRoot, seed, 'prompt-over-budget', built.detail ?? null, null, nonce);
+      }
+      prompt = built.value;
+    } else {
+      // A resumed run joins its prompt from the parked record and never through the builder, so the bound is checked here.
+      const fitted = checkPromptBudget(prompt);
+      if (!fitted.ok) {
+        settleUnusedTree(seed, tree, parkedTree !== null && parkedTree.value !== null, context.checkoutRoot, env);
+        return refusalRecord(context.stateRoot, seed, 'prompt-over-budget', fitted.detail ?? null, resumeItem?.id ?? null, nonce);
+      }
+      prompt = fitted.value;
     }
+
+    mkdirSync(evidence.receiptDir as string, { recursive: true, mode: STATE_DIR_MODE });
+    seed.dispatchedAt = new Date().toISOString();
+    observe(seed, 'dispatching', 'running', { model: posture.value.posture.model, sandbox: posture.value.posture.sandbox });
     const outcome = dispatchHeadless({
       executor: posture.value.executor,
       prompt,
@@ -1160,18 +1214,7 @@ async function runSeeded(
     // write action left open, so no child was started: a refusal, not a failed run.
     if (outcome.reason === READ_ONLY_UNCONFINED) {
       // The tree was made before the builder could refuse, and no child touched it.
-      // A resumed tree goes back to waiting with its item; a fresh one is finished
-      // by the normal rules, so a refusal never leaves a tree recorded as active.
-      if (tree !== null && seed.evidence.worktree) {
-        if (parkedTree !== null && parkedTree.value !== null) {
-          seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
-        } else {
-          const finished = finishBotWorktree(context.checkoutRoot, tree, env);
-          const detail = [seed.evidence.worktree.detail, finished.detail].filter((part): part is string => part !== null && part !== '').join('; ');
-          seed.evidence.worktree = { ...seed.evidence.worktree, disposition: finished.disposition, keptReason: finished.keptReason, detail: detail === '' ? null : detail };
-        }
-        observe(seed, 'worktree', seed.evidence.worktree.disposition, { reason: seed.evidence.worktree.keptReason });
-      }
+      settleUnusedTree(seed, tree, parkedTree !== null && parkedTree.value !== null, context.checkoutRoot, env);
       return refusalRecord(context.stateRoot, seed, 'read-only-unconfined', outcome.detail, null, nonce);
     }
 
@@ -1184,6 +1227,7 @@ async function runSeeded(
     const answer = outcome.dispatched && !stopped ? finalAnswerText(kind, outcome.stdout) : null;
     const signal = answer !== null ? parseDecisionMarker(answer) : { kind: 'none' as const };
 
+    const postRunCauses: PostRunCause[] = [];
     let exit: RunRecord['exit'];
     let result: RunOutcome;
     if (signal.kind === 'question') {
@@ -1246,6 +1290,50 @@ async function runSeeded(
       result = { kind: 'failed', reason: exit.reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
       observe(seed, 'result-event-unrecorded', 'stopped', { detail: sent.reason, attempts: sent.attempts });
     }
+    // Only a completed run may propose a fact. A run that parked a question or failed has not
+    // finished its work, so a fact it names may be about work it did not do. A second line is ignored.
+    const remember = result.kind === 'completed' && answer !== null ? parseRememberMarker(answer) : { kind: 'none' as const };
+    if (remember.kind === 'remember') {
+      const fact = collapseText(remember.fact);
+      if (!(MEMORY_TYPES as readonly string[]).includes(remember.type) || fact === '') {
+        // The type is never guessed, because a guessed type is a wrong fact about where the fact came from.
+        postRunCauses.push({ cause: 'remember-type-invalid', names: [], detail: null });
+      } else if (fact.length > MEMORY_LIMITS.text) {
+        // A cut fact reads as a whole one, so an over-long fact is reported and never cut to fit.
+        postRunCauses.push({ cause: 'remember-fact-too-long', names: [], detail: String(fact.length) });
+      } else {
+        const match = findSecretLiteral(fact, known);
+        if (match !== null) {
+          postRunCauses.push({ cause: 'memory-proposal-secret', names: [match.name], detail: null });
+        } else {
+          const created = new Date();
+          // The item carries the reserved memory-proposals sentinel as its bot, so it names a review queue and holds no bot.
+          const proposal: NeedsYouItem = {
+            id: runId,
+            runId,
+            botId: MEMORY_PROPOSALS_BOT_ID,
+            identity: context.identity,
+            question: `Remember this fact for ${input.botId}: ${fact}`,
+            options: ['confirm', 'reject'],
+            createdAt: created.toISOString(),
+            expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
+            evidence: [evidence.runFolder].filter((entry): entry is string => entry !== null),
+            prompt,
+            specFolder,
+            answer: null,
+            resumeRequestId: null,
+            kind: 'memory-proposal',
+            proposalType: remember.type as MemoryType,
+            proposalFact: fact,
+            proposalBotId: input.botId,
+          };
+          const written = writeNeedsYouItem(context.stateRoot, proposal);
+          if (written.ok) writeGenerationStamp(context.stateRoot, context.identity);
+          else observe(seed, 'memory-proposal', 'refused', { reason: written.reason });
+        }
+      }
+      observe(seed, 'remember', postRunCauses.length > 0 ? 'refused' : 'proposed', postRunCauses.length > 0 ? { cause: postRunCauses[0]?.cause } : {});
+    }
     if (tree !== null && seed.evidence.worktree && exit.needsYouItemId !== null) {
       // The answer resumes this run in this same tree, so the tree waits with the item.
       seed.evidence.worktree = { ...seed.evidence.worktree, disposition: 'kept', keptReason: AWAITING_DECISION_KEPT_REASON };
@@ -1285,6 +1373,7 @@ async function runSeeded(
         iterations: outcome.dispatched ? 1 : 0,
         elapsedMs: outcome.elapsedMs,
         until,
+        postRunCauses,
       }),
     );
     // The streak counts this run, so the rule is read after its record is written. A refused

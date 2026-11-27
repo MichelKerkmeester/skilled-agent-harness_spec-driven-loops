@@ -67,6 +67,8 @@ export interface BotDefinition {
   runtime: RuntimeBlock;
   budget: Budget;
   enabled: boolean;
+  /** Whether the shared memory file and the bot's own reach its prompt. Absent reads as true. */
+  memory: boolean;
   delivery: Delivery;
   posture: Posture;
   /** Command whose non-zero exit or `[SILENT]` output skips the run. */
@@ -100,6 +102,7 @@ const FRONTMATTER_KEYS = new Set([
   'runtime',
   'budget',
   'enabled',
+  'memory',
   'delivery',
   'isolation',
   'sandbox',
@@ -277,6 +280,9 @@ export function parseDefinition(text: string): Result<BotDefinition> {
   if (raw.enabled !== undefined && typeof raw.enabled !== 'boolean') {
     return { ok: false, reason: 'enabled-invalid', detail: 'expected true or false' };
   }
+  if (raw.memory !== undefined && typeof raw.memory !== 'boolean') {
+    return { ok: false, reason: 'memory-invalid', detail: 'expected true or false' };
+  }
   if (raw.isolation !== undefined && !ISOLATION_VALUES.includes(raw.isolation as Isolation)) {
     return { ok: false, reason: 'isolation-invalid', detail: `expected one of ${ISOLATION_VALUES.join(', ')}` };
   }
@@ -297,6 +303,7 @@ export function parseDefinition(text: string): Result<BotDefinition> {
       runtime: runtime.value,
       budget: budget.value,
       enabled: raw.enabled === undefined ? true : raw.enabled,
+      memory: raw.memory ?? true,
       delivery: resolvedDelivery,
       posture: {
         isolation: (raw.isolation as Isolation | undefined) ?? null,

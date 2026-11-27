@@ -48,9 +48,16 @@ const USAGE = [
   '  schedule uninstall <id>',
   '                 remove a schedule and sweep this repository\'s orphaned ones',
   '  answer <item-id> <text> [--as <name>] [--scope once|deny]',
-  '                 answer a needs-you item and queue the run that continues it;',
-  '                 --as records who answered and needs a tty unless it is you,',
-  '                 and --scope deny records a denial',
+  '                 answer a needs-you item and queue the run that continues it, or',
+  '                 confirm or reject a memory proposal; --as records who answered',
+  '                 and needs a tty unless it is you, and --scope deny records a denial',
+  '  remember <fact> [--bot <id>] [--type <type>] [--as <name>]',
+  '                 add one fact to the shared memory file, or with --bot to that',
+  '                 bot\'s own; --type is user, general, feedback or reference',
+  '  remember --list [--bot <id>] [--json]',
+  '                 list the facts with their ids; --json prints one document',
+  '  remember --forget <entry-id> [--bot <id>]',
+  '                 remove the fact whose id --list printed',
   '  status [--json] [--rebuild] [--all] [--unregister <owner/name>]',
   '                 show every installed bot, its last run and delivery, and open',
   '                 needs-you items, from the status index; --rebuild rebuilds the',
@@ -71,10 +78,11 @@ const USAGE = [
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
-const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii']);
+const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii', 'list']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
 const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
+const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
 // How many positional arguments each verb takes, and the options it accepts beyond the common ones.
 const VERB_SPECS = {
   run: { ids: 1, options: ['schedule-index', 'as'] },
@@ -86,6 +94,7 @@ const VERB_SPECS = {
   enqueue: { ids: 1, options: ENQUEUE_OPTIONS },
   drain: { ids: 0, options: ['scheduled'] },
   answer: { ids: 2, options: ['as', 'scope'] },
+  remember: { ids: 1, options: REMEMBER_OPTIONS },
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
@@ -94,13 +103,16 @@ const VERB_SPECS = {
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
 // The names an actor may take, mirroring ACTOR_PATTERN in the runtime's actor module. The pattern
 // is repeated here because these refusals run before the runtime loads.
 const ACTOR_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+// The entry types a memory line may name, mirroring MEMORY_TYPES in the runtime's memory module.
+// The list is repeated here because these refusals run before the runtime loads.
+const MEMORY_TYPES = ['user', 'general', 'feedback', 'reference'];
 // The operator pinned into a job at install time, the runtime's PINNED_OPERATOR_ENV.
 const PINNED_OPERATOR_ENV = 'SKILLED_BOTS_OPERATOR';
 // Scopes that would grant more than one answer, which this command cannot record.
@@ -172,6 +184,23 @@ function checkActorOptions(parsed) {
   return null;
 }
 
+// The refusals a remember request gets before any file is read. They run here, before the runtime
+// loads, so a malformed request never reaches a memory file.
+function checkRemember(parsed) {
+  const { options } = parsed;
+  const fact = parsed.args[0];
+  const list = options.list === true;
+  const forget = options.forget !== undefined;
+  if (list && forget) return 'remember takes --list or --forget, not both';
+  if (list && fact !== undefined) return 'remember --list takes no fact';
+  if (forget && fact !== undefined) return 'remember --forget takes no fact';
+  if (!list && !forget && (fact === undefined || fact.trim() === '')) return 'remember needs a fact';
+  if (options.json === true && !list) return '--json needs --list';
+  if (options.type !== undefined && !MEMORY_TYPES.includes(options.type)) return '--type takes user, general, feedback or reference';
+  if (forget && !/^[0-9a-f]{8}$/.test(options.forget)) return '--forget takes an entry id';
+  return null;
+}
+
 function checkEnqueue(options, ids) {
   if (options['git-commit'] !== undefined) {
     const extra = ENQUEUE_OPTIONS.find((name) => name !== 'git-commit' && options[name] !== undefined);
@@ -237,6 +266,10 @@ function parseArgs(argv) {
     if (ids.length > 2) return { error: `unexpected argument: ${ids[2]}` };
     return { verb, id: ids[0], args: [ids[1]], options };
   }
+  if (verb === 'remember') {
+    if (ids.length > 1) return { error: `unexpected argument: ${ids[1]}` };
+    return { verb, id: undefined, args: ids.slice(0, 1), options };
+  }
   if (spec.ids === 1 && !ids[0]) return { error: `${verb} needs a bot id` };
   if (spec.ids === 0 && ids.length > 0) return { error: `${verb} takes no id` };
   if (ids.length > spec.ids) return { error: `unexpected argument: ${ids[spec.ids]}` };
@@ -259,7 +292,7 @@ async function loadRuntime() {
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
   const load = runtimeModule;
-  const [runner, switches, needsYou, queue, drain, answer, installer] = await Promise.all([
+  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity] = await Promise.all([
     load('runner'),
     load('switches'),
     load('needs-you'),
@@ -267,8 +300,14 @@ async function loadRuntime() {
     load('request-drain'),
     load('answer'),
     load('installer'),
+    load('memory'),
+    load('actor'),
+    load('dispatch'),
+    load('repo-config'),
+    load('state-root'),
+    load('identity'),
   ]);
-  return { runner, switches, needsYou, queue, drain, answer, installer };
+  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity };
 }
 
 // The payload contract the screen binary must speak. It is read from the runtime
@@ -389,9 +428,132 @@ function answerVerb(rt, parsed, checkoutRoot, resolveEnv) {
     return rt.runner.EXIT_CODES.refused;
   }
   const { status, requestId, itemId } = result.value;
+  // A review item settles in place and queues no resume, so it reports the kind that settled it.
+  if (status === 'reviewed') {
+    process.stdout.write(`bots: item ${itemId} answered; ${result.value.kind ?? 'decision'} review recorded\n`);
+    return 0;
+  }
   const sent = status === 'duplicate' ? 'duplicate: already queued' : 'enqueued';
   process.stdout.write(`bots: item ${itemId} answered; resume request ${requestId} ${sent}\n`);
   return 0;
+}
+
+// The memory verb writes where a confirmed proposal writes, so it resolves the state root under the
+// drain job's environment. A shared fact needs no identity, because the shared file sits beside the
+// identity folders and a checkout with no identity can still keep shared memory.
+async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
+  const { options } = parsed;
+  const bot = options.bot;
+  if (bot !== undefined && !rt.stateRoot.isSafeSegment(bot)) {
+    process.stderr.write(`bots: bot-id-invalid: ${bot}\n`);
+    return 2;
+  }
+  const list = options.list === true;
+  const forget = options.forget !== undefined;
+  // The length check runs before any file is read, so an oversized fact costs no read.
+  const fact = list || forget ? null : rt.memory.collapseText(parsed.args[0]);
+  if (fact !== null && fact.length > rt.memory.MEMORY_LIMITS.text) {
+    process.stderr.write(`bots: memory-entry-too-long: ${fact.length}\n`);
+    return 2;
+  }
+  const config = rt.repoConfig.readRepoConfig(checkoutRoot);
+  if (!config.ok) {
+    process.stderr.write(`${describeRefusal(config)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const stateRoot = rt.stateRoot.userStateRoot(config.value, resolveEnv);
+  let path;
+  if (bot === undefined) {
+    path = rt.memory.sharedMemoryFile(stateRoot);
+  } else {
+    const identity = rt.identity.resolveIdentity({ checkoutRoot, config: config.value, env: resolveEnv });
+    if (!identity.ok) {
+      process.stderr.write(`${describeRefusal(identity)}\n`);
+      return rt.runner.EXIT_CODES.refused;
+    }
+    const file = rt.memory.botMemoryFile(stateRoot, identity.value.identity, bot);
+    if (!file.ok) {
+      process.stderr.write(`bots: bot-id-invalid: ${bot}\n`);
+      return 2;
+    }
+    path = file.value;
+  }
+  const limits = rt.memory.MEMORY_LIMITS;
+  try {
+    if (list) {
+      const read = rt.memory.readMemoryFile(path);
+      if (options.json === true) {
+        const entries = read.entries.map(({ index, id, type, date, actor, source, text }) => ({ index, id, type, date, actor, source, text }));
+        const document = {
+          version: 1,
+          botId: bot ?? null,
+          path,
+          entries,
+          entryCount: read.entries.length,
+          byteCount: read.byteCount,
+          skippedLines: read.skippedLines,
+        };
+        process.stdout.write(`${JSON.stringify(document)}\n`);
+        return 0;
+      }
+      if (!require('node:fs').existsSync(path)) {
+        process.stdout.write(`bots: no memory in ${path}\n`);
+        return 0;
+      }
+      const skipped = read.skippedLines === 0 ? '' : read.skippedLines === 1 ? ', 1 line skipped' : `, ${read.skippedLines} lines skipped`;
+      process.stdout.write(`bots: ${path} (${read.entries.length} of ${limits.entries} entries, ${read.byteCount} of ${limits.bytes} bytes${skipped})\n`);
+      for (const entry of read.entries) {
+        process.stdout.write(`\t${[entry.id, entry.type, entry.date, entry.actor, entry.source, entry.text].join('\t')}\n`);
+      }
+      return 0;
+    }
+    if (forget) {
+      const id = options.forget;
+      const result = rt.memory.forgetMemoryEntry(path, id);
+      if (!result.ok) {
+        if (result.reason === 'memory-entry-unknown') {
+          process.stderr.write(`bots: memory-entry-unknown: ${id}\n`);
+          return 2;
+        }
+        process.stderr.write(`${describeRefusal(result)}\n`);
+        return rt.runner.EXIT_CODES.refused;
+      }
+      const { entryCount, byteCount } = result.value;
+      process.stdout.write(`bots: entry ${id} forgotten from ${path} (${entryCount} of ${limits.entries} entries, ${byteCount} of ${limits.bytes} bytes)\n`);
+      return 0;
+    }
+    const actor = rt.actor.resolveActor({
+      as: options.as === undefined ? null : options.as.trim(),
+      env: process.env,
+      scheduled: false,
+    });
+    if (!actor.ok) {
+      process.stderr.write(`${describeRefusal(actor)}\n`);
+      return 2;
+    }
+    const match = rt.dispatch.findSecretLiteral(fact, rt.dispatch.collectKnownSecrets(process.env, checkoutRoot));
+    if (match !== null) {
+      process.stderr.write(`bots: memory-secret: ${match.name}\n`);
+      return rt.runner.EXIT_CODES.refused;
+    }
+    const result = rt.memory.appendMemoryEntry(path, {
+      type: options.type ?? 'general',
+      date: new Date().toISOString().slice(0, 10),
+      actor: actor.value ?? 'unknown',
+      source: 'bots remember',
+      text: fact,
+    }, { botId: bot ?? null });
+    if (!result.ok) {
+      process.stderr.write(`${describeRefusal(result)}\n`);
+      return rt.runner.EXIT_CODES.refused;
+    }
+    const { index, entryCount, byteCount } = result.value;
+    process.stdout.write(`bots: entry ${index} in ${path} (${entryCount} of ${limits.entries} entries, ${byteCount} of ${limits.bytes} bytes)\n`);
+    return 0;
+  } catch (error) {
+    process.stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);
+    return 1;
+  }
 }
 
 function printSteps(steps) {
@@ -683,6 +845,17 @@ async function main(argv) {
   // The screen starts a separate binary and reads no bot state, so it runs before
   // the child refusals and before the runtime loads.
   if (parsed.verb === 'ui') return uiVerb(parsed);
+  if (parsed.verb === 'remember') {
+    const problem = checkRemember(parsed);
+    if (problem) return usageExit(problem);
+    // The write forms run no write inside a bot run: a child that appended a fact would write a
+    // line every later prompt reads as one an operator confirmed. --list is a read and stays open.
+    const writes = parsed.options.list !== true;
+    if (writes && isBotChild(process.env)) {
+      process.stderr.write('bots: child-write-refused: remember runs no write inside a bot run\n');
+      return 2;
+    }
+  }
   // A refusal that reads the run marker for answer and enable belongs here, before any
   // runtime work, so a bot's own child cannot answer or re-enable itself.
   if (CHILD_REFUSED_VERBS.has(parsed.verb) && isBotChild(process.env)) {
@@ -692,7 +865,7 @@ async function main(argv) {
   if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
     return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
   }
-  if (parsed.verb === 'answer' || parsed.verb === 'run') {
+  if (parsed.verb === 'answer' || parsed.verb === 'run' || parsed.verb === 'remember') {
     const actorProblem = checkActorOptions(parsed);
     if (actorProblem) return usageExit(actorProblem.message);
   }
@@ -719,6 +892,7 @@ async function main(argv) {
   if (parsed.verb === 'enqueue') return enqueueVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'remember') return rememberVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'routines') return routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
