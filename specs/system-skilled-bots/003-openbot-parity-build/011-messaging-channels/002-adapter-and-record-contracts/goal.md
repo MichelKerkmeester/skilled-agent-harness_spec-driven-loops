@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts"
     last_updated_at: "2026-11-27T18:00:00Z"
     last_updated_by: "unit-orchestrator-011-002"
-    recent_action: "Verified the design documents and re-recorded the base commit"
-    next_safe_action: "Provision the reference tree, then run T002 and T011"
+    recent_action: "Verified the design documents and closed the phase"
+    next_safe_action: "Merge into the integration branch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-002-adapter-contracts"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -77,7 +77,7 @@ and findings belong here.
 |------|-------|----------|
 | Five design documents | Written | On 2026-11-26 T004 printed 11 and 14, T005 printed 9, 8 and 1, T006 printed 5 and 4, T007 printed 5, 18 and 7, T008 printed 12 and 12 and T009 printed nothing |
 | Base commit | Recorded | base commit b04f9f9718edb971dbf4f5673221c536114a265f, the commit this phase starts from. T009 and AC-007 read it from here |
-| Build run | Closed with two tasks blocked | On 2026-11-27 the unit orchestrator ran T001, T003 to T010 and the checklist in the unit worktree and every one printed what it says. T002 and T011 are blocked because the gitignored reference tree under `specs/system-skilled-bots/context/` is not in the worktree |
+| Build run | Closed | On 2026-11-27 the unit orchestrator ran T001, T003 to T010 and the checklist in the unit worktree and every one printed what it says. T002 and T011 first waited for the gitignored reference tree under `specs/system-skilled-bots/context/`. Once the top orchestrator linked it into the worktree, T002 printed `66:` and `374:` and T011 printed 0 |
 
 ### Deviations and findings
 
@@ -97,5 +97,5 @@ and findings belong here.
 | The base commit moves to the amendment pass, on 2026-11-27 | The phase has not started, and the amendment pass that applied the final parity recommendations changed twelve `contracts/` files on purpose. The check guards against this phase's own contract edits, so the base is now that pass's commit. Re-record it if the contracts change again before the phase starts. |
 | The base moves again at build start, on 2026-11-27 | The build-plan commit `caeafe3a7f0` changed `contracts/decisions.md` row D3 after the earlier base `7b3c6c26929` and before this phase started, so T009 printed that file. Under the rule above the base is now `b04f9f9718e`, the commit the unit worktree was cut from. T009 then printed nothing |
 | Waves 0 and 1 not dispatched, on 2026-11-27 | The plan names a Vibe worker for wave 0 and five for wave 1. Wave 0 is three reads with no file to write, so the orchestrator ran them itself. The five design documents were already committed before the worktree was cut and T004 to T008 printed their counts against them, so a rewrite would add risk and no content. No worker was dispatched |
-| The reference tree is missing, on 2026-11-27 | `specs/**/context/` is gitignored, so the unit worktree has no `tinychannels-main` tree. T002 and T011 cannot run there, and the orchestrator's brief bars reading the primary checkout to fill the gap. T011 is the line-copy check and has no recorded run, so it stays blocked until someone puts the tree in the worktree. T002's second path, `context/tinychannels-conformance/src/lib.rs`, also differs from the `tinychannels-main/crates/tinychannels-conformance/src/lib.rs` path that `plan.md` and `spec.md` name, so one of them will fail even once the tree is present |
+| The reference tree is missing, on 2026-11-27 | `specs/**/context/` is gitignored, so the unit worktree has no `tinychannels-main` tree. T002 and T011 cannot run there, and the orchestrator's brief bars reading the primary checkout to fill the gap. T011 is the line-copy check and has no recorded run, so it stays blocked until someone puts the tree in the worktree. T002's second path, `context/tinychannels-conformance/src/lib.rs`, also differs from the `tinychannels-main/crates/tinychannels-conformance/src/lib.rs` path that `plan.md` and `spec.md` name, so one of them would fail even with the tree present. The tree was then linked in, T002's text now names the `tinychannels-main/crates/` path and both checks passed |
 <!-- /ANCHOR:log -->

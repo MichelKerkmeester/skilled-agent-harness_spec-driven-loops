@@ -38,7 +38,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -126,12 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -151,6 +145,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`declaredCapabilities` had no vocabulary and no matrix, the inbound acknowledge boundary was undefined and the `seen/` folder was named once with no content",
     "created_at": "2026-11-26T00:00:17Z",
-    "last_save_at": "2026-11-27T16:21:23.385Z",
+    "last_save_at": "2026-11-27T16:26:38.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5fde1cc93d8220150aba344d05eb71eb79b65f3037d5ce225979721418db9c37",
+    "source_fingerprint": "sha256:0279e7307eb983d3ab04ee7ebeaed2b8f5fe7252f01bbc58c9e759373e42bc8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "74c24446572f9b8a6b12734c9c9781d68161d1b87646a9ce9cda4780e2e1136b",
+      "spec.md": "f6f6596bb3179ce3510e8e3d4558f7eb1f6a1cbab30b8ba47122cc242bb8164f",
       "plan.md": "836c1ce5c925a18f1fb4aa2604b1ab2d0940d637ba5e8e197e48410feed3deec",
-      "tasks.md": "a5597977209677b829728ae05177d86bccdce33ffa5396a38eeba66850b8da4f",
-      "implementation-summary.md": "0a952f7d5c6988842d01a0892b58d1a44171357b3b1171d84f1b0a5043610df6"
+      "tasks.md": "ea12c5324bd762c7a8e3befab493d3fb8443e710cca672057dd698419cf52839",
+      "implementation-summary.md": "73dc1f5a8f38f3ef22b90374dbdff8eba9327ca4f1ad71614fd24d7a78c399a1"
     },
     "last_active_at": null
   }

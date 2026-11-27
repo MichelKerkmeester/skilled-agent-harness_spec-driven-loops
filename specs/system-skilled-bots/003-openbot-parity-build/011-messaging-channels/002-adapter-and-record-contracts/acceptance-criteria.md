@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts"
     last_updated_at: "2026-11-27T18:00:00Z"
     last_updated_by: "unit-orchestrator-011-002"
-    recent_action: "Ran every row and marked it Met"
-    next_safe_action: "Provision the reference tree, then run T002 and T011"
+    recent_action: "Ran every row, marked it Met and closed the packet"
+    next_safe_action: "Merge into the integration branch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-002-adapter-contracts"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-26
 <!-- /ANCHOR:metadata -->
 
@@ -91,7 +91,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-All nine rows are Met. The unit orchestrator ran each command in the unit worktree on 2026-11-27 and read its output. The packet still stays open on `tasks.md`, whose protocol keeps the phase open while a task is blocked. T002 and T011 are blocked because the gitignored reference tree under `specs/system-skilled-bots/context/` is not in the worktree. T011 is the check that no line of reference source appears in the design. Neither task backs any row above.
+All nine rows are Met. The unit orchestrator ran each command in the unit worktree on 2026-11-27 and read its output. Once the reference tree was linked into the worktree, T002 and T011 passed as well, so no task in `tasks.md` is blocked. T011 printed 0, which shows no line of reference source appears in the design.
 <!-- /ANCHOR:closure -->

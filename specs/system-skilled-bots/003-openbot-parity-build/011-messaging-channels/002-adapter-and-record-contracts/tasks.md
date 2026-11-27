@@ -40,7 +40,7 @@ Three shell variables keep the commands short. Every command runs from the repos
 ## Phase 1: Setup
 
 - [x] T001 Confirm the six channel record sections (`$C/records.md`). Verify: `rg -c '^## 1[1-6]\. ' $C/records.md` prints 6
-- [B] T002 Blocked: the gitignored `specs/system-skilled-bots/context/` tree is not in the unit worktree, so neither path resolves. Confirm the reference adapter and checker resolve (`specs/system-skilled-bots/context/tinychannels-main/`). Verify: `rg -n 'fn receive_ack_policy' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs` prints line 66, and `rg -n 'pub async fn check_feature' specs/system-skilled-bots/context/tinychannels-conformance/src/lib.rs` prints line 374. The pre-expansion T002, "Record the four message types", is retired: its facts are the shapes of `design/capabilities.md` section 3, which T004 writes
+- [x] T002 Confirm the reference adapter and checker resolve (`specs/system-skilled-bots/context/tinychannels-main/`). Verify: `rg -n 'fn receive_ack_policy' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs` prints line 66, and `rg -n 'pub async fn check_feature' specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs` prints line 374. The pre-expansion T002, "Record the four message types", is retired: its facts are the shapes of `design/capabilities.md` section 3, which T004 writes. Observed 2026-11-27: `66:` and `374:`
 - [x] T003 Confirm the two-credential gap (`$C/records.md`). Verify: `rg -c 'bot_token|app_token|app_secret' $C/records.md` prints nothing and exits 1
 <!-- /ANCHOR:phase-1 -->
 
@@ -63,7 +63,7 @@ Three shell variables keep the commands short. Every command runs from the repos
 
 - [x] T009 Check no contract file changed (`$C`). The base commit is the one `goal.md` section 4 records at setup, so a contract edit this phase commits is caught as well as an uncommitted one. Verify: `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' $P/goal.md | cut -d' ' -f3)"..HEAD -- $C` prints nothing
 - [x] T010 Check every unknown is marked (`$D/`). Verify: `rg -c 'UNKNOWN|not stated' $D/inbound-sequence.md $D/capabilities.md $D/operator-runbook.md | wc -l | tr -d ' '` prints 2, and `rg -n 'Confirm on the settings page' $D/operator-runbook.md` prints one line
-- [B] T011 Blocked: the gitignored `specs/system-skilled-bots/context/` tree is not in the unit worktree, so the reference side of the comparison is empty. Check no line of reference source appears in the design (`$D/`). Verify: `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + | sort -u | awk 'length>30') <(sort -u $D/*.md) | wc -l | tr -d ' '` prints 0
+- [x] T011 Check no line of reference source appears in the design (`$D/`). Verify: `R=specs/system-skilled-bots/context/tinychannels-main; comm -12 <(find $R/src/providers $R/crates/tinychannels-bus $R/crates/tinychannels-runtime $R/crates/tinychannels-conformance -name '*.rs' -exec cat {} + | sort -u | awk 'length>30') <(sort -u $D/*.md) | wc -l | tr -d ' '` prints 0. Observed 2026-11-27: 0 against 48968 reference lines, and a scratch copy with one planted reference line printed 1
 - [x] T012 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,8 +72,8 @@ Three shell variables keep the commands short. Every command runs from the repos
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
 - [x] T009 prints nothing
 <!-- /ANCHOR:completion -->
 
@@ -112,7 +112,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 
 - [x] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' $P/spec.md` prints 9
 - [x] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -n '^## 4\. IMPLEMENTATION PHASES' $P/plan.md` prints one line
-- [B] CHK-003 [P1] Blocked with T002. Dependencies available. Verify: T001 to T003 print what they say
+- [x] CHK-003 [P1] Dependencies available. Verify: T001 to T003 print what they say
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -171,7 +171,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | 7/7 |
-| P1 Items | 8 | 7/8, CHK-003 blocked with T002 |
+| P1 Items | 8 | 8/8 |
 | P2 Items | 1 | 1/1 |
 
 The totals count the items listed above. The earlier 6 and 9 did not match the list.
