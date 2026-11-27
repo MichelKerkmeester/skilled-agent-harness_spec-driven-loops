@@ -30,6 +30,8 @@ Use this hub for a request about a file-defined bot: writing one, running one, p
 
 `bots inbox` belongs to status and `bots answer` belongs to run. Neither has a mode of its own.
 
+`bots ui` belongs to status too. It opens the terminal screen, a live status surface over the same reads that can also answer a needs-you item.
+
 ### When NOT to Use
 
 - A request that never names a bot, such as running tests, scheduling a meeting or reading a build status. Those belong to other skills.

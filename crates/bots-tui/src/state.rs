@@ -202,6 +202,12 @@ pub struct State {
     pub pending_answers: Vec<ItemId>,
     /// Outcome words drawn on answered rows until a later inbox read.
     pub answered: Vec<AnsweredRow>,
+    /// The checkout passed as `--repo`, which names this screen's own identity.
+    pub checkout: Option<String>,
+    /// The identity of the status bot row whose path is the checkout, once a status read names one.
+    pub own_identity: Option<String>,
+    /// The needs-you items the last status read lists under another identity.
+    pub foreign_items: Vec<ItemId>,
 }
 
 /// One status row message and the call it came from.
@@ -603,6 +609,11 @@ pub fn on_fetched(
             if surface == Surface::Inbox {
                 keep_answered_rows(state, generation, previous);
             }
+            // A status read is the only one that names the own identity, so it filters every pane.
+            if surface == Surface::Status {
+                learn_identity(state);
+            }
+            keep_own_rows(state);
         }
         Err(error) => {
             mark_read_failed(state, surface, error.line.clone());
@@ -614,6 +625,12 @@ pub fn on_fetched(
     }
     reconcile_selection(state, surface);
     if surface == Surface::Inbox {
+        reconcile_overlay(state);
+    }
+    // A status read can drop a row the selection or an open overlay still names, so both move now.
+    if surface == Surface::Status {
+        reconcile_selection(state, Surface::Activity);
+        reconcile_selection(state, Surface::Inbox);
         reconcile_overlay(state);
     }
 }
@@ -830,6 +847,60 @@ fn keep_answered_rows(state: &mut State, generation: u64, previous: Vec<InboxIte
         }
     }
     state.inbox.rows.extend(carried);
+}
+
+/// A path with one trailing slash removed, so two spellings of one checkout compare equal.
+fn trim_slash(path: &str) -> &str {
+    path.strip_suffix('/').unwrap_or(path)
+}
+
+/// The identity of the status bot row whose path is the checkout, absent when no row names it.
+pub fn own_identity(status: &StatusPayload, checkout: &str) -> Option<String> {
+    let wanted = trim_slash(checkout);
+    status
+        .rows
+        .iter()
+        .filter(|row| row.kind == "bot" && !row.identity.is_empty())
+        .find(|row| {
+            row.path
+                .as_deref()
+                .is_some_and(|path| trim_slash(path) == wanted)
+        })
+        .map(|row| row.identity.clone())
+}
+
+/// Reads the own identity and the foreign items out of the status rows the last read stored.
+fn learn_identity(state: &mut State) {
+    let own = state
+        .checkout
+        .as_deref()
+        .and_then(|checkout| own_identity(&state.status.rows, checkout));
+    state.foreign_items = match &own {
+        Some(own) => state
+            .status
+            .rows
+            .rows
+            .iter()
+            .filter(|row| row.kind == "needs-you" && row.identity != *own)
+            .filter_map(|row| row.item_id.clone().map(ItemId))
+            .collect(),
+        None => Vec::new(),
+    };
+    state.own_identity = own;
+}
+
+/// Drops every row the last status read places under another identity, so no pane names one.
+fn keep_own_rows(state: &mut State) {
+    let Some(own) = state.own_identity.as_deref() else {
+        return;
+    };
+    state.status.rows.rows.retain(|row| row.identity == own);
+    for group in &mut state.activity.rows {
+        group.rows.retain(|row| row.identity == own);
+    }
+    state.activity.rows.retain(|group| !group.rows.is_empty());
+    let foreign = &state.foreign_items;
+    state.inbox.rows.retain(|item| !foreign.contains(&item.id));
 }
 
 /// The shell's own actions: the tabs, the palette and the quit a palette entry can run.
@@ -1372,6 +1443,7 @@ fn overlay_on_paste(state: &mut State, text: &str) {
 mod tests {
     use super::*;
     use crate::model::ActivityRow;
+    use crate::model::StatusRow;
 
     fn item(id: &str) -> InboxItem {
         InboxItem {
@@ -1404,6 +1476,101 @@ mod tests {
             run_id: Some(run_id.to_string()),
             ..ActivityRow::default()
         }
+    }
+
+    /// The status rows the identity filter reads: two bot rows and two needs-you rows.
+    fn status_payload() -> StatusPayload {
+        StatusPayload {
+            rows: vec![
+                StatusRow {
+                    kind: "bot".to_string(),
+                    identity: "own/hello".to_string(),
+                    path: Some("/r/hello".to_string()),
+                    ..StatusRow::default()
+                },
+                StatusRow {
+                    kind: "bot".to_string(),
+                    identity: "other/far".to_string(),
+                    path: Some("/r/far".to_string()),
+                    ..StatusRow::default()
+                },
+                StatusRow {
+                    kind: "needs-you".to_string(),
+                    identity: "own/hello".to_string(),
+                    item_id: Some("O1".to_string()),
+                    ..StatusRow::default()
+                },
+                StatusRow {
+                    kind: "needs-you".to_string(),
+                    identity: "other/far".to_string(),
+                    item_id: Some("F1".to_string()),
+                    ..StatusRow::default()
+                },
+            ],
+            ..StatusPayload::default()
+        }
+    }
+
+    /// The two open inbox items the identity filter reads, one under each identity.
+    fn inbox_payload() -> Vec<InboxItem> {
+        vec![
+            InboxItem {
+                id: ItemId("O1".to_string()),
+                state: ItemState::Open,
+                ..InboxItem::default()
+            },
+            InboxItem {
+                id: ItemId("F1".to_string()),
+                state: ItemState::Open,
+                ..InboxItem::default()
+            },
+        ]
+    }
+
+    /// The two activity groups the identity filter reads, the second one foreign only.
+    fn activity_payload() -> Vec<ActivityGroup> {
+        vec![
+            ActivityGroup {
+                id: "needs_you".to_string(),
+                title: "Needs you".to_string(),
+                rows: vec![
+                    activity_row("own/hello", "run-1"),
+                    activity_row("other/far", "run-2"),
+                ],
+            },
+            ActivityGroup {
+                id: "done".to_string(),
+                title: "Done".to_string(),
+                rows: vec![activity_row("other/far", "run-3")],
+            },
+        ]
+    }
+
+    /// Delivers one read at the generation the test set on its surface, as a landed fetch does.
+    fn deliver(state: &mut State, surface: Surface, generation: u64, payload: Payload) {
+        update(
+            state,
+            Msg::Fetched {
+                surface,
+                generation,
+                outcome: Ok(Read {
+                    payload,
+                    warning: None,
+                }),
+            },
+        );
+    }
+
+    /// The phase the overlay is in, absent when it is closed.
+    fn phase_of(state: &State) -> Option<Phase> {
+        state.overlay.as_ref().map(|open| open.phase.clone())
+    }
+
+    /// Whether any effect carries an answer, the one write a foreign row must never reach.
+    fn answers(effects: &[Effect]) -> bool {
+        effects
+            .iter()
+            .any(|effect| matches!(effect, Effect::Answer { .. }))
     }
 
     #[test]
@@ -1800,6 +1967,160 @@ mod tests {
         let effects = update(&mut state, Msg::Paste("y".to_string()));
         assert!(effects.is_empty());
         assert_eq!(state, before);
+    }
+
+    /// A status read that names the own identity drops every foreign row before a pane draws it.
+    #[test]
+    fn foreign_identity_rows_reach_no_pane() {
+        let mut state = State {
+            checkout: Some("/r/hello".to_string()),
+            ..State::default()
+        };
+        state.inbox.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Inbox,
+            1,
+            Payload::Inbox(inbox_payload()),
+        );
+        state.activity.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Activity,
+            1,
+            Payload::Activity(activity_payload()),
+        );
+        state.status.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Status,
+            1,
+            Payload::Status(status_payload()),
+        );
+
+        assert_eq!(state.own_identity, Some("own/hello".to_string()));
+        assert_eq!(
+            state
+                .status
+                .rows
+                .rows
+                .iter()
+                .filter(|row| row.kind == "bot")
+                .count(),
+            1
+        );
+        assert!(!state
+            .activity
+            .rows
+            .iter()
+            .flat_map(|group| group.rows.iter())
+            .any(|row| row.identity == "other/far"));
+        assert!(!state.activity.rows.iter().any(|group| group.id == "done"));
+        assert_eq!(state.inbox.rows.len(), 1);
+        assert_eq!(state.inbox.rows[0].id, ItemId("O1".to_string()));
+        assert_ne!(state.inbox_view.selected, Some(ItemId("F1".to_string())));
+
+        state.activity.generation = 2;
+        deliver(
+            &mut state,
+            Surface::Activity,
+            2,
+            Payload::Activity(activity_payload()),
+        );
+        assert!(!state
+            .activity
+            .rows
+            .iter()
+            .flat_map(|group| group.rows.iter())
+            .any(|row| row.identity == "other/far"));
+    }
+
+    /// An overlay opened on a foreign item before the identity is known goes gone and answers nothing.
+    #[test]
+    fn foreign_item_cannot_be_answered() {
+        let mut state = State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Inbox,
+            checkout: Some("/r/hello".to_string()),
+            ..State::default()
+        };
+        state.inbox.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Inbox,
+            1,
+            Payload::Inbox(inbox_payload()),
+        );
+        state.inbox_view.selected = Some(ItemId("F1".to_string()));
+
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert!(effects.is_empty());
+        assert_eq!(phase_of(&state), Some(Phase::Idle));
+
+        state.activity.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Activity,
+            1,
+            Payload::Activity(activity_payload()),
+        );
+        state.status.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Status,
+            1,
+            Payload::Status(status_payload()),
+        );
+        assert_eq!(phase_of(&state), Some(Phase::Gone));
+
+        for key in [Key::Char('y'), Key::Char('n')] {
+            let effects = update(&mut state, Msg::Key(key));
+            assert!(!answers(&effects), "{key:?} answered a foreign item");
+        }
+
+        let effects = update(&mut state, Msg::Key(Key::Esc));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+
+        state.inbox_view.selected = Some(ItemId("F1".to_string()));
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+    }
+
+    /// A checkout no status bot row names leaves the own identity unknown, so nothing is dropped.
+    #[test]
+    fn unknown_identity_keeps_every_row() {
+        let mut state = State {
+            checkout: Some("/elsewhere".to_string()),
+            ..State::default()
+        };
+        state.inbox.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Inbox,
+            1,
+            Payload::Inbox(inbox_payload()),
+        );
+        state.activity.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Activity,
+            1,
+            Payload::Activity(activity_payload()),
+        );
+        state.status.generation = 1;
+        deliver(
+            &mut state,
+            Surface::Status,
+            1,
+            Payload::Status(status_payload()),
+        );
+
+        assert_eq!(state.own_identity, None);
+        assert_eq!(state.inbox.rows.len(), 2);
+        assert_eq!(state.status.rows.rows.len(), 4);
+        assert_eq!(state.activity.rows.len(), 2);
     }
 }
 

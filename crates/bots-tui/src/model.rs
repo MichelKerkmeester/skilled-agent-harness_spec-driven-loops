@@ -45,6 +45,10 @@ pub struct StatusRow {
     pub bot_id: String,
     /// The bot's state word.
     pub state: String,
+    /// The checkout the bot's job runs against, on a bot row.
+    pub path: Option<String>,
+    /// The item's id, on a needs-you row.
+    pub item_id: Option<String>,
 }
 
 /// The `activity --json` payload.

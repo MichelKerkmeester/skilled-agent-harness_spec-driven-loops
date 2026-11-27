@@ -245,7 +245,7 @@ pub fn answer(
 ) -> Result<AnswerOk, AnswerError> {
     let argv = program.answer_argv(id, text, scope);
     let mut child = command(program, &argv)
-        .stdout(Stdio::piped())
+        .stdout(Stdio::null())
         .stderr(Stdio::piped())
         .process_group(0)
         .spawn()
@@ -255,19 +255,12 @@ pub fn answer(
             line: format!("bots-ui: answer did not start: {error}"),
         })?;
 
-    let stdout_pipe = child.stdout.take();
     let stderr_pipe = child.stderr.take();
 
-    // Plain threads rather than scoped ones, so this call can return while the
-    // child still runs. Only stderr is joined, because the failure line needs
-    // it and the child has already exited by then.
-    let _stdout_reader = stdout_pipe.map(|mut pipe| {
-        std::thread::spawn(move || {
-            let mut buffer = Vec::new();
-            let _ = pipe.read_to_end(&mut buffer);
-            buffer
-        })
-    });
+    // A plain thread rather than a scoped one, so this call can return while
+    // the child still runs. Stdout is null because nothing reads it. Stderr
+    // keeps its reader because a refused answer's line is the child's first
+    // stderr line.
     let stderr_reader = stderr_pipe.map(|mut pipe| {
         std::thread::spawn(move || {
             let mut buffer = Vec::new();
