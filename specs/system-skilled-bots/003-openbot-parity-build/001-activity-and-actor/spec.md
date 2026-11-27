@@ -150,7 +150,7 @@ Each block is the first stderr line and the exit status, read on 2026-11-26 at c
 | `.skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md` | Modify | Name `bots activity` and `bots inbox --json` in the verb table |
 | `.skilled/skills/system-skilled-bots/bots-status/SKILL.md` | Modify | Add the activity verb to the mode's allowed Bash |
 | `.skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md` | Modify | Document `--as` and `--scope` on `bots answer` and `--full-access` on `bots schedule install` |
-| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create | The MIT notice for the two lifted OpenBot files, one entry per file with its source path |
+| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create | The MIT notice for the one lifted OpenBot file, `activity-groups.ts`, with its source path |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -176,7 +176,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | The lifted grouping and row rules carry an MIT notice in `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`, one entry per lifted file naming its source path, `app/src/lib/bot-lifecycle/activity-groups.ts` and `shared/activity-rows.ts`, with OpenBot's copyright line `Copyright (c) 2026 CopilotKit` [SOURCE: specs/system-skilled-bots/context/OpenBot-main/LICENSE:1-3] |
+| REQ-006 | The lifted grouping and row rules carry an MIT notice in `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md`, one entry naming the one lifted file's source path, `app/src/lib/bot-lifecycle/activity-groups.ts`, with OpenBot's copyright line. `shared/activity-rows.ts` is not lifted, because the design uses none of its rules, so it gets no entry, `Copyright (c) 2026 CopilotKit` [SOURCE: specs/system-skilled-bots/context/OpenBot-main/LICENSE:1-3] |
 | REQ-007 | The status index carries the actor inside each run row's `summary` JSON, so `bots activity` reads it without opening a run record and neither the DDL nor `SCHEMA_VERSION` moves |
 | REQ-008 | The tty refusal lives in `bots.cjs` alone: `bots answer --as <name>` and `bots run --as <name>` are refused `bots: --as needs a tty` outside a tty unless the name matches the OS user, and `bots schedule install <id> --full-access` is refused `bots: --full-access needs a tty` outside a tty, so a script cannot claim another person's name or grant full access, while `answerItem` takes the actor as an argument so a channel daemon or a test passes it with no tty. A pinned `SKILLED_BOTS_OPERATOR` takes the same tty rule on any path that is not a scheduled fire or a scheduled drain, so a shell that exports the variable cannot claim the name |
 | REQ-009 | A definition's declared sandbox is capped at `workspace-write`: `danger-full-access` is honored only when the operator installed the bot with `--full-access`, recorded as `fullAccess` in the install record and as `SKILLED_BOTS_FULL_ACCESS` beside the pinned operator in the job's environment, and read from the install record for every run kind, so a definition cannot grant itself full access and a resumed run keeps the posture its parked run had. `bots schedule install <id> --full-access` writes that install record for a bot whose trigger is not cron and stops before the plist step, so a manual, queue or git-hook bot can be granted full access. Without the flag the verb still refuses `trigger-not-cron` |

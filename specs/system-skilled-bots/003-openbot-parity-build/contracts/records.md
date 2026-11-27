@@ -263,7 +263,7 @@ Files: the shared file `<stateRoot>/memory/shared.md` and the per-bot file `<ide
 | `source` | `bots remember`, or `bot:<botId> (run <runId>)` for a confirmed proposal | 005 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-008] |
 | `text` | at most 400 characters, every whitespace run collapsed to one space, so the entry is one line | 005, the collapse rule from OpenGhost's `clean` [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/memory.js:17] |
 
-The parser splits on the first four ` | ` delimiters, so a `|` inside the text needs no escape. Indexes are 1-based in file order and shift down after a forget. A line that does not split into five fields is skipped and counted. A torn last line is one such line.
+The parser splits on the first four ` | ` delimiters, so a `|` inside the text needs no escape. Indexes are 1-based in file order and shift down after a forget, so a forget takes an entry's id and never its index. The id is the first 8 hex characters of the SHA-256 of the line's UTF-8 bytes without the line feed. It is computed on every read and never stored, so the line keeps its five fields. Two identical lines share an id, and a forget removes the first of them in file order. The two sample lines below have the ids `94a99780` and `7071ee7d`. A line that does not split into five fields is skipped and counted. A torn last line is one such line.
 
 Sample:
 
@@ -459,7 +459,7 @@ File: one JSON file per outbound message under `<identity>/channels/queue/`, wri
 | `enqueuedAt`, `updatedAt` | string, ISO 8601 UTC | no | 011 | 011 | required |
 | `error` | object `{kind, message, unsupported, retryable, sentBeforeError}`, the send-error shape [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-002] | yes, no failure yet | 011 | 011 | `null` |
 
-`unknown` and `failed` with `retryable: false` are terminal and never retried. A retryable failure waits by attempt from `BACKOFF_MS = [0, 5000, 25000, 120000, 600000]`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/tasks.md, T008] No token appears in `text` or `error.message`, and every URL renders the token as `bot<redacted>`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-014]
+`unknown` and `failed` with `retryable: false` are terminal and never retried. An error with `sentBeforeError: true` makes the entry `unknown` whatever `retryable` says, because one entry covers every chunk and a retry would send a landed chunk twice. A retryable failure waits by attempt from `BACKOFF_MS = [0, 5000, 25000, 120000, 600000]`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/tasks.md, T008] No token appears in `text` or `error.message`, and every URL renders the token as `bot<redacted>`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md, REQ-014]
 
 The literal check always runs over the title, the body and the text choice block, whichever form is queued. The capability is `channel.ts`'s table, which `delivery.ts` reads through `channel-queue.ts`, the one channels module it imports. A channel whose capability says `buttons: no` queues the text form, so a transport never has to build a choice block of its own.
 

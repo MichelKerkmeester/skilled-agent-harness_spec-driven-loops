@@ -2130,7 +2130,7 @@ Every pointer below resolves in a checkout that has the gitignored `specs/system
 | The `typing` guard that pauses the single-key shortcuts | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app/overlays.rs:354-370] |
 | The `y`/`n` prompt and the closed input that answers nothing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:431-447] |
 | The default deny this screen does not copy | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/cli.py:476-487] |
-| Control characters stripped before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6] |
+| Control characters replaced with `?` before drawing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:76-89], the nearest source, which keeps line feed and tab. The openhuman filter `safe_text` drops them and is not the model |
 | The activity row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] |
 | The routine row shape the pane draws | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] |
 | The inbox item shape, and the grant the overlay shows | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |

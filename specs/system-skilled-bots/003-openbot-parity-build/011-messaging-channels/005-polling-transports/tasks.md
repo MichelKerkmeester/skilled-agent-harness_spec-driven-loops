@@ -35,8 +35,8 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 ## Phase 1: Setup
 
 - [ ] T001 Confirm child 004's handoff (`$RT/lib/channel-queue.ts`). Verify: `test -f $RT/lib/channel-queue.ts && test -f $RT/lib/channel-approval.ts && echo ok` prints `ok`
-- [ ] T002 Record the Telegram wire facts, was T007 (`$CTX/tinychannels-main/src/providers/telegram/`). Verify: `rg -n 'getUpdates|TELEGRAM_MAX_MESSAGE_LENGTH' $CTX/tinychannels-main/src/providers/telegram/` prints both
-- [ ] T003 Record the Slack wire facts, was T008 (`$CTX/tinychannels-main/src/providers/slack/`). Verify: `rg -n 'apps.connections.open|SLACK_TEXT_CHUNK_CHARS' $CTX/tinychannels-main/src/providers/slack/` prints both
+- [ ] T002 Record the Telegram wire facts as a design note in a worker of its own, the one worker whose brief names the tinychannels source, was T007 (`$CTX/tinychannels-main/src/providers/telegram/`, writing `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/design/wire-notes.md` under one `## telegram` heading). Verify: `rg -n '^## telegram$' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/design/wire-notes.md` prints one line, and `rg -n 'getUpdates|TELEGRAM_MAX_MESSAGE_LENGTH' $CTX/tinychannels-main/src/providers/telegram/` prints both
+- [ ] T003 Record the Slack wire facts in the same note, in the same worker as T002, was T008 (`$CTX/tinychannels-main/src/providers/slack/`, writing `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/design/wire-notes.md` under one `## slack` heading). Verify: `rg -n '^## slack$' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/design/wire-notes.md` prints one line, and `rg -n 'apps.connections.open|SLACK_TEXT_CHUNK_CHARS' $CTX/tinychannels-main/src/providers/slack/` prints both
 - [ ] T004 Record the conversation renderer (`$RT/lib/conversation.ts`). Verify: `rg -n 'export function' $RT/lib/conversation.ts` prints the renderer, or the task is `[B]` until phase 010 lands it
 <!-- /ANCHOR:phase-1 -->
 
@@ -45,13 +45,13 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [P] Create the Telegram transport with the offset rule and the probe, was T025 (`$RT/lib/channel-telegram.ts`). Verify: `rg -n 'getUpdates|deleteWebhook|getMe|inline_keyboard|4096' $RT/lib/channel-telegram.ts` prints all five
+- [ ] T005 [P] Create the Telegram transport with the offset rule, the offset moved past a dropped duplicate, the three-way error rule of REQ-036 and the probe, from `design/wire-notes.md` and the Wire Table with no tinychannels path in the brief, was T025 (`$RT/lib/channel-telegram.ts`). Verify: `rg -n 'getUpdates|deleteWebhook|getMe|inline_keyboard|4096' $RT/lib/channel-telegram.ts` prints all five
 - [ ] T006 Add the press check before emit, was T026 (`$RT/lib/channel-telegram.ts`). Verify: `rg -n 'channel-unlinked|answerCallbackQuery' $RT/lib/channel-telegram.ts` prints both
-- [ ] T007 [P] Create the Slack transport with the envelope acknowledge, the reconnect and the probe, was T027 (`$RT/lib/channel-slack.ts`). Verify: `rg -n 'apps.connections.open|envelope_id|auth.test|block_actions|3900' $RT/lib/channel-slack.ts` prints all five
+- [ ] T007 [P] Create the Slack transport with the envelope acknowledge, the reconnect, the 3,000-character cut of the chunk that carries the buttons, the three-way error rule of REQ-036 and the probe, from `design/wire-notes.md` and the Wire Table with no tinychannels path in the brief, was T027 (`$RT/lib/channel-slack.ts`). Verify: `rg -n 'apps.connections.open|envelope_id|auth.test|block_actions|3900|3000' $RT/lib/channel-slack.ts` prints all six
 - [ ] T008 [P] Create the terminal transport, was T029 (`$RT/lib/channel-terminal.ts`). Verify: `rg -n 'readline|answerItem|enqueueRequest' $RT/lib/channel-terminal.ts` prints all three
 - [ ] T009 Add `listen` with the lease, the probe line and the transport table, was the listen half of T034 (`.skilled/bin/bots.cjs`). Verify: `rg -n "channel-listening|listen-" .skilled/bin/bots.cjs $RT/lib/channel.ts` prints the refusal and the lease path
 - [ ] T010 [P] Record the Telegram and Slack fixtures with invented data only (`$RT/tests/fixtures/channels/`). Verify: `ls $RT/tests/fixtures/channels/ | wc -l | tr -d ' '` prints a number above 0 and `rg -n 'xox[abp]-[0-9]|xapp-[0-9]|[0-9]{8,10}:[A-Za-z0-9_-]{30,}' $RT/tests/fixtures/channels/` exits 1
-- [ ] T011 Create the transport tests with one block per transport and a sixth `transport shared` block for the rules every transport obeys, was T040 and the injection half of T071 (`$RT/tests/channel-transports.vitest.ts`). The blocks are `transport telegram`, `transport slack`, `transport terminal` and `transport shared`, and every test is named in `acceptance-criteria.md` AC-007 to AC-035. Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport ")` prints `Tests  15 passed`, and `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts)` prints no `failed`
+- [ ] T011 Create the transport tests with one block per transport and a sixth `transport shared` block for the rules every transport obeys, was T040 and the injection half of T071 (`$RT/tests/channel-transports.vitest.ts`). The blocks are `transport telegram`, `transport slack`, `transport terminal` and `transport shared`, and every test is named in `acceptance-criteria.md` AC-007 to AC-036. Verify: `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts -t "^transport ")` prints `Tests  16 passed`, and `(cd "$RT" && npx vitest run tests/channel-transports.vitest.ts)` prints no `failed`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -113,7 +113,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 10
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-0' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 11
 - [ ] CHK-002 [P0] The Wire Table has one row per transport. Verify: `rg -c '^\| `(telegram|slack|terminal)` \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/spec.md` prints 3
 - [ ] CHK-003 [P1] Dependencies available. Verify: T001 to T004 print what they say
 <!-- /ANCHOR:pre-impl -->
@@ -133,7 +133,7 @@ A blocked task is `[B]` with the reason on the same line, and the phase does not
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/acceptance-criteria.md` prints 10
+- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/acceptance-criteria.md` prints 11
 - [ ] CHK-021 [P0] The suite passes. Verify: T012 prints no `failed`
 - [ ] CHK-022 [P1] No test reaches a network. Verify: `rg -n 'https://' $RT/tests/channel-transports.vitest.ts` names only fixture URLs passed to the injected `fetch`
 <!-- /ANCHOR:testing -->

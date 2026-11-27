@@ -1,7 +1,7 @@
 ---
 title: "BOT-054 -- A named secret reaches the child environment and the record names it"
 description: "This scenario proves that `secrets:` names one store entry, that the runner resolves the name before dispatch, that the value reaches the child environment only under `SKILLED_BOT_SECRET_<NAME>`, that `posture.secretsUsed` records the names and never the values, that a name the store does not hold is refused `secret-unknown` with exit 4, and that a name outside the grammar is refused `secret-name-invalid` at parse time."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-054 -- A named secret reaches the child environment and the record names it
@@ -103,7 +103,7 @@ rm -rf "$W" && unset -f pbots secrets
 
 ### Turn 5 -- an absent name is refused before dispatch
 
-- Expected: `bots: secret-unknown` and `exit=4`, with no receipt written for `pb-absent`.
+- Expected: `bots: pb-absent refused before dispatch (secret-unknown): PB_ABSENT is not stored, run bots secret set PB_ABSENT` and `exit=4`, with no receipt written for `pb-absent`.
 
 ### Turn 6 -- a malformed name is refused at parse time
 
@@ -114,7 +114,7 @@ rm -rf "$W" && unset -f pbots secrets
 - `exit=0` on the store and on the run.
 - One prefixed key in the child environment and no other.
 - `["PB_TOKEN"]` on the record and no value anywhere in the records.
-- `bots: secret-unknown` and `exit=4` on the absent name.
+- `secret-unknown` with the detail `PB_ABSENT is not stored, run bots secret set PB_ABSENT` and `exit=4` on the absent name.
 - `bots: secret-name-invalid` and one checker line on the malformed name.
 
 ### Evidence

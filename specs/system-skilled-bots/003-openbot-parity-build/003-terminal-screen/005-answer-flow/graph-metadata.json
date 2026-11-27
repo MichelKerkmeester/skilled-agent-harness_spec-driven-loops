@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The screen can draw an inbox item but cannot answer one",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-26T06:48:19.940Z",
+    "last_save_at": "2026-11-27T13:34:06.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72130fa1e615757a42685c9586d143e89f2339700e2f9b5b1fffd9208b4191d5",
+    "source_fingerprint": "sha256:5c33ac61c99499f38764a15ef4d379ea8ecc320c43caeda849be0bf3c30213ae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2838805e667f81fd4d14ff34940a8df0612d16a8c7ca0d1f6b66112dd48de7f",
+      "spec.md": "76cf1483166228b96d08909cdf2c789ddbcf3993c015335381b33e7be5835a30",
       "plan.md": "e5388e3867621e7d7c480c29677d9a9f1fcb1f4d053625a8543bae843f2e3cdd",
-      "tasks.md": "96c561f5585a79a2697d57b13ea2df35e480ad0b30c7f8e67ecc174ced164d1d",
+      "tasks.md": "91343a550b3a9a05ad10f3f0e8c9b513d5bcf407db9ecd6e0fee8f7ceb9f310f",
       "implementation-summary.md": "07b130c275a52df47f1e2197bffa7d47c2824f5acd12726984e448500f47311c"
     },
     "last_active_at": null

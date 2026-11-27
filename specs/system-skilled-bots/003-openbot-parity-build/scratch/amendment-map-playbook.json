@@ -1,0 +1,551 @@
+{
+ "files": [
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/memory/remember-appends-and-lists.md",
+   "entries": [
+    {
+     "id": "P-001",
+     "source": "playbook ripple of final 1.7",
+     "line": 2,
+     "mode": "literal",
+     "old": "title: \"BOT-048 -- Remember appends one line, lists it and forgets it by index\"",
+     "new": "title: \"BOT-048 -- Remember appends one line, lists it and forgets it by id\""
+    },
+    {
+     "id": "P-002",
+     "source": "playbook ripple of final 1.7",
+     "line": 3,
+     "mode": "literal",
+     "old": "that `--forget` removes one entry and shifts the later indices down, and that an index naming no entry is refused `memory-entry-unknown` with exit 2.\"",
+     "new": "that `--forget <entry-id>` removes the one entry with that 8-hex id while the later indices shift down, and that an id naming no entry is refused `memory-entry-unknown` with exit 2.\""
+    },
+    {
+     "id": "P-003",
+     "source": "playbook ripple of final 1.7",
+     "line": 7,
+     "mode": "literal",
+     "old": "# BOT-048 -- Remember appends one line, lists it and forgets it by index\n",
+     "new": "# BOT-048 -- Remember appends one line, lists it and forgets it by id\n"
+    },
+    {
+     "id": "P-004",
+     "source": "playbook ripple of final 1.7",
+     "line": 15,
+     "mode": "literal",
+     "old": "The list verb prints both with their index, type, date, actor, source and text, then the file path with its counts. The JSON form prints one object with seven keys. The operator forgets the first entry, the second shifts down to index one, and an index past the end is refused.",
+     "new": "The list verb prints both with their id, type, date, actor, source and text, then the file path with its counts. The id is the first 8 hex characters of the SHA-256 of the stored line. The JSON form prints one object with seven keys. Each entry in it carries `id` beside `index`. The operator forgets the shared entry by the id the JSON names. A number in place of an id is refused, and so is an id that names no entry."
+    },
+    {
+     "id": "P-005",
+     "source": "playbook ripple of final 1.7",
+     "line": 19,
+     "mode": "literal",
+     "old": "A memory file the operator cannot read back is a file they cannot correct, and an index that does not shift after a removal sends the next forget to the wrong line.",
+     "new": "A memory file the operator cannot read back is a file they cannot correct. A forget that named a position would hit the wrong line once an earlier line was removed, so a forget names the entry by an id taken from its own text."
+    },
+    {
+     "id": "P-006",
+     "source": "playbook ripple of final 1.7",
+     "line": 25,
+     "mode": "literal",
+     "old": "- Objective: Prove the append, the two files, the list, the JSON object, the forget and the unknown index.",
+     "new": "- Objective: Prove the append, the two files, the list, the JSON object, the forget by id and the two forget refusals."
+    },
+    {
+     "id": "P-007",
+     "source": "playbook ripple of final 1.7",
+     "line": 28,
+     "mode": "literal",
+     "old": "- Expected execution process: build the world, append a shared fact, append a bot fact, list both, read the JSON, forget index one, try an index past the end, then list again.",
+     "new": "- Expected execution process: build the world, append a shared fact, append a bot fact, list both, read the JSON, forget the shared entry by the id the JSON names, try a number and an id that names no entry, then read the raw file."
+    },
+    {
+     "id": "P-008",
+     "source": "playbook ripple of final 1.7",
+     "line": 29,
+     "mode": "literal",
+     "old": "- Expected signals: each append prints its 1-based index, the list prints both entries and the file path with counts, the JSON object carries seven keys, the forget prints the removed entry, the unknown index exits 2 and the second list holds one entry at index one.",
+     "new": "- Expected signals: each append prints its 1-based index, the list prints both entries with their 8-hex ids and the file path with counts, the JSON object carries seven keys and an `id` on each entry, the forget by id prints the removed entry's id, the number and the unknown id each exit 2 and the second list holds no entry."
+    },
+    {
+     "id": "P-009",
+     "source": "playbook ripple of final 1.7",
+     "line": 30,
+     "mode": "literal",
+     "old": "- Desired user-visible outcome: the operator sees both facts, removes one and sees the other renumbered.",
+     "new": "- Desired user-visible outcome: the operator sees both facts and removes one by the id the list shows."
+    },
+    {
+     "id": "P-010",
+     "source": "playbook ripple of final 1.7",
+     "line": 31,
+     "mode": "literal",
+     "old": "- Pass/fail: PASS if both appends land in their own files, the list and JSON agree, the forget shifts the index and the unknown index exits 2. FAIL if an append lands in the wrong file, a field is missing, the index does not shift or the unknown index exits 0.",
+     "new": "- Pass/fail: PASS if both appends land in their own files, the list and JSON agree, the forget by id removes that entry and both refusals exit 2. FAIL if an append lands in the wrong file, a field is missing, the forget removes the wrong entry or a refusal exits 0."
+    },
+    {
+     "id": "P-011",
+     "source": "playbook ripple of final 1.7",
+     "line": 73,
+     "mode": "literal",
+     "old": "console.log(\"entryCount: \"+o.entryCount+\" byteCount: \"+o.byteCount+\" skippedLines: \"+o.skippedLines)})'\n",
+     "new": "console.log(\"entryCount: \"+o.entryCount+\" byteCount: \"+o.byteCount+\" skippedLines: \"+o.skippedLines);console.log(\"first id: \"+o.entries[0].id)})'\n"
+    },
+    {
+     "id": "P-012",
+     "source": "playbook ripple of final 1.7",
+     "line": 74,
+     "mode": "literal",
+     "old": "# 6. Turn 5: forget the first shared entry.\npbots remember --forget 1; echo \"exit=$?\"\npbots remember --list; echo \"exit=$?\"\n# 7. Turn 6: forget an index that names no entry.\npbots remember --forget 9; echo \"exit=$?\"\n",
+     "new": "# 6. Turn 5: forget the shared entry by the id the JSON names.\nID=\"$(pbots remember --list --json | \"$NODE\" -e 'let s=\"\";process.stdin.on(\"data\",d=>s+=d).on(\"end\",()=>{console.log(JSON.parse(s).entries[0].id)})')\" && echo \"id: $ID\"\npbots remember --forget \"$ID\"; echo \"exit=$?\"\npbots remember --list; echo \"exit=$?\"\n# 7. Turn 6: a number in place of an id is refused, as is an id that names no entry.\npbots remember --forget 1; echo \"exit=$?\"\npbots remember --forget 0000beef; echo \"exit=$?\"\n"
+    },
+    {
+     "id": "P-013",
+     "source": "playbook ripple of final 1.7",
+     "line": 96,
+     "mode": "literal",
+     "old": "- Expected: the shared list prints one entry with its index, type `general`,",
+     "new": "- Expected: the shared list prints one entry with its 8-hex id, type `general`,"
+    },
+    {
+     "id": "P-014",
+     "source": "playbook ripple of final 1.7",
+     "line": 102,
+     "mode": "literal",
+     "old": "- Expected: `entryCount` reads `1`, `byteCount` matches the file's size and `skippedLines` reads `0`.\n",
+     "new": "- Expected: `entryCount` reads `1`, `byteCount` matches the file's size and `skippedLines` reads `0`.\n- Expected: `first id:` prints 8 lowercase hex characters, the same id the shared list printed.\n"
+    },
+    {
+     "id": "P-015",
+     "source": "playbook ripple of final 1.7",
+     "line": 104,
+     "mode": "literal",
+     "old": "### Turn 5 -- the forget shifts the index\n\n- Expected: a line naming the removed entry, then `exit=0`.",
+     "new": "### Turn 5 -- the forget takes the entry's id\n\n- Expected: `id:` prints the id Turn 4 printed, then a line naming that id as forgotten and `exit=0`."
+    },
+    {
+     "id": "P-016",
+     "source": "playbook ripple of final 1.7",
+     "line": 109,
+     "mode": "literal",
+     "old": "### Turn 6 -- an unknown index is refused\n\n- Expected: `bots: memory-entry-unknown: 9` and `exit=2`.",
+     "new": "### Turn 6 -- a number and an unknown id are refused\n\n- Expected: `bots: --forget takes an entry id` and `exit=2` for the number.\n- Expected: `bots: memory-entry-unknown: 0000beef` and `exit=2` for the id."
+    },
+    {
+     "id": "P-017",
+     "source": "playbook ripple of final 1.7",
+     "line": 121,
+     "mode": "literal",
+     "old": "- Seven keys on the JSON object.\n- `bots: memory-entry-unknown: 9` and `exit=2`.",
+     "new": "- Seven keys on the JSON object and an `id` on each entry.\n- `bots: --forget takes an entry id` and `bots: memory-entry-unknown: 0000beef`, each with `exit=2`."
+    },
+    {
+     "id": "P-018",
+     "source": "playbook ripple of final 1.7",
+     "line": 127,
+     "mode": "literal",
+     "old": "the JSON object with its key line, the forget line, the unknown-index refusal with its exit and the raw file with its line count.",
+     "new": "the JSON object with its key and id lines, the id line, the forget line, both refusals with their exits and the raw file with its line count."
+    },
+    {
+     "id": "P-019",
+     "source": "playbook ripple of final 1.7",
+     "line": 131,
+     "mode": "literal",
+     "old": "- **Pass**: both appends land in their own files, the list and JSON agree, the forget shifts the index and the unknown index exits 2.\n- **Fail**: an append lands in the wrong file, a field is missing, the JSON is a bare array, the index does not shift or the unknown index exits 0.",
+     "new": "- **Pass**: both appends land in their own files, the list and JSON agree, the forget by id removes that entry and both refusals exit 2.\n- **Fail**: an append lands in the wrong file, a field is missing, the JSON is a bare array, the forget removes the wrong entry or a refusal exits 0."
+    },
+    {
+     "id": "P-020",
+     "source": "playbook ripple of final 1.7",
+     "line": 141,
+     "mode": "literal",
+     "old": "5. The forget leaves the later indices alone: the rewrite does not renumber. Read the rewrite and confirm it writes the surviving entries in order.\n6. `--forget 9` exits 0: the index check is missing. Read the bounds check.",
+     "new": "5. The forget removes the wrong entry or takes a number: the verb still reads a position. Read the forget branch and confirm it matches the first entry whose id the SHA-256 of its line gives.\n6. `--forget 1` or `--forget 0000beef` exits 0: the id check is missing. Read the argument check for `^[0-9a-f]{8}$` and then the lookup."
+    },
+    {
+     "id": "P-021",
+     "source": "playbook ripple of final 1.7",
+     "line": 164,
+     "mode": "literal",
+     "old": "The forget is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:150].",
+     "new": "The forget by id is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-005]."
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/memory/memory-bound-refuses.md",
+   "entries": [
+    {
+     "id": "P-022",
+     "source": "playbook ripple of final 1.8",
+     "line": 29,
+     "mode": "literal",
+     "old": "- Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts, the two checksums match,",
+     "new": "- Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts and the forget command that frees a line, the two checksums match,"
+    },
+    {
+     "id": "P-023",
+     "source": "playbook ripple of final 1.8",
+     "line": 97,
+     "mode": "literal",
+     "old": "- Expected: `bots: memory-full: <path> (60 entries, <n> bytes)` and `exit=4`.",
+     "new": "- Expected: `bots: memory-full: <path> (60 entries, <n> bytes), free a line with bots remember --forget <entry-id>` and `exit=4`."
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/vault/secret-set-and-list.md",
+   "entries": [
+    {
+     "id": "P-024",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 3,
+     "mode": "literal",
+     "old": "that an empty value and a known placeholder are refused with exit 2,",
+     "new": "that an empty value is refused `secret-empty` with exit 2,"
+    },
+    {
+     "id": "P-025",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 15,
+     "mode": "literal",
+     "old": "tries an empty value and a placeholder and is refused twice, then forgets the name twice",
+     "new": "tries an empty value and is refused, then forgets the name twice"
+    },
+    {
+     "id": "P-026",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 25,
+     "mode": "literal",
+     "old": "- Objective: Prove the stdin read, the value-free list, the two value refusals,",
+     "new": "- Objective: Prove the stdin read, the value-free list, the empty-value refusal,"
+    },
+    {
+     "id": "P-027",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 28,
+     "mode": "literal",
+     "old": "try an empty value, try a placeholder, forget twice,",
+     "new": "try an empty value, forget twice,"
+    },
+    {
+     "id": "P-028",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 29,
+     "mode": "literal",
+     "old": "- Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, the placeholder exits 2 with `secret-placeholder`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`.",
+     "new": "- Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`."
+    },
+    {
+     "id": "P-029",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 31,
+     "mode": "literal",
+     "old": "- Pass/fail: PASS if the value never appears in any output, both value refusals exit 2,",
+     "new": "- Pass/fail: PASS if the value never appears in any output, the empty value exits 2,"
+    },
+    {
+     "id": "P-030",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 47,
+     "mode": "literal",
+     "old": "Run from the repository root in a POSIX shell. One block, seven turns.",
+     "new": "Run from the repository root in a POSIX shell. One block, six turns."
+    },
+    {
+     "id": "P-031",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 73,
+     "mode": "literal",
+     "old": "# 6. Turn 5: a known placeholder is refused.\nprintf 'changeme\\n' | pbots secret set PB_PLACEHOLDER --store file; echo \"exit=$?\"\n# 7. Turn 6: forget twice, which is idempotent.\n",
+     "new": "# 6. Turn 5: forget twice, which is idempotent.\n"
+    },
+    {
+     "id": "P-032",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 79,
+     "mode": "literal",
+     "old": "# 8. Turn 7: a closed stdin is refused.\n",
+     "new": "# 7. Turn 6: a closed stdin is refused.\n"
+    },
+    {
+     "id": "P-033",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 101,
+     "mode": "literal",
+     "old": "### Turn 5 -- a placeholder is refused\n\n- Expected: `bots: secret-placeholder` and `exit=2`.\n\n### Turn 6 -- both forgets succeed",
+     "new": "### Turn 5 -- both forgets succeed"
+    },
+    {
+     "id": "P-034",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 109,
+     "mode": "literal",
+     "old": "### Turn 7 -- a closed stdin is refused",
+     "new": "### Turn 6 -- a closed stdin is refused"
+    },
+    {
+     "id": "P-035",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 118,
+     "mode": "literal",
+     "old": "- `bots: secret-empty` and `bots: secret-placeholder`, each with exit 2.",
+     "new": "- `bots: secret-empty` and `exit=2`."
+    },
+    {
+     "id": "P-036",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 123,
+     "mode": "literal",
+     "old": "both value refusals with their exits,",
+     "new": "the empty-value refusal with its exit,"
+    },
+    {
+     "id": "P-037",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 127,
+     "mode": "literal",
+     "old": "- **Pass**: the value never appears in any output, both value refusals exit 2,",
+     "new": "- **Pass**: the value never appears in any output, the empty value exits 2,"
+    },
+    {
+     "id": "P-038",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 137,
+     "mode": "literal",
+     "old": "5. `changeme` is stored: the placeholder list is missing. Read the check and add `secret-placeholder`.\n6. The second forget exits 4:",
+     "new": "5. The second forget exits 4:"
+    },
+    {
+     "id": "P-039",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 139,
+     "mode": "literal",
+     "old": "7. A closed stdin stores an empty value:",
+     "new": "6. A closed stdin stores an empty value:"
+    },
+    {
+     "id": "P-040",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 160,
+     "mode": "literal",
+     "old": "The two value refusals are [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md:160].",
+     "new": "The empty-value refusal is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-010]. No placeholder list is checked, because a stored placeholder fails loudly at first use."
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/vault/secret-reaches-child.md",
+   "entries": [
+    {
+     "id": "P-041",
+     "source": "playbook ripple of final 1.13",
+     "line": 106,
+     "mode": "literal",
+     "old": "- Expected: `bots: secret-unknown` and `exit=4`, with no receipt written for `pb-absent`.",
+     "new": "- Expected: `bots: pb-absent refused before dispatch (secret-unknown): PB_ABSENT is not stored, run bots secret set PB_ABSENT` and `exit=4`, with no receipt written for `pb-absent`."
+    },
+    {
+     "id": "P-042",
+     "source": "playbook ripple of final 1.13",
+     "line": 117,
+     "mode": "literal",
+     "old": "- `bots: secret-unknown` and `exit=4` on the absent name.",
+     "new": "- `secret-unknown` with the detail `PB_ABSENT is not stored, run bots secret set PB_ABSENT` and `exit=4` on the absent name."
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/skills/skills-list-injects-body.md",
+   "entries": [
+    {
+     "id": "P-043",
+     "source": "playbook ripple of final 1.15, final 1.16",
+     "line": 71,
+     "mode": "literal",
+     "old": "console.log(f+\" :: \"+(m?m[0].split(\"\\n\").slice(0,3).join(\" / \"):\"no block\"))}' \"$W/acct/stub-receipts\"",
+     "new": "console.log(f+\" :: \"+(m?[\"tag \"+m[0].startsWith(\"<skill_content name=\\\"pb-notes\\\">\"),\"label \"+m[0].includes(\"a procedure from the repository that you may follow\"),\"folder \"+m[0].includes(\"/.skilled/skills/pb-notes\"),\"heading \"+m[0].includes(\"# pb-notes\"),\"instruction \"+m[0].includes(\"Write one paragraph per change\")].join(\" \"):\"no block\"))}' \"$W/acct/stub-receipts\""
+    },
+    {
+     "id": "P-044",
+     "source": "playbook ripple of final 1.15, final 1.16",
+     "line": 93,
+     "mode": "literal",
+     "old": "- Expected: one receipt line naming `<skill_content name=\"pb-notes\">` and the first lines of the body, including the heading and the instruction.",
+     "new": "- Expected: one receipt line reading `tag true label true folder true heading true instruction true`. The block opens with its tag, then the label line that calls the skill a procedure the run may follow, then the line naming the skill's folder, then the body with its heading and its instruction."
+    },
+    {
+     "id": "P-045",
+     "source": "playbook ripple of final 1.15, final 1.16",
+     "line": 128,
+     "mode": "literal",
+     "old": "2. The block is unlabelled: the wrapper drops the name. Read the wrapper and add the attribute.",
+     "new": "2. The block is unlabelled or a value reads `false`: the wrapper drops the name, the label line or the folder line. Read the wrapper in `specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md` and add what is missing."
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/skills/skills-over-budget.md",
+   "entries": [
+    {
+     "id": "P-046",
+     "source": "playbook ripple of final 2.2",
+     "line": 3,
+     "mode": "literal",
+     "old": "16,384 bytes for one body and 24,576 bytes for the list,",
+     "new": "16,384 bytes for one body and 20,480 bytes for the list,"
+    },
+    {
+     "id": "P-047",
+     "source": "playbook ripple of final 2.2",
+     "line": 15,
+     "mode": "literal",
+     "old": "The operator builds four bodies at known byte counts, one exactly at each cap and one a single byte over each, and five bots that name them.",
+     "new": "The operator builds five bodies at known byte counts and five bots that name them. One body sits exactly at the body cap and one a single byte over it. Two lists of two bodies sum to exactly the list cap and to one byte over it."
+    },
+    {
+     "id": "P-048",
+     "source": "playbook ripple of final 2.2",
+     "line": 29,
+     "mode": "literal",
+     "old": "the list at 24,577 bytes exits 4 with `skills-over-budget: pb-sum-b`",
+     "new": "the list at 20,481 bytes exits 4 with `skills-over-budget: pb-sum-b`"
+    },
+    {
+     "id": "P-049",
+     "source": "playbook ripple of final 2.2",
+     "line": 50,
+     "mode": "literal",
+     "old": "# 1. Build a throwaway world with four bodies at exact byte counts and five bots.",
+     "new": "# 1. Build a throwaway world with five bodies at exact byte counts and five bots."
+    },
+    {
+     "id": "P-050",
+     "source": "playbook ripple of final 2.2",
+     "line": 68,
+     "mode": "literal",
+     "old": "mkbody \"$W/skilled/.skilled/skills/pb-sum-a/SKILL.md\" 12288 pb-sum-a\nmkbody \"$W/skilled/.skilled/skills/pb-sum-b/SKILL.md\" 12289 pb-sum-b\n",
+     "new": "mkbody \"$W/skilled/.skilled/skills/pb-sum-a/SKILL.md\" 10240 pb-sum-a\nmkbody \"$W/skilled/.skilled/skills/pb-sum-b/SKILL.md\" 10241 pb-sum-b\nmkbody \"$W/skilled/.skilled/skills/pb-sum-c/SKILL.md\" 10240 pb-sum-c\n"
+    },
+    {
+     "id": "P-051",
+     "source": "playbook ripple of final 2.2",
+     "line": 87,
+     "mode": "literal",
+     "old": "# 4. Turn 3: the list at exactly 24,576 bytes is accepted.\nmkbot pb-sum-exact '[pb-sum-a, pb-sum-a]'\n",
+     "new": "# 4. Turn 3: the list at exactly 20,480 bytes is accepted.\nmkbot pb-sum-exact '[pb-sum-a, pb-sum-c]'\n"
+    },
+    {
+     "id": "P-052",
+     "source": "playbook ripple of final 2.2",
+     "line": 106,
+     "mode": "literal",
+     "old": "- Expected: four `mkbody` lines reading `pb-exact 16384`, `pb-over 16385`, `pb-sum-a 12288` and `pb-sum-b 12289`,",
+     "new": "- Expected: five `mkbody` lines reading `pb-exact 16384`, `pb-over 16385`, `pb-sum-a 10240`, `pb-sum-b 10241` and `pb-sum-c 10240`,"
+    },
+    {
+     "id": "P-053",
+     "source": "playbook ripple of final 2.2",
+     "line": 114,
+     "mode": "literal",
+     "old": "Two bodies of 12,288 bytes sum to exactly 24,576 and pass.",
+     "new": "`pb-sum-a` and `pb-sum-c` hold 10,240 bytes each, so the list sums to exactly 20,480 and passes. The two names differ, so the duplicate check does not fire."
+    },
+    {
+     "id": "P-054",
+     "source": "playbook ripple of final 2.2",
+     "line": 118,
+     "mode": "literal",
+     "old": "`pb-sum-a` loads first at 12,288,",
+     "new": "`pb-sum-a` loads first at 10,240,"
+    },
+    {
+     "id": "P-055",
+     "source": "playbook ripple of final 2.2",
+     "line": 130,
+     "mode": "literal",
+     "old": "- `exit=0` at 16,384 bytes and at 24,576 bytes.",
+     "new": "- `exit=0` at 16,384 bytes and at 20,480 bytes."
+    },
+    {
+     "id": "P-056",
+     "source": "playbook ripple of final 2.2",
+     "line": 132,
+     "mode": "literal",
+     "old": "- `skills-over-budget: pb-sum-b` and `exit=4` at 24,577 bytes.",
+     "new": "- `skills-over-budget: pb-sum-b` and `exit=4` at 20,481 bytes."
+    },
+    {
+     "id": "P-057",
+     "source": "playbook ripple of final 2.2",
+     "line": 138,
+     "mode": "literal",
+     "old": "The four `mkbody` byte counts,",
+     "new": "The five `mkbody` byte counts,"
+    }
+   ]
+  },
+  {
+   "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
+   "entries": [
+    {
+     "id": "P-058",
+     "source": "playbook ripple of final 1.7",
+     "line": 783,
+     "mode": "literal",
+     "old": "### BOT-048 | Remember appends one line, lists it and forgets it by index\n",
+     "new": "### BOT-048 | Remember appends one line, lists it and forgets it by id\n"
+    },
+    {
+     "id": "P-059",
+     "source": "playbook ripple of final 1.7",
+     "line": 786,
+     "mode": "literal",
+     "old": "Verify remember appends one line, lists it and forgets it by index.",
+     "new": "Verify remember appends one line, lists it and forgets it by id."
+    },
+    {
+     "id": "P-060",
+     "source": "playbook ripple of final 1.7",
+     "line": 791,
+     "mode": "literal",
+     "old": "Expected signals: each append prints its 1-based index, the list prints both entries and the file path with counts, the JSON object carries seven keys, the forget prints the removed entry, the unknown index exits 2 and the second list holds one entry at index one.",
+     "new": "Expected signals: each append prints its 1-based index, the list prints both entries with their 8-hex ids and the file path with counts, the JSON object carries seven keys and an `id` on each entry, the forget by id prints the removed entry's id, the number and the unknown id each exit 2 and the second list holds no entry."
+    },
+    {
+     "id": "P-061",
+     "source": "playbook ripple of final 1.8",
+     "line": 817,
+     "mode": "literal",
+     "old": "Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts, the two checksums match,",
+     "new": "Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts and the forget command that frees a line, the two checksums match,"
+    },
+    {
+     "id": "P-062",
+     "source": "playbook ripple of final 1.14 (decision 2)",
+     "line": 868,
+     "mode": "literal",
+     "old": "Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, the placeholder exits 2 with `secret-placeholder`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`.",
+     "new": "Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`."
+    },
+    {
+     "id": "P-063",
+     "source": "playbook ripple of final 2.2",
+     "line": 926,
+     "mode": "literal",
+     "old": "the list at 24,577 bytes exits 4 with `skills-over-budget: pb-sum-b`",
+     "new": "the list at 20,481 bytes exits 4 with `skills-over-budget: pb-sum-b`"
+    },
+    {
+     "id": "P-064",
+     "source": "playbook ripple of final 1.7",
+     "line": 1052,
+     "mode": "literal",
+     "old": "| BOT-048 | Remember appends one line, lists it and forgets it by index | Memory |",
+     "new": "| BOT-048 | Remember appends one line, lists it and forgets it by id | Memory |"
+    }
+   ]
+  }
+ ]
+}

@@ -166,7 +166,7 @@ Each layout and key requirement follows one openhuman-tui file for its shape and
 | REQ-019 | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] | System and Mono palettes |
 | REQ-019 | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:62] | `NO_COLOR` starts in Monochrome, which the `ui` verb turns into `--mono` |
 | REQ-020 | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/activity.rs:15-33] | Six statuses, their labels and their markers |
-| REQ-021 | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] | Control characters are filtered out of drawn text, which this screen does by replacing each with `?` |
+| REQ-021 | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:76-89] | The nearest source replaces control characters with symbols and keeps line feed and tab. This screen replaces each with `?`, line breaks included. It copies neither turnstone's code nor openhuman's `safe_text`, which drops them |
 
 Two keys deviate from the reference on purpose. openhuman cycles tabs with Ctrl+Tab, and this screen cycles with `[` and `]`, because Ctrl+Tab is rarely delivered. Those two rows are this phase's. openhuman denies with `Delete`, and this screen denies with `n`, because `Delete` is not drawn on every keyboard. That row is 005's to fill in the `overlay` context. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/app/overlays.rs:366] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:15]
 <!-- /ANCHOR:requirements -->

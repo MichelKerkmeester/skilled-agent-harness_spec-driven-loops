@@ -59,6 +59,7 @@ What each line shows:
 | `bots: bot-unknown: Hello` | A refusal. Nothing is appended and no run starts. `Hello` fails the bot id pattern because of its capital letter (`routing-grammar.md` section 4) |
 | `bots: unknown command: /status` | A line starting with `/` is always a command and never a message |
 | `[hello] >` then a new prompt | An empty line sends nothing and appends nothing |
+| One `· <bot> · working…` line after a pasted block | A bracketed paste is one draft with its line feeds kept, and the next Enter sends it as one message |
 | `/exit` and `exit 0` | `/exit` and `/quit` leave with exit 0, as a closed stdin does |
 
 The answer to the parked question arrives later in the same conversation, appended by the drain once `bots answer` has queued the resume. The loop does not wait for it. The next `--transcript`, or the next line typed in the loop, shows it.

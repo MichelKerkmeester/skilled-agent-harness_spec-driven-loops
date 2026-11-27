@@ -189,7 +189,7 @@ sequenceDiagram
   Mm->>Fs: read, parse, check both bounds
   alt a bound is reached
     Mm-->>Cl: memory-full with the path and the counts
-    Cl-->>Cl: print bots: memory-full: path (n entries, b bytes), exit 4
+    Cl-->>Cl: print bots: memory-full: path (n entries, b bytes), free a line with bots remember --forget entry-id, exit 4
   else both bounds pass
     Mm->>Fs: one appendFileSync of one whole line
     Mm-->>Cl: the index, the entry count and the byte count

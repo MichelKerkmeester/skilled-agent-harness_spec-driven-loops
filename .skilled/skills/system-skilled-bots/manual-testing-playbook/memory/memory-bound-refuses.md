@@ -1,7 +1,7 @@
 ---
 title: "BOT-050 -- The memory file refuses a sixty-first entry, a long text and an unsafe bot id"
 description: "This scenario proves that an append past 60 entries or 3,600 bytes is refused `memory-full` with exit 4 and leaves the file byte for byte unchanged, that a text over 400 characters is refused `memory-entry-too-long` with exit 2 before any file is read, that both files are created owner-only, and that a bot id which is not a safe segment is refused by name."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-050 -- The memory file refuses a sixty-first entry, a long text and an unsafe bot id
@@ -26,7 +26,7 @@ A memory file with no bound grows until it fills the prompt budget, and a refusa
 - Real user request: `Fill my notes to the limit, show me the next one is refused, and show me the file is private.`
 - Prompt: `Fill my notes to the limit, show me the next one is refused, and show me the file is private.`
 - Expected execution process: build the world, append sixty entries in a loop, checksum the file, try a sixty-first, checksum again, try a long text, read the modes, then try an unsafe bot id.
-- Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts, the two checksums match, the long text exits 2 with `memory-entry-too-long`, the folder reads `700` and the file `600`, and the unsafe id is refused by name.
+- Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts and the forget command that frees a line, the two checksums match, the long text exits 2 with `memory-entry-too-long`, the folder reads `700` and the file `600`, and the unsafe id is refused by name.
 - Desired user-visible outcome: the operator sees the limit enforced without damage and the file private.
 - Pass/fail: PASS if both bounds are refused with their exits, the file is unchanged, the modes are owner-only and the unsafe id is refused. FAIL if the sixty-first is accepted, the file changes, the long text is written, a mode is wider or the unsafe id becomes a path.
 
@@ -94,7 +94,7 @@ rm -rf "$W" && unset -f pbots
 
 ### Turn 2 -- the sixty-first is refused and the file is untouched
 
-- Expected: `bots: memory-full: <path> (60 entries, <n> bytes)` and `exit=4`.
+- Expected: `bots: memory-full: <path> (60 entries, <n> bytes), free a line with bots remember --forget <entry-id>` and `exit=4`.
 - Expected: `unchanged`, because the two checksums match.
 
 ### Turn 3 -- a long text is refused before any read

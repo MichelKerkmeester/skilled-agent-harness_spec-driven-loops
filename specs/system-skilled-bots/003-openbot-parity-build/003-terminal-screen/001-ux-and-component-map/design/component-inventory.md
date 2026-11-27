@@ -76,7 +76,7 @@ The inbox's rows carry one more state, `answered`, and it is a row state rather 
 | The overlay captures the item id when it opens | A refresh that closes the item under the overlay is detected, and the overlay says so instead of writing, except while sending, where the answer's own result decides |
 | A grant is drawn only when the item carries it | Packet phase 006 lands `grants` and the ladder, so a screen that required them would not build before it. The overlay and the detail column draw a grant's kind and rung when the item carries them and draw nothing where they are absent, so one frame builds now and lights up after 006. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-001] |
 
-The sanitize rule is the one with a reference implementation to follow: replace each control character, line breaks included, with `?`, and keep ordinary Unicode. [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:4-6]
+The sanitize rule is the plan's own: replace each control character, line breaks included, with `?`, and keep ordinary Unicode. No reference implements it exactly. The nearest source is turnstone's `show_controls`, which replaces each control character with its Control Pictures symbol and keeps line feed and tab [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:76-89]. The openhuman filter `safe_text` drops control characters and keeps line feeds, so a builder must not copy it [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93].
 
 ---
 
@@ -121,7 +121,7 @@ The overlay panel is capped at 100 columns and centred, so a wide terminal does 
 | The keys that lock after the first press | [SOURCE: specs/system-skilled-bots/context/OpenGhost-main/approval-card.js:136-140] |
 | The overlay panel's cap and centring | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs:2-12] |
 | The minimum-size screen | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs:26-35] |
-| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
+| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:76-89], the nearest source, which keeps line feed and tab. The openhuman filter `safe_text` drops them and is not the model |
 | The activity row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] |
 | The inbox item shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] |
 | The routine row shape | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] |

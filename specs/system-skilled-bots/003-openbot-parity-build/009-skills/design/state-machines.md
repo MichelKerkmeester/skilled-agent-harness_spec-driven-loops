@@ -61,7 +61,7 @@ stateDiagram-v2
 
 **Why the total is measured as the list is walked.** The refusal must name the skill that crossed the line, and the running total at that name is the only value that names it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:162]
 
-**Why no name needs a traversal check.** `SKILL_NAME_PATTERN` is the bot-id grammar, which admits no dot, no slash and no uppercase letter, so a name can never leave `<skilledTree>/.skilled/skills/`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] A name outside the grammar is refused at parse time as `skills-name-invalid`, before the loader runs.
+**Why no name needs a traversal check.** `SKILL_NAME_PATTERN` is the bot-id grammar, which admits no dot, no slash and no uppercase letter, so the grammar keeps a name inside `<skilledTree>/.skilled/skills/`. A skill folder that is a symlink is followed on purpose, and `local-webflow` is one, so the bytes read can live outside that folder. The digest pins the bytes actually loaded. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:88] A name outside the grammar is refused at parse time as `skills-name-invalid`, before the loader runs.
 
 ---
 

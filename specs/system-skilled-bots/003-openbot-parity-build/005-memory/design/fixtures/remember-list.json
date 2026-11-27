@@ -5,6 +5,7 @@
   "entries": [
     {
       "index": 1,
+      "id": "94a99780",
       "type": "general",
       "date": "2026-11-25",
       "actor": "ada",
@@ -13,6 +14,7 @@
     },
     {
       "index": 2,
+      "id": "7071ee7d",
       "type": "user",
       "date": "2026-11-25",
       "actor": "ada",

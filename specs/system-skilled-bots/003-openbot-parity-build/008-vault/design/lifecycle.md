@@ -31,7 +31,7 @@ One name, in one identity's store under one state root. The write order and the 
 stateDiagram-v2
   [*] --> Absent
 
-  Absent --> Absent: set refused before the lock, secret-no-input, secret-empty, secret-placeholder, secret-too-long or secret-name-invalid
+  Absent --> Absent: set refused before the lock, secret-no-input, secret-empty, secret-too-long or secret-name-invalid
   Absent --> Absent: forget of a name not held, exit 0, both backends swept
   Absent --> Writing: set, lock taken
 

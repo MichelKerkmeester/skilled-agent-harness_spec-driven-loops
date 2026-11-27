@@ -86,9 +86,9 @@ Every whitespace run in the text becomes one space before the line is written, s
 | `Prefers   ISO\t dates.` | `Prefers ISO dates.` |
 | `  leading and trailing  ` | `leading and trailing` |
 
-### 2.3 The index rule
+### 2.3 The index and id rule
 
-An entry's index is its 1-based position in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"] A forget removes one line and every later entry's index shifts down by one, so an index names an entry only for the read that produced it. `--forget` therefore takes the index the operator just saw in `--list`, and a second `--forget` in the same breath names a different entry.
+An entry's index is its 1-based position in file order. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/records.md, section "7. MEMORY ENTRY LINE"] A forget removes one line and every later entry's index shifts down by one, so an index names an entry only for the read that produced it. `--forget` therefore takes the entry's id, never its index. The id is the first 8 hex characters of the SHA-256 of the stored line, over the line's UTF-8 bytes without the line feed. It is computed on every read and never stored, and it does not move when another line is removed. Two identical lines share an id, and a forget removes the first of them in file order. For `design/fixtures/shared.md` the ids are `94a99780` and `7071ee7d`, and for `hello.md` it is `feca56a2`.
 
 ### 2.4 The bounds
 
@@ -113,6 +113,7 @@ The payload is one object with seven keys. [SOURCE: specs/system-skilled-bots/00
 | `path` | string | no | The absolute path of the file read, printed even when the file is absent | `sharedMemoryFile` or `botMemoryFile` |
 | `entries` | array | no | File order, oldest first | The parser |
 | `entries[].index` | integer | no | 1-based position in file order | The parser |
+| `entries[].id` | string | no | 8 lowercase hex characters, the start of the SHA-256 of the stored line without its line feed | The parser |
 | `entries[].type` | string | no | One of the four | The line |
 | `entries[].date` | string | no | `YYYY-MM-DD` | The line |
 | `entries[].actor` | string | no | The actor name | The line |

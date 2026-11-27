@@ -1,7 +1,7 @@
 ---
 title: "BOT-057 -- Both byte caps refuse before the prompt is built"
-description: "This scenario proves the two byte caps on skill bodies, 16,384 bytes for one body and 24,576 bytes for the list, that neither cap truncates, that the list cap names the skill that crossed the line, that a duplicate name and a name outside the grammar are refused at parse time, and that the checker reports the two budget invariants without a run."
-version: 1.0.0.0
+description: "This scenario proves the two byte caps on skill bodies, 16,384 bytes for one body and 20,480 bytes for the list, that neither cap truncates, that the list cap names the skill that crossed the line, that a duplicate name and a name outside the grammar are refused at parse time, and that the checker reports the two budget invariants without a run."
+version: 1.0.1.0
 ---
 
 # BOT-057 -- Both byte caps refuse before the prompt is built
@@ -12,7 +12,7 @@ This document is the execution contract for `BOT-057`. It names the verbs, the r
 
 ## 1. OVERVIEW
 
-The operator builds four bodies at known byte counts, one exactly at each cap and one a single byte over each, and five bots that name them. The bot at the cap runs. The bot one byte over is refused. The list one byte over its cap is refused and the refusal names the skill that crossed. A duplicate name and a name outside the grammar are refused at parse time. The checker reports the two budget invariants on the same checkout without a run.
+The operator builds five bodies at known byte counts and five bots that name them. One body sits exactly at the body cap and one a single byte over it. Two lists of two bodies sum to exactly the list cap and to one byte over it. The bot at the cap runs. The bot one byte over is refused. The list one byte over its cap is refused and the refusal names the skill that crossed. A duplicate name and a name outside the grammar are refused at parse time. The checker reports the two budget invariants on the same checkout without a run.
 
 ### Why This Matters
 
@@ -26,7 +26,7 @@ A cap that truncates is worse than no cap, because a truncated body reads as a c
 - Real user request: `Show me the skill size caps refusing, tell me which skill crossed the list cap, and show me a duplicate name refused.`
 - Prompt: `Show me the skill size caps refusing, tell me which skill crossed the list cap, and show me a duplicate name refused.`
 - Expected execution process: build four bodies at exact byte counts and five bots, run the bot at each cap, run the bot one byte over each cap, run the duplicate and the bad name, then run the checker.
-- Expected signals: the body at 16,384 bytes runs, the body at 16,385 bytes exits 4 with `skill-too-large`, the list at 24,577 bytes exits 4 with `skills-over-budget: pb-sum-b`, the duplicate exits 4 with `definition-malformed: skills-duplicate`, the bad name exits 4 with `definition-malformed: skills-name-invalid`, and the checker prints one `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line.
+- Expected signals: the body at 16,384 bytes runs, the body at 16,385 bytes exits 4 with `skill-too-large`, the list at 20,481 bytes exits 4 with `skills-over-budget: pb-sum-b`, the duplicate exits 4 with `definition-malformed: skills-duplicate`, the bad name exits 4 with `definition-malformed: skills-name-invalid`, and the checker prints one `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line.
 - Desired user-visible outcome: the operator sees each cap refuse at its exact byte, sees the crossing skill named and sees no truncated body reach a child.
 - Pass/fail: PASS if each cap refuses one byte over and accepts at the byte, the list refusal names `pb-sum-b`, both parse reasons surface and the checker reports both invariants. FAIL if a cap truncates, if the list refusal names no skill, if a parse reason is missing or if the checker exits 0.
 
@@ -47,7 +47,7 @@ A cap that truncates is worse than no cap, because a truncated body reads as a c
 Run from the repository root in a POSIX shell. One block, seven turns.
 
 ```bash
-# 1. Build a throwaway world with four bodies at exact byte counts and five bots.
+# 1. Build a throwaway world with five bodies at exact byte counts and five bots.
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 NODE="$(command -v node)"
 BOTS_CLI="$REPO_ROOT/.skilled/bin/bots.cjs"
@@ -65,8 +65,9 @@ mkbody() { # mkbody <path> <total-bytes> <name>
 }
 mkbody "$W/skilled/.skilled/skills/pb-exact/SKILL.md" 16384 pb-exact
 mkbody "$W/skilled/.skilled/skills/pb-over/SKILL.md" 16385 pb-over
-mkbody "$W/skilled/.skilled/skills/pb-sum-a/SKILL.md" 12288 pb-sum-a
-mkbody "$W/skilled/.skilled/skills/pb-sum-b/SKILL.md" 12289 pb-sum-b
+mkbody "$W/skilled/.skilled/skills/pb-sum-a/SKILL.md" 10240 pb-sum-a
+mkbody "$W/skilled/.skilled/skills/pb-sum-b/SKILL.md" 10241 pb-sum-b
+mkbody "$W/skilled/.skilled/skills/pb-sum-c/SKILL.md" 10240 pb-sum-c
 mkbot() { # mkbot <id> <skills-flow-list>
   mkdir -p "$W/checkout/bots/$1"
   printf -- '---\nid: %s\ntrigger: {kind: manual}\nruntime: {kind: cli-codex}\nisolation: shared\ndelivery: local-only\nskills: %s\n---\nWrite the release notes.\n' "$1" "$2" > "$W/checkout/bots/$1/BOT.md"
@@ -84,8 +85,8 @@ pbots run pb-exact; echo "exit=$?"
 # 3. Turn 2: one byte more is refused, and no body is truncated.
 pbots run pb-over; echo "exit=$?"
 pbots run pb-over 2>&1 | grep -c 'skill-too-large'
-# 4. Turn 3: the list at exactly 24,576 bytes is accepted.
-mkbot pb-sum-exact '[pb-sum-a, pb-sum-a]'
+# 4. Turn 3: the list at exactly 20,480 bytes is accepted.
+mkbot pb-sum-exact '[pb-sum-a, pb-sum-c]'
 pbots run pb-sum-exact; echo "exit=$?"
 # 5. Turn 4: one byte more is refused and names the skill that crossed.
 pbots run pb-sum; echo "exit=$?"
@@ -103,7 +104,7 @@ rm -rf "$W" && unset -f pbots mkbody mkbot
 
 ### Turn 1 -- the body at the cap is accepted
 
-- Expected: four `mkbody` lines reading `pb-exact 16384`, `pb-over 16385`, `pb-sum-a 12288` and `pb-sum-b 12289`, then `bots: pb-exact run <run id> completed` and `exit=0`.
+- Expected: five `mkbody` lines reading `pb-exact 16384`, `pb-over 16385`, `pb-sum-a 10240`, `pb-sum-b 10241` and `pb-sum-c 10240`, then `bots: pb-exact run <run id> completed` and `exit=0`.
 
 ### Turn 2 -- one byte over is refused
 
@@ -111,11 +112,11 @@ rm -rf "$W" && unset -f pbots mkbody mkbot
 
 ### Turn 3 -- the list at its cap is accepted
 
-- Expected: `bots: pb-sum-exact run <run id> completed` and `exit=0`. Two bodies of 12,288 bytes sum to exactly 24,576 and pass.
+- Expected: `bots: pb-sum-exact run <run id> completed` and `exit=0`. `pb-sum-a` and `pb-sum-c` hold 10,240 bytes each, so the list sums to exactly 20,480 and passes. The two names differ, so the duplicate check does not fire.
 
 ### Turn 4 -- one byte over the list cap is refused and names the skill
 
-- Expected: a line holding `skills-over-budget: pb-sum-b` and `exit=4`, then `1`. `pb-sum-a` loads first at 12,288, so `pb-sum-b` is the skill that crosses the line.
+- Expected: a line holding `skills-over-budget: pb-sum-b` and `exit=4`, then `1`. `pb-sum-a` loads first at 10,240, so `pb-sum-b` is the skill that crosses the line.
 
 ### Turn 5 -- both parse reasons surface
 
@@ -127,15 +128,15 @@ rm -rf "$W" && unset -f pbots mkbody mkbot
 
 ### Expected
 
-- `exit=0` at 16,384 bytes and at 24,576 bytes.
+- `exit=0` at 16,384 bytes and at 20,480 bytes.
 - `skill-too-large` and `exit=4` at 16,385 bytes.
-- `skills-over-budget: pb-sum-b` and `exit=4` at 24,577 bytes.
+- `skills-over-budget: pb-sum-b` and `exit=4` at 20,481 bytes.
 - `definition-malformed: skills-duplicate` and `definition-malformed: skills-name-invalid`, each with `exit=4`.
 - One `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line from the checker.
 
 ### Evidence
 
-The four `mkbody` byte counts, the two accepted run lines with their exits, the two refusal lines with their exits and their grep counts, the two parse refusal lines with their exits and the checker output with both counts.
+The five `mkbody` byte counts, the two accepted run lines with their exits, the two refusal lines with their exits and their grep counts, the two parse refusal lines with their exits and the checker output with both counts.
 
 ### Pass / Fail
 

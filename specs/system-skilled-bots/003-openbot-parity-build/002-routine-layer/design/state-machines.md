@@ -65,9 +65,9 @@ The runner evaluates the rule after a failed run. Three writes, in this order, a
 
 **Each step is safe to repeat.** The item's id is the tenth run's id, so a second evaluation writes the same file with the same content. The state file is one whole-object write. `setSwitch` on a switch already set rewrites the same instant. A second evaluation therefore converges on the same three files.
 
-**The streak is derived, never stored.** `failureStreak` reads the identity's run records newest first and stops at the first record that is not a failed run. A failed run is a dispatched run whose record carries a non-null `exit.class`, no `exit.refusal` and an `exit.reason` other than `awaiting-decision`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:134-138] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:273-277] The count also stops at the first record whose `dispatch.dispatchedAt` is not later than the state file's `enabledAt`, which is the restart rule `contracts/decisions.md` D9 takes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D9]
+**The streak is derived, never stored.** `failureStreak` reads the identity's run records newest first. It skips a refusal whose `exit.class` is null and keeps counting, so a `precheck-silent`, `lease-held`, `paused` or `disabled` refusal between two failures leaves both failures counted. It stops at the first other record that is not a failed run, which is a completed run, a parked run or a refusal whose `exit.class` is not null, and it stops once it has counted ten. A failed run is a dispatched run whose record carries a non-null `exit.class`, no `exit.refusal` and an `exit.reason` other than `awaiting-decision`. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:134-138] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:273-277] The count also stops at the first record whose `dispatch.dispatchedAt` is not later than the state file's `enabledAt`, which is the restart rule `contracts/decisions.md` D9 takes. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/decisions.md, D9]
 
-**The rule fires once.** It fires when the streak reaches ten. A second evaluation on the same ten records finds the item already written and the switch already set, so nothing changes. The bot is not switched off twice and no second item appears.
+**The rule fires once.** It fires when the streak reaches ten. A second evaluation on the same ten failed runs finds the item already written and the switch already set, so nothing changes. The bot is not switched off twice and no second item appears.
 
 ---
 
@@ -182,7 +182,7 @@ sequenceDiagram
   participant Sw as switches.ts
   Rn->>Rn: the child exited non-zero and the run failed
   Rn->>Rs: evaluateFatigue with the bot id and the tenth run
-  Rs->>Rc: read newest first, stop at the first record that is not a failed run
+  Rs->>Rc: read newest first, skip a refusal with a null class, stop at any other record that is not a failed run
   Rs->>Rs: stop at the first record not later than enabledAt
   alt the streak is under ten
     Rs-->>Rn: no change
@@ -240,7 +240,7 @@ sequenceDiagram
     Cl->>Rt: describeStart of starts zero
     Cl->>Rs: readRoutineState
     Cl->>Sw: readSwitch disabled, completed, paused
-    Cl->>Rs: failureStreak over at most ten records
+    Cl->>Rs: failureStreak over at most ten failed runs and the skipped refusals between them
   end
   Cl->>Cl: sort by botId and print the object or the rows
 ```

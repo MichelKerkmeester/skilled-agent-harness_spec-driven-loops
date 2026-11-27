@@ -46,13 +46,12 @@ The rule a scenario relies on: a refusal `bots.cjs` decides on its own input exi
 | `routine-fatigued` | 002 | Run refusal | 4 | `bots: <bot id> refused before dispatch (routine-fatigued)` | BOT-039 |
 | `routine-completed` | 002 | Run refusal | 4 | `bots: <bot id> refused before dispatch (routine-completed)` | BOT-037 |
 | `ui-unavailable` | 003 | Verb refusal (`ui`) | 4 | `bots: ui-unavailable: <path>` | BOT-043 |
-| `memory-full` | 005 | Verb refusal (`remember`, `answer confirm`) | 4 | `bots: memory-full: <path> (<n> entries, <b> bytes)` | BOT-050 |
+| `memory-full` | 005 | Verb refusal (`remember`, `answer confirm`) | 4 | `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>`, with ` --bot <botId>` at the end for a bot's own file | BOT-050 |
 | `apps-unknown-server` | 007 | Checker invariant | 1 | `FAIL: apps-unknown-server: <names>` | BOT-052 |
 | `apps-refused` | 007 | Run refusal | 4 | `bots: <bot id> refused before dispatch (apps-refused)` | BOT-051 |
 | `skill-unknown` | 009 | Run refusal | 4 | `bots: <bot id> refused before dispatch (skill-unknown)` | BOT-056 |
 | `skills-over-budget` | 009 | Checker invariant, and a run refusal | 1 checker, 4 run | `FAIL: skills-over-budget: <skill name>` then `bots: <bot id> refused before dispatch (skills-over-budget)` | BOT-057 |
 | `secret-empty` | 008 | Verb refusal (`secret set`) | 2 | `bots: secret-empty` | BOT-053 |
-| `secret-placeholder` | 008 | Verb refusal (`secret set`) | 2 | `bots: secret-placeholder` | BOT-053 |
 | `--as needs a tty` | 001 | Verb refusal (`answer`, `run`) | 2 | `bots: --as needs a tty` | BOT-042 |
 | `--as takes a name` | 001 | Verb refusal (`answer`, `run`) | 2 | `bots: --as takes a name` | BOT-042 |
 

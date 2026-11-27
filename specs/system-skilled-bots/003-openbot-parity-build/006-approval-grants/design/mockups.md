@@ -171,8 +171,11 @@ An earlier run of this bot stopped to ask the operator a question. The operator 
 Question: Ship the release?
 Answer: no
 Granted scope: deny
-Continue the work from where that run stopped, following the answer.
+Declined action: Ship the release? (kind post)
+The operator declined this action. Do not do it and do not reach the same result another way. Say in your output that it was not done, and carry on only with work that does not need it.
 ```
+
+A `once` grant keeps the closing line after `Granted scope: once`, so only a deny changes how the prompt ends.
 
 ### 5.2 An item written before this phase
 
@@ -185,7 +188,7 @@ Answer: no
 Continue the work from where that run stopped, following the answer.
 ```
 
-The two differ by one line and nothing else, so a resumed run that predates this phase reads the prompt it read before.
+An item with no grant gets exactly the prompt it got before this phase, so a resumed run that predates this phase reads the prompt it read before.
 
 ---
 

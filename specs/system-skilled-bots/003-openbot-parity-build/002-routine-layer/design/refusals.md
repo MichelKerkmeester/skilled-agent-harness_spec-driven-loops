@@ -108,7 +108,7 @@ The screen contract's section 9 fixes how the screen draws a failed read of the 
 |----------|-----|
 | The eight parse names carry the checker's `definition.` prefix and the floor name does not | The checker already prints every parse reason as `definition.<reason>`, so the routine parse reasons follow it and a builder writes no new branch. The floor is a checker invariant rather than a parse refusal, so it prints unprefixed |
 | The floor fixture is `routine-floor`, not `routine-floor-15-minutes` | The fixture folder names the rule and the invariant id names the bound. The other nine fixtures carry the invariant id because the id is the whole rule |
-| `routine-fatigued` and `routine-completed` carry class `null` | Neither is a failure. A class would make a refused run count toward the streak, which is the bug the refusal exists to report |
+| `routine-fatigued` and `routine-completed` carry class `null` | Neither is a failure. With class `null` the streak skips the refused run and keeps counting, as it does for every refusal with no class |
 | `disabled` is checked before `completed` | A bot that is both fatigued and completed reports the fatigue, which is the state the operator has to act on |
 | `bots enable` warns on an expired item and exits 0 | A recovery that refused would leave the bot stopped with no way back except editing files by hand |
 | `bots routines` prints a damaged state file as a row and a stderr line | A read verb that failed on one damaged file would hide every other routine |

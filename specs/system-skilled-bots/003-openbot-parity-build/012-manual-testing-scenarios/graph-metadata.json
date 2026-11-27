@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
     "created_at": "2026-11-25T19:32:28Z",
-    "last_save_at": "2026-11-26T06:56:26.194Z",
+    "last_save_at": "2026-11-27T13:27:30.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1456766bde3d91e74d5e1337daf153404c2caeb07e7f425ce70e445284a93f7c",
+    "source_fingerprint": "sha256:3c1a1af77a5d607067da838343277b212145644adc9173d05b4b24f263b77522",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "01983dad3f1d359f9925ea6a34060cb43028fdb515a21044c312d3bb00de02fc",
+      "spec.md": "0c6f1d788e57e57d7fdc205536c718ee4eeb6b0c79446f12d81ccf465c0d653c",
       "plan.md": "7f2bd795081c067c94992805b2ba355a26f7b11733da266038e61b1868e6eafa",
       "tasks.md": "0ece847585fedec1a50145ffe9bd250c131a7e09585c55546b476b89501c3fcf",
       "implementation-summary.md": "b79f87ec490f2b39d962a146e49aa4ef27285c8b5241a8c9a3fcbb4c373643b4"

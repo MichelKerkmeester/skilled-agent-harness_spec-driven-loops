@@ -76,7 +76,7 @@ The record's field names are `contracts/records.md` section 4 and the reader's o
 
 **Why the description states provenance.** The draft is built with no model call, so the only true sentence about it is where it came from. A description that guessed at the skill's purpose would be a claim nobody checked, and the operator rewrites the line before the skill goes live. The line is 108 characters on the sample run, under the 130-character soft target the skill contract sets.
 
-**Why `allowed-tools` is `["Read"]`.** A proposed skill has not been reviewed, so the draft asks for the narrowest set that lets a run read its own run folder. The operator widens it when the skill goes live, and a draft that asked for `Write` and `Bash` would grant more than the review approved.
+**Why `allowed-tools` is `["Read"]`.** The key is advisory for a body the loader puts in the prompt: a loaded skill is only text, so the key grants nothing and limits nothing at run time. The draft keeps `["Read"]` because the skill contract expects the key and the narrowest value claims the least. The operator sets it when the skill goes live.
 
 **Why `version` is `1.0.0.0`.** The skill contract requires a four-part version and the first edition is the first part. [SOURCE: .skilled/skills/sk-doc/scripts/package_skill.py:58]
 
@@ -145,7 +145,7 @@ python3 .skilled/skills/sk-doc/scripts/validate_skill_package.py /tmp/drafttest/
 
 ## 4. THE SECRET CHECK
 
-The draft is checked before either file is written, through `findSecretLiteral` with the known-secret map the answer path already builds. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:287] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:88] A match refuses `proposal-secret` naming the key and never the value, and neither file is written.
+The draft is checked before either file is written, through `findSecretLiteral` with the known-secret map the answer path already builds. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:287] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:88] A match refuses `proposal-secret` naming the key and never the value, and neither file is written. Right after it the draft is scanned for a character from U+202A to U+202E, U+2066 to U+2069, U+200B to U+200D, U+2060 or U+FEFF. A match refuses `bots: proposal-hidden-character: U+<hex> at line <n>` with the first such code point and its 1-based line, and neither file is written. Variation selectors U+FE00 to U+FE0F pass.
 
 The check covers the whole draft text, because a run's `exit.reason` and its run folder path are the two slots a stored value could reach. A run folder path holds no value, so in practice the check fires on `exit.reason` when a child printed a value and the run recorded it.
 
@@ -157,6 +157,6 @@ The check covers the whole draft text, because a run's `exit.reason` and its run
 |----------|-----|
 | The draft is a template filled from the record, with no model call | The research records the proposal as having no design and no model call, and a template is the only form that is reproducible and testable |
 | The description states provenance and tells the operator to rewrite it | No field in the record says what the skill is for, and a guessed purpose would be a claim nobody checked |
-| `allowed-tools` is `["Read"]` | A draft has not been reviewed, so it asks for the narrowest set that lets a run read its own run folder |
+| `allowed-tools` is `["Read"]` | The key is advisory for a prompt-loaded body and grants nothing at run time. The draft keeps the narrowest value because the skill contract expects the key |
 | The validator runs on the draft's text with the target name, not on the proposals folder | The validator requires the frontmatter name to equal the folder name, and the proposals folder is named for the run |
 | The template carries five sections and no more | The validator requires five and warns on two more, and a draft with empty recommended sections would read as complete when it is not |

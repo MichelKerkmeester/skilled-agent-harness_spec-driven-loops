@@ -176,8 +176,8 @@ This phase's build is dispatched, not hand-run. The hub owns the routing and eac
 | 0 | T001 to T006 | none, six reads | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 1, because the six reads feed one baseline record and no file is written | V0 |
 | 1 | T007 to T012, T033 | `lib/conversation.ts`, `lib/state-root.ts`, `lib/request-drain.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 3, the file-overlap bound | V1 |
 | 2 | T013, T034, T035 | `lib/runner.ts`, `lib/conversation.ts`, `lib/needs-you.ts`, `lib/request-record.ts`, `lib/answer.ts`, `lib/request-drain.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 2: `runner.ts` with `conversation.ts`, and the four record files | V2 |
-| 3 | T014 to T017 | `bin/bots.cjs` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 1, because all four tasks edit one file | V3 |
-| 4 | T018 to T021 | `tests/conversation.vitest.ts`, `tests/cli-chat.vitest.ts`, `tests/queued-run.vitest.ts`, `tests/runner.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3: `conversation`, `cli-chat`, and `queued-run` with `runner` | V4 |
+| 3 | T014 to T017, T048 | `bin/bots.cjs` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking max` | 1, because all four tasks edit one file | V3 |
+| 4 | T018 to T021, T049 | `tests/conversation.vitest.ts`, `tests/cli-chat.vitest.ts`, `tests/queued-run.vitest.ts`, `tests/runner.vitest.ts` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 3: `conversation`, `cli-chat`, and `queued-run` with `runner` | V4 |
 | 5 | T027 to T031 | `THIRD_PARTY_NOTICES.md`, `lib/README.md`, `bots-run/references/run-queue-and-answer.md`, `bots-run/SKILL.md`, `SKILL.md` | `cli-pi` | `llmgateway/deepseek-v4.1-flash-1017` | `--thinking high` | 2: the notices file, and the four doc files | V5 |
 | 6 | T036, T037, T039 to T044 | none. The suite, three probes and the validator | the orchestrator, no external executor | none | none | 1 | V6 |
 

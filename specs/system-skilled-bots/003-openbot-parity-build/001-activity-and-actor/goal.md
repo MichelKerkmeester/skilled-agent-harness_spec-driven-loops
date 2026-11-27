@@ -71,7 +71,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-run.vitest.ts -t "^bots answer refuses a foreign actor without a tty$")`, `-t "^bots answer refuses a write from a bot child$"` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/answer.vitest.ts -t "^bots answer takes an explicit actor with no tty$")` each print `Tests  1 passed`, and `node .skilled/bin/bots.cjs answer item-1 yes --scope always` prints `bots: grant-scope-unsupported`.
 - [ ] `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/posture.vitest.ts -t "^posture matrix caps a declared danger-full-access without full access$")` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/resume.vitest.ts -t "^resume requests keeps danger-full-access for a full-access bot the drain resumes$")` each print `Tests  1 passed`.
 - [ ] `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-run.vitest.ts -t "^bots schedule install records full access for a non-cron bot$")` prints `Tests  1 passed`, so a manual, queue or git-hook bot can be granted full access.
-- [ ] `rg -n "activity-groups.ts|activity-rows.ts" .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints two lines.
+- [ ] `rg -n "activity-groups.ts" .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints one line, and `rg -c "activity-rows.ts" .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints nothing.
 <!-- /ANCHOR:completion -->
 
 ---

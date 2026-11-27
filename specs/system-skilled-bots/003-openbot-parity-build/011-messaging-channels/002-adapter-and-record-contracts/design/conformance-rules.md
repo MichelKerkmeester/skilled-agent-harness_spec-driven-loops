@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # The five channel conformance rules
 
-The pre-expansion REQ-017 carried five assertions in one sentence: an unsupported result, no platform reached, no provider error, one matching observation and a receipt. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:208] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:562] They match the reference checker. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:374-470] This file numbers them. `../../007-conformance-hardening-and-proof/` builds the suite, `tests/channel-conformance.vitest.ts`, over the fake transport in `tests/channel-support.ts`.
+The pre-expansion REQ-017 carried five assertions in one sentence: an unsupported result, no platform reached, no provider error, one matching observation and a receipt. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:208] [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:562] They match the reference checker. [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:374-470] This file numbers them. `../../007-conformance-hardening-and-proof/` builds the suite, `tests/channel-conformance.vitest.ts`, which runs each real transport over a fake platform. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:29]
 
 ---
 
@@ -32,7 +32,9 @@ An operation is **declared** when its key in `capabilities.md` section 2 is `yes
 
 ## 2. THE FIXTURE
 
-The fake transport is one object per channel name, built from that name's column of `capabilities.md` section 2. It records each wire call as `{operation, channel, conversation, idempotencyKey}` and returns a scripted result. It opens no socket and reads no token.
+Each case runs the real transport for its channel name over a fake platform. The fake platform stands where the provider's HTTP or socket API stands. It records each wire call as `{operation, channel, conversation, idempotencyKey}` and answers with a scripted provider reply. It opens no socket and reads no token. The driver reads which operations are declared from that name's column of `capabilities.md` section 2. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:61]
+
+A fake transport that returns a scripted result is not the fixture, because it would pass two of the five rules for any adapter. The scripted fake transport in `tests/channel-support.ts` stays for the queue and verb tests of children 003 and 004.
 
 The suite is the product of five transports and five operations. `sendText`, `buttons`, `edit`, `react` and `file` are the five, because `receiveText`, `numberedReply` and `groupKnown` are inbound facts with no `send` intent.
 
@@ -46,7 +48,7 @@ The suite is the product of five transports and five operations. `sendText`, `bu
 
 That is 25 cases: 7 declared and 18 undeclared. Each case is one `it` named `<channel> <operation> R<n>[ R<n>]`, so `-t "R2"` runs the 18 undeclared cases.
 
-Three cases ride on the same fake and are not rules, because the reference has no counterpart. They are `../../007-conformance-hardening-and-proof/` requirements:
+Three cases ride on the same fake platform and are not rules, because the reference has no counterpart. They are `../../007-conformance-hardening-and-proof/` requirements:
 
 - A press whose sender id differs from the link record's `senderId` is refused `answer-not-approver` and records no wire call.
 - A parked question whose text holds a stored secret literal is withheld and records no wire call.

@@ -197,7 +197,7 @@ The M04 text and one `actions` block with `YES` and `NO`, action ids ending `:1`
 
 ### 2.3 Slack, S3
 
-The limit is 3,900 characters and the M02 form is 4,749, so two messages: 3,900 and 849. The first is a plain `chat.postMessage` with `text` only. The second carries the rest, the button line and the `actions` block.
+The limit is 3,900 characters and the M02 form is 4,749, so two messages: 3,900 and 849. The first is a plain `chat.postMessage` with `text` only. The second carries the rest, the button line and the `actions` block. The chunk that carries the buttons may hold at most 3,000 characters, the cap on a Block Kit section, and 849 is below it, so this prompt is not cut again.
 
 ```text
 +-- # direct message with digest --------------------------------------+

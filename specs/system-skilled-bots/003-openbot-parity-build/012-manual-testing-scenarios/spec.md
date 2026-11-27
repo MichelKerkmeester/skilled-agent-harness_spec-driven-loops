@@ -262,7 +262,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: EDGE CASES
 
 - Empty input: a state root with no items makes `bots inbox --json` print `{"version": 1, "items": []}` and leaves every activity group empty, and the scenario asserts the empty shape rather than a missing line, per `contracts/cli-json.md` section 2
-- Maximum input: a memory file at 60 entries and 3,600 bytes refuses the next append with `bots: memory-full: <path> (<n> entries, <b> bytes)` and exit 4, leaving the file unchanged, per `contracts/refusals.md` section 3.5
+- Maximum input: a memory file at 60 entries and 3,600 bytes refuses the next append with `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>` and exit 4, leaving the file unchanged, per `contracts/refusals.md` section 3.5
 - Failure path: a scenario whose command exits non-zero records `FAIL` with the exit status and the line that disagreed, and the run folder keeps both
 <!-- /ANCHOR:edge-cases -->
 

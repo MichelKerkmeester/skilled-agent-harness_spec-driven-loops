@@ -57,10 +57,10 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/switches.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts"
+      ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts"
     ],
     "entities": [
       {
@@ -160,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "dispatch.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
         "name": "run-record.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
@@ -175,12 +181,6 @@
         "name": "installer.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "status.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger and a body, so it says when a bot runs and nothing about what the run is for, whether it acts or only tells, or when it is done",
     "created_at": "2026-11-25T07:13:38Z",
-    "last_save_at": "2026-11-26T07:01:31.391Z",
+    "last_save_at": "2026-11-27T13:26:56.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1435004e008799897799eec413f5b6a7c3a54f7f4df154d4277bfab7551111c",
+    "source_fingerprint": "sha256:470236ffb4823e7f10ba11112b236149bed82651f5ea8fe1b75f56b18ad36064",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2387ca59e3537b5596989567066c2db612e30195e0e99a3049e7f7f0fef4edda",
-      "plan.md": "6090a5fc642eff9d93bae563c7ce37e45a0d574059ccd08feb1593564879026e",
-      "tasks.md": "0681a294fd0ccd4d2ab0360acddf594a1554aa460ad51e17c1eeb84fc9a63528",
+      "spec.md": "9a787aab6aa159378ff2b81da745de4f390875a88450effffc0a9f22652861e6",
+      "plan.md": "4fc89d471429e5cbcc7159131c723a5fad913c1c4762b00d889a5c859fad1b93",
+      "tasks.md": "5c1cb1448ec0c924fe5adfeaed7c881d7e1b62e16053e68db4b2f334d3435d63",
       "implementation-summary.md": "0d7f921d1001c8f065113d46e668e1fcaf25dadaf4218e7c56971b76197947b8"
     },
     "last_active_at": null

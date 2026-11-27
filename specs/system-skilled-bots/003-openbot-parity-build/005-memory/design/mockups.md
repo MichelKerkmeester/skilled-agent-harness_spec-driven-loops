@@ -53,19 +53,19 @@ The path is the identity folder's, which is `encodeURIComponent(identity.toLower
 ```text
 $ bots remember --list
 bots: /Users/ada/.local/state/system-skilled-bots/memory/shared.md (2 of 60 entries, 169 of 3600 bytes)
-    1    general    2026-11-25    ada    bots remember    the sales sheet is Q3 | not Q2
-    2    user       2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
+    94a99780    general    2026-11-25    ada    bots remember    the sales sheet is Q3 | not Q2
+    7071ee7d    user       2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
 ```
 
-The header line carries the path and both counts. Each entry line carries the six fields in the order the payload uses, so the human form and the JSON form read the same way. The text is printed verbatim, so a pipe in it needs no escape and the prompt block's escape form never appears here. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "3. THE ESCAPE FORM"]
+The header line carries the path and both counts. Each entry line carries the entry's id and then its five stored fields, in the order the payload uses after `index`, so the human form and the JSON form read the same way. The id is the first 8 hex characters of the SHA-256 of the stored line without its line feed, and it is what `--forget` takes. The text is printed verbatim, so a pipe in it needs no escape and the prompt block's escape form never appears here. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "3. THE ESCAPE FORM"]
 
 With a skipped line:
 
 ```text
 $ bots remember --list
 bots: /Users/ada/.local/state/system-skilled-bots/memory/shared.md (2 of 60 entries, 169 of 3600 bytes, 1 line skipped)
-    1    general    2026-11-25    ada    bots remember    the sales sheet is Q3 | not Q2
-    2    user       2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
+    94a99780    general    2026-11-25    ada    bots remember    the sales sheet is Q3 | not Q2
+    7071ee7d    user       2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
 ```
 
 The skipped count appears only when it is above zero, so a clean file's header stays short. The skipped line itself is never printed, because printing it would put a line the parser could not read in front of an operator who cannot act on it.
@@ -87,7 +87,7 @@ A read never creates the file, so the path is named and nothing is written.
 
 ```text
 $ bots remember --list --json
-{"version":1,"botId":null,"path":"/Users/ada/.local/state/system-skilled-bots/memory/shared.md","entries":[{"index":1,"type":"general","date":"2026-11-25","actor":"ada","source":"bots remember","text":"the sales sheet is Q3 | not Q2"},{"index":2,"type":"user","date":"2026-11-25","actor":"ada","source":"bot:hello (run 20261125T210204Z-0b6e5f72)","text":"Prefers ISO dates."}],"entryCount":2,"byteCount":169,"skippedLines":0}
+{"version":1,"botId":null,"path":"/Users/ada/.local/state/system-skilled-bots/memory/shared.md","entries":[{"index":1,"id":"94a99780","type":"general","date":"2026-11-25","actor":"ada","source":"bots remember","text":"the sales sheet is Q3 | not Q2"},{"index":2,"id":"7071ee7d","type":"user","date":"2026-11-25","actor":"ada","source":"bot:hello (run 20261125T210204Z-0b6e5f72)","text":"Prefers ISO dates."}],"entryCount":2,"byteCount":169,"skippedLines":0}
 ```
 
 The frame is one line because the payload is one document and stdout carries it and nothing else. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/cli-json.md, section "3.2 `bots remember --list [--bot <id>] --json`"] The pretty form a reader sees is the same object:
@@ -100,6 +100,7 @@ The frame is one line because the payload is one document and stdout carries it 
   "entries": [
     {
       "index": 1,
+      "id": "94a99780",
       "type": "general",
       "date": "2026-11-25",
       "actor": "ada",
@@ -108,6 +109,7 @@ The frame is one line because the payload is one document and stdout carries it 
     },
     {
       "index": 2,
+      "id": "7071ee7d",
       "type": "user",
       "date": "2026-11-25",
       "actor": "ada",
@@ -125,21 +127,21 @@ With `--bot hello`, `botId` is `"hello"` and `path` is the per-bot file. With no
 
 ---
 
-## 4. `bots remember --forget <n>`
+## 4. `bots remember --forget <entry-id>`
 
 ```text
-$ bots remember --forget 1
-bots: entry 1 forgotten from /Users/ada/.local/state/system-skilled-bots/memory/shared.md (1 of 60 entries, 90 of 3600 bytes)
+$ bots remember --forget 94a99780
+bots: entry 94a99780 forgotten from /Users/ada/.local/state/system-skilled-bots/memory/shared.md (1 of 60 entries, 90 of 3600 bytes)
 $ bots remember --list
 bots: /Users/ada/.local/state/system-skilled-bots/memory/shared.md (1 of 60 entries, 90 of 3600 bytes)
-    1    user    2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
+    7071ee7d    user    2026-11-25    ada    bot:hello (run 20261125T210204Z-0b6e5f72)    Prefers ISO dates.
 ```
 
-The surviving entry's index is now 1, which is the shift rule. An index that names nothing:
+The surviving entry keeps its id `7071ee7d`, so a second forget typed from the first list still names it. An id that names nothing:
 
 ```text
-$ bots remember --forget 99
-bots: memory-entry-unknown: 99
+$ bots remember --forget 0000beef
+bots: memory-entry-unknown: 0000beef
 $ echo $?
 2
 ```
@@ -277,7 +279,7 @@ This is today's prompt, byte for byte. An absent block contributes no line, no b
 
 ```text
 $ bots remember "the sales sheet is Q3"
-bots: memory-full: /Users/ada/.local/state/system-skilled-bots/memory/shared.md (60 entries, 3598 bytes)
+bots: memory-full: /Users/ada/.local/state/system-skilled-bots/memory/shared.md (60 entries, 3598 bytes), free a line with bots remember --forget <entry-id>
 $ echo $?
 4
 ```

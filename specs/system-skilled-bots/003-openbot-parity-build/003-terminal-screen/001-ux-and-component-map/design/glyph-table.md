@@ -112,7 +112,7 @@ Focus is a `›` mark plus reverse video, never reverse video alone, because a t
 | The inbox item shape, whose `state` is `open`, `answered` or `expired` | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] |
 | The System and Mono palettes | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:61-82] |
 | `NO_COLOR` starting in Mono | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/README.md:61-62] |
-| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:87-93] |
+| Control characters replaced before drawing | [SOURCE: specs/system-skilled-bots/context/turnstone-main/turnstone/ui/colors.py:76-89], the nearest source, which keeps line feed and tab. The openhuman filter `safe_text` drops them and is not the model |
 | The expired card, visible and unanswerable | [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/src/components/ApprovalCard.tsx:93-95] |
 | The three glyphs this phase adds | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |
 | The unknown value drawn with its raw text | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:249] |

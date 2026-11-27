@@ -123,9 +123,9 @@ The two caps are byte counts, so the boundary test builds its bodies rather than
 | one byte over the per-skill cap | 16,385 bytes | `skill-too-large` |
 | exactly at the list cap | two bodies summing to 20,480 bytes | accepted |
 | one byte over the list cap | two bodies summing to 20,481 bytes | `skills-over-budget` naming the second |
-| both caps passed, prompt over 32,000 characters | a body at the per-skill cap plus a body long enough to push the composed prompt past the bound | `prompt-over-budget` naming the skills block |
+| both caps passed, prompt over 32,000 characters | two memory files of 3,600 ASCII bytes each and twenty skill bodies of 1,024 ASCII bytes each, 20,480 bytes together, so the list sits exactly at its cap | `prompt-over-budget` naming the skills block |
 
-The last row is the one that proves the two caps cannot both be filled. Two full memory files and a full skills list are 2 x 3,600 + 20,480 = 27,680 bytes before any wrapper, label, protocol line or body, so a bot at both caps is always refused `prompt-over-budget`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.2 The table"] The test asserts the refusal names `skills` and not `memory`, because the skills block is the first block whose running total crosses the bound.
+The last row proves which block is named when the skills cross the line. Two full memory files and a full skills list are 2 x 3,600 + 20,480 = 27,680 bytes before any wrapper, label, protocol line or body, which leaves 4,320 characters, so a bot at both caps with one or two skills fits (D11 in `contracts/decisions.md`). Twenty bodies carry twenty wrappers and labels of more than 300 characters each, so the running length passes 32,000 inside the skills block whatever the paths are. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md, section "4.2 The table"] The test asserts the refusal names `skills` and not `memory`, because the skills block is the first block whose running total crosses the bound.
 
 ---
 

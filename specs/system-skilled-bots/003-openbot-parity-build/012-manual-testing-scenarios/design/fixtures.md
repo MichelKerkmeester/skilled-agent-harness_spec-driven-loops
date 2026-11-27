@@ -137,7 +137,7 @@ One row per `FAIL` that is a product failure rather than a scenario defect. Five
 
 | Scenario | Phase | Requirement | Observed line | Evidence |
 |----------|-------|-------------|---------------|----------|
-| BOT-050 | 005-memory | REQ-003 | `bots: memory-full: <path> (59 entries, 3590 bytes)` with `exit=4` at the 60th append | specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-050.txt |
+| BOT-050 | 005-memory | REQ-003 | `bots: memory-full: <path> (59 entries, 3590 bytes), free a line with bots remember --forget <entry-id>` with `exit=4` at the 60th append | specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-050.txt |
 ```
 
 A file with no row says so in one sentence, so a reader knows the run produced no product failure rather than that the file was forgotten.

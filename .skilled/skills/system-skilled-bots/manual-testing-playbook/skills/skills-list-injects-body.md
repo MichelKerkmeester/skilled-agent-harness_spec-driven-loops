@@ -1,7 +1,7 @@
 ---
 title: "BOT-056 -- A named skill's body reaches the prompt inside its own block"
 description: "This scenario proves that `skills:` parses into a list of names, that the runner loads each named skill's body from the skilled tree and inserts it at the skills position inside one `<skill_content name=\"<name>\">` block per skill, that the block sits after the memory block and before the standing body, and that a name which does not resolve refuses the run before dispatch."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-056 -- A named skill's body reaches the prompt inside its own block
@@ -68,7 +68,7 @@ pbots remember "The release notes ship on Friday."; echo "exit=$?"
 # 3. Turn 2: run the bot that names the skill.
 pbots run pb-skill; echo "exit=$?"
 # 4. Turn 3: read the block and the body it holds.
-"$NODE" -e 'const fs=require("fs"),p=require("path");const d=process.argv[1];for(const f of fs.readdirSync(d)){const r=JSON.parse(fs.readFileSync(p.join(d,f),"utf8"));const s=String(r.prompt||"");const m=s.match(/<skill_content name="[^"]+">[\s\S]*?<\/skill_content>/);console.log(f+" :: "+(m?m[0].split("\n").slice(0,3).join(" / "):"no block"))}' "$W/acct/stub-receipts"
+"$NODE" -e 'const fs=require("fs"),p=require("path");const d=process.argv[1];for(const f of fs.readdirSync(d)){const r=JSON.parse(fs.readFileSync(p.join(d,f),"utf8"));const s=String(r.prompt||"");const m=s.match(/<skill_content name="[^"]+">[\s\S]*?<\/skill_content>/);console.log(f+" :: "+(m?["tag "+m[0].startsWith("<skill_content name=\"pb-notes\">"),"label "+m[0].includes("a procedure from the repository that you may follow"),"folder "+m[0].includes("/.skilled/skills/pb-notes"),"heading "+m[0].includes("# pb-notes"),"instruction "+m[0].includes("Write one paragraph per change")].join(" "):"no block"))}' "$W/acct/stub-receipts"
 # 5. Turn 4: read the order of the three positions.
 "$NODE" -e 'const fs=require("fs"),p=require("path");const d=process.argv[1];for(const f of fs.readdirSync(d)){const r=JSON.parse(fs.readFileSync(p.join(d,f),"utf8"));const s=String(r.prompt||"");console.log(f+" memory="+s.indexOf("<memory file=")+" skill="+s.indexOf("<skill_content")+" body="+s.indexOf("Write the release notes."))}' "$W/acct/stub-receipts"
 # 6. Turn 5: a name that does not resolve is refused before dispatch.
@@ -90,7 +90,7 @@ rm -rf "$W" && unset -f pbots
 
 ### Turn 3 -- the block holds the body
 
-- Expected: one receipt line naming `<skill_content name="pb-notes">` and the first lines of the body, including the heading and the instruction.
+- Expected: one receipt line reading `tag true label true folder true heading true instruction true`. The block opens with its tag, then the label line that calls the skill a procedure the run may follow, then the line naming the skill's folder, then the body with its heading and its instruction.
 
 ### Turn 4 -- the three positions are in order
 
@@ -125,7 +125,7 @@ The append line, the run line with its exit, the block line, the three-index lin
 ### Failure Triage
 
 1. No `<skill_content` in the prompt: the block is missing from the prompt builder. Read the skills position in `specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md` section 1.
-2. The block is unlabelled: the wrapper drops the name. Read the wrapper and add the attribute.
+2. The block is unlabelled or a value reads `false`: the wrapper drops the name, the label line or the folder line. Read the wrapper in `specs/system-skilled-bots/003-openbot-parity-build/contracts/prompt-sections.md` and add what is missing.
 3. The body is absent from the block: the loader reads the wrong path. Read the loader and confirm it reads `<skilledTree>/.skilled/skills/<name>/SKILL.md`.
 4. The skill index is smaller than the memory index: the insert order is reversed. Read the builder and insert memory first.
 5. The skill index is larger than the body index: the block lands after the standing body. Read the position and move it before.

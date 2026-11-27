@@ -35,8 +35,8 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 ## Phase 1: Setup
 
 - [ ] T001 Confirm child 005's handoff (`$RT/tests/channel-transports.vitest.ts`). Verify: `test -f $RT/tests/channel-transports.vitest.ts && echo ok` prints `ok`
-- [ ] T002 Record the Signal wire facts, was T009 (`$CTX/tinychannels-main/src/providers/signal/`). Verify: `rg -n 'api/v1/rpc|SIGNAL_TEXT_CHUNK_CHARS' $CTX/tinychannels-main/src/providers/signal/` prints both
-- [ ] T003 Record the WhatsApp wire facts, was T010 (`$CTX/tinychannels-main/src/providers/whatsapp/`). Verify: `rg -n 'X-Hub-Signature-256|TEXT_LIMIT' $CTX/tinychannels-main/src/providers/whatsapp/` prints both
+- [ ] T002 Record the Signal wire facts as a design note in a worker of its own, the one worker whose brief names the tinychannels source, was T009 (`$CTX/tinychannels-main/src/providers/signal/`, writing `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/design/wire-notes.md` under one `## signal` heading). Verify: `rg -n '^## signal$' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/design/wire-notes.md` prints one line, and `rg -n 'api/v1/rpc|SIGNAL_TEXT_CHUNK_CHARS' $CTX/tinychannels-main/src/providers/signal/` prints both
+- [ ] T003 Record the WhatsApp wire facts in the same note, in the same worker as T002, was T010 (`$CTX/tinychannels-main/src/providers/whatsapp/`, writing `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/design/wire-notes.md` under one `## whatsapp` heading). Verify: `rg -n '^## whatsapp$' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/design/wire-notes.md` prints one line, and `rg -n 'X-Hub-Signature-256|TEXT_LIMIT' $CTX/tinychannels-main/src/providers/whatsapp/` prints both
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,8 +44,8 @@ The shell variables, the temporary state root and the `was T0NN` convention are 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Create the Signal transport, was T028 (`$RT/lib/channel-signal.ts`). Verify: `rg -n 'api/v1/rpc|api/v1/events|api/v1/check|2000|channel-daemon-unreachable' $RT/lib/channel-signal.ts` prints all five
-- [ ] T005 [P] Create the WhatsApp listener with the signature check before parse, was T030 (`$RT/lib/channel-whatsapp.ts`). Verify: `rg -n 'X-Hub-Signature-256|timingSafeEqual|channel-signature|413|127.0.0.1' $RT/lib/channel-whatsapp.ts` prints all five
+- [ ] T004 [P] Create the Signal transport from `design/wire-notes.md` and the Wire Table, with no tinychannels path in the brief, was T028 (`$RT/lib/channel-signal.ts`). Verify: `rg -n 'api/v1/rpc|api/v1/events|api/v1/check|2000|channel-daemon-unreachable' $RT/lib/channel-signal.ts` prints all five
+- [ ] T005 [P] Create the WhatsApp listener with the signature check before parse, from `design/wire-notes.md` and the Wire Table with no tinychannels path in the brief, was T030 (`$RT/lib/channel-whatsapp.ts`). Verify: `rg -n 'X-Hub-Signature-256|timingSafeEqual|channel-signature|413|127.0.0.1' $RT/lib/channel-whatsapp.ts` prints all five
 - [ ] T006 Add the handshake, the served-number filter and the Graph send (`$RT/lib/channel-whatsapp.ts`). Verify: `rg -n 'hub.challenge|phone_number_id|v23.0|4096' $RT/lib/channel-whatsapp.ts` prints all four
 - [ ] T007 Add the `signal` and `whatsapp` rows to `listen`, after child 005 (`.skilled/bin/bots.cjs`). Verify: `rg -n "'signal'|'whatsapp'" .skilled/bin/bots.cjs` prints both
 - [ ] T008 [P] Record the Signal and WhatsApp fixtures with invented data only (`$RT/tests/fixtures/channels/`). Verify: `rg -n 'EAA[A-Za-z0-9]{20,}' $RT/tests/fixtures/channels/` exits 1

@@ -203,8 +203,16 @@ Granted scope: <scope>
 - The line is written when the item carries a grant whose `scope` is not `null`.
 - The line is absent when `grants` is `null` or its `scope` is `null`, so an item written before this phase produces today's prompt unchanged.
 - `<scope>` is the stored value, `once` or `deny`, and never a word derived from it.
+- When `<scope>` is `deny`, the closing line `Continue the work from where that run stopped, following the answer.` is not written. Two lines take its place, `<action>` and `<kind>` being the grant's own fields:
 
-Sample: `fixtures/resumed-prompt.txt`.
+```text
+Declined action: <action> (kind <kind>)
+The operator declined this action. Do not do it and do not reach the same result another way. Say in your output that it was not done, and carry on only with work that does not need it.
+```
+
+- When `<scope>` is `once`, or no line is added, the closing line stays as it is today.
+
+Sample: `fixtures/resumed-prompt.txt`, the `deny` case.
 
 ---
 

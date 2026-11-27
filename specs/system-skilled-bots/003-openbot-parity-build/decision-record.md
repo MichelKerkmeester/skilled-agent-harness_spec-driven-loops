@@ -43,6 +43,12 @@ _memory:
 | Q007 | Keep the members half of the channel roster, so anyone listed in members can answer from a channel. | Not stated. | None | 011-messaging-channels |
 | Q008 | Cut none of scope item 4: the Linux secret-tool store, BOTS_UI_BIN and the next-open restore all stay. | Not stated. | None | 008-vault, 003-terminal-screen, 007-per-bot-apps |
 | Q009 | D5 tightens by opt-in: a shared bot with no worktree must declare apps: repository, and its record says repository rather than []. | Not stated. | None | spec.md D5, 007-per-bot-apps |
+| Q010 | The fatigue streak skips a refusal with no failure class and keeps counting, so a bot with a precheck still switches off after ten failed runs. | Under the old rule a precheck skip ended the streak, so such a bot rarely reached ten. | REQ-006 as first written | 002-routine-layer REQ-006, AC-006 |
+| Q011 | Remove the lifted rakazo placeholder guard, its `secret-placeholder` refusal, the placeholder half of AC-010 and its notice. Keep `secret-empty`. | Its strings are rakazo's own development defaults that nobody here will type, and Node's `crypto.timingSafeEqual` covers the compare. | 008 REQ-010 as first written | 008-vault REQ-010, AC-010, T013, contracts/refusals.md |
+| Q012 | Accept that the skills budget fits about one skill per bot, and record the name-and-description tier as the later way out. | A new phase for a name list costs more than the limit hurts a small team today. | None | 009-skills spec.md |
+| Q013 | Apply the 307 literal amendment-map edits with a script instead of Vibe runs. | | Every edit was already exact old and new text, so a model would only copy it and could drift. | None | scratch/amendment-map.json |
+| Q014 | Update the shipped manual testing playbook in the same pass, so its memory, vault and skills scenarios match the amended plan. | | The scenarios describe unbuilt features, and left alone they would test the old plan. | None | .skilled/skills/system-skilled-bots/manual-testing-playbook |
+| Q015 | A Slack approval with an option label over 75 characters goes out in numbered text form, and a typed number answers it. | | Otherwise that prompt could not be answered from Slack at all. | The rule that a typed Slack line is always chat | 011-messaging-channels |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -230,6 +236,120 @@ Explain more first
 Answer:
 ```text
 Yes, opt in (Recommended)
+```
+
+### Q010
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S9fFsfTVVtSrHJpnXKg2Db:1 -->
+
+Question:
+```text
+002 fatigue rule: should the failure streak skip "nothing to do" refusals and keep counting, so a bot with a precheck still switches off after ten failures? This overrides a choice REQ-006 made on purpose.
+```
+
+Options:
+```text
+Yes, change the rule (Recommended)
+No, keep REQ-006
+```
+
+Answer:
+```text
+Yes, change the rule (Recommended)
+```
+
+### Q011
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S9fFsfTVVtSrHJpnXKg2Db:2 -->
+
+Question:
+```text
+008: should the lifted rakazo placeholder guard be removed? Its strings are rakazo's own development defaults that nobody here will type.
+```
+
+Options:
+```text
+Remove it (Recommended)
+Keep one literal
+```
+
+Answer:
+```text
+Remove it (Recommended)
+```
+
+### Q012
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S9fFsfTVVtSrHJpnXKg2Db:3 -->
+
+Question:
+```text
+009 skills budget: the 20,480-byte total fits about one skill per bot in practice. What should the plan do?
+```
+
+Options:
+```text
+Accept one skill per bot (Recommended)
+Plan a name-list phase
+```
+
+Answer:
+```text
+Accept one skill per bot (Recommended)
+```
+
+### Q013
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S4J1FvB2n5XLqXVsXsqnCN:0 -->
+
+Question:
+```text
+The Opus edit map came back with 307 edits in 110 files, and every one is literal: exact old text, exact new text, each checked unique. So there's no writing left for Vibe to do, only copying. You asked for Vibe for the writing. How should the edits be applied?
+```
+
+Options:
+```text
+Script applies them (Recommended)
+Vibe applies them
+```
+
+Answer:
+```text
+Script applies them (Recommended)
+```
+
+### Q014
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S4J1FvB2n5XLqXVsXsqnCN:1 -->
+
+Question:
+```text
+Outside the build plan, the skill's manual testing playbook (.skilled/skills/system-skilled-bots/manual-testing-playbook/) already holds scenarios for the unbuilt memory and vault features: BOT-048 forgets by index, BOT-050 expects the old memory-full line and BOT-053 tests secret-placeholder, plus the root playbook file. They'd contradict the amended plan. Update them in this pass?
+```
+
+Options:
+```text
+Yes, update them too (Recommended)
+No, leave them for 012
+```
+
+Answer:
+```text
+Yes, update them too (Recommended)
+```
+
+### Q015
+<!-- source: claude:288e5251-49b6-487c-934d-a3aa36385901:toolu_01S4J1FvB2n5XLqXVsXsqnCN:2 -->
+
+Question:
+```text
+One fix has a knock-on the map made explicit: a Slack approval with an option label over 75 characters goes out in numbered text form, so a typed number in Slack would answer it. The plan said a typed Slack line is always chat. Accept that?
+```
+
+Options:
+```text
+Accept it (Recommended)
+Refuse long labels
+```
+
+Answer:
+```text
+Accept it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

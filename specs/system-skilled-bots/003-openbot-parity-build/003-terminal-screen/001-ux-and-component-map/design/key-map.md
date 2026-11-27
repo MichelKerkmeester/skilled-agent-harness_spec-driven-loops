@@ -33,6 +33,8 @@ A context is exclusive. While an overlay is open, no `main` key is bound, so `Al
 
 The `overlay` context has two modes inside it. Before text mode, `t`, `y`, `n`, the digits and `Esc` are shortcuts. In text mode, every printable character is text and only `Enter`, `Backspace`, `Esc`, `Ctrl+C` and `Ctrl+D` are bound. Section 3.4 says why.
 
+A bracketed paste is not a key and has no row in the key table. It is never split into keys and it never sends. In the overlay's text mode it is appended to the typed line, each carriage return or line feed written as one space. In every other phase, on every tab and in the palette it does nothing, so a pasted `y` cannot approve and a pasted line feed cannot open the selected row. The terminal guard turns bracketed paste on, so a paste never arrives as keys. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/architecture.md, section "1.7 Msg (`state.rs`)"]
+
 ---
 
 ## 2. THE KEY TABLE

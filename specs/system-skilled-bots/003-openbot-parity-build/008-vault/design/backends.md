@@ -133,10 +133,25 @@ What each backend result becomes. Every reason is a row of `contracts/refusals.m
 
 | Operation | Absent | Error or timeout | Read-back differs |
 |-----------|--------|------------------|-------------------|
-| `set` write | not applicable | `secret-write-dropped`, exit 4 | `secret-write-dropped`, exit 4, compared with `timingSafeStringEqual` from `secrets-guard.ts` |
-| `resolve` at run time | `secret-unknown`, exit 4, class `operator` | `secret-store-unreadable`, exit 4, class `environment` | not applicable |
+| `set` write | not applicable | `secret-write-dropped`, exit 4 | `secret-write-dropped`, exit 4, compared with Node's `crypto.timingSafeEqual` over the two values' UTF-8 buffers, after a byte-length check that treats a different length as a mismatch |
+| `resolve` at run time | `secret-unknown`, exit 4, class `operator`, detail `<name> is not stored, run bots secret set <name>` | `secret-store-unreadable`, exit 4, class `environment` | not applicable |
 | `knownSecretValues` | the entry adds no value | `secret-store-unreadable` for a run, and for the answer and delivery checks the error detail named in `leak-checks.md` section 3 | not applicable |
 | `forget` delete | not held, exit 0 | the index entry is already gone, so the CLI prints `bots: secret forget: <name> left the index, its <backend> value was not removed (<reason>), run forget again` and exits 1 | not applicable |
+
+**The detail phrases.** Each cause prints one fixed phrase. A phrase may carry a name, a path, an exit code or an errno code such as `EACCES`, and nothing else. It never carries captured stdout or stderr, because the keychain program can echo pieces of a value (section 2.3).
+
+| Cause | Detail |
+|-------|--------|
+| A keychain read or write that did not answer within 10 s | `keychain did not answer within 10 s, unlock it and try again` |
+| A keychain read that exited with a code other than 0 and the absent code | `keychain read for <name> exited <code>` |
+| A keychain item not in the vault's hex form | `keychain item for <name> is not in the vault's form` |
+| A keychain entry on a host with no keychain program | `<name> is in the keychain and this host has no keychain program` |
+| A keychain write that exited non-zero | `keychain write for <name> exited <code>` |
+| A read-back that differs from the value written | `read-back of <name> did not match` |
+| A value file read error other than `ENOENT` | `secret file for <name> unreadable: <code>` |
+| A value file write that threw | `secret file for <name> not written: <code>` |
+| An index the reader refuses | the `index-invalid` and `index unreadable` phrases of `index-and-writes.md` section 1 |
+| A `forget` delete that failed, the `<reason>` in its line | `<backend> delete exited <code>`, or the errno code for the file backend |
 
 **One timeout per read of the map.** `knownSecretValues` reads the entries in name order and stops at the first keychain entry that fails or times out, returning `secret-store-unreadable` for the whole map. A locked keychain therefore costs one 10 s timeout per run, not one per entry. The map is read for every bot, a bot whose `BOT.md` names no secret included, so a vault that cannot be read refuses every run of every bot in that identity. That is the fail-closed rule of `leak-checks.md` section 2, stated here so its cost is plain.
 

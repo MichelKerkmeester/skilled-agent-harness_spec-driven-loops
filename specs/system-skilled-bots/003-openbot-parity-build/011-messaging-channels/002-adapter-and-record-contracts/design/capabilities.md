@@ -69,7 +69,7 @@ Where each value comes from:
 | Value | Source |
 |-------|--------|
 | Telegram 4096, counted with the string's byte length | `TELEGRAM_MAX_MESSAGE_LENGTH` and its byte-length truncation [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/text.rs:7] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/telegram/channel_ops.rs:1665-1672] |
-| Slack 3900, counted in characters | `SLACK_TEXT_CHUNK_CHARS` and its `chars().count()` check [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/types.rs:19] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/interact.rs:37] |
+| Slack 3900, counted in characters | `SLACK_TEXT_CHUNK_CHARS` and its `chars().count()` check [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/types.rs:19] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/slack/interact.rs:37]. The chunk that carries the buttons is cut at 3,000, because its text sits in a Block Kit section and Slack caps a section at 3,000 characters |
 | Signal 2000, counted in characters | `SIGNAL_TEXT_CHUNK_CHARS`, below the length Signal turns into an attachment [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/signal/outbound.rs:32-33] |
 | WhatsApp 4096, counted in characters | `TEXT_LIMIT` and `split_text`, which counts `chars()` [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/outbound.rs:18] [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp_shared/text.rs:8-16] |
 | Terminal 4096 | No provider limit exists. The value is this phase's choice, so one long reply is split the way WhatsApp's is and a test of the split needs no special case |
@@ -78,7 +78,11 @@ Where each value comes from:
 | WhatsApp `groupKnown` no | The Cloud API ingress binds a delivery to one configured number and routes direct messages [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/whatsapp/ingress.rs:1-11]. This phase reads no group field, so it declares none |
 | `ackPolicy` per transport | `inbound-sequence.md` sections 2 to 6 |
 
-**The unit, decided.** JavaScript's `length` counts UTF-16 code units, which is neither unit above. `channel.ts` measures `code-points` as `[...text].length` and `utf8-bytes` as `Buffer.byteLength(text, 'utf8')`, and splits on a code point boundary in both cases, so no chunk ends inside a character. Telegram keeps the byte unit because the reference counts bytes there and a byte count can never exceed the provider's character limit.
+**The unit, decided.** JavaScript's `length` counts UTF-16 code units, which is neither unit above. `channel.ts` measures `code-points` as `[...text].length` and `utf8-bytes` as `Buffer.byteLength(text, 'utf8')`, and splits on a code point boundary in both cases, so no chunk ends inside a character.
+
+**The Slack button chunk.** Slack text is cut at 3,900 characters as the table says. When the last chunk, the one that carries the buttons, is longer than 3,000 characters, it is cut again at 3,000, so the buttons ride a last chunk of at most 3,000 and a long approval prompt still posts. A 3,500-character button prompt is sent as 3,000 characters and then 500 with the buttons.
+
+**The Slack button label.** A Slack button label holds at most 75 characters. A prompt with any option longer than that is queued in the numbered text form, the M01 golden, and no refusal is raised, because a refusal would leave the question unsent (`../../004-approval-index-and-send-queue/spec.md` REQ-028). The reply grammar then applies to that one prompt on Slack (`../../001-channel-ux-and-message-map/design/reply-grammar.md`). The design mirrors a GPL reference, so no code is copied. Telegram keeps the byte unit because the reference counts bytes there and a byte count can never exceed the provider's character limit.
 
 ---
 

@@ -173,6 +173,7 @@ Four derived helpers sit beside the struct, owned by 002, so the reducer and the
 ```rust
 pub enum Msg {
     Key(Key),                                   // one key press, mapped from crossterm by event.rs
+    Paste(String),                              // one bracketed paste, the whole pasted text, never split into keys
     Resize { cols: u16, rows: u16 },            // the terminal's size. Sent once at start and on every change
     Tick { now: EpochMs },                      // the time. Sent once at start and then once a second by the event source
     InputClosed,                                // stdin closed or the terminal went away. Quits with 0
@@ -191,6 +192,8 @@ pub enum FailKind { Exit(i32), Spawn, Timeout, Parse }                  // why a
 ```
 
 `Msg` carries no `Action`. A key reaches the reducer as `Msg::Key`, and the reducer turns it into an action itself (section 1.10), so no second message type exists for one key press.
+
+A bracketed paste reaches the reducer as one `Msg::Paste`. It is never split into keys and it never sends. In the overlay's text mode it is appended to the typed line, each carriage return or line feed written as one space. In every other phase, on every tab and in the palette it does nothing, so a pasted `y` cannot approve and a pasted line feed cannot open the selected row. This child's reducer arm for `Msg::Paste` does nothing, and 005 adds the one arm that appends in text mode. The design mirrors a GPL reference, so no code is copied.
 
 `ReadError.line` and `Remote.error` hold the same composed line, and `cli.rs` builds it once so the status row and the pane title draw one wording. The shape is `bots: <verb> --json exited <code>: <first stderr line with a leading "bots: " removed>`, and `contracts.md` section 9 owns it. A read that timed out or failed to spawn composes its line the same way with the reason in place of the exit code. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/contracts.md, section "9. THE STATUS ROW"]
 
@@ -474,7 +477,7 @@ The `ui` verb passes the code through unchanged. [SOURCE: specs/system-skilled-b
 | `src/lib.rs` | 002, with every `pub mod` line including `keys`, `theme` and `view`, and the whole argument parser including `--mono` and `--ascii` | none |
 | `src/main.rs` | 002 | none |
 | `src/terminal.rs` | 002: the guard, the panic hook, the signal handler and flag | none |
-| `src/event.rs` | 002: `EventSource`, `Clock`, `TerminalEvents`, `ScriptedEvents`, the crossterm to `Key` mapping, the tick, the signal read | none |
+| `src/event.rs` | 002: `EventSource`, `Clock`, `TerminalEvents`, `ScriptedEvents`, the crossterm to `Key` mapping, the paste as one `Msg::Paste`, the tick, the signal read | none |
 | `src/data.rs` | 002: the worker, the job queue, the answer-first order, the shutdown rule | none |
 | `src/cli.rs` | 002: every read, the answer call in the argv `contracts.md` fixes, the timeout, the pipe readers, the stderr first line and the refusal name | none |
 | `src/model.rs` | 002: every payload type complete, `options` and `grants` included, `parse_utc` | none |

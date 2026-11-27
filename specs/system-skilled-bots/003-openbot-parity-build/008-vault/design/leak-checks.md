@@ -27,7 +27,6 @@ The value is read once, in `bots.cjs`, then handed to `setSecret` as a string. I
 | Read, stdin not a terminal | Read until the first `\n` or end of input, at most 65,536 bytes | `secret-no-input`, exit 2, when end of input comes before any byte. `secret-too-long`, exit 2, when 65,536 bytes hold no newline |
 | Normalize | Drop one trailing `\r`, then trim surrounding whitespace, the same trim `collectKnownSecrets` applies to an environment value [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts:254] | none |
 | Empty | Nothing left after the trim | `secret-empty`, exit 2 |
-| Placeholder | The value equals one of the lifted guard's dev and example placeholders, such as `dev-secret-change-me-please-32chars` [SOURCE: specs/system-skilled-bots/context/rakazo-main/packages/core/src/node/secrets-guard.ts:1] | `secret-placeholder`, exit 2 |
 | Length | More than 16,384 code points (`[...value].length`), the vault bound [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:35], or for the macOS keychain a write line over 4,095 bytes (`backends.md` section 2.3) | `secret-too-long`, exit 2, with the bound in the detail |
 | Store | `backends.md` and `index-and-writes.md` | `secret-write-dropped`, exit 4 |
 
@@ -70,7 +69,7 @@ It guards eight surfaces. Four exist today, two are new here, and two land in 00
 
 The scan runs in `runBot` after the child exits and before anything reads its output: before `finalAnswerText`, before `parseDecisionMarker` and before the record is written. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:1092-1093] It runs on every dispatched run, completed, failed, killed or timed out, and on a partial log.
 
-**Values.** Every row of `knownSecretValues` plus every row of `collectKnownSecrets`, at least 8 characters each, and for each vault value two encoded forms beside the plain one: standard base64 of its UTF-8 bytes, and `encodeURIComponent` of it. An encoded form equal to the plain value, or shorter than 8 characters, is dropped. The forms follow the reference, which redacts a command variable "in its plain, base64 and URL-encoded forms". [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:62]
+**Values.** Every row of `knownSecretValues` plus every row of `collectKnownSecrets`, at least 8 characters each, and for each vault value three encoded forms beside the plain one: the lowercase hex of its UTF-8 bytes, standard base64 of its UTF-8 bytes with the trailing `=` padding removed, and `encodeURIComponent` of it. The hex form is the one the keychain stores (`backends.md` section 2.1), so a bot that reads its own keychain item back prints it. The unpadded base64 text is the start of the padded text, so one entry matches both. An encoded form equal to the plain value, or shorter than 8 characters, is dropped. The base64 and URL-encoded forms follow the reference, which redacts a command variable "in its plain, base64 and URL-encoded forms", and the hex form is this plan's own. Copy no code from the reference, which is GPL. [SOURCE: specs/system-skilled-bots/context/rakazo-main/docs/bot-secrets.md:62]
 
 **Text.** Four places, in this order:
 
@@ -105,7 +104,7 @@ One scan records one row. 010's reply scan uses the same cause name and the same
 | A file the child writes in the checkout or the worktree | the runtime reads only its own folders | `threat-model.md` T6 |
 | A commit or a push the child makes | the same | T6 |
 | A network request the child makes | the runtime sees no traffic | T6 |
-| A transformed value, such as reversed, split across lines or hex | only plain, base64 and URL-encoded forms are matched | T7 |
+| A transformed value, such as reversed or split across lines | only the plain, lowercase hex, unpadded base64 and URL-encoded forms are matched | T7 |
 | An orphan value | it is not on the map (`index-and-writes.md` section 3) | T8 |
 | A value shorter than 8 characters | the detector skips it | T9 |
 

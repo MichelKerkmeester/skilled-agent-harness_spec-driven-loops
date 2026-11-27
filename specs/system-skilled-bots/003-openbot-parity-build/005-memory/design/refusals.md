@@ -25,7 +25,7 @@ The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 
 
 | Name | Trigger | Exact stderr | Test |
 |------|---------|--------------|------|
-| `memory-full` | An append would take the file past 60 entries or 3,600 bytes | `bots: memory-full: <path> (<n> entries, <b> bytes)` | `memory.vitest.ts`, `bound` |
+| `memory-full` | An append would take the file past 60 entries or 3,600 bytes | `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>`, with ` --bot <botId>` at the end for a bot's own file | `memory.vitest.ts`, `bound` |
 | `memory-secret` | A fact `bots remember` or `bots answer confirm` would append holds a known secret literal | `bots: memory-secret: <key>` | `memory.vitest.ts` `secret` and `answer.vitest.ts` `proposal secret` |
 | `review-answer-invalid` | `bots answer` on a `memory-proposal` item with a text other than `confirm` or `reject` | `bots: review-answer-invalid: <text>` | `answer.vitest.ts`, `proposal answer invalid` |
 
@@ -38,10 +38,10 @@ The exit rule is the CLI's own. A check `bots.cjs` makes on its own input exits 
 | Name | Trigger | Exact stderr | Test |
 |------|---------|--------------|------|
 | `memory-entry-too-long` | The fact argument is over 400 characters, checked before any file is read | `bots: memory-entry-too-long: <n>` | `cli-run.vitest.ts`, `remember too long` |
-| `memory-entry-unknown` | `--forget <n>` names an index below 1 or above the entry count | `bots: memory-entry-unknown: <n>` | `memory.vitest.ts`, `forget` |
+| `memory-entry-unknown` | `--forget <entry-id>` names an id no entry in the file has | `bots: memory-entry-unknown: <entry-id>` | `memory.vitest.ts`, `forget` |
 | `bot-id-invalid` | `--bot <id>` is not a safe segment | `bots: bot-id-invalid: <id>` | `cli-run.vitest.ts`, `remember bot id` |
 
-`memory-entry-too-long` exits 2 because the length is checked on the argument before any file is read, which is the usage layer. `memory-entry-unknown` keeps exit 2 because a new verb may treat an index that names nothing as a bad argument. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
+`memory-entry-too-long` exits 2 because the length is checked on the argument before any file is read, which is the usage layer. `memory-entry-unknown` keeps exit 2 because a new verb may treat an id that names nothing as a bad argument. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md, section "5. DECISIONS TAKEN"]
 
 ### 1.3 The definition parse
 
@@ -85,7 +85,7 @@ These are the parser's own refusals. They carry no name because they never reach
 | `--json` without `--list` | `bots: --json needs --list` |
 | `--type` outside the four | `bots: --type takes user, general, feedback or reference` |
 | `--as` empty | `bots: --as takes a name` |
-| `--forget` not a whole number of 1 or more | `bots: --forget takes a whole number` |
+| `--forget` not eight lowercase hex characters | `bots: --forget takes an entry id` |
 | Two positionals | `bots: unexpected argument: <second>` |
 | An option the verb does not take | `bots: remember takes no --<option>` |
 
@@ -121,8 +121,8 @@ A builder must not invent a new name where one of these already fits.
 | An append landed | 0 | `bots: entry <n> in <path> (<n> of 60 entries, <b> of 3600 bytes)` | nothing |
 | A list printed | 0 | `bots: <path> (<n> of 60 entries, <b> of 3600 bytes)` as the header, then one line per entry, and `, <k> line skipped` inside the header's bracket when the parser skipped any | nothing |
 | A list found no file | 0 | `bots: no memory in <path>` | nothing |
-| A forget landed | 0 | `bots: entry <n> forgotten from <path> (<n> of 60 entries, <b> of 3600 bytes)` | nothing |
-| A bound was reached | 4 | nothing | `bots: memory-full: <path> (<n> entries, <b> bytes)` |
+| A forget landed | 0 | `bots: entry <entry-id> forgotten from <path> (<n> of 60 entries, <b> of 3600 bytes)` | nothing |
+| A bound was reached | 4 | nothing | `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>` |
 | A secret literal was found | 4 | nothing | `bots: memory-secret: <key>` |
 | The argument was wrong | 2 | nothing | `bots: <message>` then the usage text |
 | The file could not be written | 1 | nothing | `bots: <the throw's message>` |
@@ -135,7 +135,7 @@ A builder must not invent a new name where one of these already fits.
 | `reject` settled the item | 0 | `bots: item <id> answered; memory-proposal review recorded` | nothing |
 | The same answer again | 0 | `bots: item <id> answered; memory-proposal review recorded` | nothing |
 | Any other text | 4 | nothing | `bots: review-answer-invalid: <text>` |
-| The file is full | 4 | nothing | `bots: memory-full: <path> (<n> entries, <b> bytes)` |
+| The file is full | 4 | nothing | `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>` |
 | The fact holds a secret literal | 4 | nothing | `bots: memory-secret: <key>` |
 | The item is expired | 4 | nothing | `bots: item-expired: expired at <instant>` |
 | The item was answered differently | 4 | nothing | `bots: item-answered-differently: answered at <instant>` |

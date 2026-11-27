@@ -293,7 +293,7 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 - Phase 001 fixes the `bots activity --json` shape before this phase starts. Decision: the client is written against the shape phase 001 documents and the fixture carries it. The runtime is not changed to suit the screen.
 - Should the fourth tab be Chat or absent? Decision: present as a placeholder, so Alt+1..4 does not renumber when phase 010 lands.
 - Does `bots answer` need a `--json` mode for the screen to report the outcome? Decision: no. The screen reads the exit code and stderr, which the verb already writes.
-- Should the overlay offer `always`? Decision: no. A standing grant needs a rule store that no phase lands, so the overlay offers `once` and `deny`. It returns when a later packet lands a rule store with `bots grants list|revoke`, a 30-day default expiry, a scope bound to bot plus kind and an audit row on every grant and revoke.
+- Should the overlay offer `always`? Decision: no. A standing grant needs a rule store that no phase lands, so the overlay offers `once` and `deny`. It returns when a later packet lands a rule store with `bots grants list|revoke`, a 30-day default expiry, a scope the next packet defines and an audit row on every grant and revoke. Bot plus kind is too wide, because one allow on one delete would open every delete that bot makes.
 - Where does the design folder live? Decision: `crates/bots-tui/design/`, so the mockups sit beside the code they describe and a reader of the crate finds them without leaving it.
 <!-- /ANCHOR:questions -->
 

@@ -64,7 +64,7 @@ One file, the shared file without `--bot` and the bot's file with it. [SOURCE: s
 | `version` | integer | no | `1` |
 | `botId` | string | yes, the shared file | the `--bot` value |
 | `path` | string | no | absolute path of the file read, printed even when the file is absent |
-| `entries` | array | no | file order. Each entry is `{index, type, date, actor, source, text}`, `index` a 1-based integer and the rest strings in the `records.md` section 7 formats |
+| `entries` | array | no | file order. Each entry is `{index, id, type, date, actor, source, text}`, `index` a 1-based integer, `id` the 8-hex entry id `records.md` section 7 defines and the rest strings in the `records.md` section 7 formats |
 | `entryCount` | integer | no | `entries.length`, against the 60-entry bound |
 | `byteCount` | integer | no | the file's size in bytes, against the 3,600-byte bound |
 | `skippedLines` | integer | no | lines that did not parse, counted and not printed [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, section "Reliability"] |

@@ -4,4 +4,5 @@ An earlier run of this bot stopped to ask the operator a question. The operator 
 Question: Ship the release?
 Answer: no
 Granted scope: deny
-Continue the work from where that run stopped, following the answer.
+Declined action: Ship the release? (kind post)
+The operator declined this action. Do not do it and do not reach the same result another way. Say in your output that it was not done, and carry on only with work that does not need it.

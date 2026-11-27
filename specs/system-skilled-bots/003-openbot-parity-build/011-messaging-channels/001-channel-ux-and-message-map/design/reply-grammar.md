@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Channel reply grammar
 
-A press carries its action id and needs no grammar. A typed reply does. This file is the grammar `channel-approval.ts` applies on every transport whose `numberedReply` is `yes` in `../../002-adapter-and-record-contracts/design/capabilities.md` section 2: `signal`, `whatsapp` and `terminal`. On `telegram` and `slack` a typed line is always a chat message, and the buttons are the one answer surface.
+A press carries its action id and needs no grammar. A typed reply does. This file is the grammar `channel-approval.ts` applies on every transport whose `numberedReply` is `yes` in `../../002-adapter-and-record-contracts/design/capabilities.md` section 2: `signal`, `whatsapp` and `terminal`. On `telegram` a typed line is always a chat message, and the buttons are the one answer surface. On `slack` the same holds, except for an open prompt whose `choices` hold a label over 75 characters. Slack caps a button label at 75 characters, so that prompt was sent in the text form, and this grammar applies to it. The rule reads `choices` from the index entry, so the entry gains no key.
 
 ---
 

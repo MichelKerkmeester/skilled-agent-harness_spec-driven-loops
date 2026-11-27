@@ -52,7 +52,7 @@ Two shell variables, used by every verify clause below:
 
 - [ ] T005 Create the skills module with the name grammar and `parseSkillList` (`$R/lib/skills.ts`). Verify: `rg -n 'SKILL_NAME_PATTERN|parseSkillList' $R/lib/skills.ts` prints the pattern and the export, and `(cd $R && npm run typecheck)` exits 0.
 - [ ] T006 Add `loadSkills` with the per-skill and total caps (`$R/lib/skills.ts`). Verify: `rg -n 'SKILL_MAX_BYTES|SKILLS_TOTAL_MAX_BYTES' $R/lib/skills.ts` prints `16_384` and `20_480`.
-- [ ] T007 Add `renderSkillsPrompt` with one block per skill (`$R/lib/skills.ts`). Verify: `rg -n '<skill_content' $R/lib/skills.ts` prints the labelled block.
+- [ ] T007 Add `renderSkillsPrompt` with one block per skill, each carrying the procedure label and the folder line `contracts/prompt-sections.md` section 1.6 writes (`$R/lib/skills.ts`). Verify: `rg -n '<skill_content' $R/lib/skills.ts` prints the labelled block, and `rg -n 'resolves against that folder' $R/lib/skills.ts` prints one line.
 
 ### The definition and the prompt
 
@@ -68,6 +68,7 @@ Two shell variables, used by every verify clause below:
 - [ ] T014 Name and create the identity's `proposals` folder (`$R/lib/state-root.ts`). Verify: `rg -c 'proposals' .skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` prints 2.
 - [ ] T015 Add `skill-proposals` to the reserved bot ids (`$R/lib/label.ts`). Verify: `rg -n 'RESERVED_BOT_IDS' .skilled/skills/system-skilled-bots/runtime/lib/label.ts` prints a line holding `skill-proposals`.
 - [ ] T016 Create the proposal module with the folder paths and `writeProposal` (`$R/lib/skill-proposal.ts`). Verify: `rg -n 'proposalFolder|proposalFile|writeProposal' $R/lib/skill-proposal.ts` prints three lines.
+- [ ] T043 Refuse a draft that holds a character from U+202A to U+202E, U+2066 to U+2069, U+200B to U+200D, U+2060 or U+FEFF as `proposal-hidden-character`, naming the first such code point and its 1-based line as `bots: proposal-hidden-character: U+<hex> at line <n>`, after the secret check and before the first write. Variation selectors U+FE00 to U+FE0F stay allowed (`$R/lib/skill-proposal.ts`). Verify: `rg -n 'proposal-hidden-character' $R/lib/skill-proposal.ts` prints at least one line.
 - [ ] T035 Default `--name` to the proposing bot's id when the option is absent, so a proposal needs no name to be raised (`$R/lib/skill-proposal.ts`). Verify: `rg -n 'name \?\?' $R/lib/skill-proposal.ts` prints the default.
 - [ ] T017 Add `proposalReviewItem` with the reserved bot id, `kind` `skill-proposal` and `grants` filled through 006's `classifyAction` and `decideApproval`, and read any item already holding the run id for its `kind` before the write (`$R/lib/skill-proposal.ts`). Verify: `rg -n 'skill-proposals|skill-proposal' $R/lib/skill-proposal.ts` prints the reserved id and the kind, and `rg -n 'review-already-exists' $R/lib/skill-proposal.ts` prints the refusal.
 - [ ] T018 Add `claimProposalAnswer` and `settleProposalAnswer` with the staged-write pin, the claim checking the pin before the write against the skilled tree root the loader reads and the settle writing `answer.json` beside `proposal.json` (`$R/lib/skill-proposal.ts`). Verify: `rg -n 'claimProposalAnswer|settleProposalAnswer' $R/lib/skill-proposal.ts` prints both exports, and `rg -n 'skilledTree' $R/lib/skill-proposal.ts` prints the root the pin reads.
@@ -104,7 +105,7 @@ Two shell variables, used by every verify clause below:
 - [ ] T039 Extend the definition tests with the `skills` key, in a block named `parseDefinition` with tests named `carries the skills list`, `defaults skills to an empty list` and `refuses a skills value that is not a list` (`$R/tests/definition.vitest.ts`). Verify: `(cd $R && npx vitest run tests/definition.vitest.ts -t "^parseDefinition carries the skills list$")` prints `Tests  1 passed` and `(cd $R && npx vitest run tests/definition.vitest.ts -t "^parseDefinition refuses a skills value that is not a list$")` prints `Tests  1 passed`.
 - [ ] T040 Extend the runner tests with the loader call, in a block named `the skills load` with tests named `loads the named bodies before dispatch`, `refuses an unknown skill before dispatch` and `records each loaded body on the run record` (`$R/tests/runner.vitest.ts`). Verify: `(cd $R && npx vitest run tests/runner.vitest.ts -t "^the skills load ")` prints `Tests  3 passed`.
 - [ ] T041 Extend the answer tests with the review seam, in a block named `bots answer` with tests named `records a proposal review and queues no resume` and `refuses a stale proposal and leaves the item open` (`$R/tests/answer.vitest.ts`). Verify: `(cd $R && npx vitest run tests/answer.vitest.ts -t "^bots answer records a proposal review and queues no resume$")` prints `Tests  1 passed` and `(cd $R && npx vitest run tests/answer.vitest.ts -t "^bots answer refuses a stale proposal and leaves the item open$")` prints `Tests  1 passed`.
-- [ ] T042 Create the proposal tests in a block named `writeProposal` with tests named `writes the draft then the proposal then the item`, `defaults the name to the bot id`, `refuses a secret in the exit reason`, `passes the validator`, `repairs an interrupted proposal` and `refuses an item of another kind` and a block named `the pin` with `refuses a stale target` and `accepts an unchanged target` (`$R/tests/skill-proposal.vitest.ts`). Verify: `(cd $R && npx vitest run tests/skill-proposal.vitest.ts -t "^writeProposal ")` prints `Tests  6 passed` and `(cd $R && npx vitest run tests/skill-proposal.vitest.ts -t "^the pin ")` prints `Tests  2 passed`.
+- [ ] T042 Create the proposal tests in a block named `writeProposal` with tests named `writes the draft then the proposal then the item`, `defaults the name to the bot id`, `refuses a secret in the exit reason`, `refuses a hidden direction character`, `passes the validator`, `repairs an interrupted proposal` and `refuses an item of another kind` and a block named `the pin` with `refuses a stale target` and `accepts an unchanged target` (`$R/tests/skill-proposal.vitest.ts`). Verify: `(cd $R && npx vitest run tests/skill-proposal.vitest.ts -t "^writeProposal ")` prints `Tests  7 passed` and `(cd $R && npx vitest run tests/skill-proposal.vitest.ts -t "^the pin ")` prints `Tests  2 passed`.
 
 ### The whole gate
 
@@ -162,7 +163,7 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Every requirement in `spec.md` has a row in `acceptance-criteria.md`. Verify: `rg -c 'REQ-0' specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md` prints at least 12.
+- [ ] CHK-001 [P0] Every requirement in `spec.md` has a row in `acceptance-criteria.md`. Verify: `rg -c 'REQ-0' specs/system-skilled-bots/003-openbot-parity-build/009-skills/acceptance-criteria.md` prints at least 13.
 - [ ] CHK-002 [P0] The plan names every file the change touches. Verify: `rg -c '^\| .*\.skilled.*\| (Create|Modify) \|' specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md` prints 26.
 - [ ] CHK-003 [P1] The secret detector and the run-record reader are unchanged and importable. Verify: `rg -n 'export function findSecretLiteral' .skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts` prints one line.
 <!-- /ANCHOR:pre-impl -->
@@ -174,7 +175,7 @@ A `[B]` task blocks close at any priority. A P1 item deferred needs the reason w
 
 - [ ] CHK-010 [P0] The runtime typechecks. Verify: `cd $R && npm run typecheck` exits 0.
 - [ ] CHK-011 [P0] Every new refusal is a named `Result` reason, never a throw. Verify: `rg -n 'throw new Error' .skilled/skills/system-skilled-bots/runtime/lib/skills.ts .skilled/skills/system-skilled-bots/runtime/lib/skill-proposal.ts` prints nothing.
-- [ ] CHK-012 [P1] Every new refusal name has a test that asserts it. Verify: `rg -c 'skill-unknown|skill-unreadable|skill-too-large|skills-over-budget|skill-changed|skills-duplicate|skills-name-invalid|proposal-stale|proposal-secret|review-already-exists' $R/tests/skills.vitest.ts $R/tests/skill-proposal.vitest.ts` prints one line per file.
+- [ ] CHK-012 [P1] Every new refusal name has a test that asserts it. Verify: `rg -c 'skill-unknown|skill-unreadable|skill-too-large|skills-over-budget|skill-changed|skills-duplicate|skills-name-invalid|proposal-stale|proposal-secret|proposal-hidden-character|review-already-exists' $R/tests/skills.vitest.ts $R/tests/skill-proposal.vitest.ts` prints one line per file.
 - [ ] CHK-013 [P1] The two new modules follow the group-import rule in `runtime/lib/README.md`. Verify: `rg -n "from './" .skilled/skills/system-skilled-bots/runtime/lib/skills.ts` prints only contracts-group imports.
 <!-- /ANCHOR:code-quality -->
 

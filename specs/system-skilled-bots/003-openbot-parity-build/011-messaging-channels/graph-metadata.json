@@ -51,8 +51,8 @@
       "spec.md",
       "goal.md",
       "decision-record.md",
-      "001-channel-ux-and-message-map/design/message-catalog.md",
       "002-adapter-and-record-contracts/design/records.md",
+      "001-channel-ux-and-message-map/design/message-catalog.md",
       "001-channel-ux-and-message-map/design/mockups.md",
       "002-adapter-and-record-contracts/design/inbound-sequence.md",
       "001-channel-ux-and-message-map/design/golden/M02-prompt-options-buttons.txt",
@@ -85,15 +85,15 @@
         "source": "derived"
       },
       {
-        "name": "message-catalog.md",
-        "kind": "doc",
-        "path": "001-channel-ux-and-message-map/design/message-catalog.md",
-        "source": "derived"
-      },
-      {
         "name": "records.md",
         "kind": "doc",
         "path": "002-adapter-and-record-contracts/design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-catalog.md",
+        "kind": "doc",
+        "path": "001-channel-ux-and-message-map/design/message-catalog.md",
         "source": "derived"
       },
       {
@@ -213,7 +213,7 @@
     ],
     "causal_summary": "A bot reaches a person only through a macOS desktop notice and asks a question only through `bots inbox` on the host, so a team that works in a chat client walks to the machine to answer",
     "created_at": "2026-11-25T07:51:30Z",
-    "last_save_at": "2026-11-26T06:56:28.775Z",
+    "last_save_at": "2026-11-27T13:27:26.753Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +221,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:18c384da3f1a4b3e023a1b977314d448670d17b7be6431466bf53122f6b1d61e",
+    "source_fingerprint": "sha256:a4b29345f3139041837b59d62ef2b3263d66eaf530a56ea2f72aa4ba2ed99b82",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d66ca7aa3cf7c7f945489952f6d07fca3706bc99c06a33a18bc8c22ae497bd03",
+      "spec.md": "52dd9162be81b3909644b9625c42e0da136e2bee21950b7fae7ba98c44b8fc7f",
       "decision-record.md": "ad88fdd925ffe7c12522ebe95c3922c003c3a9d52b3952a2f599e6dfd653e88d"
     },
     "last_active_at": null

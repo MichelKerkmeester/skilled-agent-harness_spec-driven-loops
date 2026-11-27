@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Wire Table",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Block Kit",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The contract, the index and the queue exist after children 003 and 004 and nothing speaks to a real provider",
     "created_at": "2026-11-26T00:00:20Z",
-    "last_save_at": "2026-11-26T06:45:18.016Z",
+    "last_save_at": "2026-11-27T13:34:06.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff55bdaefb74f4ed62fd1bdbdfd72226041c6c43188f8e2ef5e761294aca258a",
+    "source_fingerprint": "sha256:01b501846863d20274672c72b29cf0f35c0b2ed3ee284dbb35d5219c35480f35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "065b1ba6d2a9bbb6e9d2092a826cf163dcb50c03914b09ed1cbd56ecb51ecbcc",
-      "plan.md": "1ce4aac68eabec2e1b059f650a7461b1971591ac85d2ceda93f46edb860893f6",
-      "tasks.md": "a489a36be5bafbe66ae1ce0e2bded834fb5c859c23cb4aab5ff82c06eadabf4f",
+      "spec.md": "e2e362dcdd333910785e037442bd0c10b411735ef8b9ac5a3ff181e2f7ec2c23",
+      "plan.md": "77ff7b4f5baafa5b0de87e6a4044b7f830b8962b16d0157b2594f5a4b6fb9377",
+      "tasks.md": "e577a42741afb90d77a5a8712f9cf34c6c8edeb42c29443547cc8cd81f5c32d2",
       "implementation-summary.md": "d9a02390124e43dee70ac18746f550bc94eba25aeb3c30e811fd65434ff27bd9"
     },
     "last_active_at": null

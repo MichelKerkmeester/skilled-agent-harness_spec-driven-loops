@@ -47,6 +47,8 @@ The answer verb's own returns, line by line, are drawn in the screen's answer co
 | Verb refusal | `bots.cjs` or the runtime call a verb makes | `bots: <reason>` or `bots: <reason>: <detail>` on stderr [SOURCE: .skilled/bin/bots.cjs:208-214] | 2 when `bots.cjs` refuses before any runtime call, 4 when a runtime `Result` refused | No |
 | Post-run cause | `runBot` after the child exited | A named cause on the run record. The run's own outcome and exit stand | The run's own exit | No |
 
+A refusal's detail is a fixed phrase that may carry a name, a path, a count, an exit code or an errno code. It is never captured program output, because another program's output can echo part of a secret. 008's phrases are `008-vault/design/backends.md` section 6. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md, section "2.3 The line bound"]
+
 The exit rule for a verb refusal is the one the CLI already follows: the parser and any check `bots.cjs` makes on its own input exit 2, and a refusal that comes back from a runtime call exits 4. A new verb follows the same rule unless its row below says otherwise and gives the reason.
 
 ---
@@ -152,7 +154,6 @@ The prompt budget and its overflow rule are in [prompt-sections.md](prompt-secti
 |------|-------|-------|------|------------------|--------|
 | `secret-no-input` | Verb refusal (`secret set`), in `bots.cjs` | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-001] |
 | `secret-empty` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-010] |
-| `secret-placeholder` | Verb refusal (`secret set`) | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-010] |
 | `secret-too-long` | Verb refusal (`secret set`), on the value read | - | 2 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, section "8. EDGE CASES"] |
 | `secret-write-dropped` | Verb refusal (`secret set`), the read-back found no value | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-011] |
 | `secret-name-invalid` | Definition parse, and a verb refusal on `secret set` | - | 4 run, 1 checker, 2 verb | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/spec.md, REQ-005] |
@@ -181,6 +182,7 @@ No refusal names a short value. A value under 8 characters is stored, but no lit
 | `run-record-missing` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md, section "Waves"] |
 | `review-already-exists` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "Reliability"] |
 | `proposal-secret` | Verb refusal (`skill propose`) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-009] |
+| `proposal-hidden-character` | Verb refusal (`skill propose`), the draft holds a hidden direction or zero-width character | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-013] |
 | `proposal-stale` | Verb refusal (`answer` on a `skill-proposal` item) | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, REQ-006] |
 
 The checker names are plural (`skills-unknown`) and the run names singular (`skill-unknown`), as the phase writes them. Both spellings are kept because the checker audits the list and the runner names the one skill. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md, section "L2: EDGE CASES"]
@@ -254,7 +256,7 @@ Every entry keeps the shape `{ reason, class }` the registry already types. [SOU
 | Definition parse names are details of `definition-malformed`, never registry entries | The runner already folds every parse refusal into that one cause [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:789] |
 | `memory-full` exits 4, not 1 | Exit 1 means a run failure or a caught throw [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/runner.ts:115] [SOURCE: .skilled/bin/bots.cjs:542-545], and the screen classes exit 1 as a throw. A full file is a runtime refusal |
 | `memory-entry-too-long` exits 2 | The length is checked on the argument before any file is read, which is the usage layer |
-| `memory-entry-unknown` keeps the phase's exit 2 | A new verb may treat an index that names nothing as a bad argument. It does not reach the answer verb |
+| `memory-entry-unknown` keeps the phase's exit 2 | A new verb may treat an entry id that names nothing as a bad argument. It does not reach the answer verb |
 | A non-`confirm` answer on a memory proposal is refused `review-answer-invalid` with exit 4 | Every `answerItem` refusal exits 4 and the screen depends on it [SOURCE: .skilled/bin/bots.cjs:292-297]. The phase names no reason and says exit 2 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-008] |
 | An unsafe `--bot` id on `remember` is `bot-id-invalid`, exit 2 | The phase says "refused by name" and names none [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-012] |
 | `memory-proposal-secret` and `remember-type-invalid` are post-run causes: the run stays `completed`, no item is written and the cause is recorded on the run record beside `secret-in-output` | The child already ran, and 005 ends a proposing run `completed` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md, REQ-007] |

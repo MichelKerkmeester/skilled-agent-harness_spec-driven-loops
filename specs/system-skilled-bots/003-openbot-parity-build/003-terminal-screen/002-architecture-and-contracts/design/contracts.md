@@ -636,7 +636,7 @@ Packet 002 names seven parts and gives three of them no key. [SOURCE: specs/syst
 | `does` | string | no | `act` or `tell` | packet 002 | row `does tell`, detail `does` |
 | `until` | string | yes, for a routine with no outcome | free text, never executed | packet 002 | row `until "…"` in quotes, detail `until` bare, `-` when null |
 | `untilMetAt` | string | yes, until `until_check` exits 0 | ISO 8601 UTC | packet 002 | detail `untilMetAt`, `-` when null |
-| `failureStreak` | integer | no | 0 or more, counted from the newest record back to the first that is not a failed run | packet 002 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006] | row `streak 0`, detail `streak` |
+| `failureStreak` | integer | no | 0 or more, counted from the newest record back, skipping a refusal whose `exit.class` is null and stopping at the first other record that is not a failed run | packet 002 [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006] | row `streak 0`, detail `streak` |
 | `switch` | string | no | `enabled`, `paused`, `completed`, `disabled` or `fatigued`, the first that applies in the order `fatigued`, `disabled`, `completed`, `paused`, else `enabled` | packet 002 | row `state enabled`, detail `switch` |
 
 `fatigued` is the `disabled` switch set by the ten-failure rule with `fatiguedAt` recorded, so the operator can tell a bot the runtime stopped from one they stopped. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-006]

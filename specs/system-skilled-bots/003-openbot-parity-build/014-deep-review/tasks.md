@@ -55,7 +55,7 @@ P=specs/system-skilled-bots/003-openbot-parity-build; R=$P/014-deep-review/revie
 - [ ] T006 Confirm the run recorded expansive depth and the four canonical dimension ids (`$R/deep-review-config.json`). Verify: `node -e "const c=require('./$R/deep-review-config.json'); console.log(c.antiConvergence.depthMode, c.reviewDimensions.join(','))"` prints `expansive correctness,security,traceability,maintainability`.
 - [ ] T007 Confirm the merge kept all five lineages and orphaned none (`$R/orchestration-summary.json`). Verify: `node -e "const s=require('./$R/orchestration-summary.json'); console.log(s.total_cli_lineages, s.orphaned_lineages.length)"` prints `5 0`.
 - [ ] T008 Confirm the synthesized report carries its nine core sections and exactly one verdict line (`$R/review-report.md`). Verify: `rg -c '^## (Executive Summary|Planning Trigger|Active Finding Registry|Remediation Workstreams|Spec Seed|Plan Seed|Traceability Status|Deferred Items|Audit Appendix)$' $R/review-report.md` prints `9` and `rg -c '^Review verdict: ' $R/review-report.md` prints `1`.
-- [ ] T009 Triage the merged registry into one file group per worker and write the fix ledger with the header `| Finding | File | Fix | Verify | Status |` (`$R/fix-ledger.md`). Verify: `rg -c '^\| Finding \| File \| Fix \| Verify \| Status \|$' $R/fix-ledger.md` prints `1`, and `rg -c '^\| F[0-9]' $R/fix-ledger.md` prints the same number as `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.openFindings.length)"`.
+- [ ] T009 Triage the merged registry into one file group per worker and write the fix ledger with the header `| Finding | File | Fix | Verify | Revert proof | Status |` (`$R/fix-ledger.md`). Verify: `rg -c '^\| Finding \| File \| Fix \| Verify \| Revert proof \| Status \|$' $R/fix-ledger.md` prints `1`, and `rg -c '^\| F[0-9]' $R/fix-ledger.md` prints the same number as `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.openFindings.length)"`.
 - [ ] T010 Fix every P0 finding, one worker per file group, each fix naming its finding id and its proving command (`$R/fix-ledger.md`). Verify: `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.findingsBySeverity.P0)"` prints `0`.
 - [ ] T011 Fix every P1 finding, or record its deferral with the reason that blocks it (`$R/fix-ledger.md`). Verify: `node -e "const r=require('./$R/deep-review-findings-registry.json'); console.log(r.findingsBySeverity.P1)"` prints `0`.
 - [ ] T012 Re-run the suite covering each fixed module and mark its ledger row `pass` or `deferred` (`$R/fix-ledger.md`). Verify: `rg -c '^\| F[0-9].*\| (pass|deferred) \|$' $R/fix-ledger.md` prints the same number as `rg -c '^\| F[0-9]' $R/fix-ledger.md`.
@@ -83,7 +83,7 @@ The file groups the fix waves partition by:
 
 | Group | Files |
 |---|---|
-| A | Contracts and state: `runtime/lib/repo-config.ts`, `definition.ts`, `identity.ts`, `state-root.ts`, `approval.ts`, `run-record.ts`, `switches.ts`, `needs-you.ts`, `actor.ts`, `routine.ts`, `routine-state.ts`, `memory.ts`, `action-kind.ts`, `approval-ladder.ts`, `secrets.ts`, `secret-matcher.ts`, `secrets-guard.ts`, `skills.ts` and their suites |
+| A | Contracts and state: `runtime/lib/repo-config.ts`, `definition.ts`, `identity.ts`, `state-root.ts`, `approval.ts`, `run-record.ts`, `switches.ts`, `needs-you.ts`, `actor.ts`, `routine.ts`, `routine-state.ts`, `memory.ts`, `action-kind.ts`, `approval-ladder.ts`, `secrets.ts`, `secret-matcher.ts`, `skills.ts` and their suites |
 | B | Schedule: `runtime/lib/cron-translator.ts`, `slot-lister.ts`, `slot-accounting.ts` and their suites |
 | C | Runner and dispatch: `runtime/lib/runner.ts`, `dispatch.ts`, `posture.ts`, `result-ledger.ts`, `apps.ts` and their suites |
 | D | Isolation and delivery: `runtime/lib/isolation.ts`, `delivery.ts` and their suites |
@@ -228,7 +228,7 @@ A blocked task is marked `[B]` with the finding id that blocks it. A P0 blocks t
 
 - [ ] CHK-010 [P0] The runtime typechecks. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
 - [ ] CHK-011 [P0] No fix leaves a console error or an unhandled rejection in a suite. Verify: `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0.
-- [ ] CHK-012 [P1] Every fixed defect has a regression test that fails without the fix. Verify: `rg -c 'regression' $R/fix-ledger.md` prints at least `1`.
+- [ ] CHK-012 [P1] Every fixed defect has a regression test that fails without the fix, and its ledger row records that failure in the `Revert proof` cell. Verify: `rg -c '^\| F[0-9].*printed .FAIL.*\| pass \|$' $R/fix-ledger.md` prints the same number as `rg -c '^\| F[0-9].*\| pass \|$' $R/fix-ledger.md`.
 - [ ] CHK-013 [P1] Every fix follows the module's existing refusal-with-a-named-reason pattern rather than throwing. Verify: `rg -n 'throw new Error' .skilled/skills/system-skilled-bots/runtime/lib` prints no line a fix added.
 <!-- /ANCHOR:code-quality -->
 

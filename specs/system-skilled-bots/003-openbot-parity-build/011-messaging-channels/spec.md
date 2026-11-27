@@ -96,13 +96,14 @@ Taken on 2026-11-26 in this worktree. The CLI has no `channel` verb, no runtime 
 - The file-backed approval index, the reply grammar, the durable send queue and the four channel names on `delivery.ts` (child 004)
 - Telegram long polling, Slack Socket Mode and the terminal transport, none of which needs a public URL (child 005)
 - Signal through a local `signal-cli` daemon and the WhatsApp Cloud API webhook (child 006)
-- The conformance suite on the fake transport, the third-party notices and the operator documents (child 007)
+- The conformance suite over a fake platform, the third-party notices and the operator documents (child 007)
 
 ### Out of Scope
 - Discord and the other tinychannels providers [SOURCE: specs/system-skilled-bots/context/tinychannels-main/src/providers/long_tail.rs:1-7]
 - A hosted relay or a web UI [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:164]
 - The WhatsApp Web linked-device client, streaming output into a chat, attachments and a per-channel approval policy beyond the roster. Child 003's spec section 3 names each and why
 - A shared-host roster. The roster stays single-operator until a later packet lands the 0770 mode
+- Pruning the `seen/` folder. One seen record per inbound message is kept for good in this phase, so the folder grows without a bound. A later packet chooses the window. `002-adapter-and-record-contracts/design/records.md` section 5 points here
 
 ### Files to Change
 Each child's `spec.md` section 3 lists its own rows. Children 001 and 002 write only their own `design/` folders. The 29 rows of the pre-expansion table are spread across children 003 to 007 as section 5 below assigns them.
@@ -294,6 +295,7 @@ Order: 001 and 002 side by side, then 003, then 004 once 003's first wave lands,
 - **Does signal-cli keep events for a client that was disconnected?** UNKNOWN. `002-adapter-and-record-contracts/design/inbound-sequence.md` section 4 names the manual run that would confirm it.
 - **Should the terminal transport answer on the `terminal` surface?** Settled by `contracts/answer-seam.md` section 1 step 1 "Surface" and its decisions table: the terminal transport answers on the surface `channel` with the OS user as the actor, so an absent roster refuses it `channel-roster-missing` while `bots answer` refuses nothing. Changing it is a change to that row and to child 005 REQ-015 together.
 - **Which refusal name covers a credential the provider rejects at start?** Settled by `contracts/refusals.md` section 3.10, the rejected credential row: no refusal name. `channel listen` prints `bots: <channel> rejected the credential`, releases the lease and exits 1, which is what children 005 and 006 specify. A later name would be a new row there and a new exit here.
+- **Does a Slack message redelivered after a reconnect answer an approval twice?** UNKNOWN. The research found no verified answer, and this is the approval path. The design has two guards. The seen record is keyed `envelope:<envelope_id>` and written before the acknowledge. The index entry is removed once a press resolves. Whether Slack gives a redelivered press the same `envelope_id` is not known. Settle it before child 005 is dispatched: press a button, drop the socket before the acknowledge, reconnect and read whether the second delivery carries the same id.
 <!-- /ANCHOR:questions -->
 
 ---

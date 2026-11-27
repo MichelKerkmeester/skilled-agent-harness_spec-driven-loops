@@ -29,11 +29,11 @@ The module's place in the runtime is fixed by the packet: `memory.ts` sits in th
 | `botMemoryFile` | the state root, the identity, the bot id | The absolute path of `<stateRoot>/<identityKey>/memory/<botId>.md` | `bot-id-invalid` for an id that is not a safe segment |
 | `collapseText` | one string | The string with every whitespace run replaced by one space and both ends trimmed | none |
 | `serializeEntry` | one entry object | One line in the contract's five-field form, ending in one newline | none |
-| `parseMemory` | the file's text | `{ entries, skippedLines }`, entries in file order with 1-based indexes | none |
+| `parseMemory` | the file's text | `{ entries, skippedLines }`, entries in file order with 1-based indexes and each entry's 8-hex id | none |
 | `readMemoryFile` | the absolute path | `{ entries, skippedLines, byteCount }`, all empty and zero for an absent file | none |
 | `renderMemoryBlock` | the absolute path, the entries | The block text, or `null` when the entries are empty | none |
 | `appendMemoryEntry` | the absolute path, one entry object | `{ index, entryCount, byteCount }` | `memory-full`, `memory-entry-too-long` |
-| `forgetMemoryEntry` | the absolute path, a 1-based index | `{ entryCount, byteCount }` | `memory-entry-unknown` |
+| `forgetMemoryEntry` | the absolute path, an entry id of eight lowercase hex characters | `{ entryCount, byteCount }` | `memory-entry-unknown` |
 
 Every function returns the runtime's `Result<T>`, so a refusal is a value and never a throw. The module prints nothing and holds no `console` call.
 
@@ -58,7 +58,7 @@ One append is one `appendFileSync` of one whole line, opened with the append fla
 | 7 | Create the folder with mode 0700 when it is absent, then append the line with mode 0600 | A throw, which the caller reports as exit 1 |
 | 8 | Return the new entry's index, the new entry count and the new byte count | none |
 
-The refusal's detail is `<path> (<n> entries, <b> bytes)`, where `n` and `b` are the counts the check saw. A refused append writes nothing, so the file is byte for byte unchanged.
+The refusal's detail is `<path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>`, where `n` and `b` are the counts the check saw. For a bot's own file the detail ends with ` --bot <botId>`, so the printed command is the one that frees that file. A refused append writes nothing, so the file is byte for byte unchanged.
 
 **Why one write and not a rewrite.** A rewrite would need a read, a temp file and a rename, and two concurrent rewrites would lose one of the two facts. One append of one line is atomic against a concurrent append on a POSIX file opened with the append flag, because the kernel places the whole write at the end of the file in one operation. A line is at most about 500 bytes, far below the 4,096-byte pipe buffer that bounds the guarantee.
 
@@ -71,8 +71,8 @@ A forget is a read, a removal, a temp file and a rename, with one copy-forward s
 | Step | Action | On failure |
 |------|--------|------------|
 | 1 | Resolve the path and read the file, recording its byte length `L` | none |
-| 2 | Parse it. Refuse when the index is below 1 or above the parsed entry count | `memory-entry-unknown` |
-| 3 | Build the new content from every entry except the one at the index, in file order | none |
+| 2 | Parse it. Refuse when no parsed entry has the id | `memory-entry-unknown` |
+| 3 | Build the new content from every entry except the first one in file order whose id matches | none |
 | 4 | Write the new content to `<path>.tmp` with mode 0600 | A throw, exit 1 |
 | 5 | Stat the original. When its size is greater than `L`, read the bytes from offset `L` to the end, append them to the temp file and set `L` to the new size. Repeat at most three times | none |
 | 6 | Rename the temp file over the original | A throw, exit 1 |
@@ -176,14 +176,14 @@ The join order is the contract's nine blocks. [SOURCE: specs/system-skilled-bots
 |------|------------|---------|------|
 | `bots remember <text>` | one, the fact | `--bot`, `--type`, `--as` | 0, or a refusal |
 | `bots remember --list` | none | `--bot`, `--json` | 0, or a refusal |
-| `bots remember --forget <n>` | none | `--bot` | 0, or a refusal |
+| `bots remember --forget <entry-id>` | none | `--bot` | 0, or a refusal |
 
 | Option | Takes a value | Rule |
 |--------|---------------|------|
 | `--bot <id>` | yes | A safe segment. Refused `bot-id-invalid`, exit 2 |
 | `--type <type>` | yes | One of the four. Refused `bots: --type takes user, general, feedback or reference`, exit 2 |
 | `--as <name>` | yes | 001's rule whole: resolved through `resolveActor` against `ACTOR_PATTERN`, refused `bots: --as takes a name`, exit 2, and refused `bots: --as needs a tty` at exit 2 when it names someone other than the OS user outside a tty |
-| `--forget <n>` | yes | A whole number of 1 or more. Refused `bots: --forget takes a whole number`, exit 2 |
+| `--forget <entry-id>` | yes | Eight lowercase hex characters, `^[0-9a-f]{8}$`. Refused `bots: --forget takes an entry id`, exit 2 |
 | `--list` | no, a switch | Takes no fact |
 | `--json` | no, a switch | Only with `--list` |
 

@@ -208,6 +208,7 @@ A wave that reaches the end of the ladder without a working executor stops and r
 - Read the target mode's `SKILL.md` before composing the prompt, and attach the resolved agent persona to every dispatch [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198].
 - Compose every prompt as the child preamble, then the inlined persona, then the task and set `AI_SESSION_CHILD=1` on the run [SOURCE: .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:38].
 - One change per brief: the file, the edit and the check that proves it.
+- Keep GPL sources out of the brief of a worker that writes a transport. tinychannels is GPL-3.0 and Skilled is MIT. The worker that reads a provider's tinychannels source writes the wire facts it needs as a design note, `design/wire-notes.md` in the child that owns the transport, in its own words with one `[SOURCE:]` per fact. A different worker writes the transport from that note and the child's Wire Table, and its brief names no tinychannels path. The orchestrator records which worker wrote which file. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/plan.md:168]
 - Read the outcome record, not stdout. `cli-mistral-vibe` counts a run complete only when `export.json` records `exit_code` 0 and `outcome` `finished` [SOURCE: .skilled/skills/cli-external-orchestration/cli-mistral-vibe/SKILL.md:72].
 - Every task that writes state runs on a temporary state root, never the real one, as `tasks.md` Task Notation requires.
 

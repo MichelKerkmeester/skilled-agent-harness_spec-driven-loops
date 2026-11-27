@@ -87,6 +87,7 @@ The crate does not exist yet. Phase 003 builds it, so this phase starts when 003
 
 ### In Scope
 - Replace the chat placeholder body with the transcript window, the composer, the bot label, the status line and the detail column, drawn as `../001-chat-ux-and-pane-map/design/mockups.md` draws them
+- A bracketed paste into the composer follows the screen's paste rule (`../../003-terminal-screen/005-answer-flow/spec.md` REQ-022): it is appended to the draft with each carriage return or line feed as one space, and it never sends. Only Enter sends the draft
 - Add `Context::Chat` and its nineteen key rows from `design/key-map-delta.md` section 2, so the footer lines of section 3 are generated and never typed
 - Read the transcript with `bots chat <id> --transcript --json` on the screen's read worker, and send with `bots chat <id> --message <text>` on a chat worker of its own with no deadline
 - Re-read the transcript after a send exits 0, 5 or 1 and put the draft back after a send exits 2 or 4, as `design/pane-contract.md` section 4.3 says

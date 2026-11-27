@@ -83,6 +83,8 @@ The task ids are the pre-expansion phase's. T022 to T026 and T032, the crate's t
 - [ ] T045 Export the renderer's `channel` form for phase 011 (`$RT/lib/conversation.ts`). Verify: `rg -n 'channel=' $RT/lib/conversation.ts` prints the form, and `cd $RT && npx vitest run tests/conversation.vitest.ts -t "channel"` prints one passing test
 - [ ] T046 Test the eight routing rules and the five refusals of the design's routing grammar (`$RT/tests/conversation.vitest.ts`, `$RT/tests/cli-chat.vitest.ts`). Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "routing"` prints eight passing tests
 - [ ] T047 Read the two contract goldens in the tests (`$RT/tests/conversation.vitest.ts`, `$RT/tests/cli-chat.vitest.ts`). Verify: `rg -n 'fixtures/conversation.jsonl|fixtures/chat-transcript.json' $RT/tests/conversation.vitest.ts $RT/tests/cli-chat.vitest.ts` prints one line per file
+- [ ] T048 Read a bracketed paste in the loop as one draft: turn bracketed paste on at start and off at exit when stdin is a terminal, take the bytes between `ESC [ 200 ~` and `ESC [ 201 ~` as one draft with its line feeds kept, and send it as one message on the next Enter (`.skilled/bin/bots.cjs`). Verify: `rg -n '200~' .skilled/bin/bots.cjs` prints at least one line.
+- [ ] T049 Test that a three-line paste followed by one Enter dispatches exactly one run and appends one human message whose text holds the three lines (`$RT/tests/cli-chat.vitest.ts`). Verify: `cd $RT && npx vitest run tests/cli-chat.vitest.ts -t "three-line paste"` prints one passing test.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -165,7 +167,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/acceptance-criteria.md` prints 14
+- [ ] CHK-020 [P0] All acceptance criteria met. Verify: `rg -c '\| Met \|' $P/acceptance-criteria.md` prints 15
 - [ ] CHK-021 [P0] Manual testing complete. Verify: `$BOTS chat my-bot --transcript` exits 0
 - [ ] CHK-022 [P1] Edge cases tested. Verify: `cd $RT && npx vitest run tests/conversation.vitest.ts -t "torn"` prints one passing test
 - [ ] CHK-023 [P1] Error scenarios validated. Verify: `cd $RT && npx vitest run tests/cli-chat.vitest.ts -t "bot-unknown"` prints one passing test

@@ -223,7 +223,7 @@ Rules the sequence fixes:
 
 ## 5. THE CLASSIFIER
 
-The six kinds in OpenBot's order, then the declaration floor, then `other`. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:5]
+The six kinds in this plan's own order, then the declaration floor, then `other`. The order follows the rows of OpenBot's "What asks" table, and no OpenBot line ranks the kinds. [SOURCE: specs/system-skilled-bots/context/OpenBot-main/docs/approvals.md:38-43]
 
 ```mermaid
 flowchart TD

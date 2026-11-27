@@ -116,7 +116,7 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | Create | 003 | The `ui` verb's tests: argv, exit passthrough and the three refusals |
 | `.github/workflows/bots-runtime.yml` | Modify | 003 | Two path entries and one `bots-tui` job: `--locked`, a release build, the design diff, a named runner, cache and timeout |
 | `.gitignore` | Modify | 003 | Ignore `/crates/bots-tui/target/` |
-| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (006, 008, 010, 011) | 001, 006, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path. 001 creates the file and the rest append a `## <phase>` section |
+| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (008, 010, 011) | 001, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path. 001 creates the file and the rest append a `## <phase>` section |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Create/Modify | 012 | 33 new scenario files in ten category folders, the root index's sections and counts, and one run folder under `benchmark/reports/` |
 | `.skilled/skills/system-skilled-bots/SKILL.md` and its catalog, playbook and references | Modify | 013 | The fix for every finding the two alignment reports name |
 | `.skilled/commands/assets/local-doc-alignment/topics.json` | Modify | 013 | The `system-skilled-bots` topic: its title, `terms`, three `codeRoots` and the three package checks |

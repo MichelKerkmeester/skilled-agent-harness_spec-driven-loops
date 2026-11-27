@@ -140,7 +140,7 @@ A scenario defect is not filed here. It is fixed in the scenario and its row is 
 Sample, one row:
 
 ```markdown
-| BOT-050 | 005-memory | REQ-003 | `bots: memory-full: <path> (59 entries, 3590 bytes)` with `exit=4` at the 60th append | specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-050.txt |
+| BOT-050 | 005-memory | REQ-003 | `bots: memory-full: <path> (59 entries, 3590 bytes), free a line with bots remember --forget <entry-id>` with `exit=4` at the 60th append | specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-050.txt |
 ```
 
 The file is copied beside `results.csv` in the run folder, so the run and the failures it produced travel together.

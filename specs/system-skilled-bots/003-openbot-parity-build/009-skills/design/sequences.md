@@ -113,6 +113,10 @@ sequenceDiagram
   alt a secret literal matched
     Sp-->>Cl: proposal-secret naming the key, exit 4, nothing written
   end
+  Sp->>Sp: scan the draft for a hidden direction character
+  alt a hidden character matched
+    Sp-->>Cl: proposal-hidden-character naming the code point and its line, exit 4, nothing written
+  end
   Sp->>Ny: read the item file for this run id
   alt the item exists and its kind is skill-proposal
     Sp-->>Cl: review-already-exists, exit 4, nothing overwritten

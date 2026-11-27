@@ -116,6 +116,7 @@ exit=1
 | `.skilled/bin/bots.cjs` | Modify | Two rows in `listen`'s transport table, after child 005 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/channel-transports.vitest.ts` | Modify | Two `describe` blocks after child 005's |
 | `.skilled/skills/system-skilled-bots/runtime/tests/fixtures/channels/` | Modify | Recorded Signal and WhatsApp bodies, invented data only |
+| `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/design/wire-notes.md` | Create | The Signal and WhatsApp wire facts in this plan's own words, one `[SOURCE:]` per fact, written by the one worker that reads the tinychannels source |
 <!-- /ANCHOR:scope -->
 
 ---

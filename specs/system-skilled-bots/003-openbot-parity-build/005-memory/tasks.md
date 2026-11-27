@@ -54,7 +54,7 @@ Every task below is decided already. The shape it builds is in `design/`, and `p
 
 - [ ] T007 Create the entry shape, the parser and the renderer (`$RT/lib/memory.ts`). Verify: `rg -n 'MEMORY_LIMITS|parseMemory|renderMemory' $RT/lib/memory.ts` prints all three
 - [ ] T008 Add the bound check and the append (`$RT/lib/memory.ts`). Verify: `rg -n 'memory-full|memory-entry-too-long' $RT/lib/memory.ts` prints both reasons
-- [ ] T009 Add the entry index and the forget (`$RT/lib/memory.ts`). Verify: `rg -n 'forgetEntry|memory-entry-unknown' $RT/lib/memory.ts` prints both
+- [ ] T009 Add the entry index, the entry id and the forget by id (`$RT/lib/memory.ts`). The id is the first 8 hex characters of the SHA-256 of the line's UTF-8 bytes without the line feed, per `contracts/records.md` section 7. Verify: `rg -n 'forgetEntry|memory-entry-unknown' $RT/lib/memory.ts` prints both
 - [ ] T010 Name the shared memory folder and file (`$RT/lib/state-root.ts`). Verify: `rg -n 'sharedMemoryFile' $RT/lib/state-root.ts` prints the declaration
 - [ ] T011 Name and create the identity's memory folder (`$RT/lib/state-root.ts`). Verify: `rg -n 'memory' $RT/lib/state-root.ts` prints the path, the create and the file helper
 - [ ] T012 Add the `memory` key to the definition (`$RT/lib/definition.ts`). Verify: `rg -n "'memory'" $RT/lib/definition.ts` prints the key and the boolean check

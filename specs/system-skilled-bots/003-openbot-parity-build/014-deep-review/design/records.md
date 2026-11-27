@@ -209,7 +209,7 @@ A `deferred` P1 therefore leaves `findingsBySeverity.P1` at `0` and still blocks
 One table, one row per finding the fix pass owns, in `openFindings` order. The header is literal, because T009 counts it.
 
 ```text
-| Finding | File | Fix | Verify | Status |
+| Finding | File | Fix | Verify | Revert proof | Status |
 ```
 
 | Column | Holds | Rule |
@@ -218,9 +218,10 @@ One table, one row per finding the fix pass owns, in `openFindings` order. The h
 | `File` | the one file the fix changed, or `deferred` when no file changed | one file per row, because a wave is partitioned by file |
 | `Fix` | one sentence naming the change and the finding class | no command, no pipe |
 | `Verify` | the command whose output proved the fix, in backticks | no pipe, because a pipe would split the cell |
+| `Revert proof` | the regression test command run while the fix was reverted, in backticks, then `printed` and the failing line it printed, in backticks. `-` on a `deferred` row | no pipe. The fix is reverted with `git stash push -- <file>` and restored with `git stash pop` before the row is written |
 | `Status` | `pass` or `deferred` | the last cell, so the row ends `| pass |` or `| deferred |` |
 
-A row reads `pass` when the fix landed and its verify command printed what the row says. A row reads `deferred` when the fix did not land, and then the `Fix` cell carries the reason that blocks it and names the finding id.
+A row reads `pass` when the fix landed, its verify command printed what the row says and its `Revert proof` cell shows the regression test failing with the fix reverted. The regression test imports the module the fix changed and never only a helper of the suite. When that module is `bots.cjs`, the test runs it instead. A row reads `deferred` when the fix did not land, and then the `Fix` cell carries the reason that blocks it and names the finding id.
 
 The ledger is the phase's own record and no contract owns it. Its two counts are the ones AC-004 and AC-005 read.
 

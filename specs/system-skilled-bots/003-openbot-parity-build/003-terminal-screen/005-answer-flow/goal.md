@@ -84,7 +84,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Child spec authored | Done | `spec.md` carries thirteen requirements, four of them inherited from the parent with their ids and wording |
+| Child spec authored | Done | `spec.md` carries fourteen requirements, REQ-022 the paste rule added later, four of them inherited from the parent with their ids and wording |
 | Child plan authored | Done | `plan.md` carries five waves and the fallback ladder in its External orchestration section |
 | Child tasks authored | Done | `tasks.md` carries sixteen tasks, each with a `Verify:` clause, grouped into five waves |
 | Acceptance criteria authored | Done | `acceptance-criteria.md` carries nineteen rows, each verified by a command that needs no tty |

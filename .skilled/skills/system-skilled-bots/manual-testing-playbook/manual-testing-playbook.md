@@ -1,7 +1,7 @@
 ---
 title: "system-skilled-bots: Manual Testing Playbook"
 description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule, report, converse, remember, link a channel and drive the terminal screen on throwaway bots."
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # system-skilled-bots: Manual Testing Playbook
@@ -780,15 +780,15 @@ Expected signals: the shared row carries `branch <name>`, the worktree row carri
 
 Three scenarios on `remember`, the injected memory block and the file bounds.
 
-### BOT-048 | Remember appends one line, lists it and forgets it by index
+### BOT-048 | Remember appends one line, lists it and forgets it by id
 
 #### Description
-Verify remember appends one line, lists it and forgets it by index.
+Verify remember appends one line, lists it and forgets it by id.
 
 #### Scenario Contract
 Prompt: `Remember two things for me, show me the list, then forget the first one and show me the list again.`
 
-Expected signals: each append prints its 1-based index, the list prints both entries and the file path with counts, the JSON object carries seven keys, the forget prints the removed entry, the unknown index exits 2 and the second list holds one entry at index one.
+Expected signals: each append prints its 1-based index, the list prints both entries with their 8-hex ids and the file path with counts, the JSON object carries seven keys and an `id` on each entry, the forget by id prints the removed entry's id, the number and the unknown id each exit 2 and the second list holds no entry.
 
 #### Test Execution
 > **Feature File:** [BOT-048](memory/remember-appends-and-lists.md)
@@ -814,7 +814,7 @@ Verify the memory file refuses a sixty-first entry, a long text and an unsafe bo
 #### Scenario Contract
 Prompt: `Fill my notes to the limit, show me the next one is refused, and show me the file is private.`
 
-Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts, the two checksums match, the long text exits 2 with `memory-entry-too-long`, the folder reads `700` and the file `600`, and the unsafe id is refused by name.
+Expected signals: the sixty-first exits 4 with `memory-full` naming the path and both counts and the forget command that frees a line, the two checksums match, the long text exits 2 with `memory-entry-too-long`, the folder reads `700` and the file `600`, and the unsafe id is refused by name.
 
 #### Test Execution
 > **Feature File:** [BOT-050](memory/memory-bound-refuses.md)
@@ -865,7 +865,7 @@ Verify secret set reads stdin, list prints no value and forget is idempotent.
 #### Scenario Contract
 Prompt: `Store a token for me, show me the list without showing the token, then remove it twice.`
 
-Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, the placeholder exits 2 with `secret-placeholder`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`.
+Expected signals: the store exits 0, the list names the entry and prints no value, the argument form exits 2, the empty value exits 2 with `secret-empty`, both forgets exit 0 and the closed stdin exits 2 with `secret-no-input`.
 
 #### Test Execution
 > **Feature File:** [BOT-053](vault/secret-set-and-list.md)
@@ -923,7 +923,7 @@ Verify both byte caps refuse before the prompt is built.
 #### Scenario Contract
 Prompt: `Show me the skill size caps refusing, tell me which skill crossed the list cap, and show me a duplicate name refused.`
 
-Expected signals: the body at 16,384 bytes runs, the body at 16,385 bytes exits 4 with `skill-too-large`, the list at 24,577 bytes exits 4 with `skills-over-budget: pb-sum-b`, the duplicate exits 4 with `definition-malformed: skills-duplicate`, the bad name exits 4 with `definition-malformed: skills-name-invalid`, and the checker prints one `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line.
+Expected signals: the body at 16,384 bytes runs, the body at 16,385 bytes exits 4 with `skill-too-large`, the list at 20,481 bytes exits 4 with `skills-over-budget: pb-sum-b`, the duplicate exits 4 with `definition-malformed: skills-duplicate`, the bad name exits 4 with `definition-malformed: skills-name-invalid`, and the checker prints one `FAIL: skills-too-large` line and one `FAIL: skills-over-budget` line.
 
 #### Test Execution
 > **Feature File:** [BOT-057](skills/skills-over-budget.md)
@@ -1049,7 +1049,7 @@ The hub's feature inventory lives in [`../feature-catalog/feature-catalog.md`](.
 | BOT-045 | Every bound key is drawn in the frame that binds it | Terminal Screen | [BOT-045](terminal-screen/banner-and-overlay.md) | - |
 | BOT-046 | The prompt names the working place, its branch and the run folder | Working Place | [BOT-046](working-place/working-place-line.md) | - |
 | BOT-047 | Status prints the branch and the worktree the last run recorded | Working Place | [BOT-047](working-place/status-branch-and-worktree.md) | - |
-| BOT-048 | Remember appends one line, lists it and forgets it by index | Memory | [BOT-048](memory/remember-appends-and-lists.md) | - |
+| BOT-048 | Remember appends one line, lists it and forgets it by id | Memory | [BOT-048](memory/remember-appends-and-lists.md) | - |
 | BOT-049 | The memory block reaches the prompt and a false flag keeps it out | Memory | [BOT-049](memory/memory-block-injected.md) | - |
 | BOT-050 | The memory file refuses a sixty-first entry, a long text and an unsafe bot id | Memory | [BOT-050](memory/memory-bound-refuses.md) | - |
 | BOT-051 | A bot's apps filter the run's utcp config and reach the child | Apps | [BOT-051](apps/apps-filter-utcp-config.md) | - |

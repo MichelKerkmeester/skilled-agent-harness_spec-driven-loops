@@ -41,9 +41,11 @@ stateDiagram-v2
   Idle --> Sending: y, no options only, emits Answer with text approve and scope once
   Idle --> Sending: digit k, options only and k within the count, emits Answer with option k and scope once
   Idle --> Closed: Esc or Ctrl+C, no effect
+  Idle --> Idle: a paste does nothing, so a pasted y never approves
   Idle --> Gone: a refresh lacks the id or lists it in a state other than open
 
   Typing --> Typing: a printable key appends, Backspace deletes, Enter on a blank line does nothing
+  Typing --> Typing: a paste appends its text with each carriage return or line feed as one space and never sends
   Typing --> Sending: Enter on a line not blank after trim, emits Answer with the line and scope once
   Typing --> Closed: Esc or Ctrl+C, no effect, the buffer is dropped
   Typing --> Gone: a refresh lacks the id or lists it in a state other than open

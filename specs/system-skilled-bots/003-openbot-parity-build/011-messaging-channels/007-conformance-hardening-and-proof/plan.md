@@ -23,7 +23,7 @@ contextType: "implementation"
 | **Language/Stack** | TypeScript tests and Markdown |
 | **Framework** | vitest |
 | **Storage** | None beyond the temporary state root of each test |
-| **Testing** | One conformance file over the fake transport and the capability matrix |
+| **Testing** | One conformance file that runs each real transport over the fake platform, driven by the capability matrix |
 
 ### Overview
 The driver reads each transport's declared column and builds one case per operation: an undeclared one runs R1 and R2, a declared one runs R3, R4 and R5. Each transport runs behind the fake platform, which records every wire call with its operation, channel, conversation and idempotency key. The three hardening cases use the same fake. The documents are written last, from the runbook and the finished modules.

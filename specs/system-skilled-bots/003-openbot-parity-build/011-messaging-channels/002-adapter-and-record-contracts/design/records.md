@@ -178,13 +178,17 @@ Restates `contracts/records.md` section 14. File: `channels/queue/<idempotencyKe
 
 ```text
 queued --drain claims--> sending --receipt--> delivered
+                            |---sentBeforeError true, whatever retryable says--> unknown
                             |---retryable error, attempts < 5--> queued (nextAttemptAt set)
                             |---permanent error, or attempts = 5--> failed
-                            |---uncertain result--> unknown
 sending found at startup --> unknown
 ```
 
 `delivered`, `failed` and `unknown` are terminal. A `sending` entry at the start of a drain belongs to a process that stopped mid-send, so it becomes `unknown` and is never resent, which is the contract's reason for the state.
+
+**Maybe sent wins over retry.** The drain reads `sentBeforeError` first. When it is true the entry becomes `unknown`, whatever `retryable` says, because one entry covers every chunk and a retry after chunk 2 failed would send chunk 1 twice. A transport sets `sentBeforeError` once any chunk of the entry landed.
+
+**The error rule for Telegram and Slack.** A transport error, a `200` whose body cannot be read and a `5xx` set `sentBeforeError: true`, because the message may have reached the platform. A `429`, or Slack's `ratelimited`, sets `retryable: true`. Every other error sets both false, and the entry ends `failed`. No table per error code is kept, because these three parts are all a builder needs. The design mirrors a GPL reference, so no code is copied.
 
 **The backoff table as data.** `channel-queue.ts` exports it as written here, and a test reads both.
 
@@ -219,7 +223,7 @@ The `messageId` form per transport is `inbound-sequence.md` section 1. A press w
 { "schemaVersion": 1, "channel": "slack", "messageId": "envelope:5e8f0b44-2c1d-4e8a-9a51-2b7f3c6d9e10", "requestId": null, "seenAt": "2026-11-25T21:06:01.200Z" }
 ```
 
-Seen records are never removed in this phase. One file per inbound message is small, and pruning is a later packet's choice, named in the parent spec.
+Seen records are never removed in this phase. One file per inbound message is small, and pruning is a later packet's choice, named in `../../spec.md` section 3, Out of Scope.
 
 ---
 

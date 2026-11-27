@@ -8,16 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/005-memory"
-    last_updated_at: "2026-11-26T08:26:12Z"
+    last_updated_at: "2026-11-27T13:33:12Z"
     last_updated_by: "generate-context"
-    recent_action: "Aligned the memory proposal id rule with phase 009 and pushed d686cfdad8f"
-    next_safe_action: "Wait for the operator's green light before implementing any phase"
+    recent_action: "Applied the parity recommendations to the build plan and playbook"
+    next_safe_action: "Review the amended phase docs before dispatching phase 001"
     packet_purpose: "Purpose: Give a bot two bounded memory files, one shared and one its own, prepended to its prompt, with a verb to add a fact and a needs-you item to confirm one a bot proposes."
-    blockers:
-      - "Operator green light to implement"
-      - "Operator review of decisions D1 to D11"
+    blockers: []
     key_files:
-      - "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/record-schemas.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/scratch/amendment-map.md"
+      - "specs/system-skilled-bots/003-openbot-parity-build/decision-record.md"
+      - "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/final-recommendations.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-memory"

@@ -24,7 +24,7 @@ The runtime has 28 flat modules today in seven groups, and one direction rule: a
 
 | Group | Today | After the packet |
 |-------|-------|------------------|
-| Contracts and state | `repo-config`, `definition`, `identity`, `state-root`, `approval`, `run-record`, `switches`, `needs-you` | adds `actor`, `routine`, `routine-state`, `memory`, `action-kind`, `approval-ladder`, `secrets`, `secret-matcher`, `secrets-guard`, `skills` |
+| Contracts and state | `repo-config`, `definition`, `identity`, `state-root`, `approval`, `run-record`, `switches`, `needs-you` | adds `actor`, `routine`, `routine-state`, `memory`, `action-kind`, `approval-ladder`, `secrets`, `secret-matcher`, `skills` |
 | Schedule | `cron-translator`, `slot-lister`, `slot-accounting` | unchanged |
 | Runner and dispatch | `runner`, `dispatch`, `posture`, `result-ledger` | adds `apps` |
 | Isolation and delivery | `isolation`, `delivery` | unchanged |
@@ -49,9 +49,8 @@ Today's group membership is the README's file table. [SOURCE: .skilled/skills/sy
 | `action-kind.ts` | 006 | Contracts and state | none | The six kinds, their order, their word lists and `classifyAction` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/plan.md, section "Key Components"] |
 | `approval-ladder.ts` | 006 | Contracts and state | `action-kind` | The four rungs, `decideApproval` and the scope rule |
 | `apps.ts` | 007 | Runner and dispatch | `repo-config`, `state-root` | The only reader of `.utcp_config.json` and the only writer of a run's filtered copy [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/plan.md, section "Key Components"] |
-| `secrets.ts` | 008 | Contracts and state | `state-root`, `secret-matcher`, `secrets-guard` | The name grammar, the backend, the index and the only read or write of a value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md, section "Key Components"] |
+| `secrets.ts` | 008 | Contracts and state | `state-root`, `secret-matcher` | The name grammar, the backend, the index and the only read or write of a value [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md, section "Key Components"] |
 | `secret-matcher.ts` | 008 | Contracts and state | none | The lifted one-pass multi-value matcher |
-| `secrets-guard.ts` | 008 | Contracts and state | none | The lifted placeholder guard and constant-time compare |
 | `skills.ts` | 009 | Contracts and state | `approval` | The name grammar, the two caps, `parseSkillList`, `loadSkills` and `renderSkillsPrompt` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/plan.md, section "Key Components"] |
 | `skill-proposal.ts` | 009 | Request pipeline | `state-root`, `run-record`, `needs-you`, `action-kind`, `approval-ladder`, `dispatch` | The proposals folder, the review item and the settle |
 | `conversation.ts` | 010 | Request pipeline | `state-root`, `dispatch`, `definition` | The message record, the append, the torn-line read, `@bot` routing, the bound and the block renderer [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/plan.md, section "Key Components"] |

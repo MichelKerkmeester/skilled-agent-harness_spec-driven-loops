@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The shell 003 lands draws a header, a tab bar, a footer and an empty body",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-26T06:48:18.542Z",
+    "last_save_at": "2026-11-27T13:34:06.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b805a4db68ceba57e01b8c0cdfe3d252b882675fc7c7b55c529f04c12ddda98",
+    "source_fingerprint": "sha256:6d6cf70486e9fad85b9d37bde08a360fbc1149111508c72aa8835fb4da19fdb2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "325eb81157762ce2a078711849b803e608884f1675a2cda43f95fab2453a137a",
+      "spec.md": "5e0de4a602ca9ba41f4714819765df4ec60a09ef0074391684b38d1477d62751",
       "plan.md": "0f399723344fbdf67929a84e81567d473a47fd6c911887e370d7d414f7c9e75e",
-      "tasks.md": "7c4be34b3499418447a7678b6fa074da5b3a1a97ddd65ed93cb85feb3ef28811",
+      "tasks.md": "2a5a4de22ec72e8a56616e9ecd350dac42b459bb1067fa10675b36e69c6b3857",
       "implementation-summary.md": "cd25aac9e2a41214f4876f4ff904828d9ffdb2f20258c1e58fb46addf21af29f"
     },
     "last_active_at": null
