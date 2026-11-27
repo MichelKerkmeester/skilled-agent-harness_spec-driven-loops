@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research",
+  "spec_folder": "system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research",
+  "parent_id": "system-skilled-bots/002-openbot-parity-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reference evidence research",
+      "phase 4 reference evidence research",
+      "openbot reference evidence",
+      "reference evidence research plan",
+      "reference evidence research tasks",
+      "reference evidence research goal",
+      "004-reference-evidence-research operator decisions",
+      "reference evidence research implementation summary"
+    ],
+    "key_topics": [
+      "reference",
+      "evidence",
+      "research",
+      "phase",
+      "openbot",
+      "plan",
+      "tasks",
+      "goal",
+      "004-reference-evidence-research",
+      "operator",
+      "decisions",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/research-topic.txt",
+      "scratch/frontier-seed.json",
+      "scratch/preflight.txt",
+      "scratch/dry-run.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "frontier-seed.json",
+        "kind": "config",
+        "path": "scratch/frontier-seed.json",
+        "source": "derived"
+      },
+      {
+        "name": "preflight.txt",
+        "kind": "file",
+        "path": "scratch/preflight.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dry-run.txt",
+        "kind": "file",
+        "path": "scratch/dry-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invocation The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Seeds At",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three earlier runs settled what to build, whether the plan holds together and whether each phase is planned deeply enough",
+    "created_at": "2026-11-27T06:31:17Z",
+    "last_save_at": "2026-11-27T07:15:10.986Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4e42a30683cff6dfc181a20ad9589bc5eee3aed368a9b004deac5d6de01f0f6e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "be4c30e9034135c9ac03ae281c2b71f21f2f8569b6b7d1081958f7544c64db66",
+      "plan.md": "535d12ed3e5152fe6a6a3752a9ea0f011194517ad7fa8d965bdd12040c39ecc5",
+      "tasks.md": "c6d2989c5c3617a010eeabed00baa298c4602cbaac19186642c0ac32f1616b34",
+      "decision-record.md": "9760513da420a571ee5522ebd530859593b8b3136b57db3ce4a77bd519ef9da4",
+      "implementation-summary.md": "af2902d04a07db4e9e302f573121e98faede5c5b0352957f953e02469888d5ee"
+    },
+    "last_active_at": null
+  }
+}

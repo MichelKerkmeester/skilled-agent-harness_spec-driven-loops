@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: OpenBot parity research for skilled bots"
-description: "Three research runs that answer what skilled bots must build for OpenBot parity and how deeply the build plan must be specified: the original parity research, the review of the 003 build plan, and the planning-depth check of each 003 phase."
+description: "Four research runs that answer what skilled bots must build for OpenBot parity, how deeply the build plan must be specified and which reference code each build phase starts from: the original parity research, the review of the 003 build plan, the planning-depth check of each 003 phase, and the reference evidence per phase."
 trigger_phrases:
   - "openbot parity research"
   - "research how close skilled bots can get"
@@ -46,14 +46,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-24 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | None |
 | **Parent Packet** | system-skilled-bots/002-openbot-parity-research |
 | **Predecessor** | None |
 | **Successor** | `003-openbot-parity-build` |
-| **Handoff Criteria** | Every 003 build phase is either planned deeply enough to build in one shot or carries the child phases it needs, and each child passes `validate.sh --strict` for its own folder |
+| **Handoff Criteria** | Every 003 build phase is either planned deeply enough to build in one shot or carries the child phases it needs, each phase has its reference evidence, and each child passes `validate.sh --strict` for its own folder |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,10 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran. OpenBot gives a team far more: conversations with a bot, routines, memory, skills, connected apps, a computer, approvals and an activity feed, plus a desktop app. The research that answers which of those parts a small team needs outgrew one run. The first run ranked the gaps and named the reference repo to borrow from for each one. The second reviewed the build plan those gaps produced and found what a single-phase reading cannot see. The third checks whether each build phase is planned deeply enough that a builder needs no design decision while building. Three runs whose evidence arrives at different times do not fit one packet.
+Skilled bots can run a `BOT.md` by hand, from a queue or on a launchd schedule, park a question for an answer and report what ran. OpenBot gives a team far more: conversations with a bot, routines, memory, skills, connected apps, a computer, approvals and an activity feed, plus a desktop app. The research that answers which of those parts a small team needs outgrew one run. The first run ranked the gaps and named the reference repo to borrow from for each one. The second reviewed the build plan those gaps produced and found what a single-phase reading cannot see. The third checks whether each build phase is planned deeply enough that a builder needs no design decision while building. The fourth collects, per build phase, the reference code a builder should lift or mirror and the pitfalls those repos already hit. Four runs whose evidence arrives at different times do not fit one packet.
 
 ### Purpose
-Answer what skilled bots must build for OpenBot parity, and how deeply the build plan must be specified, through one research run per child, so the build packet starts from a ranked, reviewed and depth-checked plan.
+Answer what skilled bots must build for OpenBot parity, and how deeply the build plan must be specified, through one research run per child, so the build packet starts from a ranked, reviewed and depth-checked plan with cited reference code for each phase.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -76,12 +76,13 @@ Answer what skilled bots must build for OpenBot parity, and how deeply the build
 ## 3. SCOPE
 
 ### In Scope
-- The three research runs, one child each: the original parity research, the review of the 003 build plan, and the planning-depth check of each 003 phase.
+- The four research runs, one child each: the original parity research, the review of the 003 build plan, the planning-depth check of each 003 phase, and the reference evidence for each 003 phase.
 - The eight-part comparison the first run produced, with OpenBot's behavior, our current state, the best reference repo, the smallest change, its size and its risk for each part.
 - The terminal verdict, the small-team model, the skip list with a reason per skipped part, and the reuse and licensing rule.
 - The ranked build order the build packet reads, including the two operator decisions that moved the terminal screen up and fixed it as a new MIT Rust app.
 - The review rounds 2 to 6 over the 003 build plan, the merged findings registry, and the repair order.
 - The planning-depth verdict per 003 phase, with the child phases and planning artifacts each phase needs.
+- The reference evidence per 003 phase and the ranked list of features the ten reference repos have that the plan and the skip list both miss.
 
 ### Out of Scope
 - Building any recommended change. The build lives in `../003-openbot-parity-build/`.
@@ -91,14 +92,15 @@ Answer what skilled bots must build for OpenBot parity, and how deeply the build
 - Enterprise, multi-tenant, Kubernetes, managed-upgrade and mobile parts of OpenBot. The first run puts each on the skip list with its reason.
 
 ### Files to Change
-Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the three runs write.
+Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the four runs write.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `001-openbot-parity-research/research/` | Create | 001 | The loop state, 52 iteration records, four lineage syntheses, `research.md` and `resource-map.md` |
 | `002-plan-review-research/research/` | Create | 002 | The review rounds 2 to 6, the merged findings registry and the synthesis |
 | `003-plan-depth-research/research/` | Create | 003 | The fan-out state, the lineage records and the per-phase depth findings |
-| `*/spec.md`, `*/plan.md`, `*/tasks.md` | Modify | 001, 002, 003 | Each child's own packet docs and continuity |
+| `004-reference-evidence-research/research/` | Create | 004 | The fan-out state, four lineage folders of 10 iterations each and the per-phase evidence synthesis |
+| `*/spec.md`, `*/plan.md`, `*/tasks.md` | Modify | 001, 002, 003, 004 | Each child's own packet docs and continuity |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,13 +110,14 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-The packet has three phases. Each is one research run over the OpenBot parity question, and each answers a different part of it.
+The packet has four phases. Each is one research run over the OpenBot parity question, and each answers a different part of it.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | `001-openbot-parity-research/` | The eight OpenBot bot parts compared against skilled bots and seven reference repos, the terminal verdict, the small-team model, the skip list, reuse and licensing, and the ranked build order | Complete |
 | 2 | `002-plan-review-research/` | The build-readiness review of the 003 build plan, review rounds 2 to 6, with the merged findings registry and the repair order | Complete |
 | 3 | `003-plan-depth-research/` | Whether each 003 build phase is planned deeply enough to build in one shot, with the child phases and planning artifacts each one needs | Complete |
+| 4 | `004-reference-evidence-research/` | The reference code to lift or mirror and the pitfalls to guard against for each of the fourteen 003 build phases, plus the ranked features the ten reference repos have that the plan and the skip list both miss | Pending |
 
 ### Phase Transition Rules
 
@@ -130,6 +133,8 @@ The packet has three phases. Each is one research run over the OpenBot parity qu
 | 001-openbot-parity-research | 002-plan-review-research | The ranked build order exists and the 003 build plan is written from it | `001-openbot-parity-research/research/research.md` §15 names the order, and the 003 parent's phase map carries one row per ranked slice |
 | 002-plan-review-research | 003-plan-depth-research | Every P0 and P1 the review raised is fixed in the 003 docs or recorded as a decision | The merged findings registry holds no open P0, and each P1 names its fix |
 | 003-plan-depth-research | `../003-openbot-parity-build/` | Every 003 phase is deep enough to build in one shot or carries the child phases it needs | The depth synthesis names a verdict per phase and ranks the expansion plan |
+| 003-plan-depth-research | 004-reference-evidence-research | The depth work orders are applied to the 003 docs, so the evidence run reads the plan a builder will read | The 003 packet holds its `contracts/` folder and fourteen phase folders |
+| 004-reference-evidence-research | `../003-openbot-parity-build/` | Each 003 phase has an evidence section with resolving citations | `004-reference-evidence-research/research/research.md` names each of the fourteen phase folders in a heading |
 <!-- /ANCHOR:phase-map -->
 
 ---

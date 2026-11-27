@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research",
+  "description": "Phase 4: reference-evidence-research",
+  "keywords": [
+    "phase",
+    "reference-evidence-research"
+  ],
+  "lastUpdated": "2026-11-27T07:15:00.972Z",
+  "specId": "004",
+  "folderSlug": "reference-evidence-research",
+  "parentChain": [
+    "system-skilled-bots",
+    "002-openbot-parity-research"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-11-26_08-14__prepared-the-40-iteration-expansive-deep-research.md"
+  ]
+}

@@ -1,0 +1,31 @@
+Preflight for the reference evidence research run, 2026-11-27.
+
+$ ls specs/system-skilled-bots/context/ | grep -v '\.log$' | wc -l
+      10
+$ command -v vibe pi
+vibe
+pi
+$ vibe --version
+vibe 3.1.2
+$ pi --version
+1.6.0
+$ grep -n -A1 'deepseek-flash' .vibe/config.toml
+19:alias = "deepseek-flash"
+20-thinking = "max"
+$ grep -n "deepseek-v4.1-flash-1017" .pi/models.json
+13:          "id": "deepseek-v4.1-flash-1017",
+
+Seed check, run against a scratch folder outside the packet:
+$ node .skilled/skills/system-deep-loop/runtime/scripts/frontier-admit.cjs seed --artifact-dir <scratch> --iteration 0 --input scratch/frontier-seed.json --max-iterations 10
+{"admitted":["F-1-001","F-1-002","F-1-003","F-1-004","F-1-005","F-1-006"],"pruned":[]}
+
+Provider probes, one trivial call each, from a scratch folder outside the checkout.
+A probe asks for one word and touches no file, so it carries no persona block.
+
+pi, model llmgateway/deepseek-v4.1-flash-1017, --thinking max, read-only tools:
+  stdout: OK
+  exit: 0 (the output text is the signal, not the exit code)
+
+vibe, model deepseek-flash, disposable VIBE_HOME with the repository config and rendered hooks:
+  stdout: OK
+  export.json: {"exit_code":0,"outcome":"finished"}

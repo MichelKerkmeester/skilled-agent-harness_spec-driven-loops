@@ -1,0 +1,145 @@
+Dry run of the fan-out, 2026-11-27. The runner built each lineage command and wrote nothing.
+
+$ PI_BLACKHOLE_PASSIVE=true node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec-folder <packet> --loop-type research --research-topic-file <tmp>/fanout-research-topic.txt --fanout-config-json-file <tmp>/fanout-config.json --base-artifact-dir <packet>/research --convergence-threshold 0.05 --stop-policy max-iterations --convergence-mode default --depth-mode expansive --preview
+
+fanout-config.json:
+{"executors":[{"kind":"cli-mistral-vibe","model":"deepseek-flash","label":"vibe","count":2,"iterations":10},{"kind":"cli-pi","model":"deepseek-v4.1-flash-1017","reasoningEffort":"max","label":"pi","count":2,"iterations":10}],"concurrency":4}
+
+stderr:
+[fanout-run] 4 lineages share 0 open seed nodes, so 4 lineages get no seed share
+
+result, prompts replaced by their digests:
+{
+ "status": "preview",
+ "topic_digest": "669c7983650f5b73fd7f3bcb28d683b4d3e7612a325aca42f0d515d5c23cfdf8",
+ "dry_run_halt": {
+  "type": "event",
+  "event": "dry_run_halt",
+  "mode": "research",
+  "boundary": "child-spawn",
+  "step": "step_fanout_spawn",
+  "timestamp": "2026-11-27T06:35:24.503Z",
+  "detail": "fanout-run --preview previewed 4 lineage(s) (vibe-1, vibe-2, pi-1, pi-2), spawned none and wrote nothing"
+ },
+ "lineages": [
+  {
+   "label": "vibe-1",
+   "kind": "cli-mistral-vibe",
+   "command": null,
+   "note": "cli-mistral-vibe writes its home and prompt file into the lineage directory while its command is built, so the preview does not build it"
+  },
+  {
+   "label": "vibe-2",
+   "kind": "cli-mistral-vibe",
+   "command": null,
+   "note": "cli-mistral-vibe writes its home and prompt file into the lineage directory while its command is built, so the preview does not build it"
+  },
+  {
+   "label": "pi-1",
+   "kind": "cli-pi",
+   "command": "pi",
+   "args": [
+    "-p",
+    "--offline",
+    "--model",
+    "llmgateway/deepseek-v4.1-flash-1017",
+    "--thinking",
+    "max",
+    "<prompt:d60b69c6a44daddee1f9a30c9c95381647343d379458b998d2b99487ca6ea927>"
+   ],
+   "stdin": "<input>",
+   "cwd": "/Users/michelkerkmeester/MEGA/Development/Skilled",
+   "session_id": "fanout-pi-1-1795761324453-7uyhj8",
+   "iterations": 10,
+   "frontier_scope": [],
+   "effective_config": {
+    "kind": "cli-pi",
+    "executable": "pi",
+    "executableVersion": "sha256:da0c6a49fe94aadc9765cc7afc6ba6b17e553eed0247d0385c160bc188f5cfbb",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "sandboxWidenedFrom": "workspace-write",
+    "permissionMode": null,
+    "sandboxEnforcement": "none",
+    "effortApplied": "flag",
+    "webSearch": "inherit"
+   },
+   "invocation_fingerprint": "inv:34e27e8eff28e4a05726115f2f67ef1dc01f1e56bc2ca5f1a10dcbd5798fcd59"
+  },
+  {
+   "label": "pi-2",
+   "kind": "cli-pi",
+   "command": "pi",
+   "args": [
+    "-p",
+    "--offline",
+    "--model",
+    "llmgateway/deepseek-v4.1-flash-1017",
+    "--thinking",
+    "max",
+    "<prompt:ae96ae4f9f6db6f50394bcdd4c6e3ed782e85f9429a0570ec0ee5ef5099c5012>"
+   ],
+   "stdin": "<input>",
+   "cwd": "/Users/michelkerkmeester/MEGA/Development/Skilled",
+   "session_id": "fanout-pi-2-1795761324453-7uyhj8",
+   "iterations": 10,
+   "frontier_scope": [],
+   "effective_config": {
+    "kind": "cli-pi",
+    "executable": "pi",
+    "executableVersion": "sha256:da0c6a49fe94aadc9765cc7afc6ba6b17e553eed0247d0385c160bc188f5cfbb",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "sandboxWidenedFrom": "workspace-write",
+    "permissionMode": null,
+    "sandboxEnforcement": "none",
+    "effortApplied": "flag",
+    "webSearch": "inherit"
+   },
+   "invocation_fingerprint": "inv:27688dee0293b667e0dd10aabb6ebf81636eca543f90b54d5863a5179d2cc03c"
+  }
+ ],
+ "aggregate_budget": {
+  "continue_allowed": true,
+  "stop_reasons": [],
+  "upper_bound": {
+   "max_aggregate_cost_units": 288,
+   "estimated_cost_units": 40,
+   "lineage_count": 4,
+   "per_lineage": [
+    {
+     "label": "vibe-1",
+     "base_cost_units": 10,
+     "estimated_cost_units": 60
+    },
+    {
+     "label": "vibe-2",
+     "base_cost_units": 10,
+     "estimated_cost_units": 60
+    },
+    {
+     "label": "pi-1",
+     "base_cost_units": 10,
+     "estimated_cost_units": 60
+    },
+    {
+     "label": "pi-2",
+     "base_cost_units": 10,
+     "estimated_cost_units": 60
+    }
+   ]
+  },
+  "units": {
+   "upper_bound.estimated_cost_units": "sum of every lineage's base_cost_units: one attempt each, the spend the aggregate cap gates on",
+   "upper_bound.per_lineage[].base_cost_units": "iterations x cost units per iteration for one attempt of this lineage",
+   "upper_bound.per_lineage[].estimated_cost_units": "base_cost_units x (retries + 1): the worst case if every retry runs; reported, never gated"
+  }
+ }
+}
+
+$ ls <packet>/research
+ls: No such file or directory
