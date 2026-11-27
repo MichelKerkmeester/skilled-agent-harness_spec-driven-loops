@@ -60,13 +60,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l | tr -d ' '` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
-- [ ] The AC-002 block in `acceptance-criteria.md` prints `frames=53 bad=0` then `panels-misaligned=0`.
-- [ ] The AC-003 block prints `29` then `0`, and the AC-004 block prints `7` then `2`.
-- [ ] The AC-005 block prints `13` then `13`, the AC-008 block prints `4`, and the AC-011 block prints `4` then `1`, so the answered row's outcome word is carried by the requirement, the criterion and both design documents.
-- [ ] The AC-006 block prints `0`, and the AC-009 block prints `5`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
-- [ ] The AC-007 block prints one line, which happens only when the operator approves the key map.
+- [x] `ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design | wc -l | tr -d ' '` prints 4, and the AC-001 block in `acceptance-criteria.md` prints `0` for unresolved pointers.
+- [x] The AC-002 block in `acceptance-criteria.md` prints `frames=53 bad=0` then `panels-misaligned=0`.
+- [x] The AC-003 block prints `29` then `0`, and the AC-004 block prints `7` then `2`.
+- [x] The AC-005 block prints `13` then `13`, the AC-008 block prints `4`, and the AC-011 block prints `4` then `1`, so the answered row's outcome word is carried by the requirement, the criterion and both design documents.
+- [x] The AC-006 block prints `0`, and the AC-009 block prints `5`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map --strict` prints `RESULT: PASSED`.
+- [x] The AC-007 block prints one line, which happens only when the operator approves the key map.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -90,7 +90,8 @@ and findings belong here.
 | `plan.md` | Done | Three phases, the testing strategy and the external orchestration section |
 | `tasks.md` | Done | 31 tasks in three phases, six waves, 15 checklist rows |
 | `acceptance-criteria.md` | Done | AC-001 to AC-011, each with a command block |
-| Operator approval | Pending | `design/key-map.md` section 6 reads `Unmet`. AC-007 is the packet's exit |
+| Operator approval | Done | `design/key-map.md` section 6 reads `Met`, dated 2026-11-26, covering the 29 bindings across six contexts. The source is row Q001 of `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md`. AC-007 prints one line |
+| Wave 6 checks | Done | Three sequential `cli-mistral-vibe` briefs on 2026-11-27: the approval row, the T028 repair and the read-only checks. Every check was rerun by the unit orchestrator and printed its expected output |
 
 ### Deviations and findings
 
@@ -110,4 +111,8 @@ and findings belong here.
 | AC-006 compares lines, not a licence banner | The block now compares every line longer than 30 characters in the seventeen cited reference files against the four documents with `comm -12`, and prints `0`, so a copied block without its header is caught. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | Frames 1 and 17 were redrawn | The sample set gained two `nightly-report` rows, so frame 1 and frame 17 were redrawn at both sizes with the title `Activity · 7 groups · 10 rows`, and the prose now separates the body row count from the list row count. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The prose rules were applied | Every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this child's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The prose pass broke T028 | The semicolon pass also split the awk program inside T028's verify command into `. Gsub(`, so awk failed with a syntax error and the check printed `0` while checking nothing. Wave 6 restored `; gsub(`. The repaired command prints `0` against `design/mockups.md` and `19` against an empty copy of it, so it now checks something. |
+| The approval source is the build packet's Q001 | The key map was approved in row Q001 of the build packet's `decision-record.md`, with the verbatim answer "Approve both (Recommended)" in its appendix. This packet's own `decision-record.md` has an unrelated Q001 about the Inbox tab count and gained no row, so `design/key-map.md` and `acceptance-criteria.md` name the build packet's file by full path. The trailing note in this packet's `decision-record.md` that promises a row is left as written. |
+| The reference folder reaches the build worktree by a link | `specs/system-skilled-bots/context` is gitignored, so a fresh build worktree lacks it and AC-001 would skip its 32 reference pointers while AC-006 would print `0` without reading a file. The build worktree gained an ignored link to the folder on 2026-11-27, and the final run of AC-001, AC-006 and CHK-003 read the real files. The link is not part of this packet's commit. |
+| Wave 6 wrote files | The wave table names wave 6 read-only, but T030 writes `design/key-map.md` and the T028 repair writes `tasks.md`. Both ran as their own one-change briefs on the wave's executor. |
 <!-- /ANCHOR:log -->

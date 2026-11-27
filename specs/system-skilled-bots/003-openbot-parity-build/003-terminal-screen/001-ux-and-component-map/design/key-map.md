@@ -128,13 +128,13 @@ The operator approves this map, and the approval names the key set it covers so 
 
 | Field | Value |
 |-------|-------|
-| **Approved** | Unmet |
-| **Approved by** | - |
-| **Approved on** | - |
-| **Key set approved** | - |
-| **Recorded in** | This table, `acceptance-criteria.md` AC-007, and a row in this packet's `decision-record.md` |
+| **Approved** | Met |
+| **Approved by** | The operator, who answered "Approve both (Recommended)" when asked to approve this terminal key map and the conversations key map delta [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/decision-record.md:37] |
+| **Approved on** | 2026-11-26 |
+| **Key set approved** | The 29 bindings in section 2 across the six contexts in section 1 |
+| **Recorded in** | This table, `acceptance-criteria.md` AC-007 and row Q001 of the build packet's `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md`. The verbatim answer is in that file's appendix |
 
-The parent's phase handoff names a `decision-record.md` in this folder, and this packet carries one. The operator's answer is recorded here, restated as AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation.
+The operator approved this map on 2026-11-26 in row Q001 of the build packet's `decision-record.md`, one answer that approved this terminal key map and the conversations key map delta together. This packet's own `decision-record.md` carries an unrelated Q001 about the Inbox tab count, so the source is named by its full path. A key added to section 2 after that date is outside this approval.
 
 ---
 

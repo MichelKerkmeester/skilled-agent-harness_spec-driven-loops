@@ -85,14 +85,14 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T024 Check every frame's height and width (`$D/mockups.md`). Verify: the frame check in Task Notation prints `frames=53 bad=0`, and the AC-002 block's border check prints `panels-misaligned=0`.
-- [ ] T025 Check every `SOURCE` pointer resolves (`$D/`). Verify: the second command of the AC-001 block in `acceptance-criteria.md` prints 0. When `specs/system-skilled-bots/context` is absent it also writes one `SKIP context-absent` line per skipped pointer to stderr.
-- [ ] T026 Check no reference source line is reproduced (`$D/`). Verify: the AC-006 block in `acceptance-criteria.md` prints `0`, so every line longer than 30 characters in the seventeen cited reference files is absent from the four documents.
-- [ ] T027 Check every component names at least one frame (`$D/component-inventory.md`). Verify: `awk '/^## 1\. THE INVENTORY/,/^## 2\./' $D/component-inventory.md | rg -c '^\| [0-9]+ \|.*\| [0-9]+(, [0-9]+)* \|$'` prints 13.
-- [ ] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5). Gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '` prints 0.
-- [ ] T029 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
-- [ ] T030 Record the approval row with its four fields (`$D/key-map.md`). Verify: `rg -c '^\| \*\*Approved\*\* \|' $D/key-map.md` prints 1.
-- [ ] T031 Check the answered row's outcome word is carried (`$P/spec.md`, `$P/acceptance-criteria.md`, `$D/component-inventory.md`, `$D/glyph-table.md`). Verify: `rg -l 'outcome word' $P/spec.md $P/acceptance-criteria.md $D/component-inventory.md $D/glyph-table.md | wc -l | tr -d ' '` prints 4.
+- [x] T024 Check every frame's height and width (`$D/mockups.md`). Verify: the frame check in Task Notation prints `frames=53 bad=0`, and the AC-002 block's border check prints `panels-misaligned=0`.
+- [x] T025 Check every `SOURCE` pointer resolves (`$D/`). Verify: the second command of the AC-001 block in `acceptance-criteria.md` prints 0. When `specs/system-skilled-bots/context` is absent it also writes one `SKIP context-absent` line per skipped pointer to stderr.
+- [x] T026 Check no reference source line is reproduced (`$D/`). Verify: the AC-006 block in `acceptance-criteria.md` prints `0`, so every line longer than 30 characters in the seventeen cited reference files is absent from the four documents.
+- [x] T027 Check every component names at least one frame (`$D/component-inventory.md`). Verify: `awk '/^## 1\. THE INVENTORY/,/^## 2\./' $D/component-inventory.md | rg -c '^\| [0-9]+ \|.*\| [0-9]+(, [0-9]+)* \|$'` prints 13.
+- [x] T028 Check every drawn label in the key map appears in a frame (`$D/key-map.md`). Verify: `awk -F'|' '/^## 2\. THE KEY TABLE/,/^## 3\./' $D/key-map.md | rg '^\| `' | awk -F'|' '{gsub(/^ +| +$/,"",$5); gsub(/`/,"",$5); print $5}' | sort -u | while IFS= read -r l; do rg -qF "$l" $D/mockups.md || echo "MISSING $l"; done | wc -l | tr -d ' '` prints 0.
+- [x] T029 Run the validator (`$P`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $P --strict` prints `RESULT: PASSED`.
+- [x] T030 Record the approval row with its four fields (`$D/key-map.md`). Verify: `rg -c '^\| \*\*Approved\*\* \|' $D/key-map.md` prints 1.
+- [x] T031 Check the answered row's outcome word is carried (`$P/spec.md`, `$P/acceptance-criteria.md`, `$D/component-inventory.md`, `$D/glyph-table.md`). Verify: `rg -l 'outcome word' $P/spec.md $P/acceptance-criteria.md $D/component-inventory.md $D/glyph-table.md | wc -l | tr -d ' '` prints 4.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -166,9 +166,9 @@ The roster, the effort policy and the reasoning behind each row are in `plan.md`
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -207,9 +207,9 @@ A blocked task is `[B]` and names the command that blocks it. A `[P0]` check tha
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] The requirements are documented in `spec.md`. `rg -c '^\| REQ-0' $P/spec.md` prints 11.
-- [ ] CHK-002 [P0] The technical approach is defined in `plan.md`. `rg -n '^## External orchestration' $P/plan.md` prints one line.
-- [ ] CHK-003 [P1] Every dependency is available. `test -f specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs` exits 0.
+- [x] CHK-001 [P0] The requirements are documented in `spec.md`. `rg -c '^\| REQ-0' $P/spec.md` prints 11.
+- [x] CHK-002 [P0] The technical approach is defined in `plan.md`. `rg -n '^## External orchestration' $P/plan.md` prints one line.
+- [x] CHK-003 [P1] Every dependency is available. `test -f specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs` exits 0.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -219,9 +219,9 @@ A blocked task is `[B]` and names the command that blocks it. A `[P0]` check tha
 
 This packet writes no code, so these checks read the documents instead.
 
-- [ ] CHK-010 [P0] Every fenced frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is exactly 7 lines and no line wider than 30. The frame check in Task Notation prints `frames=53 bad=0`.
-- [ ] CHK-011 [P0] No document this packet authors carries a template placeholder. `rg -c 'FIL[L]:|YOUR_VALUE_HER[E]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md $D/*.md` prints nothing and exits 1.
-- [ ] CHK-012 [P1] Every document carries the template-source marker its template names. `rg -c 'SPECKIT_TEMPLATE_SOURC[E]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md` prints 1 for each.
+- [x] CHK-010 [P0] Every fenced frame is exactly 24 or 40 lines and no line is wider than its size, and the too-small frame is exactly 7 lines and no line wider than 30. The frame check in Task Notation prints `frames=53 bad=0`.
+- [x] CHK-011 [P0] No document this packet authors carries a template placeholder. `rg -c 'FIL[L]:|YOUR_VALUE_HER[E]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md $D/*.md` prints nothing and exits 1.
+- [x] CHK-012 [P1] Every document carries the template-source marker its template names. `rg -c 'SPECKIT_TEMPLATE_SOURC[E]' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md` prints 1 for each.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -229,9 +229,9 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every acceptance criterion's command runs here and prints its expected output. `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 11.
-- [ ] CHK-021 [P0] Every `SOURCE` pointer resolves. T025 prints 0.
-- [ ] CHK-022 [P1] Every drawn label in the key map appears in a frame. T028 prints 0.
+- [x] CHK-020 [P0] Every acceptance criterion's command runs here and prints its expected output. `rg -c '^\| AC-0' $P/acceptance-criteria.md` prints 11.
+- [x] CHK-021 [P0] Every `SOURCE` pointer resolves. T025 prints 0.
+- [x] CHK-022 [P1] Every drawn label in the key map appears in a frame. T028 prints 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -239,8 +239,8 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No document reproduces a line of the GPL source it takes its design from. `rg -c 'GNU GENERAL PUBLIC LICENSE' $D/` prints nothing and exits 1.
-- [ ] CHK-031 [P1] No document this packet authors carries a credential, a token or an absolute home path. `rg -c '/User[s]/|gh[p]_|AKIA[0-9A-Z]{16}' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md $D/*.md` prints nothing and exits 1. The continuity record `implementation-summary.md` is left out because its `workspace:` field records the checkout path by design.
+- [x] CHK-030 [P0] No document reproduces a line of the GPL source it takes its design from. `rg -c 'GNU GENERAL PUBLIC LICENSE' $D/` prints nothing and exits 1.
+- [x] CHK-031 [P1] No document this packet authors carries a credential, a token or an absolute home path. `rg -c '/User[s]/|gh[p]_|AKIA[0-9A-Z]{16}' $P/spec.md $P/plan.md $P/tasks.md $P/acceptance-criteria.md $P/goal.md $D/*.md` prints nothing and exits 1. The continuity record `implementation-summary.md` is left out because its `workspace:` field records the checkout path by design.
 <!-- /ANCHOR:security -->
 
 ---
@@ -248,8 +248,8 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` each name all four design documents. `rg -o 'design/(mockups|key-map|glyph-table|component-inventory)\.md' $P/spec.md | sort -u | wc -l | tr -d ' '` prints 4, and the same command over `plan.md` and `tasks.md` prints 4 each.
-- [ ] CHK-041 [P2] `goal.md` names the parent goal it is bound to. `rg -n '003-terminal-screen/goal.md' $P/goal.md` prints one line.
+- [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` each name all four design documents. `rg -o 'design/(mockups|key-map|glyph-table|component-inventory)\.md' $P/spec.md | sort -u | wc -l | tr -d ' '` prints 4, and the same command over `plan.md` and `tasks.md` prints 4 each.
+- [x] CHK-041 [P2] `goal.md` names the parent goal it is bound to. `rg -n '003-terminal-screen/goal.md' $P/goal.md` prints one line.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -257,8 +257,8 @@ This packet writes no code, so these checks read the documents instead.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] The four design documents live in `design/` and nothing else does. `ls $D | wc -l | tr -d ' '` prints 4.
-- [ ] CHK-051 [P1] No temporary file is left in the packet. `ls $P | rg -c 'tmp|\.bak|~$'` prints nothing and exits 1.
+- [x] CHK-050 [P1] The four design documents live in `design/` and nothing else does. `ls $D | wc -l | tr -d ' '` prints 4.
+- [x] CHK-051 [P1] No temporary file is left in the packet. `ls $P | rg -c 'tmp|\.bak|~$'` prints nothing and exits 1.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -268,9 +268,9 @@ This packet writes no code, so these checks read the documents instead.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 0/7 |
-| P1 Items | 7 | 0/7 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 7 | 7/7 |
+| P1 Items | 7 | 7/7 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-25
+**Verification Date**: 2026-11-27
 <!-- /ANCHOR:summary -->
