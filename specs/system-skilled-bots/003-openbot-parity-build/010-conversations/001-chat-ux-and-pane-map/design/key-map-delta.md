@@ -115,11 +115,13 @@ The screen's key map is the operator's to approve, and its approval names the ke
 
 | Field | Value |
 |-------|-------|
-| **Approved** | Unmet |
-| **Approved by** | - |
-| **Approved on** | - |
-| **Key set approved** | - |
-| **Recorded in** | This table and `acceptance-criteria.md` AC-008 |
+| **Approved** | Met |
+| **Approved by** | The operator, who answered "Approve both (Recommended)" when asked to approve the terminal key map and this conversations key map delta [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/decision-record.md:37] |
+| **Approved on** | 2026-11-26 |
+| **Key set approved** | The 19 key rows in section 2: six in `main` on the Chat tab and 13 in the `chat` context that section 1 adds |
+| **Recorded in** | This table, `acceptance-criteria.md` AC-008 and row Q001 of the build packet's `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md`. The verbatim answer is in that file's appendix |
+
+The operator approved this delta on 2026-11-26 in row Q001 of the build packet's `decision-record.md`, one answer that approved the terminal key map and this delta together. This packet has no `decision-record.md` of its own, so the source is named by its full path. A key added to section 2 after that date is outside this approval.
 
 ---
 

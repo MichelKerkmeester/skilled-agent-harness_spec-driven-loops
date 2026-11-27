@@ -55,12 +55,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The frame check in `tasks.md` prints `frames=26 bad=0`.
-- [ ] The label check in `tasks.md` prints `0`, and T014 prints 67.
-- [ ] The payload check in `tasks.md` prints `1 4 9`.
-- [ ] The `node -e` in `tasks.md` T011 prints `26846 35152 31968 43142`.
-- [ ] `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/key-map-delta.md` prints one line.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map --strict` prints `RESULT: PASSED`.
+- [x] The frame check in `tasks.md` prints `frames=26 bad=0`.
+- [x] The label check in `tasks.md` prints `0`, and T014 prints 67.
+- [x] The payload check in `tasks.md` prints `1 4 9`.
+- [x] The `node -e` in `tasks.md` T011 prints `26846 35152 31968 43142`.
+- [x] `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/key-map-delta.md` prints one line.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,7 +77,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Seven design documents and the sample | Written | `ls design` lists them, and the frame check printed `frames=26 bad=0` on 2026-11-26 |
-| Operator approval of the key map delta | Pending | `design/key-map-delta.md` section 6 reads `Unmet` |
+| Operator approval of the key map delta | Done | `design/key-map-delta.md` section 6 reads `Met`, dated 2026-11-26, covering the 19 key rows of section 2. The source is row Q001 of `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md`. AC-008 prints one line |
+| Build checks | Done | On 2026-11-27 three `cli-mistral-vibe` runs at `deepseek-flash`: the wave 0 setup checks, then the approval row and the T002 count repair as two parallel one-change briefs. Each `export.json` read `exit_code` 0 and `outcome` `finished`. The unit orchestrator reran every verify command itself in the build worktree |
 
 ### Deviations and findings
 
@@ -92,4 +93,10 @@ and findings belong here.
 | The source check compares lines | O-011 offered a line comparison in place of a keyword grep. It was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: T015 compares every source line over 30 characters against the design. |
 | The arithmetic left T011 | O-012 offered dropping the constant arithmetic or keeping it as a note. The first was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: T011 greps the four derived numbers out of `prompt-boundary.md`. |
 | Serial commas dropped | O-022. The comma before the last list item was dropped in this child's prose by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| No rewrite for waves 1 and 2 | The wave table names writers for T004 to T011, but the seven documents and the sample were already written and every verify printed its expected value on 2026-11-27. No write brief was dispatched for them, so nothing written and checked on 2026-11-26 was redrawn. |
+| The approval row was a write outside the wave table | T006 owns `design/key-map-delta.md`, and section 6 needed one edit to record Q001. It ran as its own one-change brief on the wave's executor, beside the T002 repair. |
+| T002's count was stale | `contracts/verification.md` landed at 07:32 on 2026-11-26, after T002 was written with 9, so `ls contracts/*.md \| wc -l` prints 10. T002 and the Definition of Ready in `plan.md` now say ten. The nine files the count first meant are still there. |
+| Criterion 4 names a command T011 dropped | O-012 swapped T011's `node -e` for an `rg -o` that proves the four numbers appear, not that they add up. On 2026-11-27 a `node -e` over the section 3 table of `design/prompt-boundary.md` recomputed `26846 35152 31968 43142`, which is what the criterion asks. The criterion text is left as written. |
+| The Verification Summary totals were wrong | The table read 10 P0 and 11 P1 items. The checklist lines carry 8 P0, 10 P1 and 1 P2, and the table now says so. |
+| The zero-output checks were shown to fail | The label pipeline up to `sort -u` lists 15 real labels, so its `0` is not an empty-string match. T015 printed the line when one `composer.rs` line was appended to a scratch copy of the design. |
 <!-- /ANCHOR:log -->
