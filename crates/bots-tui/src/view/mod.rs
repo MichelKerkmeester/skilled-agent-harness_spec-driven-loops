@@ -1,6 +1,7 @@
 pub mod banner;
 pub mod footer;
 pub mod header;
+pub mod overlay;
 pub mod panes;
 pub mod tabs;
 
@@ -101,7 +102,7 @@ pub fn window_start(selected: usize, scroll: usize, visible: usize) -> usize {
     }
 }
 
-/// Draws the shell bands and the palette when one is open.
+/// Draws the shell bands, and the overlay or the palette when one is open.
 ///
 /// Nothing is drawn until the first resize arrives, so the frame before the loop knows its size
 /// stays empty.
@@ -130,6 +131,8 @@ pub fn draw(frame: &mut Frame, state: &State, opts: &Options) {
     // The pane draws before the palette, so an open palette covers the body.
     panes::draw(frame, b.body, state, &theme);
     banner::draw(frame, b.banner, state, &theme);
+    // The overlay draws after the pane, so it covers the body.
+    overlay::draw(frame, b.body, state, &theme);
     if let Some(palette) = state.palette.as_ref() {
         draw_palette(frame, b.body, palette, &theme);
     }

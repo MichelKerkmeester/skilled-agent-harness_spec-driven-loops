@@ -125,7 +125,9 @@ The first two blocks are the gap as it stood when this phase was measured: `answ
 | `crates/bots-tui/src/state.rs` | Modify | `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer, and the lock that `Sending` is |
 | `crates/bots-tui/src/keys.rs` | Modify | The overlay bindings and the label each one draws: `y`, `n`, `1` to `9`, `t`, `Esc`, `Ctrl+C` and the `Typing` phase that pauses them |
 | `crates/bots-tui/tests/answer_flow.rs` | Create | The argv log, the digit, the Esc close, the closed input, the free text, the typing pause, the leading `y`, the lock, the refusal, the gone item, the expired item, Ctrl+C, the unbound key, the refresh during sending, the reopen while in flight, the blank line, the gone-class refusal and the dash-led text |
+| `crates/bots-tui/tests/answer_flow/*.rs` | Create | The suite's shared flow in `support.rs` and its four groups, `writes.rs`, `no_write.rs`, `lock.rs` and `refusal.rs`, each declared by path from `answer_flow.rs` so four workers could write at once |
 | `crates/bots-tui/tests/end_to_end.rs` | Create | The scripted loop from the fixture to frame 1 |
+| `crates/bots-tui/src/cli.rs` | Modify | Added during the build: a refused answer's line is the runtime's own first stderr line, or `bots-ui: answer exited <code>` when stderr is empty, as `design/state-machines.md` section 4.2 fixes. 002 had wrapped it as `bots: answer exited <code>: <reason>`, the shape its contract fixes for reads only |
 <!-- /ANCHOR:scope -->
 
 ---

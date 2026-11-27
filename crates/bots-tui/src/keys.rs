@@ -446,8 +446,104 @@ pub const LIST_ROWS: &[Row] = &[
     },
 ];
 
-/// The overlay's rows, filled by the answer-flow work.
-pub const OVERLAY_ROWS: &[Row] = &[];
+/// The overlay's rows: the shortcut keys, the typed line and the two ways out.
+pub const OVERLAY_ROWS: &[Row] = &[
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Char('t')),
+        when: &[
+            When::NoOptions,
+            When::NotTyping,
+            When::NotGone,
+            When::NotSending,
+        ],
+        action: Action::EnterText,
+        label: "t type",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Char('n')),
+        when: &[When::NotTyping, When::NotGone, When::NotSending],
+        action: Action::Deny,
+        label: "n deny",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Char('y')),
+        when: &[
+            When::NoOptions,
+            When::NotTyping,
+            When::NotGone,
+            When::NotSending,
+        ],
+        action: Action::ApproveOnce,
+        label: "y approve once",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Digit,
+        when: &[
+            When::Options,
+            When::NotTyping,
+            When::NotGone,
+            When::NotSending,
+        ],
+        action: Action::Pick(0),
+        label: "1-9 pick",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Printable,
+        when: &[When::Typing],
+        action: Action::TypeChar(' '),
+        label: "type answer",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[When::Typing],
+        action: Action::SendText,
+        label: "Enter send",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Backspace),
+        when: &[When::Typing],
+        action: Action::DeleteChar,
+        label: "Bksp delete",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Esc),
+        when: &[],
+        action: Action::Close,
+        label: "Esc close",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[],
+        action: Action::Close,
+        label: "Ctrl+C close",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Overlay,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+];
 
 /// Every row of the key map, in owner order.
 pub fn rows() -> impl Iterator<Item = &'static Row> {
@@ -1182,5 +1278,115 @@ mod tests {
             ),
             before
         );
+    }
+
+    /// Every overlay row binds in the overlay context and carries a label the footer can draw.
+    #[test]
+    fn overlay_bindings_carry_labels() {
+        assert_eq!(OVERLAY_ROWS.len(), 10);
+        for row in OVERLAY_ROWS {
+            let key = row.key;
+            assert_eq!(row.context, Context::Overlay, "row {key:?}");
+            assert!(!row.label.is_empty(), "row {key:?} has no label");
+        }
+    }
+
+    /// Text mode pauses every single-key row, so a typed line may begin with a shortcut letter.
+    #[test]
+    fn text_mode_pauses_every_single_key_row() {
+        let cond = Cond {
+            typing: true,
+            ..Cond::default()
+        };
+        for row in OVERLAY_ROWS {
+            if matches!(row.key, KeyMatch::Exact(Key::Char(_)) | KeyMatch::Digit) {
+                let key = row.key;
+                assert!(!row_holds(row, &cond), "row {key:?} holds while typing");
+            }
+        }
+        let labels: Vec<&'static str> = OVERLAY_ROWS
+            .iter()
+            .filter(|row| matches!(row.key, KeyMatch::Exact(_)))
+            .filter(|row| row_holds(row, &cond))
+            .map(|row| row.label)
+            .collect();
+        assert_eq!(
+            labels,
+            [
+                "Enter send",
+                "Bksp delete",
+                "Esc close",
+                "Ctrl+C close",
+                "Ctrl+D exit"
+            ]
+        );
+        for c in ['t', 'y', 'n', '1'] {
+            assert_eq!(
+                resolve(&[Context::Overlay], &Key::Char(c), &cond),
+                Some(Action::TypeChar(c))
+            );
+        }
+    }
+
+    /// The overlay's rows follow its phase: shortcuts, options, sending and gone.
+    #[test]
+    fn overlay_rows_follow_the_phase() {
+        let stack = [Context::Overlay];
+        let shortcut = Cond::default();
+        assert_eq!(
+            resolve(&stack, &Key::Char('t'), &shortcut),
+            Some(Action::EnterText)
+        );
+        assert_eq!(
+            resolve(&stack, &Key::Char('n'), &shortcut),
+            Some(Action::Deny)
+        );
+        assert_eq!(
+            resolve(&stack, &Key::Char('y'), &shortcut),
+            Some(Action::ApproveOnce)
+        );
+        assert_eq!(resolve(&stack, &Key::Char('1'), &shortcut), None);
+        assert_eq!(resolve(&stack, &Key::Enter, &shortcut), None);
+        assert_eq!(resolve(&stack, &Key::Char('x'), &shortcut), None);
+        assert_eq!(resolve(&stack, &Key::Esc, &shortcut), Some(Action::Close));
+        assert_eq!(
+            resolve(&stack, &Key::Ctrl('c'), &shortcut),
+            Some(Action::Close)
+        );
+        assert_eq!(
+            resolve(&stack, &Key::Ctrl('d'), &shortcut),
+            Some(Action::Quit)
+        );
+
+        let options = Cond {
+            has_options: true,
+            ..Cond::default()
+        };
+        assert_eq!(
+            resolve(&stack, &Key::Char('3'), &options),
+            Some(Action::Pick(3))
+        );
+        assert_eq!(
+            resolve(&stack, &Key::Char('n'), &options),
+            Some(Action::Deny)
+        );
+        assert_eq!(resolve(&stack, &Key::Char('y'), &options), None);
+        assert_eq!(resolve(&stack, &Key::Char('t'), &options), None);
+
+        for cond in [
+            Cond {
+                sending: true,
+                ..Cond::default()
+            },
+            Cond {
+                gone: true,
+                ..Cond::default()
+            },
+        ] {
+            for c in ['t', 'n', 'y', '1'] {
+                assert_eq!(resolve(&stack, &Key::Char(c), &cond), None);
+            }
+            assert_eq!(resolve(&stack, &Key::Esc, &cond), Some(Action::Close));
+        }
     }
 }
