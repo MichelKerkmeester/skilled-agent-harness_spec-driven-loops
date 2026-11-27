@@ -41,9 +41,9 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm 002's crate and 003's shell build, so the body this child fills exists (`$CRATE`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
-- [ ] T002 Confirm the fixture carries the four payloads and the row keys the panes read (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups[0].rows[0] | has("botId") and has("identity") and has("state") and has("at") and has("actor") and has("runId") and has("schedule")'` exits 0, `bash $CRATE/tests/fixtures/bots inbox --json | jq -e '.items[0] | has("id") and has("botId") and has("question") and has("state") and has("options") and has("expiresAt")'` exits 0, and `bash $CRATE/tests/fixtures/bots routines --json | jq -e 'has("version") and has("routines")'` exits 0.
-- [ ] T003 Confirm the design references resolve and record the row shapes they fix (`specs/system-skilled-bots/context/`). Verify: `rg -n 'ACTIVITY_GROUPS' specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` prints the seven ids, `rg -n 'nothing waiting on you' specs/system-skilled-bots/context/OpenBot-main/app/src/components/needs-you/board.tsx` prints the empty inbox line, and `rg -n 'EMPTY_BODY' specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx` prints the empty routines line.
+- [x] T001 Confirm 002's crate and 003's shell build, so the body this child fills exists (`$CRATE`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
+- [x] T002 Confirm the fixture carries the four payloads and the row keys the panes read (`$CRATE/tests/fixtures/bots`). Verify: `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups[0].rows[0] | has("botId") and has("identity") and has("state") and has("at") and has("actor") and has("runId") and has("schedule")'` exits 0, `bash $CRATE/tests/fixtures/bots inbox --json | jq -e '.items[0] | has("id") and has("botId") and has("question") and has("state") and has("options") and has("expiresAt")'` exits 0, and `bash $CRATE/tests/fixtures/bots routines --json | jq -e 'has("version") and has("routines")'` exits 0.
+- [x] T003 Confirm the design references resolve and record the row shapes they fix (`specs/system-skilled-bots/context/`). Verify: `rg -n 'ACTIVITY_GROUPS' specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` prints the seven ids, `rg -n 'nothing waiting on you' specs/system-skilled-bots/context/OpenBot-main/app/src/components/needs-you/board.tsx` prints the empty inbox line, and `rg -n 'EMPTY_BODY' specs/system-skilled-bots/context/OpenBot-main/app/src/components/routines/routines-list.tsx` prints the empty routines line.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -51,22 +51,22 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Write the display-width clip, so a long question cannot push the footer off screen. A cut string ends with `…` inside the width, or with `...` under `--ascii`, and the cut never splits a double-width cell. Then declare `mod panes;` in the view root so the module compiles from this wave on (`$CRATE/src/view/panes.rs`, `$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`.
-- [ ] T005 Draw each row's state through the `marker(state, glyphs)` function `theme.rs` owns, and prove the ASCII column reaches the buffer, opening `tests/panes.rs` with that one test so the target exists from this wave on (`$CRATE/src/view/panes.rs`, `$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
-- [ ] T006 Write the activity pane body: the groups in payload order with their titles, each row with the marker `theme::marker` returns, its label and its bot id, and a group with no rows left out (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- activity` prints `test result: ok` and names `activity_groups_draw_in_payload_order`, and `-- markers` prints `test result: ok` and names `scheduled_recurring_and_unknown_carry_their_own_glyph`.
-- [ ] T007 Write the inbox pane body: open items first, then expired ones dimmed and carrying no answer key, each with its bot id and its question. An open item draws `!` in the gutter and the word `open`, an expired one draws no glyph and the word `expired` and an answered one draws a blank gutter and its outcome word dimmed, left out of the title's open count (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `expired_item_draws_dimmed_without_answer_key` and `answered_row_draws_its_outcome_word`.
-- [ ] T008 Write the routines pane body: the bot id, the four-part routine sentence and the state, with an empty line that says what a routine is (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- routines` prints `test result: ok` and names `routine_row_draws_bot_id_sentence_and_state` and `routines_empty_line_says_what_a_routine_is`.
-- [ ] T009 Write the chat placeholder: one line naming phase 010 and `bots chat`, holding no state (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- chat` prints `test result: ok` and names `chat_placeholder_names_phase_010`.
-- [ ] T010 Write the five state lines: loading, empty, rows, error and stale, with the error keeping the rows of the last successful read and the stale state drawing the label `stale_label` returns from 003's `view/header.rs` (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- states` prints `test result: ok` and names `loading_draws_a_named_line` and `error_keeps_rows_and_sets_stale`.
-- [ ] T011 Write the wide-layout detail column: the selected row's detail as a right column at 120 columns or wider, one column below that, drawing a grant's kind and rung only when the item carries them (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- wide` prints `test result: ok` and names `detail_draws_as_a_right_column_at_120`.
-- [ ] T012 Add the `list` rows to `keys.rs` - Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only - and the reducer arms `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row (`$CRATE/src/keys.rs`, `$CRATE/src/state.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`.
-- [ ] T013 Route the body to the active pane in the view root T004 already declares `mod panes;` in (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
-- [ ] T023 Draw the pending-approval banner row from the open item count and the inbox tab key label, and declare `mod banner;` in the view root beside `mod panes;` with the banner slot call (`$CRATE/src/view/banner.rs`, `$CRATE/src/view/mod.rs`). The row is this child's because the frames that hold an open item draw it, so the snapshot table below does not wait on 005. Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`.
-- [ ] T014 Write the snapshot table: one row per pane and state naming the frame heading and the fixture payload, each frame loaded from `$CRATE/design/mockups.md` through 002's `tests/common/frames.rs` and compared cell for cell at 80x24 and 120x40 (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, sixteen per size.
-- [ ] T015 Write the reorder test: two polls with the rows reversed keep the selection on the same row key, and a selection whose item leaves the payload falls to the nearest surviving row (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
-- [ ] T016 Write the 2,000-row count test: 2,000 activity rows at 120x40 visit at most the body height's rows, read from the count the draw returns, and keep the 16 ms timing as an ignored test the operator runs locally (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`, and `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget --ignored` names `two_thousand_rows_draw_under_16ms`.
-- [ ] T017 Write the sanitizer test at the pane boundary: a bot id carrying `\u{1b}[2J` draws as `?[2J` with no control byte in the buffer (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
-- [ ] T024 Write the wide-character clip test: an inbox question with an emoji and a combining mark at the clip column, drawn at 80x24, does not panic, leaves no half of a double-width cell in the buffer and ends with `…` (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell`.
+- [x] T004 Write the display-width clip, so a long question cannot push the footer off screen. A cut string ends with `…` inside the width, or with `...` under `--ascii`, and the cut never splits a double-width cell. Then declare `mod panes;` in the view root so the module compiles from this wave on (`$CRATE/src/view/panes.rs`, `$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`.
+- [x] T005 Draw each row's state through the `marker(state, glyphs)` function `theme.rs` owns, and prove the ASCII column reaches the buffer, opening `tests/panes.rs` with that one test so the target exists from this wave on (`$CRATE/src/view/panes.rs`, `$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
+- [x] T006 Write the activity pane body: the groups in payload order with their titles, each row with the marker `theme::marker` returns, its label and its bot id, and a group with no rows left out (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- activity` prints `test result: ok` and names `activity_groups_draw_in_payload_order`, and `-- markers` prints `test result: ok` and names `scheduled_recurring_and_unknown_carry_their_own_glyph`.
+- [x] T007 Write the inbox pane body: open items first, then expired ones dimmed and carrying no answer key, each with its bot id and its question. An open item draws `!` in the gutter and the word `open`, an expired one draws no glyph and the word `expired` and an answered one draws a blank gutter and its outcome word dimmed, left out of the title's open count (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `expired_item_draws_dimmed_without_answer_key` and `answered_row_draws_its_outcome_word`.
+- [x] T008 Write the routines pane body: the bot id, the four-part routine sentence and the state, with an empty line that says what a routine is (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- routines` prints `test result: ok` and names `routine_row_draws_bot_id_sentence_and_state` and `routines_empty_line_says_what_a_routine_is`.
+- [x] T009 Write the chat placeholder: one line naming phase 010 and `bots chat`, holding no state (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- chat` prints `test result: ok` and names `chat_placeholder_names_phase_010`.
+- [x] T010 Write the five state lines: loading, empty, rows, error and stale, with the error keeping the rows of the last successful read and the stale state drawing the label `stale_label` returns from 003's `view/header.rs` (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- states` prints `test result: ok` and names `loading_draws_a_named_line` and `error_keeps_rows_and_sets_stale`.
+- [x] T011 Write the wide-layout detail column: the selected row's detail as a right column at 120 columns or wider, one column below that, drawing a grant's kind and rung only when the item carries them (`$CRATE/src/view/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- wide` prints `test result: ok` and names `detail_draws_as_a_right_column_at_120`.
+- [x] T012 Add the `list` rows to `keys.rs` - Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only - and the reducer arms `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row (`$CRATE/src/keys.rs`, `$CRATE/src/state.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`.
+- [x] T013 Route the body to the active pane in the view root T004 already declares `mod panes;` in (`$CRATE/src/view/mod.rs`). Verify: `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 and `cargo test --manifest-path $CRATE/Cargo.toml --test render_keys` prints `test result: ok`.
+- [x] T023 Draw the pending-approval banner row from the open item count and the inbox tab key label, and declare `mod banner;` in the view root beside `mod panes;` with the banner slot call (`$CRATE/src/view/banner.rs`, `$CRATE/src/view/mod.rs`). The row is this child's because the frames that hold an open item draw it, so the snapshot table below does not wait on 005. Verify: `cargo test --manifest-path $CRATE/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none`.
+- [x] T014 Write the snapshot table: one row per pane and state naming the frame heading and the fixture payload, each frame loaded from `$CRATE/design/mockups.md` through 002's `tests/common/frames.rs` and compared cell for cell at 80x24 and 120x40 (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- snapshot` prints `test result: ok` and the test names 32 cases, sixteen per size.
+- [x] T015 Write the reorder test: two polls with the rows reversed keep the selection on the same row key, and a selection whose item leaves the payload falls to the nearest surviving row (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
+- [x] T016 Write the 2,000-row count test: 2,000 activity rows at 120x40 visit at most the body height's rows, read from the count the draw returns, and keep the 16 ms timing as an ignored test the operator runs locally (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`, and `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget --ignored` names `two_thousand_rows_draw_under_16ms`.
+- [x] T017 Write the sanitizer test at the pane boundary: a bot id carrying `\u{1b}[2J` draws as `?[2J` with no control byte in the buffer (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
+- [x] T024 Write the wide-character clip test: an inbox question with an emoji and a combining mark at the clip column, drawn at 80x24, does not panic, leaves no half of a double-width cell in the buffer and ends with `…` (`$CRATE/tests/panes.rs`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,11 +74,11 @@ Every `cargo` command names its manifest, so it runs from the repository root an
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T018 Run the formatter check (`$CRATE`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0.
-- [ ] T019 Run the linter with warnings denied (`$CRATE`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [ ] T020 Run the crate suite (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
-- [ ] T021 Prove no openhuman code was copied and no snapshot crate was added (`$CRATE`), and record the by-eye comparison the clean-room rule in `plan.md` requires. Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, `rg -c 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'insta' $CRATE/Cargo.toml` prints nothing.
-- [ ] T022 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
+- [x] T018 Run the formatter check (`$CRATE`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0.
+- [x] T019 Run the linter with warnings denied (`$CRATE`). Verify: `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] T020 Run the crate suite (`$CRATE`). Verify: `cargo test --manifest-path $CRATE/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
+- [x] T021 Prove no openhuman code was copied and no snapshot crate was added (`$CRATE`), and record the by-eye comparison the clean-room rule in `plan.md` requires. Verify: `rg -n 'openhuman' $CRATE/src` prints only comment lines, `rg -c 'GNU GENERAL PUBLIC LICENSE' $CRATE/src $CRATE/Cargo.toml $CRATE/Cargo.lock` prints nothing, and `rg -n 'insta' $CRATE/Cargo.toml` prints nothing.
+- [x] T022 Validate the packet (`specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -155,10 +155,10 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok`, including the 32 snapshots and the 2,000-row count
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed. The plan names no manual step, so every check ran without a tty
+- [x] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok`, including the 32 snapshots and the 2,000-row count. Observed 2026-11-27: `test result: ok. 53 passed; 0 failed; 1 ignored`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -191,9 +191,9 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 before the first pane task starts.
-- [ ] CHK-002 [P0] `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups'` exits 0, so the activity pane has a payload.
-- [ ] CHK-003 [P1] `rg -n 'Remote' $CRATE/src/state.rs` prints the wrapper the panes draw from.
+- [x] CHK-001 [P0] `cargo build --manifest-path $CRATE/Cargo.toml` exits 0 before the first pane task starts.
+- [x] CHK-002 [P0] `bash $CRATE/tests/fixtures/bots activity --json | jq -e '.groups'` exits 0, so the activity pane has a payload.
+- [x] CHK-003 [P1] `rg -n 'Remote' $CRATE/src/state.rs` prints the wrapper the panes draw from.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -201,10 +201,10 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [ ] CHK-011 [P0] `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0.
-- [ ] CHK-012 [P1] `rg -n 'unwrap\(\)|expect\(' $CRATE/src/view/panes.rs` matches only lines inside `#[cfg(test)]` blocks.
-- [ ] CHK-013 [P1] `rg -n 'Command::new' $CRATE/src` matches only `cli.rs`, so no pane spawns a process.
+- [x] CHK-010 [P0] `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] CHK-011 [P0] `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0.
+- [x] CHK-012 [P1] `rg -n 'unwrap\(\)|expect\(' $CRATE/src/view/panes.rs` matches only lines inside `#[cfg(test)]` blocks.
+- [x] CHK-013 [P1] `rg -n 'Command::new' $CRATE/src` matches only `cli.rs`, so no pane spawns a process.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -212,11 +212,11 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes.
-- [ ] CHK-021 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`.
-- [ ] CHK-022 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
-- [ ] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
-- [ ] CHK-024 [P1] `rg -n 'insta' $CRATE/Cargo.toml $CRATE/tests` prints nothing, so every snapshot asserts the buffer directly.
+- [x] CHK-020 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes.
+- [x] CHK-021 [P0] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`.
+- [x] CHK-022 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
+- [x] CHK-023 [P1] `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`.
+- [x] CHK-024 [P1] `rg -n 'insta' $CRATE/Cargo.toml $CRATE/tests` prints nothing, so every snapshot asserts the buffer directly. Observed 2026-11-27: `Cargo.toml` holds no match. Under `tests` the pattern matches only the words `installed`, `reinstall` and `instant` in files that predate this child, and the word-bounded `rg -nw 'insta' $CRATE/Cargo.toml $CRATE/tests` prints nothing
 <!-- /ANCHOR:testing -->
 
 ---
@@ -224,9 +224,9 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] `rg -n 'env::var' $CRATE/src/view/panes.rs` matches nothing, so no pane reads an environment variable of its own.
-- [ ] CHK-031 [P0] `rg -n 'read_to_string|File::open|fs::read' $CRATE/src/view/panes.rs` matches nothing, so no pane opens a state file.
-- [ ] CHK-032 [P1] `test ! -e $CRATE/src/sanitize.rs` exits 0, so the crate holds one sanitizer and it is `theme.rs`'s.
+- [x] CHK-030 [P0] `rg -n 'env::var' $CRATE/src/view/panes.rs` matches nothing, so no pane reads an environment variable of its own.
+- [x] CHK-031 [P0] `rg -n 'read_to_string|File::open|fs::read' $CRATE/src/view/panes.rs` matches nothing, so no pane opens a state file.
+- [x] CHK-032 [P1] `test ! -e $CRATE/src/sanitize.rs` exits 0, so the crate holds one sanitizer and it is `theme.rs`'s.
 <!-- /ANCHOR:security -->
 
 ---
@@ -234,9 +234,9 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `rg -n 'panes' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/spec.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/plan.md` names the module in both.
-- [ ] CHK-041 [P1] `rg -n 'openhuman' $CRATE/src/view/panes.rs` prints only comment lines that name the design reference.
-- [ ] CHK-042 [P2] `rg -n 'stale_label' $CRATE/src/view/panes.rs` prints the stale state's one call, so the age format has one owner.
+- [x] CHK-040 [P1] `rg -n 'panes' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/spec.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/plan.md` names the module in both.
+- [x] CHK-041 [P1] `rg -n 'openhuman' $CRATE/src/view/panes.rs` prints only comment lines that name the design reference.
+- [x] CHK-042 [P2] `rg -n 'stale_label' $CRATE/src/view/panes.rs` prints the stale state's one call, so the age format has one owner.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -244,8 +244,8 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] `git status --porcelain $CRATE` lists only `src/view/panes.rs`, `src/view/mod.rs`, `src/keys.rs`, `src/state.rs` and `tests/panes.rs` as this child's changes.
-- [ ] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
+- [x] CHK-050 [P1] `git status --porcelain $CRATE` lists only `src/view/panes.rs`, `src/view/mod.rs`, `src/keys.rs`, `src/state.rs` and `tests/panes.rs` as this child's changes. Observed 2026-11-27: it also lists `src/view/banner.rs`, which `spec.md` Files to Change names for REQ-027, and `tests/panes/`, the twelve test groups and the shared helpers `tests/panes.rs` declares by path so two workers never held one test file
+- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -255,11 +255,11 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 11 | 0/11 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 11 | 11/11 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-25
+**Verification Date**: 2026-11-27
 <!-- /ANCHOR:summary -->
 
 ---

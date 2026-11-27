@@ -1,5 +1,7 @@
+pub mod banner;
 pub mod footer;
 pub mod header;
+pub mod panes;
 pub mod tabs;
 
 use ratatui::layout::Rect;
@@ -125,8 +127,9 @@ pub fn draw(frame: &mut Frame, state: &State, opts: &Options) {
     );
     footer::draw_status(frame, b.status, state, &theme);
     footer::draw(frame, b.footer, state, &theme);
-    // The panes draw into the body and the banner draws into its own row, so the shell
-    // leaves both blank.
+    // The pane draws before the palette, so an open palette covers the body.
+    panes::draw(frame, b.body, state, &theme);
+    banner::draw(frame, b.banner, state, &theme);
     if let Some(palette) = state.palette.as_ref() {
         draw_palette(frame, b.body, palette, &theme);
     }

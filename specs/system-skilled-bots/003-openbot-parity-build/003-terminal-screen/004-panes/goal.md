@@ -61,13 +61,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one buffer snapshot per pane per state at 80x24 and at 120x40, sixteen per size.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`.
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one buffer snapshot per pane per state at 80x24 and at 120x40, sixteen per size.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` and names `selection_survives_reorder`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- sanitize` prints `test result: ok` and names `control_characters_never_reach_the_buffer`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- markers` prints `test result: ok` and names `panes_draw_the_ascii_markers`.
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`.
+- [x] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -88,9 +88,9 @@ and findings belong here.
 | First review applied | Done | `research/ui-review-1.md` U1-P1-2, U1-P1-3, U1-P1-8, U1-P1-10, U1-P2-1 and U1-P2-6 are applied: the glyph table and the sanitizer are 003's, the view root is `src/view/mod.rs`, the selection falls to the nearest row, and the snapshot table matches the inventory's five states per pane |
 | Second review applied | Done | `research/ui-review-2.md` N-P0-1, N-P1-5, N-P1-10, N-P2-18 and the 002 items of N-P2-22 are applied: the `list` rows and the movement arms are this child's, REQ-026 and AC-015 name the keys each pane binds, and the licence grep is narrowed to the code and the manifest |
 | Integration wave applied | Done | `design/architecture.md` section 6.4, `design/state-machines.md` section 6.6, `design/contracts.md` section 12 and `research/context-manifest.md` section 5 applied: each pane selects by its row key, `on_list_action`, `reconcile_selection` and `clamp_scroll` are named, `SHELL_ROWS` replaces the old key rows, the routines payload is an object with a `routines` array, and the design sources name how they are rebuilt. R8 makes every snapshot compare the buffer to its frame cell for cell, R12's clean-room rule is in `plan.md`, and R15 replaces the wall-clock gate with a row count |
-| Pane bodies written | Pending | No `crates/bots-tui/src/view/panes.rs` exists |
-| Snapshot table written | Pending | No `crates/bots-tui/tests/panes.rs` exists |
-| Row count proven | Pending | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` cannot run until the crate exists |
+| Pane bodies written | Done | `crates/bots-tui/src/view/panes.rs` draws the four panes in all five states, and `--test panes -- states` names `every_state_frame_matches` |
+| Snapshot table written | Done | `--test panes -- snapshot` printed `test result: ok. 33 passed`, the 32 frame cases and the corrections check |
+| Row count proven | Done | `--test panes -- budget` named `two_thousand_rows_visit_at_most_the_body_height`, and the count is the window the draw builds line by line |
 
 ### Deviations and findings
 
@@ -109,4 +109,7 @@ and findings belong here.
 | An unknown state draws like an expired one | F-070: REQ-017 now says an item whose `state` is neither `open` nor `expired` draws dimmed with its raw state word and no answer key, and AC-020 proves it. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The activity row check reads `schedule` | O-014: T002 adds `has("schedule")` to the seven row keys it checks. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The prose rules were applied | O-021 and O-022: every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this child's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The activity mockup is compared through corrections | Frame "Shell, Activity tab, rows" draws `in 5h` where the rounded-down age is `in 4h`, and draws its 120x40 detail column two rows low. `001-ux-and-component-map/design/mockups.md` is outside this child and the CI diff keeps the crate copy equal to it, so `tests/panes/support.rs` holds eleven corrected lines that each assert the mockup still differs. Taken by the unit orchestrator on 2026-11-27. |
+| The pane tests are split by group | `tests/panes.rs` declares twelve groups and a helper module under `tests/panes/` by `#[path]`, so four workers wrote tests at once without two holding one file. Taken by the unit orchestrator on 2026-11-27. |
+| The reducer gained helpers | `state.rs` holds `activity_key` and six private helpers beside the three arms, because all three arms need each pane's key list and line numbers. Taken by the unit orchestrator on 2026-11-27. |
 <!-- /ANCHOR:log -->
