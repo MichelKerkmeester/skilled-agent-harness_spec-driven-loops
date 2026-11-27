@@ -298,7 +298,10 @@ pub fn answer(
                 Err(AnswerError {
                     kind: FailKind::Exit(code),
                     refusal: first_line(&stderr).as_deref().and_then(refusal_name),
-                    line: exit_line("answer", code, &stderr),
+                    line: match first_line(&stderr) {
+                        Some(line) => line,
+                        None => format!("bots-ui: answer exited {code}"),
+                    },
                 })
             }
         }
@@ -592,7 +595,24 @@ mod tests {
             .expect_err("the fixture refuses");
         assert_eq!(error.kind, FailKind::Exit(4));
         assert_eq!(error.refusal, Some("item-expired".to_string()));
-        assert_eq!(error.line, "bots: answer exited 4: item-expired");
+        assert_eq!(error.line, "bots: item-expired");
+    }
+
+    #[test]
+    fn answer_failure_without_stderr_names_the_exit() {
+        let program = Program {
+            program: "bash".into(),
+            leading: vec!["-c".into(), "exit 3".into()],
+            repo: test_dir("answer-failure-without-stderr-names-the-exit"),
+            read_timeout: Duration::from_secs(10),
+            answer_timeout: Duration::from_secs(30),
+        };
+        let cancel = AtomicBool::new(false);
+        let error = answer(&program, &ItemId("x".into()), "hold", Scope::Once, &cancel)
+            .expect_err("the program exits without a line");
+        assert_eq!(error.kind, FailKind::Exit(3));
+        assert_eq!(error.refusal, None);
+        assert_eq!(error.line, "bots-ui: answer exited 3");
     }
 
     #[test]

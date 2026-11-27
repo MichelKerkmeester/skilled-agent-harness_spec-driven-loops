@@ -1,5 +1,5 @@
 use crate::keys::{self, Action, Cond, Context, Key};
-use crate::model::{ActivityGroup, ActivityRow, InboxItem, Routine, StatusPayload};
+use crate::model::{ActivityGroup, ActivityRow, InboxItem, ItemState, Routine, StatusPayload};
 
 /// Milliseconds since the Unix epoch, UTC.
 pub type EpochMs = i64;
@@ -490,8 +490,11 @@ impl State {
 pub fn update(state: &mut State, msg: Msg) -> Vec<Effect> {
     match msg {
         Msg::Key(key) => on_key(state, key),
-        // A paste is one message and never a key, so it cannot approve or open a row.
-        Msg::Paste(_) => Vec::new(),
+        // A paste is one message and never a key, so it can only add text to a typed line.
+        Msg::Paste(text) => {
+            overlay_on_paste(state, &text);
+            Vec::new()
+        }
         Msg::Resize { cols, rows } => {
             on_resize(state, cols, rows);
             Vec::new()
@@ -1189,19 +1192,180 @@ fn routine_line(index: usize) -> usize {
 }
 
 /// The overlay's own actions, the answer flow.
-pub fn on_overlay_action(_state: &mut State, _action: Action) -> Vec<Effect> {
-    Vec::new()
+pub fn on_overlay_action(state: &mut State, action: Action) -> Vec<Effect> {
+    match action {
+        Action::OpenItem => {
+            if state.overlay.is_some() {
+                return Vec::new();
+            }
+            let Some(selected) = state.inbox_view.selected.clone() else {
+                return Vec::new();
+            };
+            let Some(item) = state
+                .inbox
+                .rows
+                .iter()
+                .find(|item| item.id == selected)
+                .cloned()
+            else {
+                return Vec::new();
+            };
+            // The captured id decides the phase, so a refresh that reorders rows cannot retarget the answer.
+            let phase = if state.pending_answers.contains(&item.id) {
+                Phase::Sending
+            } else if item.state != ItemState::Open
+                || state.answered.iter().any(|mark| mark.id == item.id)
+            {
+                Phase::Gone
+            } else {
+                Phase::Idle
+            };
+            state.overlay = Some(Overlay {
+                item_id: item.id.clone(),
+                options: item.options.clone(),
+                item,
+                phase,
+                buffer: String::new(),
+            });
+            Vec::new()
+        }
+        Action::Close => {
+            // The answer in flight still lands, so the pending list is left alone.
+            state.overlay = None;
+            Vec::new()
+        }
+        _ => {
+            let Some(mut overlay) = state.overlay.take() else {
+                return Vec::new();
+            };
+            let id = overlay.item_id.clone();
+            let answerable = matches!(overlay.phase, Phase::Idle | Phase::Refused(_))
+                && !state.pending_answers.contains(&id);
+            let mut answer: Option<(String, Scope)> = None;
+            match action {
+                Action::Deny if answerable => answer = Some(("deny".to_string(), Scope::Deny)),
+                Action::ApproveOnce if answerable && overlay.options.is_empty() => {
+                    answer = Some(("approve".to_string(), Scope::Once));
+                }
+                Action::Pick(k) if answerable && !overlay.options.is_empty() => {
+                    let picked = usize::from(k)
+                        .checked_sub(1)
+                        .and_then(|index| overlay.options.get(index))
+                        .cloned();
+                    if let Some(text) = picked {
+                        answer = Some((text, Scope::Once));
+                    }
+                }
+                Action::EnterText
+                    if matches!(overlay.phase, Phase::Idle | Phase::Refused(_))
+                        && overlay.options.is_empty() =>
+                {
+                    // The buffer is kept, so a refused line comes back to be edited.
+                    overlay.phase = Phase::Typing;
+                }
+                Action::TypeChar(c) if overlay.phase == Phase::Typing => overlay.buffer.push(c),
+                Action::DeleteChar if overlay.phase == Phase::Typing => {
+                    overlay.buffer.pop();
+                }
+                Action::SendText if overlay.phase == Phase::Typing => {
+                    if !overlay.buffer.trim().is_empty() && !state.pending_answers.contains(&id) {
+                        answer = Some((overlay.buffer.clone(), Scope::Once));
+                    }
+                }
+                _ => {}
+            }
+            let effects = match answer {
+                Some((text, scope)) => {
+                    overlay.phase = Phase::Sending;
+                    state.pending_answers.push(id.clone());
+                    vec![Effect::Answer { id, text, scope }]
+                }
+                None => Vec::new(),
+            };
+            state.overlay = Some(overlay);
+            effects
+        }
+    }
 }
 
 /// Moves an open overlay to gone when its item is no longer listed.
-pub fn reconcile_overlay(_state: &mut State) {}
+pub fn reconcile_overlay(state: &mut State) {
+    let Some(mut overlay) = state.overlay.take() else {
+        return;
+    };
+    if matches!(
+        overlay.phase,
+        Phase::Idle | Phase::Typing | Phase::Refused(_)
+    ) {
+        let listed = state
+            .inbox
+            .rows
+            .iter()
+            .any(|item| item.id == overlay.item_id && item.state == ItemState::Open);
+        if !listed {
+            // The item is kept as it stood, because the gone panel draws it.
+            overlay.phase = Phase::Gone;
+        }
+    }
+    state.overlay = Some(overlay);
+}
 
 /// Moves a sending overlay on the reply it was waiting for.
 pub fn overlay_on_answered(
-    _state: &mut State,
-    _id: &ItemId,
-    _outcome: &Result<AnswerOk, AnswerError>,
+    state: &mut State,
+    id: &ItemId,
+    outcome: &Result<AnswerOk, AnswerError>,
 ) {
+    let Some(mut overlay) = state.overlay.take() else {
+        return;
+    };
+    if &overlay.item_id != id || overlay.phase != Phase::Sending {
+        state.overlay = Some(overlay);
+        return;
+    }
+    match outcome {
+        Ok(_) => {
+            // A landed answer closes the overlay, so the row draws the outcome word instead.
+            return;
+        }
+        Err(error) => {
+            let gone_class = matches!(
+                error.refusal.as_deref(),
+                Some("item-unknown") | Some("item-expired") | Some("item-answered-differently")
+            );
+            if gone_class {
+                overlay.phase = Phase::Gone;
+            } else {
+                let listed = state
+                    .inbox
+                    .rows
+                    .iter()
+                    .any(|item| item.id == overlay.item_id && item.state == ItemState::Open);
+                overlay.phase = if listed {
+                    Phase::Refused(error.line.clone())
+                } else {
+                    Phase::Gone
+                };
+            }
+        }
+    }
+    state.overlay = Some(overlay);
+}
+
+/// Appends a pasted text to the typed line, and does nothing anywhere else.
+fn overlay_on_paste(state: &mut State, text: &str) {
+    let Some(overlay) = state.overlay.as_mut() else {
+        return;
+    };
+    if overlay.phase != Phase::Typing {
+        return;
+    }
+    for c in text.chars() {
+        overlay.buffer.push(match c {
+            '\r' | '\n' => ' ',
+            other => other,
+        });
+    }
 }
 
 #[cfg(test)]
@@ -1740,5 +1904,735 @@ mod on_shell_action {
         let palette = state.palette.as_ref().expect("the palette is open");
         assert_eq!(palette.selected, 0);
         assert_eq!(palette.scroll, 0);
+    }
+}
+
+#[cfg(test)]
+mod on_overlay_action {
+    use super::*;
+
+    /// A state at a size the screen draws, so keys resolve against the overlay and not the too-small context.
+    fn state_on_inbox() -> State {
+        State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Inbox,
+            ..State::default()
+        }
+    }
+
+    /// One inbox item with the fields the answer flow reads.
+    fn item(id: &str, state: ItemState, options: &[&str]) -> InboxItem {
+        InboxItem {
+            id: ItemId(id.to_string()),
+            bot_id: "hello".to_string(),
+            question: "Ship it?".to_string(),
+            state,
+            options: options.iter().map(|option| option.to_string()).collect(),
+            ..InboxItem::default()
+        }
+    }
+
+    /// A state on the inbox with one item listed and an overlay open on it.
+    fn state_with(phase: Phase, rows: Vec<InboxItem>) -> State {
+        let mut state = state_on_inbox();
+        state.inbox.generation = 1;
+        state.inbox.rows = rows;
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        if phase == Phase::Sending {
+            state.pending_answers.push(ItemId("i1".to_string()));
+        }
+        state.overlay = Some(Overlay {
+            item_id: ItemId("i1".to_string()),
+            options: Vec::new(),
+            item: item("i1", ItemState::Open, &[]),
+            phase,
+            buffer: String::new(),
+        });
+        state
+    }
+
+    /// One inbox read's reply at this generation.
+    fn fetched(generation: u64, rows: Vec<InboxItem>) -> Msg {
+        Msg::Fetched {
+            surface: Surface::Inbox,
+            generation,
+            outcome: Ok(Read {
+                payload: Payload::Inbox(rows),
+                warning: None,
+            }),
+        }
+    }
+
+    /// One answer's reply for this item.
+    fn answered(id: &str, outcome: Result<AnswerOk, AnswerError>) -> Msg {
+        Msg::Answered {
+            id: ItemId(id.to_string()),
+            text: "approve".to_string(),
+            scope: Scope::Once,
+            outcome,
+        }
+    }
+
+    /// The one effect an answer key returns for the overlay's item.
+    fn answer(text: &str, scope: Scope) -> Vec<Effect> {
+        vec![Effect::Answer {
+            id: ItemId("i1".to_string()),
+            text: text.to_string(),
+            scope,
+        }]
+    }
+
+    /// The phase the overlay is in, absent when it is closed.
+    fn phase_of(state: &State) -> Option<Phase> {
+        state.overlay.as_ref().map(|open| open.phase.clone())
+    }
+
+    /// The typed line the overlay holds, empty when it is closed.
+    fn buffer_of(state: &State) -> &str {
+        state
+            .overlay
+            .as_ref()
+            .map(|open| open.buffer.as_str())
+            .unwrap_or("")
+    }
+
+    /// The first press sends one answer and every later answer key is a no-op until the reply lands.
+    #[test]
+    fn overlay_locks_after_first_press() {
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert!(effects.is_empty());
+        assert_eq!(phase_of(&state), Some(Phase::Idle));
+
+        let effects = update(&mut state, Msg::Key(Key::Char('y')));
+        assert_eq!(effects, answer("approve", Scope::Once));
+        assert_eq!(phase_of(&state), Some(Phase::Sending));
+        assert_eq!(state.pending_answers, vec![ItemId("i1".to_string())]);
+
+        for key in [
+            Key::Char('y'),
+            Key::Char('n'),
+            Key::Char('t'),
+            Key::Enter,
+            Key::Char('1'),
+            Key::Backspace,
+        ] {
+            let effects = update(&mut state, Msg::Key(key));
+            assert!(effects.is_empty(), "{key:?} produced {effects:?}");
+            assert_eq!(
+                state.pending_answers,
+                vec![ItemId("i1".to_string())],
+                "{key:?} changed the pending list"
+            );
+        }
+    }
+
+    /// Every key the overlay binds, from each phase it can start in, with where it lands.
+    #[test]
+    fn overlay_transition_table() {
+        type Case = (
+            Phase,
+            &'static [&'static str],
+            &'static str,
+            Key,
+            Option<Phase>,
+            &'static str,
+            Vec<Effect>,
+        );
+        let refused = || Phase::Refused("bots: answer-not-approver".to_string());
+        let cases: Vec<Case> = vec![
+            // Idle, the decision shape.
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Char('t'),
+                Some(Phase::Typing),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Char('n'),
+                Some(Phase::Sending),
+                "",
+                answer("deny", Scope::Deny),
+            ),
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Char('y'),
+                Some(Phase::Sending),
+                "",
+                answer("approve", Scope::Once),
+            ),
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Char('1'),
+                Some(Phase::Idle),
+                "",
+                Vec::new(),
+            ),
+            (Phase::Idle, &[], "", Key::Esc, None, "", Vec::new()),
+            (Phase::Idle, &[], "", Key::Ctrl('c'), None, "", Vec::new()),
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Char('x'),
+                Some(Phase::Idle),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Idle,
+                &[],
+                "",
+                Key::Ctrl('d'),
+                Some(Phase::Idle),
+                "",
+                vec![Effect::Quit { code: 0 }],
+            ),
+            // Idle, the choice shape.
+            (
+                Phase::Idle,
+                &["email", "chat"],
+                "",
+                Key::Char('2'),
+                Some(Phase::Sending),
+                "",
+                answer("chat", Scope::Once),
+            ),
+            (
+                Phase::Idle,
+                &["email", "chat"],
+                "",
+                Key::Char('3'),
+                Some(Phase::Idle),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Idle,
+                &["email", "chat"],
+                "",
+                Key::Char('y'),
+                Some(Phase::Idle),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Idle,
+                &["email", "chat"],
+                "",
+                Key::Char('t'),
+                Some(Phase::Idle),
+                "",
+                Vec::new(),
+            ),
+            // Typing.
+            (
+                Phase::Typing,
+                &[],
+                "hol",
+                Key::Char('d'),
+                Some(Phase::Typing),
+                "hold",
+                Vec::new(),
+            ),
+            (
+                Phase::Typing,
+                &[],
+                "hol",
+                Key::Char('y'),
+                Some(Phase::Typing),
+                "holy",
+                Vec::new(),
+            ),
+            (
+                Phase::Typing,
+                &[],
+                "hold",
+                Key::Backspace,
+                Some(Phase::Typing),
+                "hol",
+                Vec::new(),
+            ),
+            (
+                Phase::Typing,
+                &[],
+                "hold",
+                Key::Enter,
+                Some(Phase::Sending),
+                "hold",
+                answer("hold", Scope::Once),
+            ),
+            (
+                Phase::Typing,
+                &[],
+                "   ",
+                Key::Enter,
+                Some(Phase::Typing),
+                "   ",
+                Vec::new(),
+            ),
+            (Phase::Typing, &[], "", Key::Esc, None, "", Vec::new()),
+            // Sending.
+            (
+                Phase::Sending,
+                &[],
+                "",
+                Key::Char('y'),
+                Some(Phase::Sending),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Sending,
+                &[],
+                "",
+                Key::Char('n'),
+                Some(Phase::Sending),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Sending,
+                &[],
+                "",
+                Key::Char('t'),
+                Some(Phase::Sending),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Sending,
+                &[],
+                "",
+                Key::Enter,
+                Some(Phase::Sending),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Sending,
+                &[],
+                "",
+                Key::Char('1'),
+                Some(Phase::Sending),
+                "",
+                Vec::new(),
+            ),
+            (Phase::Sending, &[], "", Key::Esc, None, "", Vec::new()),
+            // Refused.
+            (
+                refused(),
+                &[],
+                "",
+                Key::Char('y'),
+                Some(Phase::Sending),
+                "",
+                answer("approve", Scope::Once),
+            ),
+            (
+                refused(),
+                &[],
+                "",
+                Key::Char('n'),
+                Some(Phase::Sending),
+                "",
+                answer("deny", Scope::Deny),
+            ),
+            (
+                refused(),
+                &[],
+                "hold",
+                Key::Char('t'),
+                Some(Phase::Typing),
+                "hold",
+                Vec::new(),
+            ),
+            (refused(), &[], "", Key::Esc, None, "", Vec::new()),
+            // Gone.
+            (
+                Phase::Gone,
+                &[],
+                "",
+                Key::Char('y'),
+                Some(Phase::Gone),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Gone,
+                &[],
+                "",
+                Key::Char('n'),
+                Some(Phase::Gone),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Gone,
+                &[],
+                "",
+                Key::Char('t'),
+                Some(Phase::Gone),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Gone,
+                &[],
+                "",
+                Key::Enter,
+                Some(Phase::Gone),
+                "",
+                Vec::new(),
+            ),
+            (
+                Phase::Gone,
+                &[],
+                "",
+                Key::Char('1'),
+                Some(Phase::Gone),
+                "",
+                Vec::new(),
+            ),
+            (Phase::Gone, &[], "", Key::Esc, None, "", Vec::new()),
+            (Phase::Gone, &[], "", Key::Ctrl('c'), None, "", Vec::new()),
+        ];
+
+        for (phase, options, buffer, key, expected_phase, expected_buffer, expected_effects) in
+            cases
+        {
+            let mut state = state_on_inbox();
+            state.inbox.rows = vec![item("i1", ItemState::Open, options)];
+            state.inbox_view.selected = Some(ItemId("i1".to_string()));
+            if phase == Phase::Sending {
+                state.pending_answers.push(ItemId("i1".to_string()));
+            }
+            state.overlay = Some(Overlay {
+                item_id: ItemId("i1".to_string()),
+                options: options.iter().map(|option| option.to_string()).collect(),
+                item: item("i1", ItemState::Open, options),
+                phase: phase.clone(),
+                buffer: buffer.to_string(),
+            });
+
+            let effects = update(&mut state, Msg::Key(key));
+            let label = format!("{phase:?} {key:?}");
+            assert_eq!(phase_of(&state), expected_phase, "phase after {label}");
+            assert_eq!(buffer_of(&state), expected_buffer, "buffer after {label}");
+            assert_eq!(effects, expected_effects, "effects after {label}");
+        }
+    }
+
+    /// Closing the overlay leaves the answer in flight, and its reply still lands on the status row.
+    #[test]
+    fn close_while_sending_keeps_the_answer() {
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+
+        update(&mut state, Msg::Key(Key::Enter));
+        update(&mut state, Msg::Key(Key::Char('y')));
+        assert_eq!(state.pending_answers, vec![ItemId("i1".to_string())]);
+
+        let effects = update(&mut state, Msg::Key(Key::Esc));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+        assert_eq!(state.pending_answers, vec![ItemId("i1".to_string())]);
+
+        update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(phase_of(&state), Some(Phase::Sending));
+
+        let effects = update(&mut state, Msg::Key(Key::Esc));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+
+        let effects = update(
+            &mut state,
+            Msg::Answered {
+                id: ItemId("i1".to_string()),
+                text: "approve".to_string(),
+                scope: Scope::Once,
+                outcome: Err(AnswerError {
+                    kind: FailKind::Exit(4),
+                    refusal: Some("answer-not-approver".to_string()),
+                    line: "bots: answer-not-approver".to_string(),
+                }),
+            },
+        );
+        assert!(effects.is_empty());
+        assert!(state.pending_answers.is_empty());
+        assert!(state.overlay.is_none());
+        assert_eq!(
+            state.last_error,
+            Some(StatusLine {
+                source: Source::Answer,
+                text: "bots: answer-not-approver".to_string(),
+            })
+        );
+
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+
+        update(&mut state, Msg::Key(Key::Enter));
+        update(&mut state, Msg::Key(Key::Char('y')));
+        let effects = update(&mut state, Msg::Key(Key::Ctrl('c')));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+        assert_eq!(state.pending_answers, vec![ItemId("i1".to_string())]);
+
+        let effects = update(
+            &mut state,
+            Msg::Answered {
+                id: ItemId("i1".to_string()),
+                text: "approve".to_string(),
+                scope: Scope::Once,
+                outcome: Ok(AnswerOk { warning: None }),
+            },
+        );
+        assert!(effects.is_empty());
+        assert!(state.pending_answers.is_empty());
+        assert!(state.overlay.is_none());
+        assert_eq!(state.answered.len(), 1);
+        assert_eq!(state.answered[0].id, ItemId("i1".to_string()));
+        assert_eq!(state.answered[0].outcome, Outcome::Approved);
+    }
+
+    /// A landed answer issues no read of its own, so the outcome word stays until the next poll.
+    #[test]
+    fn outcome_word_stays_until_the_next_poll() {
+        let mut state = state_on_inbox();
+        state.now = 1_000;
+        state.next_poll_at = 6_000;
+        state.inbox.generation = 1;
+        state.inbox.in_flight = false;
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+
+        update(&mut state, Msg::Key(Key::Enter));
+        let effects = update(&mut state, Msg::Key(Key::Char('y')));
+        assert_eq!(effects, answer("approve", Scope::Once));
+        assert!(!effects
+            .iter()
+            .any(|effect| matches!(effect, Effect::Fetch { .. })));
+
+        let effects = update(
+            &mut state,
+            Msg::Answered {
+                id: ItemId("i1".to_string()),
+                text: "approve".to_string(),
+                scope: Scope::Once,
+                outcome: Ok(AnswerOk { warning: None }),
+            },
+        );
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+        assert_eq!(state.answered.len(), 1);
+        assert_eq!(state.answered[0].outcome, Outcome::Approved);
+
+        let effects = update(&mut state, Msg::Tick { now: 2_000 });
+        assert!(effects.is_empty());
+        assert_eq!(state.answered.len(), 1);
+
+        update(
+            &mut state,
+            fetched(1, vec![item("i1", ItemState::Open, &[])]),
+        );
+        assert_eq!(state.answered.len(), 1);
+
+        let effects = update(&mut state, Msg::Tick { now: 6_000 });
+        assert!(effects.contains(&Effect::Fetch {
+            surface: Surface::Inbox,
+            generation: 2,
+        }));
+
+        update(&mut state, fetched(2, Vec::new()));
+        assert!(state.answered.is_empty());
+    }
+
+    /// A refresh that drops the item moves the overlay on, and a reply moves it by the refusal it carries.
+    #[test]
+    fn overlay_moves_on_refresh_and_reply() {
+        for phase in [
+            Phase::Idle,
+            Phase::Typing,
+            Phase::Refused("bots: answer-not-approver".to_string()),
+        ] {
+            let mut state = state_with(phase.clone(), vec![item("i1", ItemState::Open, &[])]);
+            update(&mut state, fetched(1, Vec::new()));
+            assert_eq!(
+                phase_of(&state),
+                Some(Phase::Gone),
+                "dropped from {phase:?}"
+            );
+
+            let mut state = state_with(phase.clone(), vec![item("i1", ItemState::Open, &[])]);
+            update(
+                &mut state,
+                fetched(1, vec![item("i1", ItemState::Expired, &[])]),
+            );
+            assert_eq!(
+                phase_of(&state),
+                Some(Phase::Gone),
+                "expired from {phase:?}"
+            );
+        }
+
+        let mut state = state_with(Phase::Sending, vec![item("i1", ItemState::Open, &[])]);
+        update(&mut state, fetched(1, Vec::new()));
+        assert_eq!(phase_of(&state), Some(Phase::Sending));
+
+        let mut state = state_with(Phase::Sending, vec![item("i1", ItemState::Open, &[])]);
+        update(
+            &mut state,
+            answered(
+                "i1",
+                Err(AnswerError {
+                    kind: FailKind::Exit(4),
+                    refusal: Some("item-answered-differently".to_string()),
+                    line: "bots: item-answered-differently".to_string(),
+                }),
+            ),
+        );
+        assert_eq!(phase_of(&state), Some(Phase::Gone));
+
+        let mut state = state_with(Phase::Sending, vec![item("i1", ItemState::Open, &[])]);
+        update(
+            &mut state,
+            answered(
+                "i1",
+                Err(AnswerError {
+                    kind: FailKind::Exit(4),
+                    refusal: Some("item-busy".to_string()),
+                    line: "bots: item-busy".to_string(),
+                }),
+            ),
+        );
+        assert_eq!(
+            phase_of(&state),
+            Some(Phase::Refused("bots: item-busy".to_string()))
+        );
+
+        let mut state = state_with(Phase::Sending, Vec::new());
+        update(
+            &mut state,
+            answered(
+                "i1",
+                Err(AnswerError {
+                    kind: FailKind::Exit(4),
+                    refusal: Some("item-busy".to_string()),
+                    line: "bots: item-busy".to_string(),
+                }),
+            ),
+        );
+        assert_eq!(phase_of(&state), Some(Phase::Gone));
+
+        let mut state = state_with(Phase::Sending, vec![item("i1", ItemState::Open, &[])]);
+        update(
+            &mut state,
+            answered(
+                "i1",
+                Err(AnswerError {
+                    kind: FailKind::Timeout,
+                    refusal: None,
+                    line: "bots-ui: answer timed out after 30s, it may have landed".to_string(),
+                }),
+            ),
+        );
+        assert_eq!(
+            phase_of(&state),
+            Some(Phase::Refused(
+                "bots-ui: answer timed out after 30s, it may have landed".to_string()
+            ))
+        );
+
+        let mut state = state_with(Phase::Sending, vec![item("i1", ItemState::Open, &[])]);
+        update(
+            &mut state,
+            answered("other", Ok(AnswerOk { warning: None })),
+        );
+        assert_eq!(phase_of(&state), Some(Phase::Sending));
+    }
+
+    /// A paste adds text to a typed line and never answers, opens a row or leaves the overlay alone.
+    #[test]
+    fn paste_appends_only_while_typing() {
+        let mut state = state_with(Phase::Typing, vec![item("i1", ItemState::Open, &[])]);
+        state.overlay.as_mut().expect("the overlay is open").buffer = "a".to_string();
+        let effects = update(&mut state, Msg::Paste("y\nz\r".to_string()));
+        assert!(effects.is_empty());
+        assert_eq!(buffer_of(&state), "ay z ");
+
+        let mut state = state_with(Phase::Idle, vec![item("i1", ItemState::Open, &[])]);
+        let effects = update(&mut state, Msg::Paste("y\nz\r".to_string()));
+        assert!(effects.is_empty());
+        assert_eq!(phase_of(&state), Some(Phase::Idle));
+        assert_eq!(buffer_of(&state), "");
+
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        let effects = update(&mut state, Msg::Paste("y\n".to_string()));
+        assert!(effects.is_empty());
+        assert!(state.overlay.is_none());
+    }
+
+    /// Opening an item reads its state, its answered mark and the answers already out.
+    #[test]
+    fn open_item_picks_its_phase() {
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Expired, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(phase_of(&state), Some(Phase::Gone));
+
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        state.answered.push(AnsweredRow {
+            id: ItemId("i1".to_string()),
+            outcome: Outcome::Approved,
+            inbox_generation: 0,
+        });
+        update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(phase_of(&state), Some(Phase::Gone));
+
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        state.pending_answers.push(ItemId("i1".to_string()));
+        update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(phase_of(&state), Some(Phase::Sending));
+
+        let mut state = state_on_inbox();
+        let listed = item("i1", ItemState::Open, &["email", "chat"]);
+        state.inbox.rows = vec![listed.clone()];
+        state.inbox_view.selected = Some(ItemId("i1".to_string()));
+        update(&mut state, Msg::Key(Key::Enter));
+        let overlay = state.overlay.as_ref().expect("the overlay is open");
+        assert_eq!(overlay.phase, Phase::Idle);
+        assert_eq!(
+            overlay.options,
+            vec!["email".to_string(), "chat".to_string()]
+        );
+        assert_eq!(overlay.item, listed);
+
+        let mut state = state_on_inbox();
+        state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
+        update(&mut state, Msg::Key(Key::Enter));
+        assert!(state.overlay.is_none());
     }
 }
