@@ -11,6 +11,8 @@
 # Scenarios:
 #   ok                answer normally, the default
 #   slow              sleep two seconds then answer normally
+#   hold-answer       answer logs how its stdout and stderr are open, sleeps two seconds, then answers
+#   slow-hold-answer  reads sleep two seconds first, answer as in hold-answer
 #   fail-VERB         exit 1 with "bots: index locked" for that one verb
 #   refuse-REASON     exit 4 with "bots: REASON" when the verb is answer
 #   empty             the four read verbs print empty payloads
@@ -76,6 +78,29 @@ ok_answer() {
   esac
   exit 0
 }
+
+if [ "$SCENARIO" = "hold-answer" ] || [ "$SCENARIO" = "slow-hold-answer" ]; then
+  if [ "$VERB" = "answer" ]; then
+    # Tested on the fd itself, never inside a command substitution, which would
+    # make stdout a pipe of its own.
+    if [ /dev/fd/1 -ef /dev/null ]; then OUT_FD="null"; else OUT_FD="open"; fi
+    if [ /dev/fd/2 -ef /dev/null ]; then ERR_FD="null"; else ERR_FD="open"; fi
+    if [ -n "$LOG" ]; then
+      printf 'fixture-fds stdout=%s stderr=%s\n' "$OUT_FD" "$ERR_FD" >> "$LOG"
+      printf 'fixture-answer-started\n' >> "$LOG"
+    fi
+    sleep 2
+    if [ -n "$LOG" ]; then
+      printf 'fixture-answer-done\n' >> "$LOG"
+    fi
+    printf 'bots: answered\n'
+    exit 0
+  fi
+  if [ "$SCENARIO" = "slow-hold-answer" ]; then
+    sleep 2
+  fi
+  SCENARIO="ok"
+fi
 
 if [ "$SCENARIO" = "slow" ]; then
   sleep 2

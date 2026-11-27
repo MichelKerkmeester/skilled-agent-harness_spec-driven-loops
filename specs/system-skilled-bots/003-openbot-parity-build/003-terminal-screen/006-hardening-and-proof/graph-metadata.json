@@ -47,7 +47,16 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "crates/bots-tui/README.md",
+      "crates/bots-tui/tests/pty_smoke.rs",
+      "crates/bots-tui/src/model.rs",
+      "crates/bots-tui/src/state.rs",
+      "crates/bots-tui/src/app.rs",
+      "crates/bots-tui/src/cli.rs",
+      "crates/bots-tui/tests/answer_flow.rs",
+      "crates/bots-tui/tests/answer_flow/quit.rs",
       ".skilled/skills/system-skilled-bots/SKILL.md",
+      "crates/bots-tui/Cargo.toml",
       ".github/workflows/bots-runtime.yml",
       ".skilled/bin/bots.cjs"
     ],
@@ -89,9 +98,63 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "crates/bots-tui/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pty_smoke.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/tests/pty_smoke.rs",
+        "source": "derived"
+      },
+      {
+        "name": "model.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/model.rs",
+        "source": "derived"
+      },
+      {
+        "name": "state.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/state.rs",
+        "source": "derived"
+      },
+      {
+        "name": "app.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/app.rs",
+        "source": "derived"
+      },
+      {
+        "name": "cli.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/src/cli.rs",
+        "source": "derived"
+      },
+      {
+        "name": "answer_flow.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/tests/answer_flow.rs",
+        "source": "derived"
+      },
+      {
+        "name": "quit.rs",
+        "kind": "file",
+        "path": "crates/bots-tui/tests/answer_flow/quit.rs",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cargo.toml",
+        "kind": "file",
+        "path": "crates/bots-tui/Cargo.toml",
         "source": "derived"
       },
       {
@@ -141,65 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Gate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Defect Audit",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Defect Audit",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five children before this one each add a surface, and each one's own tests prove only its own surface",
     "created_at": "2026-11-25T20:22:35Z",
-    "last_save_at": "2026-11-27T15:42:09.562Z",
+    "last_save_at": "2026-11-27T23:41:00.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:359a5c71347f858a716536dcd49d7640e65c759730e2c30072d6e68c407fa5d3",
+    "source_fingerprint": "sha256:9420b13ff87b821ca4ea0c23c319deab524d9f9aaa6cb0ef56084f075bc4153d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2409b5e04f4f98b9ae103c8cdd88f3af09ac337d262be4b485628fbd6f198d0",
       "plan.md": "3533ee87cf102eb51b7bdb192593f8a996f1b5c46e0aa0d9150c40593cec5a8c",
-      "tasks.md": "c466e64c4db332ac070a2109c14b881007b3b7a281e4df784a3a9626e2c594d8",
-      "implementation-summary.md": "12a7882208e87336c1643a3bbecc60cefa381a5db4e69629b3feffb08762ab96"
+      "tasks.md": "10a03bf0309881e353d04e5b1d71b39586b64f1b0fb6f61cf0c30f18378da353",
+      "implementation-summary.md": "7f18030270779f687b958470b30642119d73228e15c7a79e84bce86e72061867"
     },
     "last_active_at": null
   }

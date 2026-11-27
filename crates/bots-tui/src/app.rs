@@ -25,11 +25,16 @@ impl<'t, B: Backend> App<'t, B> {
     /// Builds the loop and starts its worker.
     pub fn new(terminal: &'t mut Terminal<B>, program: Program, opts: Options) -> App<'t, B> {
         let (tx, rx) = mpsc::channel::<Msg>();
+        // The checkout names this screen's own identity, so it is read before the program moves on.
+        let state = State {
+            checkout: Some(program.repo.to_string_lossy().into_owned()),
+            ..State::default()
+        };
         // The loop thread never starts a process, so every read and write goes to the worker.
         let worker = Worker::spawn(program, tx.clone());
         App {
             terminal,
-            state: State::default(),
+            state,
             rx,
             tx,
             worker: Some(worker),

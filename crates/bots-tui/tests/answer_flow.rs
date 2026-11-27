@@ -5,6 +5,8 @@ mod common;
 mod lock;
 #[path = "answer_flow/no_write.rs"]
 mod no_write;
+#[path = "answer_flow/quit.rs"]
+mod quit;
 #[path = "answer_flow/refusal.rs"]
 mod refusal;
 #[path = "answer_flow/support.rs"]
