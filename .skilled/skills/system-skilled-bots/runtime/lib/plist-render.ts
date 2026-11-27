@@ -21,6 +21,7 @@
 
 import { isAbsolute } from 'node:path';
 
+import { PINNED_OPERATOR_ENV } from './actor.js';
 import { PINNED_IDENTITY_ENV } from './identity.js';
 import { PINNED_STATE_ROOT_ENV } from './state-root.js';
 
@@ -34,6 +35,9 @@ import type { Result } from './repo-config.js';
 /** Set in a bot schedule's job alone: the CLI accepts `--schedule-index` only under it. */
 export const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
 
+/** The marker a bot's job file carries when the operator installed it with full access. */
+export const FULL_ACCESS_ENV = 'SKILLED_BOTS_FULL_ACCESS';
+
 /** The calendar keys a job may carry, in the order they are written. */
 const CALENDAR_KEYS = ['Month', 'Day', 'Weekday', 'Hour', 'Minute'] as const;
 
@@ -42,6 +46,10 @@ export interface PinnedJobValues {
   /** Absolute. */
   stateRoot: string;
   identity: string;
+  /** The installing operator, pinned so a scheduled run records that name rather than the launchd user. Absent or null when none resolved. */
+  operator?: string | null;
+  /** True only for a bot installed with full access. */
+  fullAccess?: boolean;
 }
 
 export interface BotPlistInput {
@@ -173,13 +181,19 @@ function checkPaths(paths: Record<string, string>): Result<null> {
   return { ok: true, value: null };
 }
 
-/** The job's environment: the state home and the pinned values when the installer set them, and a schedule's fire marker. */
+/**
+ * The job's environment: the state home and the pinned state root, identity
+ * and operator when the installer set them, the full-access marker on a bot
+ * job that was granted it, and a schedule's fire marker.
+ */
 function environmentValue(stateHome: string | null | undefined, pinned: PinnedJobValues | null | undefined, scheduledFire: boolean): Record<string, PlistValue> | null {
   const environment: Record<string, PlistValue> = {};
   if (stateHome !== null && stateHome !== undefined) environment.XDG_STATE_HOME = stateHome;
   if (pinned !== null && pinned !== undefined) {
     environment[PINNED_STATE_ROOT_ENV] = pinned.stateRoot;
     environment[PINNED_IDENTITY_ENV] = pinned.identity;
+    if (typeof pinned.operator === 'string') environment[PINNED_OPERATOR_ENV] = pinned.operator;
+    if (scheduledFire && pinned.fullAccess === true) environment[FULL_ACCESS_ENV] = '1';
   }
   if (scheduledFire) environment[SCHEDULED_FIRE_ENV] = '1';
   return Object.keys(environment).length === 0 ? null : environment;
@@ -283,13 +297,24 @@ export function renderDrainPlist(input: DrainPlistInput): Result<string> {
   return { ok: true, value: renderDocument(top) };
 }
 
-/** The state root and identity a job file pins, read from its JSON form; null unless it carries both. */
+/**
+ * The state root, identity, operator and full-access grant a job file pins,
+ * read from its JSON form. Null unless it carries both the state root and the
+ * identity. The operator and the grant are added only when the job carries
+ * them, so a job file written before either existed reads back unchanged.
+ */
 export function pinnedFromPlist(parsed: Record<string, unknown>): PinnedJobValues | null {
   const environment = parsed.EnvironmentVariables;
   if (environment === null || typeof environment !== 'object') return null;
-  const stateRoot = (environment as Record<string, unknown>)[PINNED_STATE_ROOT_ENV];
-  const identity = (environment as Record<string, unknown>)[PINNED_IDENTITY_ENV];
-  return typeof stateRoot === 'string' && typeof identity === 'string' ? { stateRoot, identity } : null;
+  const values = environment as Record<string, unknown>;
+  const stateRoot = values[PINNED_STATE_ROOT_ENV];
+  const identity = values[PINNED_IDENTITY_ENV];
+  if (typeof stateRoot !== 'string' || typeof identity !== 'string') return null;
+  const pinned: PinnedJobValues = { stateRoot, identity };
+  const operator = values[PINNED_OPERATOR_ENV];
+  if (typeof operator === 'string') pinned.operator = operator;
+  if (values[FULL_ACCESS_ENV] === '1') pinned.fullAccess = true;
+  return pinned;
 }
 
 /** The XDG state home a job file carries, read from its JSON form; null when it carries none. */

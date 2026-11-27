@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-activity-and-actor |
-| **Completed** | 2026-11-25 |
+| **Completed** | 2026-11-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,82 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+`bots activity` now shows what every bot is doing in OpenBot's seven groups, current on every read with no `--rebuild`. Every answer and every run records who gave it, so a shared identity no longer hides which person approved what.
 
 ### Phase 1: activity-and-actor
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You get one grouped read. `needs_you`, `done`, `stopped` and `failed` come from the status index, which each read brings up to date for any identity whose stamp moved. `working` comes from a held lease, `scheduled` from a queued request or the next fire of an installed schedule and `recurring` from each installed schedule. `bots activity --json` and `bots inbox --json` print the versioned payloads the terminal screen reads, and `bots inbox --all` also lists answered items with who answered and the scope.
+
+The actor is a validated name. `--as` names it, a scheduled fire takes the operator pinned at install time and everything else takes the OS user. Outside a tty the CLI refuses a name that is not yours, and a bot child cannot answer or enable at all. A definition that declares `danger-full-access` now runs at `workspace-write` unless the operator installed it with `--full-access`, and that grant also works for a bot whose trigger is not cron. The index schema did not move: the actor rides in the run summary JSON and `updatedAt` is a meta row.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-skilled-bots/runtime/lib/activity.ts` | Created | The seven groups and the pure grouping of every source into the payload and its text lines |
+| `.skilled/skills/system-skilled-bots/runtime/lib/actor.ts` | Created | The actor pattern and the resolution order |
+| `.skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts` | Modified | `kind` key, answer `by` and `scope`, old answers read as `by: null` and `scope: "once"` |
+| `.skilled/skills/system-skilled-bots/runtime/lib/run-record.ts` | Modified | `actor` and `answeredBy` on the record |
+| `.skilled/skills/system-skilled-bots/runtime/lib/status-index.ts` | Modified | `actor` in the run summary and the `updatedAt` meta row |
+| `.skilled/skills/system-skilled-bots/runtime/lib/status.ts` | Modified | Refresh on read, the report's `version` and `updatedAt` and the activity gatherer |
+| `.skilled/skills/system-skilled-bots/runtime/lib/answer.ts` | Modified | Records `by` and `scope` and stamps the parked run's `answeredBy` |
+| `.skilled/skills/system-skilled-bots/runtime/lib/runner.ts` | Modified | Records the run's actor and reads the install record's full-access grant |
+| `.skilled/skills/system-skilled-bots/runtime/lib/posture.ts` | Modified | Caps a declared `danger-full-access` without the grant |
+| `.skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts` | Modified | Pins the operator and the full-access marker into the job |
+| `.skilled/skills/system-skilled-bots/runtime/lib/installer.ts` | Modified | Writes `operator` and `fullAccess` and records full access for a non-cron bot |
+| `.skilled/bin/bots.cjs` | Modified | `activity`, `inbox --json --all`, `--as`, `--scope`, `--full-access`, the tty refusals and the child bar |
+| `.skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts`, `actor.vitest.ts` | Created | Group order, the one data set, refresh on read, row sources and the actor cases |
+| `.skilled/skills/system-skilled-bots/runtime/tests/` answer, needs-you, posture, resume, run-record, status-index, status, installer and cli-run suites | Modified | The named tests for each criterion and the updates the new keys and the refresh required |
+| `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Created | The MIT notice for OpenBot's `activity-groups.ts` |
+| `.skilled/skills/system-skilled-bots/runtime/lib/README.md`, `bots-status/SKILL.md`, `bots-status/references/status-and-inbox.md`, `bots-run/references/run-queue-and-answer.md` | Modified | The two module rows, the new read verb and the three new options |
+| `design/fixtures/one-data-set.json`, `design/fixtures/README.md` | Modified | The missing `nightly-report` install record |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Cheap workers wrote every change in eleven internal waves, one change per brief, on `cli-mistral-vibe` with `deepseek-flash`. After each wave the orchestrator ran the named verify commands itself before marking a task. One run (T025) stopped on a backend 502 and passed on its one retry through `cli-pi`. The closing gate ran the whole runtime suite (37 files and 424 tests passed against a baseline of 35 and 381), the type-check, each acceptance command and the three CLI reads on a fresh scratch checkout. The full-access install was proved by hand through a pty.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The actor rides in the run summary JSON and `updatedAt` is a meta row | `SCHEMA_VERSION` stays `'2'`, so an index built before this phase takes writes with no `ALTER TABLE` |
+| The tty refusal lives in `bots.cjs` alone | A channel daemon or a test can pass an actor to `answerItem` with no tty |
+| The pinned operator counts only on a scheduled run | A shell that exports the same variable cannot claim the operator's name |
+| A stale identity is refreshed on read, never rebuilt and never trimmed | A run that ended after the build shows at once and a read deletes nothing |
+| The full-access grant is read from the install record | A definition cannot grant itself full access by declaring it |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `npm test` in the runtime | PASS: `Test Files  37 passed (37)` and `Tests  424 passed (424)`, exit 0. Baseline 35 and 381 |
+| `npm run typecheck` | PASS: exit 0 |
+| AC-001 to AC-016 commands | PASS: every anchored filter printed `Tests  1 passed` |
+| `bots activity`, `bots activity --json` and `bots inbox --json` on a fresh scratch | PASS: `bots: no activity`, `{"version":1,"groups":[]}` and `{"version":1,"items":[]}`, each exit 0 |
+| `bots answer item-1 yes --scope always` | PASS: `bots: grant-scope-unsupported`, exit 2 |
+| `bots schedule install plain --full-access` through a pty | PASS: the recorded-only message, exit 0, and the record holds `fullAccess: true` with no labels |
+| `validate.sh --strict` on this folder | PASS: `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **A hand drain can record the pinned operator.** `request-drain.ts` cannot tell the runner it is unscheduled, so a queued or resume request counts as scheduled. A hand drain from a shell that exports `SKILLED_BOTS_OPERATOR` records that name. Unset the variable before draining by hand.
+2. **`schedule` prints null until the describe seam is wired.** The `scheduled` and `recurring` rows carry `schedule: null` until the next phase passes `describeStart`.
+3. **The child bar runs after parsing.** A bot child with a malformed argv gets the usage line and exit 2 instead of `child-write-refused`.
 <!-- /ANCHOR:limitations -->
-
----
-
-

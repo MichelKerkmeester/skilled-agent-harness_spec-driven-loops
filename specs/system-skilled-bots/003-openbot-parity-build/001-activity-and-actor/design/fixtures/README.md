@@ -18,7 +18,7 @@ Each file is an input this phase's tests write into a temporary state root, with
 
 | File | Holds | Read by |
 |------|-------|---------|
-| `one-data-set.json` | Six run records, three items, one live lease, three install records and the clock that together give `payloads/activity.json` and `payloads/inbox.json` | `activity.vitest.ts`, tests `order`, `row sources` and `refresh on read`. `cli-run.vitest.ts`, test `payload types` |
+| `one-data-set.json` | Six run records, three items, one live lease, four install records and the clock that together give `payloads/activity.json` and `payloads/inbox.json` | `activity.vitest.ts`, tests `order`, `row sources` and `refresh on read`. `cli-run.vitest.ts`, test `payload types` |
 | `queued-request.json` | One queued request and the `scheduled` row it gives | `activity.vitest.ts`, test `row sources` |
 | `inbox-all.json` | One open item, one answered item with `by` and `scope`, one answered before this phase and both `inbox --json` outputs | `cli-run.vitest.ts`, test `answered item` |
 | `legacy-records.json` | What an answer, a record, a summary, a lease side file, an install record and an index written before this phase read as | `needs-you.vitest.ts` test `old answer`, `run-record.vitest.ts`, `status-index.vitest.ts` test `old-ddl`, `activity.vitest.ts` test `row sources` |

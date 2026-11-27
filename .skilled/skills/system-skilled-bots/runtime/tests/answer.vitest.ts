@@ -1,21 +1,29 @@
 // bots answer: the answer is recorded before one resume request keyed by the item, and the item can expire.
 
 import { existsSync, readFileSync } from 'node:fs';
+import { userInfo } from 'node:os';
+import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { answerItem } from '../lib/answer.js';
-import { needsYouState, readNeedsYouItem } from '../lib/needs-you.js';
+import { needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
+import { readRunRecord } from '../lib/run-record.js';
 import { generationStampFile, runBot } from '../lib/runner.js';
 import { botWorld, IDENTITY, runCli } from './runner-support.js';
 import { entries, queueOf, records, writeItem } from './queue-support.js';
-import { cleanupTemp, writeConfig } from './support.js';
+import { cleanupTemp, REAL_CHECKOUT, writeConfig } from './support.js';
 
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+
+// The answer shape stored before answers named anyone.
+const LEGACY = JSON.parse(
+  readFileSync(join(REAL_CHECKOUT, 'specs', 'system-skilled-bots', '003-openbot-parity-build', '001-activity-and-actor', 'design', 'fixtures', 'legacy-records.json'), 'utf8'),
+) as { answerBefore001: { text: string; answeredAt: string } };
 
 function generation(world: BotWorld): number {
   const path = generationStampFile(world.stateRoot, IDENTITY);
@@ -121,5 +129,77 @@ describe('bots answer', () => {
     expect(refused.stderr).toContain('item-expired');
     expect(runCli(world, ['inbox']).stdout).toContain(`expired\t${stale.id}`);
     expect(entries(queueOf(world).inbox)).toEqual([]);
+  }, 120_000);
+
+  it('records the actor in by', async () => {
+    const world = botWorld();
+    const first = await parkedItemId(world);
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: first, text: 'merge', env: world.env, actor: 'ada' });
+    expect(answered.ok).toBe(true);
+    const firstItem = readNeedsYouItem(world.stateRoot, IDENTITY, first);
+    if (!firstItem.ok) throw new Error(firstItem.reason);
+    expect(firstItem.value.answer?.by).toBe('ada');
+    const record = readRunRecord(world.stateRoot, IDENTITY, first);
+    if (!record.ok) throw new Error(record.reason);
+    expect(record.value.record.answeredBy).toBe('ada');
+
+    const second = await parkedItemId(world);
+    const anonymous = answerItem({ checkoutRoot: world.checkoutRoot, itemId: second, text: 'merge', env: world.env });
+    expect(anonymous.ok).toBe(true);
+    const secondItem = readNeedsYouItem(world.stateRoot, IDENTITY, second);
+    if (!secondItem.ok) throw new Error(secondItem.reason);
+    const osName = userInfo().username;
+    expect(secondItem.value.answer?.by).toBe(/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(osName) ? osName : null);
+
+    const third = await parkedItemId(world);
+    const cased = answerItem({ checkoutRoot: world.checkoutRoot, itemId: third, text: 'merge', env: world.env, actor: 'Ada' });
+    expect(cased.ok).toBe(true);
+    const thirdItem = readNeedsYouItem(world.stateRoot, IDENTITY, third);
+    if (!thirdItem.ok) throw new Error(thirdItem.reason);
+    expect(thirdItem.value.answer?.by).toBe('Ada');
+    expect(thirdItem.value.answer?.by).not.toBe(firstItem.value.answer?.by);
+  }, 120_000);
+
+  it('records the scope and refuses another', async () => {
+    const world = botWorld();
+    const denied = await parkedItemId(world);
+    const deniedAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: denied, text: 'merge', env: world.env, actor: 'ada', scope: 'deny' });
+    expect(deniedAnswer.ok).toBe(true);
+    const deniedItem = readNeedsYouItem(world.stateRoot, IDENTITY, denied);
+    if (!deniedItem.ok) throw new Error(deniedItem.reason);
+    expect(deniedItem.value.answer?.scope).toBe('deny');
+
+    const fresh = await parkedItemId(world);
+    const onceAnswer = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada' });
+    expect(onceAnswer.ok).toBe(true);
+    const freshItem = readNeedsYouItem(world.stateRoot, IDENTITY, fresh);
+    if (!freshItem.ok) throw new Error(freshItem.reason);
+    expect(freshItem.value.answer?.scope).toBe('once');
+
+    const duplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada', scope: 'once' });
+    expect(duplicate.ok && duplicate.value.status).toBe('duplicate');
+    const other = answerItem({ checkoutRoot: world.checkoutRoot, itemId: fresh, text: 'merge', env: world.env, actor: 'ada', scope: 'deny' });
+    expect(other).toMatchObject({ ok: false, reason: 'item-answered-differently' });
+
+    const legacy = writeItem(world, 'manual-ok');
+    const written = writeNeedsYouItem(world.stateRoot, { ...legacy, answer: LEGACY.answerBefore001 });
+    if (!written.ok) throw new Error(written.reason);
+    const legacySent = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada' });
+    expect(legacySent.ok && legacySent.value.status).toBe('enqueued');
+    const legacyDuplicate = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada' });
+    expect(legacyDuplicate.ok && legacyDuplicate.value.status).toBe('duplicate');
+    const legacyOther = answerItem({ checkoutRoot: world.checkoutRoot, itemId: legacy.id, text: LEGACY.answerBefore001.text, env: world.env, actor: 'ada', scope: 'deny' });
+    expect(legacyOther).toMatchObject({ ok: false, reason: 'item-answered-differently' });
+  }, 120_000);
+
+  it('takes an explicit actor with no tty', async () => {
+    expect(process.stdin.isTTY).not.toBe(true);
+    const world = botWorld();
+    const itemId = await parkedItemId(world);
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId, text: 'merge', env: world.env, actor: 'ada' });
+    expect(answered.ok).toBe(true);
+    const item = readNeedsYouItem(world.stateRoot, IDENTITY, itemId);
+    if (!item.ok) throw new Error(item.reason);
+    expect(item.value.answer?.by).toBe('ada');
   }, 120_000);
 });

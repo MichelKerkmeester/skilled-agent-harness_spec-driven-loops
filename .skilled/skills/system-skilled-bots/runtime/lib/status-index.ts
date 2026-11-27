@@ -83,6 +83,8 @@ export interface RunSummary {
   refusalCause: string | null;
   runFolder: string;
   requestId: string | null;
+  /** Who the run was recorded as. Null for a record written before records named anyone. */
+  actor: string | null;
 }
 
 export interface RunRow {
@@ -125,6 +127,8 @@ export interface RetiredRow {
 /** Everything the index holds, in a stable order. */
 export interface IndexSnapshot {
   builtAt: string | null;
+  /** When the index was last brought up to date. Null for an index built before this row existed, until its first refresh. */
+  updatedAt: string | null;
   generations: Record<string, number>;
   runs: RunRow[];
   deliveries: DeliveryRow[];
@@ -291,6 +295,7 @@ export function summarizeRecord(record: RunRecord, skippedSlotsPerSummary: numbe
     refusalCause: record.exit.refusal?.cause ?? null,
     runFolder: record.evidence.runFolder,
     requestId: record.request.requestId,
+    actor: record.actor ?? null,
   };
 }
 
@@ -350,6 +355,11 @@ export function recordGeneration(index: Pick<StatusIndex, 'db'>, key: string, ge
   index.db.prepare('INSERT OR REPLACE INTO generations (identity_key, generation) VALUES (?, ?)').run(key, generation);
 }
 
+/** Record when the index was last brought up to date. A refresh calls it inside the transaction that indexed the new rows. */
+export function recordUpdatedAt(index: Pick<StatusIndex, 'db'>, at: string): void {
+  index.db.prepare('INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)').run('updatedAt', at);
+}
+
 /**
  * Mirror one retirement from the registered-roots file into an index already
  * in place, with the file's own time, so the row matches what a rebuild
@@ -365,6 +375,7 @@ export function retireIdentity(index: Pick<StatusIndex, 'db'>, identity: string,
 export function readIndex(index: Pick<StatusIndex, 'db'>): IndexSnapshot {
   const { db } = index;
   const built = db.prepare("SELECT value FROM meta WHERE key = 'builtAt'").get() as { value: string } | undefined;
+  const updated = db.prepare("SELECT value FROM meta WHERE key = 'updatedAt'").get() as { value: string } | undefined;
   const generations: Record<string, number> = {};
   for (const row of db.prepare('SELECT identity_key, generation FROM generations ORDER BY identity_key').all() as Array<{ identity_key: string; generation: number }>) {
     generations[row.identity_key] = row.generation;
@@ -402,7 +413,7 @@ export function readIndex(index: Pick<StatusIndex, 'db'>): IndexSnapshot {
     identity: row.identity as string,
     retiredAt: row.retired_at as string,
   }));
-  return { builtAt: built?.value ?? null, generations, runs, deliveries, items, retired };
+  return { builtAt: built?.value ?? null, updatedAt: updated?.value ?? null, generations, runs, deliveries, items, retired };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -601,7 +612,7 @@ export function readGeneration(stateRoot: string, key: string): number | null {
 }
 
 /** Every run record of one identity that reads and validates, and the paths of the ones that do not. */
-function readRecords(stateRoot: string, key: string): { records: RunRecord[]; skipped: string[] } {
+export function readRecords(stateRoot: string, key: string): { records: RunRecord[]; skipped: string[] } {
   const folder = identityStatePaths(stateRoot, decodeURIComponent(key)).records;
   let names: string[];
   try {
@@ -676,6 +687,7 @@ export function rebuildIndex(stateRoot: string, options: IndexOptions = {}): Res
     const build = db.transaction(() => {
       handle.db.prepare('INSERT INTO meta (key, value) VALUES (?, ?)').run('schemaVersion', SCHEMA_VERSION);
       handle.db.prepare('INSERT INTO meta (key, value) VALUES (?, ?)').run('builtAt', report.builtAt);
+      handle.db.prepare('INSERT INTO meta (key, value) VALUES (?, ?)').run('updatedAt', report.builtAt);
       for (const row of retired) handle.db.prepare('INSERT INTO retired (identity_key, identity, retired_at) VALUES (?, ?, ?)').run(row.identityKey, row.identity, row.retiredAt);
       for (const key of keys) {
         const generation = readGeneration(stateRoot, key);

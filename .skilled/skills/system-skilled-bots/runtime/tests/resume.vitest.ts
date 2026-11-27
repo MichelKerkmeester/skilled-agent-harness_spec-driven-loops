@@ -1,10 +1,14 @@
 // Resume requests: keyed by the needs-you item, so a second send is a duplicate, and drained like any request.
 
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname } from 'node:path';
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { answerItem } from '../lib/answer.js';
 import { enqueueFromCheckout, RETRY_BOUND, readQuarantineReasons } from '../lib/request-queue.js';
 import { runBot } from '../lib/runner.js';
+import { installFile } from '../lib/state-root.js';
 import { writeNeedsYouItem, readNeedsYouItem } from '../lib/needs-you.js';
 import { approveBots, botWorld, IDENTITY, stubRunCount, writeBot } from './runner-support.js';
 import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
@@ -41,6 +45,48 @@ describe('resume requests', () => {
     expect(records(world)).toHaveLength(before + 1);
     expect(resumed).toHaveLength(1);
     expect(resumed[0]?.request.requestId).toBe(requestId);
+  }, 120_000);
+
+  it('keeps danger-full-access for a full-access bot the drain resumes', async () => {
+    const world = botWorld();
+    const botId = 'full-access-decision';
+    writeBot(world, botId, [
+      '---',
+      `id: ${botId}`,
+      'trigger: {kind: manual}',
+      'runtime: {kind: cli-codex}',
+      'isolation: shared',
+      'sandbox: danger-full-access',
+      '---',
+      'Merge the fix branch when it is ready.',
+      'STUB:decide=Merge the fix branch or open a PR?',
+      'STUB:option=merge',
+      'STUB:option=open a PR',
+      '',
+    ].join('\n'));
+    // The operator's install-time flag is the only thing that lifts the cap on a declared class.
+    const installPath = installFile(world.stateRoot, IDENTITY, botId);
+    mkdirSync(dirname(installPath), { recursive: true });
+    writeFileSync(installPath, JSON.stringify({ schemaVersion: 1, agent: 'bot', botId, identity: IDENTITY, labels: [], plistPaths: [], fullAccess: true }));
+
+    const parked = await runBot(world.input(botId));
+    if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
+    const item = readNeedsYouItem(world.stateRoot, IDENTITY, parked.itemId);
+    if (!item.ok) throw new Error(item.reason);
+    writeNeedsYouItem(world.stateRoot, { ...item.value, answer: { text: 'merge', answeredAt: new Date().toISOString() } });
+    const sent = enqueueResume(world, botId, parked.itemId);
+    if (!sent.ok) throw new Error(sent.reason);
+
+    const report = await drain(world);
+    if (!report.ok) throw new Error(report.reason);
+    expect(report.value.lines).toMatchObject([{ requestId: sent.value.requestId, outcome: 'ran' }]);
+
+    const parkedRecord = records(world).find((record) => record.identity.runId === parked.runId);
+    expect(parkedRecord?.posture.sandbox).toBe('danger-full-access');
+    const resumed = records(world).filter((record) => record.request.resumedItemId === parked.itemId);
+    expect(resumed).toHaveLength(1);
+    expect(resumed[0]?.posture.sandbox).toBe('danger-full-access');
+    expect(resumed[0]?.exit.refusal?.cause).not.toBe('resume-posture-changed');
   }, 120_000);
 
   it('retries a failing resume run to the bound and then quarantines it', async () => {

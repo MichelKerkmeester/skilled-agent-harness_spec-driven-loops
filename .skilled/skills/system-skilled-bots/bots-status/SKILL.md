@@ -7,7 +7,7 @@ version: 1.0.0.0
 
 # Bots Status
 
-The status mode of the `system-skilled-bots` hub. It reads what the bots did and what they need through `bots status` and `bots inbox`, and nothing else. It writes nothing in the consumer checkout. `bots inbox` lives here because reading the inbox is a status read.
+The status mode of the `system-skilled-bots` hub. It reads what the bots did and what they need through `bots status`, `bots activity` and `bots inbox`, and nothing else. It writes nothing in the consumer checkout. `bots inbox` lives here because reading the inbox is a status read.
 
 ---
 
@@ -63,7 +63,7 @@ The machine router, its intent signals and its resource map live in
 
 - Never write in the consumer checkout from this mode.
 - Never run `--rebuild` or `--unregister`. Both write, so name them as the operator's next step.
-- Never run any Bash command other than `bots status` and `bots inbox`.
+- Never run any Bash command other than `bots status`, `bots activity` and `bots inbox`.
 - Never answer, enqueue or install from this mode.
 
 ### ESCALATE IF

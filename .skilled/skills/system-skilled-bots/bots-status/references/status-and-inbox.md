@@ -7,7 +7,7 @@ trigger_phrases:
   - "which bots are installed"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Bot Status and Inbox
@@ -37,10 +37,14 @@ Give the status mode the two read verbs and the flags that change what they show
 | `bots status` | Every installed bot, its last run and delivery, and open needs-you items, read from the status index | Yes |
 | `bots status --json` | The same rows as JSON | Yes |
 | `bots inbox` | Open and expired needs-you items | Yes |
+| `bots inbox --json` | Open and expired needs-you items as one JSON document | Yes |
+| `bots inbox --all` | Also the answered items, with who answered and the scope | Yes, read only |
 | `bots status --rebuild` | Rebuilds the index from the run records first | No: it writes, so name it for the operator |
 | `bots status --all` | Also shows identities hidden with `--unregister` | Yes, read only |
+| `bots activity` | What every bot is doing in seven groups (needs you, working, scheduled, done, stopped, failed and recurring), from the status index brought up to date on read, live leases, queued requests and installed schedules | Yes |
+| `bots activity --json` | The same groups as one JSON document | Yes |
 
-Each verb takes `--repo <path>` for the consumer checkout. A row can also report a missing checkout, a changed runner path that needs a reinstall, or a run folder that vanished.
+Each verb takes `--repo <path>` for the consumer checkout. A row can also report a missing checkout, a changed runner path that needs a reinstall, or a run folder that vanished. `bots status` and `bots activity` bring the index up to date on every read with no retention, so a run that ended after the build shows without `--rebuild`.
 
 ---
 

@@ -45,20 +45,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "design/data-model.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/activity.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/actor.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/status-index.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/installer.ts",
       ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts",
+      ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md"
     ],
     "entities": [
       {
@@ -98,27 +98,21 @@
         "source": "derived"
       },
       {
-        "name": "data-model.md",
-        "kind": "doc",
-        "path": "design/data-model.md",
+        "name": "activity.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/activity.ts",
         "source": "derived"
       },
       {
-        "name": "status.ts",
+        "name": "actor.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/actor.ts",
         "source": "derived"
       },
       {
         "name": "needs-you.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
-        "source": "derived"
-      },
-      {
-        "name": "answer.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
         "source": "derived"
       },
       {
@@ -134,15 +128,27 @@
         "source": "derived"
       },
       {
-        "name": "posture.ts",
+        "name": "status.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
         "source": "derived"
       },
       {
         "name": "runner.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "posture.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/posture.ts",
         "source": "derived"
       },
       {
@@ -164,21 +170,15 @@
         "source": "derived"
       },
       {
-        "name": "needs-you.vitest.ts",
+        "name": "activity.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "answer.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-record.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts",
+        "name": "THIRD_PARTY_NOTICES.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-27T15:31:55.221Z",
+    "last_save_at": "2026-11-27T17:47:11.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8e27de67845baac47e1f8833db91778eee7312bdf05f57304fa70764922f55b1",
+    "source_fingerprint": "sha256:41c1614ef9842a7ed74d2a6bb599a405f23d025084ab3896bacc2354f3bd7161",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d0e07c91c49f5bf688a6417b01d4cd09ce7820f561900e18d4bb091977c6221",
       "plan.md": "3b278afbbf3e3d4fa5b03d32405a4df18c319d2369b68df0705e3d986f4e8cde",
-      "tasks.md": "996e85e3556b066ffbb626a6e41a7fc7332010648b6ab0489db11468726dbf4c",
-      "implementation-summary.md": "79160a8cf49576ec0e2548051853aef62e4640d28f25116f622affc46b262d51"
+      "tasks.md": "94f37b5ac54d129f139641fe50e0dd4102c1dc888bc5627358a3ad9bed4abba9",
+      "implementation-summary.md": "5f014830596ce6677e46ea3d544b2e875e33c79a0e6c2e6f5a297457e3495650"
     },
     "last_active_at": null
   }
