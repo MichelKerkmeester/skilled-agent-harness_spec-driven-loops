@@ -35,6 +35,7 @@ import { join } from 'node:path';
 import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
 import { decideApproval, grantScopeFor } from './approval-ladder.js';
+import { isApprover } from './channel-link.js';
 import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { appendMemoryEntry, botMemoryFile, checkMemoryAppend, readMemoryFile } from './memory.js';
 import { ANSWER_SCOPES, itemKind, needsYouState, normalizeAnswer, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
@@ -54,6 +55,12 @@ import type { EnqueueResult } from './request-queue.js';
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────────
 
+/** Where an answer came from. A chat answer is checked against the roster, and the host's terminal is its own authority. */
+export type AnswerSurface = 'terminal' | 'channel';
+
+/** Every surface an answer may name. */
+export const ANSWER_SURFACES: readonly AnswerSurface[] = ['terminal', 'channel'];
+
 export interface AnswerInput {
   checkoutRoot: string;
   itemId: string;
@@ -64,6 +71,12 @@ export interface AnswerInput {
   now?: Date;
   /** The name to record as the answer's by, as --as or a channel gives it. Absent means the OS user. */
   actor?: string | null;
+  /**
+   * The surface the answer came from. On channel an absent, unreadable or empty roster refuses the answer, and on
+   * terminal it refuses nothing. A present roster must name the actor on both. Absent reads as terminal for the
+   * callers that predate chat answers, and every chat transport passes channel by name.
+   */
+  surface?: AnswerSurface;
   /** once or deny. Absent records once, never an allow beyond this run. */
   scope?: AnswerScope;
   /** False records the answer and queues nothing. Absent or true queues the resume. */
@@ -207,10 +220,13 @@ function answeredGrant(item: NeedsYouItem, scope: AnswerScope, by: string, at: s
  * free text. Its answer settles the item through the item's review kind and
  * returns `reviewed` with that kind, and it queues no run.
  *
+ * The roster check comes before the lock: a present roster must name the actor on either surface, and on the channel surface a missing roster refuses too.
+ *
  * @returns `enqueued`, or `duplicate` when the same answer was sent before,
  *   with the request id the item names. The no-resume option returns
  *   `reviewed` instead, with the request id the resume would have carried. A
  *   refusal is `answer-empty`, `scope-invalid`, `actor-invalid`,
+ *   `surface-invalid`, `answer-not-approver`, `channel-roster-missing`,
  *   `item-unknown`, `item-busy`, `item-expired`,
  *   `item-answered-differently`, `answer-secret` (named by key, never by
  *   value), `review-answer-invalid`, `memory-full`, `memory-secret` or a
@@ -224,6 +240,8 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (input.text.trim() === '') return { ok: false, reason: 'answer-empty' };
 
   if (input.scope !== undefined && !ANSWER_SCOPES.includes(input.scope)) return { ok: false, reason: 'scope-invalid', detail: String(input.scope) };
+  if (input.surface !== undefined && !ANSWER_SURFACES.includes(input.surface)) return { ok: false, reason: 'surface-invalid', detail: String(input.surface) };
+  const surface: AnswerSurface = input.surface ?? 'terminal';
   // A NO records deny even when once was given, so a refusal is never recorded as an approval.
   const scope = grantScopeFor(input.text, input.scope ?? null);
   const actor = resolveActor({ as: input.actor ?? null, env, scheduled: false });
@@ -232,6 +250,11 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const context = queueContext(input.checkoutRoot, input.resolveEnv ?? env);
   if (!context.ok) return context;
   const { identity, stateRoot } = context.value;
+
+  // The roster is read before the lock and before any write, so a refused answerer never holds the lock a second answerer waits on.
+  const approver = isApprover(stateRoot, identity, actor.value);
+  if (approver === 'roster-missing' && surface === 'channel') return { ok: false, reason: 'channel-roster-missing', detail: 'a chat answer needs a roster that names an owner' };
+  if (approver === 'not-approver') return { ok: false, reason: 'answer-not-approver', detail: actor.value ?? 'unknown' };
 
   if (!isSafeSegment(input.itemId)) return { ok: false, reason: 'item-unknown', detail: input.itemId };
 

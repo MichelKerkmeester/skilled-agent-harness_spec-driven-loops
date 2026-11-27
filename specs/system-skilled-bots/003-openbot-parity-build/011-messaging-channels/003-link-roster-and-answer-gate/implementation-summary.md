@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-link-roster-and-answer-gate |
-| **Completed** | 2026-11-26 |
+| **Completed** | 2026-11-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,62 +44,79 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A chat can now link itself to a person with a one-time code, and an answer from a chat counts only when the `operators.json` roster names that person. `bots channel link telegram` prints `bots: telegram link code 482913, valid for 5 minutes` on the host, and `bots channel roster add ada --role owner` is the only way to write the roster.
 
 ### Phase 3: link-roster-and-answer-gate
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You get one adapter contract every transport implements, with the capability matrix and an explicit unsupported result for an operation a transport does not declare. You get the pairing code, the link record that binds a chat to the actor who ran `link` and to the sender id that sent the code, and a file-backed lockout after five wrong codes. Every answer surface now passes one roster check before the item lock: on `channel` a missing roster refuses `channel-roster-missing`, on `terminal` it refuses nothing, and a present roster refuses an actor it does not name `answer-not-approver` on both. The two test helpers later children import are in place: `temporaryStateRoot` with `runBots`, and `fakeTransport`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-skilled-bots/runtime/lib/channel.ts` | Created | The adapter types, the capability matrix and descriptors, the unsupported result, `readChannelConfig` and `writeChannelConfig`, `withStateLock`, `redactToken`, the seen-record and listen-lease helpers and the reply table M07 to M20 |
+| `.skilled/skills/system-skilled-bots/runtime/lib/channel-link.ts` | Created | The roster with `isApprover`, `rosterAdd` and `rosterRemove`, the links file, `startLink`, `unlinkChannel`, `resolveLink` and `pairChat` with the lockout |
+| `.skilled/skills/system-skilled-bots/runtime/lib/state-root.ts` | Modified | `channelFolder`, `operatorsFile`, `ensureChannelState`, `STATE_FILE_MODE` and `writeStateFile`, which chmods the temp file to 0600 before the rename |
+| `.skilled/skills/system-skilled-bots/runtime/lib/answer.ts` | Modified | The `surface` input and the roster check after the actor and before the lock |
+| `.skilled/bin/bots.cjs` | Modified | The `channel` verb group with `link`, `unlink` and `roster add|remove|list`, its usage lines, the child-write bar and `surface: 'terminal'` on both host answer calls |
+| `.skilled/skills/system-skilled-bots/runtime/tests/channel-support.ts` | Created | `temporaryStateRoot`, `runBots` with an optional pty and `fakeTransport` |
+| `.skilled/skills/system-skilled-bots/runtime/tests/channel.vitest.ts` | Created | Five tests: the unsupported result, the message model, the config entry, the reply goldens and the redaction |
+| `.skilled/skills/system-skilled-bots/runtime/tests/channel-link.vitest.ts` | Created | Two tests: the lockout and the roster refusal of a linked chat |
+| `.skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts` | Modified | `surface: 'terminal'` on every existing call and four roster tests |
+| `.skilled/skills/system-skilled-bots/runtime/tests/cli-channel.vitest.ts` | Created | Three `link` tests and seven `roster` tests |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Fifteen Vibe workers on `deepseek-flash` wrote the code in four internal waves, and none needed the `cli-pi` fallback. Wave 1 wrote `state-root.ts` and the `channel.ts` contract side by side, then the rest of `channel.ts` beside `channel-support.ts`. Wave 2 wrote `channel-link.ts` in three sequential briefs: the roster, then the link record, then the lockout. Wave 3 wrote `answer.ts`, `bots.cjs` and a small `channel-support.ts` fix side by side. Wave 4 wrote the four test files in parallel slots, with `answer.vitest.ts` taking two sequential briefs. The orchestrator ran every verify command itself after each wave, then the whole runtime suite, the typecheck, the crate tests and T024 on a temporary state root.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| An omitted `surface` reads as `terminal` | A required key breaks the typecheck and a test at `runner.vitest.ts:680`, which another unit owns in this wave, plus two unowned test files. Every caller this unit writes passes the surface by name |
+| A sender mismatch is refused `channel-unlinked` with detail `sender mismatch` | The channel message catalog section 2 makes it silent with no counter and no answer call, while the spec's edge case names `answer-not-approver`. `answerItem` never sees a sender id, so `answer-not-approver` there would trigger the M14 reply and the per-actor count the catalog rules out |
+| The pending code carries a `failures` count that reads 0 when absent | The code is void after five wrong codes across every chat of the channel, and the frozen link record shape had no counter. An added key keeps the version by the versioning rule |
+| `link` with no `--secret` keeps an existing entry's secret name | Linking a second chat on a configured channel would otherwise reset a custom name such as `slack-app-token` back to `slack` |
+| The `channel` verbs resolve under the drain job's environment | The answer path reads the roster there, so the verbs and the answer path can never read two different rosters |
+| The `channel` group refuses a bot child, except `roster list` | A bot child that linked a chat or wrote the roster could answer its own questions. This follows the CLI's own rule that each write verb joins the child bar |
+| A lock that cannot be taken in 2,000 ms throws `channel-busy` | It names no new refusal for the CLI, which exits 1 on a throw, and a later child can catch it where a pass must report an entry as still due |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `npm test` in the runtime | PASS: `Test Files  46 passed (46)`, `Tests  569 passed (569)`, exit 0. Baseline 43 files and 548 tests, so 3 files and 21 tests added and none lost |
+| `npm run typecheck` | PASS: exit 0 |
+| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: exit 0, 98, 8, 53 with 1 ignored and 16, the same as the baseline |
+| T024 on a temporary state root | PASS: `roster add "$(id -un)" --role owner` exit 0, `schemaVersion` 1, then one line `bots: telegram link code 177214, valid for 5 minutes` |
+| Refusals on the same root | PASS: `link` with no roster exits 4 `channel-roster-missing`, `--as mallory` with no tty exits 2 with `bots: --as needs a tty` (observed `exit=2`), a 49 character whatsapp secret exits 4 `secret-name-invalid` |
+| CHK-031 and CHK-032 | `config.json`, `links.json` and `operators.json` are 0600 and `channels/` is 0700. `rg token` over the state JSON exits 1. `approvals.json` lands with child 004 |
+| Every acceptance row | PASS: ten rows Met, each with its observed `Tests` line |
+| CHK-011, CHK-012, CHK-022 | PASS: one relative import in `channel.ts`, no ephemeral label in either module, no socket call in any channel test |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **REQ-021's no-default clause did not land.** `answerItem` treats an omitted `surface` as `terminal`, so a transport that forgets it skips the absent-roster refusal. The fix, once 007 merges: drop the `?` on `surface` and the `?? 'terminal'` default in `answer.ts`, add `surface: 'terminal'` at `runner.vitest.ts:680`, `quarantine.vitest.ts:62` and `resume.vitest.ts:155`, then rerun the gate. Until then every chat transport must pass `surface: 'channel'` by name.
+2. **T024 and SC-001 as written cannot pass.** Each adds `ada` as owner and links with no `--as`, which names the OS user and is refused `answer-not-approver`. Each also relies on `SKILLED_BOTS_IDENTITY`, which the CLI drops because it resolves under the job environment. Run them with `"$(id -un)"` as owner and a checkout `bots/config.json` naming the identity.
+3. **CHK-031 is 2 of 3 here.** `approvals.json` is child 004's file, so the third count waits on its T006.
+4. **Four lines outside this folder need their owners.** `contracts/records.md` section 12 should list the pending code's `failures` key. The spec's edge case for a mismatched sender should name `channel-unlinked`. The plan's Definition of Ready counts 21 goldens where there are 23. Four refusal names this unit adds are not in `contracts/refusals.md` section 3.10: `channel-config-invalid` and `channel-links-invalid` for a damaged channel file, `surface-invalid` for a surface outside `terminal` and `channel`, and the `channel-busy` throw, which exits 1 when a channel lock stays held past 2,000 ms.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -55,10 +55,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] T024 in `tasks.md` prints one line matching `^bots: telegram link code [0-9]{6}, valid for 5 minutes$` on a temporary state root.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [x] T024 in `tasks.md` prints one line matching `^bots: telegram link code [0-9]{6}, valid for 5 minutes$` on a temporary state root.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,7 +74,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Build | Not started | The child was planned on 2026-11-26 and no code has landed |
+| Build | Done 2026-11-28 | Fifteen Vibe workers in four waves plus the orchestrator's verify wave. Runtime suite 46 files and 569 tests passed, typecheck exit 0, crate tests green, ten acceptance rows Met |
 
 ### Deviations and findings
 
@@ -93,4 +93,10 @@ and findings belong here.
 | F-024, the 0600 mechanism | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: one `writeStateFile` helper in `state-root.ts` that chmods the temporary file to 0600 before the rename, and CHK-031 extended to `config.json`, `links.json` and child 004's `approvals.json`. |
 | F-013, the outbound intent | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: the intent gains `kind`, and a `buttons` intent also carries `itemId` and `choices`. |
 | F-019, the sender rule | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: NFR-S02 covers every event kind, so a typed line from a sender who is not the link's `senderId` is refused the same way a press is. D3 is amended from "a press" to "an event" to match. |
+| REQ-021 no-default clause | Not landed. An omitted `surface` reads as `terminal`, because a required key breaks `runner.vitest.ts:680`, which 007 owns in the same wave. The flip after 007 merges: drop the `?` and the default in `answer.ts` and add `surface: 'terminal'` at `runner.vitest.ts:680`, `quarantine.vitest.ts:62` and `resume.vitest.ts:155` |
+| T024 and SC-001 | Run with `"$(id -un)"` as owner and a checkout `bots/config.json` identity. As written they add `ada` and link as the OS user, which REQ-003 refuses, and `SKILLED_BOTS_IDENTITY` does not reach a verb that resolves under the job environment |
+| Sender mismatch | Refused `channel-unlinked` with detail `sender mismatch`, the silent rule of the 001 catalog section 2. The spec's edge case names `answer-not-approver` and needs the same wording |
+| Code void across chats | An added `failures` key on the pending code, read as 0 when absent. `contracts/records.md` section 12 does not list it yet |
+| CHK-031 | 2 of 3 here, because `approvals.json` is child 004's |
+| Refusal names outside the registry | `channel-config-invalid`, `channel-links-invalid`, `surface-invalid` and the `channel-busy` throw (exit 1) are not in `contracts/refusals.md` section 3.10 yet |
 <!-- /ANCHOR:log -->
