@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts"
-    last_updated_at: "2026-11-26T06:00:00Z"
-    last_updated_by: "wo-09-writer"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-27T18:00:00Z"
+    last_updated_by: "unit-orchestrator-011-002"
+    recent_action: "Verified the design documents and re-recorded the base commit"
+    next_safe_action: "Provision the reference tree, then run T002 and T011"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-002-adapter-contracts"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -57,9 +57,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Each of T004 to T008 in `tasks.md` prints what it says.
-- [ ] `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/goal.md | cut -d' ' -f3)"..HEAD -- specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts --strict` prints `RESULT: PASSED`.
+- [x] Each of T004 to T008 in `tasks.md` prints what it says.
+- [x] `git diff --name-only "$(rg -o 'base commit [0-9a-f]{40}' specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/goal.md | cut -d' ' -f3)"..HEAD -- specs/system-skilled-bots/003-openbot-parity-build/contracts` prints nothing.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,7 +76,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Five design documents | Written | On 2026-11-26 T004 printed 11 and 14, T005 printed 9, 8 and 1, T006 printed 5 and 4, T007 printed 5, 18 and 7, T008 printed 12 and 12 and T009 printed nothing |
-| Base commit | Recorded | base commit 7b3c6c26929326ed5a851f9a3f0c0fa4a323a9cd, the commit this phase starts from. T009 and AC-007 read it from here |
+| Base commit | Recorded | base commit b04f9f9718edb971dbf4f5673221c536114a265f, the commit this phase starts from. T009 and AC-007 read it from here |
+| Build run | Closed with two tasks blocked | On 2026-11-27 the unit orchestrator ran T001, T003 to T010 and the checklist in the unit worktree and every one printed what it says. T002 and T011 are blocked because the gitignored reference tree under `specs/system-skilled-bots/context/` is not in the worktree |
 
 ### Deviations and findings
 
@@ -94,4 +95,7 @@ and findings belong here.
 | The contract check reads a base commit, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive | O-013's first alternative replaces `git status --short` with a diff from the base commit recorded above, so a contract edit this phase commits is caught too. |
 | The records and fixture rules, amended on 2026-11-27 | D5 gains the rule from `design/records.md` section 4 that maybe sent wins over retry. D7 is the three-way error rule from the same section. D8 is the fixture rule of `design/conformance-rules.md` section 2. On 2026-11-27 T004 to T008 printed the counts the progress row records. |
 | The base commit moves to the amendment pass, on 2026-11-27 | The phase has not started, and the amendment pass that applied the final parity recommendations changed twelve `contracts/` files on purpose. The check guards against this phase's own contract edits, so the base is now that pass's commit. Re-record it if the contracts change again before the phase starts. |
+| The base moves again at build start, on 2026-11-27 | The build-plan commit `caeafe3a7f0` changed `contracts/decisions.md` row D3 after the earlier base `7b3c6c26929` and before this phase started, so T009 printed that file. Under the rule above the base is now `b04f9f9718e`, the commit the unit worktree was cut from. T009 then printed nothing |
+| Waves 0 and 1 not dispatched, on 2026-11-27 | The plan names a Vibe worker for wave 0 and five for wave 1. Wave 0 is three reads with no file to write, so the orchestrator ran them itself. The five design documents were already committed before the worktree was cut and T004 to T008 printed their counts against them, so a rewrite would add risk and no content. No worker was dispatched |
+| The reference tree is missing, on 2026-11-27 | `specs/**/context/` is gitignored, so the unit worktree has no `tinychannels-main` tree. T002 and T011 cannot run there, and the orchestrator's brief bars reading the primary checkout to fill the gap. T011 is the line-copy check and has no recorded run, so it stays blocked until someone puts the tree in the worktree. T002's second path, `context/tinychannels-conformance/src/lib.rs`, also differs from the `tinychannels-main/crates/tinychannels-conformance/src/lib.rs` path that `plan.md` and `spec.md` name, so one of them will fail even once the tree is present |
 <!-- /ANCHOR:log -->
