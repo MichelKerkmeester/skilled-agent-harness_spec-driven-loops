@@ -1,5 +1,5 @@
 {
-  "manifestHash": "391896c15e940a0f1722a1c7223d10027014b1cda482b7eb12754d76044ef8df",
+  "manifestHash": "ef372e1e1f189f410d7f4f8e51e4f3b7913f1713005339342510ef6fbfe6a01c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1224,6 +1224,9 @@
     ],
     "004 plan vec store": [
       "004 plan vec store"
+    ],
+    "004 reference evidence research operator decisions": [
+      "004-reference-evidence-research operator decisions"
     ],
     "004 release and program cleanup": [
       "004 release-and-program-cleanup"
@@ -52635,6 +52638,9 @@
     "fan out review focus input for deep review": [
       "fan out review focus input for deep review"
     ],
+    "fan out review lineages that skip the terminal": [
+      "fan out review lineages that skip the terminal"
+    ],
     "fan out review runtime database exempt": [
       "fan-out review runtime database exempt"
     ],
@@ -69249,6 +69255,9 @@
     "lineage rule verification checklist": [
       "lineage rule verification checklist"
     ],
+    "lineage scoped by the root session id": [
+      "lineage scoped by the root session id"
+    ],
     "lineage steer md per iteration": [
       "lineage steer.md per iteration"
     ],
@@ -81770,6 +81779,9 @@
     "openbot parity research tasks": [
       "openbot parity research tasks"
     ],
+    "openbot reference evidence": [
+      "openbot reference evidence"
+    ],
     "opencode": [
       "opencode"
     ],
@@ -88644,6 +88656,9 @@
     ],
     "phase 4 quality obsidian coverage": [
       "phase 4 quality obsidian coverage"
+    ],
+    "phase 4 reference evidence research": [
+      "phase 4 reference evidence research"
     ],
     "phase 4 router version parity": [
       "phase 4 router version parity"
@@ -98255,6 +98270,21 @@
     ],
     "reference doc overview section": [
       "reference doc overview section"
+    ],
+    "reference evidence research": [
+      "reference evidence research"
+    ],
+    "reference evidence research goal": [
+      "reference evidence research goal"
+    ],
+    "reference evidence research implementation summary": [
+      "reference evidence research implementation summary"
+    ],
+    "reference evidence research plan": [
+      "reference evidence research plan"
+    ],
+    "reference evidence research tasks": [
+      "reference evidence research tasks"
     ],
     "reference file structure": [
       "reference file structure"
@@ -139874,6 +139904,18 @@
     ],
     "vibe review remediation tasks": [
       "vibe review remediation tasks"
+    ],
+    "vibe review terminal gates": [
+      "vibe review terminal gates"
+    ],
+    "vibe review terminal gates implementation summary": [
+      "vibe review terminal gates implementation summary"
+    ],
+    "vibe review terminal gates plan": [
+      "vibe review terminal gates plan"
+    ],
+    "vibe review terminal gates tasks": [
+      "vibe review terminal gates tasks"
     ],
     "vibe runner model pin": [
       "vibe runner model pin"

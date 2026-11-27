@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea0832d0da478baf1f3bd8dd368855e7d60d96c864445e02aeb71745e3a74e79",
+  "corpusHash": "769c867e73f3112dfeeaa65c742ae3587df602eeade7fedc6696dc57fb055935",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 30092,
+  "includedPathCount": 30109,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -19563,6 +19563,10 @@
     "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/plan.md",
     "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/spec.md",
     "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/tasks.md",
+    "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/implementation-summary.md",
+    "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/plan.md",
+    "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/spec.md",
+    "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/tasks.md",
     "specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race/acceptance-criteria.md",
     "specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race/implementation-summary.md",
     "specs/system-deep-loop/runtime-concurrency/002-writer-lock-stale-reclaim-race/plan.md",
@@ -20925,6 +20929,19 @@
     "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md",
     "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/spec.md",
     "specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/tasks.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/decision-record.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/goal.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/implementation-summary.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/plan.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/fanout-attribution.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/fix-log.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/independent-review-opus.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/restraint-review-fable.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/restraint-review-opus.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/review-report.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/spec.md",
+    "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/tasks.md",
     "specs/system-skilled-bots/002-openbot-parity-research/goal.md",
     "specs/system-skilled-bots/002-openbot-parity-research/spec.md",
     "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md",
@@ -30124,7 +30141,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "391896c15e940a0f1722a1c7223d10027014b1cda482b7eb12754d76044ef8df",
+  "manifestHash": "ef372e1e1f189f410d7f4f8e51e4f3b7913f1713005339342510ef6fbfe6a01c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -38591,6 +38608,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/review-lineage/z_archive",
       "reason": "excluded directory"
     },
@@ -39479,6 +39500,30 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/scratch",
       "reason": "excluded directory"
     },
@@ -39596,6 +39641,10 @@
     },
     {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/scratch",
       "reason": "excluded directory"
     },
     {

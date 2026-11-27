@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7452,
-    "ok": 21010,
+    "missing-frontmatter": 7459,
+    "ok": 21020,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 30092,
+  "documentsScanned": 30109,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "391896c15e940a0f1722a1c7223d10027014b1cda482b7eb12754d76044ef8df",
+  "manifestHash": "ef372e1e1f189f410d7f4f8e51e4f3b7913f1713005339342510ef6fbfe6a01c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 47184,
+      "ok": 47198,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -44915,6 +44915,48 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/fix-log.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/independent-review-opus.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/restraint-review-fable.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/restraint-review-opus.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": "specs/system-skilled-bots/003-openbot-parity-build/005-memory/design/fixtures/hello.md",
       "reason": "no opening frontmatter delimiter"
     },
@@ -64634,6 +64676,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/review-lineage/005-vibe-review-terminal-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/review-lineage/z_archive",
       "reason": "excluded directory"
     },
@@ -65522,6 +65568,30 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/scratch",
       "reason": "excluded directory"
     },
@@ -65639,6 +65709,10 @@
     },
     {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/scratch",
       "reason": "excluded directory"
     },
     {
