@@ -829,9 +829,85 @@ fn keep_answered_rows(state: &mut State, generation: u64, previous: Vec<InboxIte
     state.inbox.rows.extend(carried);
 }
 
-/// The shell's own actions, the tabs and the palette.
-pub fn on_shell_action(_state: &mut State, _action: Action) -> Vec<Effect> {
-    Vec::new()
+/// The shell's own actions: the tabs, the palette and the quit a palette entry can run.
+pub fn on_shell_action(state: &mut State, action: Action) -> Vec<Effect> {
+    match action {
+        Action::SelectTab(tab) => {
+            state.active_tab = tab;
+            refresh(state)
+        }
+        Action::PrevTab => {
+            state.active_tab = state.active_tab.prev();
+            refresh(state)
+        }
+        Action::NextTab => {
+            state.active_tab = state.active_tab.next();
+            refresh(state)
+        }
+        Action::OpenPalette => {
+            state.palette = Some(Palette::default());
+            Vec::new()
+        }
+        Action::PaletteUp => {
+            if let Some(palette) = state.palette.as_mut() {
+                palette.selected = palette.selected.saturating_sub(1);
+                if palette.selected < palette.scroll {
+                    palette.scroll = palette.selected;
+                }
+            }
+            Vec::new()
+        }
+        Action::PaletteDown => {
+            if let Some(palette) = state.palette.as_mut() {
+                let count = keys::palette_filtered(&palette.filter).len();
+                if palette.selected + 1 < count {
+                    palette.selected += 1;
+                }
+                if palette.selected >= palette.scroll + keys::PALETTE_LINES {
+                    palette.scroll = palette.selected + 1 - keys::PALETTE_LINES;
+                }
+            }
+            Vec::new()
+        }
+        Action::PaletteType(c) => {
+            if let Some(palette) = state.palette.as_mut() {
+                palette.filter.push(c);
+                palette.selected = 0;
+                palette.scroll = 0;
+            }
+            Vec::new()
+        }
+        Action::PaletteDelete => {
+            if let Some(palette) = state.palette.as_mut() {
+                palette.filter.pop();
+                palette.selected = 0;
+                palette.scroll = 0;
+            }
+            Vec::new()
+        }
+        Action::PaletteRun => {
+            let Some(palette) = state.palette.take() else {
+                return Vec::new();
+            };
+            let entries = keys::palette_filtered(&palette.filter);
+            let Some(row) = entries.get(palette.selected) else {
+                return Vec::new();
+            };
+            // The stack is read after the palette closes, so Enter runs the row bound where the palette was opened.
+            let stack = context_stack(state);
+            let facts = cond(state);
+            match keys::palette_action(row.label, &stack, &facts) {
+                Some(next) => apply(state, next),
+                None => Vec::new(),
+            }
+        }
+        Action::Close => {
+            state.palette = None;
+            Vec::new()
+        }
+        Action::Quit => vec![Effect::Quit { code: 0 }],
+        _ => Vec::new(),
+    }
 }
 
 /// The list's move actions on the active tab's pane view.
@@ -1293,5 +1369,109 @@ mod tests {
         let effects = update(&mut state, Msg::Paste("y".to_string()));
         assert!(effects.is_empty());
         assert_eq!(state, before);
+    }
+}
+
+#[cfg(test)]
+mod on_shell_action {
+    use super::*;
+
+    /// A state at a size the shell draws, so keys resolve against the shell and not the too-small context.
+    fn state_on(tab: Tab) -> State {
+        State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: tab,
+            ..State::default()
+        }
+    }
+
+    /// Ctrl+P and the question mark open the palette, Esc and Ctrl+C close it, and Ctrl+C quits once it is closed.
+    #[test]
+    fn palette_opens_and_closes() {
+        let mut state = state_on(Tab::Activity);
+        update(&mut state, Msg::Key(Key::Ctrl('p')));
+        assert!(state.palette.is_some());
+
+        let effects = update(&mut state, Msg::Key(Key::Esc));
+        assert!(state.palette.is_none());
+        assert!(effects.is_empty());
+
+        update(&mut state, Msg::Key(Key::Char('?')));
+        assert!(state.palette.is_some());
+
+        let effects = update(&mut state, Msg::Key(Key::Ctrl('c')));
+        assert!(state.palette.is_none());
+        assert!(!effects
+            .iter()
+            .any(|effect| matches!(effect, Effect::Quit { .. })));
+
+        let effects = update(&mut state, Msg::Key(Key::Ctrl('c')));
+        assert_eq!(effects, vec![Effect::Quit { code: 0 }]);
+    }
+
+    /// Alt plus a digit and the brackets switch the tab and refresh the surfaces the new tab draws.
+    #[test]
+    fn select_tab_switches_and_refreshes() {
+        let mut state = state_on(Tab::Activity);
+        let effects = update(&mut state, Msg::Key(Key::Alt('2')));
+        assert_eq!(state.active_tab, Tab::Inbox);
+        assert!(effects.contains(&Effect::Fetch {
+            surface: Surface::Inbox,
+            generation: 1,
+        }));
+        assert!(effects.contains(&Effect::Fetch {
+            surface: Surface::Status,
+            generation: 1,
+        }));
+
+        let mut state = state_on(Tab::Chat);
+        update(&mut state, Msg::Key(Key::Char(']')));
+        assert_eq!(state.active_tab, Tab::Activity);
+
+        let mut state = state_on(Tab::Activity);
+        update(&mut state, Msg::Key(Key::Char('[')));
+        assert_eq!(state.active_tab, Tab::Chat);
+    }
+
+    /// Enter runs the row bound where the palette was opened, not the row the same label names elsewhere.
+    #[test]
+    fn palette_run_takes_the_row_bound_where_it_opened() {
+        let mut state = state_on(Tab::Inbox);
+        update(&mut state, Msg::Key(Key::Ctrl('p')));
+        for c in ['t', 'a', 'b', 's'] {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        update(&mut state, Msg::Key(Key::Enter));
+        assert!(state.palette.is_none());
+        assert_eq!(state.active_tab, Tab::Activity);
+
+        let mut state = state_on(Tab::Activity);
+        update(&mut state, Msg::Key(Key::Ctrl('p')));
+        for c in ['e', 'x'] {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(effects, vec![Effect::Quit { code: 0 }]);
+    }
+
+    /// The palette selection stops at the last entry and the scroll keeps it inside the drawn window.
+    #[test]
+    fn palette_selection_stays_in_view() {
+        let mut state = state_on(Tab::Activity);
+        update(&mut state, Msg::Key(Key::Ctrl('p')));
+        for _ in 0..10 {
+            update(&mut state, Msg::Key(Key::Down));
+        }
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, keys::palette_filtered("").len() - 1);
+        assert!(palette.selected >= palette.scroll);
+        assert!(palette.selected < palette.scroll + keys::PALETTE_LINES);
+
+        for _ in 0..10 {
+            update(&mut state, Msg::Key(Key::Up));
+        }
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, 0);
+        assert_eq!(palette.scroll, 0);
     }
 }

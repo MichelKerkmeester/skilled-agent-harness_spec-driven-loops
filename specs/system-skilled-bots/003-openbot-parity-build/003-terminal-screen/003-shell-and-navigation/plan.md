@@ -37,16 +37,16 @@ The shell is three pieces that read each other. `keys.rs` holds one table of con
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so phase 002's crate is in place
-- [ ] `bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows'` exits 0, so the header has a payload to read
-- [ ] `rg -n 'SHELL_ROWS' crates/bots-tui/src/keys.rs` prints the empty slice 002 leaves, so this phase starts from an empty shell
+- [x] `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so phase 002's crate is in place
+- [x] `bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows'` exits 0, so the header has a payload to read
+- [x] `rg -n 'SHELL_ROWS' crates/bots-tui/src/keys.rs` prints the empty slice 002 leaves, so this phase starts from an empty shell
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`
-- [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
-- [ ] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`
+- [x] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
+- [x] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

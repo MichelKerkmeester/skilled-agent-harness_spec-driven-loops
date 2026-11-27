@@ -166,8 +166,241 @@ pub struct Cond {
     pub sending: bool,
 }
 
-/// The shell's rows, filled by the shell work.
-pub const SHELL_ROWS: &[Row] = &[];
+/// The shell's rows: the tab, palette and quit keys of the main, inbox, palette and too-small contexts.
+pub const SHELL_ROWS: &[Row] = &[
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Alt('1')),
+        when: &[],
+        action: Action::SelectTab(Tab::Activity),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Alt('2')),
+        when: &[],
+        action: Action::SelectTab(Tab::Inbox),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Alt('3')),
+        when: &[],
+        action: Action::SelectTab(Tab::Routines),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Alt('4')),
+        when: &[],
+        action: Action::SelectTab(Tab::Chat),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Char('[')),
+        when: &[],
+        action: Action::PrevTab,
+        label: "[ ] cycle",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Char(']')),
+        when: &[],
+        action: Action::NextTab,
+        label: "[ ] cycle",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Ctrl('p')),
+        when: &[],
+        action: Action::OpenPalette,
+        label: "Ctrl+P/? commands",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Char('?')),
+        when: &[],
+        action: Action::OpenPalette,
+        label: "Ctrl+P/? commands",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+C exit",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Alt('1')),
+        when: &[],
+        action: Action::SelectTab(Tab::Activity),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Alt('2')),
+        when: &[],
+        action: Action::SelectTab(Tab::Inbox),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Alt('3')),
+        when: &[],
+        action: Action::SelectTab(Tab::Routines),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Alt('4')),
+        when: &[],
+        action: Action::SelectTab(Tab::Chat),
+        label: "Alt+1..4 tabs",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Char('[')),
+        when: &[],
+        action: Action::PrevTab,
+        label: "[ ] cycle",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Char(']')),
+        when: &[],
+        action: Action::NextTab,
+        label: "[ ] cycle",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Ctrl('p')),
+        when: &[],
+        action: Action::OpenPalette,
+        label: "Ctrl+P/? commands",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Char('?')),
+        when: &[],
+        action: Action::OpenPalette,
+        label: "Ctrl+P/? commands",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+C exit",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Inbox,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Up),
+        when: &[],
+        action: Action::PaletteUp,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Down),
+        when: &[],
+        action: Action::PaletteDown,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Printable,
+        when: &[],
+        action: Action::PaletteType(' '),
+        label: "type to filter",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Backspace),
+        when: &[],
+        action: Action::PaletteDelete,
+        label: "Bksp delete",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[],
+        action: Action::PaletteRun,
+        label: "Enter select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Esc),
+        when: &[],
+        action: Action::Close,
+        label: "Esc close",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[],
+        action: Action::Close,
+        label: "Ctrl+C close",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Palette,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::TooSmall,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+];
 
 /// The panes' rows, filled by the list work.
 pub const LIST_ROWS: &[Row] = &[];
@@ -230,6 +463,44 @@ pub fn palette_entries_in<'a>(rows: impl Iterator<Item = &'a Row>) -> Vec<&'a Ro
 /// The palette's entries, one per distinct label.
 pub fn palette_entries() -> Vec<&'static Row> {
     palette_entries_in(rows())
+}
+
+/// The entry lines the palette panel shows at its full height, so the reducer's scroll and the drawn window agree.
+pub const PALETTE_LINES: usize = 4;
+
+/// Whether every condition a row carries holds, so the footer draws only the rows whose conditions hold.
+pub fn row_holds(row: &Row, cond: &Cond) -> bool {
+    row.when.iter().all(|when| when_holds(*when, cond))
+}
+
+/// The palette's entries whose label contains the filter, in table order so typing narrows the list without reordering it.
+pub fn palette_filtered_in<'a>(rows: impl Iterator<Item = &'a Row>, filter: &str) -> Vec<&'a Row> {
+    let needle = filter.to_lowercase();
+    palette_entries_in(rows)
+        .into_iter()
+        .filter(|row| row.label.to_lowercase().contains(&needle))
+        .collect()
+}
+
+/// The palette's entries whose label contains the filter, in table order.
+pub fn palette_filtered(filter: &str) -> Vec<&'static Row> {
+    palette_filtered_in(rows(), filter)
+}
+
+/// The action of the first row with this label that is bound where the palette was opened, because one label can cover several rows.
+pub fn palette_action_in<'a>(
+    mut rows: impl Iterator<Item = &'a Row>,
+    label: &str,
+    stack: &[Context],
+    cond: &Cond,
+) -> Option<Action> {
+    rows.find(|row| row.label == label && stack.contains(&row.context) && row_holds(row, cond))
+        .map(|row| row.action)
+}
+
+/// The action of the first row with this label that is bound where the palette was opened.
+pub fn palette_action(label: &str, stack: &[Context], cond: &Cond) -> Option<Action> {
+    palette_action_in(rows(), label, stack, cond)
 }
 
 /// Whether a row's match covers the pressed key.
@@ -477,9 +748,288 @@ mod tests {
         assert_eq!(entries[1].label, "↑↓ select");
     }
 
+    /// The palette filter keeps the matching labels in table order and ignores case.
     #[test]
-    fn rows_are_empty_until_filled() {
-        assert_eq!(rows().count(), 0);
-        assert!(palette_entries().is_empty());
+    fn palette_filter_keeps_matching_labels() {
+        let labels = |filter: &str| -> Vec<&'static str> {
+            palette_filtered(filter)
+                .into_iter()
+                .map(|row| row.label)
+                .collect()
+        };
+        assert_eq!(labels("ex"), ["Ctrl+C exit", "Ctrl+D exit"]);
+        assert_eq!(labels("EX"), ["Ctrl+C exit", "Ctrl+D exit"]);
+        assert_eq!(palette_filtered("").len(), palette_entries().len());
+        assert_eq!(labels("tabs"), ["Alt+1..4 tabs"]);
+        assert!(palette_filtered("zzz").is_empty());
+    }
+
+    /// Enter runs the first row in table order that is bound where the palette was opened.
+    #[test]
+    fn palette_action_takes_the_first_bound_row() {
+        let cond = Cond::default();
+        assert_eq!(
+            palette_action("Alt+1..4 tabs", &[Context::Inbox, Context::List], &cond),
+            Some(Action::SelectTab(Tab::Activity))
+        );
+        assert_eq!(
+            palette_action("Alt+1..4 tabs", &[Context::Main], &cond),
+            Some(Action::SelectTab(Tab::Activity))
+        );
+        const LIST_ONLY: &[Row] = &[Row {
+            context: Context::List,
+            key: KeyMatch::Exact(Key::Down),
+            when: &[],
+            action: Action::MoveDown,
+            label: "down move",
+            line: FooterLine::One,
+        }];
+        assert_eq!(
+            palette_action_in(LIST_ONLY.iter(), "down move", &[Context::Main], &cond),
+            None
+        );
+        assert_eq!(
+            palette_action_in(
+                LIST_ONLY.iter(),
+                "down move",
+                &[Context::Main, Context::List],
+                &cond
+            ),
+            Some(Action::MoveDown)
+        );
+    }
+
+    /// A row holds only when every condition it carries holds, and a row with none always holds.
+    #[test]
+    fn row_holds_reads_the_conditions() {
+        let gated = Row {
+            context: Context::Main,
+            key: KeyMatch::Exact(Key::Char('i')),
+            when: &[When::InboxTab],
+            action: Action::OpenItem,
+            label: "i open",
+            line: FooterLine::One,
+        };
+        assert!(row_holds(
+            &gated,
+            &Cond {
+                inbox_tab: true,
+                ..Cond::default()
+            }
+        ));
+        assert!(!row_holds(&gated, &Cond::default()));
+        let open = Row {
+            context: Context::Main,
+            key: KeyMatch::Exact(Key::Char('i')),
+            when: &[],
+            action: Action::OpenItem,
+            label: "i open",
+            line: FooterLine::One,
+        };
+        assert!(row_holds(&open, &Cond::default()));
+    }
+
+    /// Every row carries a label, and the shell's rows stay inside the four shell contexts.
+    #[test]
+    fn every_row_has_a_label() {
+        for row in rows() {
+            let key = row.key;
+            assert!(!row.label.is_empty(), "row {key:?} has no label");
+        }
+        for row in SHELL_ROWS {
+            let context = row.context;
+            let key = row.key;
+            assert!(
+                matches!(
+                    context,
+                    Context::Main | Context::Inbox | Context::Palette | Context::TooSmall
+                ),
+                "shell row {key:?} sits in {context:?}"
+            );
+        }
+        assert_eq!(SHELL_ROWS.len(), 29);
+    }
+
+    /// Alt plus a digit selects the tab that digit numbers, on the main and the inbox stacks.
+    #[test]
+    fn alt_2_selects_inbox() {
+        let cond = Cond::default();
+        let stacks: [&[Context]; 2] = [
+            &[Context::Main, Context::List],
+            &[Context::Inbox, Context::List],
+        ];
+        for stack in stacks {
+            assert_eq!(
+                resolve(stack, &Key::Alt('2'), &cond),
+                Some(Action::SelectTab(Tab::Inbox))
+            );
+            assert_eq!(
+                resolve(stack, &Key::Alt('1'), &cond),
+                Some(Action::SelectTab(Tab::Activity))
+            );
+            assert_eq!(
+                resolve(stack, &Key::Alt('3'), &cond),
+                Some(Action::SelectTab(Tab::Routines))
+            );
+            assert_eq!(
+                resolve(stack, &Key::Alt('4'), &cond),
+                Some(Action::SelectTab(Tab::Chat))
+            );
+        }
+    }
+
+    /// The right bracket moves to the next tab on the main and the inbox stacks.
+    #[test]
+    fn bracket_right_cycles_forward() {
+        let cond = Cond::default();
+        assert_eq!(
+            resolve(&[Context::Main, Context::List], &Key::Char(']'), &cond),
+            Some(Action::NextTab)
+        );
+        assert_eq!(
+            resolve(&[Context::Inbox, Context::List], &Key::Char(']'), &cond),
+            Some(Action::NextTab)
+        );
+    }
+
+    /// The left bracket moves to the previous tab on the main and the inbox stacks.
+    #[test]
+    fn bracket_left_cycles_back() {
+        let cond = Cond::default();
+        assert_eq!(
+            resolve(&[Context::Main, Context::List], &Key::Char('['), &cond),
+            Some(Action::PrevTab)
+        );
+        assert_eq!(
+            resolve(&[Context::Inbox, Context::List], &Key::Char('['), &cond),
+            Some(Action::PrevTab)
+        );
+    }
+
+    /// Ctrl+P and the question mark open the palette from the main, the inbox and the chat stacks.
+    #[test]
+    fn ctrl_p_opens_palette() {
+        let cond = Cond::default();
+        let stacks: [&[Context]; 3] = [
+            &[Context::Main, Context::List],
+            &[Context::Inbox, Context::List],
+            &[Context::Main],
+        ];
+        for stack in stacks {
+            assert_eq!(
+                resolve(stack, &Key::Ctrl('p'), &cond),
+                Some(Action::OpenPalette)
+            );
+            assert_eq!(
+                resolve(stack, &Key::Char('?'), &cond),
+                Some(Action::OpenPalette)
+            );
+        }
+    }
+
+    /// Ctrl+D quits from every context the shell binds, the too-small screen included.
+    #[test]
+    fn ctrl_d_quits() {
+        let cond = Cond::default();
+        let stacks: [&[Context]; 5] = [
+            &[Context::Main],
+            &[Context::Main, Context::List],
+            &[Context::Inbox, Context::List],
+            &[Context::Palette],
+            &[Context::TooSmall],
+        ];
+        for stack in stacks {
+            assert_eq!(resolve(stack, &Key::Ctrl('d'), &cond), Some(Action::Quit));
+        }
+    }
+
+    /// Ctrl+C quits outside the palette, closes the palette, and is unbound on the too-small screen.
+    #[test]
+    fn ctrl_c_quits_and_emits_no_answer() {
+        let cond = Cond::default();
+        assert_eq!(
+            resolve(&[Context::Main, Context::List], &Key::Ctrl('c'), &cond),
+            Some(Action::Quit)
+        );
+        assert_eq!(
+            resolve(&[Context::Inbox, Context::List], &Key::Ctrl('c'), &cond),
+            Some(Action::Quit)
+        );
+        assert_eq!(
+            resolve(&[Context::Palette], &Key::Ctrl('c'), &cond),
+            Some(Action::Close)
+        );
+        assert_eq!(resolve(&[Context::TooSmall], &Key::Ctrl('c'), &cond), None);
+
+        // A 0x0 size is the too-small context, where Ctrl+C is unbound, so the size is set here.
+        let mut state = crate::state::State {
+            size: crate::state::Size { cols: 80, rows: 24 },
+            ..crate::state::State::default()
+        };
+        let effects = crate::state::update(&mut state, crate::state::Msg::Key(Key::Ctrl('c')));
+        assert_eq!(effects, vec![crate::state::Effect::Quit { code: 0 }]);
+        assert!(!effects
+            .iter()
+            .any(|effect| matches!(effect, crate::state::Effect::Answer { .. })));
+    }
+
+    /// Typing in the palette filters the list, so a key that binds outside it never fires while the filter is open.
+    #[test]
+    fn palette_filter_pauses_shortcuts() {
+        // A 0x0 size is the too-small context, where only Ctrl+D is bound, so the size is set here.
+        let mut state = crate::state::State {
+            size: crate::state::Size { cols: 80, rows: 24 },
+            ..crate::state::State::default()
+        };
+        crate::state::update(&mut state, crate::state::Msg::Key(Key::Ctrl('p')));
+        for c in ['e', 'x', ']', '[', '?'] {
+            crate::state::update(&mut state, crate::state::Msg::Key(Key::Char(c)));
+        }
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.filter, "ex][?");
+        assert_eq!(state.active_tab, Tab::Activity);
+        assert_eq!(
+            resolve(&[Context::Palette], &Key::Char(']'), &Cond::default()),
+            Some(Action::PaletteType(']'))
+        );
+
+        crate::state::update(&mut state, crate::state::Msg::Key(Key::Backspace));
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.filter, "ex][");
+    }
+
+    /// The palette's arrows move the selection, stop at both ends and keep the selection inside the drawn window.
+    #[test]
+    fn palette_up_and_down_move_the_selection() {
+        // A 0x0 size is the too-small context, where only Ctrl+D is bound, so the size is set here.
+        let mut state = crate::state::State {
+            size: crate::state::Size { cols: 80, rows: 24 },
+            ..crate::state::State::default()
+        };
+        crate::state::update(&mut state, crate::state::Msg::Key(Key::Ctrl('p')));
+        let count = palette_filtered("").len();
+
+        crate::state::update(&mut state, crate::state::Msg::Key(Key::Down));
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, 1);
+
+        for _ in 0..10 {
+            crate::state::update(&mut state, crate::state::Msg::Key(Key::Down));
+        }
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, count - 1);
+        assert!(palette.scroll <= palette.selected);
+        assert!(palette.selected < palette.scroll + PALETTE_LINES);
+
+        crate::state::update(&mut state, crate::state::Msg::Key(Key::Up));
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, count - 2);
+
+        for _ in 0..10 {
+            crate::state::update(&mut state, crate::state::Msg::Key(Key::Up));
+        }
+        let palette = state.palette.as_ref().expect("the palette is open");
+        assert_eq!(palette.selected, 0);
+        assert_eq!(palette.scroll, 0);
     }
 }
