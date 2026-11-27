@@ -66,6 +66,12 @@ command/
 │   ├── skill-parent.md       # Scaffold a parent skill with nested mode packets
 │   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
 │   └── assets/               # YAML workflow and presentation contracts
+├── bots/                     # Bot commands, one per system-skilled-bots mode
+│   ├── author.md             # Write or edit a bot's BOT.md
+│   ├── run.md                # Run, queue or drain bot runs, or answer a needs-you item
+│   ├── schedule.md           # Install, remove, enable, disable, pause or resume a bot
+│   ├── status.md             # Read bots, last runs, deliveries and the needs-you inbox
+│   └── assets/               # YAML workflow and presentation contracts
 ├── deep/                     # Deep-loop commands
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
@@ -209,7 +215,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
+1. Choose the command group that matches your intent: `bots`, `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.
@@ -249,7 +255,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 
 ## 7. EXECUTION MODES
 
-Most commands in `create/`, `deep/`, `prompt`, and `speckit/` support two execution modes controlled by a suffix argument.
+Most commands in `bots/`, `create/`, `deep/`, `design/`, `prompt/` and `speckit/` support two execution modes controlled by a suffix argument.
 
 | Mode | Suffix | Behavior |
 |------|--------|----------|

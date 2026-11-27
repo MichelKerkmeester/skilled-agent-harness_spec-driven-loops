@@ -263,6 +263,20 @@ Every other step of the routing guard passes locally. The skill advisor suite pa
 | Not traceable: `0352ae70`, `15b479d3`, `34470899`, `5704bf0b`, `617b2600` | 5 | 12 |
 
 The open items left by the fix pass are closed. The `mcp-browser-use` v1.1.4.0 changelog carries the same "Correction, added later" lines as `sk-doc` v2.10.1.0. The `sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout` continuity record was rewritten through the writer and now reads `ok`. An older copy of that block in its `spec.md` frontmatter, which the writer no longer maintains, is left as recorded. The active `gh` account was switched to `MichelKerkmeester` on the operator's instruction, and `gh auth switch --user michelkerkmeester-barter` restores it.
+### Consumer doc follow-up
+
+Barter embeds `.skilled/changelog/skilled/v4.2.0.0.md` word for word in its own release notes, so a shape failure in that file fails there too. Line 854 ran 25 words against a ceiling of 22, and the mean sat at its 10-word ceiling. The sentence is now two, and the shape check passes with no other line changed. The same review found `.skilled/commands/README.txt` leaving out the `bots` group in three places: the structure tree, step 1 of section 5 and the execution-modes list. That list also left out `design`, and both groups ship auto and confirm workflow files. The group table and its counts already matched the folders.
+
+| Check | Before | After |
+|-------|--------|-------|
+| `check_changelog_shape.py` | FAIL, sentence-max and sentence-mean, exit 1 | PASS, exit 0 |
+| `hvr_scan.py` | 0 hard blockers, -24 | 0 hard blockers, -24 |
+| `validate_document.py --type changelog` | VALID | VALID, exit 0 |
+| `build_release_notes.py` | builds | builds, exit 0, carries the new wording |
+| `command-catalog-mirror-check.cjs` | 49 of 49 listed | 49 of 49 listed, exit 0 |
+
+Three gaps in that README were left alone because they are not group lists. The doctor subtree in section 3 names 11 of its 18 files. The frontmatter description and the opening line leave out bots, design and doctor. The chart row says 21 forms, and the `/design:chart` description says 29.
+
 <!-- /ANCHOR:verification -->
 
 ---
