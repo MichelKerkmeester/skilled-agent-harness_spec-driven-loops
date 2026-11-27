@@ -19,26 +19,34 @@
 // and the parked run's record is stamped with that same name so a reader of
 // the run learns who answered it. The name is resolved here from the argument
 // the caller passes, never from a terminal, so a channel daemon or a test
-// answers with no tty in sight.
+// answers with no tty in sight. The answer writes its scope, its actor and its
+// instant on the item's grant in the same write, and the no-resume option
+// drops a resume still queued for the item.
 //
 // The item and the queue are found under `resolveEnv` when it is given; the
 // secret check reads `env`. A library caller passes the job's environment
 // from the installer's `jobEnv` as `resolveEnv`, so the answer and its
 // request land where the scheduled jobs read them.
 
+import { randomBytes } from 'node:crypto';
+import { chmodSync, closeSync, linkSync, openSync, readFileSync, renameSync, statSync, unlinkSync, writeSync } from 'node:fs';
+import { join } from 'node:path';
+
+import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
+import { decideApproval, grantScopeFor } from './approval-ladder.js';
 import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { appendMemoryEntry, botMemoryFile, checkMemoryAppend, readMemoryFile } from './memory.js';
 import { ANSWER_SCOPES, itemKind, needsYouState, normalizeAnswer, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { ANSWER_SOURCE, buildRequest, requestIdFor } from './request-record.js';
-import { enqueueRequest, queueContext } from './request-queue.js';
+import { enqueueRequest, listInbox, queueContext, queueFolders } from './request-queue.js';
 import { readRunRecord, writeRunRecord } from './run-record.js';
 import { writeGenerationStamp } from './runner.js';
-import { isSafeSegment } from './state-root.js';
+import { identityStatePaths, isSafeSegment } from './state-root.js';
 
 import type { KnownSecrets } from './dispatch.js';
 import type { MemoryEntryInput } from './memory.js';
-import type { AnswerScope, NeedsYouItem } from './needs-you.js';
+import type { AnswerScope, NeedsYouGrant, NeedsYouItem } from './needs-you.js';
 import type { Result } from './repo-config.js';
 import type { EnqueueResult } from './request-queue.js';
 
@@ -173,6 +181,21 @@ function reviewFor(item: NeedsYouItem): ReviewKind | null {
 // ───────────────────────────────────────────────────────────────────
 
 /**
+ * The item's grant with the answer's scope, actor and instant written on it, so the grant and the
+ * answer land in one write and cannot disagree. An item written before items carried a grant gets one
+ * built from its question, and a question the classifier refuses keeps no grant.
+ */
+function answeredGrant(item: NeedsYouItem, scope: AnswerScope, by: string, at: string): NeedsYouGrant | null {
+  let born = item.grants ?? null;
+  if (born === null) {
+    const classified = classifyAction(item.question);
+    if (!classified.ok) return null;
+    born = { kind: classified.value, action: clipAction(item.question), rung: decideApproval({ kind: classified.value }).rung, scope: null, grantedBy: null, grantedAt: null };
+  }
+  return { ...born, scope, grantedBy: by, grantedAt: at };
+}
+
+/**
  * Answer one needs-you item and enqueue the run that continues it.
  *
  * The answer records the resolved actor as its by and the scope it was given,
@@ -188,9 +211,10 @@ function reviewFor(item: NeedsYouItem): ReviewKind | null {
  *   with the request id the item names. The no-resume option returns
  *   `reviewed` instead, with the request id the resume would have carried. A
  *   refusal is `answer-empty`, `scope-invalid`, `actor-invalid`,
- *   `item-unknown`, `item-expired`, `item-answered-differently`,
- *   `answer-secret` (named by key, never by value), `review-answer-invalid`,
- *   `memory-full`, `memory-secret` or a queue refusal.
+ *   `item-unknown`, `item-busy`, `item-expired`,
+ *   `item-answered-differently`, `answer-secret` (named by key, never by
+ *   value), `review-answer-invalid`, `memory-full`, `memory-secret` or a
+ *   queue refusal.
  */
 export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const env = input.env ?? process.env;
@@ -199,8 +223,9 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const noResume = input.resume === false;
   if (input.text.trim() === '') return { ok: false, reason: 'answer-empty' };
 
-  const scope = input.scope ?? 'once';
-  if (!ANSWER_SCOPES.includes(scope)) return { ok: false, reason: 'scope-invalid', detail: String(input.scope) };
+  if (input.scope !== undefined && !ANSWER_SCOPES.includes(input.scope)) return { ok: false, reason: 'scope-invalid', detail: String(input.scope) };
+  // A NO records deny even when once was given, so a refusal is never recorded as an approval.
+  const scope = grantScopeFor(input.text, input.scope ?? null);
   const actor = resolveActor({ as: input.actor ?? null, env, scheduled: false });
   if (!actor.ok) return actor;
 
@@ -209,6 +234,34 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const { identity, stateRoot } = context.value;
 
   if (!isSafeSegment(input.itemId)) return { ok: false, reason: 'item-unknown', detail: input.itemId };
+
+  const lock = acquireItemLock(stateRoot, identity, input.itemId);
+  if (!lock.ok) return lock;
+  try {
+    return answerLocked(input, { env, now, enqueue, noResume, scope, actor: actor.value, identity, stateRoot });
+  } finally {
+    releaseItemLock(lock.value);
+  }
+}
+
+/** What answerItem resolved before it took the lock, so the locked half reads it from one place. */
+interface LockedContext {
+  env: NodeJS.ProcessEnv;
+  now: Date;
+  enqueue: typeof enqueueRequest;
+  noResume: boolean;
+  scope: AnswerScope;
+  actor: string | null;
+  identity: string;
+  stateRoot: string;
+}
+
+/**
+ * Everything after the lock, so the read, the judgement and the write all happen while the lock is
+ * held and two answers that both found the item open cannot both land.
+ */
+function answerLocked(input: AnswerInput, ctx: LockedContext): Result<AnswerResult> {
+  const { env, now, enqueue, noResume, scope, identity, stateRoot } = ctx;
   const read = readNeedsYouItem(stateRoot, identity, input.itemId);
   if (!read.ok) {
     return read.reason === 'item-missing' ? { ok: false, reason: 'item-unknown', detail: input.itemId } : read;
@@ -223,6 +276,7 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (state === 'expired') return { ok: false, reason: 'item-expired', detail: `expired at ${item.expiresAt}` };
   if (state === 'answered' && item.answer !== null && !noResume) {
     const stored = normalizeAnswer(item.answer);
+    // The answer's identity is its text and its scope together, so the same words under another scope are another answer.
     if (stored.text !== input.text || stored.scope !== answerScope) {
       return { ok: false, reason: 'item-answered-differently', detail: `answered at ${stored.answeredAt}` };
     }
@@ -235,13 +289,18 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (claimed !== null && !claimed.ok) return claimed;
   const reviewContext: ReviewContext = { stateRoot, identity, known };
   if (review !== null && claimed !== null && claimed.ok && state === 'open') {
-    const checked = review.precheck(reviewContext, item, claimed.value.verdict, actor.value, now);
+    const checked = review.precheck(reviewContext, item, claimed.value.verdict, ctx.actor, now);
     if (!checked.ok) return checked;
   }
 
   let changed = false;
   if (state === 'open') {
-    item = { ...item, answer: { text: input.text, answeredAt: now.toISOString(), by: actor.value, scope: answerScope } };
+    const answeredAt = now.toISOString();
+    item = {
+      ...item,
+      answer: { text: input.text, answeredAt, by: ctx.actor, scope: answerScope },
+      grants: answeredGrant(item, answerScope, ctx.actor ?? 'unknown', answeredAt),
+    };
     const written = writeNeedsYouItem(stateRoot, item);
     if (!written.ok) return written;
     changed = true;
@@ -251,7 +310,7 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (stampAnsweredBy(stateRoot, identity, item.runId, answeredBy)) changed = true;
 
   if (review !== null && claimed !== null && claimed.ok) {
-    const by = item.answer === null ? actor.value : normalizeAnswer(item.answer).by;
+    const by = item.answer === null ? ctx.actor : normalizeAnswer(item.answer).by;
     const settled = review.settle(reviewContext, item, claimed.value.verdict, by, now);
     if (!settled.ok) return settled;
     // A review item queues no run, so the id names the request it would have carried and nothing waits on it.
@@ -268,6 +327,17 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
   if (noResume) {
     // The id the resume would have carried, so nothing waits on a request that was never queued.
     const requestId = item.resumeRequestId ?? requestIdFor(item.botId, item.id);
+    // A resume an earlier answer queued would dispatch the run this option exists to stop, so it is dropped before the request id is recorded.
+    const folders = queueFolders(stateRoot, identity);
+    const queued = `${requestId}.json`;
+    if (listInbox(folders).includes(queued)) {
+      try {
+        unlinkSync(join(folders.inbox, queued));
+        changed = true;
+      } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException | null)?.code !== 'ENOENT') throw error;
+      }
+    }
     if (item.resumeRequestId === null) {
       const written = writeNeedsYouItem(stateRoot, { ...item, resumeRequestId: requestId });
       if (!written.ok) return written;
@@ -301,7 +371,198 @@ export function answerItem(input: AnswerInput): Result<AnswerResult> {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 4. RECORD STAMP
+// 4. ITEM LOCK
+// ───────────────────────────────────────────────────────────────────
+
+/** An answer holds the lock for milliseconds, so a lock older than this has no live owner. */
+const LOCK_STALE_MS = 60_000;
+
+/** How long an answer waits for a lock another answer holds before it is refused. */
+const LOCK_WAIT_MS = 2_000;
+
+/** How long a waiting answer pauses between attempts. */
+const LOCK_POLL_MS = 50;
+
+/** The lock one answer holds on one item. */
+interface ItemLock {
+  path: string;
+  nonce: string;
+}
+
+/** What a lock file holds, so a reclaimer can tell a live owner from a killed one. */
+interface LockFile {
+  pid: number;
+  nonce: string;
+  createdAt: string;
+}
+
+/** The lock file beside one item. */
+function lockPath(stateRoot: string, identity: string, itemId: string): string {
+  return join(identityStatePaths(stateRoot, identity).needsYou, `${itemId}.lock`);
+}
+
+/**
+ * Whether a process is still running. The probe sends no signal, so it never touches the process.
+ *
+ * @returns True when the pid exists, including one this user may not signal.
+ */
+function pidAlive(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error: unknown) {
+    // A process this user may not signal still exists, so only a missing one reads as gone.
+    return (error as NodeJS.ErrnoException | null)?.code === 'EPERM';
+  }
+}
+
+/**
+ * Read a lock file.
+ *
+ * @returns Null when the file is missing, `torn` when it exists but does not hold a lock, else its
+ *   contents.
+ */
+function readLock(path: string): LockFile | null | 'torn' {
+  let text: string;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException | null)?.code === 'ENOENT') return null;
+    throw error;
+  }
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    return 'torn';
+  }
+  if (typeof parsed !== 'object' || parsed === null) return 'torn';
+  const file = parsed as Partial<LockFile>;
+  if (typeof file.pid !== 'number' || typeof file.nonce !== 'string' || typeof file.createdAt !== 'string') return 'torn';
+  return { pid: file.pid, nonce: file.nonce, createdAt: file.createdAt };
+}
+
+/**
+ * Wait without a busy loop. The wait blocks the thread and keeps answerItem synchronous, because
+ * every caller depends on that.
+ */
+function pause(ms: number): void {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
+
+/**
+ * Take the item's lock, waiting a bounded time for another answer to release it.
+ *
+ * The lock is created exclusively, so one answer creates it and every other answer sees it held.
+ * A lock whose owner is gone or whose age is past the stale bound is reclaimed by renaming it
+ * aside, so a lock a killed process left behind never blocks the next answer.
+ *
+ * @returns The held lock, `item-unknown` when the item's folder is gone, or `item-busy` when a live
+ *   answer still holds it after the wait.
+ */
+function acquireItemLock(stateRoot: string, identity: string, itemId: string): Result<ItemLock> {
+  const path = lockPath(stateRoot, identity, itemId);
+  const nonce = randomBytes(16).toString('hex');
+  const deadline = Date.now() + LOCK_WAIT_MS;
+  for (;;) {
+    let fd: number | null = null;
+    try {
+      fd = openSync(path, 'wx', 0o600);
+    } catch (error: unknown) {
+      const code = (error as NodeJS.ErrnoException | null)?.code;
+      // No needs-you folder means no item to answer.
+      if (code === 'ENOENT') return { ok: false, reason: 'item-unknown', detail: itemId };
+      if (code !== 'EEXIST') throw error;
+    }
+    if (fd !== null) {
+      const body: LockFile = { pid: process.pid, nonce, createdAt: new Date().toISOString() };
+      try {
+        writeSync(fd, JSON.stringify(body));
+      } finally {
+        closeSync(fd);
+      }
+      chmodSync(path, 0o600);
+      const mine = readLock(path);
+      if (mine !== null && mine !== 'torn' && mine.nonce === nonce) return { ok: true, value: { path, nonce } };
+      // Another process won the race, so the loop decides again from the top.
+      continue;
+    }
+
+    const held = readLock(path);
+    if (held === null) continue;
+    let stale = false;
+    let staleNonce: string | null = null;
+    let busyPid = 'unknown';
+    let busySince = 'unknown';
+    if (held === 'torn') {
+      let mtime: number;
+      try {
+        mtime = statSync(path).mtimeMs;
+      } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException | null)?.code === 'ENOENT') continue;
+        throw error;
+      }
+      busySince = new Date(mtime).toISOString();
+      stale = Date.now() - mtime > LOCK_STALE_MS;
+    } else {
+      busyPid = String(held.pid);
+      busySince = held.createdAt;
+      const born = Date.parse(held.createdAt);
+      // An unparsable createdAt cannot prove a live owner, so it counts as stale.
+      stale = !pidAlive(held.pid) || Number.isNaN(born) || Date.now() - born > LOCK_STALE_MS;
+      staleNonce = held.nonce;
+    }
+
+    if (stale) {
+      const aside = `${path}.${nonce}.stale`;
+      try {
+        renameSync(path, aside);
+      } catch (error: unknown) {
+        // Another reclaimer moved it first, so the loop reads the path again.
+        if ((error as NodeJS.ErrnoException | null)?.code === 'ENOENT') continue;
+        throw error;
+      }
+      // Only the process whose rename succeeded retries the create, and the re-read after the create decides who holds it.
+      const moved = readLock(aside);
+      if (moved !== null && moved !== 'torn' && moved.nonce !== staleNonce) {
+        // A fresh lock was created between the read and the rename, so it goes back where its owner expects it.
+        try {
+          linkSync(aside, path);
+        } catch (error: unknown) {
+          if ((error as NodeJS.ErrnoException | null)?.code !== 'EEXIST') throw error;
+        }
+      }
+      try {
+        unlinkSync(aside);
+      } catch (error: unknown) {
+        if ((error as NodeJS.ErrnoException | null)?.code !== 'ENOENT') throw error;
+      }
+      continue;
+    }
+
+    if (Date.now() >= deadline) return { ok: false, reason: 'item-busy', detail: `held by pid ${busyPid} since ${busySince}` };
+    pause(LOCK_POLL_MS);
+  }
+}
+
+/**
+ * Release the lock, but only while it is still this answer's.
+ *
+ * A process whose lock was reclaimed must never delete the lock the next answer now holds, so the
+ * file is read first and removed only when it still carries this lock's nonce.
+ */
+function releaseItemLock(lock: ItemLock): void {
+  const held = readLock(lock.path);
+  if (held === null || held === 'torn' || held.nonce !== lock.nonce) return;
+  try {
+    unlinkSync(lock.path);
+  } catch (error: unknown) {
+    if ((error as NodeJS.ErrnoException | null)?.code !== 'ENOENT') throw error;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. RECORD STAMP
 // ───────────────────────────────────────────────────────────────────
 
 /**

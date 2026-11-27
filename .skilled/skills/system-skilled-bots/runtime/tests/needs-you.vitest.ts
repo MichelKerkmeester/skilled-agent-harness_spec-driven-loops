@@ -3,6 +3,8 @@ import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { classifyAction, clipAction } from '../lib/action-kind.js';
+import { decideApproval } from '../lib/approval-ladder.js';
 import {
   buildResumedPrompt,
   holdForBot,
@@ -20,7 +22,7 @@ import { defaultRepoConfig } from '../lib/repo-config.js';
 import { identityStatePaths, userStateRoot } from '../lib/state-root.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
-import type { NeedsYouAnswer, NeedsYouItem } from '../lib/needs-you.js';
+import type { NeedsYouAnswer, NeedsYouGrant, NeedsYouItem } from '../lib/needs-you.js';
 
 afterEach(cleanupTemp);
 
@@ -60,7 +62,7 @@ describe('needs-you item', () => {
     const written = writeNeedsYouItem(root, item());
     if (!written.ok) throw new Error(written.reason);
     expect(written.value).toBe(`${identityStatePaths(root, IDENTITY).needsYou}/r1.json`);
-    expect(readNeedsYouItem(root, IDENTITY, 'r1')).toEqual({ ok: true, value: item() });
+    expect(readNeedsYouItem(root, IDENTITY, 'r1')).toEqual({ ok: true, value: { ...item(), grants: null } });
     expect(Object.keys(JSON.parse(readFileSync(written.value, 'utf8')))).not.toContain('state');
   });
 
@@ -178,6 +180,120 @@ describe('needs-you item', () => {
     expect(validateNeedsYouItem({ ...item(), kind: null }).ok).toBe(true);
     expect(validateNeedsYouItem({ ...item(), kind: 'decision' }).ok).toBe(true);
     expect(validateNeedsYouItem({ ...item(), kind: 7 })).toMatchObject({ ok: false, reason: 'item-field-invalid', detail: 'kind' });
+  });
+
+  it('writes the grant a parked question classifies', () => {
+    const root = stateRoot();
+    const question = `Delete the stale branch? ${'x'.repeat(175)}`;
+    expect(question).toHaveLength(200);
+    const kind = classifyAction(question);
+    if (!kind.ok) throw new Error(kind.reason);
+    const decision = decideApproval({ kind: kind.value });
+    const grants: NeedsYouGrant = {
+      kind: kind.value,
+      action: clipAction(question),
+      rung: decision.rung,
+      scope: null,
+      grantedBy: null,
+      grantedAt: null,
+    };
+    const written = writeNeedsYouItem(root, { ...item(), question, grants });
+    if (!written.ok) throw new Error(written.reason);
+    const read = readNeedsYouItem(root, IDENTITY, 'r1');
+    if (!read.ok) throw new Error(read.reason);
+    expect(read.value.grants).toEqual({
+      kind: 'delete',
+      action: question.slice(0, 120),
+      rung: 'kind',
+      scope: null,
+      grantedBy: null,
+      grantedAt: null,
+    });
+  });
+
+  it('reads an item written before this phase', () => {
+    const root = stateRoot();
+    const folder = identityStatePaths(root, IDENTITY).needsYou;
+    mkdirSync(folder, { recursive: true });
+    const raw = item();
+    writeFileSync(`${folder}/r1.json`, JSON.stringify(raw));
+    const read = readNeedsYouItem(root, IDENTITY, 'r1');
+    if (!read.ok) throw new Error(read.reason);
+    expect(read.value.grants).toBeNull();
+    expect(validateNeedsYouItem(raw).ok).toBe(true);
+    const listed = listNeedsYouItems(root, IDENTITY, new Date('2026-11-23T00:00:00Z'));
+    expect(listed.items.map((entry) => entry.item.id)).toEqual(['r1']);
+    expect(listed.unreadable).toEqual([]);
+  });
+
+  it('names the granted scope in the resumed prompt', () => {
+    const golden = readFileSync(
+      join(REAL_CHECKOUT, 'specs', 'system-skilled-bots', '003-openbot-parity-build', '006-approval-grants', 'design', 'fixtures', 'resumed-prompt.txt'),
+      'utf8',
+    );
+    const answeredAt = '2026-11-25T21:13:10.000Z';
+    const base = {
+      ...item(),
+      prompt: 'Ship the release when the checks pass.',
+      question: 'Ship the release?',
+      options: null,
+      answer: { text: 'no', answeredAt, by: 'ada', scope: 'deny' as const },
+    };
+    const denied = buildResumedPrompt({
+      ...base,
+      grants: { kind: 'post', action: 'Ship the release?', rung: 'kind', scope: 'deny', grantedBy: 'ada', grantedAt: answeredAt },
+    });
+    if (!denied.ok) throw new Error(denied.reason);
+    expect(denied.value).toBe(golden.replace(/\n$/, ''));
+    expect(denied.value).not.toContain('Continue the work');
+
+    const once = buildResumedPrompt({
+      ...base,
+      answer: { text: 'yes', answeredAt, by: 'ada', scope: 'once' as const },
+      grants: { kind: 'post', action: 'Ship the release?', rung: 'kind', scope: 'once', grantedBy: 'ada', grantedAt: answeredAt },
+    });
+    if (!once.ok) throw new Error(once.reason);
+    expect(once.value).toContain('Granted scope: once');
+    expect(once.value.endsWith('Continue the work from where that run stopped, following the answer.')).toBe(true);
+
+    const bare = buildResumedPrompt(base);
+    const nullGrant = buildResumedPrompt({ ...base, grants: null });
+    if (!bare.ok) throw new Error(bare.reason);
+    if (!nullGrant.ok) throw new Error(nullGrant.reason);
+    expect(nullGrant.value).not.toContain('Granted scope');
+    expect(nullGrant.value).toBe(bare.value);
+  });
+
+  it('refuses a grant whose scope disagrees with the answer', () => {
+    const answeredAt = '2026-11-25T21:13:10.000Z';
+    const answered = {
+      ...item(),
+      answer: { text: 'yes', answeredAt, by: 'ada', scope: 'once' as const },
+    };
+    const grant: NeedsYouGrant = {
+      kind: 'post',
+      action: 'Ship the release?',
+      rung: 'kind',
+      scope: 'deny',
+      grantedBy: 'ada',
+      grantedAt: answeredAt,
+    };
+    const refused = (grants: unknown) =>
+      expect(validateNeedsYouItem({ ...answered, grants })).toEqual({
+        ok: false,
+        reason: 'item-field-invalid',
+        detail: 'grants',
+      });
+    refused(grant);
+    refused({ ...grant, extra: true });
+    refused({ ...grant, kind: 'transfer' });
+    refused({ ...grant, action: '' });
+    refused({ ...grant, action: 'x'.repeat(121) });
+    refused({ ...grant, rung: 'maybe' });
+    refused({ ...grant, scope: 'always' });
+    refused({ ...grant, grantedBy: null });
+    refused({ ...grant, grantedAt: 'not a date' });
+    expect(validateNeedsYouItem({ ...answered, grants: { ...grant, scope: null, grantedBy: null, grantedAt: null } }).ok).toBe(true);
   });
 });
 

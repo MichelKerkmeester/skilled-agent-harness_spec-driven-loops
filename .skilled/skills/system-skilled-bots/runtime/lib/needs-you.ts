@@ -12,10 +12,14 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { ACTION_MAX, ALL_ACTION_KINDS } from './action-kind.js';
 import { ACTOR_PATTERN } from './actor.js';
+import { GRANT_RUNGS } from './approval-ladder.js';
 import { IDENTITY_PATTERN } from './repo-config.js';
 import { ensureIdentityState, identityStatePaths, isSafeSegment, needsYouFile } from './state-root.js';
 
+import type { ActionKind } from './action-kind.js';
+import type { GrantRung } from './approval-ladder.js';
 import type { Result } from './repo-config.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -41,6 +45,26 @@ export interface NeedsYouAnswer {
   by?: string | null;
   /** once or deny. An answer stored without one reads as once. */
   scope?: AnswerScope;
+}
+
+/**
+ * What an item asks approval for and what its answer granted. The first three
+ * keys are set when the item is written, the last three stay null until it is
+ * answered.
+ */
+export interface NeedsYouGrant {
+  /** The kind of action the question asks about, a different vocabulary from the item's own kind. */
+  kind: ActionKind;
+  /** The question clipped to 120 characters, never the answer. */
+  action: string;
+  /** The ladder rung that made the bot ask. */
+  rung: GrantRung;
+  /** Equal to answer.scope, written in the same write. */
+  scope: AnswerScope | null;
+  /** Equal to answer.by. */
+  grantedBy: string | null;
+  /** Equal to answer.answeredAt. */
+  grantedAt: string | null;
 }
 
 export interface NeedsYouItem {
@@ -69,6 +93,8 @@ export interface NeedsYouItem {
   proposalFact?: string | null;
   /** The bot whose memory file a confirmed proposal appends to. Null or absent on every other kind. */
   proposalBotId?: string | null;
+  /** What the item asks approval for. Absent or null on an item written before items carried one. */
+  grants?: NeedsYouGrant | null;
 }
 
 export type NeedsYouState = 'open' | 'answered' | 'expired';
@@ -91,7 +117,10 @@ const ITEM_KEYS = [
   'proposalType',
   'proposalFact',
   'proposalBotId',
+  'grants',
 ] as const;
+
+const GRANT_KEYS = ['kind', 'action', 'rung', 'scope', 'grantedBy', 'grantedAt'] as const;
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -113,6 +142,34 @@ function isInstant(value: unknown): value is string {
 
 function isStringList(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((entry) => typeof entry === 'string');
+}
+
+/**
+ * Check a grant. The first three keys are set when the item is written and the
+ * last three stay null until it is answered, so a grant that names a scope
+ * with no actor is a torn record and is refused. When the grant names a scope
+ * on an answered item, that scope must equal the answer's, because the two are
+ * written in one write and a stored disagreement means a writer bypassed it. A
+ * grant still born open on an answered item is read as it is.
+ *
+ * @param grants - The grant as stored, or null on an item written before items carried one.
+ * @param answer - The item's answer, so a stored grant can be checked against it.
+ * @returns True when the grant is absent or every check passes.
+ */
+function validGrant(grants: unknown, answer: unknown): boolean {
+  if (grants === null) return true;
+  if (!isPlainObject(grants)) return false;
+  if (Object.keys(grants).some((key) => !(GRANT_KEYS as readonly string[]).includes(key))) return false;
+  if (!(ALL_ACTION_KINDS as readonly unknown[]).includes(grants.kind)) return false;
+  if (typeof grants.action !== 'string' || grants.action.length < 1 || grants.action.length > ACTION_MAX) return false;
+  if (!(GRANT_RUNGS as readonly unknown[]).includes(grants.rung)) return false;
+  if (grants.scope !== null && !(ANSWER_SCOPES as readonly unknown[]).includes(grants.scope)) return false;
+  if (grants.grantedBy !== null && !nonEmptyString(grants.grantedBy)) return false;
+  if (grants.grantedAt !== null && !isInstant(grants.grantedAt)) return false;
+  const written = [grants.scope, grants.grantedBy, grants.grantedAt];
+  if (written.some((value) => value === null) && written.some((value) => value !== null)) return false;
+  if (isPlainObject(answer) && grants.scope !== null && grants.scope !== (answer.scope ?? 'once')) return false;
+  return true;
 }
 
 /**
@@ -182,6 +239,9 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
       }
     }
   }
+  if (raw.grants !== undefined && !validGrant(raw.grants, raw.answer)) {
+    return { ok: false, reason: 'item-field-invalid', detail: 'grants' };
+  }
   return { ok: true, value: raw as unknown as NeedsYouItem };
 }
 
@@ -243,7 +303,8 @@ export function normalizeAnswer(answer: NeedsYouAnswer): Required<NeedsYouAnswer
 }
 
 /**
- * Read one item back.
+ * Read one item back. A missing grant reads as null, so an item written before
+ * items carried one reads the same shape as a fresh one.
  *
  * @returns The item, or a refusal (`item-missing`, `item-unreadable`, a validation reason).
  */
@@ -270,6 +331,7 @@ export function readNeedsYouItem(stateRoot: string, identity: string, itemId: st
     value: {
       ...valid.value,
       answer: valid.value.answer === null ? null : normalizeAnswer(valid.value.answer),
+      grants: valid.value.grants ?? null,
     },
   };
 }
@@ -420,10 +482,16 @@ export function itemAwaitingResume(stateRoot: string, identity: string, botId: s
   return waiting?.item ?? null;
 }
 
+/** What a denied grant tells the resumed run, so a refusal is never read as a go-ahead. */
+const DECLINED_INSTRUCTION = 'The operator declined this action. Do not do it and do not reach the same result another way. Say in your output that it was not done, and carry on only with work that does not need it.';
+
 /**
  * The prompt of a run resumed after an answer: the parked run's own prompt,
  * then the question and the answer. The parked prompt already names the bound
- * spec folder, so the resumed run binds the same one.
+ * spec folder, so the resumed run binds the same one. When the item carries a
+ * grant the prompt also names the scope the operator granted. A denial tells
+ * the run not to do the declined action and not to reach the same result
+ * another way. An item with no grant gets exactly the prompt it got before.
  *
  * @returns The prompt, or `item-not-answered` for an item with no answer.
  */
@@ -436,6 +504,13 @@ export function buildResumedPrompt(item: NeedsYouItem): Result<string> {
     `Question: ${item.question}`,
   ];
   if (item.options !== null && item.options.length > 0) lines.push(`Options offered: ${item.options.join(' | ')}`);
-  lines.push(`Answer: ${item.answer.text}`, 'Continue the work from where that run stopped, following the answer.');
+  lines.push(`Answer: ${item.answer.text}`);
+  const grant = item.grants ?? null;
+  if (grant !== null && grant.scope !== null) lines.push(`Granted scope: ${grant.scope}`);
+  if (grant !== null && grant.scope === 'deny') {
+    lines.push(`Declined action: ${grant.action} (kind ${grant.kind})`, DECLINED_INSTRUCTION);
+  } else {
+    lines.push('Continue the work from where that run stopped, following the answer.');
+  }
   return { ok: true, value: lines.join('\n') };
 }

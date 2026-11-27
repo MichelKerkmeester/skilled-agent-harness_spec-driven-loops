@@ -45,20 +45,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/action-kind.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/approval-ladder.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
       ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/bots-run/references/approval-ladder.md",
+      "runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-items.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts"
+      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md"
     ],
     "entities": [
       {
@@ -98,6 +98,18 @@
         "source": "derived"
       },
       {
+        "name": "action-kind.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/action-kind.ts",
+        "source": "derived"
+      },
+      {
+        "name": "approval-ladder.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/approval-ladder.ts",
+        "source": "derived"
+      },
+      {
         "name": "needs-you.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
@@ -107,6 +119,12 @@
         "name": "runner.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "routine-state.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/routine-state.ts",
         "source": "derived"
       },
       {
@@ -125,6 +143,18 @@
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "approval-ladder.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/approval-ladder.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
         "source": "derived"
       },
       {
@@ -149,36 +179,6 @@
         "name": "needs-you-answer.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/needs-you-answer.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/needs-you.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "answer.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runner.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli-run.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-27T15:39:56.141Z",
+    "last_save_at": "2026-11-27T21:23:55.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:307612a05df7fe1d7c13c49ed2c562d9b501643e8efd717896bbd59a73908dbf",
+    "source_fingerprint": "sha256:3c22f44e3a66d054133c17f1be3427293e778d3e79afed64a17e1cdde2d726d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8adccdd72f4170dc397f28bbb260d5d1a32dd610f89b0893743f73525e5c2cbb",
       "plan.md": "1044002a1c85bd956a9d8c9f111bb40cbff159052c658ce579c3f2263b2be748",
-      "tasks.md": "7838f2c99c64e988d16fc365f08c24ab4efce7065c0e744ab0811de506979748",
-      "implementation-summary.md": "827c22e6f0fa67c6b208dfeec3f667ff9b351cc6c588395c8dd44e544aad0486"
+      "tasks.md": "211895e87c7f6205a7457a61f89475edc12044caf16dad09e24669b3644bf436",
+      "implementation-summary.md": "00391d73eea735269969df151bbcf471457ea9f82133f3e4d2635f70d732d286"
     },
     "last_active_at": null
   }

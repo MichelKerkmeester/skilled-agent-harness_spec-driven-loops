@@ -46,7 +46,9 @@ import {
   startHeartbeat,
   stopHeartbeat,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/loop-lock.js';
+import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
+import { decideApproval } from './approval-ladder.js';
 import { approveDefinition, checkApproval, digestOf } from './approval.js';
 import { parseDefinition } from './definition.js';
 import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
@@ -105,7 +107,7 @@ import type { BotWorktree } from './isolation.js';
 import type { MemoryType } from './memory.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
-import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, PostRunCause, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
+import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, PostRunCause, RequestGrant, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -254,6 +256,8 @@ export interface RecordSeed {
   actor?: string | null;
   /** Who answered the item a resumed run continues. */
   answeredBy?: string | null;
+  /** The grant the resumed item carried, written as one line on the resumed run's record. */
+  grant?: RequestGrant | null;
   /** Absent in a lease side file written before queued runs carried a slot. */
   firedSlot?: string | null;
   source: string;
@@ -387,6 +391,7 @@ function buildRecord(
       resultEventId: extra.resultEventId,
       firedSlot: seed.firedSlot ?? null,
       resumedItemId: seed.resumedItemId,
+      ...(seed.grant ? { grant: seed.grant } : {}),
     },
     dispatch: {
       source: seed.source,
@@ -931,6 +936,11 @@ async function runSeeded(
     if (!item.ok) return refusalRecord(context.stateRoot, seed, 'resume-item-invalid', item.reason, request.itemId, null);
     resumeItem = item.value;
     seed.answeredBy = resumeItem.answer?.by ?? null;
+    // A grant can be read back from the run after its item is gone.
+    const granted = resumeItem.grants ?? null;
+    seed.grant = granted !== null && granted.scope !== null && granted.grantedBy !== null
+      ? { itemId: resumeItem.id, kind: granted.kind, scope: granted.scope, by: granted.grantedBy }
+      : null;
   }
   const hold = holdForBot(context.stateRoot, context.identity, input.botId);
   if (hold?.kind === 'open') {
@@ -1231,34 +1241,50 @@ async function runSeeded(
     let exit: RunRecord['exit'];
     let result: RunOutcome;
     if (signal.kind === 'question') {
-      const created = new Date();
-      const item: NeedsYouItem = {
-        id: runId,
-        runId,
-        botId: input.botId,
-        identity: context.identity,
-        question: signal.question,
-        options: signal.options,
-        createdAt: created.toISOString(),
-        expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
-        evidence: [evidence.runFolder, evidence.ledgerDir, evidence.receiptDir, evidence.observabilityStream].filter(
-          (entry): entry is string => entry !== null,
-        ),
-        prompt,
-        specFolder,
-        answer: null,
-        resumeRequestId: null,
-      };
-      const written = writeNeedsYouItem(context.stateRoot, item);
-      if (written.ok) {
-        writeGenerationStamp(context.stateRoot, context.identity);
-        exit = { reason: AWAITING_DECISION, class: 'operator', needsYouItemId: runId, refusal: null };
-        result = { kind: 'awaiting-decision', runId, recordPath: null, itemId: runId };
+      const classified = classifyAction(signal.question);
+      if (!classified.ok) {
+        // A declaration outside the seven kinds is the bot's own mistake, so the run fails rather than parks.
+        exit = { reason: 'action-kind-invalid', class: 'author', needsYouItemId: null, refusal: null };
+        result = { kind: 'failed', reason: exit.reason, class: 'author', runId, recordPath: null, recursionGuard: false };
+        observe(seed, 'action-kind', 'refused', { detail: classified.detail ?? null });
       } else {
-        // A parked run must point at an item that exists; without one it is the runner's failure.
-        const reason = `needs-you-item-refused:${written.reason}`;
-        exit = { reason, class: 'hub', needsYouItemId: null, refusal: null };
-        result = { kind: 'failed', reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
+        const created = new Date();
+        const item: NeedsYouItem = {
+          id: runId,
+          runId,
+          botId: input.botId,
+          identity: context.identity,
+          question: signal.question,
+          options: signal.options,
+          createdAt: created.toISOString(),
+          expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
+          evidence: [evidence.runFolder, evidence.ledgerDir, evidence.receiptDir, evidence.observabilityStream].filter(
+            (entry): entry is string => entry !== null,
+          ),
+          prompt,
+          specFolder,
+          answer: null,
+          resumeRequestId: null,
+          grants: {
+            kind: classified.value,
+            action: clipAction(signal.question),
+            rung: decideApproval({ kind: classified.value }).rung,
+            scope: null,
+            grantedBy: null,
+            grantedAt: null,
+          },
+        };
+        const written = writeNeedsYouItem(context.stateRoot, item);
+        if (written.ok) {
+          writeGenerationStamp(context.stateRoot, context.identity);
+          exit = { reason: AWAITING_DECISION, class: 'operator', needsYouItemId: runId, refusal: null };
+          result = { kind: 'awaiting-decision', runId, recordPath: null, itemId: runId };
+        } else {
+          // A parked run must point at an item that exists; without one it is the runner's failure.
+          const reason = `needs-you-item-refused:${written.reason}`;
+          exit = { reason, class: 'hub', needsYouItemId: null, refusal: null };
+          result = { kind: 'failed', reason, class: 'hub', runId, recordPath: null, recursionGuard: false };
+        }
       }
     } else if (signal.kind === 'empty') {
       exit = { reason: 'decision-marker-empty', class: 'author', needsYouItemId: null, refusal: null };
@@ -1307,29 +1333,43 @@ async function runSeeded(
           postRunCauses.push({ cause: 'memory-proposal-secret', names: [match.name], detail: null });
         } else {
           const created = new Date();
-          // The item carries the reserved memory-proposals sentinel as its bot, so it names a review queue and holds no bot.
-          const proposal: NeedsYouItem = {
-            id: runId,
-            runId,
-            botId: MEMORY_PROPOSALS_BOT_ID,
-            identity: context.identity,
-            question: `Remember this fact for ${input.botId}: ${fact}`,
-            options: ['confirm', 'reject'],
-            createdAt: created.toISOString(),
-            expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
-            evidence: [evidence.runFolder].filter((entry): entry is string => entry !== null),
-            prompt,
-            specFolder,
-            answer: null,
-            resumeRequestId: null,
-            kind: 'memory-proposal',
-            proposalType: remember.type as MemoryType,
-            proposalFact: fact,
-            proposalBotId: input.botId,
-          };
-          const written = writeNeedsYouItem(context.stateRoot, proposal);
-          if (written.ok) writeGenerationStamp(context.stateRoot, context.identity);
-          else observe(seed, 'memory-proposal', 'refused', { reason: written.reason });
+          const question = `Remember this fact for ${input.botId}: ${fact}`;
+          const classified = classifyAction(question);
+          if (!classified.ok) {
+            observe(seed, 'memory-proposal', 'refused', { reason: classified.reason });
+          } else {
+            // The item carries the reserved memory-proposals sentinel as its bot, so it names a review queue and holds no bot.
+            const proposal: NeedsYouItem = {
+              id: runId,
+              runId,
+              botId: MEMORY_PROPOSALS_BOT_ID,
+              identity: context.identity,
+              question,
+              options: ['confirm', 'reject'],
+              createdAt: created.toISOString(),
+              expiresAt: needsYouExpiry(created, context.config.needsYou.expiryDays),
+              evidence: [evidence.runFolder].filter((entry): entry is string => entry !== null),
+              prompt,
+              specFolder,
+              answer: null,
+              resumeRequestId: null,
+              grants: {
+                kind: classified.value,
+                action: clipAction(question),
+                rung: decideApproval({ kind: classified.value }).rung,
+                scope: null,
+                grantedBy: null,
+                grantedAt: null,
+              },
+              kind: 'memory-proposal',
+              proposalType: remember.type as MemoryType,
+              proposalFact: fact,
+              proposalBotId: input.botId,
+            };
+            const written = writeNeedsYouItem(context.stateRoot, proposal);
+            if (written.ok) writeGenerationStamp(context.stateRoot, context.identity);
+            else observe(seed, 'memory-proposal', 'refused', { reason: written.reason });
+          }
         }
       }
       observe(seed, 'remember', postRunCauses.length > 0 ? 'refused' : 'proposed', postRunCauses.length > 0 ? { cause: postRunCauses[0]?.cause } : {});

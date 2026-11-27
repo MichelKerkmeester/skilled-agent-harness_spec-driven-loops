@@ -14,9 +14,11 @@ import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { ALL_ACTION_KINDS } from './action-kind.js';
 import { IDENTITY_PATTERN } from './repo-config.js';
 import { ensureIdentityState, isSafeSegment, recordFile } from './state-root.js';
 
+import type { ActionKind } from './action-kind.js';
 import type { Budget } from './definition.js';
 import type { Isolation, Result } from './repo-config.js';
 
@@ -69,6 +71,18 @@ export interface RecordIdentity {
   definitionDigest: string;
 }
 
+/** The grant a resumed run continues under: the item it answered, the kind of action, the scope granted and who granted it. */
+export interface RequestGrant {
+  /** The needs-you item the grant answered. */
+  itemId: string;
+  /** The kind of action the answered question asked for. */
+  kind: ActionKind;
+  /** What the answer allowed: this one run, or nothing at all. */
+  scope: 'once' | 'deny';
+  /** Who granted it. */
+  by: string;
+}
+
 /** Links a queued request to the run it produced. */
 export interface RequestJoin {
   requestId: string | null;
@@ -77,6 +91,8 @@ export interface RequestJoin {
   firedSlot: string | null;
   /** The needs-you item a resumed run continues; absent or null for every other run. */
   resumedItemId?: string | null;
+  /** The grant the resumed item carried. Absent or null for every run that resumes no granted item. */
+  grant?: RequestGrant | null;
 }
 
 export interface DispatchSnapshot {
@@ -339,6 +355,22 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
   }
   if (!isNullableString(record.request.resumedItemId ?? null)) {
     return { ok: false, reason: 'record-field-invalid', detail: 'request.resumedItemId' };
+  }
+  const grant = record.request.grant as unknown;
+  if (grant !== undefined && grant !== null) {
+    if (
+      !isPlainObject(grant)
+      || Object.keys(grant).length !== 4
+      || typeof grant.itemId !== 'string'
+      || grant.itemId === ''
+      || typeof grant.kind !== 'string'
+      || !(ALL_ACTION_KINDS as readonly string[]).includes(grant.kind)
+      || (grant.scope !== 'once' && grant.scope !== 'deny')
+      || typeof grant.by !== 'string'
+      || grant.by === ''
+    ) {
+      return { ok: false, reason: 'record-field-invalid', detail: 'request.grant' };
+    }
   }
   for (const key of ['actor', 'answeredBy'] as const) {
     if (!isNullableString(raw[key] ?? null)) return { ok: false, reason: 'record-field-invalid', detail: key };

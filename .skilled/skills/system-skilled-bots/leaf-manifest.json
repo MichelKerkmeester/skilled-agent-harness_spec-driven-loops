@@ -9,6 +9,7 @@
     },
     {
       "leaves": [
+        "references/approval-ladder.md",
         "references/run-queue-and-answer.md"
       ],
       "packet": "bots-run",
