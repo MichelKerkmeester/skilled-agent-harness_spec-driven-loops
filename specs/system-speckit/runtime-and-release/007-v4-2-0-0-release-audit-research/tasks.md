@@ -85,6 +85,7 @@ contextType: "general"
 - [x] T036 Keep the `--claude-config-dir` fixture's artifact folder inside a git worktree (`dispatch-iteration.vitest.ts`). Verify: both research cases pass when the suite runs outside a Claude Code process tree, and fail there without the fix.
 - [x] T037 Regenerate `system-skilled-doctor/leaf-aliases.json` from its leaf manifest. Verify: `ci-skill-root-metadata.cjs` reports `failed=0`, and the leaf-manifest and derived freshness checks pass.
 - [x] T038 Recapture the routing-accuracy baseline with its own capture scripts. Verify: the corpus pin check prints that the corpus matches, and `score-routing-corpus.py` with the CI floors reports `overall_pass: true`.
+- [x] T039 Split the 25-word sentence on line 854 of `C` and name the `bots` group in every group list of `.skilled/commands/README.txt`. Verify: `check_changelog_shape.py` prints PASS, `validate_document.py --type changelog` prints VALID and `hvr_scan.py` reports 0 hard blockers.
 <!-- /ANCHOR:phase-3 -->
 
 ---
