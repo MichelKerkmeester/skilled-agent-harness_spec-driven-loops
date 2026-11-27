@@ -42,12 +42,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-ux-and-component-map |
-| **Completed** | - |
+| **Completed** | 2026-11-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -55,62 +54,68 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The terminal screen now has one approved map, so the crate phases draw cells rather than decide them. Four design documents fix every frame at 80x24 and 120x40, every key, every glyph and every component state, and the operator approved the key map on 2026-11-26.
 
 ### Phase 1: ux-and-component-map
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You get 53 frames for 27 states, a key table of 29 bindings across six contexts, a glyph table with its ASCII fallback and a 13-component inventory. Phase 002 copies the four documents into `crates/bots-tui/design/` when it creates the crate. The approval row in `design/key-map.md` is the gate phase 002 waits on, and it now reads `Met`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `design/mockups.md` | Created | The frame grammar, the state index and the 53 frames |
+| `design/key-map.md` | Created, then modified | The six contexts, the 29 bindings, the four defect rules and the approval record, which now names the operator, the date and the key set |
+| `design/glyph-table.md` | Created | The seven group glyphs, the three added glyphs, the inbox words, the ASCII set and the colour rule |
+| `design/component-inventory.md` | Created | The 13 components with their reads, keys, states and frames |
+| `tasks.md` | Modified | Wave 6 ticked and T028's verify command repaired |
+| `acceptance-criteria.md` | Modified | Every row `Met` with its observed output |
+| `goal.md` | Modified | The seven criteria ticked and the log brought up to date |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Waves 1 to 5 wrote the documents before 2026-11-27. Wave 6 ran on `cli-mistral-vibe` at `deepseek-flash` as three sequential one-change briefs: the approval row in `design/key-map.md`, the repair of T028's awk command in `tasks.md` and the read-only checks. Each run's `export.json` recorded `exit_code` 0 and `outcome` `finished`. The unit orchestrator then reran every verify command itself in the build worktree and read its output and exit status.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The approval cites the build packet's Q001 by full path | The operator approved both key maps in one answer recorded there. This packet's own decision record has an unrelated Q001, so a bare id would point at the wrong answer |
+| No new row in this packet's decision record | A row needs a verbatim answer of its own, and the only answer is the build packet's. Copying it would make a second record of one approval |
+| T028's awk separator was restored | The earlier prose pass turned code into a sentence, and the check printed `0` while awk failed. The no-semicolon rule covers prose, not code |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| AC-001 to AC-011 blocks | PASS. Each printed its expected output on 2026-11-27, AC-007 among them with one line |
+| T024 to T031 | PASS. Frames `frames=53 bad=0` then `panels-misaligned=0`, pointers `0`, inventory `13`, labels `0`, approval count `1`, outcome word `4` |
+| T028 mutation check | PASS. The repaired command prints `0` on the real frames and `19` on an empty copy |
+| `check-goal.cjs` | PASS, 5/5 checks |
+| `validate.sh --strict` | PASS, `RESULT: PASSED` |
+| Runtime gate | Not run. This packet changed no code |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **The reference checks need the gitignored folder.** `specs/system-skilled-bots/context` is not tracked, so in a checkout without it AC-001 skips its 32 reference pointers and AC-006 prints `0` without reading a file. The final run here read the real files through an ignored link. A rerun elsewhere should confirm `test -d specs/system-skilled-bots/context` first.
+2. **T012's verify reads the old state.** It greps for the `Unmet` approval row, which now reads `Met`, so it prints nothing today. T030 and AC-007 are the current checks.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

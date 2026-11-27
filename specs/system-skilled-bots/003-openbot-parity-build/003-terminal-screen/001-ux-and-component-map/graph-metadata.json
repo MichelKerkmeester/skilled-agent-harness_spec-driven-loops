@@ -49,10 +49,11 @@
       "decision-record.md",
       "implementation-summary.md",
       "design/key-map.md",
-      "design/component-inventory.md",
       "design/mockups.md",
       "design/glyph-table.md",
+      "design/component-inventory.md",
       "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/decision-record.md",
       "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/goal.md"
     ],
     "entities": [
@@ -105,12 +106,6 @@
         "source": "derived"
       },
       {
-        "name": "component-inventory.md",
-        "kind": "doc",
-        "path": "design/component-inventory.md",
-        "source": "derived"
-      },
-      {
         "name": "mockups.md",
         "kind": "doc",
         "path": "design/mockups.md",
@@ -120,6 +115,12 @@
         "name": "glyph-table.md",
         "kind": "doc",
         "path": "design/glyph-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "component-inventory.md",
+        "kind": "doc",
+        "path": "design/component-inventory.md",
         "source": "derived"
       },
       {
@@ -203,7 +204,7 @@
     ],
     "causal_summary": "The screen has no agreed shape",
     "created_at": "2026-11-25T20:22:31Z",
-    "last_save_at": "2026-11-27T15:42:09.589Z",
+    "last_save_at": "2026-11-27T16:25:53.155Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:419866f63c51a209d2643f6608d764c7a0f87ffe4de6b24f97ce1bc9164aaf5d",
+    "source_fingerprint": "sha256:2522ecde69c90ea26f5a47edc1203948a5836e2b157bcfb2e3b1614965985830",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aceb98d546ec5c23a8d147c3dd656aa69338400432759daafe0cccb5bcae3a82",
       "plan.md": "8e0d959c337ac7cc0f63e90f8231b41e683bfd4dcdb6210b11eb35b4363c8fbe",
-      "tasks.md": "e410ea758c996e7dc3e0829e79c7b43c0bc15bc89c3ba9c197579333a4267313",
+      "tasks.md": "d355220443da7a35cb343c97df34f663036d272b9eba0f5076c7b61fc743dc13",
       "decision-record.md": "d401bf9dc87d128b1178336772db0a71a6799e1c82e0e3a1f7aca6665041a006",
-      "implementation-summary.md": "c03310dd7a8535a357bde519ef7436bc65329e0948205ff98b53d89345c60a33"
+      "implementation-summary.md": "415e900dab45adc13ec49923ce9c0661a3b5ea5d6cd40a0e203ae26f0f72be99"
     },
     "last_active_at": null
   }

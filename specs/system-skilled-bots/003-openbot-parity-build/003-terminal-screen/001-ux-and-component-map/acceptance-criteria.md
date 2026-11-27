@@ -44,17 +44,17 @@ The Verification column names the block below that proves the row. The blocks ca
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the four documents in `design/`, When every `SOURCE` pointer is resolved, Then none is missing and none points past the last line of its file, and a pointer into the gitignored reference folder is skipped by name when that folder is absent | AC-001 block prints `4` then `0` | Unmet | - |
-| AC-002 | REQ-002 | Given the twenty-seven states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=53 bad=0` then `panels-misaligned=0` | Unmet | - |
-| AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, no key carries two meanings inside one context, and a key that answers is bound only outside text mode | AC-003 block prints `29` then `0` | Unmet | - |
-| AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value and the ASCII set is selected by one flag | AC-004 block prints `7` then `2` | Unmet | - |
-| AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in and the frame that draws each state | AC-005 block prints `13` then `13` | Unmet | - |
-| AC-006 | REQ-006 | Given the seventeen reference files the four documents cite under `specs/system-skilled-bots/context/`, When every line longer than 30 characters is compared with the design documents, Then no line of reference source appears in them | AC-006 block prints `0` | Unmet | - |
-| AC-007 | REQ-007 | Given the key map, When the operator approves it, Then the approval names the date and the key set it covers | AC-007 block prints one line | Unmet | - |
-| AC-008 | REQ-008 | Given each surface, When its reads are read, Then the document names the JSON verb it calls and the phase that owns that verb | AC-008 block prints `4` | Unmet | - |
-| AC-009 | REQ-009 | Given the visual references, When the design documents are read, Then the four screenshots and the openhuman `--demo` capture are named, so a reader can open each one | AC-009 block prints `5` | Unmet | - |
-| AC-010 | REQ-010 | Given every row above, When its Verification cell is read, Then it names a block that runs here without a tty, and every block exists | AC-010 block prints `11` | Unmet | - |
-| AC-011 | REQ-011 | Given an answer that exits 0, When the overlay closes, Then the answered row stays drawn with its outcome word, `approved`, `denied` or `answered`, the banner count drops at once, and the row leaves on the next successful inbox read rather than at once | AC-011 block prints `4` then `1` | Unmet | - |
+| AC-001 | REQ-001 | Given the four documents in `design/`, When every `SOURCE` pointer is resolved, Then none is missing and none points past the last line of its file, and a pointer into the gitignored reference folder is skipped by name when that folder is absent | AC-001 block prints `4` then `0`. Observed 2026-11-27: `4` then `0`, with every reference pointer read and none skipped | Met | - |
+| AC-002 | REQ-002 | Given the twenty-seven states in the index, When each is drawn at 80x24 and at 120x40, Then every fenced block is exactly 24 or 40 lines and no line is wider than its size, and the too-small block is exactly 7 lines and no line wider than 30 | AC-002 block prints `frames=53 bad=0` then `panels-misaligned=0`. Observed 2026-11-27: `frames=53 bad=0` then `panels-misaligned=0` | Met | - |
+| AC-003 | REQ-003 | Given the key table, When each binding is read, Then it names a context, an action, the label the frame draws and the frame that draws it, no key carries two meanings inside one context, and a key that answers is bound only outside text mode | AC-003 block prints `29` then `0`. Observed 2026-11-27: `29` then `0` | Met | - |
+| AC-004 | REQ-004 | Given the seven group ids in payload order, When the glyph table is read, Then each id has a glyph and an ASCII character, an unnamed state draws `?` plus its raw value and the ASCII set is selected by one flag | AC-004 block prints `7` then `2`. Observed 2026-11-27: `7` then `2` | Met | - |
+| AC-005 | REQ-005 | Given the component inventory, When each component is read, Then it names what it reads, the keys it binds, every state it can be in and the frame that draws each state | AC-005 block prints `13` then `13`. Observed 2026-11-27: `13` then `13` | Met | - |
+| AC-006 | REQ-006 | Given the seventeen reference files the four documents cite under `specs/system-skilled-bots/context/`, When every line longer than 30 characters is compared with the design documents, Then no line of reference source appears in them | AC-006 block prints `0`. Observed 2026-11-27: `0`, with all 17 reference files read and no error on stderr | Met | - |
+| AC-007 | REQ-007 | Given the key map, When the operator approves it, Then the approval names the date and the key set it covers | AC-007 block prints one line. Observed 2026-11-27: one line, line 131 of `design/key-map.md`, whose Approved row reads Met. The source is row Q001 of `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md` | Met | - |
+| AC-008 | REQ-008 | Given each surface, When its reads are read, Then the document names the JSON verb it calls and the phase that owns that verb | AC-008 block prints `4`. Observed 2026-11-27: `4` | Met | - |
+| AC-009 | REQ-009 | Given the visual references, When the design documents are read, Then the four screenshots and the openhuman `--demo` capture are named, so a reader can open each one | AC-009 block prints `5`. Observed 2026-11-27: `5` | Met | - |
+| AC-010 | REQ-010 | Given every row above, When its Verification cell is read, Then it names a block that runs here without a tty, and every block exists | AC-010 block prints `11`. Observed 2026-11-27: `11` | Met | - |
+| AC-011 | REQ-011 | Given an answer that exits 0, When the overlay closes, Then the answered row stays drawn with its outcome word, `approved`, `denied` or `answered`, the banner count drops at once, and the row leaves on the next successful inbox read rather than at once | AC-011 block prints `4` then `1`. Observed 2026-11-27: `4` then `1` | Met | - |
 
 ### The commands
 
@@ -202,7 +202,7 @@ Write `-` when the row is `Met` or `Unmet`. Write `ADR-NNN` when the row is
 the point of a waiver is that someone recorded the reasoning, so an unbacked
 waiver is treated as an unmet criterion rather than as a pass.
 
-This packet carries a `decision-record.md`, so a row may be `Waived` or `Superseded` when its Waiver cell names an ADR that exists there. The operator's approval is recorded in `design/key-map.md` section 6, restated as AC-007, and added as a row in `decision-record.md` when it is given.
+This packet carries a `decision-record.md`, so a row may be `Waived` or `Superseded` when its Waiver cell names an ADR that exists there. The operator's approval is recorded in `design/key-map.md` section 6 and restated as AC-007. Its source is row Q001 of the build packet's `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md`, not a row in this packet's own `decision-record.md`, whose Q001 is an unrelated answer about the Inbox tab count.
 <!-- /ANCHOR:criteria -->
 
 ---
@@ -210,7 +210,7 @@ This packet carries a `decision-record.md`, so a row may be `Waived` or `Superse
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-007 is unmet: the operator has not yet approved the key map, and that approval is the packet's exit.
+All eleven rows are `Met`, each with the output observed on 2026-11-27. AC-007, the packet's exit, is met by the operator's approval in row Q001 of the build packet's decision record. AC-001 and AC-006 read the gitignored reference folder through the build worktree's link to it, so neither passed by skipping a file.
 <!-- /ANCHOR:closure -->
