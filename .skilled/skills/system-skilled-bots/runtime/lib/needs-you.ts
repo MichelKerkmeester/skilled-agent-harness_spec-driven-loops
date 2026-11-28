@@ -95,6 +95,8 @@ export interface NeedsYouItem {
   proposalBotId?: string | null;
   /** What the item asks approval for. Absent or null on an item written before items carried one. */
   grants?: NeedsYouGrant | null;
+  /** The conversation the parked run came from, so its resumed answer is appended there. Absent or null on a run from no conversation. */
+  conversationId?: string | null;
 }
 
 export type NeedsYouState = 'open' | 'answered' | 'expired';
@@ -118,6 +120,7 @@ const ITEM_KEYS = [
   'proposalFact',
   'proposalBotId',
   'grants',
+  'conversationId',
 ] as const;
 
 const GRANT_KEYS = ['kind', 'action', 'rung', 'scope', 'grantedBy', 'grantedAt'] as const;
@@ -238,6 +241,9 @@ export function validateNeedsYouItem(raw: unknown): Result<NeedsYouItem> {
         return { ok: false, reason: 'item-field-invalid', detail: key };
       }
     }
+  }
+  if (raw.conversationId !== undefined && raw.conversationId !== null && !(typeof raw.conversationId === 'string' && isSafeSegment(raw.conversationId))) {
+    return { ok: false, reason: 'item-field-invalid', detail: 'conversationId' };
   }
   if (raw.grants !== undefined && !validGrant(raw.grants, raw.answer)) {
     return { ok: false, reason: 'item-field-invalid', detail: 'grants' };

@@ -15,7 +15,10 @@
 // what was in the folder when it started, so a request retried in this pass
 // waits for the next one. Only a setup fault (no identity, no usable run
 // folder, no executor on PATH) stops the pass, with the claimed request put
-// back, so a broken setup never burns the queue.
+// back, so a broken setup never burns the queue. A request that carries a
+// conversation id gets its one bot message appended here when its run is done
+// or quarantined. A chat request is never retried, because a second dispatch
+// would answer twice.
 //
 // The queue's identity and state root are resolved under `resolveEnv` when it
 // is given, and passed on to every run, while the runs execute under `env`. A
@@ -37,11 +40,15 @@ import {
   retryRequest,
   RETRY_BOUND_REASON,
 } from './request-queue.js';
+import { appendMessage, botMessage, CHAT_SOURCE, conversationFile, failedText, needsYouText, replyText } from './conversation.js';
 import { identityKey } from './identity.js';
+import { readNeedsYouItem } from './needs-you.js';
 import { RESULT_EVENT_UNRECORDED } from './run-record.js';
 import { resolveBotContext, runBot as defaultRunBot } from './runner.js';
 
+import type { ConversationMessage } from './conversation.js';
 import type { Result } from './repo-config.js';
+import type { QueuedRequest } from './request-record.js';
 import type { RunBotInput, RunOutcome } from './runner.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -57,6 +64,10 @@ export interface DrainLine {
   /** The quarantine reason; null for every other outcome. */
   reason: string | null;
   runId: string | null;
+  /** The run's own outcome, null when no run was attempted or the runner threw. */
+  run: RunOutcome | null;
+  /** The bot message this pass appended to the request's conversation, null when it appended none. */
+  reply: ConversationMessage | null;
 }
 
 export interface DrainReport {
@@ -77,6 +88,8 @@ export interface DrainInput {
   runOptions?: Pick<RunBotInput, 'guard' | 'buildCommand' | 'minuteMs'>;
   /** Replaces the bot runner; only tests use it. */
   runBot?: (input: RunBotInput) => Promise<RunOutcome>;
+  /** When given, the pass handles only these request ids and leaves every other entry in the watched folder untouched. A chat message drains exactly the one request it queued. */
+  requestIds?: readonly string[];
 }
 
 /** The quarantine reason of a request the runner refused because an open question holds its bot. */
@@ -167,6 +180,29 @@ export function formatDrainLine(line: DrainLine): string {
   return line.outcome === 'quarantined' ? `${line.requestId} quarantined: ${line.reason ?? 'unknown'}` : `${line.requestId} ${line.outcome}`;
 }
 
+/**
+ * Append the one bot message a run from a conversation leaves, from the run's own outcome, so every dispatched human
+ * message is followed by exactly one reply: the answer, the parked question or the failure. A request from no
+ * conversation appends nothing, and an append that fails leaves the run's routing as it was.
+ */
+function appendReply(stateRoot: string, identity: string, request: QueuedRequest, outcome: RunOutcome | null, route: Route): ConversationMessage | null {
+  const conversationId = request.conversationId ?? null;
+  if (conversationId === null) return null;
+  let text: string;
+  if (route.kind === 'quarantine') text = failedText(route.reason);
+  else if (outcome === null) text = failedText('runner-threw');
+  else if (outcome.kind === 'completed') text = replyText(outcome.answer);
+  else if (outcome.kind === 'awaiting-decision') {
+    const item = readNeedsYouItem(stateRoot, identity, outcome.itemId);
+    text = needsYouText(item.ok ? item.value.question : 'see bots inbox', outcome.itemId);
+  } else if (outcome.kind === 'failed') text = failedText(outcome.reason);
+  else text = failedText(outcome.cause);
+  const path = conversationFile(stateRoot, identity, conversationId);
+  if (!path.ok) return null;
+  const appended = appendMessage(path.value, botMessage({ conversationId, botId: request.workflowId, runId: outcome?.runId ?? null, requestId: request.id, text }));
+  return appended.ok ? appended.value : null;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. DRAIN
 // ───────────────────────────────────────────────────────────────────
@@ -187,11 +223,13 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
 
   const claimedAtStart = listClaimed(folders);
   const lines: DrainLine[] = [];
+  const wanted = input.requestIds === undefined ? null : new Set(input.requestIds);
   for (const name of listInbox(folders)) {
+    if (wanted !== null && !wanted.has(name.replace(/\.json$/, ''))) continue;
     const claimed = claimRequest(folders, name);
     if (!claimed.ok) {
       if (claimed.reason === 'claim-lost') {
-        lines.push({ requestId: name.replace(/\.json$/, ''), outcome: 'lost-claim', reason: null, runId: null });
+        lines.push({ requestId: name.replace(/\.json$/, ''), outcome: 'lost-claim', reason: null, runId: null, run: null, reply: null });
         continue;
       }
       return claimed;
@@ -201,14 +239,14 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
     if (!parsed.ok) {
       const moved = quarantineRequest(folders, name, null, MALFORMED_REQUEST_REASON, parsed.reason);
       if (!moved.ok) return moved;
-      lines.push({ requestId: name, outcome: 'quarantined', reason: MALFORMED_REQUEST_REASON, runId: null });
+      lines.push({ requestId: name, outcome: 'quarantined', reason: MALFORMED_REQUEST_REASON, runId: null, run: null, reply: null });
       continue;
     }
     const request = parsed.value;
     if (identityKey(request.target.identity) !== identityKey(identity)) {
       const moved = quarantineRequest(folders, name, request.id, TARGET_MISMATCH_REASON, request.target.identity);
       if (!moved.ok) return moved;
-      lines.push({ requestId: request.id, outcome: 'quarantined', reason: TARGET_MISMATCH_REASON, runId: null });
+      lines.push({ requestId: request.id, outcome: 'quarantined', reason: TARGET_MISMATCH_REASON, runId: null, run: null, reply: null });
       continue;
     }
 
@@ -222,8 +260,8 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
         ...(input.resolveEnv !== undefined ? { resolveEnv: input.resolveEnv } : {}),
         // The runner writes the request join in the run's one record, so the drain never rewrites it.
         request: request.kind === 'resume'
-          ? { kind: 'resume', requestId: request.id, itemId: request.idempotencyKey }
-          : { kind: 'queued', requestId: request.id, source: request.source, firedSlot: request.firedSlot, prompt: request.prompt, delivery: request.delivery },
+          ? { kind: 'resume', requestId: request.id, itemId: request.idempotencyKey, conversationId: request.conversationId ?? null }
+          : { kind: 'queued', requestId: request.id, source: request.source, firedSlot: request.firedSlot, prompt: request.prompt, delivery: request.delivery, conversationId: request.conversationId ?? null },
         ...input.runOptions,
       });
     } catch {
@@ -233,6 +271,8 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
     const runId = outcome?.runId ?? null;
 
     let route: Route = outcome === null ? { kind: 'retry' } : routeOutcome(outcome);
+    // A chat message is answered once. A second dispatch would answer a conversation the person has already moved on in, so a chat request that would retry is quarantined under its own cause.
+    if (route.kind === 'retry' && request.source === CHAT_SOURCE) route = { kind: 'quarantine', reason: lastCause(outcome), detail: null };
     if (route.kind === 'retry' && atRetryBound(request)) {
       // The detail names the last attempt's own cause: a bot that was only busy must not read as a failure.
       route = { kind: 'quarantine', reason: RETRY_BOUND_REASON, detail: `${lastCause(outcome)} on attempt ${request.attempts + 1}` };
@@ -246,19 +286,19 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
       case 'done': {
         const moved = finishRequest(folders, name);
         if (!moved.ok) return moved;
-        lines.push({ requestId: request.id, outcome: 'ran', reason: null, runId });
+        lines.push({ requestId: request.id, outcome: 'ran', reason: null, runId, run: outcome, reply: appendReply(stateRoot, identity, request, outcome, route) });
         break;
       }
       case 'retry': {
         const moved = retryRequest(folders, name, request);
         if (!moved.ok) return moved;
-        lines.push({ requestId: request.id, outcome: 'retry', reason: null, runId });
+        lines.push({ requestId: request.id, outcome: 'retry', reason: null, runId, run: outcome, reply: null });
         break;
       }
       case 'quarantine': {
         const moved = quarantineRequest(folders, name, request.id, route.reason, route.detail);
         if (!moved.ok) return moved;
-        lines.push({ requestId: request.id, outcome: 'quarantined', reason: route.reason, runId });
+        lines.push({ requestId: request.id, outcome: 'quarantined', reason: route.reason, runId, run: outcome, reply: appendReply(stateRoot, identity, request, outcome, route) });
         break;
       }
     }

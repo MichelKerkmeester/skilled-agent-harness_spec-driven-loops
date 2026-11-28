@@ -21,8 +21,9 @@ import {
 import { postRunCausesOf, readRunRecord } from '../lib/run-record.js';
 import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
 import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, writeRoutineState } from '../lib/routine-state.js';
+import { setSecret } from '../lib/secrets.js';
 import { skillDigest, skillFile } from '../lib/skills.js';
-import { identityStatePaths, receiptFolder, recordFile, sharedMemoryFile, sharedStatePaths } from '../lib/state-root.js';
+import { ensureIdentityState, identityStatePaths, receiptFolder, recordFile, sharedMemoryFile, sharedStatePaths } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { cleanupTemp, isolatedEnv, tempDir } from './support.js';
 import { approveBots, botWorld, filesUnder, FIXTURE_BOTS, IDENTITY, runCli, STUB_DIR, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
@@ -249,6 +250,28 @@ describe('manual run, happy path', () => {
     const plain = await runBot(world.input('manual-ok'));
     expect(plain.kind).toBe('completed');
     expect(record(world, plain).until).toBeNull();
+  });
+
+  it('completed outcome carries the answer text', async () => {
+    const world = botWorld();
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak('All tidy.\n') }));
+    expect(outcome.kind).toBe('completed');
+    if (outcome.kind === 'completed') expect(outcome.answer).toBe('All tidy.\n');
+  });
+
+  it('completed outcome answer is the redacted copy', async () => {
+    const world = botWorld();
+    ensureIdentityState(world.stateRoot, IDENTITY);
+    const set = setSecret({ stateRoot: world.stateRoot, identity: IDENTITY, name: 'demo', value: 'skilled-test-value-7f3a', store: 'file', setBy: 'ada' });
+    if (!set.ok) throw new Error(set.reason);
+    const outcome = await runBot(world.input('manual-ok', { buildCommand: speak('token skilled-test-value-7f3a end\n') }));
+    expect(outcome.kind).toBe('completed');
+    if (outcome.kind !== 'completed') throw new Error('expected a completed run');
+    // The answer is read from the copy the post-run scan already redacted, so a value the
+    // child printed never reaches the conversation that quotes it.
+    expect(outcome.answer).toContain('[redacted: demo]');
+    expect(outcome.answer).not.toContain('skilled-test-value-7f3a');
+    expect(record(world, outcome).postRunCauses?.[0]).toMatchObject({ cause: 'secret-in-output' });
   });
 });
 

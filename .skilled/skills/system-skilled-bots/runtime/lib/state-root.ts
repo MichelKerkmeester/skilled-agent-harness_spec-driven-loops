@@ -75,6 +75,8 @@ export interface IdentityStatePaths {
   secrets: string;
   /** Skill drafts awaiting review, one folder per run id, made owner-only by their writer and never by a read. */
   proposals: string;
+  /** One append-only conversation file per conversation, owner-only because each holds a person's words. */
+  conversations: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
@@ -144,6 +146,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     memory: join(base, 'memory'),
     secrets: join(base, 'secrets'),
     proposals: join(base, 'proposals'),
+    conversations: join(base, 'conversations'),
   };
 }
 
@@ -179,6 +182,7 @@ export function ensureIdentityState(stateRoot: string, identity: string): Identi
     paths.installs,
     paths.receipts,
     paths.secrets,
+    paths.conversations,
   ];
   for (const folder of folders) mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
   return paths;

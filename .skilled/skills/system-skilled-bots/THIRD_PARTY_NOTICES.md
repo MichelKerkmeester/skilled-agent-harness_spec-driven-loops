@@ -226,3 +226,23 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+## 010-conversations
+
+`.skilled/bin/bots.cjs` follows the terminal loop of turnstone, by Patrick Buckley, at `turnstone/turnstone/cli.py`, for the `bots chat` loop.
+
+What was followed is the shape of that loop: readline with a history of 1,000 lines, a completer over a fixed list of slash commands that treats the whole line as its input, each line classified before it is dispatched, `/exit` and `/quit` in any case, a prompt that carries the active name in brackets and an end of input on end of file or on an interrupt at an empty prompt.
+
+Statement of changes: the loop is written fresh in JavaScript on Node's `readline` module, and no turnstone code is copied. It sends each typed line as one chat message to a bot run rather than to a model session, completes `@<bot-id>` beside the slash commands, prints each reply on stdout and every status line on stderr and reads a bracketed paste as one draft. The bracketed paste handling follows a reference under another licence by design only, so nothing from that reference is copied either.
+
+The licence is Apache-2.0 (Apache License, Version 2.0), Copyright 2025-2026 Patrick Buckley. The full licence text is the copy in the 008-vault section above, and it applies to this section unchanged. The project's `NOTICE` file reads, verbatim:
+
+```text
+Turnstone
+Copyright 2025-2026 Patrick Buckley
+
+Licensed under the Apache License, Version 2.0; see the LICENSE file.
+
+Third-party software bundled with this distribution is listed in the
+THIRD-PARTY-NOTICES file; each component remains under its own license.
+```

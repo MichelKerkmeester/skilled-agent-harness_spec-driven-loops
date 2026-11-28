@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb"
-    last_updated_at: "2026-11-26T01:00:00Z"
-    last_updated_by: "wo-08-writer"
-    recent_action: "Moved the runtime directive here from the phase parent"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-28T10:40:00Z"
+    last_updated_by: "openbot-build-010-002"
+    recent_action: "Built the conversation runtime and the chat verb against every criterion"
+    next_safe_action: "Merge the unit branch into system-skilled-bots"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo08-010-002-runtime"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,13 +58,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/conversation.vitest.ts` prints a `Test Files` line with no `failed` count, covering the message shape, the append, the torn line, the routing rules, the bound, the block and its `channel` form.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-chat.vitest.ts` prints a `Test Files` line with no `failed` count, covering the one-message path, `/exit`, `bot-unknown`, the duplicate send, the resumed answer, `body-secret` and the three-line paste that dispatches exactly one run and appends one human message holding the three lines.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/queued-run.vitest.ts tests/runner.vitest.ts` prints a `Test Files` line with no `failed` count.
-- [ ] `printf '/exit\n' | node .skilled/bin/bots.cjs chat my-bot; echo "exit=$?"` prints `exit=0` on a state root holding a `my-bot` `BOT.md`, and appends no message.
-- [ ] `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r 'keys | join(" ")'` prints `conversationId messages version`.
-- [ ] `rg -n '^## 010-conversations|turnstone/cli.py' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints the heading and the source path.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/conversation.vitest.ts` prints a `Test Files` line with no `failed` count, covering the message shape, the append, the torn line, the routing rules, the bound, the block and its `channel` form.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/cli-chat.vitest.ts` prints a `Test Files` line with no `failed` count, covering the one-message path, `/exit`, `bot-unknown`, the duplicate send, the resumed answer, `body-secret` and the three-line paste that dispatches exactly one run and appends one human message holding the three lines.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/queued-run.vitest.ts tests/runner.vitest.ts` prints a `Test Files` line with no `failed` count.
+- [x] `printf '/exit\n' | node .skilled/bin/bots.cjs chat my-bot; echo "exit=$?"` prints `exit=0` on a state root holding a `my-bot` `BOT.md`, and appends no message.
+- [x] `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r 'keys | join(" ")'` prints `conversationId messages version`.
+- [x] `rg -n '^## 010-conversations|turnstone/cli.py' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints the heading and the source path.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,8 +80,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Implementation | Pending | `node .skilled/bin/bots.cjs chat my-bot` printed `bots: unknown verb: chat` and exited 2 on 2026-11-26, the measured gap `spec.md` records |
-| Acceptance criteria | Pending | All fourteen rows in `acceptance-criteria.md` read `Unmet` |
+| Implementation | Done | Built 2026-11-28 by Vibe waves and one cli-pi retry. `npm test` prints `Test Files  55 passed (55)` and `Tests  742 passed (742)`, the typecheck and `cargo test` exit 0. On 2026-11-26 the verb printed `bots: unknown verb: chat` and exited 2 |
+| Acceptance criteria | Done | All fifteen rows read `Met` with observed evidence, and `rg -c '\| Unmet \|'` finds none |
 
 ### Deviations and findings
 
@@ -98,4 +98,7 @@ and findings belong here.
 | The resumed message's text forms | F-061. REQ-012 now states that the resumed message's `text` is the reply, a second `needs you:` form or the `failed:` form, and that the item link is `runId`, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The extended tests verify by name | O-005. T020 and T021 name the tests they add and filter them with a stated pass count, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | Serial commas dropped | O-022. The comma before the last list item was dropped in this child's prose by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| Criteria 4 and 5 ran on a scratch checkout | The two commands name no `--repo`, so they read the operator's checkout. They ran on a scratch checkout with its own state root, an identity, a scratch Skilled tree and the stub executor, passed as `--repo` and `--skilled-tree`, and printed `exit=0` with nothing appended and `conversationId messages version`. |
+| Paste retried on cli-pi | The Vibe change read the paste flag after the paste had ended, so a three-line paste at a terminal started three runs. The cli-pi retry tags each line when readline emits it, and a probe through `script` stores one message holding the three lines. |
+| Build deviations | T001 to T005 ran without a worker because they write nothing. `state-root.vitest.ts` was edited outside the owner rows. REQ-012's item link is the resumed run record's `request.resumedItemId`, since a resumed run gets a fresh id. `contracts/prompt-sections.md` needed no edit because the block's shape did not move. A bot run can still run `bots chat`, which is left for the review phase. |
 <!-- /ANCHOR:log -->

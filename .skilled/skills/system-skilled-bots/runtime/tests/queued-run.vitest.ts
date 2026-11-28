@@ -1,14 +1,19 @@
 // Queued run: a drained request's own prompt reaches the run, and its run record is written once, by the runner.
 
 import { readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { answerItem } from '../lib/answer.js';
+import { CHAT_SOURCE, conversationFile, readConversation } from '../lib/conversation.js';
+import { validateNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { enqueueFromCheckout } from '../lib/request-queue.js';
+import { buildRequest, validateRequest } from '../lib/request-record.js';
 import { generationStampFile, runBot } from '../lib/runner.js';
 import { recordFile } from '../lib/state-root.js';
 import { botWorld, IDENTITY, stubReceipt, stubRunCount } from './runner-support.js';
-import { drain, entries, queueOf, records } from './queue-support.js';
+import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
 import { cleanupTemp } from './support.js';
 
 import type { RunBotInput, RunOutcome } from '../lib/runner.js';
@@ -76,5 +81,119 @@ describe('queued run', () => {
     expect(statSync(path).mtimeMs).toBe(seen!.mtimeMs);
     expect(readFileSync(generationStampFile(world.stateRoot, IDENTITY), 'utf8')).toBe(seen!.stamp);
     expect(entries(queueOf(world).inbox)).toEqual([]);
+  }, 120_000);
+
+  it('requestIds filter runs one request', async () => {
+    const world = botWorld();
+    const first = enqueueFromCheckout(
+      world.checkoutRoot,
+      { workflowId: 'manual-ok', source: 'webhook', eventId: 'evt-first', prompt: 'First request.' },
+      world.env,
+    );
+    if (!first.ok) throw new Error(first.reason);
+    const second = enqueueFromCheckout(
+      world.checkoutRoot,
+      { workflowId: 'manual-ok', source: 'webhook', eventId: 'evt-second', prompt: 'Second request.' },
+      world.env,
+    );
+    if (!second.ok) throw new Error(second.reason);
+    const drained = await drain(world, { requestIds: [first.value.requestId] });
+    if (!drained.ok) throw new Error(drained.reason);
+    expect(drained.value.lines).toHaveLength(1);
+    expect(drained.value.lines[0]).toMatchObject({ requestId: first.value.requestId, outcome: 'ran' });
+    expect(entries(queueOf(world).inbox)).toEqual([`${second.value.requestId}.json`]);
+    expect(stubRunCount(world)).toBe(1);
+  }, 120_000);
+
+  it('resumed answer reaches its conversation', async () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok', { prompt: 'Continue the parked work.' });
+    const rewritten = writeNeedsYouItem(world.stateRoot, { ...item, conversationId: 'talk' });
+    if (!rewritten.ok) throw new Error(rewritten.reason);
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, itemId: item.id, text: 'merge', env: world.env, surface: 'terminal' });
+    if (!answered.ok) throw new Error(answered.reason);
+    const [queued] = entries(queueOf(world).inbox);
+    const request = JSON.parse(readFileSync(join(queueOf(world).inbox, queued as string), 'utf8')) as { conversationId?: string };
+    expect(request.conversationId).toBe('talk');
+
+    const report = await drain(world);
+    if (!report.ok) throw new Error(report.reason);
+    expect(report.value.lines[0]).toMatchObject({ outcome: 'ran' });
+    const runId = report.value.lines[0]?.runId as string;
+
+    const file = conversationFile(world.stateRoot, IDENTITY, 'talk');
+    if (!file.ok) throw new Error(file.reason);
+    const read = readConversation(file.value);
+    expect(read.messages).toHaveLength(1);
+    expect(read.messages[0]).toMatchObject({
+      role: 'bot',
+      botId: 'manual-ok',
+      by: 'bot',
+      runId,
+      text: 'stub done',
+      id: `msg-${runId}`,
+    });
+    const record = records(world).find((entry) => entry.identity.runId === runId);
+    expect(record?.request.resumedItemId).toBe(item.id);
+    expect(report.value.lines[0]?.reply).toEqual(read.messages[0]);
+  }, 120_000);
+
+  it('a chat request that fails is quarantined, not retried, and leaves one bot message', async () => {
+    const world = botWorld();
+    const sent = enqueueFromCheckout(
+      world.checkoutRoot,
+      { workflowId: 'crash', source: CHAT_SOURCE, eventId: 'msg-test-1', prompt: 'hello', conversationId: 'talk' },
+      world.env,
+    );
+    if (!sent.ok) throw new Error(sent.reason);
+    const drained = await drain(world);
+    if (!drained.ok) throw new Error(drained.reason);
+    expect(drained.value.lines[0]?.outcome).toBe('quarantined');
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+    expect(entries(queueOf(world).quarantine)).toContain(`${sent.value.requestId}.json`);
+    expect(stubRunCount(world)).toBe(1);
+
+    const file = conversationFile(world.stateRoot, IDENTITY, 'talk');
+    if (!file.ok) throw new Error(file.reason);
+    const read = readConversation(file.value);
+    expect(read.messages).toHaveLength(1);
+    expect(read.messages[0]?.role).toBe('bot');
+    expect(read.messages[0]?.text.startsWith('failed: ')).toBe(true);
+  }, 120_000);
+
+  it('an item and a request carrying conversationId validate', () => {
+    const world = botWorld();
+    const item = writeItem(world, 'manual-ok');
+    expect(validateNeedsYouItem({ ...item, conversationId: 'talk' }).ok).toBe(true);
+    expect(validateNeedsYouItem({ ...item, conversationId: '../x' })).toEqual({
+      ok: false,
+      reason: 'item-field-invalid',
+      detail: 'conversationId',
+    });
+
+    const built = buildRequest({
+      workflowId: 'manual-ok',
+      source: 'chat',
+      eventId: 'msg-1',
+      target: { identity: IDENTITY, path: world.checkoutRoot },
+      conversationId: 'talk',
+    });
+    if (!built.ok) throw new Error(built.reason);
+    expect(built.value.conversationId).toBe('talk');
+    expect(validateRequest(built.value).ok).toBe(true);
+
+    const plain = buildRequest({
+      workflowId: 'manual-ok',
+      source: 'chat',
+      eventId: 'msg-1',
+      target: { identity: IDENTITY, path: world.checkoutRoot },
+    });
+    if (!plain.ok) throw new Error(plain.reason);
+    expect('conversationId' in plain.value).toBe(false);
+    expect(validateRequest({ ...built.value, conversationId: '../x' })).toEqual({
+      ok: false,
+      reason: 'request-field-invalid',
+      detail: 'conversationId',
+    });
   }, 120_000);
 });
