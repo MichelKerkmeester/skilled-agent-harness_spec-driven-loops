@@ -74,6 +74,13 @@ const USAGE = [
   '  channel roster list',
   '                 the only way to write operators.json, who may answer from a chat;',
   '                 --role defaults to member and an owner add replaces the owner',
+  '  secret set <name> [--store keychain|file]',
+  '                 store one secret in the vault, read from a prompt with echo off,',
+  '                 or one piped line, and never from an argument; --store picks',
+  '                 the keychain or a 0600 file, the keychain by default when the host has one',
+  '  secret list    print each stored name, its store and when it was set, never a value',
+  '  secret forget <name>',
+  '                 remove a secret from the vault and from both stores',
   '  status [--json] [--rebuild] [--all] [--unregister <owner/name>]',
   '                 show every installed bot, its last run and delivery, and open',
   '                 needs-you items, from the status index; --rebuild rebuilds the',
@@ -108,6 +115,18 @@ const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
 // module. The list is repeated here because these refusals run before the runtime loads.
 const CHANNEL_NAMES = ['telegram', 'slack', 'signal', 'whatsapp'];
 const ROSTER_ROLES = ['owner', 'member'];
+// The name grammar a stored secret must match, mirroring SECRET_NAME_PATTERN in the runtime's
+// secrets module. The pattern is repeated here because these refusals run before the runtime loads.
+const SECRET_NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+const SECRET_NAME_MAX = 64;
+// The stores a set may name, mirroring SecretBackend in the runtime's secrets module.
+const SECRET_STORES = ['keychain', 'file'];
+// The longest value a set accepts, counted in code points. The longest piped line it reads before
+// refusing. Both mirror the bounds the runtime's secrets module refuses at.
+const SECRET_VALUE_MAX_CODE_POINTS = 16_384;
+const SECRET_PIPE_MAX_BYTES = 65_536;
+// The set refusals that mean the request itself was written wrong, as opposed to a store that broke.
+const SECRET_USAGE_REASONS = new Set(['secret-name-invalid', 'secret-empty', 'secret-too-long', 'secret-keychain-unavailable']);
 // How many positional arguments each verb takes, and the options it accepts beyond the common ones.
 const VERB_SPECS = {
   run: { ids: 1, options: ['schedule-index', 'as'] },
@@ -121,6 +140,7 @@ const VERB_SPECS = {
   answer: { ids: 2, options: ['as', 'scope'] },
   remember: { ids: 1, options: REMEMBER_OPTIONS },
   channel: { ids: 0, options: ['role', 'secret', 'as'] },
+  secret: { ids: 0, options: ['store'] },
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
@@ -129,7 +149,7 @@ const VERB_SPECS = {
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', 'store', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
@@ -276,6 +296,27 @@ function parseChannel(verb, ids, options) {
   return { error: `unknown channel verb: ${sub}` };
 }
 
+// The secret group takes a subverb and its operands, so its argv is checked here rather than by the
+// id count every other verb uses. The name grammar is checked later, beside the store, so a name
+// that fails it is refused with the reason the store itself would give.
+function parseSecret(verb, ids, options) {
+  const [sub, ...rest] = ids;
+  if (!sub) return { error: 'secret needs set, list or forget' };
+  if (!['set', 'list', 'forget'].includes(sub)) return { error: `unknown secret verb: ${sub}` };
+  if (sub === 'list') {
+    if (rest.length > 0) return { error: `unexpected argument: ${rest[0]}` };
+    if (options.store !== undefined) return { error: 'secret list takes no --store' };
+    return { verb, id: undefined, args: ['list'], options };
+  }
+  if (sub === 'forget' && options.store !== undefined) return { error: 'secret forget takes no --store' };
+  if (rest.length === 0) return { error: `secret ${sub} needs a name` };
+  if (rest.length > 1) return { error: `unexpected argument: ${rest[1]}` };
+  if (sub === 'set' && options.store !== undefined && !SECRET_STORES.includes(options.store)) {
+    return { error: '--store takes keychain or file' };
+  }
+  return { verb, id: undefined, args: [sub, rest[0]], options };
+}
+
 function parseArgs(argv) {
   const options = {};
   const positional = [];
@@ -329,6 +370,7 @@ function parseArgs(argv) {
     return { verb, id: ids[0], args: [ids[1]], options };
   }
   if (verb === 'channel') return parseChannel(verb, ids, options);
+  if (verb === 'secret') return parseSecret(verb, ids, options);
   if (verb === 'remember') {
     if (ids.length > 1) return { error: `unexpected argument: ${ids[1]}` };
     return { verb, id: undefined, args: ids.slice(0, 1), options };
@@ -355,7 +397,7 @@ async function loadRuntime() {
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
   const load = runtimeModule;
-  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity] = await Promise.all([
+  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets] = await Promise.all([
     load('runner'),
     load('switches'),
     load('needs-you'),
@@ -369,8 +411,9 @@ async function loadRuntime() {
     load('repo-config'),
     load('state-root'),
     load('identity'),
+    load('secrets'),
   ]);
-  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity };
+  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets };
 }
 
 // The payload contract the screen binary must speak. It is read from the runtime
@@ -527,6 +570,9 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
   }
   const stateRoot = rt.stateRoot.userStateRoot(config.value, resolveEnv);
   let path;
+  // The vault belongs to the identity, so a checkout with no identity has none and shared memory
+  // still works. A --bot run resolves the identity anyway, and reusing that answer keeps one lookup.
+  let vaultIdentity = null;
   if (bot === undefined) {
     path = rt.memory.sharedMemoryFile(stateRoot);
   } else {
@@ -535,6 +581,7 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
       process.stderr.write(`${describeRefusal(identity)}\n`);
       return rt.runner.EXIT_CODES.refused;
     }
+    vaultIdentity = identity.value.identity;
     const file = rt.memory.botMemoryFile(stateRoot, identity.value.identity, bot);
     if (!file.ok) {
       process.stderr.write(`bots: bot-id-invalid: ${bot}\n`);
@@ -595,7 +642,19 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
       process.stderr.write(`${describeRefusal(actor)}\n`);
       return 2;
     }
-    const match = rt.dispatch.findSecretLiteral(fact, rt.dispatch.collectKnownSecrets(process.env, checkoutRoot));
+    // A fact is checked against every value the vault holds, not only the environment's, because a
+    // stored key would otherwise reach a prompt through the memory file. A vault that cannot be read
+    // refuses the write, since a check that dropped it would pass the very value it exists to stop.
+    if (vaultIdentity === null) {
+      const vault = rt.identity.resolveIdentity({ checkoutRoot, config: config.value, env: resolveEnv });
+      vaultIdentity = vault.ok ? vault.value.identity : null;
+    }
+    const allKnown = rt.dispatch.collectAllKnownSecrets(process.env, checkoutRoot, stateRoot, vaultIdentity);
+    if (!allKnown.ok) {
+      process.stderr.write(`bots: secret-store-unreadable: ${allKnown.detail}\n`);
+      return rt.runner.EXIT_CODES.refused;
+    }
+    const match = rt.dispatch.findSecretLiteral(fact, allKnown.value);
     if (match !== null) {
       process.stderr.write(`bots: memory-secret: ${match.name}\n`);
       return rt.runner.EXIT_CODES.refused;
@@ -666,6 +725,180 @@ async function channelVerb(rt, parsed, checkoutRoot, resolveEnv) {
     return rt.runner.EXIT_CODES.refused;
   }
   return 0;
+}
+
+// The secret verbs read and write the vault under the drain job's environment, the same state root
+// the run path resolves, so a value set here is the value a run is given. No line any verb prints
+// holds a value: a name, a store and a timestamp are all a listing shows.
+function secretVerb(rt, parsed, checkoutRoot, resolveEnv) {
+  const [sub, name] = parsed.args;
+  if (sub !== 'list' && (!SECRET_NAME_PATTERN.test(name) || name.length > SECRET_NAME_MAX)) {
+    process.stderr.write(`bots: secret-name-invalid: ${name}\n`);
+    return 2;
+  }
+  const config = rt.repoConfig.readRepoConfig(checkoutRoot);
+  if (!config.ok) {
+    process.stderr.write(`${describeRefusal(config)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const stateRoot = rt.stateRoot.userStateRoot(config.value, resolveEnv);
+  const identity = rt.identity.resolveIdentity({ checkoutRoot, config: config.value, env: resolveEnv });
+  if (!identity.ok) {
+    process.stderr.write(`${describeRefusal(identity)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const id = identity.value.identity;
+  rt.stateRoot.ensureIdentityState(stateRoot, id);
+  // The keychain program is looked up in the shell's environment, because the operator's PATH is
+  // where the program lives and the job's PATH is the bare one launchd hands a fire.
+  const storeOptions = { env: process.env };
+  if (sub === 'list') {
+    const r = rt.secrets.listSecrets(stateRoot, id);
+    if (!r.ok) {
+      process.stderr.write(`bots: ${r.reason}: ${r.detail}\n`);
+      return 4;
+    }
+    if (r.value.length === 0) {
+      process.stdout.write('bots: no secrets stored\n');
+      return 0;
+    }
+    for (const entry of r.value) {
+      process.stdout.write(`${entry.name} ${entry.backend} ${entry.createdAt} ${entry.updatedAt}\n`);
+    }
+    return 0;
+  }
+  if (sub === 'set') {
+    // The host is checked before the value is read, so a store that cannot exist costs no prompt.
+    if (parsed.options.store === 'keychain' && rt.secrets.hostKeychainProgram(storeOptions) === null) {
+      process.stderr.write('bots: --store keychain: no keychain program on this host\n');
+      return 2;
+    }
+    const read = readSecretValue(name);
+    if (read.refusal !== undefined) {
+      process.stderr.write(`${read.refusal}\n`);
+      return 2;
+    }
+    const actor = rt.actor.resolveActor({ as: null, env: process.env, scheduled: false });
+    const setBy = actor.ok ? actor.value : null;
+    const r = rt.secrets.setSecret({ stateRoot, identity: id, name, value: read.value, store: parsed.options.store, setBy, ...storeOptions });
+    if (!r.ok) {
+      process.stderr.write(`bots: ${r.reason}: ${r.detail}\n`);
+      return SECRET_USAGE_REASONS.has(r.reason) ? 2 : 4;
+    }
+    if (r.value.warning !== null) process.stderr.write(`${r.value.warning}\n`);
+    process.stdout.write(`bots: secret ${name} stored (${r.value.backend})\n`);
+    return 0;
+  }
+  const r = rt.secrets.forgetSecret({ stateRoot, identity: id, name, ...storeOptions });
+  if (!r.ok) {
+    process.stderr.write(`bots: ${r.reason}: ${r.detail}\n`);
+    return r.reason === 'secret-name-invalid' ? 2 : 4;
+  }
+  if (r.value.leftover !== null) {
+    const { backend, reason } = r.value.leftover;
+    process.stderr.write(`bots: secret forget: ${name} left the index, its ${backend} value was not removed (${reason}), run forget again\n`);
+    return 1;
+  }
+  process.stdout.write(r.value.held ? `bots: secret ${name} forgotten\n` : `bots: secret ${name} was not held\n`);
+  return 0;
+}
+
+// The value is read once, from a prompt with echo off or from one piped line. It is never read from
+// an argument, so it never enters the shell's history or another process's argv. Nothing here echoes
+// a byte of it, and every refusal names the secret and never the value.
+function readSecretValue(name) {
+  if (process.stdin.isTTY === true) return readSecretFromPrompt(name);
+  return readSecretFromPipe(name);
+}
+
+// A prompt with echo off, read one byte at a time so a backspace can drop a character the terminal
+// never shows. The mode is restored in a finally, so a failed read never leaves the terminal raw.
+function readSecretFromPrompt(name) {
+  const fs = require('node:fs');
+  process.stderr.write(`secret value for ${name}: `);
+  const bytes = [];
+  let stopped = false;
+  process.stdin.setRawMode(true);
+  try {
+    const one = Buffer.alloc(1);
+    for (;;) {
+      const read = fs.readSync(0, one, 0, 1, null);
+      if (read === 0) {
+        stopped = true;
+        break;
+      }
+      const byte = one[0];
+      if (byte === 0x0d || byte === 0x0a) break;
+      if (byte === 0x7f || byte === 0x08) {
+        bytes.pop();
+        continue;
+      }
+      if ((byte === 0x03 || byte === 0x04) && bytes.length === 0) {
+        stopped = true;
+        break;
+      }
+      bytes.push(byte);
+    }
+  } finally {
+    process.stdin.setRawMode(false);
+    process.stderr.write('\n');
+  }
+  if (stopped) return { refusal: `bots: secret-no-input: ${name}` };
+  return normalizeSecretValue(name, Buffer.from(bytes));
+}
+
+// One piped line, so a script can hand over a value without a tty. A read that throws EAGAIN is
+// retried after a short pause, because a non-blocking pipe reports an empty buffer that way.
+function readSecretFromPipe(name) {
+  const fs = require('node:fs');
+  const chunks = [];
+  let total = 0;
+  let ended = false;
+  const chunk = Buffer.alloc(4096);
+  for (;;) {
+    let read;
+    try {
+      read = fs.readSync(0, chunk, 0, chunk.length, null);
+    } catch (error) {
+      if (error !== null && typeof error === 'object' && error.code === 'EAGAIN') {
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+        continue;
+      }
+      throw error;
+    }
+    if (read === 0) {
+      ended = true;
+      break;
+    }
+    const slice = chunk.subarray(0, read);
+    const newline = slice.indexOf(0x0a);
+    if (newline !== -1) {
+      chunks.push(Buffer.from(slice.subarray(0, newline)));
+      total += newline;
+      break;
+    }
+    chunks.push(Buffer.from(slice));
+    total += read;
+    if (total >= SECRET_PIPE_MAX_BYTES) {
+      return { refusal: `bots: secret-too-long: ${SECRET_PIPE_MAX_BYTES} piped bytes hold no newline` };
+    }
+  }
+  if (ended && total === 0) return { refusal: `bots: secret-no-input: ${name}` };
+  return normalizeSecretValue(name, Buffer.concat(chunks));
+}
+
+// One trailing carriage return is dropped so a CRLF line reads the same as a bare newline, and the
+// surrounding whitespace is trimmed because a pasted value carries it. The length is counted in code
+// points, so a multi-byte character counts once.
+function normalizeSecretValue(name, bytes) {
+  let text = bytes.toString('utf8');
+  if (text.endsWith('\r')) text = text.slice(0, -1);
+  const value = text.trim();
+  if (value === '') return { refusal: `bots: secret-empty: ${name}` };
+  if ([...value].length > SECRET_VALUE_MAX_CODE_POINTS) {
+    return { refusal: `bots: secret-too-long: the value is longer than ${SECRET_VALUE_MAX_CODE_POINTS} characters` };
+  }
+  return { value };
 }
 
 function printSteps(steps) {
@@ -981,6 +1214,12 @@ async function main(argv) {
     process.stderr.write('bots: child-write-refused: channel runs no write inside a bot run\n');
     return 2;
   }
+  // A bot child that set a secret could replace the value another bot is given, so the secret group
+  // writes nothing inside a bot run. Listing is a read and stays open.
+  if (parsed.verb === 'secret' && parsed.args[0] !== 'list' && isBotChild(process.env)) {
+    process.stderr.write('bots: child-write-refused: secret runs no write inside a bot run\n');
+    return 2;
+  }
   if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
     return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
   }
@@ -1013,6 +1252,7 @@ async function main(argv) {
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'remember') return rememberVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'channel') return channelVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'secret') return secretVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'routines') return routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);

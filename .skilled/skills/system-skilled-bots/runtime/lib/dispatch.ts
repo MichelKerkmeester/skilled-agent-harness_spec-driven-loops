@@ -29,6 +29,9 @@ import type {
   ExecutorLogFormat,
   SandboxMode,
 } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
+import { createSecretMatcher } from './secret-matcher.js';
+import { knownSecretValues } from './secrets.js';
+
 import type { Result } from './repo-config.js';
 import type { FailureClass } from './run-record.js';
 
@@ -124,6 +127,8 @@ export interface DispatchOutcome {
   /** Exit code of the audited runner: 3 when the recursion guard refused. */
   runnerExit: number;
   stdout: string;
+  /** The child's captured stderr, empty when no child ran, held here so the runner can redact it before it is written anywhere. */
+  stderr: string;
   elapsedMs: number;
   dispatched: boolean;
 }
@@ -285,17 +290,45 @@ export function collectKnownSecrets(env: NodeJS.ProcessEnv, checkoutRoot: string
 }
 
 /**
+ * The one known-secret map every surface checks text against: the
+ * environment and dotenv values plus every value the vault holds, each
+ * vault row keyed `vault:<name>`. Every stored value joins, not only the
+ * one a bot declares, because any bot child runs as the same OS user and
+ * can read any stored value. A vault that cannot be read refuses, never
+ * the environment-only map, because a check that drops the vault would
+ * pass the very value it exists to stop.
+ *
+ * @param env - The environment the caller runs in. Its PATH finds the keychain program.
+ * @param checkoutRoot - The repository checkout whose dotenv files are read.
+ * @param stateRoot - The resolved user-level state root.
+ * @param identity - The repository identity, or null when none resolved, which has no vault.
+ * @returns The merged map, or secret-store-unreadable.
+ */
+export function collectAllKnownSecrets(env: NodeJS.ProcessEnv, checkoutRoot: string | null, stateRoot: string, identity: string | null): Result<Map<string, string>> {
+  const known = collectKnownSecrets(env, checkoutRoot);
+  if (identity === null) return { ok: true, value: known };
+  const vault = knownSecretValues(stateRoot, identity, { env });
+  if (!vault.ok) return vault;
+  for (const [key, value] of vault.value) known.set(key, value);
+  return { ok: true, value: known };
+}
+
+/**
  * The one secret-literal detector. The runner calls it on a definition body
  * and on a question and answer before a resumed run; the checker calls it on
  * every body. It names the key or prefix it matched, never the value.
  *
  * @param text - The text that would reach a prompt.
- * @param known - Values from collectKnownSecrets.
+ * @param known - Values from collectAllKnownSecrets.
  * @returns The first match, or null when the text holds no secret literal.
  */
 export function findSecretLiteral(text: string, known: KnownSecrets): SecretMatch | null {
-  for (const [key, value] of known) {
-    if (value.length >= MIN_SECRET_LENGTH && text.includes(value)) return { kind: 'key', name: key };
+  const values = [...known.values()].filter((value) => value.length >= MIN_SECRET_LENGTH);
+  // One pass over the text decides whether any known value occurs, and only then is the map walked to name the first one, so many stored values cost one pass.
+  if (values.length > 0 && createSecretMatcher(values).test(text)) {
+    for (const [key, value] of known) {
+      if (value.length >= MIN_SECRET_LENGTH && text.includes(value)) return { kind: 'key', name: key };
+    }
   }
   for (const { name, pattern } of SECRET_PREFIXES) {
     if (pattern.test(text)) return { kind: 'prefix', name };
@@ -754,6 +787,7 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
         class: 'environment',
         runnerExit: 0,
         stdout: '',
+        stderr: '',
         elapsedMs: Date.now() - started,
         dispatched: false,
       };
@@ -765,6 +799,7 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
       class: name === 'ExecutorUnavailableError' ? 'environment' : 'author',
       runnerExit: 0,
       stdout: '',
+      stderr: '',
       elapsedMs: Date.now() - started,
       dispatched: false,
     };
@@ -775,6 +810,7 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
   const callerKeys = Object.keys(input.extraEnv ?? {});
 
   let stdout = '';
+  let stderr = '';
   const runnerExit = runAuditedExecutorCommand({
     command: built.command,
     args: built.args,
@@ -797,13 +833,16 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
     onStdout: (text) => {
       stdout = text;
     },
+    onStderr: (text) => {
+      stderr = text;
+    },
   });
   const elapsedMs = Date.now() - started;
 
   const failures = readFailureRows(input.stateLogPath);
   const last = failures.at(-1);
   if (runnerExit !== 0) {
-    return { clean: false, reason: last?.reason ?? 'recursion-guard', detail: null, class: 'hub', runnerExit, stdout, elapsedMs, dispatched: false };
+    return { clean: false, reason: last?.reason ?? 'recursion-guard', detail: null, class: 'hub', runnerExit, stdout, stderr, elapsedMs, dispatched: false };
   }
   if (last === undefined) {
     // Vibe can exit 0 from a run its export record says did not finish, so a clean
@@ -811,15 +850,15 @@ function dispatchInLineage(input: DispatchInput, lineageDir: string | null): Dis
     if (input.executor.kind === 'cli-mistral-vibe' && lineageDir !== null) {
       const unfinished = fanoutModule().validateVibeCompletion(0, lineageDir);
       if (unfinished !== null) {
-        return { clean: false, reason: VIBE_RUN_UNFINISHED, detail: unfinished, class: 'environment', runnerExit, stdout, elapsedMs, dispatched: true };
+        return { clean: false, reason: VIBE_RUN_UNFINISHED, detail: unfinished, class: 'environment', runnerExit, stdout, stderr, elapsedMs, dispatched: true };
       }
     }
-    return { clean: true, reason: null, detail: null, class: null, runnerExit, stdout, elapsedMs, dispatched: true };
+    return { clean: true, reason: null, detail: null, class: null, runnerExit, stdout, stderr, elapsedMs, dispatched: true };
   }
   if (last.reason === 'timeout') {
     return input.boundIsBudget
-      ? { clean: false, reason: 'maxDurationReached', detail: null, class: 'budget', runnerExit, stdout, elapsedMs, dispatched: true }
-      : { clean: false, reason: 'timeout', detail: null, class: 'environment', runnerExit, stdout, elapsedMs, dispatched: true };
+      ? { clean: false, reason: 'maxDurationReached', detail: null, class: 'budget', runnerExit, stdout, stderr, elapsedMs, dispatched: true }
+      : { clean: false, reason: 'timeout', detail: null, class: 'environment', runnerExit, stdout, stderr, elapsedMs, dispatched: true };
   }
-  return { clean: false, reason: last.reason, detail: null, class: 'environment', runnerExit, stdout, elapsedMs, dispatched: true };
+  return { clean: false, reason: last.reason, detail: null, class: 'environment', runnerExit, stdout, stderr, elapsedMs, dispatched: true };
 }

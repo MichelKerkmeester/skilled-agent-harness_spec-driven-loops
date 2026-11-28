@@ -29,7 +29,8 @@ delivery: {targets: [], onFailure: null}
 isolation: worktree
 # Sandbox class the executor must honor. Default: undeclared.
 sandbox: null
-# Secrets policy, recorded on the definition only: this build does not enforce it. Default: undeclared.
+# One vault secret, named in lowercase letters, digits and hyphens. Store it once with bots secret set <name>.
+# The child reads it as SKILLED_BOT_SECRET_<NAME>, and a name the vault does not hold refuses the run. Default: none.
 secrets: null
 # Connector servers this bot may reach, by name from .utcp_config.json. Default: none.
 apps: null

@@ -27,9 +27,9 @@ import { isAbsolute, join, relative } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import { LOCAL_ONLY } from './definition.js';
-import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
+import { collectAllKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { readNeedsYouItem } from './needs-you.js';
-import { AWAITING_DECISION, readRunRecord, writeRunRecord } from './run-record.js';
+import { AWAITING_DECISION, postRunCausesOf, readRunRecord, writeRunRecord } from './run-record.js';
 import { deliveryClaimFolder, recordFile, STATE_DIR_MODE, writeGenerationStamp } from './state-root.js';
 
 import type { Delivery } from './definition.js';
@@ -288,7 +288,13 @@ export function deliverRecord(input: DeliverInput): Result<DeliverOutcome> {
     item = found.ok ? found.value : null;
   }
   const message = deliveryMessage(record, item, input.stateRoot, env);
-  const secret = findSecretLiteral(`${message.title}\n${message.body}`, collectKnownSecrets(env, input.checkoutRoot ?? null));
+  // A run whose child printed a stored value is never delivered, and a vault
+  // that cannot be read withholds the send rather than checking against the
+  // environment alone. The message's own literal is checked first, because
+  // naming the key the message holds is the evidence an operator acts on.
+  const leaked = postRunCausesOf(record).some((row) => row.cause === 'secret-in-output');
+  const allKnown = collectAllKnownSecrets(env, input.checkoutRoot ?? null, input.stateRoot, input.identity);
+  const secret = allKnown.ok ? findSecretLiteral(`${message.title}\n${message.body}`, allKnown.value) : null;
   mkdirSync(deliveryClaimFolder(input.stateRoot, input.identity), { recursive: true, mode: STATE_DIR_MODE });
 
   // A rewrite the record refuses or that throws is noted in the claim file, which
@@ -341,6 +347,12 @@ export function deliverRecord(input: DeliverInput): Result<DeliverOutcome> {
     if (secret !== null) {
       entry.state = 'not-attempted';
       entry.evidence = `withheld: the message holds a literal of ${secret.kind} ${secret.name}`;
+    } else if (leaked) {
+      entry.state = 'not-attempted';
+      entry.evidence = 'withheld: secret-in-output';
+    } else if (!allKnown.ok) {
+      entry.state = 'not-attempted';
+      entry.evidence = 'withheld: secret-store-unreadable';
     } else if (sender === undefined) {
       entry.state = 'not-attempted';
       entry.evidence = 'channel-unsupported';

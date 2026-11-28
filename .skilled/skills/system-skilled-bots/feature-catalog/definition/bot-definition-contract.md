@@ -6,7 +6,7 @@ trigger_phrases:
   - "bot definition fields"
   - "bot template"
   - "/bots:author"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # BOT.md definition contract (/bots:author)
@@ -31,7 +31,7 @@ A trigger has one of four kinds: `cron` with an expression, `queue` with a name,
 
 ### Delivery, Posture And Precheck
 
-`delivery` is either `local-only`, which sends nothing, or a list of targets with an optional separate list for failures. The posture fields declare isolation (`worktree` or `shared`), a sandbox class and a secrets policy. A missing isolation falls back to the repository default, and with no default either it is refused as `isolation-undeclared`. `precheck` names a command whose non-zero exit or `[SILENT]` output skips the run, and `spec_folder` binds a spec folder before dispatch.
+`delivery` is either `local-only`, which sends nothing, or a list of targets with an optional separate list for failures. The posture fields declare isolation (`worktree` or `shared`) and a sandbox class. `secrets` names one vault entry in lowercase letters, digits and hyphens with at most 64 characters: the operator stores it with `bots secret set <name>`, a run gives the value to its child as `SKILLED_BOT_SECRET_<NAME>` and records only the name, a name outside the grammar is refused `secret-name-invalid` and a name the vault does not hold refuses the run `secret-unknown`. A missing isolation falls back to the repository default, and with no default either it is refused as `isolation-undeclared`. `precheck` names a command whose non-zero exit or `[SILENT]` output skips the run, and `spec_folder` binds a spec folder before dispatch.
 
 ### Template
 

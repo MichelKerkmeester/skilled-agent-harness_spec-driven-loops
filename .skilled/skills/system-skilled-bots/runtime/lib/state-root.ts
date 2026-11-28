@@ -71,6 +71,8 @@ export interface IdentityStatePaths {
   routines: string;
   /** Per-bot memory files, made owner-only by the first append and never by a read. */
   memory: string;
+  /** The vault's index, lock and value files, owner-only so no other OS user reads a stored value. */
+  secrets: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
@@ -138,6 +140,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     receipts: join(base, 'receipts'),
     routines: join(base, 'routines'),
     memory: join(base, 'memory'),
+    secrets: join(base, 'secrets'),
   };
 }
 
@@ -172,6 +175,7 @@ export function ensureIdentityState(stateRoot: string, identity: string): Identi
     paths.records,
     paths.installs,
     paths.receipts,
+    paths.secrets,
   ];
   for (const folder of folders) mkdirSync(folder, { recursive: true, mode: STATE_DIR_MODE });
   return paths;

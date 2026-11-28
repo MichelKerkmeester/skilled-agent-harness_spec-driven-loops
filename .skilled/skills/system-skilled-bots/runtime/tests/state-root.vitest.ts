@@ -56,7 +56,7 @@ describe('user-level layout', () => {
     const paths = ensureIdentityState(stateRoot, IDENTITY);
     expect(paths.base).toBe(join(stateRoot, 'acme%2Ftool'));
     expect(readdirSync(paths.requests.root).sort()).toEqual(['claimed', 'done', 'inbox', 'quarantine', 'seen', 'tmp']);
-    expect(readdirSync(paths.base).sort()).toEqual(['installs', 'leases', 'needs-you', 'receipts', 'records', 'requests', 'switches']);
+    expect(readdirSync(paths.base).sort()).toEqual(['installs', 'leases', 'needs-you', 'receipts', 'records', 'requests', 'secrets', 'switches']);
     expect(mode(stateRoot)).toBe(0o700);
     expect(mode(paths.base)).toBe(0o700);
     expect(mode(paths.requests.inbox)).toBe(0o700);

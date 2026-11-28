@@ -36,7 +36,7 @@ import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
 import { decideApproval, grantScopeFor } from './approval-ladder.js';
 import { isApprover } from './channel-link.js';
-import { collectKnownSecrets, findSecretLiteral } from './dispatch.js';
+import { collectAllKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { appendMemoryEntry, botMemoryFile, checkMemoryAppend, readMemoryFile } from './memory.js';
 import { ANSWER_SCOPES, itemKind, needsYouState, normalizeAnswer, readNeedsYouItem, writeNeedsYouItem } from './needs-you.js';
 import { ANSWER_SOURCE, buildRequest, requestIdFor } from './request-record.js';
@@ -305,7 +305,10 @@ function answerLocked(input: AnswerInput, ctx: LockedContext): Result<AnswerResu
     }
   }
 
-  const known = collectKnownSecrets(env, input.checkoutRoot);
+  // The answer and the memory settle it feeds check every stored value, and a vault that cannot be read refuses the answer rather than checking the environment alone.
+  const allKnown = collectAllKnownSecrets(env, input.checkoutRoot, stateRoot, identity);
+  if (!allKnown.ok) return { ok: false, reason: 'secret-store-unreadable', detail: allKnown.detail ?? 'the vault could not be read' };
+  const known = allKnown.value;
   const secret = findSecretLiteral(input.text, known);
   if (secret !== null) return { ok: false, reason: 'answer-secret', detail: `the answer holds a literal of ${secret.kind} ${secret.name}` };
 
