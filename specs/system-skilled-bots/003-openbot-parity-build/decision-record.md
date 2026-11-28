@@ -63,6 +63,7 @@ _memory:
 | Q029 | Review finding RB-039 is a P0. A vault value that holds a quote or a backslash leaks unredacted into a JSON-log executor's decoded answer, because the post-run scan in `runner.ts` `scanForms` builds no JSON-escaped form of the value. Per Q026 it holds 013 until a follow-up fix unit of phase 008 merges. | The operator answered on 2026-11-28 to fix it before 013. A leaked secret in a conversation file is the one failure the vault exists to prevent. | RB-039's P1 severity in the review store | A follow-up fix unit of 008-vault and the top orchestrator's entry check before 013 opens |
 | Q030 | Phase 012 fixes the CI design guard inside its own scope. The guard step in `.github/workflows/bots-runtime.yml` excludes `chat-mockups.md` from its first `diff -r`, diffs `010-conversations/001-chat-ux-and-pane-map/design/mockups.md` against the crate's `design/chat-mockups.md` and the push filter names that design folder. | The guard failed before 012 opened, because commit `44216a6ad13` added the chat copy without teaching the guard about it. The operator chose a named amendment to 012 over a supersede record that would send the fix to the deep review. | 012's scope line that let it touch the workflow only for a path a move changes | 012-folder-architecture REQ-007, Files to Change, T008, AC-007 and implementation-summary.md |
 | Q031 | Review finding RB-069 is a P0. The child bar in `bots.cjs` refused only `answer`, `enable` and `skill`, so a bot child could still run `chat`, `run`, `schedule install` and `uninstall`, `resume`, `disable`, `pause`, `enqueue`, `drain` and `status --unregister` or `--rebuild`. A manual run and a reinstall both write the definition approval that `enable` is barred for. Per Q026 it holds 013 until a follow-up fix unit of phase 001 merges. | The operator answered on 2026-11-28 to fix it before 013. A child that edited its own BOT.md could reinstall the bot and so approve its own drift. | RB-069's P1 severity in the review store | A follow-up fix unit of 001-activity-and-actor, which fixed it by refusing every write verb and write form for a bot child, and the top orchestrator's entry check before 013 opens |
+| Q032 | The crate's design folder keeps only the two frame fixtures the tests read, `mockups.md` and `chat-mockups.md`, beside a `README.md`. The five design docs no code or test reads leave the crate for one product-voice status-mode reference, `bots-status/references/terminal-screen.md`, and the CI guard keeps only the two fixture diffs. The spec-folder design files stay unchanged as the build's history. | The operator asked whether `.skilled/crates/bots-tui/design/` needed a proper template or should become a skill reference, asked what the files are for, was told that only the two mockup files are read by anything and the other five are byte copies of packet design docs a CI step keeps equal, and accepted the recommendation. | The crate's seven-file design copy and the guard's lines for the five files | 014-skilled-and-doc-alignment REQ-011, AC-011, T026 to T031, CHK-052 to CHK-057 and goal D7 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -627,6 +628,25 @@ Not passed to this record
 Answer:
 ```text
 P0: fix before 013 (Recommended)
+```
+
+### Q032
+<!-- source: operator answers of 2026-11-28 on the crate design folder, passed in the orchestrator task message. The question below paraphrases that exchange, the two answers are quoted in the order given and the tool-use ids were not passed to this record. 014-skilled-and-doc-alignment carries it as REQ-011 -->
+
+Question:
+```text
+.skilled/crates/bots-tui/design/ holds seven byte copies of packet design docs, and only mockups.md and chat-mockups.md are read by the frame tests. Recommended: keep those two as test fixtures with a README, move the other five into one status-mode skill reference in product voice and trim the CI guard to the two fixtures. Proceed?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+What is their use actually?
+Do as recced for those docs
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

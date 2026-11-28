@@ -220,7 +220,7 @@
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-28T15:59:37.470Z",
+    "last_save_at": "2026-11-28T18:53:11.684Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,11 +228,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:262fc115aa6de11b0efebad7676943dd644167b9a63d84e37775390628662526",
+    "source_fingerprint": "sha256:47486a3428f37fcc70c42ac8b7ebc56dddc4b33224235c42fa788d213236eaa3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f166aa3e85436c1a7a5409ccdbde24e931180378e2b8ffdaad37ba899331f5e",
-      "decision-record.md": "ba50398a3b74995045dc24b42bb1e7bc01dc29d7ffbe04e1fb48bc507fd17085"
+      "decision-record.md": "75a440c37d4c025a82638b0c259ff84afbf0963fc4454e65c541c6a583232b71"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/005-memory",
     "last_active_at": "2026-11-27T13:33:12.999Z"

@@ -65,6 +65,12 @@ The fallback ladder every dispatched wave walks is the parent's: `cli-mistral-vi
 - [ ] T014 Fix the playbook findings (`$SK/manual-testing-playbook/`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package $SK/manual-testing-playbook` prints `violations=0`
 - [ ] T015 Fix the reference and CLI-help findings (`$SK/*/references/`, `.skilled/bin/bots.cjs`). Verify: `$BOTS --help | rg -o '^  [a-z]+' | sort -u | wc -l` prints the same count as the `VERB_SPECS` keys
 - [ ] T025 Name the code standards the skill relies on (`$SK/SKILL.md`, `$SK/README.md`). Both files name `sk-code` and its `sk-code-skilled` surface as the standards for the `.skilled/crates/bots-tui` Rust crate, point at `sk-code-skilled/references/rust/` and `sk-code-skilled/assets/checklists/rust-checklist/`, and say sk-code has no ratatui or crossterm rendering rules yet. Verify: `rg -l 'sk-code-skilled' $SK/SKILL.md $SK/README.md` lists both files, and `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --explain .skilled/crates/bots-tui/src/main.rs` names `rust` as the language and lists a `rust-checklist` part. When the probe shows no Rust route, record it in `scratch/rebuttals.md` as `handed_off` with the probe output, because the routing belongs to sk-code and not to this phase
+- [ ] T026 [P] Write the terminal-screen reference from `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` in product voice. It covers every key binding with its context, action and footer label, the glyphs with their `--ascii` fallback and the rule that colour never carries meaning, the panes and components with their states, the four `--json` payloads the screen reads with their fields and version rule, the thread model and the answer path through `bots answer`, and the size floor and the too-small screen. Its facts come from the spec-folder design files, which are byte-equal to the crate copies and stay unchanged, and from the crate source, and it names no packet id, phase number, task or requirement id, spec path or `[SOURCE: specs/...]` citation (`$SK/bots-status/references/terminal-screen.md`). Verify: `test -f $SK/bots-status/references/terminal-screen.md` exits 0, `rg -n 'specs/|\[SOURCE:|REQ-[0-9]|\bT[0-9]{3}\b|\b0[0-9]{2}-' $SK/bots-status/references/terminal-screen.md` exits 1 and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py $SK/bots-status/references/terminal-screen.md` exits 0
+- [ ] T027 [P] Write the design folder's README to `/create:readme` standards. It says the frame tests in `tests/common/frames.rs` and `tests/chat/support.rs` load frames from `mockups.md` and `chat-mockups.md` by heading and size, that a frame changes in its source design file first and here in the same change, and that the sources are `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md` and `specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/mockups.md`. A FILES table names both fixtures, because `validate_document.py` emits `code_folder_flat_inventory` for a flat folder without one (`.skilled/crates/bots-tui/design/README.md`). Verify: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/crates/bots-tui/design/README.md` exits 0
+- [ ] T028 [P] Remove the five design docs no code or test reads and trim the CI design guard to the two fixtures (`.skilled/crates/bots-tui/design/architecture.md`, `contracts.md`, `key-map.md`, `glyph-table.md`, `component-inventory.md`, `.github/workflows/bots-runtime.yml`). The guard step drops `diff -r -x architecture.md -x contracts.md -x chat-mockups.md "$D1" .skilled/crates/bots-tui/design` and the two `$D2` doc diffs, adds `diff "$D1/mockups.md" .skilled/crates/bots-tui/design/mockups.md` and keeps the `$D3` chat diff, the `D2=` line, the payload loop and the three design path filters. Verify: `ls .skilled/crates/bots-tui/design` prints exactly `README.md`, `chat-mockups.md` and `mockups.md` once T027 has landed, and `diff specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/mockups.md .skilled/crates/bots-tui/design/mockups.md` and `diff specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/mockups.md .skilled/crates/bots-tui/design/chat-mockups.md` both exit 0
+- [ ] T029 Point the crate README's design rows at the reference (`.skilled/crates/bots-tui/README.md`). The five rows for the removed files become one row that links `../../skills/system-skilled-bots/bots-status/references/terminal-screen.md`, the `mockups.md` and `chat-mockups.md` rows stay, and the two lines that call `design/` a copy of the approved screen designs say it holds the frame fixtures the tests read. Verify: `rg -n 'design/(architecture|contracts|key-map|glyph-table|component-inventory)\.md' .skilled/crates/bots-tui/README.md` exits 1, `rg -c 'terminal-screen\.md' .skilled/crates/bots-tui/README.md` prints a count above 0 and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/crates/bots-tui/README.md` exits 0
+- [ ] T030 List the reference in the status mode the way it lists `status-and-inbox.md` (`$SK/bots-status/SKILL.md`, `$SK/bots-status/ROUTER.md`, `$SK/bots-status/README.md`). `SKILL.md` section 5 and both `README.md` lists gain a `references/terminal-screen.md` line. `ROUTER.md` names it in the leaf sentence of section 1 and gains a `SCREEN` intent at weight 4 with the keywords `bots ui`, `bots terminal screen`, `bots ui key bindings`, `bots ui glyphs` and `bots ui too small`, in the intent model prose, `INTENT_SIGNALS` and `RESOURCE_MAP`. Verify: `rg -l 'terminal-screen\.md' $SK/bots-status/SKILL.md $SK/bots-status/ROUTER.md $SK/bots-status/README.md` lists all three files and `rg -n '"SCREEN"' $SK/bots-status/ROUTER.md` prints two lines
+- [ ] T031 Regenerate the derived routing files with their generators, never by hand (`$SK/leaf-manifest.json`, `$SK/graph-metadata.json`). Run `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write $SK` and `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub system-skilled-bots`. A `SCREEN` phrase the reach check reports as `wrong-hub` or `outranked` is dropped from `ROUTER.md` and the signals are regenerated, and the hub vocabulary is never hand-edited. Verify: `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check $SK` exits 0, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots` and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots` both print `RESULT: PASSED`, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs $SK` prints `OK: parent-skill-check` and `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0, because the frame tests read the two fixtures
 - [ ] T016 Record every finding the fix pass settled, with its reason (`scratch/rebuttals.md`). Verify: `rg -c '^## ' scratch/rebuttals.md` prints the settled count the two reports name, `rg -c '^- Status: ' scratch/rebuttals.md` prints the same count, and `rg -c '^- Phase: [0-9]{3}$' scratch/rebuttals.md` prints the same count again, so every heading carries its six fields. The heading grammar is `^## (\S+)$` and the six fields are `design/records.md` section 11. The `Phase` line is the one 015's seeded intake reads, so a `handed_off` row without it is a row 015 cannot seed
 <!-- /ANCHOR:phase-2 -->
 
@@ -79,7 +85,7 @@ The fallback ladder every dispatched wave walks is the parent's: `cli-mistral-vi
 - [ ] T020 Copy the last run of each command into the packet (`evidence/skilled-alignment/`, `evidence/doc-alignment/`). Verify: `ls evidence/skilled-alignment/report.md evidence/skilled-alignment/findings.json evidence/skilled-alignment/recheck.md evidence/doc-alignment/report.md evidence/doc-alignment/findings.json evidence/doc-alignment/recheck.md` exits 0. The six source paths and the doc run's `recheck.md` rule are `design/records.md` section 12
 - [ ] T021 Confirm the copied evidence reads clean (`evidence/*/report.md`). Verify: `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines, one per evidence folder
 - [ ] T022 Confirm the packet still validates (`specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`
-- [ ] T023 Confirm no unrelated file changed (`git status --porcelain`). Verify: `git status --porcelain | rg -v '^(.. )?(\.skilled/|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing
+- [ ] T023 Confirm no unrelated file changed (`git status --porcelain`). Verify: `git status --porcelain | rg -v '^(.. )?(\.skilled/|\.github/workflows/bots-runtime\.yml|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -87,7 +93,7 @@ The fallback ladder every dispatched wave walks is the parent's: `cli-mistral-vi
 <!-- ANCHOR:waves -->
 ## Waves
 
-Nine waves. A wave is one dispatch round: every task in it starts together, and the orchestrator reads the wave's verify step before the next wave starts. The worker count is set by file overlap, never by how many tasks a wave holds: two workers never write the same file, so a wave whose tasks write disjoint files runs one worker per task and a wave whose tasks write one file runs one worker.
+Twelve waves. W4a, W4b and W4c run after W4 and before W5, so the second runs in W6 read the moved docs. A wave is one dispatch round: every task in it starts together, and the orchestrator reads the wave's verify step before the next wave starts. The worker count is set by file overlap, never by how many tasks a wave holds: two workers never write the same file, so a wave whose tasks write disjoint files runs one worker per task and a wave whose tasks write one file runs one worker.
 
 | Wave | Task ids | Executor | Model | Effort | Workers in parallel | What sets the worker count |
 |------|----------|----------|-------|--------|---------------------|----------------------------|
@@ -95,6 +101,9 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 | W2 | T009 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1 | T009 is the only writer of `topics.json`, so a second worker would race it |
 | W3 | T010-T011 | the commands' own `--lanes=vibe-deepseek` preset | `deepseek-flash` | `max (fixed)` | 2 | The two runs write two different output roots and neither writes the checkout |
 | W4 | T012-T015 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 4 | Four disjoint file sets: hub files, catalog, playbook, references plus the CLI help |
+| W4a | T026-T028 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 3 | Three disjoint file sets: the reference, the design README, and the five removals plus the workflow |
+| W4b | T029-T030 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 2 | The crate README and the three status mode files share no file, and both link the reference W4a wrote |
+| W4c | T031 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | Both generators read the router T030 wrote, and a dropped phrase rewrites that router |
 | W5 | T016 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T016 is the only writer of `scratch/rebuttals.md` |
 | W6 | T017-T018 | the commands' own `--lanes=vibe-deepseek` preset | `deepseek-flash` | `max (fixed)` | 2 | The two second runs write two different output roots and neither writes the checkout |
 | W7 | T019 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `high` | 1 | T019 is the only writer of `implementation-summary.md` |
@@ -140,6 +149,36 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 - **Workers in parallel**: 4, one per disjoint file set. Worker A takes T012 and writes `$SK/SKILL.md`, `$SK/ROUTER.md` and `$SK/README.md`. Worker B takes T013 and writes `$SK/feature-catalog/`. Worker C takes T014 and writes `$SK/manual-testing-playbook/`. Worker D takes T015 and writes `$SK/*/references/` and `.skilled/bin/bots.cjs`. No two sets share a file, which is what makes four safe.
 - **Orchestrator verify after the wave**: `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py $SK` exits 0, `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` exits 0, `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package $SK/manual-testing-playbook` prints `violations=0`, and `$BOTS --help | rg -o '^  [a-z]+' | sort -u | wc -l` prints the `VERB_SPECS` key count
 - **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking max` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`. A worker that runs out mid-fix hands its file set to the next row whole, because a half-fixed file set is worse than an unfixed one.
+
+### W4a - The crate design docs
+
+- **Task ids**: T026, T027, T028
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `max`, because the reference restates five design docs in product voice and a fact dropped there is lost to every later reader
+- **Workers in parallel**: 3, one per disjoint file set. Worker A takes T026 and writes `$SK/bots-status/references/terminal-screen.md`. Worker B takes T027 and writes `.skilled/crates/bots-tui/design/README.md`. Worker C takes T028, removes the five design docs and edits `.github/workflows/bots-runtime.yml`. Worker A reads the spec-folder design files and not the crate copies, so worker C's removals cannot race it.
+- **Orchestrator verify after the wave**: T026's `rg` exits 1 and `validate_document.py` exits 0 on the reference, T027's `validate_document.py` exits 0 on `design/README.md`, `ls .skilled/crates/bots-tui/design` prints exactly `README.md`, `chat-mockups.md` and `mockups.md`, and the guard's two `diff` commands exit 0
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking max` → `cli-opencode` at `#max` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`.
+
+### W4b - The links
+
+- **Task ids**: T029, T030
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because both tasks add link lines and one intent the task text already fixes
+- **Workers in parallel**: 2, one per disjoint file set. Worker A takes T029 and writes `.skilled/crates/bots-tui/README.md`. Worker B takes T030 and writes `$SK/bots-status/SKILL.md`, `$SK/bots-status/ROUTER.md` and `$SK/bots-status/README.md`. Both link the reference W4a wrote, which is why the wave waits for W4a.
+- **Orchestrator verify after the wave**: T029's two `rg` checks and `validate_document.py` on the crate README pass, and `rg -l 'terminal-screen\.md' $SK/bots-status/SKILL.md $SK/bots-status/ROUTER.md $SK/bots-status/README.md` lists all three files
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking high` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`.
+
+### W4c - The derived routing files
+
+- **Task ids**: T031
+- **Executor**: `cli-mistral-vibe`
+- **Model**: `deepseek-flash`
+- **Effort**: `max (fixed)`. Fallback tier `high`, because the task runs two generators and reads their checks
+- **Workers in parallel**: 1. Both generators read the router T030 wrote, and a phrase the reach check rejects rewrites that router, so a second worker would race it.
+- **Orchestrator verify after the wave**: T031's five checks pass, and `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py $SK` exits 0
+- **Fallback order**: `cli-mistral-vibe` unless `VIBE_SESSION=1` → `cli-pi` at `--thinking high` → `cli-opencode` at `#high` → `cli-devin` after a probe → `cli-codex` at `xhigh` `fast`.
 
 ### W5 - The rebuttals record
 
@@ -188,7 +227,7 @@ Nine waves. A wave is one dispatch round: every task in it starts together, and 
 - **Model**: none
 - **Effort**: none
 - **Workers in parallel**: 1, because T023 reads the tree T022 validates and a concurrent write would make both answers stale
-- **Orchestrator verify after the wave**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`, and `git status --porcelain | rg -v '^(.. )?(\.skilled/|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing
+- **Orchestrator verify after the wave**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment --strict` prints `RESULT: PASSED`, and `git status --porcelain | rg -v '^(.. )?(\.skilled/|\.github/workflows/bots-runtime\.yml|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing
 - **Fallback order**: none. A gate that fails is repaired and re-run, never delegated, because the repair is the evidence.
 <!-- /ANCHOR:waves -->
 
@@ -237,7 +276,7 @@ A blocked task is marked `[B]` with the command that blocked it and its exit sta
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^[|] REQ-0' spec.md` prints `9`
+- [ ] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^[|] REQ-0' spec.md` prints `11`
 - [ ] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -n '^## 8. External orchestration' plan.md` prints one line
 - [ ] CHK-003 [P1] Dependencies identified and available. Verify: `command -v python3 node` prints both paths
 - [ ] CHK-004 [P0] The measured gap still holds. Verify: `rg -c 'system-skilled-bots' .skilled/commands/assets/local-doc-alignment/topics.json` exits 1 before T009
@@ -286,7 +325,7 @@ A blocked task is marked `[B]` with the command that blocked it and its exit sta
 ## Security
 
 - [ ] CHK-030 [P0] No hardcoded secrets. Verify: `rg -n '(api[_-]?key|token|secret)\s*[:=]\s*["'\''][A-Za-z0-9]{16,}' .skilled/commands/assets/local-doc-alignment/topics.json` prints nothing
-- [ ] CHK-031 [P0] Neither command writes the checkout. Verify: `git status --porcelain | rg -v '^(.. )?(\.skilled/|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing after both runs
+- [ ] CHK-031 [P0] Neither command writes the checkout. Verify: `git status --porcelain | rg -v '^(.. )?(\.skilled/|\.github/workflows/bots-runtime\.yml|specs/system-skilled-bots/003-openbot-parity-build/013-)'` prints nothing after both runs
 - [ ] CHK-032 [P1] No credential value reaches a report. Verify: `rg -n 'MISTRAL_API_KEY=|sk-[A-Za-z0-9]{16,}' "$SA" "$DA"` prints nothing
 <!-- /ANCHOR:security -->
 
@@ -307,6 +346,12 @@ A blocked task is marked `[B]` with the command that blocked it and its exit sta
 
 - [ ] CHK-050 [P1] Temp files in scratch/ only. Verify: `git status --porcelain | rg '^\?\?' | rg -v 'scratch/'` prints nothing
 - [ ] CHK-051 [P1] scratch/ cleaned before completion. Verify: `ls -A scratch/` prints `.gitkeep` and `rebuttals.md` and nothing else, because `rebuttals.md` is the one file the packet keeps as evidence
+- [ ] CHK-052 [P1] The terminal-screen reference exists in product voice. Verify: `test -f $SK/bots-status/references/terminal-screen.md` exits 0, `rg -n 'specs/|\[SOURCE:|REQ-[0-9]|\bT[0-9]{3}\b|\b0[0-9]{2}-' $SK/bots-status/references/terminal-screen.md` exits 1 and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py $SK/bots-status/references/terminal-screen.md` exits 0
+- [ ] CHK-053 [P1] The design folder's README validates. Verify: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/crates/bots-tui/design/README.md` exits 0
+- [ ] CHK-054 [P1] The design folder holds only the two fixtures and their README, and the CI guard diffs only the fixtures. Verify: `ls .skilled/crates/bots-tui/design` prints exactly `README.md`, `chat-mockups.md` and `mockups.md`, and the guard's two `diff` commands exit 0 when run by hand
+- [ ] CHK-055 [P1] Every listing points at the reference and none at a removed file. Verify: `rg -l 'terminal-screen\.md' $SK/bots-status/SKILL.md $SK/bots-status/ROUTER.md $SK/bots-status/README.md .skilled/crates/bots-tui/README.md` lists all four files and `rg -n 'design/(architecture|contracts|key-map|glyph-table|component-inventory)\.md' .skilled/crates/bots-tui/README.md` exits 1
+- [ ] CHK-056 [P1] The derived routing files are fresh and the hub checks pass. Verify: `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check $SK` exits 0, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub system-skilled-bots` and `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub system-skilled-bots` both print `RESULT: PASSED`, and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs $SK` prints `OK: parent-skill-check`
+- [ ] CHK-057 [P1] The frame tests still read the two fixtures. Verify: `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -317,7 +362,7 @@ A blocked task is marked `[B]` with the command that blocked it and its exit sta
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 15 | [ ]/15 |
-| P1 Items | 12 | [ ]/12 |
+| P1 Items | 18 | [ ]/18 |
 | P2 Items | 1 | [ ]/1 |
 
 **Verification Date**: 2026-11-25
