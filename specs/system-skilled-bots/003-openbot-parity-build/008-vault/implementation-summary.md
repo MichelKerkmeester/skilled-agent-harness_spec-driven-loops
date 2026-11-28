@@ -73,6 +73,11 @@ Every surface that already refused a literal secret now checks against the vault
 | `.skilled/skills/system-skilled-bots/runtime/tests/state-root.vitest.ts`, `runner.vitest.ts`, `apps.vitest.ts` | Modified | Pins that now include the `secrets` folder and `secretsUsed: []` |
 | `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Modified | The `## 008-vault` section with the Apache-2.0 license text |
 | `.skilled/skills/system-skilled-bots/assets/bot-template.txt`, `bots-author/references/bot-definition.md`, `feature-catalog/definition/bot-definition-contract.md`, `runtime/lib/README.md` | Modified | The docs now name the verb, the key and the refusal |
+
+### Follow-up: a JSON-escaped value
+
+A review found a leak the post-run scan missed. A child whose executor prints a JSON event stream writes a value holding a double quote or a backslash in its escaped form, and the scan looked only for the plain, hex, base64 and URL-encoded forms. The runner then decoded the stream back into the stored value, so the answer, the needs-you question and the conversation file carried it with no `secret-in-output` cause. The scan now also looks for the JSON-string-escaped form, and the runner checks the decoded answer again with the same forms, so an escaping no form predicts is still redacted, recorded and withheld (REQ-021, AC-029). Two tests in the `post-run scan` block fail against the old runner and pass now. The run folder still keeps the raw stream of a child that escapes every character as Unicode, because only the decoded answer is checked for that form.
+
 <!-- /ANCHOR:what-built -->
 
 ---

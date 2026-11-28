@@ -659,9 +659,11 @@ interface ScanForm {
 /**
  * Every text the scan looks for, built from the known-secret map.
  *
- * A vault row also contributes the three encodings a child is likely to print
- * instead of the value itself. The hex form is the one the keychain stores, so a
- * bot that reads its own keychain item back prints it.
+ * A vault row also contributes four encodings a child is likely to print instead
+ * of the value itself: the lowercase hex, the unpadded base64, the URL-encoded
+ * form and the JSON-string-escaped form a JSON event stream prints. The hex form
+ * is the one the keychain stores, so a bot that reads its own keychain item back
+ * prints it.
  *
  * @param known - The values every text is checked against.
  * @returns The forms to scan for, each long enough to be a secret.
@@ -685,6 +687,8 @@ function scanForms(known: KnownSecrets): ScanForm[] {
     // The unpadded text is the start of the padded one, so one form matches both.
     push(name, bytes.toString('base64').replace(/=+$/, ''));
     push(name, encodeURIComponent(value));
+    // The escaped form is how a JSON log stream carries a value that holds a quote or a backslash.
+    push(name, JSON.stringify(value).slice(1, -1));
   }
   return forms;
 }
@@ -818,6 +822,23 @@ function scanRunOutput(known: KnownSecrets, outcome: DispatchOutcome, folders: s
     stderr: stderr.text,
     cause: { cause: 'secret-in-output', names: [...new Set(names)].sort(), detail: `${stretches} stretches in ${places.join(', ')}` },
   };
+}
+
+/**
+ * Redact the final answer after it was decoded from the child's log stream.
+ *
+ * A JSON event stream carries a value in an escaped form the scan forms may not
+ * predict, so the decoded text is checked again with the same forms before
+ * anything reads it.
+ *
+ * @param known - The values every text is checked against.
+ * @param answer - The decoded answer text.
+ * @returns The redacted answer, the names used and how many stretches were replaced.
+ */
+function scanAnswer(known: KnownSecrets, answer: string): { text: string; names: string[]; stretches: number } {
+  const forms = scanForms(known);
+  if (forms.length === 0) return { text: answer, names: [], stretches: 0 };
+  return redactText(answer, forms, createSecretMatcher(forms.map((form) => form.value)));
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1572,7 +1593,25 @@ async function runSeeded(
       || outcome.reason === 'maxDurationReached'
       || outcome.reason === VIBE_RUN_UNFINISHED
       || outcome.runnerExit !== 0;
-    const answer = outcome.dispatched && !stopped ? finalAnswerText(kind, outcome.stdout) : null;
+    const decoded = outcome.dispatched && !stopped ? finalAnswerText(kind, outcome.stdout) : null;
+    // The decoded answer is checked again, because decoding a JSON stream can turn an escaping
+    // no scan form predicted back into the stored value.
+    const answerScan = decoded === null ? null : scanAnswer(known, decoded);
+    const answer = answerScan === null ? null : answerScan.text;
+    if (answerScan !== null && answerScan.stretches > 0) {
+      const names = [...new Set(answerScan.names)].sort();
+      const at = postRunCauses.findIndex((row) => row.cause === 'secret-in-output');
+      const prior = at === -1 ? null : (postRunCauses[at] as PostRunCause);
+      if (prior === null) {
+        postRunCauses.push({ cause: 'secret-in-output', names, detail: `${answerScan.stretches} stretches in answer` });
+      } else {
+        postRunCauses[at] = {
+          ...prior,
+          names: [...new Set([...prior.names, ...names])].sort(),
+          detail: prior.detail === null ? 'answer' : `${prior.detail}, answer`,
+        };
+      }
+    }
     const signal = answer !== null ? parseDecisionMarker(answer) : { kind: 'none' as const };
 
     let exit: RunRecord['exit'];

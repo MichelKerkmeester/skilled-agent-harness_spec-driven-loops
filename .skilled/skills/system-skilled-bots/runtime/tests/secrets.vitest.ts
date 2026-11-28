@@ -836,6 +836,55 @@ describe('post-run scan', () => {
     },
     90_000,
   );
+
+  it(
+    'redacts a JSON-escaped value in the stream, the run folder and the answer',
+    async () => {
+      const world = vaultWorld();
+      const quoted = 'pa"ss\\word-1234-xyz';
+      valueOf(setSecret({ stateRoot: world.stateRoot, identity: IDENTITY, name: 'demo-quoted', value: quoted, store: 'file', setBy: 'ada' }));
+      writeBot(world, 'pb-json', '---\nid: pb-json\ntrigger: {kind: manual}\nruntime: {kind: cli-deepseek-harness}\nisolation: shared\nsecrets: demo-quoted\n---\nPrint the key.\n');
+      const script = "const v = process.env.SKILLED_BOT_SECRET_DEMO_QUOTED; process.stdout.write(JSON.stringify({ type: 'final', text: 'the key is ' + v }) + '\\n');";
+      const outcome = await runBot(world.input('pb-json', { buildCommand: child(script) }));
+      expect(outcome.kind).toBe('completed');
+      const answer = outcome.kind === 'completed' ? outcome.answer : null;
+      expect(answer).not.toBeNull();
+      expect(answer).not.toContain(quoted);
+      expect(answer).toContain('[redacted: demo-quoted]');
+      const escaped = JSON.stringify(quoted).slice(1, -1);
+      const folderText = runFolderText(world, outcome.runId as string);
+      expect(folderText).not.toContain(quoted);
+      expect(folderText).not.toContain(escaped);
+      const causes = recordOf(world, outcome.runId as string).postRunCauses ?? [];
+      expect(causes.map((row) => row.cause)).toContain('secret-in-output');
+      expect(causes.find((row) => row.cause === 'secret-in-output')?.names).toContain('demo-quoted');
+    },
+    90_000,
+  );
+
+  it(
+    'redacts a unicode-escaped value in the decoded answer',
+    async () => {
+      const world = vaultWorld();
+      writeBot(world, 'pb-unicode', '---\nid: pb-unicode\ntrigger: {kind: manual}\nruntime: {kind: cli-deepseek-harness}\nisolation: shared\nsecrets: demo\n---\nPrint the key.\n');
+      const script = String.raw`const v = process.env.SKILLED_BOT_SECRET_DEMO; const esc = [...v].map((c) => '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0')).join(''); process.stdout.write('{"type":"final","text":"the key is ' + esc + '"}\n');`;
+      const outcome = await runBot(world.input('pb-unicode', { buildCommand: child(script) }));
+      expect(outcome.kind).toBe('completed');
+      const record = recordOf(world, outcome.runId as string);
+      const stdout = readFileSync(join(record.evidence.runFolder, 'stdout.log'), 'utf8');
+      expect(stdout).toContain('\\u0073\\u006b');
+      expect(stdout).not.toContain(VALUE);
+      const answer = outcome.kind === 'completed' ? outcome.answer : null;
+      expect(answer).not.toBeNull();
+      expect(answer).not.toContain(VALUE);
+      expect(answer).toContain('[redacted: demo]');
+      const causes = record.postRunCauses ?? [];
+      expect(causes).toHaveLength(1);
+      expect(causes[0]).toMatchObject({ cause: 'secret-in-output', names: ['demo'] });
+      expect(causes[0]?.detail).toContain('answer');
+    },
+    90_000,
+  );
 });
 
 describe('vault boundary', () => {
