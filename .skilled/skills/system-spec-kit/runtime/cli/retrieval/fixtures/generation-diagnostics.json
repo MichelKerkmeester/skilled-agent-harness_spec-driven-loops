@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 7460,
-    "ok": 21021,
+    "ok": 21027,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 30111,
+  "documentsScanned": 30117,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "15d02b452a35d14eb27c89cf54c9a401c506be9dfe5c003f6535ec52f17a8e48",
+  "manifestHash": "efeaf25ba83358dab91818ca9350371a611f172e6d19b466a96a579d12dc1e61",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 47201,
+      "ok": 47208,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -65703,6 +65703,10 @@
     },
     {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch",
       "reason": "excluded directory"
     },
     {

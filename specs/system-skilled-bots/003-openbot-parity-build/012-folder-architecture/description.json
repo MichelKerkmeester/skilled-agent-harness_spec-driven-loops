@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/012-folder-architecture",
+  "description": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
+  "keywords": [
+    "eleven",
+    "phases",
+    "files",
+    "own",
+    "plan",
+    "put",
+    "them",
+    "bots",
+    "skill",
+    "grew",
+    "accretion",
+    "rather",
+    "layout"
+  ],
+  "lastUpdated": "2026-11-28T11:35:30.181Z",
+  "specId": "012",
+  "folderSlug": "folder-architecture",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

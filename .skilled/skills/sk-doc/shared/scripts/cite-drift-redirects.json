@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "44b8f53681253ec34457174082064dbf0e61543a",
-    "renameRecords": 596333,
+    "commit": "e4b810ac6f2c87e1bacf8413a38d9837eb617ae8",
+    "renameRecords": 596437,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -4956,6 +4956,12 @@
       "from": "specs/system-skilled-bots/003-openbot-parity-build/",
       "to": "specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/",
       "records": 351,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/",
+      "to": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/",
+      "records": 58,
       "agreement": 1
     },
     {

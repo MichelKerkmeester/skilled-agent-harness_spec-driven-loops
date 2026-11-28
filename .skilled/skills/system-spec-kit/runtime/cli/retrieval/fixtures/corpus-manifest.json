@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1eae01cf0dd6fcb7974eca53cab6259b3eb43a2fd88a4c7539c8dbfd1ce789fb",
+  "corpusHash": "9c432ee8d28364f2f56fe0d2e9856959203897014d40dbb6eeeeb9eea828d54d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 30111,
+  "includedPathCount": 30117,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -21171,6 +21171,12 @@
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/decision-record.md",
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/goal.md",
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/acceptance-criteria.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/goal.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/implementation-summary.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/plan.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/spec.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/tasks.md",
     "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/acceptance-criteria.md",
     "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/fixtures.md",
     "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/mockups.md",
@@ -30143,7 +30149,7 @@
     "specs/system-speckit/spec-folder-tooling/007-nested-subtracks/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "15d02b452a35d14eb27c89cf54c9a401c506be9dfe5c003f6535ec52f17a8e48",
+  "manifestHash": "efeaf25ba83358dab91818ca9350371a611f172e6d19b466a96a579d12dc1e61",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -39631,6 +39637,10 @@
     },
     {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch",
       "reason": "excluded directory"
     },
     {

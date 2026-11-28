@@ -1,5 +1,5 @@
 {
-  "manifestHash": "15d02b452a35d14eb27c89cf54c9a401c506be9dfe5c003f6535ec52f17a8e48",
+  "manifestHash": "efeaf25ba83358dab91818ca9350371a611f172e6d19b466a96a579d12dc1e61",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -55426,6 +55426,24 @@
     "folder alignment scoring": [
       "folder alignment scoring"
     ],
+    "folder architecture": [
+      "folder architecture"
+    ],
+    "folder architecture acceptance criteria": [
+      "folder architecture acceptance criteria"
+    ],
+    "folder architecture goal": [
+      "folder architecture goal"
+    ],
+    "folder architecture implementation summary": [
+      "folder architecture implementation summary"
+    ],
+    "folder architecture plan": [
+      "folder architecture plan"
+    ],
+    "folder architecture tasks": [
+      "folder architecture tasks"
+    ],
     "folder detector": [
       "folder-detector"
     ],
@@ -87303,6 +87321,9 @@
     ],
     "phase 16 fix second follow up findings": [
       "phase 16 fix second follow up findings"
+    ],
+    "phase 16 folder architecture": [
+      "phase 16 folder architecture"
     ],
     "phase 16 follow up fix sweep": [
       "phase 16 follow up fix sweep"

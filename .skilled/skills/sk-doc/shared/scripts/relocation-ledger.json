@@ -425,6 +425,21 @@
           "to": "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-28T11:27:33.520Z",
+      "base_commit": "e4b810ac6f2c87e1bacf8413a38d9837eb617ae8",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "system-skilled-bots/003-openbot-parity-build/016-folder-architecture",
+          "to": "system-skilled-bots/003-openbot-parity-build/012-folder-architecture"
+        }
+      ]
     }
   ]
 }
