@@ -5,7 +5,7 @@ trigger_phrases:
   - "bots-ui terminal screen"
   - "bots ui build and run"
   - "terminal screen keys and glyphs"
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # bots-ui: the terminal screen for skilled bots
@@ -24,7 +24,41 @@ Current state:
 
 ---
 
-## 2. BUILD
+## 2. WHAT BELONGS HERE
+
+The crate folder holds the binary's own files, and nothing the bots runtime or the bots CLI owns.
+
+| Belongs here | Does not belong here |
+|---|---|
+| The crate manifest and lock file, `Cargo.toml` and `Cargo.lock`, and this README. | The `target/` build output, which git ignores. |
+| The binary's Rust source under `src/`. | The bots runtime TypeScript, which lives under `../../skills/system-skilled-bots/runtime/`. |
+| Integration tests and their fixtures under `tests/`. | The bots CLI, which lives at `../../bin/bots.cjs`. |
+| The shipped copy of the approved screen designs under `design/`. | A design change made only here. The `design/` files are copies, and the bots CI workflow diffs them against their source, so the source changes first and the copy in the same change. |
+| Nothing else. | Run-time state. The binary reads the bots CLI's JSON output and opens no state file of its own. |
+
+---
+
+## 3. STRUCTURE
+
+The crate folder holds three folders, and `tests/` holds five more.
+
+```text
+bots-tui/
++-- design/                  # copies of the approved screen designs, which the CI design guard compares with their source
++-- src/                     # the binary's modules, listed in KEY FILES below
+|   `-- view/                # the frame drawing modules: banner, header, tabs, panes, footer and overlay
+`-- tests/                   # one integration test target per top-level .rs file: answer_flow, chat, cli_client, end_to_end, panes, pty_smoke and render_keys
+    +-- answer_flow/         # the modules of the target with the same name, loaded by that target's .rs file
+    +-- chat/                # the modules of the target with the same name, loaded by that target's .rs file
+    +-- panes/               # the modules of the target with the same name, loaded by that target's .rs file
+    +-- common/              # helpers the targets share through mod common
+    `-- fixtures/            # the bots file, a fake bots CLI every test runs instead of the real one
+        `-- payloads/        # sample JSON payloads. CI diffs status, activity, inbox and routines against the payload contract samples, and the chat and grant samples feed the chat and answer tests
+```
+
+---
+
+## 4. BUILD
 
 Run from the repository root:
 
@@ -36,7 +70,7 @@ The binary lands at `.skilled/crates/bots-tui/target/release/bots-ui`.
 
 ---
 
-## 3. RUN
+## 5. RUN
 
 The usual way is the bots verb, from inside a checkout:
 
@@ -56,7 +90,7 @@ The binary also runs directly:
 
 ---
 
-## 4. FLAGS
+## 6. FLAGS
 
 | Flag | What it does |
 |---|---|
@@ -65,7 +99,7 @@ The binary also runs directly:
 
 ---
 
-## 5. KEYS
+## 7. KEYS
 
 | Where | Key | Action |
 |---|---|---|
@@ -114,7 +148,7 @@ The binary also runs directly:
 
 ---
 
-## 6. THE CHAT TAB
+## 8. THE CHAT TAB
 
 | Call | Argv | When | Deadline |
 |---|---|---|---|
@@ -125,7 +159,7 @@ The send runs on a chat worker thread of its own, in its own process group with 
 
 ---
 
-## 7. GLYPHS
+## 9. GLYPHS
 
 | State | Glyph | Fallback |
 |---|---|---|
@@ -140,7 +174,7 @@ The send runs on a chat worker thread of its own, in its own process group with 
 
 ---
 
-## 8. EXIT CODES
+## 10. EXIT CODES
 
 | Code | When |
 |---|---|
@@ -153,7 +187,7 @@ The `ui` verb passes the code through.
 
 ---
 
-## 9. KEY FILES
+## 11. KEY FILES
 
 | File | Responsibility |
 |---|---|
@@ -172,7 +206,7 @@ The `ui` verb passes the code through.
 
 ---
 
-## 10. VALIDATION
+## 12. VALIDATION
 
 Run from the repository root:
 
@@ -187,7 +221,7 @@ The last command runs the release binary in a pseudo-terminal and approves one i
 
 ---
 
-## 11. DESIGN DOCUMENTS
+## 13. DESIGN DOCUMENTS
 
 - [`design/mockups.md`](design/mockups.md) holds one frame per screen state at 80x24 and 120x40.
 - [`design/chat-mockups.md`](design/chat-mockups.md) holds the Chat tab's thirteen states at 80x24 and 120x40, copied from the approved chat design.
@@ -199,6 +233,6 @@ The last command runs the release binary in a pseudo-terminal and approves one i
 
 ---
 
-## 12. DESIGN REFERENCE AND LICENCE
+## 14. DESIGN REFERENCE AND LICENCE
 
 openhuman's terminal client (licensed GPL-3.0) was read as a design reference for the screen's shape, the terminal guard, the minimum-size screen, the footer key line, the banner and the two palettes, and no code or text was copied from it. The crate is MIT.

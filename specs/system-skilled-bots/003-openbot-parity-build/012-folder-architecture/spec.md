@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-28 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
@@ -118,7 +118,7 @@ The exact paths come from the move map, so this table names the roots and what h
 | `.skilled/crates/bots-tui/` | Move/Modify | The mapped moves inside the crate, with its `design/` copy kept equal to the packet's design folders |
 | `.skilled/bin/bots.cjs` | Modify | Any path the CLI names that a move changes |
 | `.skilled/skills/system-deep-loop/runtime/` | Move/Modify | Only the executor audit files the build edited, when the map moves one |
-| `.github/workflows/bots-runtime.yml` | Modify | Any path filter, manifest path or diff guard path a move changes |
+| `.github/workflows/bots-runtime.yml` | Modify | Any path filter, manifest path or diff guard path a move changes. By the amendment of decision Q030 also the design guard fix: the chat mockups copy is diffed against its source and the push filter names that source folder |
 | `specs/system-skilled-bots/003-openbot-parity-build/` | Modify | Every spec that names a moved path |
 | `.skilled/crates/README.md` | Create | What belongs in the crates folder and what does not, authored through `/create:readme` |
 | `.skilled/crates/bots-tui/README.md` | Modify | Refreshed through `/create:readme` so it says what belongs in the crate folder and what does not |
@@ -143,7 +143,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | Every reference to a moved path is rewritten in the same change: for each move row, `rg -n -F '<old path>'` over the repository prints nothing outside this phase's `scratch/` |
 | REQ-005 | No behavior changes. The runtime `npm test` prints the same `Test Files` and `Tests` counts as `scratch/gate-baseline.md` with no `failed`, and `npm run typecheck` exits 0 |
 | REQ-006 | The crate gates hold. `cargo fmt --check`, `cargo clippy --locked --all-targets -- -D warnings` and `cargo test --locked` each pass with `--manifest-path` naming the crate, and each target prints the baseline's passed and ignored counts |
-| REQ-007 | The deep-loop executor audit tests pass with the baseline counts, and the bots CI design diff guard passes when its diff commands run by hand |
+| REQ-007 | The deep-loop executor audit tests pass with the baseline counts, and the bots CI design diff guard passes when its diff commands run by hand. The guard covers all seven design copies, the chat mockups copy included, by the amendment of decision Q030 |
 | REQ-008 | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0` |
 | REQ-009 | The hub stays valid: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` prints `OK: parent-skill-check`, and every path in the hub's `mode-registry.json` and `hub-router.json` resolves |
 | REQ-010 | `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED` |

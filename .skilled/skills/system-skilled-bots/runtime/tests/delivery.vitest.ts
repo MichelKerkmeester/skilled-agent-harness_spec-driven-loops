@@ -71,7 +71,7 @@ describe('target resolution', () => {
 
 describe('desktop channel', () => {
   // An absolute stub path, so no test can resolve the real osascript.
-  const STUB = resolve(import.meta.dirname, 'fixtures', 'osascript-stub', 'osascript');
+  const STUB = resolve(import.meta.dirname, 'fixtures', 'osascript-stub.sh');
 
   it('hands title and body over as separate arguments and claims only attempted', () => {
     const log = `${tempDir('bots-osa-')}/argv.log`;
