@@ -1,0 +1,7 @@
+The install-record pin probe, run on 2026-11-28 with resolveSkillPins and loadSkills over a temp state root and a temp Skilled tree holding one skill named demo. Each line is one install-record state and what the load returned.
+
+no install record, unattended: {"source":null,"load":"ok"}
+install pins another digest, unattended: {"source":"install","load":"skill-changed: demo differs from the pinned body"}
+install pins another digest, manual: {"source":"install","load":"skill-changed: demo differs from the pinned body"}
+install pins the real digest: {"source":"install","load":"ok"}
+install record written before the field: {"source":"install","load":"skill-changed: demo differs from the pinned body"}

@@ -16,6 +16,7 @@ import { EXECUTOR_KINDS, executorConfigSchema } from '../../../system-deep-loop/
 
 import { ISOLATION_VALUES } from './repo-config.js';
 import { parseRoutine, renderTrigger, routineDelivery } from './routine.js';
+import { parseSkillList } from './skills.js';
 
 import type { Isolation, RepoConfig, Result } from './repo-config.js';
 import type { Routine } from './routine.js';
@@ -71,6 +72,8 @@ export interface BotDefinition {
   enabled: boolean;
   /** Whether the shared memory file and the bot's own reach its prompt. Absent reads as true. */
   memory: boolean;
+  /** The skill folders whose SKILL.md this bot's prompt carries, in list order. Absent reads as none. */
+  skills: string[];
   delivery: Delivery;
   posture: Posture;
   /** Command whose non-zero exit or `[SILENT]` output skips the run. */
@@ -114,6 +117,7 @@ const FRONTMATTER_KEYS = new Set([
   'sandbox',
   'secrets',
   'apps',
+  'skills',
   'precheck',
   'spec_folder',
   // The document edition sk-doc stamps on every authored asset, the template
@@ -248,7 +252,7 @@ function parseApps(raw: unknown): Result<string[] | null> {
  * Parse BOT.md text into a definition with its defaults filled.
  *
  * @param text - The whole file.
- * @returns The definition, or a refusal such as `missing-id`, `missing-trigger`, `routine-trigger-conflict` or `empty-body`, or one the routine block names itself.
+ * @returns The definition, or a refusal such as `missing-id`, `missing-trigger`, `routine-trigger-conflict`, `skills-name-invalid`, `skills-duplicate` or `empty-body`, or one the routine block names itself.
  */
 export function parseDefinition(text: string): Result<BotDefinition> {
   const match = FRONTMATTER.exec(text);
@@ -330,6 +334,10 @@ export function parseDefinition(text: string): Result<BotDefinition> {
   const apps = parseApps(raw.apps);
   if (!apps.ok) return apps;
 
+  // The list is shape only here: whether a name resolves is the runner's and the checker's to say.
+  const skills = parseSkillList(raw.skills);
+  if (!skills.ok) return skills;
+
   return {
     ok: true,
     value: {
@@ -340,6 +348,7 @@ export function parseDefinition(text: string): Result<BotDefinition> {
       budget: budget.value,
       enabled: raw.enabled === undefined ? true : raw.enabled,
       memory: raw.memory ?? true,
+      skills: skills.value,
       delivery: resolvedDelivery,
       posture: {
         isolation: (raw.isolation as Isolation | undefined) ?? null,

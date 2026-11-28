@@ -145,6 +145,8 @@ export interface HonoredPosture {
   apps: string[];
   /** The names of the secrets the run's child received, never a value. A record written before the field reads as none. */
   secretsUsed?: string[];
+  /** Each skill body the run loaded, by name and the SHA-256 hex of its bytes, in list order and never the text. A record written before the field, or a run that loaded none, reads as none. */
+  skills?: Array<{ name: string; digest: string }>;
 }
 
 export interface RunExit {
@@ -277,6 +279,14 @@ function isOptionalNameList(value: unknown): boolean {
   return value === undefined || (Array.isArray(value) && value.every((name) => typeof name === 'string'));
 }
 
+/** True for an absent list or an array of name and digest pairs, each digest a lower-case SHA-256 hex. */
+function isOptionalSkillList(value: unknown): boolean {
+  return value === undefined || (Array.isArray(value) && value.every((entry) => isPlainObject(entry)
+    && typeof entry.name === 'string'
+    && typeof entry.digest === 'string'
+    && /^[0-9a-f]{64}$/.test(entry.digest)));
+}
+
 /**
  * Check a record's shape and its exit rules.
  *
@@ -292,6 +302,7 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
   }
   const record = raw as unknown as RunRecord;
   if (!isOptionalNameList((record.posture as unknown as Record<string, unknown>).secretsUsed)) return { ok: false, reason: 'record-field-invalid', detail: 'posture.secretsUsed' };
+  if (!isOptionalSkillList((record.posture as unknown as Record<string, unknown>).skills)) return { ok: false, reason: 'record-field-invalid', detail: 'posture.skills' };
 
   if (typeof record.identity.runId !== 'string' || record.identity.runId === '') {
     return { ok: false, reason: 'record-field-missing', detail: 'identity.runId' };

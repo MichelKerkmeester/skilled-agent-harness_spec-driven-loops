@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/lib/skills.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/skill-proposal.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
@@ -56,11 +57,10 @@
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/label.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
-      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md"
+      ".skilled/skills/system-skilled-bots/scripts/fixtures/README.md",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt"
     ],
     "entities": [
       {
@@ -100,9 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "name": "skills.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/skills.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-proposal.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/skill-proposal.ts",
         "source": "derived"
       },
       {
@@ -154,9 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
@@ -166,21 +172,15 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/scripts/fixtures/README.md",
+        "source": "derived"
+      },
+      {
         "name": "bot-template.txt",
         "kind": "file",
         "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-        "source": "derived"
-      },
-      {
-        "name": "bot-definition.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A BOT.md declares a trigger, a runtime, a budget, a posture and a body, and the parser's key set holds twelve keys with no `skills` among them [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/definition.ts:92-107]",
     "created_at": "2026-11-25T07:13:43Z",
-    "last_save_at": "2026-11-27T15:40:05.749Z",
+    "last_save_at": "2026-11-28T06:27:59.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:372290683d9941f99daeda0ca64076e4f6b8868a7352779d46c6296456cc27d3",
+    "source_fingerprint": "sha256:6ea1be03993ff12fa2713ab39e5aab2c2d8515903f380eda13672bc706e1c2af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a156922aa4e2b8163fea682a84ae751f25f07d5668df0cdda683540ff8c8599",
+      "spec.md": "2def3294c298e01846b8d5f7d904cc3eda12b440b2ed711afc9d45ce0d464da2",
       "plan.md": "1aca1d59985f7ac7780aa3298ce5f7772e073cf325f630cd1eaae33bf0d91ba1",
-      "tasks.md": "2e62482e893a4501d816c3b59265ae37e29485d72a76b2c81649fa7211804ffc",
-      "implementation-summary.md": "cec38933010bc45b8f9398a06f20471c06d6726b9b8da186416d4e9abea996d5"
+      "tasks.md": "d028e43453fa75b7302c3ff47315d022d9a3ffcec34edae1f353a0fac2705ce2",
+      "implementation-summary.md": "d69eb8143bae9507326bde30705f32465921eb7650debc669113d0b9eda5cecd"
     },
     "last_active_at": null
   }

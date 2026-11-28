@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 //
 // Runs one bot once, in a fixed order: approval, disable and completed switches, needs-you
-// hold, lease, pause switch, precheck, posture, secret check, dispatch, result.
+// hold, lease, pause switch, precheck, posture, secret check, skills, dispatch, result.
 // An unattended run (scheduled, queued or a resume) runs only a definition and
 // config whose hashes an operator approved, so a run that edited either file
 // cannot change what the next unattended run does; a manual run approves them.
@@ -86,6 +86,7 @@ import { disabledCause, evaluateFatigue, readRoutineState, recordUntilOutcome } 
 import { AWAITING_DECISION, readRunRecord, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
 import { createSecretMatcher } from './secret-matcher.js';
 import { resolveSecret, secretEnvKey } from './secrets.js';
+import { loadSkills, renderSkillsPrompt, resolveSkillPins } from './skills.js';
 import { HELD_SLOT_REASON, recordScheduledFire } from './slot-accounting.js';
 import {
   ensureIdentityState,
@@ -112,6 +113,7 @@ import type { MemoryType } from './memory.js';
 import type { NeedsYouItem } from './needs-you.js';
 import type { RepoConfig, Result } from './repo-config.js';
 import type { EvidenceLocations, FailureClass, HeldSlot, HonoredPosture, PostRunCause, RequestGrant, RunRecord, SkippedSlotSummary, UntilObservation, WorktreeEvidence } from './run-record.js';
+import type { LoadedSkill } from './skills.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES & CONSTANTS
@@ -164,6 +166,11 @@ export const REFUSAL_CAUSES = Object.freeze({
   'body-secret': { reason: 'body-secret', class: 'author' },
   'secret-unknown': { reason: 'secret-unknown', class: 'operator' },
   'secret-store-unreadable': { reason: 'secret-store-unreadable', class: 'environment' },
+  'skill-unknown': { reason: 'skill-unknown', class: 'author' },
+  'skill-unreadable': { reason: 'skill-unreadable', class: 'environment' },
+  'skill-too-large': { reason: 'skill-too-large', class: 'author' },
+  'skills-over-budget': { reason: 'skills-over-budget', class: 'author' },
+  'skill-changed': { reason: 'skill-changed', class: 'operator' },
   'prompt-over-budget': { reason: 'prompt-over-budget', class: 'author' },
   'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
   'result-ledger-unbound': { reason: 'result-ledger-unbound', class: 'environment' },
@@ -1318,6 +1325,21 @@ async function runSeeded(
       seed.posture = { ...seed.posture, secretsUsed: [secretName] };
     }
 
+    // A resumed run re-sends its parked prompt, which already holds the skill blocks its first
+    // attempt loaded, so no body is read again and the record carries the parked run's skills.
+    let loadedSkills: LoadedSkill[] = [];
+    if (resumeItem === null && definition.skills.length > 0) {
+      const pins = resolveSkillPins({ stateRoot: context.stateRoot, identity: context.identity, botId: input.botId, manual: request.kind === 'manual' });
+      const loaded = loadSkills({ skilledTree: context.skilledTree, names: definition.skills, pins });
+      if (!loaded.ok) return refusalRecord(context.stateRoot, seed, loaded.reason as RefusalCause, loaded.detail ?? null, null, nonce);
+      loadedSkills = loaded.value;
+      seed.posture = { ...seed.posture, skills: loadedSkills.map(({ name, digest }) => ({ name, digest })) };
+    } else if (resumeItem !== null) {
+      const parked = readRunRecord(context.stateRoot, context.identity, resumeItem.runId);
+      const parkedSkills = parked.ok ? parked.value.record.posture.skills ?? [] : [];
+      if (parkedSkills.length > 0) seed.posture = { ...seed.posture, skills: parkedSkills };
+    }
+
     // Memory reaches only a freshly composed prompt: a resumed run re-sends its parked prompt as it was.
     const memory: Array<{ path: string; block: string }> = [];
     if (resumeItem === null && definition.memory) {
@@ -1460,6 +1482,7 @@ async function runSeeded(
         checkoutRoot: runsOutsideCheckout(kind) ? workDir : null,
         scheduled: request.kind === 'scheduled',
         memoryBlocks: memory.map(({ block }) => block),
+        skillBlocks: renderSkillsPrompt(context.skilledTree, loadedSkills),
         requestPrompt,
       });
       if (!built.ok) {

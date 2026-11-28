@@ -23,8 +23,10 @@ import { needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } fr
 import { renderBotPlist, SCHEDULED_FIRE_ENV } from '../lib/plist-render.js';
 import { requestIdFor } from '../lib/request-record.js';
 import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, routineStateFile, writeRoutineState } from '../lib/routine-state.js';
+import { writeRunRecord } from '../lib/run-record.js';
 import { EXIT_CODES, newRunId, runBot } from '../lib/runner.js';
-import { installFile, PINNED_STATE_ROOT_ENV, slotSnapshotFile } from '../lib/state-root.js';
+import { proposalFile } from '../lib/skill-proposal.js';
+import { identityStatePaths, installFile, PINNED_STATE_ROOT_ENV, slotSnapshotFile } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
 import { botWorld, BOTS_CLI, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
@@ -33,6 +35,7 @@ import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
 import type { InstallerSeams } from '../lib/installer.js';
 import type { NeedsYouGrant, NeedsYouItem } from '../lib/needs-you.js';
+import type { RunRecord } from '../lib/run-record.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
@@ -1148,4 +1151,101 @@ describe('bots remember', () => {
     });
     expect(childList.status).toBe(0);
   }, 120_000);
+});
+
+// ───────────────────────────────────────────────────────────────────
+// THE SKILL PROPOSAL VERB
+// ───────────────────────────────────────────────────────────────────
+//
+// A finished run becomes a draft skill and one review item, and the verb
+// refuses before it writes anything, so a missing record leaves no folder
+// behind and a bad name never reaches the runtime.
+
+/** A record with every field group filled, for one completed run of a bot. */
+function completedRecord(runFolder: string, runId: string): RunRecord {
+  return {
+    schemaVersion: 1,
+    identity: {
+      repository: IDENTITY,
+      repositoryPath: '/work/acme/tool',
+      botId: 'manual-ok',
+      runId,
+      definitionDigest: 'sha256:abc123',
+    },
+    request: { requestId: 'req-1', leaseNonce: 'nonce-1', resultEventId: 'evt-1', firedSlot: '2026-11-23T09:00:00Z' },
+    dispatch: {
+      source: 'launchd',
+      scheduledAt: '2026-11-23T09:00:00Z',
+      dispatchedAt: '2026-11-23T09:00:04Z',
+      latenessSeconds: 4,
+      latenessClass: 'on-time',
+      skippedSlots: { count: 0, slots: [] },
+    },
+    budget: {
+      declared: { maxIterations: 6, maxDurationMinutes: 120, timeoutSeconds: 900 },
+      measured: { iterations: 3, elapsedMinutes: 12.5, costUsd: null, costSource: null },
+    },
+    posture: { isolation: 'worktree', sandbox: 'workspace-write', executorKind: 'cli-opencode', model: 'deepseek-v4-flash', apps: [] },
+    exit: { reason: 'completed', class: null, needsYouItemId: null },
+    evidence: {
+      runFolder,
+      ledgerDir: `${runFolder}/ledger`,
+      receiptDir: `${runFolder}/receipts`,
+      observabilityStream: `${runFolder}/events.jsonl`,
+      worktreePath: '/work/acme/tool-wt/r1',
+      branch: 'bots/r1',
+    },
+    delivery: [{ channel: 'desktop', target: 'local', state: 'attempted', evidence: null }],
+  };
+}
+
+describe('bots skill propose', () => {
+  it('writes both files and the item', () => {
+    const world = botWorld();
+    const runId = newRunId();
+    const written = writeRunRecord(world.stateRoot, completedRecord(tempDir('bots-run-'), runId));
+    if (!written.ok) throw new Error(written.reason);
+
+    const proposed = runCli(world, ['skill', 'propose', runId, '--name', 'report']);
+    expect(proposed.status).toBe(0);
+    expect(proposed.stdout).toBe(`bots: proposal for skill report written at proposals/${runId}\n`);
+    expect(proposed.stderr).toBe('');
+    expect(existsSync(proposalFile(world.stateRoot, IDENTITY, runId, 'draft'))).toBe(true);
+    expect(existsSync(proposalFile(world.stateRoot, IDENTITY, runId, 'proposal'))).toBe(true);
+
+    const inbox = runCli(world, ['inbox']);
+    expect(inbox.status).toBe(0);
+    const lines = inbox.stdout.split('\n');
+    const row = lines.find((line) => line.startsWith('open')) ?? '';
+    expect(row).toContain(runId);
+    expect(row).toContain('skill-proposals');
+    expect(lines).toContain('\tPropose skill report?');
+
+    const json = runCli(world, ['inbox', '--json']);
+    expect(json.status).toBe(0);
+    const payload = JSON.parse(json.stdout) as { version: number; items: Record<string, unknown>[] };
+    const item = payload.items.find((entry) => entry.id === runId);
+    expect(item).toMatchObject({ botId: 'skill-proposals', kind: 'skill-proposal' });
+    expect(item?.grants).toMatchObject({ kind: 'other', rung: 'bot', scope: null });
+  }, 60_000);
+
+  it('refuses a missing run record', () => {
+    const world = botWorld();
+    const refused = runCli(world, ['skill', 'propose', 'run-1']);
+    expect(refused.status).toBe(4);
+    expect(refused.stdout).toBe('');
+    expect(firstLine(refused.stderr)).toBe('bots: run-record-missing: run-1');
+    expect(existsSync(identityStatePaths(world.stateRoot, IDENTITY).proposals)).toBe(false);
+  }, 60_000);
+
+  it('refuses a bad name as usage', () => {
+    const world = botWorld();
+    const badName = runCli(world, ['skill', 'propose', 'run-1', '--name', 'Bad_Name']);
+    expect(badName.status).toBe(2);
+    expect(firstLine(badName.stderr)).toBe('bots: --name takes a skill name');
+
+    const badAction = runCli(world, ['skill', 'frob', 'run-1']);
+    expect(badAction.status).toBe(2);
+    expect(firstLine(badAction.stderr)).toBe('bots: unknown action: frob');
+  }, 60_000);
 });
