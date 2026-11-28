@@ -46,7 +46,7 @@ It prints `frames=53 bad=0`. It counts characters rather than bytes, which is wh
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Confirm the design folder is absent before the first write (`$D`). Verify: `ls crates/bots-tui/design` prints `No such file or directory`.
+- [x] T001 Confirm the design folder is absent before the first write (`$D`). Verify: `ls .skilled/crates/bots-tui/design` prints `No such file or directory`.
 - [x] T002 Confirm the four payload shapes are documented by the phases that own them (`../001-activity-and-actor/spec.md`). Verify: `rg -c 'REQ-002|REQ-003' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints 2 and `rg -c 'REQ-007' specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md` prints 1.
 - [x] T003 Confirm every reference source resolves (`specs/system-skilled-bots/context/`). Verify: `test -f specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs && test -f specs/system-skilled-bots/context/OpenGhost-main/ask-card.js && test -f specs/system-skilled-bots/context/OpenBot-main/app/src/lib/bot-lifecycle/activity-groups.ts` exits 0.
 - [x] T004 Confirm the four screenshots resolve (`../context/screenshots/`). Verify: when `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots` exists, `ls` of its `*.png` and `*.jpg` files piped to `wc -l` prints 4. When it is absent, `test -d specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/context/screenshots || echo 'SKIP context-absent: screenshots, see research/context-manifest.md' >&2` names the skip, and manifest rows I01 to I04 record the four files.

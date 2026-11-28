@@ -13,7 +13,7 @@ Most of the synthesis is safe to act on. The reference reads I repeated held up.
 **M1. 009 tells a builder to put a live-model scenario into 012, which 012 forbids.**
 - Location: research.md section 3, 009 lift row 2 and pitfall row 2 (P2-10-1, V2-9-2). Both are graded `confirmed`. Plain rendering, 009 item 3.
 - What is wrong: lift row 2 says the adherence case "belongs with 012's scenarios". Pitfall 2 says "Add one live scenario per skill shape in 012". 012 rules this out. Its plan says no scenario calls a model, and its spec rules out a new automated test. The synthesis knows this in other places. Section 10 eliminates "a model-trial corpus for 012", 012 differs row 1 sides with the stub executor, and net-new candidate 7 says the same check needs a tool-call trace that the run record does not hold. So the document contradicts itself, and the 009 instruction cannot be followed.
-- Evidence: [SOURCE: B/012-manual-testing-scenarios/plan.md:127] [SOURCE: B/012-manual-testing-scenarios/spec.md:114] [SOURCE: B/012-manual-testing-scenarios/spec.md:204] [SOURCE: R/research.md:680] [SOURCE: R/research.md:482]
+- Evidence: [SOURCE: B/013-manual-testing-scenarios/plan.md:127] [SOURCE: B/013-manual-testing-scenarios/spec.md:114] [SOURCE: B/013-manual-testing-scenarios/spec.md:204] [SOURCE: R/research.md:680] [SOURCE: R/research.md:482]
 - Proposed revision: in 009 lift row 2 replace "so it belongs with 012's scenarios, not with vitest" with "It needs a live model and a tool-call trace, so no planned phase can host it. 012 calls no model. It is net-new candidate 7." In 009 pitfall 2 replace the guard with "No guard in this build. Record the label wording as an open risk in 009 and point at net-new candidate 7." Regrade pitfall 2 to `weak`, because its guard has no home. Change plain 009 item 3 to "Later, not in this build: a live adherence check (net-new 7). 012 calls no model."
 
 **M2. The stall watchdog (net-new candidate 3) is sized and ranked as one timer, but the dispatch blocks.**
@@ -106,7 +106,7 @@ Most of the synthesis is safe to act on. The reference reads I repeated held up.
 
 None with strong support. I checked the drops below and they hold. One sits on the border.
 
-- P1-7-3 (a test that a deferred feature stays absent): logged `wrong` because the reference test checks the opposite case and BOT-029 covers `--scope always`. The reference half is wrong as logged. [SOURCE: C/openhuman-full/tests/cost_cap_removed.rs:1] But BOT-029 covers one deferral, and the lineage named others such as `bots skill accept` and `--demo`. [SOURCE: B/012-manual-testing-scenarios/spec.md:145]. A row that says "012 asserts one deferral, not all" would be a fair `weak` note. It is low value, and 012's REQ-011 may bar it.
+- P1-7-3 (a test that a deferred feature stays absent): logged `wrong` because the reference test checks the opposite case and BOT-029 covers `--scope always`. The reference half is wrong as logged. [SOURCE: C/openhuman-full/tests/cost_cap_removed.rs:1] But BOT-029 covers one deferral, and the lineage named others such as `bots skill accept` and `--demo`. [SOURCE: B/013-manual-testing-scenarios/spec.md:145]. A row that says "012 asserts one deferral, not all" would be a fair `weak` note. It is low value, and 012's REQ-011 may bar it.
 
 A cross-check found no orphan. Every numbered finding in all 40 records appears under its id in research.md or the regrade log. The findings that one slice dropped as "another slice's" were all picked up or rejected by the owning slice (P1-1-7, P1-6-2, V2-3-2, P1-2-2).
 
@@ -131,8 +131,8 @@ A cross-check found no orphan. Every numbered finding in all 40 records appears 
 - 011 lift 1, the webhook `409`. [SOURCE: C/tinychannels-main/src/providers/telegram/channel_ops.rs:1935-1945]
 - 011 lift 4, the Slack 3,000 and 75 caps against the 3,900 chunk with a section block. [SOURCE: C/tinychannels-main/src/providers/slack/blocks.rs:7-11] [SOURCE: B/011-messaging-channels/001-channel-ux-and-message-map/design/mockups.md:150]
 - 011 lift 5, the synthetic fixture against child 007. [SOURCE: B/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:33] [SOURCE: B/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:61]
-- 013 differs row 1: the hand-edited help against `VERB_SPECS` holds as judgment. 013's plan allows editing the help block. [SOURCE: B/013-skilled-and-doc-alignment/plan.md:109]
-- 014 pitfall 1: five ledger columns, CHK-012 counts a word the golden lacks. [SOURCE: B/014-deep-review/tasks.md:231] [SOURCE: B/014-deep-review/design/fixtures/fix-ledger.md:5-10]
+- 013 differs row 1: the hand-edited help against `VERB_SPECS` holds as judgment. 013's plan allows editing the help block. [SOURCE: B/014-skilled-and-doc-alignment/plan.md:109]
+- 014 pitfall 1: five ledger columns, CHK-012 counts a word the golden lacks. [SOURCE: B/015-deep-review/tasks.md:231] [SOURCE: B/015-deep-review/design/fixtures/fix-ledger.md:5-10]
 - 004 lift 1, buzz `workspace_section`, and its licence. [SOURCE: C/buzz-main/crates/buzz-acp/src/pool.rs:2284-2289] [SOURCE: C/buzz-main/Cargo.toml:46]
 - Corrections: S3:111 said none for 004, and S3:379 set the positional index. S1 section 14 leaves out tinychannels. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:111]
 - Licences, read from each LICENSE file: OpenBot, OpenGhost and hermes-muse are MIT. rakazo, turnstone, buzz and OpenMausBot are Apache-2.0, with OpenMausBot's `enterprise/` carve-out. tinychannels and openhuman are GPL-3.0. The openhuman workspace, tinychannels and tinysecurity manifests say `GPL-3.0-only`. buzz crates inherit Apache-2.0 from the workspace.

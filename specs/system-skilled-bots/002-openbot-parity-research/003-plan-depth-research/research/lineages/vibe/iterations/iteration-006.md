@@ -74,4 +74,4 @@ Whether the two security-bearing phases are planned deeply enough that a builder
 - What I would do differently: check the goal file's verification line against the REQ table earlier. That comparison is what surfaced `secret-too-long` as a name with no requirement behind it.
 
 ## Recommended Next Focus
-Phases 009-skills and 012-manual-testing-scenarios: whether the skill-proposal staged-write path and the 33-scenario corpus are planned deeply enough to one-shot, and whether the corpus has fixtures rather than prose.
+Phases 009-skills and 013-manual-testing-scenarios: whether the skill-proposal staged-write path and the 33-scenario corpus are planned deeply enough to one-shot, and whether the corpus has fixtures rather than prose.

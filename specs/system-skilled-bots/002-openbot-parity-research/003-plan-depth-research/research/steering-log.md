@@ -12,7 +12,7 @@ Operator-side steering record for the two-lineage fan-out in this folder. Lineag
 - Orphaned seeds that no lineage will work:
   - F-1-002 (007-per-bot-apps, 008-vault)
   - F-1-004 (009-skills, 010-conversations, 005-memory user flows)
-  - F-1-006 (012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review)
+  - F-1-006 (013-manual-testing-scenarios, 014-skilled-and-doc-alignment, 015-deep-review)
 - The vibe lineage holds only F-1-001, F-1-003 and F-1-005 (`lineages/vibe/frontier-nodes.jsonl`).
 
 ### Steering surface does not reach the running lineage
@@ -189,8 +189,8 @@ Operator-side steering record for the two-lineage fan-out in this folder. Lineag
   - Not answered yet: the `@bot` routing grammar, prompt budget per section and the injection boundary. The F-1-004 question asked for these, and the iteration does not give them as designed artifacts.
   - Reference code: first named repos, `context/OpenBot-main` (4) and `context/turnstone-main` (1).
 - codex-2 iteration 3, "Verification and review gates" (F-1-006), 2 findings, both P1, 6 `[SOURCE:]` tags:
-  - f1, 012 failures in `scratch/failures.md` never reach 014's inputs. New. Spot check: `012-manual-testing-scenarios/tasks.md:144` (T046) lets a FAIL stand when filed in `scratch/failures.md`. Confirmed. I did not check 014's input list beyond the cited `plan.md:29-30` and `:58-66`.
-  - f2, 014's executor preflight contradicts its fallback. New. Spot check: `014-deep-review/tasks.md:41` (T003) requires `command -v vibe pi opencode devin codex | wc -l` to print `5`, while `014-deep-review/plan.md:125` says "A missing binary drops its lineage; the fallback order in §8 replaces it". Confirmed.
+  - f1, 012 failures in `scratch/failures.md` never reach 014's inputs. New. Spot check: `013-manual-testing-scenarios/tasks.md:144` (T046) lets a FAIL stand when filed in `scratch/failures.md`. Confirmed. I did not check 014's input list beyond the cited `plan.md:29-30` and `:58-66`.
+  - f2, 014's executor preflight contradicts its fallback. New. Spot check: `015-deep-review/tasks.md:41` (T003) requires `command -v vibe pi opencode devin codex | wc -l` to print `5`, while `015-deep-review/plan.md:125` says "A missing binary drops its lineage; the fallback order in §8 replaces it". Confirmed.
   - Verdict: 012, 013 and 014 are "mostly yes". This agrees with vibe's "two rules" verdicts and adds two concrete contradictions. 013 got no finding of its own.
 - Coverage per phase, all lineages so far:
   - Two-lineage coverage: 001, 002, 005, 006, 007, 008, 009, 010, 012, 014.

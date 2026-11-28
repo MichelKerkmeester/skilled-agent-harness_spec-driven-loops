@@ -205,8 +205,8 @@ Review of the finished reference evidence research for the OpenBot parity build:
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
-### **012's "No row" for lift hides a corpus that fits.** Ruled out: every cited corpus is an automated suite or a model trial, and 012 rules out a new automated test at `B/012-manual-testing-scenarios/spec.md:112` and `:114`. -- RULED OUT (iteration 9, 1 attempt)
-- What was tried: **012's "No row" for lift hides a corpus that fits.** Ruled out: every cited corpus is an automated suite or a model trial, and 012 rules out a new automated test at `B/012-manual-testing-scenarios/spec.md:112` and `:114`.
+### **012's "No row" for lift hides a corpus that fits.** Ruled out: every cited corpus is an automated suite or a model trial, and 012 rules out a new automated test at `B/013-manual-testing-scenarios/spec.md:112` and `:114`. -- RULED OUT (iteration 9, 1 attempt)
+- What was tried: **012's "No row" for lift hides a corpus that fits.** Ruled out: every cited corpus is an automated suite or a model trial, and 012 rules out a new automated test at `B/013-manual-testing-scenarios/spec.md:112` and `:114`.
 - Why ruled out: One pass of evidence did not support this direction.
 - Reopen when: a later iteration carries evidence that contradicts that pass.
 
@@ -464,7 +464,7 @@ Review of the finished reference evidence research for the OpenBot parity build:
 - Section 13's question counts are wrong: four resolved plus four answered is eight, and thirteen plus three pruned is sixteen (iteration 4, evidence: `research/findings-registry.json`).
 - A phase heading is missing or misspelled: all fourteen match the 003 folders character for character (iteration 4, evidence: `specs/system-skilled-bots/003-openbot-parity-build/`).
 - The four resolved questions are missing from the document: section 11 names all four seeds and marks each answered (iteration 4, evidence: `research/research.md:694-697`).
-- A well-supported 012 finding was rejected as out of scope: the phase's spec bounds it to a manual playbook, so an automated test is outside it (iteration 4, evidence: `B/012-manual-testing-scenarios/spec.md:3`).
+- A well-supported 012 finding was rejected as out of scope: the phase's spec bounds it to a manual playbook, so an automated test is outside it (iteration 4, evidence: `B/013-manual-testing-scenarios/spec.md:3`).
 - A 005 to 008 row cites a line that does not say what it claims: twenty-eight rows were read against their cited lines and every reference half and plan half resolves (iteration 5, evidence: `C/turnstone-main/docs/memory.md:38-39`).
 - A 005 to 008 differences row names a plan line that already carries the guard: the kind order, the `remove` label and the `memory: false` contradiction all hold (iteration 5, evidence: `B/005-memory/spec.md:96`).
 - 005's stable-id and crowded-at-28 claims misread the reference: `docs/memory.md:38-39` states the tuple identity and `memory.js:11` sets `crowded: 28` beside `records: 60` (iteration 5, evidence: `C/OpenGhost-main/memory.js:11`).

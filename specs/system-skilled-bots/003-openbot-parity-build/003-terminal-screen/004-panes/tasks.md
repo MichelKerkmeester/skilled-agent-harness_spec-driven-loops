@@ -30,7 +30,7 @@ contextType: "implementation"
 One shell variable shortens the commands below. Set it once per shell:
 
 ```bash
-CRATE=crates/bots-tui
+CRATE=.skilled/crates/bots-tui
 ```
 
 Every `cargo` command names its manifest, so it runs from the repository root and needs no `cd`. Every test command runs without a tty, which is why the snapshots assert the `TestBackend` buffer directly rather than a stored file.
@@ -245,7 +245,7 @@ A lane is the unit of parallelism and two lanes never hold the same file, so the
 ## File Organization
 
 - [x] CHK-050 [P1] `git status --porcelain $CRATE` lists only `src/view/panes.rs`, `src/view/mod.rs`, `src/keys.rs`, `src/state.rs` and `tests/panes.rs` as this child's changes. Observed 2026-11-27: it also lists `src/view/banner.rs`, which `spec.md` Files to Change names for REQ-027, and `tests/panes/`, the twelve test groups and the shared helpers `tests/panes.rs` declares by path so two workers never held one test file
-- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
+- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/.skilled/crates/bots-tui/target` line.
 <!-- /ANCHOR:file-org -->
 
 ---

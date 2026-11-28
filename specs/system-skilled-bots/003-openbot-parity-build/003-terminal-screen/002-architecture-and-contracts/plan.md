@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 2: architecture-and-contracts"
-description: "One MIT Rust crate at `crates/bots-tui/` with a terminal guard, a worker data layer and a CLI client, one `ui` verb in the bots CLI, one fixture-driven test seam, and one CI job, so every later terminal-screen child builds on a proven skeleton."
+description: "One MIT Rust crate at `.skilled/crates/bots-tui/` with a terminal guard, a worker data layer and a CLI client, one `ui` verb in the bots CLI, one fixture-driven test seam, and one CI job, so every later terminal-screen child builds on a proven skeleton."
 trigger_phrases:
   - "architecture and contracts plan"
   - "bots-tui crate plan"
@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Testing** | `cargo test` for unit and fixture-driven integration, and vitest for the `ui` verb |
 
 ### Overview
-The crate lives at `crates/bots-tui/` rather than under `.skilled/`, because `.opencode/` mirrors `.skilled/` wholesale and a crate inside the skill would be duplicated into that mirror along with its build output. The binary is `bots-ui`, and `.skilled/bin/bots.cjs` gains one `ui` verb that resolves it from the repository root, execs it with `--repo` and `--skilled-tree`, and passes the exit code through. The verb also reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when the caller asks, so the binary reads no environment variable of its own and the palette is chosen by a flag. Inside the crate, `lib.rs` is the library root that holds the terminal guard and the loop entry, `main.rs` is the binary that calls it, `cli.rs` is the only module that spawns a process, `state.rs` holds a pure reducer with no I/O, `data.rs` owns the worker thread and the generation-tagged channel, and `terminal.rs` owns the guard. The proof is `cargo test`: a fixture `bots` script carries the four payloads, so the client is tested without a live state root, and a lib test drives the loop with a closed input so the no-write rule is proven without a tty. 001's four design documents are copied unchanged into `crates/bots-tui/design/` when the crate is created, so the mockups ship beside the code they describe and 006's pointer check has a folder to read.
+The crate lives at `.skilled/crates/bots-tui/`, outside every skill, because a hub root may hold no `crates` folder and the skill walkers would crawl its build output. `.opencode/` links `.skilled/skills/` and not `.skilled/crates/`, so no mirror holds a second view of the crate. The binary is `bots-ui`, and `.skilled/bin/bots.cjs` gains one `ui` verb that resolves it from the repository root, execs it with `--repo` and `--skilled-tree`, and passes the exit code through. The verb also reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when the caller asks, so the binary reads no environment variable of its own and the palette is chosen by a flag. Inside the crate, `lib.rs` is the library root that holds the terminal guard and the loop entry, `main.rs` is the binary that calls it, `cli.rs` is the only module that spawns a process, `state.rs` holds a pure reducer with no I/O, `data.rs` owns the worker thread and the generation-tagged channel, and `terminal.rs` owns the guard. The proof is `cargo test`: a fixture `bots` script carries the four payloads, so the client is tested without a live state root, and a lib test drives the loop with a closed input so the no-write rule is proven without a tty. 001's four design documents are copied unchanged into `.skilled/crates/bots-tui/design/` when the crate is created, so the mockups ship beside the code they describe and 006's pointer check has a folder to read.
 
 This child draws one empty frame and no pane. That is deliberate: the loop, the guard and the process boundary are the three places a mistake costs a terminal or a wrong answer, so they land and are proven before any surface draws into them.
 <!-- /ANCHOR:summary -->
@@ -48,11 +48,11 @@ This child draws one empty frame and no pane. That is deliberate: the loop, the 
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exit 0
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exit 0
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` passes, including `cli-ui.vitest.ts`
-- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, the job pins `dtolnay/rust-toolchain@1.92.0`, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps
-- [ ] `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing, and `diff` of each of the four payload files in `002-architecture-and-contracts/design/payloads/` against `crates/bots-tui/tests/fixtures/payloads/` prints nothing
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, the job pins `dtolnay/rust-toolchain@1.92.0`, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps
+- [ ] `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design .skilled/crates/bots-tui/design` prints nothing, `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing, and `diff` of each of the four payload files in `002-architecture-and-contracts/design/payloads/` against `.skilled/crates/bots-tui/tests/fixtures/payloads/` prints nothing
 - [ ] Docs updated (spec/plan/tasks/acceptance criteria)
 <!-- /ANCHOR:quality-gates -->
 
@@ -87,14 +87,14 @@ A key event reaches `app.rs` from the source the caller supplies. `app.rs` asks 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `.skilled/bin/bots.cjs` | Owns the verb set, the usage text and the exit codes | update - add the `ui` verb, its three refusals and its two display flags | `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 with `ui-unavailable`, and with `mkdir -p "$T/crates/bots-tui"` exits 4 with `ui-not-built`. The `--mono` and `--ascii` pass-through is proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv |
-| `crates/bots-tui/` | New consumer of the JSON verbs | create | `cargo test --manifest-path crates/bots-tui/Cargo.toml` passes |
-| `crates/bots-tui/design/` | 001's four documents, authored in the packet | create - copy the four unchanged, then copy this child's `architecture.md` and `contracts.md` beside them | `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing |
+| `.skilled/bin/bots.cjs` | Owns the verb set, the usage text and the exit codes | update - add the `ui` verb, its three refusals and its two display flags | `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 with `ui-unavailable`, and with `mkdir -p "$T/.skilled/crates/bots-tui"` exits 4 with `ui-not-built`. The `--mono` and `--ascii` pass-through is proven by `cli-ui.vitest.ts`, which reads the stub's recorded argv |
+| `.skilled/crates/bots-tui/` | New consumer of the JSON verbs | create | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` passes |
+| `.skilled/crates/bots-tui/design/` | 001's four documents, authored in the packet | create - copy the four unchanged, then copy this child's `architecture.md` and `contracts.md` beside them | `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design .skilled/crates/bots-tui/design` prints nothing, and `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing |
 | `bots status --json` | Producer of the header's bot count and staleness flag | unchanged here, and 004 adds `lastRun.branch` and `lastRun.worktreePath`, which the header ignores and the fixture carries | `node .skilled/bin/bots.cjs status --json` still exits 0, and the count is the rows whose `kind` is `bot` |
 | `bots activity --json`, `bots inbox --json`, `bots routines --json` | Producers owned by phases 001 and 002 of the parent build | not a consumer - this child reads them through the fixture and changes none | `rg -n 'activity\|routines' .skilled/bin/bots.cjs` shows no new verb beyond `ui` |
 | `bots answer` | The one write path, which gains `--scope once\|deny` in phase 001 | unchanged | `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` verb's `--scope` option once packet phase 001 lands, and prints nothing before it |
-| `.github/workflows/bots-runtime.yml` | Runs the runtime suites on the skill's paths | update - two path entries and one `bots-tui` job, the repository's first Rust build, with `--locked`, a release build and the design diff | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps |
-| `.gitignore` | Ignores build output and packet source material | update - one line for `/crates/bots-tui/target/` | `git check-ignore -v crates/bots-tui/target/release/bots-ui` prints the `/crates/bots-tui/target/` line |
+| `.github/workflows/bots-runtime.yml` | Runs the runtime suites on the skill's paths | update - two path entries and one `bots-tui` job, the repository's first Rust build, with `--locked`, a release build and the design diff | `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, and `rg -n -e '--locked' .github/workflows/bots-runtime.yml` prints the cargo steps |
+| `.gitignore` | Ignores build output and packet source material | update - one line for `/.skilled/crates/bots-tui/target` | `git check-ignore -v .skilled/crates/bots-tui/target/release/bots-ui` prints the `/.skilled/crates/bots-tui/target` line |
 
 Required inventories:
 - Same-class producers: `rg -n "'  [a-z]+ " .skilled/bin/bots.cjs` lists every usage line, so a new verb cannot be added without a usage line beside it.
@@ -142,7 +142,7 @@ Every lane's primary is `cli-mistral-vibe` at `deepseek-flash`, which runs at it
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-`crates/bots-tui/src/lib.rs` is the binding file, and this packet removes the serialization it would otherwise impose: T006 writes the library root with every `pub mod` line and one stub file per module, so each later module task owns exactly one file and never edits `src/lib.rs`. That is what lets the six module tasks run as six lanes instead of one. `src/lib.rs` is then held by T006 and T017 alone, and they sit in different waves. `src/main.rs` is held by the same two tasks for the same reason. T006 also writes `keys.rs`, `theme.rs` and `view/mod.rs` as compiling stubs, so 003 never edits `lib.rs`.
+`.skilled/crates/bots-tui/src/lib.rs` is the binding file, and this packet removes the serialization it would otherwise impose: T006 writes the library root with every `pub mod` line and one stub file per module, so each later module task owns exactly one file and never edits `src/lib.rs`. That is what lets the six module tasks run as six lanes instead of one. `src/lib.rs` is then held by T006 and T017 alone, and they sit in different waves. `src/main.rs` is held by the same two tasks for the same reason. T006 also writes `keys.rs`, `theme.rs` and `view/mod.rs` as compiling stubs, so 003 never edits `lib.rs`.
 
 The dependency order inside the crate sets the rest: `model.rs` and `event.rs` and `terminal.rs` depend on nothing, `cli.rs` and `state.rs` depend on `model.rs`, `data.rs` depends on `cli.rs` and `state.rs`, and `app.rs` depends on all of them. A lane that needs a module another lane is writing waits for the next wave rather than racing it.
 
@@ -210,7 +210,7 @@ No test needs a tty. The loop takes its events from a source the caller supplies
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: the crate cannot build on the pinned toolchain, or the `ui` verb starts a binary that writes an answer the runtime cannot read.
-- **Procedure**: revert the commit that adds `crates/bots-tui/`, the `ui` verb, its vitest suite and the CI job. Nothing else reads either, so the runtime, the JSON verbs and the state root are unchanged by the revert, and `node .skilled/bin/bots.cjs ui` returns to `bots: unknown verb: ui` with exit 2.
+- **Procedure**: revert the commit that adds `.skilled/crates/bots-tui/`, the `ui` verb, its vitest suite and the CI job. Nothing else reads either, so the runtime, the JSON verbs and the state root are unchanged by the revert, and `node .skilled/bin/bots.cjs ui` returns to `bots: unknown verb: ui` with exit 2.
 <!-- /ANCHOR:rollback -->
 
 ---

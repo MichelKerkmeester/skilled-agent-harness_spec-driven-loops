@@ -19,7 +19,7 @@ Reducer-generated observability surface for the active research packet.
 
 Inputs, all read-only. Do not edit any of them.
 - The ten reference repos under specs/system-skilled-bots/context/: OpenBot-main (the primary reference), OpenMausBot-main, rakazo-main, openhuman-main, openhuman-full, OpenGhost-main, hermes-muse-main, turnstone-main, buzz-main and tinychannels-main.
-- The build plan: the fourteen phase folders and the contracts/ folder of specs/system-skilled-bots/003-openbot-parity-build (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review).
+- The build plan: the fourteen phase folders and the contracts/ folder of specs/system-skilled-bots/003-openbot-parity-build (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment, 015-deep-review).
 - The three earlier syntheses: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md, .../002-plan-review-research/research/research.md and .../003-plan-depth-research/research/research.md.
 - The built runtime: .skilled/skills/system-skilled-bots/runtime/lib/, .skilled/bin/bots.cjs and .skilled/skills/system-skilled-bots/scripts/bot-check.cjs.
 
@@ -59,7 +59,7 @@ Rules.
 | 5 | Phases 005-memory and 006-approval-grants: OpenGhost memory bounds and compaction, OpenBot approval ladder, kind recognition and the credential hand-off | phase-005-006 | 0.95 | 5 | complete |
 | 6 | Phases 007-per-bot-apps and 008-vault: per-bot connector grants, the insufficient-scope failure path, and the vault access axis | phase-007-008 | 0.88 | 4 | complete |
 | 7 | Phases 009-skills and 010-conversations: skill name grammar and caps, the mention path, and the unowned hook rules engine | phase-009-010 | 0.88 | 4 | complete |
-| 8 | Phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review: proof surface and reference basis of the three proof phases | phase-012-013-014 | 0.67 | 3 | complete |
+| 8 | Phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review: proof surface and reference basis of the three proof phases | phase-012-013-014 | 0.67 | 3 | complete |
 | 9 | Net-new from openhuman-full: twenty-one vendored crates sized and ranked against the build plan and the parity skip list | net-new-openhuman-full | 1.00 | 6 | complete |
 | 10 | Net-new across the remaining eight repositories against the parity skip list, ranked by value to a small team with sizes and licences | net-new-cross-repo | 0.92 | 7 | complete |
 

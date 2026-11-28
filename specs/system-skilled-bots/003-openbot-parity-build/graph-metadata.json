@@ -15,9 +15,10 @@
     "system-skilled-bots/003-openbot-parity-build/009-skills",
     "system-skilled-bots/003-openbot-parity-build/010-conversations",
     "system-skilled-bots/003-openbot-parity-build/011-messaging-channels",
-    "system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios",
-    "system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment",
-    "system-skilled-bots/003-openbot-parity-build/014-deep-review"
+    "system-skilled-bots/003-openbot-parity-build/012-folder-architecture",
+    "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios",
+    "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment",
+    "system-skilled-bots/003-openbot-parity-build/015-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -48,7 +49,7 @@
       "binding"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -60,16 +61,16 @@
       ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       "003-terminal-screen/goal.md",
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts",
       ".github/workflows/bots-runtime.yml",
+      ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
       ".skilled/commands/assets/local-doc-alignment/topics.json",
       "contracts/decisions.md",
       "contracts/records.md",
       "contracts/cli-json.md",
       "003-terminal-screen/002-architecture-and-contracts/spec.md",
-      "contracts/prompt-sections.md",
-      "contracts/answer-seam.md",
-      "012-manual-testing-scenarios/scratch/failures.md"
+      "contracts/prompt-sections.md"
     ],
     "entities": [
       {
@@ -127,9 +128,21 @@
         "source": "derived"
       },
       {
+        "name": "cli-ui.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "bots-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "THIRD_PARTY_NOTICES.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
         "source": "derived"
       },
       {
@@ -166,18 +179,6 @@
         "name": "prompt-sections.md",
         "kind": "doc",
         "path": "contracts/prompt-sections.md",
-        "source": "derived"
-      },
-      {
-        "name": "answer-seam.md",
-        "kind": "doc",
-        "path": "contracts/answer-seam.md",
-        "source": "derived"
-      },
-      {
-        "name": "failures.md",
-        "kind": "doc",
-        "path": "012-manual-testing-scenarios/scratch/failures.md",
         "source": "derived"
       },
       {
@@ -219,7 +220,7 @@
     ],
     "causal_summary": "Skilled bots already holds the hard half of a bot runtime: approved definitions, an atomic file queue, exact cron, worktree isolation, needs-you decisions, run records and a status index",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-27T15:39:39.270Z",
+    "last_save_at": "2026-11-28T11:57:43.281Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,11 +228,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d4de6bb6a5935f971bd5386db27aea4ad8d850f3794c8ee5806f94b7c8d0f344",
+    "source_fingerprint": "sha256:9b830dbf6d729fdb56a5266802501b31861e5006043902f8b6bcddd5b3557bfb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "248d175afd77f6439720bc1f64e5f71b525a3ba6e58eafeb5d641a71f50f97fa",
-      "decision-record.md": "0142d8922e8f784c7a029e06a130914fb659420b3fb8828ec6f3a45e3f92083e"
+      "spec.md": "8f166aa3e85436c1a7a5409ccdbde24e931180378e2b8ffdaad37ba899331f5e",
+      "decision-record.md": "756943558a68f0b7a4d4957a99c6aadabe94512faee639be462b3391ca2cd641"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/005-memory",
     "last_active_at": "2026-11-27T13:33:12.999Z"

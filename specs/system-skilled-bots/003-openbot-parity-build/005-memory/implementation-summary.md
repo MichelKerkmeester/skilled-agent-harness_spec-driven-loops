@@ -130,7 +130,7 @@ Cheap Vibe workers on deepseek-flash wrote every code and doc change, one file p
 | Acceptance rows AC-001 to AC-026 | PASS: all 27 commands, run verbatim, printed `Tests  1 passed`, and all 26 rows read Met |
 | `npm test` (runtime) | PASS: `Test Files  41 passed (41)`, `Tests  519 passed (519)`, exit 0. The floor was 40 files and 480, so the delta is one new file and 39 new tests with none lost |
 | `npm run typecheck` | PASS: exit 0, the floor's value |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: 57 lib and 8 `cli_client` passed, exit 0, the floor's numbers. Nothing under `crates/` changed |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS: 57 lib and 8 `cli_client` passed, exit 0, the floor's numbers. Nothing under `crates/` changed |
 | Manual probe on a scratch checkout | PASS: `bots remember "the sales sheet is Q3"` printed `bots: entry 1 in $T/state/memory/shared.md (1 of 60 entries, 83 of 3600 bytes)` and exited 0, `--list` printed that entry, the folder is 0700 and the file 0600, and `--list --json` matched both list fixtures |
 | `validate.sh --strict` | PASS: `RESULT: PASSED` |
 | Read verbs with a live proposal item | PASS: `bots inbox`, `inbox --json`, `activity`, `activity --json`, `status` and `status --json` each exited 0 and showed the item |

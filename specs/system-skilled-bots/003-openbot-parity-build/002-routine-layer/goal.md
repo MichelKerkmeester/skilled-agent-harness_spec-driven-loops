@@ -92,7 +92,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| Waves live in `plan.md`, not `tasks.md` | The sibling phases 012, 013 and 014 keep their wave table in `tasks.md` §Waves. This run's write scope is `goal.md` and `plan.md` only, so the wave table sits in `plan.md` §8 and `tasks.md` is unchanged. |
+| Waves live in `plan.md`, not `tasks.md` | The sibling phases 013, 014 and 015 keep their wave table in `tasks.md` §Waves. This run's write scope is `goal.md` and `plan.md` only, so the wave table sits in `plan.md` §8 and `tasks.md` is unchanged. |
 | The routine state file is 0600 | `contracts/records.md` section 6 calls it owner-only and `writeStateAtomic` sets no mode, so the writer chmods after every write. `contracts/runtime-architecture.md` section 2.1 still marks the node `umask`, and `design/records.md` section 7 names that line as the one the operator changes, because this phase cannot edit the contract folder. |
 | The enable's answer text is `enabled` | `contracts/answer-seam.md` leaves the text to this phase. `enabled` is not in the NO set, so the answer records the scope `once` and the grant is written with it. |
 | The fatigue and enable write orders are fixed here | The work order asks for a transition contract and the packet contracts state none. `design/state-machines.md` sections 2 to 4 fix the order, what each stop leaves and the one repair. |

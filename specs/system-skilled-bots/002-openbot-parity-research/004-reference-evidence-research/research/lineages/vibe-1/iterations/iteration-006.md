@@ -189,7 +189,7 @@ mechanism, so each adds the rule rather than the location. (4 + 0.5×3) / 7 = 0.
 
 ## Recommended Next Focus
 
-Phases `012-manual-testing-scenarios`, `013-skilled-and-doc-alignment` and `014-deep-review` together,
+Phases `013-manual-testing-scenarios`, `014-skilled-and-doc-alignment` and `015-deep-review` together,
 against the test and documentation surfaces of `buzz-main`, `hermes-muse-main` and `turnstone-main`.
 The open question is what a reference repo's *test suite* looks like when it is the artifact a phase
 is supposed to produce — 012's closing artifact is a scenario set, and no iteration has yet looked at

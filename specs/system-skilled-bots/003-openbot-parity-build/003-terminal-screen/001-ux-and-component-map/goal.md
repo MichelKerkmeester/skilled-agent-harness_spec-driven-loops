@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The four documents live in this packet's `design/`, and phase 002 copies them to `crates/bots-tui/design/` when the crate exists. The crate does not exist yet, so a document written there now would be a file with no owner. |
+| D1 | The four documents live in this packet's `design/`, and phase 002 copies them to `.skilled/crates/bots-tui/design/` when the crate exists. The crate does not exist yet, so a document written there now would be a file with no owner. |
 | D2 | One overlay, two shapes: a decision, which has no options and takes `y`, `n`, free text and `Esc`, and a choice, which has options and takes `1` to `9`, `n` and `Esc`. The advisory names two components and the parent's Q003 names one overlay, so one component with two shapes satisfies both. |
 | D3 | The inbox draws its state as a word, not a glyph, because `open`, `answered` and `expired` are not among the seven group ids, and reusing `–` for `expired` would read as `stopped`. |
 | D4 | `--ascii` and `--mono` are flags on the binary, passed through by `bots ui`, because the binary reads no environment variable of its own. `NO_COLOR` is read by the Node `ui` verb, not by the binary. |

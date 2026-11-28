@@ -74,8 +74,8 @@ One approved map of every frame, key, glyph and component state, so the build dr
 Before this phase, taken on 2026-11-25:
 
 ```text
-$ ls crates/bots-tui/design
-ls: crates/bots-tui/design: No such file or directory
+$ ls .skilled/crates/bots-tui/design
+ls: .skilled/crates/bots-tui/design: No such file or directory
 EXIT=1
 
 $ ls specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design
@@ -98,7 +98,7 @@ mockups.md
 EXIT=0
 ```
 
-The two `No such file or directory` lines are the measured gap: the parent names a design folder five times and neither location held one, so nothing fixed a frame, a key or a glyph. The third line is that count of five, and it is the reason this phase exists rather than a later one. The last block is the gap closed: four documents, and `crates/bots-tui/design` still absent because the crate does not exist until phase 002.
+The two `No such file or directory` lines are the measured gap: the parent names a design folder five times and neither location held one, so nothing fixed a frame, a key or a glyph. The third line is that count of five, and it is the reason this phase exists rather than a later one. The last block is the gap closed: four documents, and `.skilled/crates/bots-tui/design` still absent because the crate does not exist until phase 002.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -193,7 +193,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | A GPL-3.0 design reference invites copying | High | Every openhuman pointer is a path and a line range, no fenced block reproduces its text, and 006 greps for openhuman identifiers and GPL headers |
 | Risk | The frames drift from the build | Medium | 003, 004 and 005 assert their buffers against these frames, so a frame that changes is a design change with a diff |
 | Risk | The key map is approved and then amended silently | Medium | The approval names the key set it covers, so an added key is visibly a new approval rather than a quiet edit |
-| Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `crates/bots-tui/design/`. 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
+| Risk | The design folder is authored here and shipped in the crate | Low | The parent's open question puts the shipped copy at `.skilled/crates/bots-tui/design/`. 002 copies these four documents there when it creates the crate, and the handoff criteria name that step |
 
 **Where the approval is recorded.** The parent's phase handoff says the operator's approval is recorded in this child's `decision-record.md`, and this packet carries one. The answer is recorded in `design/key-map.md` section 6, restated as `acceptance-criteria.md` AC-007, and added as a row in `decision-record.md` when it is given, so the handoff's wording holds without a deviation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:280]
 <!-- /ANCHOR:risks -->
@@ -248,7 +248,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does the design folder ship in the crate or in the packet? Decision: authored in the packet's `design/`, copied to `crates/bots-tui/design/` by 002, because the crate does not exist until 002 creates it and the parent's open question names the crate path as the shipped one.
+- Does the design folder ship in the crate or in the packet? Decision: authored in the packet's `design/`, copied to `.skilled/crates/bots-tui/design/` by 002, because the crate does not exist until 002 creates it and the parent's open question names the crate path as the shipped one.
 - Does the ASCII fallback need a selector? Decision: yes, `--ascii` on the binary, passed through by `bots ui --ascii`, because the binary reads no environment variable of its own and a fallback with no selector is a table nobody can reach.
 - Does `NO_COLOR` reach the binary? Decision: no. The `ui` verb reads it and passes `--mono`, so the binary stays environment-free and the pre-expansion NFR-S01 holds.
 - Is the banner's key `Alt+2` or `Ctrl+P`? Decision: `Alt+2`, because the parent's defect table says `Ctrl+P` opens the palette and the banner must name the inbox tab key.

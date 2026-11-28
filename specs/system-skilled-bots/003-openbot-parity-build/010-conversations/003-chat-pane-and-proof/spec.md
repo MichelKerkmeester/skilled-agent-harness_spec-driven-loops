@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Phase** | 3 of 3 |
 | **Predecessor** | 002-conversation-runtime-and-chat-verb |
 | **Successor** | None |
-| **Handoff Criteria** | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test chat` prints `test result: ok` with 26 frame snapshots, one per chat state per size, each matching its approved frame cell for cell. `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass. A line typed in the chat tab reads back through `bots chat <id> --transcript` |
+| **Handoff Criteria** | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat` prints `test result: ok` with 26 frame snapshots, one per chat state per size, each matching its approved frame cell for cell. `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass. A line typed in the chat tab reads back through `bots chat <id> --transcript` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -38,7 +38,7 @@ contextType: "implementation"
 
 This is **Phase 3** of the conversations phase parent. It builds the pane the design child drew over the verb the runtime child ships.
 
-**Scope Boundary**: The chat tab of `bots ui` in `crates/bots-tui/`, its key context, its worker and its proof. The verb, the conversation file and the prompt block are `../002-conversation-runtime-and-chat-verb/`. Every value this phase draws comes from `../001-chat-ux-and-pane-map/design/`, so this phase decides no layout, label or call of its own.
+**Scope Boundary**: The chat tab of `bots ui` in `.skilled/crates/bots-tui/`, its key context, its worker and its proof. The verb, the conversation file and the prompt block are `../002-conversation-runtime-and-chat-verb/`. Every value this phase draws comes from `../001-chat-ux-and-pane-map/design/`, so this phase decides no layout, label or call of its own.
 
 **Dependencies**:
 - `../001-chat-ux-and-pane-map/design/mockups.md`, the thirteen states at both sizes, approved with the key map delta
@@ -73,7 +73,7 @@ Let a person read a conversation and send a line from the screen they already wa
 Taken on 2026-11-26 in this worktree.
 
 ```text
-$ test -d crates/bots-tui; echo "exit=$?"
+$ test -d .skilled/crates/bots-tui; echo "exit=$?"
 exit=1
 ```
 
@@ -102,7 +102,7 @@ The crate does not exist yet. Phase 003 builds it, so this phase starts when 003
 
 ### Files to Change
 
-`$CRATE` is `crates/bots-tui`. The file names are phase 003's, from its owner map. The pre-expansion phase named `ui_state.rs` and `render/panes.rs`, which the crate does not have.
+`$CRATE` is `.skilled/crates/bots-tui`. The file names are phase 003's, from its owner map. The pre-expansion phase named `ui_state.rs` and `render/panes.rs`, which the crate does not have.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
@@ -158,7 +158,7 @@ REQ-008 keeps the id it had in the pre-expansion phase. New requirements take id
 ## 5. SUCCESS CRITERIA
 
 - **SC-004**: `bots ui` draws the chat tab with the transcript's lines, and a line typed there appears in `bots chat <id> --transcript`
-- **SC-007**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --test chat` prints `test result: ok` and runs 26 frame snapshots
+- **SC-007**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat` prints `test result: ok` and runs 26 frame snapshots
 - **SC-008**: With a fixture send that sleeps 60 seconds, the header's index age still updates while the send is out
 
 SC-004 keeps its pre-expansion id. New criteria take ids from SC-007, after the runtime child's SC-006.

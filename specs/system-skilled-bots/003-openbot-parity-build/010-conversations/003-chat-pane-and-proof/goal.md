@@ -54,9 +54,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target.
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target.
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - [ ] After a line typed in the chat tab, `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r '.messages[-2].text'` prints it.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -74,7 +74,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Implementation | Blocked | `test -d crates/bots-tui` exited 1 on 2026-11-26, and the key map delta is not approved |
+| Implementation | Blocked | `test -d .skilled/crates/bots-tui` exited 1 on 2026-11-26, and the key map delta is not approved |
 
 ### Deviations and findings
 

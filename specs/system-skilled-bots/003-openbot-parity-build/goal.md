@@ -74,9 +74,10 @@ phase and binds as if written here.
 | 009-skills | `009-skills/goal.md` |
 | 010-conversations | `010-conversations/goal.md` |
 | 011-messaging-channels | `011-messaging-channels/goal.md` |
-| 012-manual-testing-scenarios | `012-manual-testing-scenarios/goal.md` |
-| 013-skilled-and-doc-alignment | `013-skilled-and-doc-alignment/goal.md` |
-| 014-deep-review | `014-deep-review/goal.md` |
+| 012-folder-architecture | `012-folder-architecture/goal.md` |
+| 013-manual-testing-scenarios | `013-manual-testing-scenarios/goal.md` |
+| 014-skilled-and-doc-alignment | `014-skilled-and-doc-alignment/goal.md` |
+| 015-deep-review | `015-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -90,12 +91,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build --recursive --strict` prints `RESULT: PASSED` for the parent and all fourteen children.
-- [ ] `find specs/system-skilled-bots/003-openbot-parity-build -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 14, and `rg -c '^\| [0-9]+ \| `[0-9]{3}-' specs/system-skilled-bots/003-openbot-parity-build/spec.md` prints 14.
-- [ ] `rg -c '^\| [0-9]{3} \| `cli-' specs/system-skilled-bots/003-openbot-parity-build/spec.md` prints 14, one orchestration row per phase.
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build --recursive --strict` prints `RESULT: PASSED` for the parent and all fifteen children.
+- [ ] `find specs/system-skilled-bots/003-openbot-parity-build -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 15, and `rg -c '^\| [0-9]+ \| `[0-9]{3}-' specs/system-skilled-bots/003-openbot-parity-build/spec.md` prints 15.
+- [ ] `rg -c '^\| [0-9]{3} \| `cli-' specs/system-skilled-bots/003-openbot-parity-build/spec.md` prints 15, one orchestration row per phase.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0.
 - [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
-- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/deep-review-findings-registry.json');console.log(r.findingsBySeverity.P0,r.findingsBySeverity.P1)"` prints `0 0`.
+- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/review/deep-review-findings-registry.json');console.log(r.findingsBySeverity.P0,r.findingsBySeverity.P1)"` prints `0 0`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -116,6 +117,7 @@ and findings belong here.
 | Child goals authored | Done | Every phase holds its own `goal.md`, and `check-goal.cjs` passes on this parent and on `003-terminal-screen` |
 | Final plan gap F-032 closed and plan ready for green light | Done | validate.sh --strict --recursive prints RESULT: PASSED 15 of 15 at d686cfdad8f |
 | Build orchestration written and D2 amended | Done | `spec.md` BUILD ORCHESTRATION holds 16 waves for the 27 units. D2 now gates a phase on the phases it depends on rather than on the phase before it by number. `goal.cjs packet` reports `packet_durable_chars=3928` and `packet_budget=ok` |
+| Folder architecture phase added and the closing phases renumbered, operator decisions of 2026-11-28 | Done | `012-folder-architecture` joins the binding table, the scenario, alignment and review phases moved to 013, 014 and 015 through `relocate.mjs`, and criteria 1 to 3 now count fifteen children. Criterion 6 reads `015-deep-review`. The operator resets the session goal from the new chat slice |
 | Vibe made primary in the plan, operator decision of 2026-11-27 | Done | `spec.md` EXTERNAL ORCHESTRATION holds 14 phase rows on `cli-mistral-vibe` at `deepseek-flash` and `max (fixed)`, and the ladder runs Vibe, then `cli-pi`, then the rest. BUILD ORCHESTRATION gains a Vibe dispatch section. No decision or criterion changed, so the durable slice needs no resend |
 
 ### Deviations and findings

@@ -1,6 +1,6 @@
 {
   "status": "complete",
-  "focus": "Phases 011-messaging-channels and 013-skilled-and-doc-alignment, plus buzz-main: reference files implementing the same thing, what to lift or mirror, where the plan differs and which side the evidence supports, and the failures the plan does not yet guard against.",
+  "focus": "Phases 011-messaging-channels and 014-skilled-and-doc-alignment, plus buzz-main: reference files implementing the same thing, what to lift or mirror, where the plan differs and which side the evidence supports, and the failures the plan does not yet guard against.",
   "newInfoRatio": 0.62,
   "noveltyJustification": "5 of 9 findings are new to the packet, 1 is partially new and 3 confirm existing plan rules, so the ratio is 5.5/9 rounded to 0.62.",
   "keyQuestions": [
@@ -34,7 +34,7 @@
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
     "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-    "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+    "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
     "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
     "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
   ],
@@ -94,7 +94,7 @@
       "label": "013: the reference symlinks its second agent-instruction name to the first, a 9-byte CLAUDE.md pointing at a 47,801-byte AGENTS.md, and the plan's doc-alignment pass has no rule for a second name for the same document, so a copy would drift where a symlink cannot.",
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/CLAUDE.md:1",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41"
       ]
     },
     {
@@ -102,7 +102,7 @@
       "label": "013: the reference keeps a 135-line domain glossary with 13 _Avoid_ lines naming the wrong words, while the plan's doc-alignment topic carries only a terms list, so the plan's run can pass while a doc uses a retired name, which is the exact failure 013 exists to catch.",
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/CONTEXT.md:1-3,19",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41"
       ]
     },
     {

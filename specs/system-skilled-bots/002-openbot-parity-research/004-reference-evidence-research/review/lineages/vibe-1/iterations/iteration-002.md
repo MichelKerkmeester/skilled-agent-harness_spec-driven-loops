@@ -18,7 +18,7 @@
 - `research/regrade-log.md:307-372` (the net-new group and the `openhuman-full` rows)
 - The 40 iteration records under `research/lineages/*/iterations/`, opened where an origin id was checked
 - Reference lines: `C/OpenBot-main/shared/routine-firing.ts:1-56`, `C/OpenGhost-main/skills.js:78-98`, `C/rakazo-main/packages/core/src/node/secrets-guard.ts:1-32`, `C/buzz-main/crates/buzz-acp/src/pool.rs:2249-2292` and `:5911-5971`, `C/openhuman-full/crates/openhuman-tui/src/theme.rs:85-95`, `C/turnstone-main/turnstone/ui/colors.py:50-90`
-- Plan lines: `B/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:74-84`, `B/005-memory/spec.md:94-98` and `:160-164`, `B/013-skilled-and-doc-alignment/tasks.md:250-258`, `B/014-deep-review/tasks.md:228-234`, `B/014-deep-review/design/fixtures/fix-ledger.md:1-14`, `B/012-manual-testing-scenarios/spec.md:136-140`
+- Plan lines: `B/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:74-84`, `B/005-memory/spec.md:94-98` and `:160-164`, `B/014-skilled-and-doc-alignment/tasks.md:250-258`, `B/015-deep-review/tasks.md:228-234`, `B/015-deep-review/design/fixtures/fix-ledger.md:1-14`, `B/013-manual-testing-scenarios/spec.md:136-140`
 
 ## Findings - New
 
@@ -72,7 +72,7 @@ None.
 | Protocol | Status | Evidence |
 |---|---|---|
 | `spec_code` | pass | The four lifts section 2 names were opened against their cited lines and all four hold: `FIRING_FRAME` is the three sentences at `C/OpenBot-main/shared/routine-firing.ts:9-13` with the live-failure comment at `:21-34`; the two skill-directory lines are `Skill directory: ${skill.dir}` and the relative-paths sentence at `C/OpenGhost-main/skills.js:81-96`; rakazo's matcher bounds and the eight placeholder constants at `C/rakazo-main/packages/core/src/node/secrets-guard.ts:1-12` and `:17-23`; buzz's `workspace_section` at `C/buzz-main/crates/buzz-acp/src/pool.rs:2284-2289` with the prompt-prefix-caching comment at `:2251-2258` and the exact-bytes tests at `:5913-5922` and `:5963-5969`. |
-| `checklist_evidence` | pass | The plan-side citations behind the highest-stakes rows were opened and say what the rows claim: `B/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:79` does cite `theme.rs:87-93` and `colors.py` for a replace-with-`?` rule that neither implements (`safe_text` drops and keeps `\n`; `show_controls` substitutes Control Pictures symbols and keeps line feed and tab); `B/014-deep-review/tasks.md:231` does make CHK-012 count the word `regression`, and `rg -c regression` on `B/014-deep-review/design/fixtures/fix-ledger.md` exits 1; `B/013-skilled-and-doc-alignment/tasks.md:254` does grep only the eight verbs; `B/012-manual-testing-scenarios/spec.md:138` does retire `pbots check`. |
+| `checklist_evidence` | pass | The plan-side citations behind the highest-stakes rows were opened and say what the rows claim: `B/003-terminal-screen/001-ux-and-component-map/design/component-inventory.md:79` does cite `theme.rs:87-93` and `colors.py` for a replace-with-`?` rule that neither implements (`safe_text` drops and keeps `\n`; `show_controls` substitutes Control Pictures symbols and keeps line feed and tab); `B/015-deep-review/tasks.md:231` does make CHK-012 count the word `regression`, and `rg -c regression` on `B/015-deep-review/design/fixtures/fix-ledger.md` exits 1; `B/014-skilled-and-doc-alignment/tasks.md:254` does grep only the eight verbs; `B/013-manual-testing-scenarios/spec.md:138` does retire `pbots check`. |
 
 ## Integration Evidence
 

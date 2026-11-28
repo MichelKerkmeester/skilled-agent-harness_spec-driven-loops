@@ -1,6 +1,0 @@
-scenario_id,runtime,verdict,reason,evidence
-BOT-035,,SKIP,"the routines verb is absent from the CLI verb table, so the block cannot render a routine",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-035.txt
-BOT-036,,SKIP,"the routines verb is absent from the CLI verb table, so the block cannot install a schedule",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-036.txt
-BOT-037,,SKIP,"the routines verb is absent from the CLI verb table, so the block cannot read the until check",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-037.txt
-BOT-038,,SKIP,"the routines verb is absent from the CLI verb table, so the block cannot reach the floor refusal",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-038.txt
-BOT-039,,SKIP,"the routines verb is absent from the CLI verb table, so the block cannot read the fatigue switch",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-039.txt

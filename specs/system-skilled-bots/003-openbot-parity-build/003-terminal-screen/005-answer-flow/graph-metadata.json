@@ -47,17 +47,17 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "crates/bots-tui/src/state.rs",
-      "crates/bots-tui/src/keys.rs",
-      "crates/bots-tui/src/view/overlay.rs",
-      "crates/bots-tui/src/view/mod.rs",
-      "crates/bots-tui/src/cli.rs",
-      "crates/bots-tui/tests/answer_flow.rs",
-      "crates/bots-tui/tests/end_to_end.rs",
+      ".skilled/crates/bots-tui/src/state.rs",
+      ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/view/overlay.rs",
+      ".skilled/crates/bots-tui/src/view/mod.rs",
+      ".skilled/crates/bots-tui/src/cli.rs",
+      ".skilled/crates/bots-tui/tests/answer_flow.rs",
+      ".skilled/crates/bots-tui/tests/end_to_end.rs",
       "design/state-machines.md",
-      "crates/bots-tui/src/view/banner.rs",
-      "crates/bots-tui/src/app.rs",
-      "crates/bots-tui/src/view/panes.rs",
+      ".skilled/crates/bots-tui/src/view/banner.rs",
+      ".skilled/crates/bots-tui/src/app.rs",
+      ".skilled/crates/bots-tui/src/view/panes.rs",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/tests/answer.vitest.ts"
     ],
@@ -101,43 +101,43 @@
       {
         "name": "state.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/state.rs",
+        "path": ".skilled/crates/bots-tui/src/state.rs",
         "source": "derived"
       },
       {
         "name": "keys.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/keys.rs",
+        "path": ".skilled/crates/bots-tui/src/keys.rs",
         "source": "derived"
       },
       {
         "name": "overlay.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/overlay.rs",
+        "path": ".skilled/crates/bots-tui/src/view/overlay.rs",
         "source": "derived"
       },
       {
         "name": "mod.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/mod.rs",
+        "path": ".skilled/crates/bots-tui/src/view/mod.rs",
         "source": "derived"
       },
       {
         "name": "cli.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/cli.rs",
+        "path": ".skilled/crates/bots-tui/src/cli.rs",
         "source": "derived"
       },
       {
         "name": "answer_flow.rs",
         "kind": "file",
-        "path": "crates/bots-tui/tests/answer_flow.rs",
+        "path": ".skilled/crates/bots-tui/tests/answer_flow.rs",
         "source": "derived"
       },
       {
         "name": "end_to_end.rs",
         "kind": "file",
-        "path": "crates/bots-tui/tests/end_to_end.rs",
+        "path": ".skilled/crates/bots-tui/tests/end_to_end.rs",
         "source": "derived"
       },
       {
@@ -149,19 +149,19 @@
       {
         "name": "banner.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/banner.rs",
+        "path": ".skilled/crates/bots-tui/src/view/banner.rs",
         "source": "derived"
       },
       {
         "name": "app.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/app.rs",
+        "path": ".skilled/crates/bots-tui/src/app.rs",
         "source": "derived"
       },
       {
         "name": "panes.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/panes.rs",
+        "path": ".skilled/crates/bots-tui/src/view/panes.rs",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The screen can draw an inbox item but cannot answer one",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-27T23:06:41.701Z",
+    "last_save_at": "2026-11-28T11:13:24.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f84a0008bb6586e59f3f16012b24bb0139a416f671ff5dbbe47e753a62e43d7",
+    "source_fingerprint": "sha256:43410815c6b54adfdc658c102e09bfe46ad339dc3fa447b2efc415a7f9fc2d28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f271e2690df8c67f8ed0383c25d79bb1b056773074708aaceffc91c9dcdbeeb",
-      "plan.md": "254b9cae4468c85f3c1b3a180abcf8854d9f296ad3e6da4ce07020f780747b1f",
-      "tasks.md": "e69b7bd16c2cedf33bea4f73d73940963cc9eece8a4e15535f0394b5743cd516",
-      "implementation-summary.md": "883508223ace26818efb3236d0184a443802b823c37135a738f5cf37d5ecef78"
+      "spec.md": "93443b6aa28f1eb83e54d319ea358b52febee869a2c6c1a54793b2abff29879b",
+      "plan.md": "af28b290a04c932402baa7a26c3837dd0f02cc3138bcdd1a7d802aad0155e64e",
+      "tasks.md": "2ef0089a03cc093fd5afc088ed3547abfeda1cdd81bfa24ee145e5f9d4f91a77",
+      "implementation-summary.md": "1ec711f54ca2b078af4b93ea5a1a0877a7f4ac07739664092c5b3db5e03ea2c3"
     },
     "last_active_at": null
   }

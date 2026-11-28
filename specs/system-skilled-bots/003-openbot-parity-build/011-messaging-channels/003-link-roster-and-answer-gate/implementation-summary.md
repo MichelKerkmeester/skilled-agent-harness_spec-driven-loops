@@ -101,7 +101,7 @@ Fifteen Vibe workers on `deepseek-flash` wrote the code in four internal waves, 
 |-------|--------|
 | `npm test` in the runtime | PASS after the rebase onto 007: `Test Files  47 passed (47)`, `Tests  588 passed (588)`, exit 0. The floor after 007 is 44 files and 567 tests, so this unit adds 3 files and 21 tests and loses none |
 | `npm run typecheck` | PASS: exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: exit 0, 117, 22, 8, 2, 53 with 1 ignored and 16, the same as the floor after 003.005 |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS: exit 0, 117, 22, 8, 2, 53 with 1 ignored and 16, the same as the floor after 003.005 |
 | Every caller names `surface` | PASS: a brace-matching check over `lib/`, `tests/` and `bots.cjs` counts 47 `answerItem({` calls and 0 without `surface`, and `rg "surface\?:\|\?\? 'terminal'" lib/answer.ts` exits 1 |
 | T024 on a temporary state root | PASS: `roster add "$(id -un)" --role owner` exit 0, `schemaVersion` 1, then one line `bots: telegram link code 177214, valid for 5 minutes` |
 | Refusals on the same root | PASS: `link` with no roster exits 4 `channel-roster-missing`, `--as mallory` with no tty exits 2 with `bots: --as needs a tty` (observed `exit=2`), a 49 character whatsapp secret exits 4 `secret-name-invalid` |

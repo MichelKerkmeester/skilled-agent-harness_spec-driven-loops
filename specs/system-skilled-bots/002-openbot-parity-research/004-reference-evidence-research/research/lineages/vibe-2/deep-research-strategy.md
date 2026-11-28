@@ -44,7 +44,7 @@ Reference evidence for the OpenBot parity build of skilled bots.
 
 Inputs, all read-only. Do not edit any of them.
 - The ten reference repos under specs/system-skilled-bots/context/: OpenBot-main (the primary reference), OpenMausBot-main, rakazo-main, openhuman-main, openhuman-full, OpenGhost-main, hermes-muse-main, turnstone-main, buzz-main and tinychannels-main.
-- The build plan: the fourteen phase folders and the contracts/ folder of specs/system-skilled-bots/003-openbot-parity-build (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review).
+- The build plan: the fourteen phase folders and the contracts/ folder of specs/system-skilled-bots/003-openbot-parity-build (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment, 015-deep-review).
 - The three earlier syntheses: specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md, .../002-plan-review-research/research/research.md and .../003-plan-depth-research/research/research.md.
 - The built runtime: .skilled/skills/system-skilled-bots/runtime/lib/, .skilled/bin/bots.cjs and .skilled/skills/system-skilled-bots/scripts/bot-check.cjs.
 
@@ -67,7 +67,7 @@ Rules.
 <!-- ANCHOR:key-questions -->
 ## 3. KEY QUESTIONS (remaining)
 - [ ] Trust, phases 006-approval-grants, 007-per-bot-apps and 008-vault: which reference files implement approval grants, per-bot tool or app filtering and a secret store with injection, what should the builder lift or mirror, and which leak, bypass or precedence bugs did those repos hit that the plan does not guard against?
-- [ ] Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?
+- [ ] Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?
 - [ ] Does the per-run filtered UTCP config compare a tool name before or after normalisation, and can a normalised alias slip past the apps filter?
 - [ ] Which of the four non-override rules does a routine-origin approval need, and does a standing answer saved from a check-in survive the next run?
 - [ ] Does the plan secret-store-unreadable detail ever carry a captured backend message, and what fixed phrase replaces it per cause?
@@ -487,7 +487,7 @@ Rules.
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?
+Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?
 
 <!-- /ANCHOR:next-focus -->
 

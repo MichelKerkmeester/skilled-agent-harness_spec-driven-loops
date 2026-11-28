@@ -114,7 +114,7 @@ One verify failed. The paste worker's change passed the piped probe, but a probe
 |-------|--------|
 | `cd $R && npm test` | PASS, `Test Files  55 passed (55)` and `Tests  742 passed (742)`, exit 0. Baseline 53 files and 695 tests, so +2 files and +47 tests with none lost |
 | `cd $R && npm run typecheck` | PASS, exit 0, baseline exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS, exit 0, every `test result: ok` |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS, exit 0, every `test result: ok` |
 | `parent-skill-check.cjs .skilled/skills/system-skilled-bots` | PASS, `all hard invariants passed, 0 warnings`, exit 0 |
 | Named filters | `conversation.vitest.ts`: torn 1, bound 1, injection 8, channel 1, escape 1, routing 8, adversarial 1. `cli-chat.vitest.ts`: one message, routing, parked, duplicate, resumed, secret, three-line paste and bot-unknown 1 each. The T020 and T021 filters 1 each |
 | Live probes on a scratch checkout | One message exit 0 and 2 messages, `@other-bot` routed, 9 keys and `by` `bot`, `/exit` exit 0 with nothing appended, the envelope keys `conversationId messages version`, a control character dropped and the line feed kept |

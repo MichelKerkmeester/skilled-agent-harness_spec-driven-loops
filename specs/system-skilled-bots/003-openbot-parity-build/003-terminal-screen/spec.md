@@ -45,7 +45,7 @@ _memory:
 | **Phase** | 3 of 14 |
 | **Predecessor** | `002-routine-layer` |
 | **Successor** | `004-computer-exposure` |
-| **Handoff Criteria** | `cargo test`, `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass in `crates/bots-tui`. `bots ui` opens against this repository. One needs-you item answered from the screen reads back as answered from its item file, because `bots inbox --json` lists only open and expired items. The scripted pseudo-terminal run in 006 proves the answer path without a person, and the operator's hand answer is the final acceptance step after 006 |
+| **Handoff Criteria** | `cargo test`, `cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` pass in `.skilled/crates/bots-tui`. `bots ui` opens against this repository. One needs-you item answered from the screen reads back as answered from its item file, because `bots inbox --json` lists only open and expired items. The scripted pseudo-terminal run in 006 proves the answer path without a person, and the operator's hand answer is the final acceptance step after 006 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -101,12 +101,12 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 ## 3. SCOPE
 
 ### In Scope
-- One MIT Rust crate at `crates/bots-tui/` whose binary `bots-ui` draws four tabs, a pending-approval banner, an approval overlay and the eight status glyphs, and whose library target lets `cargo test --lib` and `tests/*.rs` reach every module.
+- One MIT Rust crate at `.skilled/crates/bots-tui/` whose binary `bots-ui` draws four tabs, a pending-approval banner, an approval overlay and the eight status glyphs, and whose library target lets `cargo test --lib` and `tests/*.rs` reach every module.
 - One `ui` verb in `.skilled/bin/bots.cjs` that resolves the built binary, execs it with `--repo` and `--skilled-tree`, inherits stdio, passes the exit code through and refuses `ui-unavailable` when the crate is absent and `ui-not-built` when only the binary is. The verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so the binary reads no environment variable of its own.
 - The activity, inbox and routines panes, drawn from `bots activity --json`, `bots inbox --json` and `bots routines --json`, and one answer written through `bots answer` with `--scope`.
 - A tracked `design/` folder holding the ASCII mockups per state at 80x24 and 120x40, the key map, the glyph table and the component inventory, written in our own words with `file:line` pointers into the reference sources.
 - A `bots-tui` CI job that installs a pinned toolchain with `dtolnay/rust-toolchain@1.92.0` plus the `clippy` and `rustfmt` components, then runs `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings` and `cargo test`.
-- `crates/bots-tui/tests/fixtures/bots`, the fake CLI that prints the payload files under `tests/fixtures/payloads/` and records its argv. A key that draws lands as a new scenario file rather than an edit to an existing payload, for example `tests/fixtures/payloads/inbox.grant.json` behind `--fixture-scenario grant`, so a later phase adds a file and never breaks a snapshot or the design-copy diff.
+- `.skilled/crates/bots-tui/tests/fixtures/bots`, the fake CLI that prints the payload files under `tests/fixtures/payloads/` and records its argv. A key that draws lands as a new scenario file rather than an edit to an existing payload, for example `tests/fixtures/payloads/inbox.grant.json` behind `--fixture-scenario grant`, so a later phase adds a file and never breaks a snapshot or the design-copy diff.
 
 ### Out of Scope
 - The chat pane - it needs `bots chat`, which is phase 010, so the fourth tab draws one line naming that phase and holds no state.
@@ -129,42 +129,42 @@ The first two lines are the measured gap: no `ui` verb exists, and `inbox` has n
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `crates/bots-tui/design/` | Create | 002 | A copy of 001's four design files plus `architecture.md` and `contracts.md` |
-| `crates/bots-tui/Cargo.toml` | Create | 002 | MIT manifest: binary `bots-ui` beside the library target, ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width, libc |
-| `crates/bots-tui/Cargo.lock` | Create | 002 | Pinned dependency graph, committed because the crate ships a binary |
-| `crates/bots-tui/src/lib.rs` | Create | 002 | Library root: argument parsing, the terminal guard, the loop entry, one `pub mod` line per module |
-| `crates/bots-tui/src/main.rs` | Create | 002 | The binary: calls the library entry point and maps its result to the exit code |
-| `crates/bots-tui/src/app.rs` | Create | 002 | The loop: receive one message, reduce it, hand off its effects, draw once |
-| `crates/bots-tui/src/event.rs` | Create | 002 | The event source the caller supplies, so a test drives the loop without a tty |
-| `crates/bots-tui/src/state.rs` | Create | 002 | Pure reducer `update(state, msg) -> Vec<Effect>` |
-| `crates/bots-tui/src/data.rs` | Create | 002 | The worker thread and the generation-tagged channel |
-| `crates/bots-tui/src/cli.rs` | Create | 002 | The only module that spawns a process: program, arguments, spawn, parse, answer |
-| `crates/bots-tui/src/model.rs` | Create | 002 | serde types with defaults, an unknown state kept as `Unknown(raw)` |
-| `crates/bots-tui/src/terminal.rs` | Create | 002 | RAII guard, a chained panic hook and a signal handler that only sets a flag |
-| `crates/bots-tui/src/keys.rs` | Create | 002 | The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` |
-| `crates/bots-tui/src/theme.rs` | Create | 002 | A stub. 003 writes the System and Mono palettes, the glyph table and `printable` |
-| `crates/bots-tui/src/view/header.rs` | Create | 003 | Header: bot count and the stale flag |
-| `crates/bots-tui/src/view/tabs.rs` | Create | 003 | Tab bar |
-| `crates/bots-tui/src/view/footer.rs` | Create | 003 | Footer generated from `keys.rs` |
-| `crates/bots-tui/src/view/mod.rs` | Create | 002 | A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls |
-| `crates/bots-tui/src/view/panes.rs` | Create | 004 | Activity, inbox, routines and chat-placeholder bodies |
-| `crates/bots-tui/src/view/banner.rs` | Create | 005 | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs` and the hidden state |
-| `crates/bots-tui/src/view/overlay.rs` | Create | 005 | Decision and choice overlays, free-text entry, the in-flight lock |
-| `crates/bots-tui/tests/fixtures/bots` | Create | 002 | The fake CLI: canned JSON per verb, records its argv, committed mode 0755 |
-| `crates/bots-tui/tests/common/` | Create | 002 | The frame loader and the fixture helper |
-| `crates/bots-tui/tests/fixtures/payloads/` | Create | 002 | The canonical payloads |
-| `crates/bots-tui/tests/end_to_end.rs` | Create | 005 | Scripted loop to frame 1 |
-| `crates/bots-tui/tests/pty_smoke.rs` | Create | 006 | The release binary in a pseudo-terminal |
-| `crates/bots-tui/tests/cli_client.rs` | Create | 002 | Integration tests against the fixture |
-| `crates/bots-tui/tests/render_keys.rs` | Create | 003 | `TestBackend` assertions that every bound key is drawn |
-| `crates/bots-tui/tests/panes.rs` | Create | 004 | One buffer snapshot per pane per state at both sizes |
-| `crates/bots-tui/tests/answer_flow.rs` | Create | 005 | The argv log, Esc and closed input |
-| `crates/bots-tui/README.md` | Create | 006 | Build, run, keys and the openhuman design reference with no code copied |
+| `.skilled/crates/bots-tui/design/` | Create | 002 | A copy of 001's four design files plus `architecture.md` and `contracts.md` |
+| `.skilled/crates/bots-tui/Cargo.toml` | Create | 002 | MIT manifest: binary `bots-ui` beside the library target, ratatui 0.30, crossterm 0.29, serde, serde_json, unicode-width, libc |
+| `.skilled/crates/bots-tui/Cargo.lock` | Create | 002 | Pinned dependency graph, committed because the crate ships a binary |
+| `.skilled/crates/bots-tui/src/lib.rs` | Create | 002 | Library root: argument parsing, the terminal guard, the loop entry, one `pub mod` line per module |
+| `.skilled/crates/bots-tui/src/main.rs` | Create | 002 | The binary: calls the library entry point and maps its result to the exit code |
+| `.skilled/crates/bots-tui/src/app.rs` | Create | 002 | The loop: receive one message, reduce it, hand off its effects, draw once |
+| `.skilled/crates/bots-tui/src/event.rs` | Create | 002 | The event source the caller supplies, so a test drives the loop without a tty |
+| `.skilled/crates/bots-tui/src/state.rs` | Create | 002 | Pure reducer `update(state, msg) -> Vec<Effect>` |
+| `.skilled/crates/bots-tui/src/data.rs` | Create | 002 | The worker thread and the generation-tagged channel |
+| `.skilled/crates/bots-tui/src/cli.rs` | Create | 002 | The only module that spawns a process: program, arguments, spawn, parse, answer |
+| `.skilled/crates/bots-tui/src/model.rs` | Create | 002 | serde types with defaults, an unknown state kept as `Unknown(raw)` |
+| `.skilled/crates/bots-tui/src/terminal.rs` | Create | 002 | RAII guard, a chained panic hook and a signal handler that only sets a flag |
+| `.skilled/crates/bots-tui/src/keys.rs` | Create | 002 | The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` |
+| `.skilled/crates/bots-tui/src/theme.rs` | Create | 002 | A stub. 003 writes the System and Mono palettes, the glyph table and `printable` |
+| `.skilled/crates/bots-tui/src/view/header.rs` | Create | 003 | Header: bot count and the stale flag |
+| `.skilled/crates/bots-tui/src/view/tabs.rs` | Create | 003 | Tab bar |
+| `.skilled/crates/bots-tui/src/view/footer.rs` | Create | 003 | Footer generated from `keys.rs` |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Create | 002 | A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | Create | 004 | Activity, inbox, routines and chat-placeholder bodies |
+| `.skilled/crates/bots-tui/src/view/banner.rs` | Create | 005 | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs` and the hidden state |
+| `.skilled/crates/bots-tui/src/view/overlay.rs` | Create | 005 | Decision and choice overlays, free-text entry, the in-flight lock |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | Create | 002 | The fake CLI: canned JSON per verb, records its argv, committed mode 0755 |
+| `.skilled/crates/bots-tui/tests/common/` | Create | 002 | The frame loader and the fixture helper |
+| `.skilled/crates/bots-tui/tests/fixtures/payloads/` | Create | 002 | The canonical payloads |
+| `.skilled/crates/bots-tui/tests/end_to_end.rs` | Create | 005 | Scripted loop to frame 1 |
+| `.skilled/crates/bots-tui/tests/pty_smoke.rs` | Create | 006 | The release binary in a pseudo-terminal |
+| `.skilled/crates/bots-tui/tests/cli_client.rs` | Create | 002 | Integration tests against the fixture |
+| `.skilled/crates/bots-tui/tests/render_keys.rs` | Create | 003 | `TestBackend` assertions that every bound key is drawn |
+| `.skilled/crates/bots-tui/tests/panes.rs` | Create | 004 | One buffer snapshot per pane per state at both sizes |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` | Create | 005 | The argv log, Esc and closed input |
+| `.skilled/crates/bots-tui/README.md` | Create | 006 | Build, run, keys and the openhuman design reference with no code copied |
 | `.skilled/bin/bots.cjs` | Modify | 002 | The `ui` verb: usage line, verb spec, binary resolution, exec, exit passthrough, both refusals |
 | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | Create | 002 | The `ui` verb's tests: argv, exit passthrough, both refusals |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Modify | 006 | One line naming `bots ui` as a status surface |
 | `.github/workflows/bots-runtime.yml` | Modify | 002 | Two path entries and one `bots-tui` job |
-| `.gitignore` | Modify | 002 | Ignore `/crates/bots-tui/target/` |
+| `.gitignore` | Modify | 002 | Ignore `/.skilled/crates/bots-tui/target` |
 
 ### Design Notes
 
@@ -185,7 +185,7 @@ Four notes carry the detail the children share. Each is authoritative for its ow
 
 Four pieces belong to the parent because no child owns them. The section keeps a letter rather than taking a new number, so the §6 citations in the children still resolve.
 
-- **Install.** The screen arrives as a source checkout plus `cargo build --release` in `crates/bots-tui/`, on macOS and Linux only, with a Rust toolchain as a stated prerequisite. A checkout that has not built the crate sees `ui-not-built` from the `ui` verb, and one without the crate sees `ui-unavailable`, so a non-source install is refused by name rather than by a stack trace.
+- **Install.** The screen arrives as a source checkout plus `cargo build --release` in `.skilled/crates/bots-tui/`, on macOS and Linux only, with a Rust toolchain as a stated prerequisite. A checkout that has not built the crate sees `ui-not-built` from the `ui` verb, and one without the crate sees `ui-unavailable`, so a non-source install is refused by name rather than by a stack trace.
 - **Version match.** `bots-ui --version` prints the crate version and a contract number. The `ui` verb reads that line and refuses a binary whose contract number differs from the one the verb carries, so a binary built before the last payload change is refused rather than drawn against a payload it does not know. `002-architecture-and-contracts` REQ-001 and REQ-009 carry the requirement.
 - **CI.** `--locked` goes on `cargo clippy`, `cargo test` and `cargo build` in the `bots-tui` job and `cargo fmt --check` takes none, because `cargo fmt` rejects the flag. The job adds a release build beside the three gates and names its runner, its cache and its timeout. `002-architecture-and-contracts` owns the job.
 - **Rollback.** One revert of the phase's commits removes the crate, the `ui` verb, the CI job and the hub line together, because the phase adds no behaviour to a module another phase owns. What stays is the runtime's `--json` verbs and `bots answer`, which packet phases 001 and 002 own and this phase only reads.
@@ -200,7 +200,7 @@ These requirements hold across every child. A child that restates one keeps its 
 
 | ID | Requirement | Carried by |
 |----|-------------|------------|
-| REQ-002 | `crates/bots-tui/Cargo.toml` declares `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` matches only comment lines that name the design reference. No file in the crate carries a GPL header or a copied openhuman function. | 002, 006 |
+| REQ-002 | `.skilled/crates/bots-tui/Cargo.toml` declares `license = "MIT"`, and `rg -n 'openhuman' .skilled/crates/bots-tui/src` matches only comment lines that name the design reference. No file in the crate carries a GPL header or a copied openhuman function. | 002, 006 |
 | REQ-003 | The binary reads only through `bots ... --json` and writes only through `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>`. `cli.rs` takes the program and its arguments from its caller, defaulting to `node` plus `<skilled-tree>/.skilled/bin/bots.cjs`, so every read is one `<program> <verb> --json --repo <repo>` call and the tests point it at `bash` plus `concat!(env!("CARGO_MANIFEST_DIR"), "/tests/fixtures/bots")`, which resolves from the crate directory cargo runs tests in. The binary opens no file under the state root. | 002, 004, 005 |
 | REQ-004 | The tab bar holds four tabs: Alt+1 activity, Alt+2 inbox, Alt+3 routines, Alt+4 chat, with `[` and `]` as the fallback pair. Ctrl+P opens the command palette and Ctrl+D exits. The chat tab draws one line naming phase 010 and holds no state. | 003 |
 | REQ-006 | The inbox pane lists every open and expired item from `bots inbox --json`. Digits 1 to 9 pick the option at that position, and only inside an overlay. `y` answers `approve` with `--scope once` and `n` answers `deny` with `--scope deny`, so every write is `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>`. Deny is `n`. No other key denies. The overlay offers no `always` and no `conversation` scope, because a standing grant needs a rule store no phase lands. | 005 |
@@ -209,7 +209,7 @@ These requirements hold across every child. A child that restates one keeps its 
 
 ### The fixture
 
-`crates/bots-tui/tests/fixtures/bots` is the copy of every `--json` contract the screen reads: `activity --json` with its `groups` array, `inbox --json` with its `items` array, `routines --json` with its `routines` array, each payload under a top-level `version`, and `status --json` carrying the `lastRun.branch` and `lastRun.worktreePath` keys 004 adds. A phase that changes one of those payloads updates the fixture in the same change. It is the only payload source in tests: no test reads a live state root and no test needs a tty. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records", row `crates/bots-tui/tests/fixtures/bots`] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md, AC-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md, AC-007]
+`.skilled/crates/bots-tui/tests/fixtures/bots` is the copy of every `--json` contract the screen reads: `activity --json` with its `groups` array, `inbox --json` with its `items` array, `routines --json` with its `routines` array, each payload under a top-level `version`, and `status --json` carrying the `lastRun.branch` and `lastRun.worktreePath` keys 004 adds. A phase that changes one of those payloads updates the fixture in the same change. It is the only payload source in tests: no test reads a live state root and no test needs a tty. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "Shared Records", row `.skilled/crates/bots-tui/tests/fixtures/bots`] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/acceptance-criteria.md, AC-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/acceptance-criteria.md, AC-007]
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -294,7 +294,7 @@ Each defect is a fault in the pre-expansion phase 003 as written. The child name
 - Should the fourth tab be Chat or absent? Decision: present as a placeholder, so Alt+1..4 does not renumber when phase 010 lands.
 - Does `bots answer` need a `--json` mode for the screen to report the outcome? Decision: no. The screen reads the exit code and stderr, which the verb already writes.
 - Should the overlay offer `always`? Decision: no. A standing grant needs a rule store that no phase lands, so the overlay offers `once` and `deny`. It returns when a later packet lands a rule store with `bots grants list|revoke`, a 30-day default expiry, a scope the next packet defines and an audit row on every grant and revoke. Bot plus kind is too wide, because one allow on one delete would open every delete that bot makes.
-- Where does the design folder live? Decision: `crates/bots-tui/design/`, so the mockups sit beside the code they describe and a reader of the crate finds them without leaving it.
+- Where does the design folder live? Decision: `.skilled/crates/bots-tui/design/`, so the mockups sit beside the code they describe and a reader of the crate finds them without leaving it.
 <!-- /ANCHOR:questions -->
 
 ---

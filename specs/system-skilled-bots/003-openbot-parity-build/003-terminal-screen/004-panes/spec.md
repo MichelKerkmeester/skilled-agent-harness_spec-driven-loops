@@ -31,7 +31,7 @@ contextType: "implementation"
 | **Phase** | 4 of 6 |
 | **Predecessor** | 003-shell-and-navigation |
 | **Successor** | 005-answer-flow |
-| **Handoff Criteria** | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok`, including one buffer snapshot per pane per state at 80x24 and 120x40 and the 2,000-row draw visiting at most the body height |
+| **Handoff Criteria** | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes` prints `test result: ok`, including one buffer snapshot per pane per state at 80x24 and 120x40 and the 2,000-row draw visiting at most the body height |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -45,18 +45,18 @@ This is **Phase 4** of the Terminal screen children: UX, architecture, shell, pa
 
 **Dependencies**:
 - 002's `state.rs`, which holds `Remote<T>{rows, last_ok_at, error, in_flight, generation}` and one `PaneView<K>` per pane, and 002's `model.rs`, which holds the serde types the panes read. This child adds `on_list_action`, `reconcile_selection` and `clamp_scroll` and no other line of `state.rs`.
-- 002's fixture at `crates/bots-tui/tests/fixtures/bots`, the only payload source in tests.
+- 002's fixture at `.skilled/crates/bots-tui/tests/fixtures/bots`, the only payload source in tests.
 - 002's `tests/common/frames.rs`, the frame loader that reads a frame from `design/mockups.md` by heading and size, so every snapshot compares the buffer to the approved frame rather than to a block typed from the output.
 - 003's `src/view/mod.rs` view root, which declares the module this child adds. 003's `theme.rs`, which owns the palette, the glyph table and the sanitizer this child calls, and 003's `view/header.rs`, which owns `stale_label`.
 - Phase 001's `bots activity --json` and `bots inbox --json`, and phase 002's `bots routines --json`, whose shapes the panes draw unchanged.
 
 **Deliverables**:
-- `crates/bots-tui/src/view/panes.rs`, the four pane bodies, the five state lines, the display-width clip and the wide-layout detail column.
-- `crates/bots-tui/src/view/banner.rs`, the pending-approval row above the body.
-- `crates/bots-tui/src/view/mod.rs`, one `mod panes;` line and one `mod banner;` line beside the modules 003 declares, and the banner slot call.
-- `crates/bots-tui/src/keys.rs`, the `list` rows: Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only.
-- `crates/bots-tui/src/state.rs`, `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row.
-- `crates/bots-tui/tests/panes.rs`, one buffer snapshot per pane per state at both sizes, the reorder test, the sanitizer test and the 2,000-row count test.
+- `.skilled/crates/bots-tui/src/view/panes.rs`, the four pane bodies, the five state lines, the display-width clip and the wide-layout detail column.
+- `.skilled/crates/bots-tui/src/view/banner.rs`, the pending-approval row above the body.
+- `.skilled/crates/bots-tui/src/view/mod.rs`, one `mod panes;` line and one `mod banner;` line beside the modules 003 declares, and the banner slot call.
+- `.skilled/crates/bots-tui/src/keys.rs`, the `list` rows: Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only.
+- `.skilled/crates/bots-tui/src/state.rs`, `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row.
+- `.skilled/crates/bots-tui/tests/panes.rs`, one buffer snapshot per pane per state at both sizes, the reorder test, the sanitizer test and the 2,000-row count test.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -74,8 +74,8 @@ Four pane bodies that draw every state of every surface from the JSON the runtim
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-$ ls crates/bots-tui
-ls: crates/bots-tui: No such file or directory
+$ ls .skilled/crates/bots-tui
+ls: .skilled/crates/bots-tui: No such file or directory
 EXIT=1
 
 $ node .skilled/bin/bots.cjs activity --json
@@ -132,12 +132,12 @@ The first block is the gap this child fills: no crate exists, so no pane body ex
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `crates/bots-tui/src/view/panes.rs` | Create | The four pane bodies, the five state lines, the display-width clip and the wide-layout detail column |
-| `crates/bots-tui/src/view/banner.rs` | Create | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs` and the hidden state |
-| `crates/bots-tui/src/view/mod.rs` | Modify | One `mod panes;` line and one `mod banner;` line beside the modules 003 declares, and the banner slot call |
-| `crates/bots-tui/src/keys.rs` | Modify | The `list` rows: Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only |
-| `crates/bots-tui/src/state.rs` | Modify | The `on_list_action`, `reconcile_selection` and `clamp_scroll` bodies |
-| `crates/bots-tui/tests/panes.rs` | Create | One buffer snapshot per pane per state at both sizes, the reorder test, the sanitizer test and the 2,000-row count test |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | Create | The four pane bodies, the five state lines, the display-width clip and the wide-layout detail column |
+| `.skilled/crates/bots-tui/src/view/banner.rs` | Create | The pending-approval row: the open item count, the inbox tab key label read from `keys.rs` and the hidden state |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modify | One `mod panes;` line and one `mod banner;` line beside the modules 003 declares, and the banner slot call |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modify | The `list` rows: Up, Down, PgUp and PgDn on every data pane, and Enter on the inbox only |
+| `.skilled/crates/bots-tui/src/state.rs` | Modify | The `on_list_action`, `reconcile_selection` and `clamp_scroll` bodies |
+| `.skilled/crates/bots-tui/tests/panes.rs` | Create | One buffer snapshot per pane per state at both sizes, the reorder test, the sanitizer test and the 2,000-row count test |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -179,11 +179,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at 80x24 and at 120x40, sixteen per size, each comparing every cell to the frame `design/mockups.md` draws.
-- **SC-002**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`, and `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget --ignored` names `two_thousand_rows_draw_under_16ms`.
-- **SC-003**: `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, and `rg -n 'insta' crates/bots-tui/Cargo.toml` prints nothing.
-- **SC-004**: `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
-- **SC-005**: `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs`, so no pane spawns a process of its own.
+- **SC-001**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at 80x24 and at 120x40, sixteen per size, each comparing every cell to the frame `design/mockups.md` draws.
+- **SC-002**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`, and `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- budget --ignored` names `two_thousand_rows_draw_under_16ms`.
+- **SC-003**: `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines, and `rg -n 'insta' .skilled/crates/bots-tui/Cargo.toml` prints nothing.
+- **SC-004**: `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0.
+- **SC-005**: `rg -n 'Command::new' .skilled/crates/bots-tui/src` prints only `cli.rs`, so no pane spawns a process of its own.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -197,7 +197,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Dependency | 002's fixture carrying the four payloads | No pane is testable before phases 001 and 002 land their verbs | Every pane test reads the fixture, so the payload shape is proven in one place and a phase that changes a payload updates the fixture in the same change |
 | Dependency | 003's `src/view/mod.rs` view root | The `mod panes;` line has nowhere to land | The task names the file 003 creates and the build is the check, so a missing view root fails at `cargo build` rather than at review |
 | Risk | A wall-clock budget fails for the machine rather than the code | A flaky gate on a loaded runner | The gate is a count of the rows the draw visited, and the 16 ms timing is an ignored test the operator runs locally |
-| Risk | A control character reaches a cell through a path that skips the sanitizer | A corrupted frame, and a bot id that can move the cursor | One test asserts the buffer holds `?[2J` and no control byte for a bot id carrying `\u{1b}[2J`, and `test ! -e crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than two |
+| Risk | A control character reaches a cell through a path that skips the sanitizer | A corrupted frame, and a bot id that can move the cursor | One test asserts the buffer holds `?[2J` and no control byte for a bot id carrying `\u{1b}[2J`, and `test ! -e .skilled/crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than two |
 | Risk | A pane maps a state to a glyph of its own | Two tables drift, and the ASCII column stops reaching the buffer | The pane calls `theme::marker` and a test asserts the ASCII column reaches the buffer, so a second table fails by name |
 <!-- /ANCHOR:risks -->
 
@@ -211,7 +211,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-P02**: A pane draws only the rows that fit its body, so the cost of a 2,000-row payload is the clip, not the cell count.
 
 ### Security
-- **NFR-S01**: No pane spawns a process, opens a file or reads an environment variable. `rg -n 'Command::new' crates/bots-tui/src` matches only `cli.rs`.
+- **NFR-S01**: No pane spawns a process, opens a file or reads an environment variable. `rg -n 'Command::new' .skilled/crates/bots-tui/src` matches only `cli.rs`.
 - **NFR-S02**: Every runtime string passes through the sanitizer `theme.rs` owns before it reaches a cell, so a payload cannot write a terminal escape.
 
 ### Reliability
@@ -249,7 +249,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Who owns the glyph table? Decision: 003's `theme.rs`, which carries the Unicode and ASCII columns and the `--ascii` flag. This child calls `marker(state, glyphs)` and keeps no second table, so the eight glyphs have one owner and one test.
 - Who owns the sanitizer? Decision: 003's `theme.rs`, one behaviour that replaces each control character with `?`. This child routes every drawn string through it and keeps no second copy, so the status row and the panes cannot disagree about what a control character draws as.
-- Which file is the view root? Decision: `crates/bots-tui/src/view/mod.rs`, which 003 creates and this child adds one `mod panes;` line to.
+- Which file is the view root? Decision: `.skilled/crates/bots-tui/src/view/mod.rs`, which 003 creates and this child adds one `mod panes;` line to.
 - Who draws the stale text? Decision: 003's `view/header.rs` owns `stale_label` and the header draws it. This child's stale state calls it, so the age format has one owner and one test.
 - Is the 16 ms budget a hard gate? Decision: no. The gate is the count of rows the draw visited, and the 16 ms timing is an ignored test the operator runs locally, so a loaded runner cannot fail it.
 - Does the inbox pane need a second snapshot for an expired row? Decision: no. The inbox's one rows frame carries an open and an expired item, and a separate assertion proves the expired row carries no answer key.

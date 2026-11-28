@@ -51,21 +51,22 @@
       "goal.md",
       "decision-record.md",
       ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".github/workflows/bots-runtime.yml",
-      "002-architecture-and-contracts/design/architecture.md",
-      "002-architecture-and-contracts/design/contracts.md",
-      "005-answer-flow/design/state-machines.md",
-      "research/context-manifest.md",
-      "001-ux-and-component-map/goal.md",
-      "002-architecture-and-contracts/goal.md",
-      "003-shell-and-navigation/goal.md",
-      "004-panes/goal.md",
-      "005-answer-flow/goal.md",
-      "006-hardening-and-proof/goal.md",
-      "001-ux-and-component-map/acceptance-criteria.md",
-      "001-ux-and-component-map/decision-record.md",
-      "research/fable-review-1.md"
+      ".skilled/crates/bots-tui/Cargo.toml",
+      ".skilled/crates/bots-tui/Cargo.lock",
+      ".skilled/crates/bots-tui/src/lib.rs",
+      ".skilled/crates/bots-tui/src/main.rs",
+      ".skilled/crates/bots-tui/src/app.rs",
+      ".skilled/crates/bots-tui/src/event.rs",
+      ".skilled/crates/bots-tui/src/state.rs",
+      ".skilled/crates/bots-tui/src/data.rs",
+      ".skilled/crates/bots-tui/src/cli.rs",
+      ".skilled/crates/bots-tui/src/model.rs",
+      ".skilled/crates/bots-tui/src/terminal.rs",
+      ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/theme.rs",
+      ".skilled/crates/bots-tui/src/view/header.rs",
+      ".skilled/crates/bots-tui/src/view/tabs.rs",
+      ".skilled/crates/bots-tui/src/view/footer.rs"
     ],
     "entities": [
       {
@@ -93,45 +94,99 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "name": "Cargo.toml",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/Cargo.toml",
         "source": "derived"
       },
       {
-        "name": "bots-runtime.yml",
-        "kind": "config",
-        "path": ".github/workflows/bots-runtime.yml",
+        "name": "Cargo.lock",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/Cargo.lock",
         "source": "derived"
       },
       {
-        "name": "architecture.md",
-        "kind": "doc",
-        "path": "002-architecture-and-contracts/design/architecture.md",
+        "name": "lib.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/lib.rs",
         "source": "derived"
       },
       {
-        "name": "contracts.md",
-        "kind": "doc",
-        "path": "002-architecture-and-contracts/design/contracts.md",
+        "name": "main.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/main.rs",
         "source": "derived"
       },
       {
-        "name": "state-machines.md",
-        "kind": "doc",
-        "path": "005-answer-flow/design/state-machines.md",
+        "name": "app.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/app.rs",
         "source": "derived"
       },
       {
-        "name": "context-manifest.md",
-        "kind": "doc",
-        "path": "research/context-manifest.md",
+        "name": "event.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/event.rs",
         "source": "derived"
       },
       {
-        "name": "fable-review-1.md",
-        "kind": "doc",
-        "path": "research/fable-review-1.md",
+        "name": "state.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/state.rs",
+        "source": "derived"
+      },
+      {
+        "name": "data.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/data.rs",
+        "source": "derived"
+      },
+      {
+        "name": "cli.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/cli.rs",
+        "source": "derived"
+      },
+      {
+        "name": "model.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/model.rs",
+        "source": "derived"
+      },
+      {
+        "name": "terminal.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/terminal.rs",
+        "source": "derived"
+      },
+      {
+        "name": "keys.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "theme.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/theme.rs",
+        "source": "derived"
+      },
+      {
+        "name": "header.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/header.rs",
+        "source": "derived"
+      },
+      {
+        "name": "tabs.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/tabs.rs",
+        "source": "derived"
+      },
+      {
+        "name": "footer.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/footer.rs",
         "source": "derived"
       },
       {
@@ -157,65 +212,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose One",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deliver Phase",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Documentation Map",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "deny",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime answers every question an operator has as text: `bots status` prints rows, `bots inbox` prints tab-separated items and phases 001 and 002 add `bots activity` and `bots routines` in the same shape",
     "created_at": "2026-11-25T07:13:39Z",
-    "last_save_at": "2026-11-27T13:27:02.186Z",
+    "last_save_at": "2026-11-28T11:12:38.184Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,11 +224,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ab2f6258990885b187a7bdcb872deb79ddfe71ea34266f40849af52c0355f858",
+    "source_fingerprint": "sha256:20de5fe9959b0b37706eb647b21e91e5c12e7d2c5c1642fc87fe079de01306fb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce13a5f95166dbc7af4407491834ff0c645b1a44b8de9b616a080bd669205134",
-      "decision-record.md": "45e4f9573f4fecefadefdd59022f8751c26116d0ae7925f836840def0ecad484"
+      "spec.md": "1f39f6bae0d11a9a4134c32ef1f1ba020d353227dfe6a57768e1d1e3c024dd51",
+      "decision-record.md": "83697caf4575af8710a2a6efc40b224a0d03e0b8f849d473449379ff86e8155b"
     },
     "last_active_child_id": "system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map",
     "last_active_at": "2026-11-26T08:25:57.857Z"

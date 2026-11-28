@@ -646,8 +646,8 @@
      "source": "final 1.4",
      "line": 161,
      "mode": "literal",
-     "old": "| `crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty |",
-     "new": "| `crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty. It yields a bracketed paste as one `Msg::Paste` |"
+     "old": "| `.skilled/crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty |",
+     "new": "| `.skilled/crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty. It yields a bracketed paste as one `Msg::Paste` |"
     },
     {
      "id": "A-068",
@@ -836,7 +836,7 @@
      "line": 60,
      "mode": "literal",
      "old": "| AC-020 | REQ-017 | Given an inbox item whose `state` is `some-new-state`, When the inbox pane draws, Then the row is dimmed, its state column holds `some-new-state` and it carries no answer key | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `unknown_state_draws_dimmed_without_answer_key` | Unmet | - |",
-     "new": "| AC-020 | REQ-017 | Given an inbox item whose `state` is `some-new-state`, When the inbox pane draws, Then the row is dimmed, its state column holds `some-new-state` and it carries no answer key | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `unknown_state_draws_dimmed_without_answer_key` | Unmet | - |\n| AC-021 | REQ-021 | Given an inbox question wider than the body with an emoji and a combining mark at the clip column, When the pane draws at 80x24, Then the line ends with `…` inside the width, no double-width cell is split and nothing panics. Given the same question under `--ascii`, Then the line ends with `...` | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`, and `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell` | Unmet | - |"
+     "new": "| AC-020 | REQ-017 | Given an inbox item whose `state` is `some-new-state`, When the inbox pane draws, Then the row is dimmed, its state column holds `some-new-state` and it carries no answer key | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `unknown_state_draws_dimmed_without_answer_key` | Unmet | - |\n| AC-021 | REQ-021 | Given an inbox question wider than the body with an emoji and a combining mark at the clip column, When the pane draws at 80x24, Then the line ends with `…` inside the width, no double-width cell is split and nothing panics. Given the same question under `--ascii`, Then the line ends with `...` | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`, and `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell` | Unmet | - |"
     }
    ]
   },
@@ -898,8 +898,8 @@
      "source": "final 1.4",
      "line": 77,
      "mode": "literal",
-     "old": "| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |",
-     "new": "| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |\n| AC-022 | REQ-022 | Given the overlay open in shortcut mode, When `Paste(\"y\\n\")` arrives, Then no `answer` argv is recorded and the overlay stays open. Given the inbox tab with no overlay open, When the same paste arrives, Then no overlay opens and no `answer` argv is recorded. Given text mode, When the same paste arrives, Then the typed line reads `y ` and nothing is sent | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `paste_never_answers` | Unmet | - |"
+     "old": "| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |",
+     "new": "| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |\n| AC-022 | REQ-022 | Given the overlay open in shortcut mode, When `Paste(\"y\\n\")` arrives, Then no `answer` argv is recorded and the overlay stays open. Given the inbox tab with no overlay open, When the same paste arrives, Then no overlay opens and no `answer` argv is recorded. Given text mode, When the same paste arrives, Then the typed line reads `y ` and nothing is sent | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `paste_never_answers` | Unmet | - |"
     }
    ]
   },
@@ -1418,8 +1418,8 @@
      "source": "ripple of final 2.7",
      "line": 199,
      "mode": "literal",
-     "old": "`lib/README.md`, `THIRD_PARTY_NOTICES.md`, `crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |",
-     "new": "`lib/README.md`, `crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |"
+     "old": "`lib/README.md`, `THIRD_PARTY_NOTICES.md`, `.skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |",
+     "new": "`lib/README.md`, `.skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |"
     },
     {
      "id": "A-147",
@@ -2823,7 +2823,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
    "entries": [
     {
      "id": "A-290",
@@ -2836,7 +2836,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/fixtures.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/fixtures.md",
    "entries": [
     {
      "id": "A-291",
@@ -2849,7 +2849,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/refusal-catalogue.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/refusal-catalogue.md",
    "entries": [
     {
      "id": "A-292",
@@ -2870,7 +2870,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/scenario-contract.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/scenario-contract.md",
    "entries": [
     {
      "id": "A-294",
@@ -2883,7 +2883,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/tasks.md",
    "entries": [
     {
      "id": "A-295",
@@ -2912,7 +2912,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/records.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/records.md",
    "entries": [
     {
      "id": "A-298",
@@ -2941,7 +2941,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/fix-ledger.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/fixtures/fix-ledger.md",
    "entries": [
     {
      "id": "A-301",

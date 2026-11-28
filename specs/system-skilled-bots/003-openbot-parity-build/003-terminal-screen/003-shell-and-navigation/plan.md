@@ -37,15 +37,15 @@ The shell is three pieces that read each other. `keys.rs` holds one table of con
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so phase 002's crate is in place
-- [x] `bash crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows'` exits 0, so the header has a payload to read
-- [x] `rg -n 'SHELL_ROWS' crates/bots-tui/src/keys.rs` prints the empty slice 002 leaves, so this phase starts from an empty shell
+- [x] `cargo build --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0, so phase 002's crate is in place
+- [x] `bash .skilled/crates/bots-tui/tests/fixtures/bots status --json | jq -e '.rows'` exits 0, so the header has a payload to read
+- [x] `rg -n 'SHELL_ROWS' .skilled/crates/bots-tui/src/keys.rs` prints the empty slice 002 leaves, so this phase starts from an empty shell
 
 ### Definition of Done
 - [x] All acceptance criteria met
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`
-- [x] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
-- [x] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`
+- [x] `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
+- [x] `rg -n 'env::var' .skilled/crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -77,15 +77,15 @@ The loop hands `view::draw` a state and a frame. `view/mod.rs` reads the area, a
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/state.rs` | Owns the pure state and the reducer | update - `on_shell_action` only. The shell reads `active_tab`, `status`, `last_error`, `now` and `palette`, and adds no field | `rg -n 'fn on_shell_action' crates/bots-tui/src/state.rs` prints one line, and `cargo test --lib state` names `palette_opens_and_closes` |
-| `crates/bots-tui/src/app.rs` | Owns the loop and the event source | unchanged - the loop calls `view::draw` and the table answers the key | `cargo test --lib app` still passes |
+| `.skilled/crates/bots-tui/src/state.rs` | Owns the pure state and the reducer | update - `on_shell_action` only. The shell reads `active_tab`, `status`, `last_error`, `now` and `palette`, and adds no field | `rg -n 'fn on_shell_action' .skilled/crates/bots-tui/src/state.rs` prints one line, and `cargo test --lib state` names `palette_opens_and_closes` |
+| `.skilled/crates/bots-tui/src/app.rs` | Owns the loop and the event source | unchanged - the loop calls `view::draw` and the table answers the key | `cargo test --lib app` still passes |
 | `bots status --json` | Producer of the header's bot count and stale flag | not a consumer - the worker reads it and the header draws `state.status` | `node .skilled/bin/bots.cjs status --json` still exits 0 and prints a `rows` key |
-| `crates/bots-tui/src/view/panes.rs` | 004's pane bodies | not a consumer - 004 draws into the body slot this phase reserves | `ls crates/bots-tui/src/view/panes.rs` exits 1 until 004 lands |
-| `crates/bots-tui/src/view/overlay.rs` | 005's decision and choice overlays | not a consumer - 005 draws over the frame and takes first refusal on Ctrl+C | `ls crates/bots-tui/src/view/overlay.rs` exits 1 until 005 lands |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | 004's pane bodies | not a consumer - 004 draws into the body slot this phase reserves | `ls .skilled/crates/bots-tui/src/view/panes.rs` exits 1 until 004 lands |
+| `.skilled/crates/bots-tui/src/view/overlay.rs` | 005's decision and choice overlays | not a consumer - 005 draws over the frame and takes first refusal on Ctrl+C | `ls .skilled/crates/bots-tui/src/view/overlay.rs` exits 1 until 005 lands |
 
 Required inventories:
-- Same-class producers: `rg -n 'label:' crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
-- Consumers of changed symbols: `rg -n 'keys::' crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs`, `view/mod.rs` and `state.rs` only. `rg -n 'stale_label' crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
+- Same-class producers: `rg -n 'label:' .skilled/crates/bots-tui/src/keys.rs` lists every row that carries a drawn label, so a new binding cannot be added without one.
+- Consumers of changed symbols: `rg -n 'keys::' .skilled/crates/bots-tui/src` names every module that reads the table, and it must be `view/footer.rs`, `view/mod.rs` and `state.rs` only. `rg -n 'stale_label' .skilled/crates/bots-tui/src` names the definition in `view/header.rs` and 004's one call in `view/panes.rs`.
 - Matrix axes: three header states (`ok`, `stale`, `error`) by two sizes (80x24, 120x40), plus the too-small case at 23x8 and 24x7, plus two palettes (System, Mono) and two glyph columns (Unicode, ASCII).
 - Algorithm invariant: every drawn string passes `theme::printable`, and every band's height is computed with saturating subtraction, so no area from 1x1 upward can underflow.
 <!-- /ANCHOR:affected-surfaces -->
@@ -125,7 +125,7 @@ The other two need one fact each. `cli-pi`'s ladder folds `medium`, `high` and `
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-One file binds this phase, because two tasks each hold it. `crates/bots-tui/src/keys.rs` takes `SHELL_ROWS` from T004 and the palette's rows from T010. `crates/bots-tui/src/view/mod.rs` takes the frame, the too-small screen and the palette panel from T009. `crates/bots-tui/src/state.rs` takes `on_shell_action` from T010 alone, so it binds nothing. The parallelism comes from the lanes beside that file: the three view children hold one file each, the key-label test holds its own file, and the setup probes hold none.
+One file binds this phase, because two tasks each hold it. `.skilled/crates/bots-tui/src/keys.rs` takes `SHELL_ROWS` from T004 and the palette's rows from T010. `.skilled/crates/bots-tui/src/view/mod.rs` takes the frame, the too-small screen and the palette panel from T009. `.skilled/crates/bots-tui/src/state.rs` takes `on_shell_action` from T010 alone, so it binds nothing. The parallelism comes from the lanes beside that file: the three view children hold one file each, the key-label test holds its own file, and the setup probes hold none.
 
 A module file is not compiled until `view/mod.rs` declares it, so a lane that writes one child module cannot compile alone. Its own verify is a grep on its own file, and the wave's verify is the first compile. That is why Wave 3's four lanes land together and the orchestrator compiles once.
 
@@ -133,7 +133,7 @@ A module file is not compiled until `view/mod.rs` declares it, so a lane that wr
 
 The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch]
 
-A clean-room rule binds every lane that writes `theme.rs` or a view module. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished theme and frame with the openhuman files by eye and records that it did, because `rg -n 'openhuman' crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
+A clean-room rule binds every lane that writes `theme.rs` or a view module. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished theme and frame with the openhuman files by eye and records that it did, because `rg -n 'openhuman' .skilled/crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
 
 A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.
 

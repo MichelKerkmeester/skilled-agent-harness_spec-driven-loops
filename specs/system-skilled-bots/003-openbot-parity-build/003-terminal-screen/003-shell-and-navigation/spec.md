@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 3 of 6 |
 | **Predecessor** | 002-architecture-and-contracts |
 | **Successor** | 004-panes |
-| **Handoff Criteria** | `cargo test --test render_keys` passes, including the key-label assertion and both shell snapshots. `cargo test --lib keys`, `cargo test --lib state` and `cargo test --lib theme` pass. `cargo fmt --check` and `cargo clippy --all-targets -- -D warnings` exit 0 in `crates/bots-tui`. Every one of those runs without a tty |
+| **Handoff Criteria** | `cargo test --test render_keys` passes, including the key-label assertion and both shell snapshots. `cargo test --lib keys`, `cargo test --lib state` and `cargo test --lib theme` pass. `cargo fmt --check` and `cargo clippy --all-targets -- -D warnings` exit 0 in `.skilled/crates/bots-tui`. Every one of those runs without a tty |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -49,8 +49,8 @@ This is **Phase 3** of the six Terminal screen children: the UX map, the archite
 - Phase 001's `design/` folder, which holds the mockups, the key map and the glyph table this phase implements. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-advisory.md:25]
 
 **Deliverables**:
-- `crates/bots-tui/src/keys.rs`, `src/theme.rs`, `src/state.rs`, `src/view/mod.rs`, `src/view/header.rs`, `src/view/tabs.rs` and `src/view/footer.rs`.
-- `crates/bots-tui/tests/render_keys.rs`, holding the key-label assertion and the two shell snapshots.
+- `.skilled/crates/bots-tui/src/keys.rs`, `src/theme.rs`, `src/state.rs`, `src/view/mod.rs`, `src/view/header.rs`, `src/view/tabs.rs` and `src/view/footer.rs`.
+- `.skilled/crates/bots-tui/tests/render_keys.rs`, holding the key-label assertion and the two shell snapshots.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -68,14 +68,14 @@ One shell whose every binding is drawn from the same table that binds it, so a k
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-$ ls crates/bots-tui/src/keys.rs crates/bots-tui/src/theme.rs crates/bots-tui/src/view
-ls: crates/bots-tui/src/keys.rs: No such file or directory
-ls: crates/bots-tui/src/theme.rs: No such file or directory
-ls: crates/bots-tui/src/view: No such file or directory
+$ ls .skilled/crates/bots-tui/src/keys.rs .skilled/crates/bots-tui/src/theme.rs .skilled/crates/bots-tui/src/view
+ls: .skilled/crates/bots-tui/src/keys.rs: No such file or directory
+ls: .skilled/crates/bots-tui/src/theme.rs: No such file or directory
+ls: .skilled/crates/bots-tui/src/view: No such file or directory
 EXIT=1
 
-$ rg -c 'Alt\+1|Ctrl\+P|Ctrl\+D' crates/bots-tui/src
-rg: crates/bots-tui/src: IO error for operation on crates/bots-tui/src: No such file or directory (os error 2)
+$ rg -c 'Alt\+1|Ctrl\+P|Ctrl\+D' .skilled/crates/bots-tui/src
+rg: .skilled/crates/bots-tui/src: IO error for operation on .skilled/crates/bots-tui/src: No such file or directory (os error 2)
 EXIT=2
 
 $ rg -n 'area.width < 24' specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render.rs
@@ -92,12 +92,12 @@ The first two blocks are the measured gap: the crate does not exist yet, so no k
 ## 3. SCOPE
 
 ### In Scope
-- Fill `crates/bots-tui/src/keys.rs`'s `SHELL_ROWS`, the `main`, `inbox`, `palette` and `too-small` rows, in the table 002 creates, so the footer and the palette read the same rows that bind the keys.
-- Fill the `crates/bots-tui/src/theme.rs` stub 002 creates: the System and Mono palettes with `--mono` selecting Mono, the glyph table with its Unicode and ASCII columns, and `printable`.
-- Fill the `crates/bots-tui/src/view/mod.rs` stub 002 creates with the shell frame: header, tabs, rule, body slot, banner slot, status row and footer, the too-small screen, and the palette panel.
-- Add `on_shell_action` to `crates/bots-tui/src/state.rs`: the tab, palette and quit arms, and no other line of the file.
+- Fill `.skilled/crates/bots-tui/src/keys.rs`'s `SHELL_ROWS`, the `main`, `inbox`, `palette` and `too-small` rows, in the table 002 creates, so the footer and the palette read the same rows that bind the keys.
+- Fill the `.skilled/crates/bots-tui/src/theme.rs` stub 002 creates: the System and Mono palettes with `--mono` selecting Mono, the glyph table with its Unicode and ASCII columns, and `printable`.
+- Fill the `.skilled/crates/bots-tui/src/view/mod.rs` stub 002 creates with the shell frame: header, tabs, rule, body slot, banner slot, status row and footer, the too-small screen, and the palette panel.
+- Add `on_shell_action` to `.skilled/crates/bots-tui/src/state.rs`: the tab, palette and quit arms, and no other line of the file.
 - Add `view/header.rs`, `view/tabs.rs` and `view/footer.rs`: the bot count, `stale_label` and the stale flag, the four tabs with the active mark, and the status row plus the key line generated from `keys.rs`.
-- Add `crates/bots-tui/tests/render_keys.rs`: the key-label assertion over the table and the shell band snapshots at 80x24 and 120x40.
+- Add `.skilled/crates/bots-tui/tests/render_keys.rs`: the key-label assertion over the table and the shell band snapshots at 80x24 and 120x40.
 
 ### Out of Scope
 - The pane bodies - 004 draws them into the body slot this phase reserves, and it draws the status markers from the glyph table this phase defines.
@@ -110,14 +110,14 @@ The first two blocks are the measured gap: the crate does not exist yet, so no k
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `crates/bots-tui/src/keys.rs` | Modify | `SHELL_ROWS`, each carrying the label the renderer draws. The types are 002's |
-| `crates/bots-tui/src/theme.rs` | Modify | The stub 002 creates: System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` |
-| `crates/bots-tui/src/view/mod.rs` | Modify | The stub 002 creates: the shell frame, the seven bands, the too-small screen and the palette panel. It is the module root the view's children need and the file 004 and 005 add their `mod` lines to |
-| `crates/bots-tui/src/view/header.rs` | Create | The bot count, the index age, `stale_label`, the stale flag with its age, and the error state |
-| `crates/bots-tui/src/view/tabs.rs` | Create | The four tabs and the active mark. 004 draws the chat tab's one line naming phase 010 |
-| `crates/bots-tui/src/view/footer.rs` | Create | The status row and the key line generated from `keys.rs` |
-| `crates/bots-tui/src/state.rs` | Modify | `on_shell_action`: tabs, palette and quit |
-| `crates/bots-tui/tests/render_keys.rs` | Create | The key-label assertion over the table, and the shell band snapshots at 80x24 and 120x40 |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modify | `SHELL_ROWS`, each carrying the label the renderer draws. The types are 002's |
+| `.skilled/crates/bots-tui/src/theme.rs` | Modify | The stub 002 creates: System and Mono palettes, `--mono` selecting Mono, the glyph table with its ASCII column, and `printable` |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modify | The stub 002 creates: the shell frame, the seven bands, the too-small screen and the palette panel. It is the module root the view's children need and the file 004 and 005 add their `mod` lines to |
+| `.skilled/crates/bots-tui/src/view/header.rs` | Create | The bot count, the index age, `stale_label`, the stale flag with its age, and the error state |
+| `.skilled/crates/bots-tui/src/view/tabs.rs` | Create | The four tabs and the active mark. 004 draws the chat tab's one line naming phase 010 |
+| `.skilled/crates/bots-tui/src/view/footer.rs` | Create | The status row and the key line generated from `keys.rs` |
+| `.skilled/crates/bots-tui/src/state.rs` | Modify | `on_shell_action`: tabs, palette and quit |
+| `.skilled/crates/bots-tui/tests/render_keys.rs` | Create | The key-label assertion over the table, and the shell band snapshots at 80x24 and 120x40 |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -176,11 +176,11 @@ Two keys deviate from the reference on purpose. openhuman cycles tabs with Ctrl+
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
-- **SC-002**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
-- **SC-003**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
-- **SC-004**: `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- **SC-005**: `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, and `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks.
+- **SC-001**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
+- **SC-002**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
+- **SC-003**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii` and `every_marker_has_an_ascii_counterpart`.
+- **SC-004**: `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- **SC-005**: `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines, and `rg -n 'env::var' .skilled/crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -204,11 +204,11 @@ Two keys deviate from the reference on purpose. openhuman cycles tabs with Ctrl+
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: A shell frame is drawn from the state alone, with no process spawn and no file read, so a redraw costs no I/O. `rg -n 'Command::new|read_to_string|File::open' crates/bots-tui/src/view` prints nothing.
+- **NFR-P01**: A shell frame is drawn from the state alone, with no process spawn and no file read, so a redraw costs no I/O. `rg -n 'Command::new|read_to_string|File::open' .skilled/crates/bots-tui/src/view` prints nothing.
 - **NFR-P02**: The palette lists the rows it draws in one pass over the table, so its cost is the table's length and not a second scan per row.
 
 ### Security
-- **NFR-S01**: The binary reads no environment variable and passes none to the child it spawns. `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks. The `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked.
+- **NFR-S01**: The binary reads no environment variable and passes none to the child it spawns. `rg -n 'env::var' .skilled/crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks. The `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked.
 - **NFR-S02**: The status row draws the first stderr line with every control character replaced by `?`, so a runtime message cannot move the cursor, and no drawn string reaches the buffer unfiltered.
 
 ### Reliability

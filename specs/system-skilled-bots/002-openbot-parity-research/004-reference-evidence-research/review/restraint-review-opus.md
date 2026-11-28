@@ -127,7 +127,7 @@ Revised wording: "002: keep the one 15-minute floor for every cron start. Rewrit
 
 Reason: 013 already checks at close that the help lists every verb, and no verb is planned after 013, so the remaining drift is a future caller. Generating the block means moving every hand-wrapped description into `VERB_SPECS`, which is past 013's "help block only" scope.
 
-Evidence: [SOURCE: B/013-skilled-and-doc-alignment/tasks.md:66] [SOURCE: B/013-skilled-and-doc-alignment/plan.md:109] [SOURCE: .skilled/bin/bots.cjs:19-55] [SOURCE: .skilled/bin/bots.cjs:64-76].
+Evidence: [SOURCE: B/014-skilled-and-doc-alignment/tasks.md:66] [SOURCE: B/014-skilled-and-doc-alignment/plan.md:109] [SOURCE: .skilled/bin/bots.cjs:19-55] [SOURCE: .skilled/bin/bots.cjs:64-76].
 
 Revised wording: "Deferred. Trigger: a verb added after 013 is found missing from `--help`. Then add one persistent test that the `USAGE` verb lines equal the `VERB_SPECS` keys, which is cheaper than generating the block."
 
@@ -223,7 +223,7 @@ Revised wording: "Deferred. Trigger: a consumer of `bots activity --json` counts
 
 Reason: the bots exposure is inferred, because no probe ran a bots verb. A contract rule, a scenario and a 014 check are three moves for an unseen trace.
 
-Evidence: the research says so [SOURCE: R4/research.md:405]. 012's own pipe carries one short error line [SOURCE: B/012-manual-testing-scenarios/spec.md:75]. `rg` for `EPIPE` and `SIGPIPE` in `bots.cjs` and `L/` exited 1.
+Evidence: the research says so [SOURCE: R4/research.md:405]. 012's own pipe carries one short error line [SOURCE: B/013-manual-testing-scenarios/spec.md:75]. `rg` for `EPIPE` and `SIGPIPE` in `bots.cjs` and `L/` exited 1.
 
 Revised wording: "Deferred. Trigger: a real `bots ... --json | head -c 100` prints a stack trace. Then add an EPIPE exit-0 handler in `bots.cjs` and one 012 scenario that cites it."
 
@@ -359,7 +359,7 @@ Revised wording: "Remove."
 
 Reason: one retired name is a case, not a pattern, and 012 already replaces it. A fourth check would also amend a frozen design.
 
-Evidence: [SOURCE: B/012-manual-testing-scenarios/spec.md:138] [SOURCE: B/013-skilled-and-doc-alignment/design/records.md:136].
+Evidence: [SOURCE: B/013-manual-testing-scenarios/spec.md:138] [SOURCE: B/014-skilled-and-doc-alignment/design/records.md:136].
 
 Revised wording: "Remove."
 
@@ -375,7 +375,7 @@ Revised wording: "Remove."
 - Guard 6, rewrite conformance-rules.md section 2 to the real adapter over a fake platform. It contradicts child 007 [SOURCE: B/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:35] [SOURCE: B/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:29].
 - Guard 6, a webhook `409` deletes the webhook and polls again. Today every `409` waits 2 s forever [SOURCE: B/011-messaging-channels/005-polling-transports/spec.md:212].
 - Guard 6, cut the button-bearing Slack chunk at 3,000 [SOURCE: B/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md:63].
-- Guard 8, the ledger proof column with CHK-012 pointed at it. CHK-012 counts a word the golden ledger does not hold [SOURCE: B/014-deep-review/tasks.md:231] [SOURCE: B/014-deep-review/design/records.md:215-221].
+- Guard 8, the ledger proof column with CHK-012 pointed at it. CHK-012 counts a word the golden ledger does not hold [SOURCE: B/015-deep-review/tasks.md:231] [SOURCE: B/015-deep-review/design/records.md:215-221].
 - 003 ellipsis on a cut string, with an ASCII form. A clipped question draws as whole [SOURCE: B/003-terminal-screen/004-panes/spec.md:228].
 - 003 wide-character clip test. It fails for a split double-width cell, and no pane test carries one [SOURCE: B/003-terminal-screen/004-panes/spec.md:160].
 - 005 fix spec.md:96 against REQ-010 [SOURCE: B/005-memory/spec.md:96] [SOURCE: B/005-memory/spec.md:162].

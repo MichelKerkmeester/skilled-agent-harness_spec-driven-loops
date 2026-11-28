@@ -22,7 +22,7 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Rust 2021, one library target and one binary in `crates/bots-tui/` |
+| **Language/Stack** | Rust 2021, one library target and one binary in `.skilled/crates/bots-tui/` |
 | **Framework** | ratatui 0.30 with crossterm 0.29, `unicode-width` for the clip |
 | **Storage** | None. The panes read the `Remote<T>` 002's state holds and open no file |
 | **Testing** | `cargo test`, asserting the ratatui `TestBackend` buffer directly, with no `insta` |
@@ -37,15 +37,15 @@ Two new files, two edited files and one line fill the body 003 leaves empty. `vi
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so 002's crate and 003's shell exist
-- [ ] `bash crates/bots-tui/tests/fixtures/bots activity --json | jq -e '.groups'` exits 0, so the fixture carries the payload the activity pane reads
-- [ ] `rg -n 'Remote' crates/bots-tui/src/state.rs` prints the wrapper the panes draw from
+- [ ] `cargo build --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0, so 002's crate and 003's shell exist
+- [ ] `bash .skilled/crates/bots-tui/tests/fixtures/bots activity --json | jq -e '.groups'` exits 0, so the fixture carries the payload the activity pane reads
+- [ ] `rg -n 'Remote' .skilled/crates/bots-tui/src/state.rs` prints the wrapper the panes draw from
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes` prints `test result: ok` and names one snapshot per pane per state at both sizes
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- budget` prints `test result: ok` and names `two_thousand_rows_visit_at_most_the_body_height`
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -74,18 +74,18 @@ This child fixes the selection defect the parent records and consumes the saniti
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and one `PaneView<K>` per pane | update: `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
-| `crates/bots-tui/src/keys.rs` | 003 owns the table and fills `SHELL_ROWS` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
-| `crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line and one `mod banner;` line, and the banner slot call | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0 |
-| `crates/bots-tui/src/view/banner.rs` | absent, and 005's file table used to hold it | create: the pending-approval row, from the open item count and the inbox tab key label `keys.rs` carries, so the frames that hold an open item draw without waiting on 005 | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none` |
-| `crates/bots-tui/src/theme.rs` | 003 owns the palette, the glyph table and the sanitizer | consumer: this child calls the marker function and the sanitizer, and keeps no second copy | `rg -n 'theme::marker' crates/bots-tui/src/view/panes.rs` prints the marker call, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0 |
-| `crates/bots-tui/src/view/header.rs` | 003 owns the header and `stale_label` | consumer: this child's stale state calls `stale_label` | `rg -n 'stale_label' crates/bots-tui/src/view/panes.rs` prints one call |
-| `crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'has("version") and has("routines")'` exits 0 |
-| `crates/bots-tui/src/view/overlay.rs` | 005 owns the detail panel below 120 columns | not a consumer | `rg -n 'panes' crates/bots-tui/src/view/overlay.rs` prints nothing |
+| `.skilled/crates/bots-tui/src/state.rs` | 002 owns it and holds `Remote<T>` and one `PaneView<K>` per pane | update: `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row, with the reorder test as the gate | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- reorder` prints `test result: ok` |
+| `.skilled/crates/bots-tui/src/keys.rs` | 003 owns the table and fills `SHELL_ROWS` | update: the `list` rows, Up, Down, PgUp and PgDn on every data pane and Enter on the inbox only | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `list_keys_move_the_selection` |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | 003 owns the view root and declares the modules | update: one `mod panes;` line and one `mod banner;` line, and the banner slot call | `cargo build --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0 |
+| `.skilled/crates/bots-tui/src/view/banner.rs` | absent, and 005's file table used to hold it | create: the pending-approval row, from the open item count and the inbox tab key label `keys.rs` carries, so the frames that hold an open item draw without waiting on 005 | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib banner` prints `test result: ok` and names `banner_counts_open_items` and `banner_is_blank_with_none` |
+| `.skilled/crates/bots-tui/src/theme.rs` | 003 owns the palette, the glyph table and the sanitizer | consumer: this child calls the marker function and the sanitizer, and keeps no second copy | `rg -n 'theme::marker' .skilled/crates/bots-tui/src/view/panes.rs` prints the marker call, and `test ! -e .skilled/crates/bots-tui/src/sanitize.rs` exits 0 |
+| `.skilled/crates/bots-tui/src/view/header.rs` | 003 owns the header and `stale_label` | consumer: this child's stale state calls `stale_label` | `rg -n 'stale_label' .skilled/crates/bots-tui/src/view/panes.rs` prints one call |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | 002 owns the only payload source in tests | not a consumer: the panes read the payloads it already carries | `bash .skilled/crates/bots-tui/tests/fixtures/bots routines --json \| jq -e 'has("version") and has("routines")'` exits 0 |
+| `.skilled/crates/bots-tui/src/view/overlay.rs` | 005 owns the detail panel below 120 columns | not a consumer | `rg -n 'panes' .skilled/crates/bots-tui/src/view/overlay.rs` prints nothing |
 
 Required inventories:
-- Same-class producers: `rg -n 'clip\(' crates/bots-tui/src` names the one clip helper, and `test ! -e crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than a second copy in this child.
-- Consumers of changed symbols: `rg -n 'stale_label|marker\(|keys::rows\(\)' crates/bots-tui/src crates/bots-tui/tests` names every reader of the two symbols this child consumes and every reader of the table it adds rows to.
+- Same-class producers: `rg -n 'clip\(' .skilled/crates/bots-tui/src` names the one clip helper, and `test ! -e .skilled/crates/bots-tui/src/sanitize.rs` proves the crate holds one sanitizer rather than a second copy in this child.
+- Consumers of changed symbols: `rg -n 'stale_label|marker\(|keys::rows\(\)' .skilled/crates/bots-tui/src .skilled/crates/bots-tui/tests` names every reader of the two symbols this child consumes and every reader of the table it adds rows to.
 - Matrix axes: four panes by their five states by two sizes. Activity, inbox and routines each draw loading, empty, rows, stale and error, and the chat placeholder draws one state. That is sixteen snapshots per size and thirty-two in all, one per state the inventory lists.
 - Algorithm invariant: for the sanitizer, no byte below `0x20` except `\n`, no `0x7f`, no code point in `U+0080..U+009F` and no lone surrogate reaches a cell, and the visible width of a clipped string never exceeds the rect it is drawn into.
 <!-- /ANCHOR:affected-surfaces -->
@@ -179,7 +179,7 @@ The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `hig
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-`crates/bots-tui/src/view/panes.rs` is the binding file. Eight tasks edit it, so they form one serial lane by construction, and the parallelism in this packet comes from the lanes beside it: `view/mod.rs`, `keys.rs`, `state.rs` and `tests/panes.rs`. `tests/panes.rs` binds four tasks the same way. The packet is therefore two lanes wide at its widest and one lane wide for most of its length, and the wave table says so rather than inventing workers that would collide.
+`.skilled/crates/bots-tui/src/view/panes.rs` is the binding file. Eight tasks edit it, so they form one serial lane by construction, and the parallelism in this packet comes from the lanes beside it: `view/mod.rs`, `keys.rs`, `state.rs` and `tests/panes.rs`. `tests/panes.rs` binds four tasks the same way. The packet is therefore two lanes wide at its widest and one lane wide for most of its length, and the wave table says so rather than inventing workers that would collide.
 
 ### The fallback order when a CLI runs out of usage
 
@@ -199,6 +199,6 @@ Rungs 1 and 3 cannot be lowered, so every lane starts at `max` on rung 1, return
 
 The hub's own rules bind each dispatch, not only the wave table. The orchestrator reads the target mode's `SKILL.md` before composing the prompt, attaches the resolved agent persona, and sets `AI_SESSION_CHILD=1` with the shared child preamble. [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:198] [SOURCE: .skilled/skills/cli-external-orchestration/SKILL.md:199] Every non-interactive dispatch redirects stdin, because a run that leaves it open hangs with no output rather than failing. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:78] [SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:130] A `cli-pi` dispatch also passes `--offline`, and a `cli-devin` dispatch puts `--` before the prompt. [SOURCE: .skilled/skills/cli-external-orchestration/cli-pi/SKILL.md:84] [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:243] A Vibe worker starts from its own scratch folder inside the worktree, passes `--add-dir` for the worktree and keeps `VIBE_HOME` outside it, as the parent's Vibe dispatch says. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "BUILD ORCHESTRATION", Vibe dispatch] A `cli-devin` dispatch is probed first, because a quota banner alone does not prove the route is spent. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:237]
 
-A clean-room rule binds every lane that writes `view/panes.rs`. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished panes with the openhuman activity and render files by eye and records that it did, because `rg -n 'openhuman' crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
+A clean-room rule binds every lane that writes `view/panes.rs`. Its brief carries our design files and the MIT or Apache references only, and an openhuman or tinychannels path appears in a design document as provenance, never in a worker brief. The orchestrator compares the finished panes with the openhuman activity and render files by eye and records that it did, because `rg -n 'openhuman' .skilled/crates/bots-tui/src` passes on a copy that carries neither the path nor the licence header.
 
 A worker's `done` is a claim until the orchestrator runs that wave's verify commands and reads their output and exit status. A wave that fails its verify does not hand its files to the next wave.

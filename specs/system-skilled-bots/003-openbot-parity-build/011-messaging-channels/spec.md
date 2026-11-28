@@ -47,7 +47,7 @@ _memory:
 | **Parent Packet** | `system-skilled-bots/003-openbot-parity-build` |
 | **Phase** | 11 of 14 |
 | **Predecessor** | `010-conversations` |
-| **Successor** | `012-manual-testing-scenarios` |
+| **Successor** | `013-manual-testing-scenarios` |
 | **Handoff Criteria** | A chat linked to a roster member answers a parked question by button or by reply, a restart loses no prompt and no queued send, an uncertain send is never retried, every message matches its golden in child 001 and the conformance suite passes on all five transports |
 <!-- /ANCHOR:metadata -->
 
@@ -240,7 +240,7 @@ Requirement ids of the build children are unique across 003 to 007 and keep thei
 | The acknowledge boundary and the `seen/` record had no design | 002: `design/inbound-sequence.md` |
 | REQ-017 said five rules in one sentence | 002: `design/conformance-rules.md` numbers them R1 to R5 |
 | No message text existed | 001: `design/message-catalog.md` and 23 goldens |
-| The phase called itself 11 of 11 with no successor | This spec: 11 of 14, successor `012-manual-testing-scenarios` |
+| The phase called itself 11 of 11 with no successor | This spec: 11 of 14, successor `013-manual-testing-scenarios` |
 | The chat path was cited by a line number of the pre-expansion `010-conversations/spec.md` | Every child cites `../010-conversations/002-conversation-runtime-and-chat-verb/spec.md` section 9, anchor `chat-path` |
 | REQ-004 counted a failed code attempt for any message from an unlinked chat | 003: only a six-digit attempt counts (`002-adapter-and-record-contracts/design/records.md` section 2) |
 | T060 put the untrusted wrap in `channel.ts`, which imports `state-root.ts` alone | 005: the transports render the block through `conversation.ts`, as `contracts/runtime-architecture.md` section 4 decides |
@@ -317,7 +317,7 @@ This phase edits nothing outside its folder. Each row is for the owner of the fi
 | `../003-terminal-screen/005-answer-flow/design/state-machines.md` | 294 and 308 | Done. Both cites name `003-link-roster-and-answer-gate/spec.md` REQ-005 and REQ-021 |
 | `../spec.md` | the phase map row for 011 | Mark 011 a phase parent with seven children |
 | `contracts/answer-seam.md`, `records.md`, `refusals.md`, `runtime-architecture.md`, `cli-json.md`, `prompt-sections.md`, `fixtures/README.md` | every `011-messaging-channels/spec.md:<n>`, `plan.md:<n>` and `tasks.md:<n>` cite | Repoint by the map below |
-| `../003-terminal-screen/`, `../006-approval-grants/`, `../008-vault/design/names-and-keys.md`, `../012-manual-testing-scenarios/`, `../014-deep-review/design/fixtures/deep-review-config.json`, `../goal.md` and three playbook files under `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | the same cites | Repoint by the map below |
+| `../003-terminal-screen/`, `../006-approval-grants/`, `../008-vault/design/names-and-keys.md`, `../013-manual-testing-scenarios/`, `../015-deep-review/design/fixtures/deep-review-config.json`, `../goal.md` and three playbook files under `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | the same cites | Repoint by the map below |
 
 **Where each pre-expansion line went.** A cite of pre-expansion `spec.md` REQ-NNN now names the child of section 4 that holds REQ-NNN, at the same id. A cite of pre-expansion `plan.md` lines 63 to 80 names the plan of the child that owns the module. A cite of pre-expansion `tasks.md` T001 to T014 names child 003's setup, T015 to T024, T051 to T054, T058, T060 and T074 name child 003 or 004 by file, T025 to T031 name 005 or 006 by transport and T035 to T049 name the child that owns the test or document. The pre-expansion text is at commit `de601a1b444` for a cite that must keep its line.
 <!-- /ANCHOR:cross-file -->

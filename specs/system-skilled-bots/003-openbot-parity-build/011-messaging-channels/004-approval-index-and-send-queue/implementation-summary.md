@@ -102,7 +102,7 @@ Fifteen workers wrote the code in three internal waves. Wave 0 was the four setu
 |-------|--------|
 | `npm test` in the runtime | PASS: `Test Files  51 passed (51)`, `Tests  654 passed (654)`, exit 0. The floor after 008 is 49 files and 634 tests, so this unit adds 2 files and 20 tests and loses none |
 | `npm run typecheck` | PASS: exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: exit 0, 120, 24, 8, 2, 53 with 1 ignored, 1 and 16, the same as the floor |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS: exit 0, 120, 24, 8, 2, 53 with 1 ignored, 1 and 16, the same as the floor |
 | Every acceptance filter | PASS: all twenty filters printed one passed test, observed 2026-11-28 |
 | T020 on a temporary state root | PASS with a checkout `bots/config.json` naming `acme/widgets`: `exit=0`. The literal command exits 4 `identity-unknown` |
 | File modes | `approvals.json` and a queue entry are 0600 and `channels/queue/` is 0700, observed with `statSync` |

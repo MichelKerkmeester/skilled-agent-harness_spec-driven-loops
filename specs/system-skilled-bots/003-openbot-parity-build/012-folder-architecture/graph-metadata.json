@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/012-folder-architecture",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/012-folder-architecture",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "folder architecture",
+      "phase 12 folder architecture",
+      "bots skill folder structure",
+      "less unneeded nesting",
+      "folder architecture plan",
+      "move map plan",
+      "folder architecture tasks",
+      "folder architecture acceptance criteria",
+      "folder architecture goal",
+      "folder architecture implementation summary"
+    ],
+    "key_topics": [
+      "folder",
+      "architecture",
+      "phase",
+      "bots",
+      "skill",
+      "structure",
+      "less",
+      "unneeded",
+      "nesting",
+      "plan",
+      "move",
+      "map"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".github/workflows/bots-runtime.yml",
+      ".skilled/crates/bots-tui/Cargo.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Cargo.toml",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/Cargo.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Eleven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measured",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
+    "created_at": "2026-11-28T11:26:16Z",
+    "last_save_at": "2026-11-28T11:58:03.036Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de584496cee21fe767e71298cae8d5e20b0a37d099ba1c793c64178468f7cfcf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f74e5b3204c1c291e712813cdc834f6b7d1f4869791fee1786b096fa8b2ede39",
+      "plan.md": "d4b1271991c4ecf746569b5ad3a3d65cc56acf5b2d6ee6c8d3b033faef0b1813",
+      "tasks.md": "963c73d29490e8e2d7cbbaccf80ce30dd4bc0aa56accaae22d62c5c63d237e78",
+      "implementation-summary.md": "07adde6212db5f884d9e3c0bc56aaad180dc5f9e6e6488a0286e53c38b015800"
+    },
+    "last_active_at": null
+  }
+}

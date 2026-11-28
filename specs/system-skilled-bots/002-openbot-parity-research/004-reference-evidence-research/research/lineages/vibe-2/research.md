@@ -120,35 +120,35 @@ Every claim carries a `[SOURCE: path:line]` and is marked *(observed)* when the 
 
 **What the plan does not guard against.** Its durability claim rests on one payload shape, the 5,000-character Telegram send, where the reference demands a shape per payload. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:58] *(observed)* And its intent-to-capability derivation is prose rather than a table a test can read.
 
-## 012-manual-testing-scenarios
+## 013-manual-testing-scenarios
 
 **What the reference implements.** `buzz-main/TESTING.md` is a 452-line operator runbook: a numbered procedure with copy-pasteable commands and expected output, a configuration reference and a troubleshooting section. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:231-260,405,439] *(observed)*
 
 **What to lift.** The silent-failure warning beside a step: "Skip this and the agent boots to \"discovered 0 channel(s) → agent will sit idle\" and silently ignores every mention." [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:344-345] *(observed)* Apache-2.0. *(observed)*
 
-**Where the plan differs, and which side the evidence supports.** The plan's scenario table with a `PASS` or `FAIL` verdict and saved evidence is the stronger shape for 25 or more scenarios; the reference's numbered procedure is the stronger one for a first run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:66] *(observed)*
+**Where the plan differs, and which side the evidence supports.** The plan's scenario table with a `PASS` or `FAIL` verdict and saved evidence is the stronger shape for 25 or more scenarios; the reference's numbered procedure is the stronger one for a first run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:66] *(observed)*
 
-**What the plan does not guard against.** Three things. A precondition is an index-level list, not a named failure mode, so a scenario that runs with a missing precondition and still prints `PASS` is the gap. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:194,255] *(observed)* No rule stops a scenario destroying operator state, and 008's vault and 005's memory are exactly the stores a scenario would wipe. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:55] *(observed)* No field records a `FAIL`'s cause, so a second run repeats the diagnosis.
+**What the plan does not guard against.** Three things. A precondition is an index-level list, not a named failure mode, so a scenario that runs with a missing precondition and still prints `PASS` is the gap. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:194,255] *(observed)* No rule stops a scenario destroying operator state, and 008's vault and 005's memory are exactly the stores a scenario would wipe. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:55] *(observed)* No field records a `FAIL`'s cause, so a second run repeats the diagnosis.
 
-## 013-skilled-and-doc-alignment
+## 014-skilled-and-doc-alignment
 
 **What the reference implements.** `buzz-main` keeps a 135-line domain glossary with 13 `_Avoid_:` lines naming the wrong words, symlinks its second agent-instruction name to the first, and gates its dependencies through a `deny.toml` allowlist where every exception carries a `reason`. [SOURCE: specs/system-skilled-bots/context/buzz-main/CONTEXT.md:1-3,19] [SOURCE: specs/system-skilled-bots/context/buzz-main/CLAUDE.md:1] [SOURCE: specs/system-skilled-bots/context/buzz-main/deny.toml:1-8] *(observed)*
 
 **What to lift.** All three. Apache-2.0. *(observed)*
 
-**Where the plan differs, and which side the evidence supports.** The plan's doc-alignment topic carries a `terms` list, which says which words to find; only a glossary says which word is wrong, so the plan's run can pass while a doc uses a retired name. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41] *(observed)*
+**Where the plan differs, and which side the evidence supports.** The plan's doc-alignment topic carries a `terms` list, which says which words to find; only a glossary says which word is wrong, so the plan's run can pass while a doc uses a retired name. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41] *(observed)*
 
 **What the plan does not guard against.** The licence gate. The plan's only one is 003-terminal-screen's AC-006, which greps the design docs, and the packet's own review records that "It never reads `context/`, so it passes the same with or without it ... AC-006 proves nothing about the reference sources." [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688] *(observed)* Thirteen of fourteen phases have no licence gate at all, and the packet's strongest 006 evidence comes from a GPL-3.0 crate. This is the highest-value 013 finding.
 
-## 014-deep-review
+## 015-deep-review
 
 **What the reference implements.** A review-derived test standard: "Regression tests must bind the production seam and be falsifiable. A guard whose removal doesn't fail any test protects nothing — mutations survived the full mobile suite twice (PRs #6996, #7013)." It names its anti-patterns with the pull request that proved each, and it is "Mined from the last 25 PRs' review threads". [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:19-33] *(observed)*
 
 **What to lift.** The falsifiability rule and the anti-pattern list. Apache-2.0. *(observed)*
 
-**Where the plan differs, and which side the evidence supports.** The plan seeds every review-input row before any lineage spawns, which is stronger than the reference's after-the-fact mining. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:188] *(observed)*
+**Where the plan differs, and which side the evidence supports.** The plan seeds every review-input row before any lineage spawns, which is stronger than the reference's after-the-fact mining. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:188] *(observed)*
 
-**What the plan does not guard against.** A test that asserts nothing. The plan's only mention of a guard is the suite and the validator as a guard against a wrong fix, so a test that never could fail passes the review. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:288] *(observed)* Its Problem Statement names the opposite failure — "a test that asserts a shape a later phase changed" — which is a test that breaks rather than one that never could. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:75] *(observed)* And the plan records no version, so a person who pulls the repo has no record of what changed.
+**What the plan does not guard against.** A test that asserts nothing. The plan's only mention of a guard is the suite and the validator as a guard against a wrong fix, so a test that never could fail passes the review. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:288] *(observed)* Its Problem Statement names the opposite failure — "a test that asserts a shape a later phase changed" — which is a test that breaks rather than one that never could. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:75] *(observed)* And the plan records no version, so a person who pulls the repo has no record of what changed.
 
 ---
 

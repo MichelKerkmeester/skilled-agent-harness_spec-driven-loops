@@ -80,7 +80,7 @@ How each claim was checked: every doc named in the brief was read in full or in 
 ### P0-6. 006's design-folder gate expects four files, and 002 now ships six
 
 - **Where:** `006-hardening-and-proof/tasks.md` T018 (line 118), `006-hardening-and-proof/acceptance-criteria.md` AC-011 (line 65), `006-hardening-and-proof/plan.md` lines 44 and 231, `006-hardening-and-proof/spec.md` REQ-020 (line 154).
-- **What is wrong:** T018 says its block "prints the four names ... and nothing else on stdout". 002 T028 and the owner map (`architecture.md` line 465) copy `architecture.md` and `contracts.md` into `crates/bots-tui/design/` as well, so `ls $CRATE/design` prints six names and T018 fails.
+- **What is wrong:** T018 says its block "prints the four names ... and nothing else on stdout". 002 T028 and the owner map (`architecture.md` line 465) copy `architecture.md` and `contracts.md` into `.skilled/crates/bots-tui/design/` as well, so `ls $CRATE/design` prints six names and T018 fails.
 - **Fix:** in all five places replace the list `` `component-inventory.md`, `glyph-table.md`, `key-map.md` and `mockups.md` `` with `` `architecture.md`, `component-inventory.md`, `contracts.md`, `glyph-table.md`, `key-map.md` and `mockups.md` ``, replace "the four names" and "the four documents" with "the six names" and "the six documents", and in REQ-020 replace the clause that starts `holds the four documents` and runs through the second dash with `` holds the four documents 001 authored, `mockups.md`, `key-map.md`, `glyph-table.md` and `component-inventory.md`, plus 002's `architecture.md` and `contracts.md`, ``. That also removes the two long dashes in that row.
 
 ### P0-7. Defect check D1 greps for a key form the architecture does not use

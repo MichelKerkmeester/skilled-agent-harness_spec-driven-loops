@@ -55,7 +55,7 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/bots-run/references/approval-ladder.md",
       "runtime/lib/README.md",
-      "crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
+      ".skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
       ".skilled/skills/system-skilled-bots/leaf-manifest.json",
       ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
       ".skilled/skills/system-skilled-bots/bots-status/references/status-and-inbox.md"
@@ -160,7 +160,7 @@
       {
         "name": "inbox.grant.json",
         "kind": "config",
-        "path": "crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
+        "path": ".skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A needs-you item names a question, its options, its evidence and the parked prompt, and nothing else, so an approval cannot say what kind of action it approves [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-47]",
     "created_at": "2026-11-25T07:13:41Z",
-    "last_save_at": "2026-11-27T22:20:30.642Z",
+    "last_save_at": "2026-11-28T11:11:00.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f969329c0fe91554d67b38525225756b8f1ede665ded59967f69e1eb4bdf804a",
+    "source_fingerprint": "sha256:3726a58ccbd2f8f2f14bf93f3c123d299299bb1e52672d25b3a853e9f915157c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8adccdd72f4170dc397f28bbb260d5d1a32dd610f89b0893743f73525e5c2cbb",
-      "plan.md": "1044002a1c85bd956a9d8c9f111bb40cbff159052c658ce579c3f2263b2be748",
-      "tasks.md": "a2e4d6b571cda9e547d7b0cb1370adc299260a9cdf0ad98afb21c8ca292a3be0",
-      "implementation-summary.md": "66d28fbc37bf9d04aaef9c5445974ed687083ec75feaea1591bbb379b551f739"
+      "spec.md": "49e0e0ed813cacff251fcb151a327da681ddf29b337726abbc6286c68e78ccd0",
+      "plan.md": "494dca6473f42c1762eff91b3ce27cba4922f529aa7692b712d2e5dec34794c9",
+      "tasks.md": "fafef18cd894897ec8b4f0e4f1de8eacff2a841c34597e1efd8868de80be7c3a",
+      "implementation-summary.md": "b71fa675f0a4dad7a433ff5d7d83b9d6df05ce736b0f877f1b16b2dd823e9c9a"
     },
     "last_active_at": null
   }

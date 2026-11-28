@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — Planning-depth review of packet specs/system-skilled-bots/003-openbot-parity-build, the OpenBot parity build for skilled bots: fourteen phases (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review). The operator wants to build all of it in one shot to perfection, so every phase must be planned and architected deeply enough that a builder needs no design decision while building."
+title: "Resource Map — Planning-depth review of packet specs/system-skilled-bots/003-openbot-parity-build, the OpenBot parity build for skilled bots: fourteen phases (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment, 015-deep-review). The operator wants to build all of it in one shot to perfection, so every phase must be planned and architected deeply enough that a builder needs no design decision while building."
 description: "Auto-generated research resource map from convergence evidence."
 ---
 # Resource Map
@@ -90,15 +90,15 @@ description: "Auto-generated research resource map from convergence evidence."
 | specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:61-66,185-195,206-210 | Cited | MISSING | Citations=1; Iterations=1 |
 | specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:122,239-241,265-271 | Cited | MISSING | Citations=1; Iterations=1 |
 | specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:183-184,204-205 | Cited | MISSING | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/acceptance-criteria.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md | Cited | OK | Citations=3; Iterations=3 |
-| specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md | Cited | OK | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33,108-115,145-148 | Cited | MISSING | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md | Cited | OK | Citations=2; Iterations=2 |
-| specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md | Cited | OK | Citations=3; Iterations=3 |
-| specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:41,51-55,98-104,152-157 | Cited | MISSING | Citations=1; Iterations=1 |
-| specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/acceptance-criteria.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md | Cited | OK | Citations=3; Iterations=3 |
+| specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/tasks.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md | Cited | OK | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33,108-115,145-148 | Cited | MISSING | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md | Cited | OK | Citations=2; Iterations=2 |
+| specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md | Cited | OK | Citations=3; Iterations=3 |
+| specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:41,51-55,98-104,152-157 | Cited | MISSING | Citations=1; Iterations=1 |
+| specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/tasks.md | Cited | OK | Citations=1; Iterations=1 |
 | specs/system-skilled-bots/003-openbot-parity-build/spec.md | Cited | OK | Citations=3; Iterations=3 |
 | specs/system-skilled-bots/003-openbot-parity-build/spec.md:102-139,144-165 | Cited | MISSING | Citations=1; Iterations=1 |
 | specs/system-skilled-bots/context/OpenBot-main/docs/routines.md | Cited | OK | Citations=1; Iterations=1 |

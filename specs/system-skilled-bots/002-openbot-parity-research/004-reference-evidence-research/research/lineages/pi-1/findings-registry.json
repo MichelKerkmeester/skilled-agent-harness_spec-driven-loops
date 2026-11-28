@@ -519,7 +519,7 @@
     },
     {
       "id": "finding-4-4-012-manual-testing-scenarios-a-test-corpus-not-a-requirement-turnstone-s-memory-",
-      "text": "**012-manual-testing-scenarios (a test corpus, not a requirement).** turnstone's memory work ships a test corpus worth copying by shape rather than by content: six files (`test_structured_memory.py` at 597 lines, `test_memory_index.py`, `test_memory_relevance.py`, `test_project_memory_scope.py`, `test_structured_memory_storage.py`, `test_memory_api.py`) and one data fixture, `tests/data/memory_description_parity.json`, whose first key is `whitespace_code_points` with a list of 33 code points. The parity fixture is the pattern: rather than asserting one normalisation case, it enumerates every whitespace code point the language has, so the implementation cannot pass by covering the common ones. That is directly applicable to 005's whitespace-collapse rule and to 012's scenario design, and it is not in the plan's testing chapter. Size S. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/data/memory_description_parity.json:1-8] [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_structured_memory.py:1-1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] (observed)",
+      "text": "**013-manual-testing-scenarios (a test corpus, not a requirement).** turnstone's memory work ships a test corpus worth copying by shape rather than by content: six files (`test_structured_memory.py` at 597 lines, `test_memory_index.py`, `test_memory_relevance.py`, `test_project_memory_scope.py`, `test_structured_memory_storage.py`, `test_memory_api.py`) and one data fixture, `tests/data/memory_description_parity.json`, whose first key is `whitespace_code_points` with a list of 33 code points. The parity fixture is the pattern: rather than asserting one normalisation case, it enumerates every whitespace code point the language has, so the implementation cannot pass by covering the common ones. That is directly applicable to 005's whitespace-collapse rule and to 012's scenario design, and it is not in the plan's testing chapter. Size S. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/data/memory_description_parity.json:1-8] [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_structured_memory.py:1-1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] (observed)",
       "addedAtIteration": 4,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148-164",
@@ -762,7 +762,7 @@
     },
     {
       "id": "finding-7-3-012-manual-testing-scenarios-cost-cap-removed-rs-is-a-third-pattern-worth-naming",
-      "text": "**012-manual-testing-scenarios.** `cost_cap_removed.rs` is a third pattern worth naming: a test that asserts a *removed* feature stays removed. The plan deletes and defers a good deal — standing grants (`grant-scope-unsupported`), a `--demo` binary, a browser computer, `bots skill accept` — and nothing in 012 asserts that a deferred verb is still absent, so a later packet can reintroduce one by accident and no scenario notices. One table row per deferral with the expected refusal or usage error is enough. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cost_cap_removed.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164] (observed)",
+      "text": "**013-manual-testing-scenarios.** `cost_cap_removed.rs` is a third pattern worth naming: a test that asserts a *removed* feature stays removed. The plan deletes and defers a good deal — standing grants (`grant-scope-unsupported`), a `--demo` binary, a browser computer, `bots skill accept` — and nothing in 012 asserts that a deferred verb is still absent, so a later packet can reintroduce one by accident and no scenario notices. One table row per deferral with the expected refusal or usage error is enough. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cost_cap_removed.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -773,15 +773,15 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ]
     },
     {
       "id": "finding-7-2-012-manual-testing-scenarios-a-second-test-name-is-a-post-mortem-in-eight-words-",
-      "text": "**012-manual-testing-scenarios.** A second test name is a post-mortem in eight words: `composio_list_tools_stack_overflow_regression.rs`. A tool-listing call overflowed the stack on a deeply nested payload, and the fix is guarded by a test whose name carries both the call and the failure class. The plan has no scenario about a deeply nested or adversarially shaped JSON payload, and one of its own verbs reads third-party JSON (`.utcp_config.json` in 007, a channel provider's response in 011, an LLM's tool arguments in any run). Size S per verb: one fixture with nesting depth past any recursion limit and an assertion that the verb exits with a refusal rather than a stack overflow. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/composio_list_tools_stack_overflow_regression.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111] (observed)",
+      "text": "**013-manual-testing-scenarios.** A second test name is a post-mortem in eight words: `composio_list_tools_stack_overflow_regression.rs`. A tool-listing call overflowed the stack on a deeply nested payload, and the fix is guarded by a test whose name carries both the call and the failure class. The plan has no scenario about a deeply nested or adversarially shaped JSON payload, and one of its own verbs reads third-party JSON (`.utcp_config.json` in 007, a channel provider's response in 011, an LLM's tool arguments in any run). Size S per verb: one fixture with nesting depth past any recursion limit and an assertion that the verb exits with a refusal rather than a stack overflow. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/composio_list_tools_stack_overflow_regression.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -792,15 +792,15 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ]
     },
     {
       "id": "finding-7-1-012-manual-testing-scenarios-openhuman-full-carries-a-test-file-named-cli-sigpip",
-      "text": "**012-manual-testing-scenarios.** openhuman-full carries a test file named `cli_sigpipe.rs`, which is a test for a failure the plan's 33 scenarios do not cover and a `bots` verb will meet on its first day: a CLI whose stdout is piped into `head` receives `SIGPIPE`/`EPIPE` mid-write, and the naive outcome is a crashed process and a non-zero exit for a command that worked. The plan's scenario table has no pipe row, and the rule to add is one sentence plus one assertion: `bots activity | head -1` exits 0 and prints one row. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:142-145] (observed)",
+      "text": "**013-manual-testing-scenarios.** openhuman-full carries a test file named `cli_sigpipe.rs`, which is a test for a failure the plan's 33 scenarios do not cover and a `bots` verb will meet on its first day: a CLI whose stdout is piped into `head` receives `SIGPIPE`/`EPIPE` mid-write, and the naive outcome is a crashed process and a non-zero exit for a command that worked. The plan's scenario table has no pipe row, and the rule to add is one sentence plus one assertion: `bots activity | head -1` exits 0 and prints one row. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:142-145] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -811,15 +811,15 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ]
     },
     {
       "id": "finding-7-4-013-skilled-and-doc-alignment-openhuman-keeps-a-machine-facing-doc-index-beside-",
-      "text": "**013-skilled-and-doc-alignment.** openhuman keeps a machine-facing doc index beside its human docs: `llms.txt` is 53 lines where every line is `- [Title](path): one sentence saying what the document is for`, and `llms-full.txt` is the 3,231-line concatenation of the same corpus for a reader that wants it whole; the repo root's `AGENTS.md` opens with a repository map that links the architecture documents by role. The plan's 013 proves alignment by running two generators and driving each report's `Open findings:` line to `0`, which proves *agreement between two tools* and says nothing about whether a reader can find the right document. A generated `llms.txt` — one line per doc under the skill tree, with its purpose, checked so every path resolves and every doc has a line — is a second, cheaper proof, and it is the artifact an agent reading this repo actually needs. Value **medium-high**, size **S**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/llms.txt:1-14] [SOURCE: specs/system-skilled-bots/context/openhuman-full/AGENTS.md:1-12] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158] (observed)",
+      "text": "**014-skilled-and-doc-alignment.** openhuman keeps a machine-facing doc index beside its human docs: `llms.txt` is 53 lines where every line is `- [Title](path): one sentence saying what the document is for`, and `llms-full.txt` is the 3,231-line concatenation of the same corpus for a reader that wants it whole; the repo root's `AGENTS.md` opens with a repository map that links the architecture documents by role. The plan's 013 proves alignment by running two generators and driving each report's `Open findings:` line to `0`, which proves *agreement between two tools* and says nothing about whether a reader can find the right document. A generated `llms.txt` — one line per doc under the skill tree, with its purpose, checked so every path resolves and every doc has a line — is a second, cheaper proof, and it is the artifact an agent reading this repo actually needs. Value **medium-high**, size **S**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/llms.txt:1-14] [SOURCE: specs/system-skilled-bots/context/openhuman-full/AGENTS.md:1-12] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -830,15 +830,15 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ]
     },
     {
       "id": "finding-7-5-014-deep-review-openhuman-s-findings-md-notes-are-the-best-review-deliverable-in",
-      "text": "**014-deep-review.** openhuman's `FINDINGS-*.md` notes are the best review deliverable in the corpus, and their shape is the finding: a title naming the symptom and the ticket, a \"Verdict (final, backend-confirmed)\" line, evidence quoted to the byte (`exactly 182 bytes with keys details,error,errorCode,success`, a `file:line` into the backend checkout), the hypothesis it *rules out* (\"which rules out the tool-declaration hypothesis below\"), and a \"Correction (second commit)\" section that overturns the first note's reading. One of the three notes exists only to correct another. The plan's 014 requires every P0 fixed with a named proving command, which is the same rigour applied to the *fix*; what it does not require is the two halves that make a finding auditable later — the rejected hypothesis and a correction section. Both are one paragraph each in the review report. Size S, value **high**, because a review whose wrong first guess is deleted cannot be re-checked. [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12] [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:182-185] (observed)",
+      "text": "**015-deep-review.** openhuman's `FINDINGS-*.md` notes are the best review deliverable in the corpus, and their shape is the finding: a title naming the symptom and the ticket, a \"Verdict (final, backend-confirmed)\" line, evidence quoted to the byte (`exactly 182 bytes with keys details,error,errorCode,success`, a `file:line` into the backend checkout), the hypothesis it *rules out* (\"which rules out the tool-declaration hypothesis below\"), and a \"Correction (second commit)\" section that overturns the first note's reading. One of the three notes exists only to correct another. The plan's 014 requires every P0 fixed with a named proving command, which is the same rigour applied to the *fix*; what it does not require is the two halves that make a finding auditable later — the rejected hypothesis and a correction section. Both are one paragraph each in the review report. Size S, value **high**, because a review whose wrong first guess is deleted cannot be re-checked. [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12] [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:182-185] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -849,9 +849,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ]
     },
@@ -926,7 +926,7 @@
     },
     {
       "id": "finding-8-4-012-manual-testing-scenarios-two-test-properties-the-plan-s-channel-chapter-shou",
-      "text": "**012-manual-testing-scenarios — two test properties the plan's channel chapter should borrow.** The reference's pipeline ships \"a property test checks that every ingested event ends exactly once, and a 10,000-event flood test checks order, thread separation and interactive latency\". Both are properties rather than examples, and both are cheap to state for the plan's queue: every queued entry reaches exactly one terminal state and never leaves `unknown` or `sending` behind, and a 10,000-entry drain preserves `at` order per conversation and answers within a bounded time. The plan's 011 acceptance criteria already cover the single uncertain send; neither covers the aggregate. Size **S** each, value **medium**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/README.md:22-24] (observed)",
+      "text": "**013-manual-testing-scenarios — two test properties the plan's channel chapter should borrow.** The reference's pipeline ships \"a property test checks that every ingested event ends exactly once, and a 10,000-event flood test checks order, thread separation and interactive latency\". Both are properties rather than examples, and both are cheap to state for the plan's queue: every queued entry reaches exactly one terminal state and never leaves `unknown` or `sending` behind, and a 10,000-entry drain preserves `at` order per conversation and answers within a bounded time. The plan's 011 acceptance criteria already cover the single uncertain send; neither covers the aggregate. Size **S** each, value **medium**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/README.md:22-24] (observed)",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/README.md:1-60",
@@ -1027,7 +1027,7 @@
     },
     {
       "id": "finding-10-1-012-manual-testing-scenarios-and-the-coverage-table-every-one-of-the-fourteen-ph",
-      "text": "**012-manual-testing-scenarios and the coverage table: every one of the fourteen phases now carries at least one cited finding, and four of them carry only one.** The count per phase, from the deltas: 003 eight, 012 five, 005 four, 007 four, 011 four, 006 three, 002 two, 008 two, 009 two, 010 two, 001 one, 004 one, 013 one, 014 one, plus ten net-new. The four single-finding phases are single for different reasons and only one of them is thin: 004's is negative evidence that supports the plan, 013's is a doc index, 014's is a review-note shape, and 001's is a rule about optimistic rows — none of them has an unread reference implementation behind it. That is the honest coverage statement, and it is stronger than a count: a phase with one finding and no reference implementation is *covered*, while a phase with one finding and an unread reference would not be. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl:1-12] (observed; the count is over this lineage's own recorded findings)",
+      "text": "**013-manual-testing-scenarios and the coverage table: every one of the fourteen phases now carries at least one cited finding, and four of them carry only one.** The count per phase, from the deltas: 003 eight, 012 five, 005 four, 007 four, 011 four, 006 three, 002 two, 008 two, 009 two, 010 two, 001 one, 004 one, 013 one, 014 one, plus ten net-new. The four single-finding phases are single for different reasons and only one of them is thin: 004's is negative evidence that supports the plan, 013's is a doc index, 014's is a review-note shape, and 001's is a rule about optimistic rows — none of them has an unread reference implementation behind it. That is the honest coverage statement, and it is stronger than a count: a phase with one finding and no reference implementation is *covered*, while a phase with one finding and an unread reference would not be. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl:1-12] (observed; the count is over this lineage's own recorded findings)",
       "addedAtIteration": 10,
       "sources": [
         "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl through iter-009.jsonl",
@@ -1320,7 +1320,7 @@
     },
     {
       "id": "ruled-out-f19656fcb1ef",
-      "text": "`014-deep-review/spec.md` was read for the words `ruled out`, `hypothesis` and `correction` and returned nothing, which is what finding 5 rests on; the absence of a word is weaker evidence than the presence of a requirement, so the finding is stated as \"does not require\" and not \"forbids\".",
+      "text": "`015-deep-review/spec.md` was read for the words `ruled out`, `hypothesis` and `correction` and returned nothing, which is what finding 5 rests on; the absence of a word is weaker evidence than the presence of a requirement, so the finding is stated as \"does not require\" and not \"forbids\".",
       "contentHash": "f19656fcb1ef",
       "addedAtIteration": 7
     },
@@ -1398,7 +1398,7 @@
     },
     {
       "id": "ruled-out-3a132313a827",
-      "text": "**A per-phase \"readiness\" score.** The three earlier syntheses already produce verdict-per-phase tables and the plan-depth run downgraded and rejected findings with reasons; a fourth score would be a fourth scale. This iteration states coverage as counts plus the one qualitative fact that matters (whether a reference implementation exists behind the finding), and leaves scoring to 014-deep-review.",
+      "text": "**A per-phase \"readiness\" score.** The three earlier syntheses already produce verdict-per-phase tables and the plan-depth run downgraded and rejected findings with reasons; a fourth score would be a fourth scale. This iteration states coverage as counts plus the one qualitative fact that matters (whether a reference implementation exists behind the finding), and leaves scoring to 015-deep-review.",
       "contentHash": "3a132313a827",
       "addedAtIteration": 10
     },

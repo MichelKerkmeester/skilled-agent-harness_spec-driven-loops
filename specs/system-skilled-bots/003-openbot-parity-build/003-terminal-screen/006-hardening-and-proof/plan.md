@@ -38,19 +38,19 @@ The phase is deliberately the smallest in the parent. Its value is not code it w
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `ls crates/bots-tui/Cargo.toml` prints the path, so the crate `002` lands exists.
-- [ ] `ls crates/bots-tui/src/keys.rs crates/bots-tui/src/theme.rs` prints both, so the files the key, glyph and sanitize checks read exist, and `test ! -e crates/bots-tui/src/sanitize.rs` exits 0, so the crate holds one filter rather than two.
-- [ ] `ls crates/bots-tui/tests/fixtures/bots` prints the path, so every suite has its payload source.
-- [ ] `ls crates/bots-tui/design` prints `architecture.md`, `component-inventory.md`, `contracts.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, so the pointer check has a folder to read rather than an absent path that reads as a pass.
-- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read.
+- [ ] `ls .skilled/crates/bots-tui/Cargo.toml` prints the path, so the crate `002` lands exists.
+- [ ] `ls .skilled/crates/bots-tui/src/keys.rs .skilled/crates/bots-tui/src/theme.rs` prints both, so the files the key, glyph and sanitize checks read exist, and `test ! -e .skilled/crates/bots-tui/src/sanitize.rs` exits 0, so the crate holds one filter rather than two.
+- [ ] `ls .skilled/crates/bots-tui/tests/fixtures/bots` prints the path, so every suite has its payload source.
+- [ ] `ls .skilled/crates/bots-tui/design` prints `architecture.md`, `component-inventory.md`, `contracts.md`, `glyph-table.md`, `key-map.md` and `mockups.md`, so the pointer check has a folder to read rather than an absent path that reads as a pass.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read.
 
 ### Definition of Done
-- [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0.
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
+- [ ] `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0.
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `1 passed`, so the release binary answered one item in a pseudo-terminal.
-- [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, and `README.md` and `design/` name the reference's GPL-3.0 licence by design.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `1 passed`, so the release binary answered one item in a pseudo-terminal.
+- [ ] `rg -n 'GNU GENERAL PUBLIC LICENSE' .skilled/crates/bots-tui/src .skilled/crates/bots-tui/Cargo.toml .skilled/crates/bots-tui/Cargo.lock` prints nothing, and `README.md` and `design/` name the reference's GPL-3.0 licence by design.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 - [ ] The parent's `--recursive --strict` run prints `RESULT: PASSED` once the five sibling children leave Draft. That run is the parent's closure step and fails on their scaffolds today.
 - [ ] Docs updated: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` agree on the gate set.
@@ -66,7 +66,7 @@ Gate and document. The phase owns no component. It reads the crate, writes two f
 
 ### Key Components
 - **The gate runner**: the orchestrator's own shell, which runs each gate, reads its output and exit status, and records both. It is not a script the crate ships, because a committed runner would be a second place the gate set lives.
-- **`crates/bots-tui/README.md`**: the one document a reader of the crate opens. It carries the build, the run, the keys, the glyphs with the ASCII fallback, and the design reference with the no-code statement.
+- **`.skilled/crates/bots-tui/README.md`**: the one document a reader of the crate opens. It carries the build, the run, the keys, the glyphs with the ASCII fallback, and the design reference with the no-code statement.
 - **The Defect Audit table in `tasks.md`**: eight rows, one per defect the expansion fixes, each with a command and its expected output. It is the hardening claim's evidence, and it lives beside the tasks that run it.
 
 ### Data Flow
@@ -82,16 +82,16 @@ This packet is a hardening pass over a crate five children wrote, so the fix sur
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/**` | Owns the behaviour `002` to `005` wrote | Update only the file and line a gate names | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` |
-| `crates/bots-tui/tests/**` | Observes that behaviour through `TestBackend` and the fixture | Update only the test a suite names, and never lower an assertion | `cargo test` prints `test result: ok` for every target |
-| `crates/bots-tui/tests/pty_smoke.rs` | Does not exist | Create, one scripted run of the release binary in a pseudo-terminal, with a temp skilled tree whose `.skilled/bin/bots.cjs` is a Node shim over the fixture | `cargo test --release --test pty_smoke` prints `1 passed` |
-| `crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer. Read-only | The pointer loop prints nothing |
-| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change. Read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'"` prints 2 |
+| `.skilled/crates/bots-tui/src/**` | Owns the behaviour `002` to `005` wrote | Update only the file and line a gate names | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` |
+| `.skilled/crates/bots-tui/tests/**` | Observes that behaviour through `TestBackend` and the fixture | Update only the test a suite names, and never lower an assertion | `cargo test` prints `test result: ok` for every target |
+| `.skilled/crates/bots-tui/tests/pty_smoke.rs` | Does not exist | Create, one scripted run of the release binary in a pseudo-terminal, with a temp skilled tree whose `.skilled/bin/bots.cjs` is a Node shim over the fixture | `cargo test --release --test pty_smoke` prints `1 passed` |
+| `.skilled/crates/bots-tui/design/**` | Carries the mockups and the `file:line` pointers `001` wrote | Not a consumer. Read-only | The pointer loop prints nothing |
+| `.github/workflows/bots-runtime.yml` | Runs the gate set on CI | Not a consumer of this change. Read-only, and a mismatch is reported to `002` | `rg -n '^  bots-tui:'` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'"` prints 2 |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Names the verbs the skill offers | Update, one line | `rg -n 'bots ui'` prints one line, and `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0 |
-| `crates/bots-tui/README.md` | Does not exist | Create | The five README greps each print one line |
+| `.skilled/crates/bots-tui/README.md` | Does not exist | Create | The five README greps each print one line |
 
 Required inventories:
-- Same-class producers: `rg -n 'openhuman' crates/bots-tui` over `src/`, `tests/`, `design/` and `Cargo.toml`, so the licence grep covers every directory the crate ships rather than `src/` alone.
+- Same-class producers: `rg -n 'openhuman' .skilled/crates/bots-tui` over `src/`, `tests/`, `design/` and `Cargo.toml`, so the licence grep covers every directory the crate ships rather than `src/` alone.
 - Consumers of changed symbols: none. The phase changes no public symbol, no field and no error name, so the consumer inventory is empty by construction and the grep that proves it is `git diff --stat` over the crate.
 - Matrix axes: three gates by four targets (library, binary, integration tests, doc examples) is twelve rows, and the licence grep by four directories is four rows. A gate that passes on one target and fails on another is the failure this matrix exists to catch.
 - Algorithm invariant: none. The phase adds no algorithm, no parser and no path resolver, so there is no invariant to state and no adversarial case to add.
@@ -122,7 +122,7 @@ Setup reads the crate's module list, the toolchain versions and the parent's eig
 | Pseudo-terminal | The release binary against the fixture, answering one item and reading the drawn screen | `cargo test --release --test pty_smoke` |
 | Static | Formatting, lints at the deny level, and the licence grep | `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `rg` |
 
-Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries the four `--json` contracts the screen reads: `activity` and `inbox` from `001-activity-and-actor`, `routines` from `002-routine-layer`, and `status` from the runtime today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] The chat pane's transcript is `010-conversations`' payload, which the fixture gains when that phase lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, section "Files to Change"] The two refusals the answer flow draws in the status row are `006-approval-grants`' `item-answered-differently` and `011-messaging-channels`' `answer-not-approver`, and neither is a gate this phase runs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004]
+Every suite reads `.skilled/crates/bots-tui/tests/fixtures/bots`, and the fixture carries the four `--json` contracts the screen reads: `activity` and `inbox` from `001-activity-and-actor`, `routines` from `002-routine-layer`, and `status` from the runtime today. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-002] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md, REQ-007] The chat pane's transcript is `010-conversations`' payload, which the fixture gains when that phase lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/010-conversations/002-conversation-runtime-and-chat-verb/spec.md, section "Files to Change"] The two refusals the answer flow draws in the status row are `006-approval-grants`' `item-answered-differently` and `011-messaging-channels`' `answer-not-approver`, and neither is a gate this phase runs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md, REQ-013] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/003-link-roster-and-answer-gate/spec.md, REQ-004]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -132,12 +132,12 @@ Every suite reads `crates/bots-tui/tests/fixtures/bots`, and the fixture carries
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `crates/bots-tui/` from `002-architecture-and-contracts` | Internal | Yellow | No manifest means no gate. The phase reports the absent path rather than passing a gate it could not run |
+| `.skilled/crates/bots-tui/` from `002-architecture-and-contracts` | Internal | Yellow | No manifest means no gate. The phase reports the absent path rather than passing a gate it could not run |
 | `keys.rs` and `theme.rs` from `003-shell-and-navigation` | Internal | Yellow | The key and glyph checks have nothing to read, and the README's key list has no source |
 | `theme.rs` from `003-shell-and-navigation` and `view/panes.rs` from `004-panes` | Internal | Yellow | Two of the eight defect checks cannot run |
 | `view/overlay.rs` from `005-answer-flow` | Internal | Yellow | The free-text defect check cannot run |
 | A stable Rust toolchain with `clippy` and `rustfmt` | External | Green | The three crate gates cannot run. The CI job installs the same components |
-| `jq` for the manifest licence read | External | Green | The licence check falls back to `rg -n '^license' crates/bots-tui/Cargo.toml` |
+| `jq` for the manifest licence read | External | Green | The licence check falls back to `rg -n '^license' .skilled/crates/bots-tui/Cargo.toml` |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -192,7 +192,7 @@ The other two need one fact each. `cli-pi`'s ladder on this route is `low`, `hig
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-`crates/bots-tui/src/**` and `crates/bots-tui/tests/**` are one lane by construction: a formatting repair, a lint repair and a test repair all touch the same tree, and two workers on it would race on the same file. The parallelism in this packet comes from the lanes beside that one: the runtime suite's tests, the crate README, and the hub line. `crates/bots-tui/README.md` is held by one lane alone, so the README is never written while another worker reads the key table it describes.
+`.skilled/crates/bots-tui/src/**` and `.skilled/crates/bots-tui/tests/**` are one lane by construction: a formatting repair, a lint repair and a test repair all touch the same tree, and two workers on it would race on the same file. The parallelism in this packet comes from the lanes beside that one: the runtime suite's tests, the crate README, and the hub line. `.skilled/crates/bots-tui/README.md` is held by one lane alone, so the README is never written while another worker reads the key table it describes.
 
 ### The waves
 
@@ -202,33 +202,33 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | A | T001, T002, T003, T004 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | none. Four read-only probes |
 
-**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands. `cargo fmt --version` and `cargo clippy --version` each print a version. `ls crates/bots-tui/src` prints the twelve module entries. `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
+**Workers:** 1, because the four probes are mechanical and one worker keeps their output in one log. **Verify:** `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 1 and prints `manifest path ... does not exist` before the crate lands. `cargo fmt --version` and `cargo clippy --version` each print a version. `ls .skilled/crates/bots-tui/src` prints the twelve module entries. `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8.
 
 #### Wave 2 - Gate repair
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T005, T006, T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/**`, `crates/bots-tui/tests/**` |
+| A | T005, T006, T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/src/**`, `.skilled/crates/bots-tui/tests/**` |
 | B | T008 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/skills/system-skilled-bots/runtime/tests/**` |
 
-**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A falls back at `max` and walks the whole ladder down to `cli-codex`. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
+**Workers:** 2. This is the packet's hardest wave: a lint repair lands in a module another child owns, and the wrong fix changes behaviour that child's tests assert, so lane A falls back at `max` and walks the whole ladder down to `cli-codex`. Lane A runs T005 before T006 before T007, because a formatting pass rewrites lines the linter then reads. **Verify:** `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
 
 #### Wave 2b - The pseudo-terminal test
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T033 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/tests/pty_smoke.rs` |
+| A | T033 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/tests/pty_smoke.rs` |
 
-**Workers:** 1. The lane holds one new file, so it is disjoint from Wave 2's repair lanes, and it runs after them so the repair pass does not rewrite the test it lands. It falls back at `max` and walks the whole ladder down to `cli-codex`, because a pseudo-terminal test that passes for the wrong reason proves nothing: the shim, the `env!("CARGO_BIN_EXE_bots-ui")` resolution and the drawn-screen read are three places a green run can be empty. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`. **Fallback:** rung 2 at `max`, then rungs 3, 4 and 5, then stop and report.
+**Workers:** 1. The lane holds one new file, so it is disjoint from Wave 2's repair lanes, and it runs after them so the repair pass does not rewrite the test it lands. It falls back at `max` and walks the whole ladder down to `cli-codex`, because a pseudo-terminal test that passes for the wrong reason proves nothing: the shim, the `env!("CARGO_BIN_EXE_bots-ui")` resolution and the drawn-screen read are three places a green run can be empty. **Verify:** `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`. **Fallback:** rung 2 at `max`, then rungs 3, 4 and 5, then stop and report.
 
 #### Wave 3 - The two documents
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/README.md` |
+| A | T009 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/README.md` |
 | B | T010, T011 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/skills/system-skilled-bots/SKILL.md` |
 
-**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback and the design reference without copying a line of it, so it falls back at `max`. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' crates/bots-tui/README.md`, `rg -n 'openhuman' crates/bots-tui/README.md` and `rg -n 'no code' crates/bots-tui/README.md` each print at least one line. `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line. `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
+**Workers:** 2. Lane A is the design-shaped task of this packet: the README has to name every binding the key table carries, the eight glyphs with their ASCII fallback and the design reference without copying a line of it, so it falls back at `max`. Lane B is one line and two symlink proofs. **Verify:** `rg -n 'cargo build --release' .skilled/crates/bots-tui/README.md`, `rg -n 'Ctrl\+C' .skilled/crates/bots-tui/README.md`, `rg -n 'ASCII|--ascii|--mono' .skilled/crates/bots-tui/README.md`, `rg -n 'openhuman' .skilled/crates/bots-tui/README.md` and `rg -n 'no code' .skilled/crates/bots-tui/README.md` each print at least one line. `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints one line. `test -L .opencode/skills` and `test -L .opencode/bin` each exit 0.
 
 #### Wave 4 - Verification from the final state
 
@@ -236,7 +236,7 @@ A lane is the unit of parallelism, and two lanes never hold the same file. The w
 |------|-------|-------------------------|------------|
 | Orchestrator | T012, T013, T014, T015, T016, T017, T018, T019, T020, T021 | none. The orchestrator runs them itself | none |
 
-**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0. `cargo clippy --all-targets -- -D warnings` exits 0. `cargo test` prints `test result: ok` for every target. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`. `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`. `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing. `cargo build --release --manifest-path crates/bots-tui/Cargo.toml` exits 0 and `ls crates/bots-tui/target/release/bots-ui` prints the path. `ls crates/bots-tui/design` prints the six documents and the design-pointer loop prints nothing. The eight Defect Audit rows each print their expected output. `cargo test --test pty_smoke` prints `1 passed`. `validate.sh --strict` on this child prints `RESULT: PASSED`.
+**Workers:** 0. Every task in this wave is a gate the orchestrator must read the output and exit status of, so dispatching it would put a claim between the evidence and the decision. **Verify:** `cargo fmt --check` exits 0. `cargo clippy --all-targets -- -D warnings` exits 0. `cargo test` prints `test result: ok` for every target. `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints no `failed`. `cargo metadata ... | jq -r '.packages[0].license'` prints `MIT`. `rg -n 'GNU GENERAL PUBLIC LICENSE' .skilled/crates/bots-tui/src .skilled/crates/bots-tui/Cargo.toml .skilled/crates/bots-tui/Cargo.lock` prints nothing. `cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0 and `ls .skilled/crates/bots-tui/target/release/bots-ui` prints the path. `ls .skilled/crates/bots-tui/design` prints the six documents and the design-pointer loop prints nothing. The eight Defect Audit rows each print their expected output. `cargo test --test pty_smoke` prints `1 passed`. `validate.sh --strict` on this child prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 

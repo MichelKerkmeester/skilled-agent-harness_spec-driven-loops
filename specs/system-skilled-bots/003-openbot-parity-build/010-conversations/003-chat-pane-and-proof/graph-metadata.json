@@ -43,6 +43,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/crates/bots-tui/src/view/panes.rs",
+      ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/data.rs",
+      ".skilled/crates/bots-tui/src/view/footer.rs",
       ".skilled/bin/bots.cjs"
     ],
     "entities": [
@@ -80,6 +84,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "panes.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/panes.rs",
+        "source": "derived"
+      },
+      {
+        "name": "keys.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "data.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/data.rs",
+        "source": "derived"
+      },
+      {
+        "name": "footer.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/footer.rs",
         "source": "derived"
       },
       {
@@ -165,35 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 draws a Chat tab whose body is a placeholder naming phase 010, so a person who opens `bots ui` sees the tab and cannot read or send a message there",
     "created_at": "2026-11-25T23:17:49Z",
-    "last_save_at": "2026-11-27T15:42:09.524Z",
+    "last_save_at": "2026-11-28T11:13:36.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +208,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:694a4e022b176170b9625275f1046fdf644d13079c878ce018c622faa3c9364b",
+    "source_fingerprint": "sha256:0cfc3693c7aeb6ed2da93cdb1e7bb9618f478967a509ca05714548c8bdf7614d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5ac8464376be7a93efe92cf13802cfbc2e25d80bda9b5c5c24b8d316fcb66ef8",
-      "plan.md": "96d81ac5a74a1f77b82ab779f72854c987cf303a5da6fe6b3352f59ed2a62dd2",
-      "tasks.md": "194dae7ed0bbbbbee2d851b2143aed8b9d1ba34870b48868985228b0e5009ee2",
+      "spec.md": "028c9d5a44117820dd8d166156a480f45e01ae32836cc8c89fb328c1ce06e900",
+      "plan.md": "fdc70c0ea0cdcd6d91dd4ad724dc13e153f4803df74a88311cec5a300ba034db",
+      "tasks.md": "4d675a100323355997ba1a55d7035892332c1933dcc4bf38a849ac57cf60f5cc",
       "implementation-summary.md": "de64247757c296e328d6a3dd3de0fa304bef48776da35012d96a8833600da9b3"
     },
     "last_active_at": null

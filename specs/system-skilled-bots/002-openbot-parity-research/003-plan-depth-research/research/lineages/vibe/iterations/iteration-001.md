@@ -39,7 +39,7 @@ Frontier node F-1-001 (depth 1, scope specs/system-skilled-bots/003-openbot-pari
 - What schema files or contract docs are missing? A packet-level `contracts/` folder (eleven schemas plus an envelope rule and an item-lifecycle table), owned by a new cross-cutting phase that lands before 001.
 
 ## Questions Remaining
-- Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 013-skilled-and-doc-alignment?
+- Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 014-skilled-and-doc-alignment?
 - Does the `until` observation belong on the run record at all, given the state file already carries `untilMetAt`?
 - What envelope rule should every `bots ... --json` verb follow, and does `status --json` already set the precedent?
 

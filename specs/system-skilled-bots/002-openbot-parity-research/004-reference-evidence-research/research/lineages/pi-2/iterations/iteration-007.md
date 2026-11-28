@@ -54,4 +54,4 @@ Per-phase evidence for `009-skills` (the `skills:` list, the prompt block, the t
 - What I would do differently: for every phase, grep the plan for the *mechanism's* name rather than the phase's, because a capability can be named in a lift table and owned by no folder.
 
 ## Recommended Next Focus
-Phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review: the three proof and alignment phases, which need evidence for whether the references carry a manual test script, a documentation-alignment check or a review loop the plan could mirror, and which of their rules have no reference at all.
+Phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review: the three proof and alignment phases, which need evidence for whether the references carry a manual test script, a documentation-alignment check or a review loop the plan could mirror, and which of their rules have no reference at all.

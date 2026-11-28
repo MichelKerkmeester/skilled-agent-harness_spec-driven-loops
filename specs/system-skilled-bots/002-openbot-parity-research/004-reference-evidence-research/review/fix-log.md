@@ -120,7 +120,7 @@ Note on merged registry entries: `R5-P2-001` also carries vibe-1 iteration 6 fin
 ## Independent review
 
 ### M1. 009 sends a live-model scenario to 012
-- Holds. [SOURCE: B/012-manual-testing-scenarios/plan.md:127] [SOURCE: B/012-manual-testing-scenarios/spec.md:114] [SOURCE: B/012-manual-testing-scenarios/spec.md:204]
+- Holds. [SOURCE: B/013-manual-testing-scenarios/plan.md:127] [SOURCE: B/013-manual-testing-scenarios/spec.md:114] [SOURCE: B/013-manual-testing-scenarios/spec.md:204]
 - Changed: 009 lift row 2 and pitfall 2 now say no planned phase can host it and point at net-new candidate 7. 009 pitfall 1 and section 12 question 2 now point at candidate 7. Grade of pitfall 2 kept confirmed, because the reading it reports (turnstone tests adherence, the plan does not) holds. Only its guard was wrong. This differs from the review's proposal. A grade measures whether the lines support the reading, and a wrong guard is fixed by rewriting the guard.
 
 ### M2. The stall watchdog is sized as one timer, the dispatch blocks

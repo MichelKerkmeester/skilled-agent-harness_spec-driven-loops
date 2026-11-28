@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/015-deep-review",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/015-deep-review",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review",
+      "phase 15 deep review",
+      "expanded deep review of the parity build",
+      "deep review plan",
+      "phase 15 deep review plan",
+      "deep review tasks",
+      "phase 15 deep review tasks",
+      "deep review acceptance criteria",
+      "phase 15 deep review acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "phase",
+      "expanded",
+      "parity",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "design/records.md",
+      ".skilled/bin/bots.cjs",
+      "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/scratch/failures.md",
+      "design/refusals.md",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+      "runtime/lib/README.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/implementation-summary.md",
+      "design/state-machines.md",
+      "design/mockups.md",
+      ".skilled/commands/deep/review.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "design/fixtures/README.md",
+      ".skilled/skills/system-skilled-bots/runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "failures.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/scratch/failures.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusals.md",
+        "kind": "doc",
+        "path": "design/refusals.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "bot-template.txt",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-bots/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Fourteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fourteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
+    "created_at": "2026-11-25T19:32:30Z",
+    "last_save_at": "2026-11-28T11:47:16.236Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:420e8e71aab345a751da12353be735a78eb34e18b537c8a998b51f9e0ec184dc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "edfba99430b1061b7e774bdf1ed75a9be16580d18650e79c95ed5c6a3dd0b697",
+      "plan.md": "37d2e35adbc536d4d2b63293f0e66ec31fc6103fbbd1a57e7c9790aa04fa55a6",
+      "tasks.md": "bd40011cfa7498c2ceaa7c27285277a67a3bca90a7d56eb612b8d9367df834e8",
+      "implementation-summary.md": "aa4b4e88d08274abe26de799b62bf898f6f4e3a9a1d4232966dbf847bae76bf1"
+    },
+    "last_active_at": null
+  }
+}

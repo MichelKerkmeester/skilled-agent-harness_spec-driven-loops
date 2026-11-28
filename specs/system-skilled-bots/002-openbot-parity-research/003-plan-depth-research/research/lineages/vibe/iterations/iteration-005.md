@@ -64,4 +64,4 @@ Frontier node F-2-007 (depth 2, scope .skilled/skills/system-skilled-bots/runtim
 - What I would do differently: read the parent spec's Shared Records table first in every iteration that touches a shared record, because it is the packet's own answer to the ownership question and it is easy to miss.
 
 ## Recommended Next Focus
-The unreviewed phases: 007-per-bot-apps, 008-vault, 009-skills, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review. The Shared Records table should be the spine of the synthesis: it is the packet's best cross-cutting artifact and every remaining gap is a missing row in it or a missing file beside it.
+The unreviewed phases: 007-per-bot-apps, 008-vault, 009-skills, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review. The Shared Records table should be the spine of the synthesis: it is the packet's best cross-cutting artifact and every remaining gap is a missing row in it or a missing file beside it.

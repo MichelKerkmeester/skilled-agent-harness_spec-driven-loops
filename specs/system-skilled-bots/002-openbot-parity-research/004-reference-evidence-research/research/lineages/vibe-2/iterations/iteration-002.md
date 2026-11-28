@@ -2,7 +2,7 @@
 
 ## Focus
 
-Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?
+Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?
 
 The topic says to read `openhuman-full` first because no earlier run studied it and because it "carries five vendored crates ... and a built openhuman-tui crate that openhuman-main lacks". This iteration tests that premise against the tree before ranking anything, because a wrong premise would mis-rank the whole net-new answer.
 
@@ -88,7 +88,7 @@ The topic says to read `openhuman-full` first because no earlier run studied it 
 - specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1
 - specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88
 - specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247
-- specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180
+- specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180
 - specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170
 
 ## Assessment

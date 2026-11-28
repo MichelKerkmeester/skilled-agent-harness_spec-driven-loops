@@ -1,6 +1,6 @@
 ---
 title: "Contract: refusals and exit codes for the parity build"
-description: "Every refusal the fourteen phases add with its phase, layer, failure class, exit code and whether it enters the runner's typed registry, plus every exit code the runtime has today."
+description: "Every refusal the fifteen phases add with its phase, layer, failure class, exit code and whether it enters the runner's typed registry, plus every exit code the runtime has today."
 trigger_phrases:
   - "bots refusal table"
   - "bots exit codes"
@@ -98,7 +98,7 @@ Numbered 3.2.1 rather than 3.3 so the sections after it keep the numbers the pha
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `ui-unavailable` | Verb refusal (`ui`), the Skilled tree holds no `crates/bots-tui` | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+| `ui-unavailable` | Verb refusal (`ui`), the Skilled tree holds no `.skilled/crates/bots-tui` | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 | `ui-not-built` | Verb refusal (`ui`), the crate is present and the binary is not | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 | `ui-contract-mismatch` | Verb refusal (`ui`), the binary's contract number differs from the verb's | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 
@@ -218,7 +218,7 @@ A rejected credential exits 1 and carries no name, as 011 chose. The secret reso
 
 `channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/plan.md, section "7. ROLLBACK PLAN"]
 
-### 3.11 Phases 012 to 014
+### 3.11 Phases 013 to 015
 
 These phases test, align and review. They add no refusal.
 

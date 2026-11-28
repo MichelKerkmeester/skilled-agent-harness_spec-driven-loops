@@ -54,7 +54,7 @@ When an inbox row targets an existing registry question but carries different te
 ---
 
 ## 2. TOPIC
-Planning-depth review of packet specs/system-skilled-bots/003-openbot-parity-build, the OpenBot parity build for skilled bots: fourteen phases (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, 014-deep-review). The operator wants to build all of it in one shot to perfection, so every phase must be planned and architected deeply enough that a builder needs no design decision while building.
+Planning-depth review of packet specs/system-skilled-bots/003-openbot-parity-build, the OpenBot parity build for skilled bots: fourteen phases (001-activity-and-actor, 002-routine-layer, 003-terminal-screen, 004-computer-exposure, 005-memory, 006-approval-grants, 007-per-bot-apps, 008-vault, 009-skills, 010-conversations, 011-messaging-channels, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment, 015-deep-review). The operator wants to build all of it in one shot to perfection, so every phase must be planned and architected deeply enough that a builder needs no design decision while building.
 
 Phase 003-terminal-screen was just expanded into a Level 3 phase parent with six children (UX and component map with a design/ folder of mockups, key map, glyph table and component inventory; architecture and contracts; shell and navigation; panes; answer flow; hardening). Use it as the benchmark for depth. Do not review 003's children themselves.
 
@@ -448,11 +448,11 @@ Stop at maxIterations=10 (stopPolicy max-iterations). Convergence below 0.05 is 
 ## 11A. CARRIED-FORWARD OPEN QUESTIONS
 - What envelope rule should every `bots ... --json` verb follow, and does `status --json` already set the precedent? (iteration 1)
 - Does the `until` observation belong on the run record at all, given the state file already carries `untilMetAt`? (iteration 1)
-- Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 013-skilled-and-doc-alignment? (iteration 1)
+- Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 014-skilled-and-doc-alignment? (iteration 1)
 - Which capability names belong in `declaredCapabilities`, and does the terminal transport declare the same set as Telegram? (iteration 2)
 - Do the three unstated conformance rules match the reference's own suite, or does the packet need a fourth fixture class for the queue's `unknown` state? (iteration 2)
 - Does the roster check belong in `answer.ts` at all, or should the caller pass an `isApprover` predicate so the contracts group keeps its import boundary? (iteration 3)
-- Should the contracts phase be a new phase 015 or a child of 013-skilled-and-doc-alignment, given that 013 already owns doc alignment? (iteration 3)
+- Should the contracts phase be a new phase 015 or a child of 014-skilled-and-doc-alignment, given that 013 already owns doc alignment? (iteration 3)
 - Should the activity row's `state` be renamed `group` before 001 lands, or is the collision acceptable because the two payloads never mix? (iteration 4)
 - Does 010 accept the `{messages: []}` change, or does the chat pane's fixture absorb the bare array as a documented exception? (iteration 4)
 - Does 006 accept `grants.actionKind`, or does the item's top-level `kind` get renamed instead? (iteration 5)

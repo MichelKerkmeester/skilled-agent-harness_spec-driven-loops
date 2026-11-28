@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build"
-    last_updated_at: "2026-11-26T13:05:08.849Z"
+    last_updated_at: "2026-11-28T12:00:00.000Z"
     last_updated_by: "decision-record-writer"
     recent_action: "Recorded operator decisions"
     next_safe_action: "Review the recorded operator decisions"
@@ -37,7 +37,7 @@ _memory:
 | Q001 | Both key maps are approved: the terminal key map in 003/001 AC-007 and the 010/001 design/key-map-delta.md. | Not stated. | None | 003-terminal-screen, 010-conversations |
 | Q002 | Decisions D5 and D6 are tightened rather than kept as taken. | Not stated. | None | spec.md decisions D5 and D6 |
 | Q003 | Before choosing scope cuts, the operator asked for more detail on items 3 and 4, the members roster half and the Linux secret store group. | Not stated. | None | spec.md scope |
-| Q004 | Delete the stray untracked files and keep the 012 manual testing scenarios. | Not stated. | None | 012-manual-testing-scenarios |
+| Q004 | Delete the stray untracked files and keep the 012 manual testing scenarios. | Not stated. | None | 013-manual-testing-scenarios |
 | Q005 | D5 tightens in whichever way gives the best UX without adding memory or disk use. | Not stated. | None | spec.md D5, 007-per-bot-apps |
 | Q006 | D6 tightens by sandboxing each bot child. | Not stated. | None | spec.md D6 |
 | Q007 | Keep the members half of the channel roster, so anyone listed in members can answer from a channel. | Not stated. | None | 011-messaging-channels |
@@ -50,6 +50,11 @@ _memory:
 | Q014 | Update the shipped manual testing playbook in the same pass, so its memory, vault and skills scenarios match the amended plan. | | The scenarios describe unbuilt features, and left alone they would test the old plan. | None | .skilled/skills/system-skilled-bots/manual-testing-playbook |
 | Q015 | A Slack approval with an option label over 75 characters goes out in numbered text form, and a typed number answers it. | | Otherwise that prompt could not be answered from Slack at all. | The rule that a typed Slack line is always chat | 011-messaging-channels |
 | Q016 | Every phase is dispatched to cli-mistral-vibe with deepseek-flash at its fixed max thinking, and cli-pi becomes the first fallback. No build starts. | The operator chose DeepSeek Flash at max through Vibe for the build. | The cli-pi primary rows of the executor table | spec.md EXTERNAL ORCHESTRATION and BUILD ORCHESTRATION |
+| Q019 | The folder architecture phase takes number 012, and the scenario, alignment and review phases shift to 013, 014 and 015. | The operator chose the renumber over a 015 folder whose number would not match the order it runs in. | The 012, 013 and 014 numbers of the three closing phases | spec.md PHASE DOCUMENTATION MAP and BUILD ORCHESTRATION, goal.md criteria 1 to 3 |
+| Q020 | The folder architecture phase covers all of `.skilled` the build touched: the system-skilled-bots skill, `.skilled/crates/bots-tui`, `.skilled/bin/bots.cjs` and the deep-loop executor audit files. | The operator chose the widest of the three offered scopes, so the pass reaches the crate, the CLI and the audit files as well as the skill tree. | None | 012-folder-architecture spec.md In Scope, REQ-001 and REQ-004 |
+| Q021 | The parent goal is amended to fifteen phases, and the operator resets the session goal from the new chat slice. | The new phase needs its own binding row and criteria that count it, and folding it into 013 was offered and not chosen. | goal.md criteria 1 to 3 at fourteen children | goal.md binding table and criteria 1 to 3 |
+| Q022 | Phase 013 executes all 58 bots scenarios, BOT-001 to BOT-025 as a regression check on the rewritten runtime, plus DLR-002, DLR-023 and DLR-064, the system-deep-loop scenarios that cover `executor-audit.ts`. | Phases 001 to 011 rewrote the runtime the first 25 scenarios drive and 007 and 008 changed `executor-audit.ts`. The goal's playbook criterion checks only the package format. | 013's execution of the 33 new scenarios alone | 013-manual-testing-scenarios REQ-005, REQ-014, AC-005, AC-014, AC-015 and goal D8 |
+| Q023 | The Rust crate moves from the repository root to `.skilled/crates/bots-tui/`, under `.skilled` and outside the skill. | The operator asked to keep it in the skill if possible, or else under `.skilled`. It cannot sit in the skill, because `parent-skill-check.cjs` lines 118 to 122 allow no `crates` folder at a hub root and the skill walkers would crawl its build output. | 003-terminal-screen goal D1 as first written, which put the crate at the repository root | 003-terminal-screen goal D1, 003-terminal-screen/002-architecture-and-contracts REQ-001 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -371,6 +376,105 @@ Only start the build with Vibe
 Answer:
 ```text
 Make Vibe primary in plan (Recommended)
+```
+
+### Q019
+<!-- source: claude:323f5183-9f0e-4734-beef-642466c5fec9:toolu_01PkuLUcRvEw7wwKbgdGC9V6:0 -->
+
+Question:
+```text
+Where should the new folder-architecture phase sit in the build order? The folder number doesn't have to match the run order, because the BUILD ORCHESTRATION wave table decides when each phase runs.
+```
+
+Options:
+```text
+015, run before 012 (Recommended)
+015, run last after 014
+Renumber to 012, shift the rest
+```
+
+Answer:
+```text
+Renumber to 012, shift the rest
+```
+
+### Q020
+<!-- source: claude:323f5183-9f0e-4734-beef-642466c5fec9:toolu_01PkuLUcRvEw7wwKbgdGC9V6:1 -->
+
+Question:
+```text
+What should the folder-architecture phase restructure?
+```
+
+Options:
+```text
+The bots skill tree (Recommended)
+Skill tree plus spec packet
+All of .skilled touched by the build
+```
+
+Answer:
+```text
+All of .skilled touched by the build
+```
+
+### Q021
+<!-- source: claude:323f5183-9f0e-4734-beef-642466c5fec9:toolu_01PkuLUcRvEw7wwKbgdGC9V6:2 -->
+
+Question:
+```text
+How should the goal be amended for the 15th phase?
+```
+
+Options:
+```text
+Amend to 15, I'll re-set /goal (Recommended)
+Keep 14, fold into 013
+```
+
+Answer:
+```text
+Amend to 15, I'll re-set /goal (Recommended)
+```
+
+### Q022
+<!-- source: claude:323f5183-9f0e-4734-beef-642466c5fec9:toolu_01AmwtUUyP2Zfg3Euxzkhfjn:0 -->
+
+Question:
+```text
+Should the scenario phase (013 after the renumber) execute more than the 33 new scenarios? Today it runs only BOT-026 to BOT-058, and the goal's criterion only validates the 58-scenario package's format.
+```
+
+Options:
+```text
+All 58 bots + deep-loop audit (Recommended)
+All 58 bots scenarios
+Every playbook in .skilled
+Keep it at the 33 new
+```
+
+Answer:
+```text
+All 58 bots + deep-loop audit (Recommended)
+```
+
+### Q023
+<!-- source: operator chat, 2026-11-28, two lines on the crate move -->
+
+Question:
+```text
+No AskUserQuestion prompt carries this decision. The operator wrote these two lines in chat about moving the Rust crate out of the repository root.
+```
+
+Options:
+```text
+None offered
+```
+
+Answer:
+```text
+keep it in the skill if possible
+Or .skilled
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

@@ -22,7 +22,7 @@ No new independent gap emerged from this cross-phase pass. The required unresolv
 - The top-level plan makes phase 012 the test corpus for deliverables from 001-011, 013 the alignment pass and 014 the final review; the answer-scope sequence is also explicit: 001 supplies `once|deny`, 006 extends that scope with grants. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:78-84]
 - The runtime record is the join across request, run, delivery and status; `answerItem` writes the item before enqueuing an idempotently keyed resume. This confirms a stable interface boundary for 001, 002, 006 and 011, while the 002 routine-state race remains local to its switch/state/item updates. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:5-11] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:5-13] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/answer.ts:91-119]
 - Delivery currently recognizes only `desktop`; its planned 011 extension is specifically about parked questions carrying `itemId`. That matches the phase plan's parked-item approval index, but it also confirms the explicitly limited channel behavior for the 002 fatigue notice. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:44-50] [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:130-145] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:68-71]
-- The 012→014 failure-artifact handoff and 014 preflight/fallback conflict remain the two final-phase amendments already reported in iteration 3; no third cross-phase blocker was found. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:142-145] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:100] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:125]
+- The 012→014 failure-artifact handoff and 014 preflight/fallback conflict remain the two final-phase amendments already reported in iteration 3; no third cross-phase blocker was found. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/tasks.md:142-145] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:100] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:125]
 
 ## Sources Consulted
 - `specs/system-skilled-bots/003-openbot-parity-build/spec.md:78-84`
@@ -30,8 +30,8 @@ No new independent gap emerged from this cross-phase pass. The required unresolv
 - `.skilled/skills/system-skilled-bots/runtime/lib/run-record.ts:5-11`
 - `.skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:44-50,130-145`
 - `specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/plan.md:68-71`
-- `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/tasks.md:142-145`
-- `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:100,125`
+- `specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/tasks.md:142-145`
+- `specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:100,125`
 
 ## Assessment Summary
 - New information ratio: 0.0

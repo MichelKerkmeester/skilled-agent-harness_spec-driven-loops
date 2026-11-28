@@ -19,7 +19,7 @@
 - `specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/findings-registry.json` (`openQuestions`, `resolvedQuestions`, `frontier`)
 - `specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/regrade-log.md:264-306` (the 012-013-014 group)
 - `specs/system-skilled-bots/003-openbot-parity-build/` (the fourteen phase folder names)
-- `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:40-49`
+- `specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:40-49`
 
 ## Findings - New
 
@@ -43,15 +43,15 @@ None.
 
 | Protocol | Status | Evidence | Summary |
 |---|---|---|---|
-| `spec_code` | pass | `research.md:625-636`; `research.md:64-437`; `research.md:438-467`; `research.md:468-515`; `research.md:694-720`; `research.md:735`; `findings-registry.json`; `B/012-manual-testing-scenarios/spec.md:40-49` | Every count in section 8 and section 13 recomputes from the document's own rows, and the fourteen phase headings match the fourteen 003 folders. One sentence in section 12 over-promises what its table covers (P2 finding 1). |
+| `spec_code` | pass | `research.md:625-636`; `research.md:64-437`; `research.md:438-467`; `research.md:468-515`; `research.md:694-720`; `research.md:735`; `findings-registry.json`; `B/013-manual-testing-scenarios/spec.md:40-49` | Every count in section 8 and section 13 recomputes from the document's own rows, and the fourteen phase headings match the fourteen 003 folders. One sentence in section 12 over-promises what its table covers (P2 finding 1). |
 | `checklist_evidence` | notApplicable | `specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/` holds no `checklist.md` | The packet is Level 1 with no checklist, so there is no checklist evidence to align. |
 
 ## Integration Evidence
 
 - **Section 8's kept/confirmed/weak columns are exact.** Section 3's fourteen tables hold 84 rows: 57 `confirmed` and 27 `weak`. Section 4 holds 21 crate rows, all `confirmed`. Section 5 holds 16 candidate rows: 12 `confirmed` and 4 `weak`. The sums are 121 rows, 90 `confirmed` and 31 `weak`, which is section 8's totals row to the cell. Every group row also matches: 001-002 is 4+8 rows and 2+5 confirmed; 003-004 is 8+3 and 4+2; 005-009-010 is 6+12+3 and 4+12+3; 006-007-008 is 12+2+8 and 7+2+6; 011 is 13 and 6; 012-013-014 is 2+2+1 and 1+2+1; openhuman-full and net-new is 21+16 and 21+12.
 - **Section 13's question split is exact.** Sixteen questions stand: thirteen in the registry plus three pruned. Eight are answered, because four were resolved in the registry and four more were answered by verification; three are partly answered and five are open. The twelve-row table in section 12 gives four answered, three partly and five open, and section 11 supplies the four resolved seeds, so 4+4, 3 and 5 reconcile with section 13's 8, 3 and 5.
-- **All fourteen phase headings match the 003 folders.** `001-activity-and-actor` through `014-deep-review` appear as `###` headings in section 3 in folder order, and each name is character-identical to the folder under `specs/system-skilled-bots/003-openbot-parity-build/`.
-- **The 012 out-of-scope rejections rest on a real scope decision.** Eight rows in the 012-013-014 group are rejected because "012 adds no automated test". `B/012-manual-testing-scenarios/spec.md:3` describes the phase as adding "33 operator scenarios to the system-skilled-bots manual testing playbook", and `:42` bounds the scope to the playbook, its index and the run folder, so the reason holds.
+- **All fourteen phase headings match the 003 folders.** `001-activity-and-actor` through `015-deep-review` appear as `###` headings in section 3 in folder order, and each name is character-identical to the folder under `specs/system-skilled-bots/003-openbot-parity-build/`.
+- **The 012 out-of-scope rejections rest on a real scope decision.** Eight rows in the 012-013-014 group are rejected because "012 adds no automated test". `B/013-manual-testing-scenarios/spec.md:3` describes the phase as adding "33 operator scenarios to the system-skilled-bots manual testing playbook", and `:42` bounds the scope to the playbook, its index and the run folder, so the reason holds.
 
 ## Edge Cases
 

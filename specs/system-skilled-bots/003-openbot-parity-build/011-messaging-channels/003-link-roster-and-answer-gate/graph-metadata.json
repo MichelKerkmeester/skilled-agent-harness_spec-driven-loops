@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Nothing links a chat identity to a person, so a message from a chat cannot be attributed to an actor and nothing says who may answer from one",
     "created_at": "2026-11-26T00:00:18Z",
-    "last_save_at": "2026-11-27T23:24:21.050Z",
+    "last_save_at": "2026-11-28T11:13:44.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:97222875376acdbed5784f7d808e2c7ddef10154c23542b90799d826db80bcaa",
+    "source_fingerprint": "sha256:cf9051b9fd69797fdb92b91837ea33bc8c67b8f9ce7ba0211c63ee87886eec58",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "996109867a21ab7769606e6db93f42423cc61831c0d260d880b2effb70c760ec",
       "plan.md": "9ce5674b15b4ce581c0a472367bdc017947d3e8a178356ffa2d3d3f291ff1c6a",
       "tasks.md": "5f64d8078e6ffc630e6a5e9b9140dedfa0dedc546a6b89721f3800b0e956cf1d",
-      "implementation-summary.md": "4abaf1539bb133c07bb0478509dfb97528fb8b4f455349e2eb670df7399fc7be"
+      "implementation-summary.md": "5a9506f6adc1b98b454ac46c0ba1160645049373887ca671b9565ea39db26e8b"
     },
     "last_active_at": null
   }

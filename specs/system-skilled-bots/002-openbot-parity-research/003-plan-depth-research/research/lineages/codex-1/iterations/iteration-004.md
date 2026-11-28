@@ -50,4 +50,4 @@ Phase breadth pass: phases 007-per-bot-apps, 008-vault, and 009-skills — asses
 - What I would do differently: compare every multi-file write with its duplicate, interruption, and retry tests before judging the phase ready.
 
 ## Recommended Next Focus
-Review phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment, and 014-deep-review for evidence integrity, close conditions, fix/retest loops, and how their outputs hand off; then synthesize all per-phase expansion candidates.
+Review phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment, and 015-deep-review for evidence integrity, close conditions, fix/retest loops, and how their outputs hand off; then synthesize all per-phase expansion candidates.

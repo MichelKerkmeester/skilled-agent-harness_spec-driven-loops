@@ -1,7 +1,7 @@
 ---
 title: "BOT-037 -- An until check sets completed only when it exits zero"
 description: "This scenario proves that a completed run runs `until_check`, that a non-zero check records `met: false` and leaves the bot enabled, that a zero check records `untilMetAt` and sets the `completed` switch, that a later run is refused `routine-completed`, and that the three malformed until blocks are refused by name."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-037 -- An until check sets completed only when it exits zero
@@ -145,7 +145,7 @@ The three loop lines with their exits, the three record lines, both routine JSON
 
 1. The first record carries no `until` object: the check did not run. Read the completed-run branch in `runner.ts` and confirm it calls the precheck helper.
 2. The first record reads `{"met":true}`: the check's exit status is inverted. Read the outcome mapping.
-3. The switch reads `enabled` after a zero check: the switch write is missing. Read the three writes in `specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/state-machines.md` section 2.
+3. The switch reads `enabled` after a zero check: the switch write is missing. Read the three writes in `specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/state-machines.md` section 2.
 4. The fourth run exits 0: the completed check is missing beside the disabled check. Read the refusal order in `specs/system-skilled-bots/003-openbot-parity-build/contracts/refusals.md`.
 5. `pb-prose` completes: an until with no check must never set the switch. Read the guard.
 6. `pb-meta` runs: the metacharacter scan is missing. Read the until validator.

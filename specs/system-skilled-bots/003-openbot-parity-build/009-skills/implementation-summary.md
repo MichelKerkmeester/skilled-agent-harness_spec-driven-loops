@@ -123,7 +123,7 @@ The live loop then ran against a committed temp copy of `fixtures/skills-clean` 
 |-------|--------|
 | `cd $R && npm test` | PASS, `Test Files  53 passed (53)` and `Tests  695 passed (695)`, exit 0. Baseline 51 files and 654 tests, so +2 files and +41 tests with none lost |
 | `cd $R && npm run typecheck` | PASS, exit 0, baseline exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS, exit 0, every `test result: ok` |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS, exit 0, every `test result: ok` |
 | `bot-check.cjs` over the four skills fixtures | `skills-clean` exit 0, the three defects exit 1 with `FAIL: skills-unknown`, `FAIL: skills-too-large` and `FAIL: skills-over-budget` |
 | `bots skill propose run-1 --repo $F/skills-clean` | `bots: run-record-missing: run-1`, exit 4, no file written |
 | Live propose, inbox and answer loop | Both proposals exit 0, `jq -e` exit 0 on both `proposal.json`, two `skill-proposals` items listed, the answer wrote `answer.json` and queued 0 requests |

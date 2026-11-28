@@ -22,7 +22,7 @@ contextType: "implementation"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | Rust, 2021 edition, inside the `crates/bots-tui` package 002 creates |
+| **Language/Stack** | Rust, 2021 edition, inside the `.skilled/crates/bots-tui` package 002 creates |
 | **Framework** | ratatui 0.30 with crossterm 0.29, no async runtime |
 | **Storage** | None. The one write is `bots answer --scope once\|deny --repo <repo> -- <item-id> <text>` through `cli.rs` |
 | **Testing** | `cargo test --lib` for the reducer and the two views, `cargo test --test answer_flow` for the argv log |
@@ -38,17 +38,17 @@ The answer surface is a state machine and one renderer. `state.rs` gains the ove
 
 ### Definition of Ready
 - [ ] `node .skilled/bin/bots.cjs inbox --json` exits 0 and prints a JSON object carrying an `items` array, and `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` option, so packet phase 001's read and write both exist before this child extends them
-- [ ] `ls crates/bots-tui/src/model.rs crates/bots-tui/src/state.rs crates/bots-tui/src/keys.rs crates/bots-tui/src/cli.rs crates/bots-tui/src/app.rs crates/bots-tui/tests/fixtures/bots` prints six paths, so 002 is closed
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes` prints `test result: ok`, so 004 is closed and the inbox selection exists
-- [ ] `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`, so the fixture is executable before this child extends it
-- [ ] `ls crates/bots-tui/tests/common/frames.rs` prints the path, so 002's frame loader exists for the two suites
+- [ ] `ls .skilled/crates/bots-tui/src/model.rs .skilled/crates/bots-tui/src/state.rs .skilled/crates/bots-tui/src/keys.rs .skilled/crates/bots-tui/src/cli.rs .skilled/crates/bots-tui/src/app.rs .skilled/crates/bots-tui/tests/fixtures/bots` prints six paths, so 002 is closed
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes` prints `test result: ok`, so 004 is closed and the inbox selection exists
+- [ ] `git ls-files -s .skilled/crates/bots-tui/tests/fixtures/bots` prints `100755`, so the fixture is executable before this child extends it
+- [ ] `ls .skilled/crates/bots-tui/tests/common/frames.rs` prints the path, so 002's frame loader exists for the two suites
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names the eighteen tests `tasks.md` lists
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0
-- [ ] `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs`, so the one write path is one module
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names the eighteen tests `tasks.md` lists
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` and names `closed_input_writes_nothing`
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0 and `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0
+- [ ] `rg -n 'Command::new' .skilled/crates/bots-tui/src` prints only `cli.rs`, so the one write path is one module
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -81,18 +81,18 @@ A key reaches the reducer as `Msg::Key`, and `keys.rs` gives it an action. With 
 |---------|--------------|--------|--------------|
 | `bots answer` | The one write verb, which gains `--scope once\|deny` in phase 001 | not a consumer - this child calls it and changes nothing | `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` verb's `--scope` option |
 | `bots inbox --json` | The read that carries `id`, `options`, `state` and `expiresAt` | not a consumer - this child reads it and changes nothing | `rg -n 'inbox' .skilled/bin/bots.cjs` shows no new option |
-| `crates/bots-tui/src/cli.rs` | The only module that spawns a process | not a consumer - 002 owns the answer call and the stderr capture | `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs` |
-| `crates/bots-tui/src/state.rs` | The pure reducer 002 creates | update - `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered` | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` |
-| `crates/bots-tui/src/keys.rs` | The key table 002 creates | update - `OVERLAY_ROWS` and their labels, including the `t` row that enters `Typing` | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` |
-| `crates/bots-tui/src/view/mod.rs` | The view root 003 creates | update - one `mod overlay;` line and the overlay call | `cargo build --manifest-path crates/bots-tui/Cargo.toml` exits 0, so the module is declared |
-| `crates/bots-tui/src/app.rs` | The loop 002 creates | not a consumer - 002 owns the effect hand-off and the closed-input exit | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` |
-| `crates/bots-tui/tests/fixtures/bots` | The only payload source in tests | not a consumer - 002 owns the `answer` branch, the `--fixture-log` argv log and the `--fixture-scenario` switch | `bash crates/bots-tui/tests/fixtures/bots --fixture-log /tmp/answer.log --fixture-scenario ok answer --scope deny -- item-1 deny` exits 0 and appends one argv line |
-| `crates/bots-tui/tests/end_to_end.rs` | New | create - the scripted loop from the fixture to frame 1 | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test end_to_end` prints `test result: ok` |
-| `crates/bots-tui/src/view/panes.rs` | The inbox pane 004 creates | not a consumer - the overlay reads the selected id, never the pane | `rg -n 'overlay' crates/bots-tui/src/view/panes.rs` prints nothing |
+| `.skilled/crates/bots-tui/src/cli.rs` | The only module that spawns a process | not a consumer - 002 owns the answer call and the stderr capture | `rg -n 'Command::new' .skilled/crates/bots-tui/src` prints only `cli.rs` |
+| `.skilled/crates/bots-tui/src/state.rs` | The pure reducer 002 creates | update - `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered` | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` |
+| `.skilled/crates/bots-tui/src/keys.rs` | The key table 002 creates | update - `OVERLAY_ROWS` and their labels, including the `t` row that enters `Typing` | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | The view root 003 creates | update - one `mod overlay;` line and the overlay call | `cargo build --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0, so the module is declared |
+| `.skilled/crates/bots-tui/src/app.rs` | The loop 002 creates | not a consumer - 002 owns the effect hand-off and the closed-input exit | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | The only payload source in tests | not a consumer - 002 owns the `answer` branch, the `--fixture-log` argv log and the `--fixture-scenario` switch | `bash .skilled/crates/bots-tui/tests/fixtures/bots --fixture-log /tmp/answer.log --fixture-scenario ok answer --scope deny -- item-1 deny` exits 0 and appends one argv line |
+| `.skilled/crates/bots-tui/tests/end_to_end.rs` | New | create - the scripted loop from the fixture to frame 1 | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test end_to_end` prints `test result: ok` |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | The inbox pane 004 creates | not a consumer - the overlay reads the selected id, never the pane | `rg -n 'overlay' .skilled/crates/bots-tui/src/view/panes.rs` prints nothing |
 
 Required inventories:
-- Same-class producers: `rg -n 'answer' crates/bots-tui/src --glob '!cli.rs'` lists every module that names the verb, so a second write path cannot appear unnoticed.
-- Consumers of changed symbols: `rg -n 'Overlay|Answer' crates/bots-tui/src crates/bots-tui/tests` lists every reader of the new state and effect.
+- Same-class producers: `rg -n 'answer' .skilled/crates/bots-tui/src --glob '!cli.rs'` lists every module that names the verb, so a second write path cannot appear unnoticed.
+- Consumers of changed symbols: `rg -n 'Overlay|Answer' .skilled/crates/bots-tui/src .skilled/crates/bots-tui/tests` lists every reader of the new state and effect.
 - Matrix axes: five overlay phases (idle, typing, sending, refused, gone) by two item shapes (options, no options) by five no-write keys (Esc, closed input, Ctrl+C, unbound key, second press), plus the one write by two scopes (`once`, `deny`), plus the grant row's two cases (present, absent).
 - Algorithm invariant: an `Answer` effect is produced only by a key that names an answer, only while the phase is `Idle`, `Typing` or `Refused`, never for an id already in flight, and only for the item id the overlay captured. Every other path produces no effect, and the argv log is the evidence.
 <!-- /ANCHOR:affected-surfaces -->
@@ -131,7 +131,7 @@ The other two need one fact each. `cli-pi`'s ladder is `low`, `high` and `max`, 
 
 A lane is the unit of parallelism, and two lanes never hold the same file. The worker count is therefore the number of lanes whose file sets are disjoint, not the number of tasks in the wave.
 
-This child's files are almost all disjoint, which is why two of its five waves run more than one worker. Two dependencies shape the count. `crates/bots-tui/src/state.rs` and `crates/bots-tui/src/keys.rs` are separate files but both feed `view/overlay.rs`, so the overlay waits for the wave that lands them rather than sharing it. `view/overlay.rs` adds the one `mod` line this child owns to the view root `crates/bots-tui/src/view/mod.rs`, and 004 already holds the banner's line there, so the overlay is the only view this child declares.
+This child's files are almost all disjoint, which is why two of its five waves run more than one worker. Two dependencies shape the count. `.skilled/crates/bots-tui/src/state.rs` and `.skilled/crates/bots-tui/src/keys.rs` are separate files but both feed `view/overlay.rs`, so the overlay waits for the wave that lands them rather than sharing it. `view/overlay.rs` adds the one `mod` line this child owns to the view root `.skilled/crates/bots-tui/src/view/mod.rs`, and 004 already holds the banner's line there, so the overlay is the only view this child declares.
 
 ### The waves
 
@@ -141,33 +141,33 @@ This child's files are almost all disjoint, which is why two of its five waves r
 |------|-------|-------------------------|------------|
 | Orchestrator | T001, T002, T003, T004 | none. The orchestrator runs them itself | none. Four read-only probes |
 
-**Workers:** 0. Each task is one command whose output the orchestrator reads, so a dispatch would add a process and no judgment. **Verify:** `node .skilled/bin/bots.cjs inbox --json` exits 0 and prints a JSON object carrying an `items` array. `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` option. `ls crates/bots-tui/src/model.rs crates/bots-tui/src/state.rs crates/bots-tui/src/keys.rs crates/bots-tui/src/cli.rs crates/bots-tui/src/app.rs crates/bots-tui/tests/fixtures/bots` prints six paths. `ls crates/bots-tui/tests/common/frames.rs` prints the path. `rg -n 'Deny' specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs` prints the deny button line. `git ls-files -s crates/bots-tui/tests/fixtures/bots` prints `100755`.
+**Workers:** 0. Each task is one command whose output the orchestrator reads, so a dispatch would add a process and no judgment. **Verify:** `node .skilled/bin/bots.cjs inbox --json` exits 0 and prints a JSON object carrying an `items` array. `rg -n "scope" .skilled/bin/bots.cjs` prints the `answer` option. `ls .skilled/crates/bots-tui/src/model.rs .skilled/crates/bots-tui/src/state.rs .skilled/crates/bots-tui/src/keys.rs .skilled/crates/bots-tui/src/cli.rs .skilled/crates/bots-tui/src/app.rs .skilled/crates/bots-tui/tests/fixtures/bots` prints six paths. `ls .skilled/crates/bots-tui/tests/common/frames.rs` prints the path. `rg -n 'Deny' specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/render/overlay.rs` prints the deny button line. `git ls-files -s .skilled/crates/bots-tui/tests/fixtures/bots` prints `100755`.
 
 #### Wave 2 - The state and the key table
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T006 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/state.rs` |
-| B | T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `crates/bots-tui/src/keys.rs` |
+| A | T006 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/src/state.rs` |
+| B | T007 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `high` | `.skilled/crates/bots-tui/src/keys.rs` |
 
-**Workers:** 2, because the two files are disjoint. Lane A falls back at `max` because the overlay state machine and `pending_answers` are the design decision the rest of the child rests on. Lane B is a mechanical addition. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` and names `overlay_locks_after_first_press`, `overlay_transition_table`, `close_while_sending_keeps_the_answer` and `outcome_word_stays_until_the_next_poll`. `--lib keys` prints `test result: ok` and names `overlay_bindings_carry_labels`.
+**Workers:** 2, because the two files are disjoint. Lane A falls back at `max` because the overlay state machine and `pending_answers` are the design decision the rest of the child rests on. Lane B is a mechanical addition. **Verify:** `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib state` prints `test result: ok` and names `overlay_locks_after_first_press`, `overlay_transition_table`, `close_while_sending_keeps_the_answer` and `outcome_word_stays_until_the_next_poll`. `--lib keys` prints `test result: ok` and names `overlay_bindings_carry_labels`.
 
 #### Wave 3 - The two views
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T010 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/src/view/overlay.rs`, `crates/bots-tui/src/view/mod.rs` |
+| A | T010 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/src/view/overlay.rs`, `.skilled/crates/bots-tui/src/view/mod.rs` |
 
-**Workers:** 1, because the wave holds one task. Lane A falls back at `max` because the overlay is the design-heavy piece: five phases, a numbered list with deny first, a typed line with a cursor, a dimmed sending panel and a grant row drawn only when the item carries one. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `overlay_draws_deny_first`, `overlay_labels_are_drawn`, `sending_dims_every_key`, `refused_adds_the_stderr_line`, `gone_replaces_the_choices` and `grant_row_draws_only_when_present`.
+**Workers:** 1, because the wave holds one task. Lane A falls back at `max` because the overlay is the design-heavy piece: five phases, a numbered list with deny first, a typed line with a cursor, a dimmed sending panel and a grant row drawn only when the item carries one. **Verify:** `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib overlay` prints `test result: ok` and names `overlay_draws_deny_first`, `overlay_labels_are_drawn`, `sending_dims_every_key`, `refused_adds_the_stderr_line`, `gone_replaces_the_choices` and `grant_row_draws_only_when_present`.
 
 #### Wave 4 - The two suites
 
 | Lane | Tasks | Executor, model, effort | Files held |
 |------|-------|-------------------------|------------|
-| A | T012 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/tests/end_to_end.rs` |
-| B | T013 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `crates/bots-tui/tests/answer_flow.rs` |
+| A | T012 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/tests/end_to_end.rs` |
+| B | T013 | `cli-mistral-vibe` · `deepseek-flash` · `max (fixed)`, fallback at `max` | `.skilled/crates/bots-tui/tests/answer_flow.rs` |
 
-**Workers:** 2, because the two files are disjoint. This is the packet's hardest wave: the lock, the refusal path, the gone item and the closed-input exit are the four places a wrong branch writes an answer nobody asked for, so both lanes fall back at `max` and walk the whole ladder down to `cli-codex`. **Verify:** `cargo test --manifest-path crates/bots-tui/Cargo.toml --test end_to_end` prints `test result: ok`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names all eighteen tests `tasks.md` lists.
+**Workers:** 2, because the two files are disjoint. This is the packet's hardest wave: the lock, the refusal path, the gone item and the closed-input exit are the four places a wrong branch writes an answer nobody asked for, so both lanes fall back at `max` and walk the whole ladder down to `cli-codex`. **Verify:** `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test end_to_end` prints `test result: ok`. `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names all eighteen tests `tasks.md` lists.
 
 #### Wave 5 - Verification gates
 
@@ -175,7 +175,7 @@ This child's files are almost all disjoint, which is why two of its five waves r
 |------|-------|-------------------------|------------|
 | Orchestrator | T014, T015, T016, T017, T018, T020 | none. The orchestrator runs them itself | none |
 
-**Workers:** 0. **Verify:** `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target. `rg -n 'Command::new' crates/bots-tui/src` prints only `cli.rs`. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow --strict` prints `RESULT: PASSED`.
+**Workers:** 0. **Verify:** `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0. `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0. `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target. `rg -n 'Command::new' .skilled/crates/bots-tui/src` prints only `cli.rs`. `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow --strict` prints `RESULT: PASSED`.
 
 ### What every dispatch carries
 

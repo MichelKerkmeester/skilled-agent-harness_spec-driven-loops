@@ -91,11 +91,11 @@ The gap is real: skill bodies use relative links, and a child that starts in the
 Revised wording: "009: inside each skill block, add 'Skill directory: <dir>' and one sentence that relative paths in the skill resolve against it. Written fresh, no notice."
 
 **013, generate the help text from the verb table. Shrink to one unit test.**
-The drift is real: the help is a literal array and nothing compares it to `VERB_SPECS` [SOURCE: .skilled/bin/bots.cjs:19] [SOURCE: .skilled/bin/bots.cjs:64] [SOURCE: B/013-skilled-and-doc-alignment/spec.md:97]. The plan checks set equality once, at close [SOURCE: B/013-skilled-and-doc-alignment/design/mockups.md:235]. Moving every description into the table restructures the CLI's help. One test that asserts the same set equality runs on every later change and costs five lines. This is a close call. If 013 rewrites the block anyway, generating it is also acceptable.
+The drift is real: the help is a literal array and nothing compares it to `VERB_SPECS` [SOURCE: .skilled/bin/bots.cjs:19] [SOURCE: .skilled/bin/bots.cjs:64] [SOURCE: B/014-skilled-and-doc-alignment/spec.md:97]. The plan checks set equality once, at close [SOURCE: B/014-skilled-and-doc-alignment/design/mockups.md:235]. Moving every description into the table restructures the CLI's help. One test that asserts the same set equality runs on every later change and costs five lines. This is a close call. If 013 rewrites the block anyway, generating it is also acceptable.
 Revised wording: "013: add one runtime test that the verbs in `USAGE` and the keys of `VERB_SPECS` are the same set."
 
 **012, a rule that a cut-off command ends quietly, plus one scenario. Shrink to one handler line.**
-No EPIPE handling exists today (searched `EPIPE` and `SIGPIPE` in `.skilled/bin/bots.cjs` and `L/`, no hit). The exposure is inferred and needs an output larger than the pipe buffer. The cost of the failure is a stack trace, not lost data. The listed action touches a contract file, the scenario corpus and the review. 012 also rules out new tests of its own [SOURCE: B/012-manual-testing-scenarios/spec.md:114].
+No EPIPE handling exists today (searched `EPIPE` and `SIGPIPE` in `.skilled/bin/bots.cjs` and `L/`, no hit). The exposure is inferred and needs an output larger than the pipe buffer. The cost of the failure is a stack trace, not lost data. The listed action touches a contract file, the scenario corpus and the review. 012 also rules out new tests of its own [SOURCE: B/013-manual-testing-scenarios/spec.md:114].
 Revised wording: "001, when it first edits `bots.cjs`: exit 0 on an `EPIPE` error from stdout. No contract rule, no scenario."
 
 **011, map every Slack and Telegram error. Shrink to a three-bucket rule.**
@@ -187,7 +187,7 @@ The research's own "who notices" column says hardly anyone or nobody for each. T
 - G5a, change the "for reference, not as instructions" label [SOURCE: B/contracts/prompt-sections.md:90].
 - G6a, rewrite the conformance fixture to the real adapter over a fake platform. Two plan documents disagree today [SOURCE: B/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:35] [SOURCE: B/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:61].
 - G6c, cut the button-bearing Slack chunk at 3,000 characters. The plan cuts at 3,900 [SOURCE: B/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md:63].
-- G8, a ledger column for the failing run with the fix removed. CHK-012 counts a word today [SOURCE: B/014-deep-review/tasks.md:231] and the ledger has no proof column [SOURCE: B/014-deep-review/design/records.md:215-221].
+- G8, a ledger column for the failing run with the fix removed. CHK-012 counts a word today [SOURCE: B/015-deep-review/tasks.md:231] and the ledger has no proof column [SOURCE: B/015-deep-review/design/records.md:215-221].
 - 001, drop the notice for `activity-rows.ts`. Take the drop branch, since the design uses none of its rules [SOURCE: B/001-activity-and-actor/spec.md:179].
 - 003, fix the sanitizer citation in component-inventory.md.
 - 003, end a cut string with an ellipsis. The `--ascii` flag already exists for the fallback [SOURCE: B/003-terminal-screen/002-architecture-and-contracts/plan.md:68].
@@ -240,7 +240,7 @@ Smaller differences that lead to the same outcome: they drop the stall watchdog,
 ### Where it caught something I missed
 
 1. **Unpadded base64 covers padded.** An unpadded base64 string is a prefix of its padded form, so scanning the unpadded form in place of the padded one widens the scan at no cost. I missed that. It fits beside the hex form.
-2. **The help text test would fail if it landed early.** The help block is edited only in 013 [SOURCE: B/013-skilled-and-doc-alignment/tasks.md:66], so my set-equality test can only land at 013's close, where the plan's one-time check already runs. That leaves the test guarding verbs added after 013, which is a future caller. Their defer is the better call.
+2. **The help text test would fail if it landed early.** The help block is edited only in 013 [SOURCE: B/014-skilled-and-doc-alignment/tasks.md:66], so my set-equality test can only land at 013's close, where the plan's one-time check already runs. That leaves the test guarding verbs added after 013, which is a future caller. Their defer is the better call.
 3. **A second mis-citation for the sanitizer.** The answer-flow spec cites the same openhuman lines for the one sanitizer [SOURCE: B/003-terminal-screen/005-answer-flow/spec.md:212]. I read that line and did not connect it. The fix should cover both files.
 4. **The 006 notice.** The plan's fallback says the notice entry is dropped [SOURCE: B/006-approval-grants/plan.md:151]. I cited that line and still kept the item as "credit the doc", which would add a notice for a file nobody lifts. Their wording is right: drop the entry.
 5. **A false sentence about symlinks.** I dropped the symlink item whole. They keep one line: the design says a name can never leave the skills folder [SOURCE: B/009-skills/design/state-machines.md:64], and a symlinked folder does. Correcting that sentence is free.

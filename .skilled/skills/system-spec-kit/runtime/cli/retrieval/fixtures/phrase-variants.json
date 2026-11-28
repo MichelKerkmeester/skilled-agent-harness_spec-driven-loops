@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b6789ba472678fecf5ed6ae1caaf963536a19b6e912030c0b5a7467dc144f3cd",
+  "manifestHash": "efeaf25ba83358dab91818ca9350371a611f172e6d19b466a96a579d12dc1e61",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13119,6 +13119,9 @@
     ],
     "approval index plan": [
       "approval index plan"
+    ],
+    "approval ladder": [
+      "approval ladder"
     ],
     "approval ladder flow": [
       "approval ladder flow"
@@ -55423,6 +55426,24 @@
     "folder alignment scoring": [
       "folder alignment scoring"
     ],
+    "folder architecture": [
+      "folder architecture"
+    ],
+    "folder architecture acceptance criteria": [
+      "folder architecture acceptance criteria"
+    ],
+    "folder architecture goal": [
+      "folder architecture goal"
+    ],
+    "folder architecture implementation summary": [
+      "folder architecture implementation summary"
+    ],
+    "folder architecture plan": [
+      "folder architecture plan"
+    ],
+    "folder architecture tasks": [
+      "folder architecture tasks"
+    ],
     "folder detector": [
       "folder-detector"
     ],
@@ -60238,6 +60259,9 @@
     ],
     "grant refusal catalogue": [
       "grant refusal catalogue"
+    ],
+    "grant scope": [
+      "grant scope"
     ],
     "grant scope unsupported": [
       "grant-scope-unsupported"
@@ -87297,6 +87321,9 @@
     ],
     "phase 16 fix second follow up findings": [
       "phase 16 fix second follow up findings"
+    ],
+    "phase 16 folder architecture": [
+      "phase 16 folder architecture"
     ],
     "phase 16 follow up fix sweep": [
       "phase 16 follow up fix sweep"
@@ -141227,6 +141254,9 @@
     ],
     "why compaction loses the purpose": [
       "why compaction loses the purpose"
+    ],
+    "why did the bot ask": [
+      "why did the bot ask"
     ],
     "why did the scanner flag that": [
       "why did the scanner flag that"

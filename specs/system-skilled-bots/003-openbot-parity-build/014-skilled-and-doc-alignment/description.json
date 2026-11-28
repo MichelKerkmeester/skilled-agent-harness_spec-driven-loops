@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment",
+  "description": "Phases 001 to 012 change the bots CLI, the runtime modules and the skill's own docs",
+  "keywords": [
+    "phases",
+    "change",
+    "bots",
+    "cli",
+    "runtime",
+    "modules",
+    "skill",
+    "own",
+    "docs"
+  ],
+  "lastUpdated": "2026-11-28T11:15:58.548Z",
+  "specId": "014",
+  "folderSlug": "skilled-and-doc-alignment",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -29,7 +29,7 @@ contextType: "implementation"
 Three shell variables shorten the commands below. Set them once per shell:
 
 ```bash
-CRATE=crates/bots-tui
+CRATE=.skilled/crates/bots-tui
 BOTS="node .skilled/bin/bots.cjs"
 STATE=${SKILLED_BOTS_STATE_ROOT:-${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots}
 ```
@@ -78,7 +78,7 @@ The pre-expansion phase 003 carried one task list for the whole screen. These ar
 
 ### Wave 1 - Setup probes
 
-- [x] T001 Confirm the crate and the gate set before any edit (`$CRATE/Cargo.toml`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0, so the crate 002 lands is in place, and `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` exits non-zero naming no such target, so the one target this phase adds is the only thing absent. Evidence: at the start `cargo fmt --check` exited 0, and the starting `ls crates/bots-tui/tests` listed no `pty_smoke.rs`, so the pseudo-terminal target was the one absent thing. The probe ran in the orchestrator shell, because it writes nothing.
+- [x] T001 Confirm the crate and the gate set before any edit (`$CRATE/Cargo.toml`). Verify: `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0, so the crate 002 lands is in place, and `cargo test --manifest-path $CRATE/Cargo.toml --release --test pty_smoke` exits non-zero naming no such target, so the one target this phase adds is the only thing absent. Evidence: at the start `cargo fmt --check` exited 0, and the starting `ls .skilled/crates/bots-tui/tests` listed no `pty_smoke.rs`, so the pseudo-terminal target was the one absent thing. The probe ran in the orchestrator shell, because it writes nothing.
 - [x] T002 Record the toolchain the gates run under (`goal.md`). Verify: `cargo fmt --version` and `cargo clippy --version` each print a version and exit 0. Evidence: `cargo 1.92.0`, `rustfmt 1.8.0-stable` and `clippy 0.1.92`, each exit 0.
 - [x] T003 Record the crate's module list as the gate's file set (`$CRATE/src`). Verify: `ls $CRATE/src` prints `app.rs`, `cli.rs`, `data.rs`, `event.rs`, `keys.rs`, `lib.rs`, `main.rs`, `model.rs`, `state.rs`, `terminal.rs`, `theme.rs` and `view`. Evidence: `ls` printed the twelve entries.
 - [x] T004 Confirm the eight defect rows the audit covers (`../spec.md`). Verify: `rg -c '^\| .*\| (002|003|004|005): ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md` prints 8. Evidence: the count printed 8.
@@ -227,7 +227,7 @@ rg -n 'openhuman|tinychannels' $CRATE/src
 
 - [x] CHK-001 [P0] `ls $CRATE/Cargo.toml` prints the path, so the crate `002` lands exists. Evidence: `ls` printed the path.
 - [x] CHK-002 [P0] `ls $CRATE/tests/fixtures/bots` prints the path, so every suite has its payload source. Evidence: `ls` printed the path.
-- [x] CHK-003 [P1] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read. Evidence: line 128 and `2`.
+- [x] CHK-003 [P1] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2, so `002`'s job is in place to read. Evidence: line 128 and `2`.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -281,7 +281,7 @@ rg -n 'openhuman|tinychannels' $CRATE/src
 ## File Organization
 
 - [x] CHK-050 [P1] `git status --porcelain $CRATE` lists only source, tests, fixtures, `Cargo.toml`, `Cargo.lock`, `README.md` and `design/`, and no `target/`. Evidence: only source, tests, the fixture and `README.md`, no `target/`.
-- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line. Evidence: `.gitignore:63:/crates/bots-tui/target/`.
+- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/.skilled/crates/bots-tui/target` line. Evidence: `.gitignore:63:/.skilled/crates/bots-tui/target/`.
 <!-- /ANCHOR:file-org -->
 
 ---

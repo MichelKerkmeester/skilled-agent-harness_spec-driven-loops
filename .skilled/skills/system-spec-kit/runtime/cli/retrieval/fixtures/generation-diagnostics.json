@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 7459,
-    "ok": 21020,
+    "missing-frontmatter": 7460,
+    "ok": 21027,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 30109,
+  "documentsScanned": 30117,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "b6789ba472678fecf5ed6ae1caaf963536a19b6e912030c0b5a7467dc144f3cd",
+  "manifestHash": "efeaf25ba83358dab91818ca9350371a611f172e6d19b466a96a579d12dc1e61",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 47198,
+      "ok": 47208,
       "prose-sentence": 23,
       "single-token": 154,
       "stop-word-only": 1,
@@ -33387,6 +33387,12 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skilled-bots/benchmark/README.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -44975,43 +44981,43 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/fix-plan.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/design/fixtures/fix-plan.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/rebuttals.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/design/fixtures/rebuttals.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/recheck.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/design/fixtures/recheck.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/report-clean.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/design/fixtures/report-clean.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/design/fixtures/report-first.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/design/fixtures/report-first.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/fix-ledger.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/fixtures/fix-ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/review-report.md",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/fixtures/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -65700,20 +65706,28 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/scratch",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/scratch",
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
       "path": "specs/system-skilled-bots/003-openbot-parity-build/scratch",
       "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skilled-bots/context",
+      "reason": "symlink not followed"
     },
     {
       "path": "specs/system-skilled-doctor/001-skill-and-overlay-build/001-skill-and-tag-move/scratch",

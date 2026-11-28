@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 7 of 7 |
 | **Predecessor** | 006-daemon-and-webhook-transports |
-| **Successor** | None. The parent's successor is `012-manual-testing-scenarios` |
+| **Successor** | None. The parent's successor is `013-manual-testing-scenarios` |
 | **Handoff Criteria** | The 25 conformance cases and the three hardening cases pass, the notices and the operator documents exist, the whole suite and the typecheck pass and `validate.sh --strict --recursive` on the parent prints `RESULT: PASSED` for all eight folders |
 <!-- /ANCHOR:metadata -->
 
@@ -212,4 +212,4 @@ REQ ids keep their pre-expansion numbers and are unique across children 003 to 0
 
 - **Parent Spec**: `../spec.md`
 - **Design children**: `../002-adapter-and-record-contracts/design/conformance-rules.md`, `../002-adapter-and-record-contracts/design/operator-runbook.md`
-- **Next phase**: `../../012-manual-testing-scenarios/`
+- **Next phase**: `../../013-manual-testing-scenarios/`

@@ -109,7 +109,7 @@ Every change was written by a `cli-mistral-vibe` worker at `deepseek-flash` from
 |-------|--------|
 | `npm test` in the runtime | PASS: `Test Files  44 passed (44)`, `Tests  567 passed (567)`, exit 0. Floor: 43 files and 548 tests |
 | `npm run typecheck` in the runtime | PASS: exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: exit 0, lib 98, cli 8, panes 53 with 1 ignored, render keys 16, the same as the floor |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS: exit 0, lib 98, cli 8, panes 53 with 1 ignored, render keys 16, the same as the floor |
 | Deep-loop executor-audit tests, seven files | PASS: 161 passed before and after, and the deep-loop typecheck exits 0 |
 | The six `apps.vitest.ts` filters | PASS: 3, 4, 5, 2, 2 and 2 passed |
 | Checker on `apps-unknown-server` and on `clean` | PASS: `FAIL: apps-unknown-server: bots/nightly-digest/BOT.md: nosuchserver` with exit 1, then exit 0 |

@@ -39,8 +39,8 @@ Ten iterations, each with three to five research actions, every finding carrying
 | 4 | The `--json` envelope convention | 5 | 0.90 |
 | 5 | The needs-you item key set | 7 | 0.86 |
 | 6 | 007-per-bot-apps and 008-vault | 8 | 0.93 |
-| 7 | 009-skills and 012-manual-testing-scenarios | 8 | 0.88 |
-| 8 | 013-skilled-and-doc-alignment and 014-deep-review | 8 | 0.90 |
+| 7 | 009-skills and 013-manual-testing-scenarios | 8 | 0.88 |
+| 8 | 014-skilled-and-doc-alignment and 015-deep-review | 8 | 0.90 |
 | 9 | The cross-cutting layer | 8 | 0.92 |
 | 10 | The ranked expansion plan | 8 | 0.80 |
 
@@ -115,19 +115,19 @@ The six children:
 5. **Signal and WhatsApp** — the remaining two transports.
 6. **Conformance and hardening** — the five conformance rules, the operator runbook, the fake-transport test suite.
 
-### 012-manual-testing-scenarios — 13 files, 12 requirements — two rules
+### 013-manual-testing-scenarios — 13 files, 12 requirements — two rules
 
 The 33-row inventory at `012/spec.md:140-170` is the packet's best traceability artifact: id, category, owning phase and the requirement line each scenario proves. The corpus is real, not prose. Two rules are missing: a recorded `FAIL` only has to be named, so the phase can close with 33 FAILs; and the results go stale because 014 fixes every P0 and P1 after 012 runs and nothing re-executes the corpus.
 
 Closing artifact: two rules — a FAIL blocks close, and the corpus is re-executed after 014's fix pass.
 
-### 013-skilled-and-doc-alignment — 8 files, 8 requirements — two rules
+### 014-skilled-and-doc-alignment — 8 files, 8 requirements — two rules
 
 The phase names its two commands, their output paths, the clean criterion (`Open findings: 0`, `still_open` and `new` both 0) and a rebuttal file. Two rules are missing: the evidence lives under the state root outside the checkout, so the close cannot be re-verified; and the runtime findings it hands to 014 have no receiver, because 014's dependency list names only that 013 is clean.
 
 Closing artifact: two rules — copy the reports into the packet, and name 014 as the receiver.
 
-### 014-deep-review — 4 files, 10 requirements — two rules
+### 015-deep-review — 4 files, 10 requirements — two rules
 
 The deepest plan in the packet: five named dimensions mapped onto four canonical ids, a five-part stop rule with the frontier veto and the strongest-restriction verdict, a roster with per-kind effort and enforced allowlists, a fallback order, a file-partitioned fix pass and a measured test floor. Two rules are missing: nothing says what happens when a host has fewer than five roster executors, and 012's `results.csv` is not a review input, so a PASS verdict can sit beside a recorded FAIL.
 
@@ -197,9 +197,9 @@ The ranked per-phase expansion plan. Rank 1 is the highest-leverage change.
 | 7 | 006-approval-grants | Addendum | Item and grant key ownership table | 3 |
 | 8 | 009-skills | Addendum | Skill-name grammar, `--name` default, `proposal.json` keys, sentinel resolution | 5 |
 | 9 | 010-conversations | Addendum plus design | Envelope conformance rule, chat-surface mockups | 3 |
-| 10 | 012-manual-testing-scenarios | Two rules | FAIL blocks close, corpus re-run after 014 | 2 |
-| 11 | 013-skilled-and-doc-alignment | Two rules | Reports copied into the packet, 014 named as receiver | 2 |
-| 12 | 014-deep-review | Two rules | Absent-executor rule, corpus as review input | 2 |
+| 10 | 013-manual-testing-scenarios | Two rules | FAIL blocks close, corpus re-run after 014 | 2 |
+| 11 | 014-skilled-and-doc-alignment | Two rules | Reports copied into the packet, 014 named as receiver | 2 |
+| 12 | 015-deep-review | Two rules | Absent-executor rule, corpus as review input | 2 |
 | 13 | 007-per-bot-apps | Ready | None | 0 |
 | 14 | 004-computer-exposure | Ready | None | 0 |
 
