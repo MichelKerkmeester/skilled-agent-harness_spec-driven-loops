@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 13: skilled-and-doc-alignment"
+title: "Implementation Plan: Phase 14: skilled-and-doc-alignment"
 description: "One `system-skilled-bots` topic in `topics.json`, one `/local-skilled-alignment` run over the packet's `.skilled` change set, one `/local-doc-alignment` run over that topic, the fixes both reports name, and the re-runs that prove each report holds zero open findings."
 trigger_phrases:
   - "skilled and doc alignment plan"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 13: skilled-and-doc-alignment
+# Implementation Plan: Phase 14: skilled-and-doc-alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 

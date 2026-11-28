@@ -1,14 +1,14 @@
 ---
-title: "Implementation Plan: Phase 14: deep-review"
+title: "Implementation Plan: Phase 15: deep-review"
 description: "One expanded deep review over the code and docs phases 001 to 014 built, run as a five-lineage fan-out on the packet's own executor roster, then a fix pass over every P0 and P1 with the affected tests re-run."
 trigger_phrases:
   - "deep review plan"
-  - "phase 14 deep review plan"
+  - "phase 15 deep review plan"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 14: deep-review
+# Implementation Plan: Phase 15: deep-review
 
 <!-- SPECKIT_LEVEL: 2 -->
 

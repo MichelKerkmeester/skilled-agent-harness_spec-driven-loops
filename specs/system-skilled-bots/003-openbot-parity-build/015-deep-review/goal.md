@@ -1,5 +1,5 @@
 ---
-title: "Goal: Phase 14: deep-review"
+title: "Goal: Phase 15: deep-review"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Phase 14: deep-review
+# Goal: Phase 15: deep-review
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Close the OpenBot parity build on a reviewed surface rather than thirteen separately validated ones, by running one expanded deep review over the code and docs phases 001 to 014 built, fixing every P0 and P1 it reports, and re-running the affected tests, as phase 14 of the parent goal's OpenBot parity build.
+**Objective:** Close the OpenBot parity build on a reviewed surface rather than thirteen separately validated ones, by running one expanded deep review over the code and docs phases 001 to 014 built, fixing every P0 and P1 it reports, and re-running the affected tests, as phase 15 of the parent goal's OpenBot parity build.
 
 ### Decisions
 

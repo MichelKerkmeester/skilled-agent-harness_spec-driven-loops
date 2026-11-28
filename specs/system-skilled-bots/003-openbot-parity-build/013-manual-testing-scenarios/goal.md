@@ -1,5 +1,5 @@
 ---
-title: "Goal: Phase 12: manual-testing-scenarios"
+title: "Goal: Phase 13: manual-testing-scenarios"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Phase 12: manual-testing-scenarios
+# Goal: Phase 13: manual-testing-scenarios
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Prove from a plain terminal that an operator can drive every verb and record phases 001 to 011 deliver, by adding 33 scenarios in ten new category folders to the system-skilled-bots manual testing playbook, the nine conversation scenarios first and recording one execution of the whole corpus, as phase 12 of the parent goal's OpenBot parity build.
+**Objective:** Prove from a plain terminal that an operator can drive every verb and record phases 001 to 011 deliver, by adding 33 scenarios in ten new category folders to the system-skilled-bots manual testing playbook, the nine conversation scenarios first and recording one execution of the whole corpus, as phase 13 of the parent goal's OpenBot parity build.
 
 ### Decisions
 

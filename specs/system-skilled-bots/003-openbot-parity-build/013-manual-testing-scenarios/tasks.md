@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 12: manual-testing-scenarios"
+title: "Tasks: Phase 13: manual-testing-scenarios"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "manual testing scenarios tasks"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 12: manual-testing-scenarios
+# Tasks: Phase 13: manual-testing-scenarios
 
 <!-- SPECKIT_LEVEL: 2 -->
 

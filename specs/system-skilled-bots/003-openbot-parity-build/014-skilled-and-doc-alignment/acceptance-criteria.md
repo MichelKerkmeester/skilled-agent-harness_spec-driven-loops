@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 13: skilled-and-doc-alignment"
+title: "Acceptance Criteria: Phase 14: skilled-and-doc-alignment"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "skilled and doc alignment acceptance criteria"
@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 13: skilled-and-doc-alignment
+# Acceptance Criteria: Phase 14: skilled-and-doc-alignment
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

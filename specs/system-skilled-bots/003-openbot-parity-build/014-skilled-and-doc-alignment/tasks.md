@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 13: skilled-and-doc-alignment"
+title: "Tasks: Phase 14: skilled-and-doc-alignment"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "skilled and doc alignment tasks"
@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 13: skilled-and-doc-alignment
+# Tasks: Phase 14: skilled-and-doc-alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 

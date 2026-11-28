@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "skilled and doc alignment",
-      "phase 13 skilled and doc alignment",
+      "phase 14 skilled and doc alignment",
       "local-skilled-alignment",
       "local-doc-alignment",
       "alignment findings report",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 001 to 013 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to",
     "created_at": "2026-11-25T19:32:29Z",
-    "last_save_at": "2026-11-28T11:23:34.588Z",
+    "last_save_at": "2026-11-28T11:39:33.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2392cd7e50b1b0c76b169aae67b20f61747c9e2af8f3dd3a256f41a0fd5e0b85",
+    "source_fingerprint": "sha256:d748269313a73c02d9a951822e2f185d846676bd68a36826d2e07478d293fd84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e28950ed9e0361068e157c83fb32773806b677322a2f6cd4a829e2ecb8cc4d2b",
-      "plan.md": "945837fe7f72537ce089e6def8db3b40b8e6e86d5031acc574faa6d16675d458",
-      "tasks.md": "bdd8f46dc2e06afeaf10caef5cd6618bf1305392738868e6ff7ab56be15e9440",
-      "implementation-summary.md": "a845dc56e022f3bd62ac002e94cf0039c1c7f9110280784ae6c72acc0e84f6fd"
+      "spec.md": "f649ff499e99397a7b3b8ca1fc761569b2061e6a13d34c9b2d15b202a1fe06a4",
+      "plan.md": "1c334126daaa556ec20e8b052a253ccf0d743e4059a1663c75652324b5e10514",
+      "tasks.md": "ffd8ddaaff105edcedb90294282d3bbbe1889d5bd38bfcf9aeb21dccf09732c4",
+      "implementation-summary.md": "b1f440343f7df17f955300f6c22c135b0f8493c2f22300f4d519d1d78a12fc24"
     },
     "last_active_at": null
   }

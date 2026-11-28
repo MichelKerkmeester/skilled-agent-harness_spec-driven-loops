@@ -49,7 +49,7 @@ _memory:
 
 An operator can now drive every verb and record phases 001 to 011 deliver from a plain terminal, because the playbook gained 33 scenarios in ten new category folders. The corpus stands at 58 scenarios in 17 categories. The authoring half is done and the execution half is not: a dry run was taken before those phases landed, its 33 rows all read `SKIP`, and the real run is recorded after they close.
 
-### Phase 12: manual-testing-scenarios
+### Phase 13: manual-testing-scenarios
 
 The nine conversation scenarios come first, because chat is the surface an operator meets before any other. Each is one bash block whose turns are numbered, so a reader follows the exchange in order rather than reading a runner's JSON. The remaining 24 scenarios cover routines, activity, the terminal screen, the working place, memory, apps, the vault, skills and channels.
 

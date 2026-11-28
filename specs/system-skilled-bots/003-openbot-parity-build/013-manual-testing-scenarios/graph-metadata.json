@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "manual testing scenarios",
-      "phase 12 manual testing scenarios",
+      "phase 13 manual testing scenarios",
       "openbot parity manual testing playbook",
       "conversation scenarios for bots chat",
       "manual testing scenarios plan",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
     "created_at": "2026-11-25T19:32:28Z",
-    "last_save_at": "2026-11-28T11:23:30.443Z",
+    "last_save_at": "2026-11-28T11:39:33.058Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38d95890b3652c509327b030e9b11fb232d3d7996f2020a2080f38bc85cd17d",
+    "source_fingerprint": "sha256:0c6c39c90eb4d23cb93df856eb25883555969f4d7c272f71759f813d436dcd6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc687201eb991e9d15d192d562095ea2b490c5458b9806d40a3eabcfd68b64fb",
-      "plan.md": "002796049e0c73c8797fee8244eee3a75b2f532272e384c8dc42a38dfef14283",
-      "tasks.md": "b4c74f645cace0c4a39dc7f54f5df0a3200070ef3b6d607a1ca1a93d0c34f51c",
-      "implementation-summary.md": "67ae136ba59c177b9789713f5e39da65c000dc9d516d2130a5953f763f81a2b5"
+      "spec.md": "5cc24566d413af87531e78e1f117994c11e412ae37fbbeac5f59849114dd1fef",
+      "plan.md": "ec4217c224e6c870f90ad6aa206bba4f086d89467c0b485e1caa4b541d2577d2",
+      "tasks.md": "ee28b806922d4e140944807446fa9f843fa790411ddc026b178e6e58782f8dfd",
+      "implementation-summary.md": "f6b3d7fd8ef6c66ea6263dd47f70d59b468ab4e5db63785e849d8547e63bc81a"
     },
     "last_active_at": null
   }

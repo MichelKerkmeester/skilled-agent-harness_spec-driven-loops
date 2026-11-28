@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 12: manual-testing-scenarios"
+title: "Implementation Plan: Phase 13: manual-testing-scenarios"
 description: "33 operator scenarios in ten new category folders, conversation scenarios first, each a self-contained bash block over a throwaway world, then one recorded run of the whole corpus through the playbook recorder, with the authoring and execution work dispatched in nine waves."
 trigger_phrases:
   - "manual testing scenarios plan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 12: manual-testing-scenarios
+# Implementation Plan: Phase 13: manual-testing-scenarios
 
 <!-- SPECKIT_LEVEL: 2 -->
 

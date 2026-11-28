@@ -1,15 +1,15 @@
 ---
-title: "Feature Specification: Phase 14: deep-review"
+title: "Feature Specification: Phase 15: deep-review"
 description: "An expanded deep review over every code and doc phase 001 to 014 built, run as a five-lineage fan-out, with every P0 and P1 fixed and the affected tests re-run."
 trigger_phrases:
   - "deep review"
-  - "phase 14 deep review"
+  - "phase 15 deep review"
   - "expanded deep review of the parity build"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: Phase 14: deep-review
+# Feature Specification: Phase 15: deep-review
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-11-25 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
+| **Phase** | 15 of 15 |
 | **Predecessor** | 014-skilled-and-doc-alignment |
 | **Successor** | None |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is `Met`, the findings registry holds zero active P0 and zero active P1, every row of the three review inputs is a seeded finding at the severity `design/records.md` section 7.4 assigns, every scenario whose owning phase a fix touched was re-run and recorded, `npm test` exits 0 in the runtime folder, and `validate.sh --strict` prints `RESULT: PASSED` for this folder. |
@@ -36,7 +36,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 14** of the OpenBot parity build. Phases 001 to 014 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs and the packet's own phase documents. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
+This is **Phase 15** of the OpenBot parity build. Phases 001 to 014 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs and the packet's own phase documents. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
 
 **Scope Boundary**: One expanded `/deep:review` run over the code and docs phases 001 to 014 built, the synthesis of its findings, the fix for every P0 and P1 it reports, and the re-run of the affected tests. New feature work, a change to the parity research, a rewrite of a phase document's scope, and any fix to a P2 finding are out of scope.
 

@@ -1,14 +1,14 @@
 ---
-title: "Tasks: Phase 14: deep-review"
+title: "Tasks: Phase 15: deep-review"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "deep review tasks"
-  - "phase 14 deep review tasks"
+  - "phase 15 deep review tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 14: deep-review
+# Tasks: Phase 15: deep-review
 
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -1,16 +1,16 @@
 ---
-title: "Feature Specification: Phase 12: manual-testing-scenarios"
+title: "Feature Specification: Phase 13: manual-testing-scenarios"
 description: "Adds 33 operator scenarios to the system-skilled-bots manual testing playbook for everything phases 001 to 011 deliver, conversation scenarios first, then executes every one of them and records PASS or FAIL with evidence."
 trigger_phrases:
   - "manual testing scenarios"
-  - "phase 12 manual testing scenarios"
+  - "phase 13 manual testing scenarios"
   - "openbot parity manual testing playbook"
   - "conversation scenarios for bots chat"
 importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: Phase 12: manual-testing-scenarios
+# Feature Specification: Phase 13: manual-testing-scenarios
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -26,7 +26,7 @@ contextType: "general"
 | **Created** | 2026-11-25 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 14 |
+| **Phase** | 13 of 15 |
 | **Predecessor** | 011-messaging-channels |
 | **Successor** | 014-skilled-and-doc-alignment |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met and `validate.sh --strict` prints `RESULT: PASSED` for this folder. The successor reads the corpus and the run folder this phase leaves, and nothing else. |
@@ -37,7 +37,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 12** of the OpenBot parity build. Phases 001 to 011 each land a slice of the runtime: activity and the actor, routines, the terminal screen, the working place, memory, approval grants, per-bot apps, the vault, skills, conversations and messaging channels. Each one closes on its own automated suite, and no phase proves that an operator can drive the slice from a terminal. This phase writes that proof as a corpus of manual scenarios and then runs it.
+This is **Phase 13** of the OpenBot parity build. Phases 001 to 011 each land a slice of the runtime: activity and the actor, routines, the terminal screen, the working place, memory, approval grants, per-bot apps, the vault, skills, conversations and messaging channels. Each one closes on its own automated suite, and no phase proves that an operator can drive the slice from a terminal. This phase writes that proof as a corpus of manual scenarios and then runs it.
 
 **Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index and the run folder the recorder writes under `benchmark/reports/`. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
 

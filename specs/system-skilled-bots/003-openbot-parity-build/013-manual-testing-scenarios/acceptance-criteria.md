@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 12: manual-testing-scenarios"
+title: "Acceptance Criteria: Phase 13: manual-testing-scenarios"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "manual testing scenarios acceptance criteria"
@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 12: manual-testing-scenarios
+# Acceptance Criteria: Phase 13: manual-testing-scenarios
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

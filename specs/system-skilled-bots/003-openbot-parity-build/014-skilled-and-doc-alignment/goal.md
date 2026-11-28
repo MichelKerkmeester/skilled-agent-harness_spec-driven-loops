@@ -1,5 +1,5 @@
 ---
-title: "Goal: Phase 13: skilled-and-doc-alignment"
+title: "Goal: Phase 14: skilled-and-doc-alignment"
 description: "The durable directive this packet executes against and the criteria that decide when it is done."
 trigger_phrases:
   - "packet goal"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Goal: Phase 13: skilled-and-doc-alignment
+# Goal: Phase 14: skilled-and-doc-alignment
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Close the packet's `.skilled` changes and the docs that describe them on a checked surface rather than an assumed one, so no skill doc names a verb the CLI lacks and no catalog entry describes a field the runtime dropped, as phase 13 of the parent goal's OpenBot parity build.
+**Objective:** Close the packet's `.skilled` changes and the docs that describe them on a checked surface rather than an assumed one, so no skill doc names a verb the CLI lacks and no catalog entry describes a field the runtime dropped, as phase 14 of the parent goal's OpenBot parity build.
 
 **Parent goal:** `../goal.md` binds this phase, and its decisions outrank this file's detail.
 

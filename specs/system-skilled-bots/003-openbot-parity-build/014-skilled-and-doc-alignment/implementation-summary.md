@@ -49,7 +49,7 @@ _memory:
 
 This phase ships the design surface a builder reads instead of deciding, and it aligns the packet's five planning docs with that surface. The two alignment runs themselves are not made yet, so the clean criterion has nothing to read and the packet is not closeable.
 
-### Phase 13: skilled-and-doc-alignment
+### Phase 14: skilled-and-doc-alignment
 
 The phase exists because phases 001 to 013 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to. Two operator-local commands exist for that check and neither has ever run over these docs. The design surface below fixes every record, every state, every sequence, every stop and every screen those two commands produce, so the run that follows is a transcription and not a design decision.
 

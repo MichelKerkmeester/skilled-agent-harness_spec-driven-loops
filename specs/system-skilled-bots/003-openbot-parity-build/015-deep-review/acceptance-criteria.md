@@ -1,14 +1,14 @@
 ---
-title: "Acceptance Criteria: Phase 14: deep-review"
+title: "Acceptance Criteria: Phase 15: deep-review"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "deep review acceptance criteria"
-  - "phase 14 deep review acceptance criteria"
+  - "phase 15 deep review acceptance criteria"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 14: deep-review
+# Acceptance Criteria: Phase 15: deep-review
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 

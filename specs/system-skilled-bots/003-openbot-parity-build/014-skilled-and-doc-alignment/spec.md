@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: Phase 13: skilled-and-doc-alignment"
+title: "Feature Specification: Phase 14: skilled-and-doc-alignment"
 description: "Runs /local-skilled-alignment over every .skilled change phases 001 to 013 make and /local-doc-alignment over every doc topic they touch, fixes what the two findings reports name, and re-runs both until each report holds zero open findings."
 trigger_phrases:
   - "skilled and doc alignment"
-  - "phase 13 skilled and doc alignment"
+  - "phase 14 skilled and doc alignment"
   - "local-skilled-alignment"
   - "local-doc-alignment"
   - "alignment findings report"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: Phase 13: skilled-and-doc-alignment
+# Feature Specification: Phase 14: skilled-and-doc-alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -27,7 +27,7 @@ contextType: "general"
 | **Created** | 2026-11-25 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 14 |
+| **Phase** | 14 of 15 |
 | **Predecessor** | 013-manual-testing-scenarios |
 | **Successor** | 015-deep-review |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met and `validate.sh --strict` prints `RESULT: PASSED` for this folder. What passes to 015 is `evidence/` and `scratch/rebuttals.md`, so the review reads a checked surface rather than an assumed one. |
@@ -38,7 +38,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 13** of the OpenBot parity build. Phases 001 to 013 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/` and the skill's own docs. This phase is the one that checks those changes against the standards they are held to, using the two operator-local alignment commands the repository already ships.
+This is **Phase 14** of the OpenBot parity build. Phases 001 to 013 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/` and the skill's own docs. This phase is the one that checks those changes against the standards they are held to, using the two operator-local alignment commands the repository already ships.
 
 **Scope Boundary**: The `system-skilled-bots` topic entry in `topics.json`, one `/local-skilled-alignment` run over the packet's `.skilled` change set, one `/local-doc-alignment` run over that topic, the fixes both reports name and the re-runs that prove the fixes landed. The 001 to 013 feature work itself, a new alignment command, a new surface in `surface-map.yaml`, and a CI gate are out of scope.
 
