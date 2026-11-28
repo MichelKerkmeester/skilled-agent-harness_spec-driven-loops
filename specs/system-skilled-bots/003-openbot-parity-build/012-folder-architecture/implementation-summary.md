@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/012-folder-architecture"
-    last_updated_at: "2026-11-28T17:00:00Z"
+    last_updated_at: "2026-11-28T18:00:00Z"
     last_updated_by: "012-orchestrator"
-    recent_action: "Filled the closing record"
-    next_safe_action: "Top orchestrator decides the design guard fix"
+    recent_action: "Recorded the guard amendment"
+    next_safe_action: "Merge gate"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-folder-architecture"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-folder-architecture |
-| **Completed** | Not yet, held on AC-007 |
+| **Completed** | 2026-11-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The `.skilled` tree now holds one fewer one-file folder and three READMEs that say what belongs in the folders around them. Nothing behaves differently: every gate prints the same numbers it printed before the change. The one move that landed is the osascript stub, which left a folder of its own to sit beside the fixtures it serves.
+The `.skilled` tree now holds one fewer one-file folder and three READMEs that say what belongs in the folders around them. Nothing behaves differently: every gate prints the same numbers it printed before the change. The one move that landed is the osascript stub, which left a folder of its own to sit beside the fixtures it serves. The phase also taught the CI design guard about the chat mockups copy, after the operator added that fix to the phase.
 
 ### Phase 12: folder-architecture
 
@@ -62,12 +62,14 @@ The move took the stub from `runtime/tests/fixtures/osascript-stub/osascript` to
 | `.skilled/skills/system-skilled-bots/runtime/tests/fixtures/README.md` | Modified | Names `channels/` and describes its recordings, so the folder needs no README of its own |
 | `.skilled/crates/README.md` | Created | Says what belongs in the crates folder and what does not |
 | `.skilled/crates/bots-tui/README.md` | Modified | Adds a WHAT BELONGS HERE table and a STRUCTURE tree naming every subfolder |
+| `.github/workflows/bots-runtime.yml` | Modified | The design guard now diffs the chat mockups copy and the push filter names its source folder |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-baseline.md` | Created | The tree measure the move map reads |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/gate-baseline.md` | Created | Every gate result at BASE, for the line by line compare |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md` | Created | 32 M rows and 28 R rows, each with a verdict and a reason |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-after.md` | Created | The same tree measure at FINAL |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/draft-tree-measure.md` | Deleted | The opener's draft, replaced by the real record |
 | `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/draft-move-map.md` | Deleted | The opener's draft, replaced by the real record |
+| `specs/system-skilled-bots/003-openbot-parity-build/decision-record.md` | Modified | Decisions Q029 and Q030 appended |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -80,6 +82,8 @@ The work ran in a fixed order. T001 measured the tree and wrote `tree-baseline.m
 Every task ran on Vibe deepseek-flash workers through the launcher. No cli-pi fallback was needed.
 
 The README rows applied the sk-doc create-readme standard by briefing each worker with its SKILL.md sections, its code-folder template and its validator, because a dispatched worker cannot run the slash command.
+
+The amendment ran on its own. One Vibe worker edited the workflow. The orchestrator then ran the guard step taken from the YAML and `check-gate-inputs.sh`, and both passed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,7 +97,7 @@ The README rows applied the sk-doc create-readme standard by briefing each worke
 | The stub keeps mode 100755 and its content, and the test names the new path | A move that changed the file or its assertion would be a behavior change, which the phase forbids |
 | `channels/` is described by its parent README | The document validator exempts fixture trees, so a README inside `channels/` could never print VALID |
 | The crate subfolders are described by the crate README's structure tree | One STRUCTURE tree naming every subfolder covers them, so each subfolder is a skip row |
-| The design guard is not fixed here | Changing what CI compares is a behavior change, which this phase may not make |
+| The guard is fixed inside this phase | The operator chose a named amendment to 012 (decision Q030) over routing the fix to the deep review, since the failing guard blocked this phase's own acceptance row |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -101,7 +105,7 @@ The README rows applied the sk-doc create-readme standard by briefing each worke
 <!-- ANCHOR:verification -->
 ## Verification
 
-Every gate ran at BASE and again at FINAL with the same result.
+Every gate ran at BASE and again at FINAL with the same result, except the design guard, which the amendment fixed.
 
 | Check | Result |
 |-------|--------|
@@ -113,6 +117,8 @@ Every gate ran at BASE and again at FINAL with the same result.
 | Deep-loop executor audit tests | 6 files, 135 passed |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` | `OK: parent-skill-check` with 0 warnings |
 | `bash .github/scripts/check-gate-inputs.sh` | files=48 inputs_resolved=356 dynamic_inputs=45 twin_pairs=448 failures=0 and `RESULT: PASSED` |
+| Design guard step, run by hand from the YAML | exit 1 with the `Only in .skilled/crates/bots-tui/design: chat-mockups.md` line at BASE, exit 0 with no output after the amendment |
+| `bash .github/scripts/check-gate-inputs.sh` after the amendment | files=48 inputs_resolved=358 dynamic_inputs=44 twin_pairs=448 failures=0 and `RESULT: PASSED` |
 | Playbook validator | `PASS package=system-skilled-bots tier=FAIL_CLOSED scenarios=58 categories=17 operator=52 routing_gold_excluded=6 violations=0 warnings=0` |
 | `node .skilled/bin/bots.cjs --help` | Output byte-identical at BASE and at FINAL |
 | Recursive strict validation on the parent | 16 `RESULT: PASSED` and 0 `RESULT: FAILED` |
@@ -127,8 +133,7 @@ Every gate ran at BASE and again at FINAL with the same result.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The CI design diff guard fails at BASE and at FINAL.** The step "Keep the shipped design copy equal to the packet copies" in `.github/workflows/bots-runtime.yml`, run by hand, prints "Only in .skilled/crates/bots-tui/design: chat-mockups.md" with exit 1 at both ends, and the two logs are byte-identical. Commit 44216a6ad13 added `design/chat-mockups.md`, a byte-identical copy of the `010-conversations/001-chat-ux-and-pane-map/design/mockups.md` file, and the guard was not taught about it. No move touched `design/`. Fixing the guard changes what CI compares, which this phase may not do, so the top orchestrator picks one of two routes: a named amendment that lets this phase fix the guard, or a supersede record that routes the fix to the deep review.
-2. **`bots ui` was not opened on a built crate.** `node .skilled/bin/bots.cjs ui` on this tree refuses with "bots: ui-not-built" because no release binary is built. Opening it needs a terminal, so the pane rendering was not checked by hand.
+1. **`bots ui` was not opened on a built crate.** `node .skilled/bin/bots.cjs ui` on this tree refuses with "bots: ui-not-built" because no release binary is built. Opening it needs a terminal, so the pane rendering was not checked by hand.
 <!-- /ANCHOR:limitations -->
 
 ---

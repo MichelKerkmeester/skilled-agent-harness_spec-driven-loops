@@ -46,7 +46,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 - [x] T005 Land the script and fixture rows the same way (`$H/scripts/`). Verify: `npm --prefix $H/runtime test` prints the baseline counts, and for each landed row `rg -n -F '<old path>' . -g "!$F/scratch/**"` prints nothing. Evidence: no rows in the map, and npm test prints 57 files 794 passed at FINAL.
 - [x] T006 Land the mode packet, reference and asset rows the same way (`$H/bots-*/`, `$H/assets/`, `$H/shared/`). Verify: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs $H` prints `OK: parent-skill-check`. Evidence: no rows in the map, and parent-skill-check prints OK: parent-skill-check with 0 warnings at FINAL.
 - [x] T007 Land the playbook and feature catalog rows the same way (`$H/manual-testing-playbook/`, `$H/feature-catalog/`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`. Evidence: no rows in the map, and the playbook validator prints PASS with scenarios=58 and violations=0 at FINAL.
-- [B] T008 Land the crate and CLI rows the same way, and keep the crate's `design/` copy equal to the packet's two design folders (`.skilled/crates/bots-tui/`, `.skilled/bin/bots.cjs`, `.github/workflows/bots-runtime.yml`). Verify: `cargo test --locked --manifest-path $C` prints the baseline counts per target, the guard's diff commands from `bots-runtime.yml` print nothing and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`. Blocked: cargo test and check-gate-inputs.sh pass with baseline counts and the map has no crate or CLI rows, but the CI design guard prints the pre-existing line Only in .skilled/crates/bots-tui/design: chat-mockups.md at BASE and at FINAL (cause 44216a6ad13). Held for the top orchestrator.
+- [x] T008 Land the crate and CLI rows the same way, and keep the crate's `design/` copy equal to the packet's two design folders (`.skilled/crates/bots-tui/`, `.skilled/bin/bots.cjs`, `.github/workflows/bots-runtime.yml`). Verify: `cargo test --locked --manifest-path $C` prints the baseline counts per target, the guard's diff commands from `bots-runtime.yml` print nothing and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`. Evidence: no crate or CLI rows in the map. cargo test passes with the baseline counts. After the guard amendment of decision Q030 the guard step exits 0 and check-gate-inputs.sh prints RESULT: PASSED.
 - [x] T009 Land the deep-loop executor audit rows the same way, when the map holds any (`.skilled/skills/system-deep-loop/runtime/`). Verify: the executor audit tests print the baseline counts. Evidence: no rows in the map, and the executor audit tests print 6 files 135 passed at FINAL.
 - [x] T010 Author a README through `/create:readme`, which applies sk-doc's `sk-create-readme` standards, for each folder that is new or unique in the final layout. It runs after T004 to T009, because the move map creates folders that do not exist until the moves land. Each README says what belongs in its folder and what does not. Write `.skilled/crates/README.md` and refresh `.skilled/crates/bots-tui/README.md`. The rest comes from the move map's new folders and the folders the build created under an in-scope root. Add a README table to `$F/scratch/move-map.md` with one row per folder in the form `| R001 | <folder> | readme | <reason> |`, ids `R001` up, the verdict `readme` or `skip` and a reason. The two named folders are rows. Skip a fixture case folder, the crate's `design/` copy the CI diff guard compares, a feature catalog category folder or a folder whose parent README already says what it holds (each folder named here and in the table). Verify: `test -f .skilled/crates/README.md && test -f .skilled/crates/bots-tui/README.md` exits 0, `rg -c '^\| R[0-9]{3} \|' $F/scratch/move-map.md` prints at least 2, `rg -N -o -r '$1' '^\| R[0-9]{3} \| ([^ |]+) \| readme \|' $F/scratch/move-map.md | while read d; do test -f "$d/README.md" || echo "missing $d"; done` prints nothing and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <folder>/README.md` prints `VALID` for each `readme` row. Evidence: two readme rows VALID, 28 R rows, 56529b6deab.
 <!-- /ANCHOR:phase-2 -->
@@ -68,9 +68,9 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Every row in `acceptance-criteria.md` reads `Met`
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Every row in `acceptance-criteria.md` reads `Met`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -123,7 +123,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` reads `Met` Open: AC-007 stays Unmet.
+- [x] CHK-020 [P0] Every row in `acceptance-criteria.md` reads `Met` Evidence: all twelve acceptance rows read Met.
 - [x] CHK-021 [P0] Every gate count in T011 equals the baseline
 - [ ] CHK-022 [P1] `node .skilled/bin/bots.cjs ui` refuses `ui-not-built` on a bare tree with the crate folder and opens on the built crate Partly observed: bots ui refuses ui-not-built on this tree. Opening it on a built crate needs a terminal and was not run.
 - [x] CHK-023 [P1] A group whose gate failed was reverted, not patched Evidence: no group failed, so none needed a revert.
@@ -180,7 +180,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 14 | 13/14 |
 | P2 Items | 1 | 1/1 |
 

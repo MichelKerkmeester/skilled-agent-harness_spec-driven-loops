@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/012-folder-architecture"
-    last_updated_at: "2026-11-28T17:00:00Z"
+    last_updated_at: "2026-11-28T18:00:00Z"
     last_updated_by: "012-orchestrator"
-    recent_action: "Ticked criteria 1 to 6"
-    next_safe_action: "Top orchestrator decides the design guard fix"
+    recent_action: "Logged the guard amendment"
+    next_safe_action: "Merge gate"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-folder-architecture"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -84,12 +84,13 @@ and findings belong here.
 | M016 landed | Done | 150c1d4d2b2, R100 with mode 100755, suite 57 files 794 passed |
 | READMEs | Done | 56529b6deab, `.skilled/crates/README.md` and `.skilled/crates/bots-tui/README.md` print VALID |
 | Final gate rerun | Done | every gate equal to `scratch/gate-baseline.md` |
+| Guard amendment, decision Q030 | Done | The guard step exits 0 and check-gate-inputs.sh prints RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | The numbers in `spec.md` are a snapshot | The 365 files and 123 one-file folders were measured on 2026-11-28, before 011.005 to 011.007 and 010.003 added theirs. The move map reads T001's measure, not these. |
-| The CI design guard fails at BASE | It prints `Only in .skilled/crates/bots-tui/design: chat-mockups.md` at BASE and at FINAL. Cause 44216a6ad13. AC-007 stays Unmet and the top orchestrator decides the fix |
+| The CI design guard fails at BASE | It printed Only in .skilled/crates/bots-tui/design: chat-mockups.md at BASE, cause 44216a6ad13. The operator added the fix to this phase as decision Q030, and the guard now exits 0 |
 | `channels/` has no README of its own | The document validator exempts fixture trees, so its parent README names it and the README table marks it skip |
 <!-- /ANCHOR:log -->

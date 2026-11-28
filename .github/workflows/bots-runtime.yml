@@ -73,6 +73,7 @@ on:
       - '.opencode/crates/bots-tui/**'
       - 'specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/**'
       - 'specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/**'
+      - 'specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/**'
 
 permissions:
   contents: read
@@ -181,9 +182,11 @@ jobs:
           set -euo pipefail
           D1=specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design
           D2=specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design
-          diff -r -x architecture.md -x contracts.md "$D1" .skilled/crates/bots-tui/design
+          D3=specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design
+          diff -r -x architecture.md -x contracts.md -x chat-mockups.md "$D1" .skilled/crates/bots-tui/design
           diff "$D2/architecture.md" .skilled/crates/bots-tui/design/architecture.md
           diff "$D2/contracts.md" .skilled/crates/bots-tui/design/contracts.md
+          diff "$D3/mockups.md" .skilled/crates/bots-tui/design/chat-mockups.md
           for name in status activity inbox routines; do
             diff "$D2/payloads/$name.json" ".skilled/crates/bots-tui/tests/fixtures/payloads/$name.json"
           done

@@ -50,15 +50,15 @@
       ".skilled/skills/system-skilled-bots/runtime/tests/delivery.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/README.md",
       ".skilled/crates/bots-tui/README.md",
+      ".github/workflows/bots-runtime.yml",
       "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-baseline.md",
       "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/gate-baseline.md",
       "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md",
       "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-after.md",
-      ".github/workflows/bots-runtime.yml",
+      "specs/system-skilled-bots/003-openbot-parity-build/decision-record.md",
       "scratch/move-map.md",
       "scratch/tree-baseline.md",
-      "scratch/tree-after.md",
-      ".skilled/bin/bots.cjs"
+      "scratch/tree-after.md"
     ],
     "entities": [
       {
@@ -116,6 +116,12 @@
         "source": "derived"
       },
       {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
         "name": "tree-baseline.md",
         "kind": "doc",
         "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-baseline.md",
@@ -140,25 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "bots-runtime.yml",
-        "kind": "config",
-        "path": ".github/workflows/bots-runtime.yml",
-        "source": "derived"
-      },
-      {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Eleven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
     "created_at": "2026-11-28T11:26:16Z",
-    "last_save_at": "2026-11-28T15:47:25.171Z",
+    "last_save_at": "2026-11-28T15:57:29.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77af9e8bf9034d88e528e113e056b4413599040247fc4647f3e9e38d8524e107",
+    "source_fingerprint": "sha256:14b61ef5a122cfc096107103a20857282ef3fe63d1193c4c491d1d7ceb82435d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "09b5460439b0ef3a8df18f990fc1f6760c0d740656122e5941207bc8589076f0",
+      "spec.md": "4551a7af64950659b352e376698127b27e482333558475fdd0456718949a0f52",
       "plan.md": "fff8556fbd066af0e0830837d686a1617f729c9180e91caeed2386d30917f95b",
-      "tasks.md": "00642e478a6519acdbde125db1bc8a83554ee0c6511e907ac8ee0b0e11c75a9b",
-      "implementation-summary.md": "885c836228adf93e0b8c1d21a8bbf23a3ef7792518eddbfd93e2fe99da4b2452"
+      "tasks.md": "1c5e95da13279636f1580b955d7a196fcd8d2ad94014e041bcfdb30d0abacbef",
+      "implementation-summary.md": "0aeaf1f07364c88307832923c0fe50f4ed1ba8ef30bb92057d4eb2fe72be1de2"
     },
     "last_active_at": null
   }
