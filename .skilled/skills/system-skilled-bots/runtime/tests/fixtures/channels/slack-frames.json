@@ -1,0 +1,38 @@
+{
+  "hello": { "type": "hello", "num_connections": 1 },
+  "message": {
+    "envelope_id": "5e8f0b44-2c1d-4e8a-9a51-2b7f3c6d9e10",
+    "type": "events_api",
+    "accepts_response_payload": false,
+    "payload": {
+      "type": "event_callback",
+      "event": {
+        "type": "message",
+        "channel": "D07ADA0001",
+        "channel_type": "im",
+        "user": "U07ADA0001",
+        "text": "@digest Which channel?",
+        "ts": "1764104755.000200"
+      }
+    }
+  },
+  "press": {
+    "envelope_id": "7a1c3e55-4b2d-4f6a-8c71-3d9e5f7a1b20",
+    "type": "interactive",
+    "accepts_response_payload": false,
+    "payload": {
+      "type": "block_actions",
+      "user": { "id": "U07ADA0001" },
+      "channel": { "id": "D07ADA0001" },
+      "container": { "type": "message", "channel_id": "D07ADA0001" },
+      "actions": [
+        {
+          "type": "button",
+          "action_id": "approval-v1:20261125T210504Z-3f9d2b11:1",
+          "value": "approval-v1:20261125T210504Z-3f9d2b11:1"
+        }
+      ]
+    }
+  },
+  "disconnect": { "type": "disconnect", "reason": "refresh_requested" }
+}

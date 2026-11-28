@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "result": [
+    {
+      "update_id": 20,
+      "message": {
+        "message_id": 501,
+        "date": 1764104700,
+        "chat": { "id": 81234567, "type": "private" },
+        "from": { "id": 81234567, "is_bot": false, "first_name": "Ada" },
+        "text": "@digest Which channel?"
+      }
+    },
+    {
+      "update_id": 21,
+      "callback_query": {
+        "id": "cbq-9001",
+        "from": { "id": 81234567, "is_bot": false, "first_name": "Ada" },
+        "message": {
+          "message_id": 502,
+          "date": 1764104710,
+          "chat": { "id": 81234567, "type": "private" }
+        },
+        "data": "approval-v1:20261125T210504Z-3f9d2b11:2"
+      }
+    }
+  ]
+}

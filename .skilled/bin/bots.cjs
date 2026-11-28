@@ -92,6 +92,8 @@ const USAGE = [
   '  channel drain',
   '                 send every due queued message once; exits 1 when one failed or may',
   '                 have landed, and never resends a message that may have landed',
+  '  channel listen <channel>',
+  '                 run one transport until stopped: telegram, slack or terminal',
   '  secret set <name> [--store keychain|file]',
   '                 store one secret in the vault, read from a prompt with echo off,',
   '                 or one piped line, and never from an argument; --store picks',
@@ -136,6 +138,9 @@ const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
 // The transports a channel verb can name, mirroring CONFIGURED_CHANNELS in the runtime's channel
 // module. The list is repeated here because these refusals run before the runtime loads.
 const CHANNEL_NAMES = ['telegram', 'slack', 'signal', 'whatsapp'];
+// The channels bots channel listen can run, mirroring the keys of LISTEN_TRANSPORTS below. The
+// list is repeated here because these refusals run before the runtime loads.
+const LISTEN_CHANNELS = ['telegram', 'slack', 'terminal'];
 const ROSTER_ROLES = ['owner', 'member'];
 // The name grammar a stored secret must match, mirroring SECRET_NAME_PATTERN in the runtime's
 // secrets module. The pattern is repeated here because these refusals run before the runtime loads.
@@ -312,7 +317,7 @@ function readStdinText() {
 // the id count every other verb uses.
 function parseChannel(verb, ids, options) {
   const [sub, ...rest] = ids;
-  if (!sub) return { error: 'channel needs link, unlink, roster, list, send or drain' };
+  if (!sub) return { error: 'channel needs link, unlink, roster, list, send, drain or listen' };
   if (options.json !== undefined && sub !== 'list') return { error: `channel ${sub} takes no --json` };
   if (sub === 'link' || sub === 'unlink') {
     if (rest.length === 0) return { error: `channel ${sub} needs a channel: ${CHANNEL_NAMES.join(', ')}` };
@@ -361,6 +366,14 @@ function parseChannel(verb, ids, options) {
     const given = ['role', 'secret', 'as'].find((name) => options[name] !== undefined);
     if (given) return { error: `channel drain takes no --${given}` };
     return { verb, id: undefined, args: ['drain'], options };
+  }
+  if (sub === 'listen') {
+    if (rest.length === 0) return { error: `channel listen needs a channel: ${LISTEN_CHANNELS.join(', ')}` };
+    if (rest.length > 1) return { error: `unexpected argument: ${rest[1]}` };
+    if (!LISTEN_CHANNELS.includes(rest[0])) return { error: `channel listen takes ${LISTEN_CHANNELS.join(', ')}` };
+    const given = ['role', 'secret', 'as'].find((name) => options[name] !== undefined);
+    if (given) return { error: `channel listen takes no --${given}` };
+    return { verb, id: undefined, args: ['listen', rest[0]], options };
   }
   return { error: `unknown channel verb: ${sub}` };
 }
@@ -1063,9 +1076,18 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
   }
 }
 
-// The transport table the channel verbs send through, keyed by channel name. Each transport adds its
-// own entry here, and until one does, a queued message for its channel stays queued.
+// The marker the real CLI passes as its transport table. It stays empty, because channelVerb builds
+// the send table from the channel config and LISTEN_TRANSPORTS, so a caller that hands its own table
+// gets exactly that table and only the real CLI reaches the providers.
 const CHANNEL_TRANSPORTS = Object.freeze({});
+
+// The transports bots channel listen can run, keyed by channel name: the runtime module and the
+// factory it exports. Each later transport adds one row.
+const LISTEN_TRANSPORTS = Object.freeze({
+  telegram: Object.freeze({ module: 'channel-telegram', create: 'createTelegramTransport' }),
+  slack: Object.freeze({ module: 'channel-slack', create: 'createSlackTransport' }),
+  terminal: Object.freeze({ module: 'channel-terminal', create: 'createTerminalTransport' }),
+});
 
 // The channel verbs write the roster, the channel config and the link record under the drain job's
 // environment, the same place the answer path reads the roster from, so the two never disagree.
@@ -1119,7 +1141,12 @@ async function channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, io)
     return 0;
   }
   if (sub === 'drain') {
-    const report = await queue.drainQueue({ stateRoot, identity, transports, hooks: drainHooks(approval, stateRoot, identity) });
+    const table = transports === CHANNEL_TRANSPORTS ? await sendTransports(channel, stateRoot, identity, checkoutRoot, resolveEnv, io) : { ok: true, value: transports };
+    if (!table.ok) {
+      io.stderr.write(`${describeRefusal(table)}\n`);
+      return refused;
+    }
+    const report = await queue.drainQueue({ stateRoot, identity, transports: table.value, hooks: drainHooks(approval, stateRoot, identity) });
     for (const line of report.lines) {
       const note = line.note === null ? '' : ` (${line.note})`;
       io.stdout.write(`bots: channel ${line.channel}: ${line.key} ${line.state}${note}\n`);
@@ -1160,7 +1187,12 @@ async function channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, io)
       io.stderr.write(`${describeRefusal(queued)}\n`);
       return refused;
     }
-    const report = await queue.drainQueue({ stateRoot, identity, transports, only: key, now, hooks: drainHooks(approval, stateRoot, identity) });
+    const table = transports === CHANNEL_TRANSPORTS ? await sendTransports(channel, stateRoot, identity, checkoutRoot, resolveEnv, io) : { ok: true, value: transports };
+    if (!table.ok) {
+      io.stderr.write(`${describeRefusal(table)}\n`);
+      return refused;
+    }
+    const report = await queue.drainQueue({ stateRoot, identity, transports: table.value, only: key, now, hooks: drainHooks(approval, stateRoot, identity) });
     for (const entry of report.unknown) io.stderr.write(`${queue.m21Line(entry)}\n`);
     if (report.refusal !== null) {
       io.stderr.write(`bots: ${report.refusal.reason}: ${report.refusal.detail}\n`);
@@ -1171,6 +1203,9 @@ async function channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, io)
     io.stdout.write(`bots: channel ${name}: ${key} ${state}\n`);
     // A second send inside one minute is the same key, so it enqueues nothing and sends nothing again.
     return state === 'delivered' ? 0 : 1;
+  }
+  if (sub === 'listen') {
+    return listenVerb(rt, { stateRoot, identity, checkoutRoot, resolveEnv, name: first, channel, queue, approval }, io);
   }
   if (sub === 'link') {
     const actor = rt.actor.resolveActor({
@@ -1219,6 +1254,220 @@ function drainHooks(approval, stateRoot, identity) {
   };
 }
 
+// The send table the real CLI drains through: one transport per configured channel that has a
+// listen row, built with that channel's own secret name, so drain and send reach the provider.
+async function sendTransports(channel, stateRoot, identity, checkoutRoot, resolveEnv, io) {
+  const config = channel.readChannelConfig(stateRoot, identity);
+  if (!config.ok) return config;
+  const table = {};
+  for (const name of Object.keys(config.value.channels).sort()) {
+    const row = LISTEN_TRANSPORTS[name];
+    if (row === undefined || name === 'terminal') continue;
+    const entry = config.value.channels[name];
+    const mod = await runtimeModule(row.module);
+    table[name] = mod[row.create]({
+      stateRoot,
+      identity,
+      checkoutRoot,
+      secretName: entry.secret,
+      env: io.env,
+      resolveEnv,
+      log: (line) => io.stderr.write(`${line}\n`),
+    });
+  }
+  return { ok: true, value: table };
+}
+
+// A context key whose io value is undefined is left out, so the transport's own default applies.
+function whenGiven(key, value) {
+  return value === undefined ? {} : { [key]: value };
+}
+
+// The open needs-you items of one identity, newest first, each with the text a chat without buttons
+// receives. A record that does not read still prints the question, because a prompt a person cannot
+// see is a prompt nobody answers.
+function openPrompts(needsYou, runRecord, delivery, stateRoot, identity, env) {
+  return needsYou.listNeedsYouItems(stateRoot, identity).items
+    .filter((listing) => listing.state === 'open')
+    .reverse()
+    .map(({ item }) => {
+      const read = runRecord.readRunRecord(stateRoot, identity, item.runId);
+      let text;
+      if (read.ok) {
+        const message = delivery.deliveryMessage(read.value.record, item, stateRoot, env);
+        text = `${message.title}\n${message.body}\n\n${delivery.choiceBlock(item, 'text')}`;
+      } else {
+        text = `Needs-you item ${item.id}: ${item.question}\n\n${delivery.choiceBlock(item, 'text')}`;
+      }
+      return { itemId: item.id, botId: item.botId, options: item.options, expiresAt: item.expiresAt, text };
+    });
+}
+
+// One transport runs until it is stopped, so a chat reaches a bot with no public URL and no daemon.
+// The lease is taken before the transport is built and released on every exit path, because two
+// Telegram pollers draw HTTP 409 and two Slack sockets double every event. Each inbound turn starts
+// one drain pass, so a reply leaves the queue without a second process.
+async function listenVerb(rt, ctx, io) {
+  const { stateRoot, identity, checkoutRoot, resolveEnv, name, channel, queue, approval } = ctx;
+  const row = LISTEN_TRANSPORTS[name];
+  const refused = rt.runner.EXIT_CODES.refused;
+
+  // The config holds the secret name and never a value, so a channel with no entry reads its own name.
+  let secretName = null;
+  if (name !== 'terminal') {
+    const config = channel.readChannelConfig(stateRoot, identity);
+    if (!config.ok) {
+      io.stderr.write(`${describeRefusal(config)}\n`);
+      return refused;
+    }
+    secretName = config.value.channels[name]?.secret ?? name;
+  }
+
+  const lease = channel.acquireListenLease(stateRoot, identity, name);
+  if (!lease.ok) {
+    io.stderr.write(`bots: channel-listening: ${lease.detail}\n`);
+    return refused;
+  }
+
+  // Each entry is a cleanup call rather than a target and event pair, because a signal target is an
+  // EventTarget with removeEventListener while a process target has removeListener.
+  const listeners = [];
+  const removeListeners = () => {
+    for (const remove of listeners) remove();
+    listeners.length = 0;
+  };
+  let timer = null;
+
+  try {
+    const mod = await runtimeModule(row.module);
+    let context;
+    if (name === 'terminal') {
+      const [needsYou, runRecord, delivery] = await Promise.all([
+        runtimeModule('needs-you'),
+        runtimeModule('run-record'),
+        runtimeModule('delivery'),
+      ]);
+      context = {
+        stateRoot,
+        identity,
+        checkoutRoot,
+        env: io.env,
+        resolveEnv,
+        osUser: osUser() ?? undefined,
+        input: io.stdin ?? process.stdin,
+        output: io.stdout,
+        listOpen: () => openPrompts(needsYou, runRecord, delivery, stateRoot, identity, io.env),
+        knownSecrets: () => rt.dispatch.collectAllKnownSecrets(io.env, checkoutRoot, stateRoot, identity),
+        // The same request drain the chat verb runs, so a terminal message is one run.
+        drainRequest: async (requestId) => {
+          const drained = await rt.drain.drainQueue({
+            checkoutRoot,
+            skilledTree: io.skilledTree,
+            env: io.env,
+            resolveEnv,
+            requestIds: [requestId],
+          });
+          if (!drained.ok) {
+            io.stderr.write(`${describeRefusal(drained)}\n`);
+            return null;
+          }
+          const line = drained.value.lines.find((entry) => entry.requestId === requestId);
+          return line !== undefined && line.reply !== null ? { botId: line.reply.botId, text: line.reply.text } : null;
+        },
+        stamp: () => rt.runner.newRunId(),
+      };
+    } else {
+      context = {
+        stateRoot,
+        identity,
+        checkoutRoot,
+        secretName,
+        env: io.env,
+        resolveEnv,
+        ...whenGiven('fetch', io.fetch),
+        ...whenGiven('socket', io.socket),
+        ...whenGiven('sleep', io.sleep),
+        log: (line) => io.stderr.write(`${line}\n`),
+      };
+    }
+    const transport = mod[row.create](context);
+
+    // The probe reads the secret before it makes any network call, so a missing one is refused here.
+    if (name !== 'terminal') {
+      const probe = await transport.probe();
+      if (probe.ok) {
+        io.stderr.write(`bots: ${name} ready as ${probe.name}\n`);
+      } else if (probe.kind === 'secret') {
+        const detail = probe.detail === undefined ? '' : `: ${probe.detail}`;
+        io.stderr.write(`bots: ${probe.reason}${detail}\n`);
+        return refused;
+      } else if (probe.kind === 'rejected') {
+        io.stderr.write(`bots: ${name} rejected the credential\n`);
+        return 1;
+      } else {
+        io.stderr.write(`bots: ${name} probe failed: ${probe.detail}\n`);
+        return 1;
+      }
+    }
+
+    // One pass chains onto the last, so two passes never overlap. Only this channel's lines print,
+    // because the pass reads every queue entry and another channel's entries stay queued here.
+    let draining = Promise.resolve();
+    const drainOwn = () => {
+      draining = draining.then(async () => {
+        const report = await queue.drainQueue({
+          stateRoot,
+          identity,
+          transports: { [name]: transport },
+          hooks: drainHooks(approval, stateRoot, identity),
+        });
+        for (const line of report.lines) {
+          if (line.channel !== name) continue;
+          const note = line.note === null ? '' : ` (${line.note})`;
+          io.stdout.write(`bots: channel ${line.channel}: ${line.key} ${line.state}${note}\n`);
+        }
+        for (const entry of report.unknown) {
+          if (entry.channel !== name) continue;
+          io.stderr.write(`${queue.m21Line(entry)}\n`);
+        }
+        if (report.refusal !== null) io.stderr.write(`bots: ${report.refusal.reason}: ${report.refusal.detail}\n`);
+      }).catch((error) => {
+        io.stderr.write(`bots: channel ${name} drain failed: ${error instanceof Error ? error.message : String(error)}\n`);
+      });
+      return draining;
+    };
+
+    if (name !== 'terminal') {
+      timer = setInterval(drainOwn, io.tickMs ?? 60_000);
+      timer.unref();
+    }
+
+    const stop = () => { void transport.stop(); };
+    if (io.signal !== undefined) {
+      io.signal.addEventListener('abort', stop, { once: true });
+      listeners.push(() => io.signal.removeEventListener('abort', stop));
+      if (io.signal.aborted) stop();
+    } else {
+      process.once('SIGINT', stop);
+      process.once('SIGTERM', stop);
+      listeners.push(() => process.removeListener('SIGINT', stop), () => process.removeListener('SIGTERM', stop));
+    }
+
+    const sink = { push: () => { if (name !== 'terminal') void drainOwn(); } };
+    await transport.start(sink);
+    if (timer !== null) clearInterval(timer);
+    await draining;
+    return 0;
+  } catch (error) {
+    io.stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);
+    return 1;
+  } finally {
+    if (timer !== null) clearInterval(timer);
+    channel.releaseListenLease(stateRoot, identity, name, lease.value);
+    removeListeners();
+  }
+}
+
 // The body of every channel verb. It takes the transport table and writes only to the streams it is
 // given, so this file passes the real table and a test passes a fake one without spawning the CLI.
 async function runChannelVerb(argv, transports, io = {}) {
@@ -1239,7 +1488,18 @@ async function runChannelVerb(argv, transports, io = {}) {
   const checkoutRoot = checkoutRootFrom(parsed.options.repo);
   const resolveEnv = rt.installer.jobEnv({ checkoutRoot, botId: rt.installer.DRAIN_ID, env });
   try {
-    return await channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, { env, stdout, stderr });
+    return await channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, {
+      env,
+      stdout,
+      stderr,
+      skilledTree: path.resolve(parsed.options['skilled-tree'] || DEFAULT_SKILLED_TREE),
+      fetch: io.fetch,
+      socket: io.socket,
+      stdin: io.stdin,
+      sleep: io.sleep,
+      tickMs: io.tickMs,
+      signal: io.signal,
+    });
   } catch (error) {
     stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);
     return 1;

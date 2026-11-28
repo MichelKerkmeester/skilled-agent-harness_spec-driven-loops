@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,7 +77,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Build | Not started | The child was planned on 2026-11-26 and no code has landed |
+| Build | Built 2026-11-28 | Transport file `Tests  16 passed (16)`, suite 56 files and 758 tests passed against the 55 and 742 floor, typecheck exit 0, cargo exit 0, T019 `exit=0` with a checkout config naming the identity, eleven acceptance rows Met |
 
 ### Deviations and findings
 
@@ -95,4 +95,15 @@ and findings belong here.
 | O-019, the legacy ids | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: T016 is `was T058's proof and the token half of T071` and T017 is `was T060 and the injection half of T071`. |
 | The wire and worker rules, amended on 2026-11-27 | D1 gains the offset clause of REQ-009 and AC-009. D7 is REQ-036 and AC-036. D8 is REQ-010 and AC-010. D9 is the GPL rule of `../003-link-roster-and-answer-gate/plan.md`, applied by T002, T003, T005 and T007. |
 | Before dispatch | `../spec.md` section 7 asks whether a Slack press redelivered after a reconnect carries the same `envelope_id`. It is UNKNOWN and is settled before this child is dispatched. |
+| The terminal reply target and conversation id | The reply target is `terminal:<os-user>` and the 010 conversation file is `terminal-<os-user>`, because a conversation id must be a safe path segment and a colon is not one. A terminal request carries no `delivery`, because a `terminal` target would be recorded as an unsupported channel. |
+| The terminal's unaddressed line | A line with no `@` goes to the checkout's one bot when it has exactly one, which mirrors the terminal screen's bot picker and lets AC-015 and T019 pipe a bare `hello`. With none or several it gets M22. |
+| T008's verify, amended | It names `enqueueFromCheckout` instead of `enqueueRequest`, because building a request record needs `request-record.ts`, which the transport import edges forbid. |
+| The M22 text | Each transport exports its own `BOT_UNKNOWN_REPLY`, because the `channel.ts` reply table is not this child's to edit. The golden test checks all three copies. |
+| The wave order | The terminal and the fixtures ran in wave 0 beside the wire notes, because neither reads them. `listen` and the first test briefs ran beside the Telegram press brief, on disjoint files. |
+| The listen cleanup | The orchestrator's read of `listen` found its `finally` calling `removeListener` on an `AbortSignal`, which has none. A follow-up brief changed the cleanup to stored remover functions and clears the timer in the `finally`. |
+| The send table | `bots channel drain` and `send` build the real Telegram and Slack transports from the channel config when the CLI passes its marker table. No requirement names it, the table comment did, and a test still gets the table it passes. |
+| The token scan | AC-014's scan leaves out the vault's own `secrets` folder, the one place the file backend keeps a value. |
+| T019 | The literal command exits 4 `identity-unknown`, because the CLI drops `SKILLED_BOTS_IDENTITY`. With a checkout `bots/config.json` naming the identity it prints M22 and exits 0, as 011.003 and 011.004 ran theirs. |
+| The `envelope_id` question | Still UNKNOWN, since settling it needs a live workspace. A press is covered either way by the duplicate path and M08. A typed message redelivered with a new id would start a second run. |
+| For the doc-alignment phase | `tests/fixtures/README.md` does not list the `channels/` folder. `contracts/refusals.md` section 3.10 has no row for `bots: <channel> probe failed: <detail>`. No skill reference file was added, so `leaf-manifest.json` was not regenerated. |
 <!-- /ANCHOR:log -->

@@ -46,7 +46,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/bin/bots.cjs"
+      ".skilled/skills/system-skilled-bots/runtime/lib/channel-telegram.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/channel-slack.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/channel-terminal.ts",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/runtime/tests/channel-transports.vitest.ts",
+      "design/wire-notes.md",
+      "tests/fixtures/README.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/design/wire-notes.md"
     ],
     "entities": [
       {
@@ -86,9 +93,45 @@
         "source": "derived"
       },
       {
+        "name": "channel-telegram.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/channel-telegram.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-slack.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/channel-slack.ts",
+        "source": "derived"
+      },
+      {
+        "name": "channel-terminal.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/channel-terminal.ts",
+        "source": "derived"
+      },
+      {
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "channel-transports.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/channel-transports.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "wire-notes.md",
+        "kind": "doc",
+        "path": "design/wire-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/fixtures/README.md",
         "source": "derived"
       },
       {
@@ -156,47 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Wire Table",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Block Kit",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Prove Telegram",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The contract, the index and the queue exist after children 003 and 004 and nothing speaks to a real provider",
     "created_at": "2026-11-26T00:00:20Z",
-    "last_save_at": "2026-11-27T17:56:29.250Z",
+    "last_save_at": "2026-11-28T13:26:20.549Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb49daa62283907b9cb936d0feaf7c32e259488657cde55254a03f175afaae4e",
+    "source_fingerprint": "sha256:e1d5efb5ace89e3feb9dd644a707f5da3a0e9978ad45658d2954d20b10e22187",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c479f975c5aed1c590374aee099fb26ef6ba3b38be0191b5539e333c143996c",
       "plan.md": "07e3ef6a228963b540f7cb4a9e47cb2808e230e00057654dc24e61a718d3a559",
-      "tasks.md": "e577a42741afb90d77a5a8712f9cf34c6c8edeb42c29443547cc8cd81f5c32d2",
-      "implementation-summary.md": "d9a02390124e43dee70ac18746f550bc94eba25aeb3c30e811fd65434ff27bd9"
+      "tasks.md": "04a4e87651ee556bee7a6ab4077255b6ff0a8cb28dc9dd01945bc8d91bd6efcd",
+      "implementation-summary.md": "ff39fa50622c963e68d026199d72767e9bbece87a65f23f9857a02c80e1f6d0a"
     },
     "last_active_at": null
   }
