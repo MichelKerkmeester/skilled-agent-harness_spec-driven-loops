@@ -1,0 +1,141 @@
+[
+  {
+    "id": "A-1",
+    "source_id": "A-1",
+    "lane": "A",
+    "surface": "D1",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skilled-bots/SKILL.md",
+    "line": "41",
+    "issue": "The hub entry lists `bots answer` without the `--scope once|deny` option 001 adds, so a reader who follows the doc cannot record a deny.",
+    "evidence": {
+      "cmd": "rg -n 'bots answer' .skilled/skills/system-skilled-bots/SKILL.md",
+      "exit": 0,
+      "out": "41:  bots answer <item-id> <text>"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-2",
+    "source_id": "B-2",
+    "lane": "B",
+    "surface": "D1",
+    "standard": null,
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+    "line": "34",
+    "issue": "The reference says a fatigued run is refused `routine-fatigued` before the disabled check, and the code refuses `disabled` first, so the doc describes an order the runtime does not have.",
+    "evidence": {
+      "cmd": "rg -n 'routine-fatigued' .skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+      "exit": 0,
+      "out": "34:A fatigued run is refused `routine-fatigued` before the disabled check."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "handed_off",
+      "note": "The code root is wrong and not the doc, so the order is fixed in 015 and the doc keeps the order the runtime should have."
+    }
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "D2-feature-catalog",
+    "lane": "battery",
+    "surface": "D2",
+    "standard": "Every deterministic check listed for the topic in topics.json exits 0",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "D2-feature-catalog failed (exit 1).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "exit": 1,
+      "out": "PACKAGE system-skilled-bots: FAIL tier=fail violations=2\n  - [fail] [root_leaf_description_mismatch] feature-catalog.md: normalized leaf description does not match root H3",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "A-4",
+    "source_id": "A-4",
+    "lane": "A",
+    "surface": "D1",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skilled-bots/ROUTER.md",
+    "line": "8",
+    "issue": "The router names four modes and the mode registry carries five, so a reader who counts the modes finds one missing.",
+    "evidence": {
+      "cmd": "rg -c 'workflowMode' .skilled/skills/system-skilled-bots/mode-registry.json",
+      "exit": 0,
+      "out": "5"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-3",
+    "source_id": "C-3",
+    "lane": "C",
+    "surface": "D1",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-skilled-bots/README.md",
+    "line": "12",
+    "issue": "The README says the skill ships a compiled activation manifest, and the compiled front door returns the legacy sentinel instead.",
+    "evidence": {
+      "cmd": "rg -n 'compiled activation manifest' .skilled/skills/system-skilled-bots/README.md",
+      "exit": 0,
+      "out": "12:The skill ships a compiled activation manifest."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "disposition": {
+      "status": "rebutted",
+      "note": "The sentence describes the manifest the skill ships in its own tree, and the compiled front door is a different artifact."
+    }
+  },
+  {
+    "id": "C-5",
+    "source_id": "C-5",
+    "lane": "C",
+    "surface": "D1",
+    "standard": null,
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/system-skilled-bots/README.md",
+    "line": "11",
+    "issue": "The README title names the skill `bots skill` and the skill is named `system-skilled-bots`.",
+    "evidence": {
+      "cmd": "rg -n '^# ' .skilled/skills/system-skilled-bots/README.md",
+      "exit": 0,
+      "out": "11:# bots skill"
+    },
+    "fix": {
+      "old": "bots skill",
+      "new": "system-skilled-bots"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

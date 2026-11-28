@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios",
+  "description": "Every parity slice closes on an automated suite that calls its modules directly",
+  "keywords": [
+    "every",
+    "parity",
+    "slice",
+    "closes",
+    "automated",
+    "suite",
+    "calls",
+    "modules",
+    "directly"
+  ],
+  "lastUpdated": "2026-11-28T11:15:58.546Z",
+  "specId": "013",
+  "folderSlug": "manual-testing-scenarios",
+  "parentChain": [
+    "system-skilled-bots",
+    "003-openbot-parity-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

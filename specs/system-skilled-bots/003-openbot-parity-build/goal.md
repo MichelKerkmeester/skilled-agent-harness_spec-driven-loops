@@ -74,9 +74,9 @@ phase and binds as if written here.
 | 009-skills | `009-skills/goal.md` |
 | 010-conversations | `010-conversations/goal.md` |
 | 011-messaging-channels | `011-messaging-channels/goal.md` |
-| 012-manual-testing-scenarios | `012-manual-testing-scenarios/goal.md` |
-| 013-skilled-and-doc-alignment | `013-skilled-and-doc-alignment/goal.md` |
-| 014-deep-review | `014-deep-review/goal.md` |
+| 013-manual-testing-scenarios | `013-manual-testing-scenarios/goal.md` |
+| 014-skilled-and-doc-alignment | `014-skilled-and-doc-alignment/goal.md` |
+| 015-deep-review | `015-deep-review/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -95,7 +95,7 @@ string, not these files.
 - [ ] `rg -c '^\| [0-9]{3} \| `cli-' specs/system-skilled-bots/003-openbot-parity-build/spec.md` prints 14, one orchestration row per phase.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test` exits 0.
 - [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
-- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/review/deep-review-findings-registry.json');console.log(r.findingsBySeverity.P0,r.findingsBySeverity.P1)"` prints `0 0`.
+- [ ] `node -e "const r=require('./specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/review/deep-review-findings-registry.json');console.log(r.findingsBySeverity.P0,r.findingsBySeverity.P1)"` prints `0 0`.
 <!-- /ANCHOR:completion -->
 
 ---

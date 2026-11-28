@@ -62,4 +62,4 @@ Frontier node F-1-004: assess phases 005-memory, 009-skills and 010-conversation
 - What I would do differently: next compare the verification phases' stop rules against the runtime artifacts they expect, then trace any missing hooks into the build phases.
 
 ## Recommended Next Focus
-Frontier node F-1-006: assess phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review for fixtures, alignment targets, review dimensions, executor waves and stop rules.
+Frontier node F-1-006: assess phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review for fixtures, alignment targets, review dimensions, executor waves and stop rules.

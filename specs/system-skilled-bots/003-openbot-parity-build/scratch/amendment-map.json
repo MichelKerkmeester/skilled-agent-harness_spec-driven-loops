@@ -2823,7 +2823,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
    "entries": [
     {
      "id": "A-290",
@@ -2836,7 +2836,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/fixtures.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/fixtures.md",
    "entries": [
     {
      "id": "A-291",
@@ -2849,7 +2849,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/refusal-catalogue.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/refusal-catalogue.md",
    "entries": [
     {
      "id": "A-292",
@@ -2870,7 +2870,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/design/scenario-contract.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/design/scenario-contract.md",
    "entries": [
     {
      "id": "A-294",
@@ -2883,7 +2883,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/tasks.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/tasks.md",
    "entries": [
     {
      "id": "A-295",
@@ -2912,7 +2912,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/records.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/records.md",
    "entries": [
     {
      "id": "A-298",
@@ -2941,7 +2941,7 @@
    ]
   },
   {
-   "path": "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/design/fixtures/fix-ledger.md",
+   "path": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/design/fixtures/fix-ledger.md",
    "entries": [
     {
      "id": "A-301",

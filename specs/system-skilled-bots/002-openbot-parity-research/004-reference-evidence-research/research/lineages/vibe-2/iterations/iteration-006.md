@@ -75,4 +75,4 @@ Phases 009-skills and 010-conversations: which reference files implement the sam
 
 ## Recommended Next Focus
 
-Phases 011-messaging-channels and 013-skilled-and-doc-alignment, plus `buzz-main`, which the F-1-006 node's scope names and no iteration has read. The specific next reads are `buzz-main/ARCHITECTURE.md` and `buzz-main/CONTEXT.md` for the failure-handling and upgrade patterns, `tinychannels-main/docs/` for 011's channel layer, and the plan's 013 for the doc-alignment surface. The open question this iteration leaves is whether 009's body scan belongs to 009 or to 012, since it is a check on a file the phase does not write.
+Phases 011-messaging-channels and 014-skilled-and-doc-alignment, plus `buzz-main`, which the F-1-006 node's scope names and no iteration has read. The specific next reads are `buzz-main/ARCHITECTURE.md` and `buzz-main/CONTEXT.md` for the failure-handling and upgrade patterns, `tinychannels-main/docs/` for 011's channel layer, and the plan's 013 for the doc-alignment surface. The open question this iteration leaves is whether 009's body scan belongs to 009 or to 012, since it is a check on a file the phase does not write.

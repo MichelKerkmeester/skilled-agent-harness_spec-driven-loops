@@ -117,7 +117,7 @@ Setup ──► Implementation ──► Verification
 |-------|------------|--------|
 | Setup | Children 003 to 006 | Implementation |
 | Implementation | Setup | Verification |
-| Verification | Implementation | The parent's closure and phase 012 |
+| Verification | Implementation | The parent's closure and phase 013 |
 <!-- /ANCHOR:phase-deps -->
 
 ---

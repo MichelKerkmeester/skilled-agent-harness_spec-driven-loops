@@ -40,7 +40,7 @@ Frontier node F-1-005 (depth 1, scope specs/system-skilled-bots/003-openbot-pari
 - Do 004 and 002 need children? No. 004 is the packet's best one-shot-ready small phase; 002's only gaps are the two iteration 1 found.
 
 ## Questions Remaining
-- Should the contracts phase be a new phase 015 or a child of 013-skilled-and-doc-alignment, given that 013 already owns doc alignment?
+- Should the contracts phase be a new phase 015 or a child of 014-skilled-and-doc-alignment, given that 013 already owns doc alignment?
 - Does the roster check belong in `answer.ts` at all, or should the caller pass an `isApprover` predicate so the contracts group keeps its import boundary?
 
 ## Sources Consulted
@@ -70,4 +70,4 @@ Frontier node F-1-005 (depth 1, scope specs/system-skilled-bots/003-openbot-pari
 - What I would do differently: read the README's allowed-direction rule before the phase plans, because it is the one document that claims to govern every phase and it is the fastest way to find a cross-phase conflict.
 
 ## Recommended Next Focus
-The two depth-2 nodes admitted under F-1-001 (the `--json` envelope rule and the `ITEM_KEYS` single-writer question), then the phases this lineage has not yet reviewed: 007-per-bot-apps, 008-vault, 009-skills, 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review. The contracts phase recommendation now has three independent supports (iteration 1's schemas, iteration 2's channel records, this iteration's architecture and diagrams), so it should be ranked first in the synthesis.
+The two depth-2 nodes admitted under F-1-001 (the `--json` envelope rule and the `ITEM_KEYS` single-writer question), then the phases this lineage has not yet reviewed: 007-per-bot-apps, 008-vault, 009-skills, 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review. The contracts phase recommendation now has three independent supports (iteration 1's schemas, iteration 2's channel records, this iteration's architecture and diagrams), so it should be ranked first in the synthesis.

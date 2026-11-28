@@ -94,19 +94,19 @@ The most evidence-dense phase in the run, and the one with the most control-flow
 
 **Licence:** GPL-3.0, and the plan already says no tinychannels code is copied. That sentence is load-bearing across seven children.
 
-### 012-manual-testing-scenarios — tinychannels' conformance kit, GPL-3.0
+### 013-manual-testing-scenarios — tinychannels' conformance kit, GPL-3.0
 
 The plan's five conformance rules already mirror the reference's five assertions, with a line range cited per rule, and they test both directions: R1/R2 cover an undeclared operation being refused with no wire call, R3/R4/R5 cover a declared operation returning a receipt and a matching observation. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:22-33] **Observed.**
 
 **No guard:** the request a transport builds. The reference kit's header states the rule that closes it — a provider test implements `AdapterFixture` on the provider's own mocked platform, and the kit "never substitutes a synthetic transport for the provider fixture". [SOURCE: specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:1-7] The plan's fixture records at the seam and opens no socket, so no rule asserts a Telegram `sendMessage` body, a Slack block, a Signal envelope or a WhatsApp URL. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md:35] A wrong header or a re-serialised signature body passes every rule the plan names, and 012's channel scenarios run on the same fixture.
 
-### 013-skilled-and-doc-alignment — no reference
+### 014-skilled-and-doc-alignment — no reference
 
-No repository carries an automated docs-versus-code check, and OpenBot's manifest has no documentation script. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158] Net-new by necessity: the two commands are this repository's own, so the acceptance criteria carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.
+No repository carries an automated docs-versus-code check, and OpenBot's manifest has no documentation script. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158] Net-new by necessity: the two commands are this repository's own, so the acceptance criteria carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.
 
-### 014-deep-review — no reference
+### 015-deep-review — no reference
 
-No reference has a review loop. The phase's one borrowed guard is the suite floor recorded in `review/preflight.json` as `suiteBaseline` rather than quoted, because "a floor quoted from this block would pass a build that deleted a phase's tests". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94] That is the item a reviewer should confirm is enforced.
+No reference has a review loop. The phase's one borrowed guard is the suite floor recorded in `review/preflight.json` as `suiteBaseline` rather than quoted, because "a floor quoted from this block would pass a build that deleted a phase's tests". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94] That is the item a reviewer should confirm is enforced.
 
 ## 4. Net-New: What the Ten Repos Have and the Plan Does Not
 

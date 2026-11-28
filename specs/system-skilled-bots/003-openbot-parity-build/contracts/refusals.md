@@ -218,7 +218,7 @@ A rejected credential exits 1 and carries no name, as 011 chose. The secret reso
 
 `channel-unsupported` is not new. It is the evidence a delivery entry on an unknown channel already records today, and it returns for a channel target if 011 is reverted. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/delivery.ts:142] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue/plan.md, section "7. ROLLBACK PLAN"]
 
-### 3.11 Phases 012 to 014
+### 3.11 Phases 013 to 015
 
 These phases test, align and review. They add no refusal.
 

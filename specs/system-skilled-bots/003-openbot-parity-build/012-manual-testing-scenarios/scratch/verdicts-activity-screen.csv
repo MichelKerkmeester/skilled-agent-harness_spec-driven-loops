@@ -1,7 +1,0 @@
-scenario_id,runtime,verdict,reason,evidence
-BOT-040,,SKIP,"the activity verb is absent from the CLI verb table, so the block cannot group a row",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-040.txt
-BOT-041,,SKIP,"the activity verb is absent from the CLI verb table, so the block cannot read the ten fields",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-041.txt
-BOT-042,,SKIP,"the activity verb is absent from the CLI verb table, so the block cannot read the actor",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-042.txt
-BOT-043,,SKIP,"the ui verb is absent from the CLI verb table and the bots-tui crate is absent, so the block cannot reach either refusal",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-043.txt
-BOT-044,,SKIP,"the ui verb is absent from the CLI verb table and the bots-tui crate is absent, so the block cannot drive the pane",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-044.txt
-BOT-045,,SKIP,"the ui verb is absent from the CLI verb table and the bots-tui crate is absent, so the block cannot run the render tests",specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/scratch/transcripts/BOT-045.txt

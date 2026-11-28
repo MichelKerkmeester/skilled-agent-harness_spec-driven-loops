@@ -725,7 +725,7 @@
     },
     {
       "id": "finding-8-2-documentation-alignment-is-net-new-none-of-the-ten-references-carries-an-automat",
-      "text": "**Documentation alignment is net-new: none of the ten references carries an automated docs-versus-code check, and the phase's subject is this repository's own tooling.** 013 requires a `topics.json` topic whose `terms` reach the skill docs, the README, the catalog, the playbook and the CLI help, two alignment commands that write `report.md`, `findings.json` and `fix-plan.md`, and a clean-close criterion on each report's `Open findings:` line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:155] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:158] A search of OpenBot-main's package manifest for a documentation-check script (`markdown-link`, `link-check`, `docs:check`, `lint:docs`) returns nothing. **Observed.** The phase therefore has no reference to mirror and cannot have one: the two commands it invokes are Skilled's own, and the artefacts they write are this repository's contract. Its risk is not a missing mechanism but a missing reference point, so its acceptance criteria have to carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.",
+      "text": "**Documentation alignment is net-new: none of the ten references carries an automated docs-versus-code check, and the phase's subject is this repository's own tooling.** 013 requires a `topics.json` topic whose `terms` reach the skill docs, the README, the catalog, the playbook and the CLI help, two alignment commands that write `report.md`, `findings.json` and `fix-plan.md`, and a clean-close criterion on each report's `Open findings:` line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:155] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:158] A search of OpenBot-main's package manifest for a documentation-check script (`markdown-link`, `link-check`, `docs:check`, `lint:docs`) returns nothing. **Observed.** The phase therefore has no reference to mirror and cannot have one: the two commands it invokes are Skilled's own, and the artefacts they write are this repository's contract. Its risk is not a missing mechanism but a missing reference point, so its acceptance criteria have to carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
@@ -733,9 +733,9 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ]
     },
     {
@@ -748,14 +748,14 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ]
     },
     {
       "id": "finding-8-3-the-review-phase-is-net-new-as-well-and-its-one-borrowed-guard-is-the-recorded-s",
-      "text": "**The review phase is net-new as well, and its one borrowed guard is the recorded suite baseline rather than a quoted count.** 014 runs `/deep:review:auto` over phases 001 to 013 as a fan-out of five lineages and requires every P0 to be fixed with the command that proved it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:182] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:185] Its own measured-behaviour block states the rule that makes the review meaningful: the suite floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, because \"a floor quoted from this block would pass a build that deleted a phase's tests\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94] No reference in the corpus has a review loop, so there is nothing to lift; the recorded baseline is the phase's own guard, and it is the one item in the three phases that a reviewer should check is actually enforced. **Observed.**",
+      "text": "**The review phase is net-new as well, and its one borrowed guard is the recorded suite baseline rather than a quoted count.** 014 runs `/deep:review:auto` over phases 001 to 013 as a fan-out of five lineages and requires every P0 to be fixed with the command that proved it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:182] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:185] Its own measured-behaviour block states the rule that makes the review meaningful: the suite floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, because \"a floor quoted from this block would pass a build that deleted a phase's tests\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94] No reference in the corpus has a review loop, so there is nothing to lift; the recorded baseline is the phase's own guard, and it is the one item in the three phases that a reviewer should check is actually enforced. **Observed.**",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
@@ -763,9 +763,9 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ]
     },
     {

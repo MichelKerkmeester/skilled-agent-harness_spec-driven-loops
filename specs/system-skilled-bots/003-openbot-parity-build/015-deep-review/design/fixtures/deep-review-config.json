@@ -1,0 +1,110 @@
+{
+  "topic": "deep review of the OpenBot parity build",
+  "sessionId": "rvw-2026-11-25T21-14-04Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "2026-11-26T21:14:04Z",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "depthMode": "expansive",
+    "stopPolicy": "fail-closed"
+  },
+  "expansiveDepth": {
+    "maxDepth": 3,
+    "maxChildrenPerNode": 6,
+    "budgetSplit": { "depth1": 0.5, "depth2": 0.35, "depth3": 0.15 },
+    "maxFrontierNodes": null
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review",
+  "createdAt": "2026-11-25T21:14:04Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": null,
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skilled-bots/003-openbot-parity-build",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": null,
+  "severityThreshold": "P2",
+  "reviewScopeFiles": [
+    ".skilled/bin/bots.cjs",
+    ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+    ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+    ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+    ".skilled/skills/system-skilled-bots/runtime/lib/conversation.ts",
+    ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+    "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
+    "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md"
+  ],
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

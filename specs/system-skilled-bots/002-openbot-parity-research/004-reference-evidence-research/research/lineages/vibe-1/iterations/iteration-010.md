@@ -57,9 +57,9 @@ with attribution; "mirror" means read the design and write your own.
 | 009-skills | OpenGhost `skills.js`; openhuman `tinyskills` | MIT; **GPL-3.0** | Lift / mirror | MIT notice; no openhuman code |
 | 010-conversations | turnstone `turnstone/cli.py` | Apache-2.0 | Lift | Apache-2.0 + statement of changes (AC-010) |
 | 011-messaging-channels | **tinychannels** `adapter.rs`, `capabilities.rs`, `conformance/lib.rs`, `delivery/policy.rs` | **GPL-3.0** | **Mirror only** | Provenance only; the phase already says it copies no tinychannels code |
-| 012-manual-testing-scenarios | turnstone `tests.json`, `eval_*.json`; buzz `TESTING.md`, `benchmarks/`; OpenMausBot `evals/` | Apache-2.0; Apache-2.0; Apache-2.0 | Lift | Apache-2.0 + statement of changes |
-| 013-skilled-and-doc-alignment | turnstone `lint_hypothesis.py`; hermes-muse `check_callers.py`; buzz `check-postgres-test-discovery.py` | Apache-2.0; MIT; Apache-2.0 | Lift | Per-source notice |
-| 014-deep-review | buzz `TESTING.md` review-proven standards; OpenMausBot `evals/README.md` current pins | Apache-2.0; Apache-2.0 | Lift | Apache-2.0 + statement of changes |
+| 013-manual-testing-scenarios | turnstone `tests.json`, `eval_*.json`; buzz `TESTING.md`, `benchmarks/`; OpenMausBot `evals/` | Apache-2.0; Apache-2.0; Apache-2.0 | Lift | Apache-2.0 + statement of changes |
+| 014-skilled-and-doc-alignment | turnstone `lint_hypothesis.py`; hermes-muse `check_callers.py`; buzz `check-postgres-test-discovery.py` | Apache-2.0; MIT; Apache-2.0 | Lift | Per-source notice |
+| 015-deep-review | buzz `TESTING.md` review-proven standards; OpenMausBot `evals/README.md` current pins | Apache-2.0; Apache-2.0 | Lift | Apache-2.0 + statement of changes |
 
 Sources for the licence column: [SOURCE: specs/system-skilled-bots/context/OpenBot-main/LICENSE:1]
 [SOURCE: specs/system-skilled-bots/context/OpenMausBot-main/LICENSE:2]
@@ -122,9 +122,9 @@ falsifiability check) and #16 in part (phase 003's context manifest records a sh
 | 009-skills | 2 | 6 (shared) | OpenGhost, openhuman |
 | 010-conversations | 2, 9 | 6 + 2 | turnstone, buzz |
 | 011-messaging-channels | 6 | 7 | tinychannels |
-| 012-manual-testing-scenarios | 7, 9 | 7 + 4 | turnstone, buzz, OpenMausBot |
-| 013-skilled-and-doc-alignment | 7 | 7 (shared with 012, 014) | turnstone, hermes-muse, buzz |
-| 014-deep-review | 7, 9 | 7 + 2 | buzz, OpenMausBot |
+| 013-manual-testing-scenarios | 7, 9 | 7 + 4 | turnstone, buzz, OpenMausBot |
+| 014-skilled-and-doc-alignment | 7 | 7 (shared with 012, 014) | turnstone, hermes-muse, buzz |
+| 015-deep-review | 7, 9 | 7 + 2 | buzz, OpenMausBot |
 
 Observed. All fourteen phases have at least five findings with resolving citations. The thinnest
 coverage is 008-vault (5 findings, one iteration, one repo) and 007-per-bot-apps (one finding from

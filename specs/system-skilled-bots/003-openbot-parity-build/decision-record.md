@@ -37,7 +37,7 @@ _memory:
 | Q001 | Both key maps are approved: the terminal key map in 003/001 AC-007 and the 010/001 design/key-map-delta.md. | Not stated. | None | 003-terminal-screen, 010-conversations |
 | Q002 | Decisions D5 and D6 are tightened rather than kept as taken. | Not stated. | None | spec.md decisions D5 and D6 |
 | Q003 | Before choosing scope cuts, the operator asked for more detail on items 3 and 4, the members roster half and the Linux secret store group. | Not stated. | None | spec.md scope |
-| Q004 | Delete the stray untracked files and keep the 012 manual testing scenarios. | Not stated. | None | 012-manual-testing-scenarios |
+| Q004 | Delete the stray untracked files and keep the 012 manual testing scenarios. | Not stated. | None | 013-manual-testing-scenarios |
 | Q005 | D5 tightens in whichever way gives the best UX without adding memory or disk use. | Not stated. | None | spec.md D5, 007-per-bot-apps |
 | Q006 | D6 tightens by sandboxing each bot child. | Not stated. | None | spec.md D6 |
 | Q007 | Keep the members half of the channel roster, so anyone listed in members can answer from a channel. | Not stated. | None | 011-messaging-channels |

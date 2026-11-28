@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The three earlier runs settled what to build, whether the plan holds together and whether each phase is planned deeply enough",
     "created_at": "2026-11-27T06:31:17Z",
-    "last_save_at": "2026-11-27T10:14:05.342Z",
+    "last_save_at": "2026-11-28T11:25:11.555Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:16fc9e1fad6d804d708604f83ea6635fe04145204a606bcf5e10c7ab01c419c7",
+    "source_fingerprint": "sha256:7588cfe84745c8e50c12e699dab5255c54c578d1e2fa10700a52eb37fff7509d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "72923eadd32e8e9ce02ffd8c20434c861fca34593ae5be9a0e5be195542f6f80",
@@ -226,7 +226,7 @@
       "tasks.md": "67b2732cc748deaab2eb33dbbe40976bc78f73dd40397a65c346d3fc7b96906e",
       "decision-record.md": "a47c450735d0f65cade16a9f0feaef1bc9784f44068b4f2bebd75c29eaca085e",
       "implementation-summary.md": "d67a6e9543cad2e6fd90caef79f1af6f49d68409bf1b3cda58d664d4af354a90",
-      "research/research.md": "46c3ef74f252717e54231d87510c934da13dcb89725d39691a3582f1b6423666"
+      "research/research.md": "f2797738ca3dabbf2f19bdb0335fa0a12311b3f89e8e700851dfbecb2c08b19c"
     },
     "last_active_at": null
   }

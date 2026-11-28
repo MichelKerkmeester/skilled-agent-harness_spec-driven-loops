@@ -30,7 +30,7 @@
     "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63",
     "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:76",
     "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-    "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+    "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
   ],
   "graphEvents": [
     { "type": "node", "id": "q-f2-007", "kind": "QUESTION", "label": "Can a normalised alias slip past the apps filter" },
@@ -51,7 +51,7 @@
     { "id": "f-iter003-001", "label": "F-2-007 answered: the apps match is exact and case-sensitive, a prefix is a different name, and the fail-closed default writes an empty template list without reading the source config, so no normalisation bypass exists.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/refusals.md:64"] },
     { "id": "f-iter003-002", "label": "F-2-007: the plan has no name-in-words rule for a displayed tool name, the exact failure OpenBot found live when a line read web_search.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/tool-name.ts:20-27"] },
     { "id": "f-iter003-003", "label": "F-2-007: the 64-character provider cap forces a shortened name with a hash and the plan has no mapping back, which bites the 001 activity row rather than the 007 filter.", "sources": ["specs/system-skilled-bots/context/OpenBot-main/shared/tool-name.ts:38-46"] },
-    { "id": "f-iter003-004", "label": "F-2-008 answered: the plan refuses --scope always outright and bots enable records scope once, so there is no standing answer to save and the three OpenBot exclusions bind only the phase that adds one.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"] },
+    { "id": "f-iter003-004", "label": "F-2-008 answered: the plan refuses --scope always outright and bots enable records scope once, so there is no standing answer to save and the three OpenBot exclusions bind only the phase that adds one.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"] },
     { "id": "f-iter003-005", "label": "F-2-009 correction: the plan detail is a fixed phrase per cause, so iteration 1 finding 7 is refuted; what survives is that the rule is stated by example in a design file and not as a contract line.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59"] },
     { "id": "f-iter003-006", "label": "F-2-009: the plan already measured the echo it guards against, an over-long security line writing a wrong value to the wrong keychain and printing part of the value to stderr.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:63"] },
     { "id": "f-iter003-007", "label": "006: the plan grant holds four fields and has no place for the effect class, so a flow-scoped grant cannot be expressed and 006 should record it as out of scope.", "sources": ["specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:50"] },

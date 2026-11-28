@@ -402,6 +402,29 @@
           "to": "mcp/mcp-tooling/z_archive/018-code-mode-variable-prefixes"
         }
       ]
+    },
+    {
+      "applied_at": "2026-11-28T11:16:08.038Z",
+      "base_commit": "44b8f53681253ec34457174082064dbf0e61543a",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "system-skilled-bots/003-openbot-parity-build/014-deep-review",
+          "to": "system-skilled-bots/003-openbot-parity-build/015-deep-review"
+        },
+        {
+          "from": "system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment",
+          "to": "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment"
+        },
+        {
+          "from": "system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios",
+          "to": "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios"
+        }
+      ]
     }
   ]
 }

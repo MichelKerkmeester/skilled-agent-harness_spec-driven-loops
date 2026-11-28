@@ -1,0 +1,12 @@
+[
+  {
+    "id": "B-2",
+    "status": "handed_off",
+    "note": "The code root is wrong and not the doc, so the order is fixed in 015 and the doc keeps the order the runtime should have."
+  },
+  {
+    "id": "C-3",
+    "status": "rebutted",
+    "note": "The sentence describes the manifest the skill ships in its own tree, and the compiled front door is a different artifact."
+  }
+]

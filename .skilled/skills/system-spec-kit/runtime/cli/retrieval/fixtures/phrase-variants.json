@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b6789ba472678fecf5ed6ae1caaf963536a19b6e912030c0b5a7467dc144f3cd",
+  "manifestHash": "15d02b452a35d14eb27c89cf54c9a401c506be9dfe5c003f6535ec52f17a8e48",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13119,6 +13119,9 @@
     ],
     "approval index plan": [
       "approval index plan"
+    ],
+    "approval ladder": [
+      "approval ladder"
     ],
     "approval ladder flow": [
       "approval ladder flow"
@@ -60238,6 +60241,9 @@
     ],
     "grant refusal catalogue": [
       "grant refusal catalogue"
+    ],
+    "grant scope": [
+      "grant scope"
     ],
     "grant scope unsupported": [
       "grant-scope-unsupported"
@@ -141227,6 +141233,9 @@
     ],
     "why compaction loses the purpose": [
       "why compaction loses the purpose"
+    ],
+    "why did the bot ask": [
+      "why did the bot ask"
     ],
     "why did the scanner flag that": [
       "why did the scanner flag that"

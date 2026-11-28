@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled and doc alignment",
+      "phase 13 skilled and doc alignment",
+      "local-skilled-alignment",
+      "local-doc-alignment",
+      "alignment findings report",
+      "skilled and doc alignment plan",
+      "local-skilled-alignment plan",
+      "local-doc-alignment plan",
+      "alignment wave plan",
+      "skilled and doc alignment tasks",
+      "local-skilled-alignment tasks",
+      "local-doc-alignment tasks"
+    ],
+    "key_topics": [
+      "skilled",
+      "doc",
+      "alignment",
+      "phase",
+      "local-skilled-alignment",
+      "local-doc-alignment",
+      "findings",
+      "report",
+      "plan",
+      "wave",
+      "tasks",
+      "phases"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "design/records.md",
+      "design/state-machines.md",
+      "design/sequences.md",
+      "design/refusals.md",
+      "design/mockups.md",
+      "evidence/README.md",
+      "design/fixtures/README.md",
+      ".skilled/bin/bots.cjs",
+      ".skilled/commands/assets/local-doc-alignment/topics.json",
+      ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".skilled/skills/system-skilled-bots/ROUTER.md",
+      ".skilled/skills/system-skilled-bots/README.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/implementation-summary.md",
+      ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "records.md",
+        "kind": "doc",
+        "path": "design/records.md",
+        "source": "derived"
+      },
+      {
+        "name": "state-machines.md",
+        "kind": "doc",
+        "path": "design/state-machines.md",
+        "source": "derived"
+      },
+      {
+        "name": "sequences.md",
+        "kind": "doc",
+        "path": "design/sequences.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusals.md",
+        "kind": "doc",
+        "path": "design/refusals.md",
+        "source": "derived"
+      },
+      {
+        "name": "mockups.md",
+        "kind": "doc",
+        "path": "design/mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "evidence/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "topics.json",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-doc-alignment/topics.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "surface-map.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/assets/local-skilled-alignment/surface-map.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 001 to 013 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to",
+    "created_at": "2026-11-25T19:32:29Z",
+    "last_save_at": "2026-11-28T11:23:34.588Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2392cd7e50b1b0c76b169aae67b20f61747c9e2af8f3dd3a256f41a0fd5e0b85",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e28950ed9e0361068e157c83fb32773806b677322a2f6cd4a829e2ecb8cc4d2b",
+      "plan.md": "945837fe7f72537ce089e6def8db3b40b8e6e86d5031acc574faa6d16675d458",
+      "tasks.md": "bdd8f46dc2e06afeaf10caef5cd6618bf1305392738868e6ff7ab56be15e9440",
+      "implementation-summary.md": "a845dc56e022f3bd62ac002e94cf0039c1c7f9110280784ae6c72acc0e84f6fd"
+    },
+    "last_active_at": null
+  }
+}

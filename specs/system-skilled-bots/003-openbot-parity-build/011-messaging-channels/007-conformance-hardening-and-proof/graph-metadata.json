@@ -44,6 +44,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/tests/channel-support.ts",
+      ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
@@ -85,6 +87,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "channel-support.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/channel-support.ts",
+        "source": "derived"
+      },
+      {
+        "name": "THIRD_PARTY_NOTICES.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each transport child proves its own transport",
     "created_at": "2026-11-26T00:00:21Z",
-    "last_save_at": "2026-11-27T15:42:10.833Z",
+    "last_save_at": "2026-11-28T11:23:49.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +211,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:565f22255ef633092c1baa8bf60f9ba5be1876261dabf6fc24bd3672dd1ac294",
+    "source_fingerprint": "sha256:be46a15c9afe556d66f40e81298f45c221bb406785c177a0bea38a53890fa1f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8886844e8c4d11cbfe6237beae4304d357e7f98e3cf05aed5af95434bb3ee4de",
-      "plan.md": "88d8fb6a3c540fa0365cbb10f4a174726c8abee3dedc9599bf6de46101b2fac8",
+      "spec.md": "7c2392806faf23235d160f23a1bdd44af2171c1b5142ec154f2374669c1b3af0",
+      "plan.md": "8ee4341c17a7e1177e038a39ec9f187f5a925773ed1d031b1ceee6f6544d41fc",
       "tasks.md": "634a7c3d8973eec8846ee1b4d4585d99a7d7b43a44a0c40078c0ffb10be4215a",
       "implementation-summary.md": "4662bb621a4a6a19e092cd8351be32eb81838685ad3d06da676f63093b2073d3"
     },

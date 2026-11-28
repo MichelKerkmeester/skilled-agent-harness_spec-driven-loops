@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "b0b3c8d9bf10db5c811396ade69c4ae39ed13d28",
-    "renameRecords": 591947,
+    "commit": "44b8f53681253ec34457174082064dbf0e61543a",
+    "renameRecords": 596333,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -202,7 +202,7 @@
     },
     {
       "from": ".opencode/skills/mcp-chrome-devtools/",
-      "to": ".opencode/skills/mcp-browser-use/mcp-chrome-devtools/",
+      "to": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/",
       "records": 80,
       "agreement": 1
     },
@@ -3867,6 +3867,12 @@
       "agreement": 1
     },
     {
+      "from": ".skilled/manual-testing-playbook/",
+      "to": ".skilled/skills/system-skilled-doctor/manual-testing-playbook/",
+      "records": 67,
+      "agreement": 1
+    },
+    {
       "from": ".skilled/skills/cli-classifier/cli-usage/",
       "to": ".skilled/skills/cli-classifier/cli-jev/",
       "records": 56,
@@ -3879,9 +3885,27 @@
       "agreement": 1
     },
     {
+      "from": ".skilled/skills/mcp-tooling/mcp-aside-devtools/",
+      "to": ".skilled/skills/mcp-browser-use/mcp-aside-devtools/",
+      "records": 75,
+      "agreement": 1
+    },
+    {
+      "from": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/",
+      "to": ".skilled/skills/mcp-browser-use/mcp-chrome-devtools/",
+      "records": 101,
+      "agreement": 1
+    },
+    {
       "from": ".skilled/skills/sk-code/sk-code-opencode/",
       "to": ".skilled/skills/sk-code/sk-code-skilled/",
       "records": 115,
+      "agreement": 1
+    },
+    {
+      "from": "crates/",
+      "to": ".skilled/crates/",
+      "records": 61,
       "agreement": 1
     },
     {
@@ -3906,6 +3930,12 @@
       "from": "skills/",
       "to": "skill/",
       "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": "specs/",
+      "to": "specs/mcp/",
+      "records": 2159,
       "agreement": 1
     },
     {
@@ -4224,13 +4254,55 @@
       "from": "specs/mcp-tooling/",
       "to": "specs/mcp-tooling/z_archive/",
       "records": 1443,
-      "agreement": 1
+      "agreement": 0.9863
     },
     {
       "from": "specs/mcp-tooling/019-official-obsidian-cli/",
       "to": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/",
       "records": 531,
       "agreement": 0.9981
+    },
+    {
+      "from": "specs/mcp-tooling/mcp-obsidian/",
+      "to": "specs/mcp/mcp-tooling/mcp-obsidian/",
+      "records": 561,
+      "agreement": 1
+    },
+    {
+      "from": "specs/mcp-tooling/z_archive/",
+      "to": "specs/mcp/mcp-tooling/z_archive/",
+      "records": 1598,
+      "agreement": 1
+    },
+    {
+      "from": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/opus-1/",
+      "to": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages/opus-1/",
+      "records": 66,
+      "agreement": 1
+    },
+    {
+      "from": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/opus-2/",
+      "to": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages/opus-2/",
+      "records": 53,
+      "agreement": 0.9636
+    },
+    {
+      "from": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/opus-3/",
+      "to": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages/opus-3/",
+      "records": 55,
+      "agreement": 0.9649
+    },
+    {
+      "from": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/opus-4/",
+      "to": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T070727Z-restart/lineages/opus-4/",
+      "records": 105,
+      "agreement": 0.9813
+    },
+    {
+      "from": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review/lineages/vibe/",
+      "to": "specs/mcp/mcp-browser-use/001-mcp-browser-use-hub/review-archive/20261124T044326Z-restart/lineages/vibe/",
+      "records": 57,
+      "agreement": 0.9661
     },
     {
       "from": "specs/sk-code/",
@@ -4857,6 +4929,42 @@
       "agreement": 0.9937
     },
     {
+      "from": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/opus-medium-1/",
+      "to": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages/opus-medium-1/",
+      "records": 67,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/opus-medium-2/",
+      "to": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages/opus-medium-2/",
+      "records": 65,
+      "agreement": 0.9848
+    },
+    {
+      "from": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review/lineages/opus-medium-3/",
+      "to": "specs/system-skill-advisor/routing-and-scoring/012-deep-loop-command-offers/review-archive/20261124T090549Z/lineages/opus-medium-3/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": "specs/system-skilled-bots/002-openbot-parity-research/",
+      "to": "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/",
+      "records": 387,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skilled-bots/003-openbot-parity-build/",
+      "to": "specs/system-skilled-bots/002-openbot-parity-research/002-plan-review-research/",
+      "records": 351,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review/",
+      "to": "specs/system-skilled-doctor/007-overlay-framework-root-layout/review-archive/20261120T163142Z/",
+      "records": 61,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/026-graph-and-context-optimization/",
       "to": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/",
       "records": 9268,
@@ -5130,6 +5238,12 @@
       "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/pi-deepseek-2/",
       "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/pi-deepseek-2/",
       "records": 60,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research/",
+      "to": "specs/system-speckit/runtime-and-release/007-v4-2-0-0-release-audit-research/research_archive/20261125T162358Z/",
+      "records": 175,
       "agreement": 1
     },
     {

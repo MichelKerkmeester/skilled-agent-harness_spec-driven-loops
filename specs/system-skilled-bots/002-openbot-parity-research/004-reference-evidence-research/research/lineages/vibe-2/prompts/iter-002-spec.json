@@ -1,12 +1,12 @@
 {
   "status": "complete",
-  "focus": "Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?",
+  "focus": "Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?",
   "newInfoRatio": 0.93,
   "noveltyJustification": "14 of 15 findings are new to the packet; 1 restates the plan 003 sanitizer choice and adds only the reason it differs from the reference.",
   "focusTrack": "net-new",
   "edgeCase": "contradictory-evidence",
   "answeredQuestions": [
-    "Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?"
+    "Frontier node F-1-006 (depth 1, scope specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review, specs/system-skilled-bots/context/buzz-main): Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?"
   ],
   "ruledOut": [
     "Reading openhuman-full for anything but vendor/: the per-directory counts are identical to openhuman-main",
@@ -30,7 +30,7 @@
     "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
     "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:118",
     "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:247",
-    "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180"
+    "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180"
   ],
   "graphEvents": [
     { "type": "node", "id": "q-netnew-ops", "kind": "QUESTION", "label": "What do the ten repos have that the plan and skip list miss" },
@@ -74,7 +74,7 @@
     {
       "parentId": "F-1-006",
       "question": "Which failure-handling and upgrade patterns in buzz-main should feed the 014 review checklist, and does buzz-main carry a test corpus the plan 012 lacks?",
-      "scope": "specs/system-skilled-bots/context/buzz-main, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review",
+      "scope": "specs/system-skilled-bots/context/buzz-main, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review",
       "evidence": "specs/system-skilled-bots/context/buzz-main/ARCHITECTURE.md:1"
     }
   ]

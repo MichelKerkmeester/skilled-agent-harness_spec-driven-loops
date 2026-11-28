@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios",
+  "spec_folder": "system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios",
+  "parent_id": "system-skilled-bots/003-openbot-parity-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual testing scenarios",
+      "phase 12 manual testing scenarios",
+      "openbot parity manual testing playbook",
+      "conversation scenarios for bots chat",
+      "manual testing scenarios plan",
+      "openbot parity playbook plan",
+      "conversation scenarios plan",
+      "manual testing scenarios tasks",
+      "openbot parity playbook tasks",
+      "manual testing scenarios acceptance criteria",
+      "packet goal",
+      "durable directive"
+    ],
+    "key_topics": [
+      "manual",
+      "testing",
+      "scenarios",
+      "phase",
+      "openbot",
+      "parity",
+      "playbook",
+      "conversation",
+      "bots",
+      "chat",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
+      "design/refusal-catalogue.md",
+      "benchmark/reports/README.md",
+      ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+      "scratch/results.csv",
+      "scratch/failures.md",
+      "scratch/verb-and-record-map.md",
+      "scratch/playbook-contract.md",
+      "scratch/baseline-corpus.md",
+      "scratch/baseline-verbs.txt",
+      "scratch/scenario-inventory.md",
+      "scratch/verdicts-conversations.csv"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "bots.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "refusal-catalogue.md",
+        "kind": "doc",
+        "path": "design/refusal-catalogue.md",
+        "source": "derived"
+      },
+      {
+        "name": "bot-check.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "results.csv",
+        "kind": "file",
+        "path": "scratch/results.csv",
+        "source": "derived"
+      },
+      {
+        "name": "failures.md",
+        "kind": "doc",
+        "path": "scratch/failures.md",
+        "source": "derived"
+      },
+      {
+        "name": "verb-and-record-map.md",
+        "kind": "doc",
+        "path": "scratch/verb-and-record-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-contract.md",
+        "kind": "doc",
+        "path": "scratch/playbook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-corpus.md",
+        "kind": "doc",
+        "path": "scratch/baseline-corpus.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-verbs.txt",
+        "kind": "file",
+        "path": "scratch/baseline-verbs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scenario-inventory.md",
+        "kind": "doc",
+        "path": "scratch/scenario-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdicts-conversations.csv",
+        "kind": "file",
+        "path": "scratch/verdicts-conversations.csv",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
+    "created_at": "2026-11-25T19:32:28Z",
+    "last_save_at": "2026-11-28T11:23:30.443Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e38d95890b3652c509327b030e9b11fb232d3d7996f2020a2080f38bc85cd17d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bc687201eb991e9d15d192d562095ea2b490c5458b9806d40a3eabcfd68b64fb",
+      "plan.md": "002796049e0c73c8797fee8244eee3a75b2f532272e384c8dc42a38dfef14283",
+      "tasks.md": "b4c74f645cace0c4a39dc7f54f5df0a3200070ef3b6d607a1ca1a93d0c34f51c",
+      "implementation-summary.md": "67ae136ba59c177b9789713f5e39da65c000dc9d516d2130a5953f763f81a2b5"
+    },
+    "last_active_at": null
+  }
+}

@@ -2,15 +2,15 @@
 
 ## Focus
 
-Phases `012-manual-testing-scenarios`, `013-skilled-and-doc-alignment` and `014-deep-review` against
+Phases `013-manual-testing-scenarios`, `014-skilled-and-doc-alignment` and `015-deep-review` against
 the test and documentation surfaces of `context/buzz-main`, `context/hermes-muse-main` and
 `context/turnstone-main`.
 
 This iteration corrects a premise. The 003 synthesis states for 012: "Reference to study first: no
 context repository applies"
-[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:012-manual-testing-scenarios],
+[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:013-manual-testing-scenarios],
 and for 013 it points only at the repo's own `.skilled/commands/` files
-[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:013-skilled-and-doc-alignment].
+[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:014-skilled-and-doc-alignment].
 Both statements are wrong. Three of the ten reference repos carry exactly the artifacts these two
 phases are supposed to produce: a machine-readable scenario manifest, a skill-adherence eval, and
 four different doc-alignment linters. The synthesis's own gap tables for these phases are about
@@ -153,7 +153,7 @@ drift, and the check is `git diff --exit-code` on the committed copy. There is n
 "is the doc up to date" review step because there is nothing to review — either the generator's
 output matches the committed file or CI fails. Phase 013's gap 2 is that its reports are written
 outside the checkout and cannot be checked later
-[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:013-skilled-and-doc-alignment];
+[SOURCE: specs/system-skilled-bots/002-openbot-parity-research/003-plan-depth-research/research/research.md:014-skilled-and-doc-alignment];
 a generated-and-diffed artifact is the opposite arrangement and the one to prefer wherever the
 content is derivable.
 

@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-28T11:10:50.571Z",
+    "last_save_at": "2026-11-28T11:23:12.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac5ba5e82da145238bfa89232aa1da630d916d181d13fc39a964d1802e61fa25",
+    "source_fingerprint": "sha256:5de60b903d8f3e580a83b8fb4827cebf2c2f0849aa5ea3a91c520405d3eb582d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5d0e07c91c49f5bf688a6417b01d4cd09ce7820f561900e18d4bb091977c6221",

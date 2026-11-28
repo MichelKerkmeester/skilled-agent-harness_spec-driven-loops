@@ -58,15 +58,15 @@ One phase is ready as written: 004. One is ready pending an operator confirmatio
 | 009-skills | Needs artifacts | Strong: V7, C2-2, C1-4 | WO-07 |
 | 010-conversations | Become a phase parent, 3 children | Moderate to strong: V4, V10, C2-2, my read | WO-08 |
 | 011-messaging-channels | Become a phase parent, 7 children | Strong: V2, C1-2, C2-4, my read. All three lineages agree on a parent | WO-09 |
-| 012-manual-testing-scenarios | Needs artifacts (rules) | Strong: V7, C2-3, C1-5, my read | WO-10 |
-| 013-skilled-and-doc-alignment | Needs artifacts (rules) | Moderate: V8, C1-5, my read of its plan | WO-11 |
-| 014-deep-review | Needs artifacts (rules) | Strong: V8, C2-3, C1-5 | WO-12 |
+| 013-manual-testing-scenarios | Needs artifacts (rules) | Strong: V7, C2-3, C1-5, my read | WO-10 |
+| 014-skilled-and-doc-alignment | Needs artifacts (rules) | Moderate: V8, C1-5, my read of its plan | WO-11 |
+| 015-deep-review | Needs artifacts (rules) | Strong: V8, C2-3, C1-5 | WO-12 |
 
 **The five verdicts I flagged as likely to move, and where they landed.**
 
 - **006** stays at needs artifacts (small). `codex-2` iteration 4 found no P0 or P1 gap in it. My one P1 is a lock lifetime rule, and it stands because a search of the phase finds no stale-lock rule. The grant expiry and revoke lifecycle the steering log lists as uncovered needs no design: the phase records no standing allow, so a grant lives and dies with its item [SOURCE: B/006-approval-grants/spec.md:158].
 - **002** stays a leaf. `codex-1` kept a parent as a candidate, `codex-2` and `vibe` both said amendment. Its addendum grew by four items: a transition contract for `bots enable` racing a failing run, a streak restart rule, one parity decision, and the screen contract's edits.
-- **013** is now confirmed by a second lineage and by my read of its plan. The handed findings do have a file, `scratch/rebuttals.md` [SOURCE: B/013-skilled-and-doc-alignment/plan.md:96]. The missing half is 014's intake.
+- **013** is now confirmed by a second lineage and by my read of its plan. The handed findings do have a file, `scratch/rebuttals.md` [SOURCE: B/014-skilled-and-doc-alignment/plan.md:96]. The missing half is 014's intake.
 - **011 child cut** is final at seven. Three lineages each proposed six with different cuts. Mine follows 003's shape: design, contracts, build slices, proof.
 - **010** becomes a parent with three children, down from the four in the draft. Splitting the runtime half in two closes no gap, because that half is already specified to the field. The pane is what needs its own child and its own design folder.
 
@@ -210,35 +210,35 @@ Reference code to study first: `C/turnstone-main/turnstone/cli.py:176-181` and `
 
 Reference code to study first, in this order. `C/tinychannels-main/crates/tinychannels-runtime/src/channel/adapter.rs` for the contract and the acknowledge policy. `C/tinychannels-main/crates/tinychannels-bus/src/capabilities.rs:164` for the capability vocabulary. `C/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:374-470` for the conformance checks. `C/tinychannels-main/src/delivery/queue.rs` and `policy.rs` for the queue. The phase copies no tinychannels code [SOURCE: B/011-messaging-channels/spec.md:205]. Do not copy its approval index, which is in memory [SOURCE: C/tinychannels-main/src/approvals/mod.rs:58-70].
 
-### 012-manual-testing-scenarios: needs artifacts (rules)
+### 013-manual-testing-scenarios: needs artifacts (rules)
 
 | # | Sev | Gap | Evidence | Closing artifact | Found by |
 |---|---|---|---|---|---|
-| 1 | P0 | 012 says an empty inbox prints `[]`. 001 and 003 say it prints an object with an `items` array. | [SOURCE: B/012-manual-testing-scenarios/spec.md:261] against [SOURCE: B/001-activity-and-actor/acceptance-criteria.md:56] and [SOURCE: T/004-panes/spec.md:223]. Confirmed. | Fix the edge case. | S |
-| 2 | P1 | The phase may close with recorded failures. A product failure is filed in a scratch file no later phase reads. | [SOURCE: B/012-manual-testing-scenarios/spec.md:191] [SOURCE: B/012-manual-testing-scenarios/acceptance-criteria.md:61] [SOURCE: B/012-manual-testing-scenarios/tasks.md:144]. Confirmed. | Decision D4 in WO-01. | V7-6, C2-3-1, C1-5-1 |
-| 3 | P1 | The recorded run goes stale. 014 changes the code after 012 ran, and nothing re-runs the corpus. | [SOURCE: B/014-deep-review/spec.md:41] [SOURCE: B/014-deep-review/spec.md:102]. Confirmed. | One task in 014. | V7-8, V8-3, C1-5-3 |
+| 1 | P0 | 012 says an empty inbox prints `[]`. 001 and 003 say it prints an object with an `items` array. | [SOURCE: B/013-manual-testing-scenarios/spec.md:261] against [SOURCE: B/001-activity-and-actor/acceptance-criteria.md:56] and [SOURCE: T/004-panes/spec.md:223]. Confirmed. | Fix the edge case. | S |
+| 2 | P1 | The phase may close with recorded failures. A product failure is filed in a scratch file no later phase reads. | [SOURCE: B/013-manual-testing-scenarios/spec.md:191] [SOURCE: B/013-manual-testing-scenarios/acceptance-criteria.md:61] [SOURCE: B/013-manual-testing-scenarios/tasks.md:144]. Confirmed. | Decision D4 in WO-01. | V7-6, C2-3-1, C1-5-1 |
+| 3 | P1 | The recorded run goes stale. 014 changes the code after 012 ran, and nothing re-runs the corpus. | [SOURCE: B/015-deep-review/spec.md:41] [SOURCE: B/015-deep-review/spec.md:102]. Confirmed. | One task in 014. | V7-8, V8-3, C1-5-3 |
 
 Reference to study first: no context repository applies. Use the existing scenario `.skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md`, which 012 cites as its model, and the recorder `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs`.
 
-### 013-skilled-and-doc-alignment: needs artifacts (rules)
+### 014-skilled-and-doc-alignment: needs artifacts (rules)
 
 | # | Sev | Gap | Evidence | Closing artifact | Found by |
 |---|---|---|---|---|---|
-| 1 | P1 | Runtime findings are "handed to 014" and 014 lists no such input. | 013 records them in `scratch/rebuttals.md` [SOURCE: B/013-skilled-and-doc-alignment/plan.md:96] [SOURCE: B/013-skilled-and-doc-alignment/spec.md:112]. 014's dependency list names only that 013 is clean [SOURCE: B/014-deep-review/spec.md:44]. Confirmed. | Name the file as a 014 input. | V8-1, C1-5-2 |
-| 2 | P1 | Both reports are written under the user state root, outside the checkout, so the clean close cannot be checked later. | [SOURCE: B/013-skilled-and-doc-alignment/spec.md:54-55] [SOURCE: B/013-skilled-and-doc-alignment/plan.md:28]. Confirmed. | Copy the final reports into the phase folder. | V8-2, C1-5-2 |
-| 3 | P2 | 013 fixes every finding. 014 leaves P2 open. | [SOURCE: B/013-skilled-and-doc-alignment/spec.md:108] [SOURCE: B/014-deep-review/spec.md:101]. Confirmed. | One sentence. | V8-6 |
-| 4 | P2 | The new `topics.json` topic is named by field with no key shapes. | [SOURCE: B/013-skilled-and-doc-alignment/spec.md:122]. Confirmed. | Paste one existing topic as the model. | V8-7 |
+| 1 | P1 | Runtime findings are "handed to 014" and 014 lists no such input. | 013 records them in `scratch/rebuttals.md` [SOURCE: B/014-skilled-and-doc-alignment/plan.md:96] [SOURCE: B/014-skilled-and-doc-alignment/spec.md:112]. 014's dependency list names only that 013 is clean [SOURCE: B/015-deep-review/spec.md:44]. Confirmed. | Name the file as a 014 input. | V8-1, C1-5-2 |
+| 2 | P1 | Both reports are written under the user state root, outside the checkout, so the clean close cannot be checked later. | [SOURCE: B/014-skilled-and-doc-alignment/spec.md:54-55] [SOURCE: B/014-skilled-and-doc-alignment/plan.md:28]. Confirmed. | Copy the final reports into the phase folder. | V8-2, C1-5-2 |
+| 3 | P2 | 013 fixes every finding. 014 leaves P2 open. | [SOURCE: B/014-skilled-and-doc-alignment/spec.md:108] [SOURCE: B/015-deep-review/spec.md:101]. Confirmed. | One sentence. | V8-6 |
+| 4 | P2 | The new `topics.json` topic is named by field with no key shapes. | [SOURCE: B/014-skilled-and-doc-alignment/spec.md:122]. Confirmed. | Paste one existing topic as the model. | V8-7 |
 
 Reference to study first: `.skilled/commands/local-skilled-alignment.md`, `.skilled/commands/local-doc-alignment.md` and `.skilled/commands/assets/local-doc-alignment/topics.json`.
 
-### 014-deep-review: needs artifacts (rules)
+### 015-deep-review: needs artifacts (rules)
 
 | # | Sev | Gap | Evidence | Closing artifact | Found by |
 |---|---|---|---|---|---|
-| 1 | P0 | Setup requires all five executor binaries. The plan says an absent binary drops its lineage and the next executor takes two. | [SOURCE: B/014-deep-review/tasks.md:43] against [SOURCE: B/014-deep-review/plan.md:219] and [SOURCE: B/014-deep-review/plan.md:183]. Confirmed. | Decision D3 in WO-01. | C2-3-2 |
-| 2 | P1 | 012's results and failure file, and 013's handed findings, are not review inputs. | [SOURCE: B/014-deep-review/spec.md:31] [SOURCE: B/014-deep-review/spec.md:44]. Confirmed. | Three input rows and a verdict rule. | V8-4, C2-3-1, C1-5-2 |
-| 3 | P1 | The fix pass re-runs unit suites and never the 012 scenarios its fixes touch. | [SOURCE: B/014-deep-review/spec.md:102]. Confirmed. | One task and one acceptance row. | V8-3, C1-5-3 |
-| 4 | P2 | The scope check on `git status` does not exempt the review's own output files. | [SOURCE: B/014-deep-review/spec.md:165]. Confirmed. | One clause. | V8-8 |
+| 1 | P0 | Setup requires all five executor binaries. The plan says an absent binary drops its lineage and the next executor takes two. | [SOURCE: B/015-deep-review/tasks.md:43] against [SOURCE: B/015-deep-review/plan.md:219] and [SOURCE: B/015-deep-review/plan.md:183]. Confirmed. | Decision D3 in WO-01. | C2-3-2 |
+| 2 | P1 | 012's results and failure file, and 013's handed findings, are not review inputs. | [SOURCE: B/015-deep-review/spec.md:31] [SOURCE: B/015-deep-review/spec.md:44]. Confirmed. | Three input rows and a verdict rule. | V8-4, C2-3-1, C1-5-2 |
+| 3 | P1 | The fix pass re-runs unit suites and never the 012 scenarios its fixes touch. | [SOURCE: B/015-deep-review/spec.md:102]. Confirmed. | One task and one acceptance row. | V8-3, C1-5-3 |
+| 4 | P2 | The scope check on `git status` does not exempt the review's own output files. | [SOURCE: B/015-deep-review/spec.md:165]. Confirmed. | One clause. | V8-8 |
 
 Reference to study first: `.skilled/commands/deep/review.md`, `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` and `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`. The run behind this research is a worked example of the fallback case: one lineage lost to quota at once, and one finished its work and was still marked failed for a missing terminal row.
 
@@ -250,7 +250,7 @@ Reference to study first: `.skilled/commands/deep/review.md`, `.skilled/skills/s
 | X2 | P1 | **`--json` envelopes are being settled in one phase only.** The screen contract makes each of its four payloads an object with a top-level `version`. Verbs the screen does not read have no rule: the chat transcript is a bare array, `channel list --json` is "an object" with no keys, `remember --list --json` has no shape. | [SOURCE: T/002-architecture-and-contracts/design/contracts.md:727] [SOURCE: B/010-conversations/spec.md:157] [SOURCE: B/011-messaging-channels/spec.md:206] [SOURCE: B/005-memory/spec.md:149]. Confirmed. | `contracts/cli-json.md`, which adopts the screen's rule for every verb. |
 | X3 | P1 | **Record versioning is uneven.** The run record, the request record and the index carry a version. The needs-you item carries none, and five phases add keys to it. The new files in 002, 008, 009 and 011 state no version. | [SOURCE: L/run-record.ts:197] [SOURCE: L/request-record.ts:192] [SOURCE: L/needs-you.ts:51-65] [SOURCE: B/006-approval-grants/spec.md:194]. Confirmed. | `contracts/versioning.md`. |
 | X4 | P1 | **New refusals have no single table.** 007 states the failure class of each run refusal. 008, 009 and 011 name refusals with an exit code and no class, and do not say which enter the runner's typed registry. | [SOURCE: L/runner.ts:122-151] [SOURCE: B/007-per-bot-apps/spec.md:151]. A search of 008 and 011 for a class finds none. Inferred. | `contracts/refusals.md`. |
-| X5 | P2 | **Line-number citations between phases are stale.** Phase documents cite parent rows four lines above where they now sit. | [SOURCE: B/004-computer-exposure/spec.md:168] [SOURCE: B/014-deep-review/spec.md:45] [SOURCE: B/010-conversations/spec.md:170]. Confirmed. | Cite shared records by name. WO-15. |
+| X5 | P2 | **Line-number citations between phases are stale.** Phase documents cite parent rows four lines above where they now sit. | [SOURCE: B/004-computer-exposure/spec.md:168] [SOURCE: B/015-deep-review/spec.md:45] [SOURCE: B/010-conversations/spec.md:170]. Confirmed. | Cite shared records by name. WO-15. |
 | X6 | P2 | **The research folders moved.** At the draft, 46 phase citations pointed at the old parity research path. A path rewrite is in progress in this worktree, and 5 old-path citations remained when I last counted. | Counted by search at 22:35 UTC. Confirmed at that moment. | Recount after the move is committed. WO-15. |
 | X7 | P1 | **The answer path is assembled from five phases and drawn nowhere on the runtime side.** Order: surface and roster check, lock, identity check, write of answer with `by`, scope and grant, review seam, conversation id stamp, resume request or the no-resume branch. The screen side is now drawn. | [SOURCE: B/011-messaging-channels/spec.md:208] [SOURCE: B/006-approval-grants/spec.md:157] [SOURCE: B/005-memory/spec.md:163] [SOURCE: B/010-conversations/spec.md:168] [SOURCE: B/002-routine-layer/spec.md:132]. The screen's half is at [SOURCE: T/005-answer-flow/design/state-machines.md:258]. Confirmed. | `contracts/answer-seam.md`, which links to the screen's section 4 and does not copy it. |
 | X8 | P1 | **Test strategy has one shared fixture set, for four verbs.** The screen contract adds sample payload files and a type check against real output for `status`, `activity`, `inbox` and `routines`. No other verb has a golden file, and only 006 and 010 list the screen fixture as a file to change. | [SOURCE: T/002-architecture-and-contracts/design/contracts.md:749] [SOURCE: B/006-approval-grants/spec.md:139] [SOURCE: B/010-conversations/spec.md:129]. Confirmed. | `contracts/fixtures/` for the remaining verbs and records. |
@@ -295,7 +295,7 @@ Wave 3   WO-15  citation refresh across the packet
 | WO-14 | 007 | WO-01 (D5) | Every Wave 1 order |
 | WO-15 | All phases, citations only | WO-02 to WO-14 | Nothing. It goes last |
 
-WO-10, WO-11 and WO-12 can run side by side because the handoff file names are fixed here: `B/012-manual-testing-scenarios/scratch/failures.md`, `B/013-skilled-and-doc-alignment/scratch/rebuttals.md` and `B/013-skilled-and-doc-alignment/evidence/`.
+WO-10, WO-11 and WO-12 can run side by side because the handoff file names are fixed here: `B/013-manual-testing-scenarios/scratch/failures.md`, `B/014-skilled-and-doc-alignment/scratch/rebuttals.md` and `B/014-skilled-and-doc-alignment/evidence/`.
 
 Ranking by value, for a team that cannot do all fifteen at once: WO-01, WO-09, WO-08, WO-06, WO-02, WO-03, WO-04, WO-07, WO-12, WO-10, WO-11, WO-05, WO-14, WO-13, WO-15.
 
@@ -494,41 +494,41 @@ Record the index in `contracts/records.md` as part of this order.
 
 **Order inside.** 001 and 002 first, in parallel. Then 003 and 004 in parallel. Then 005 and 006 in parallel. Then 007. The 23 requirements move to the child that owns their file row. REQ-019 takes the object envelope per D2.
 
-### WO-10: 012-manual-testing-scenarios
+### WO-10: 013-manual-testing-scenarios
 
 **Depends on.** WO-01 (D2, D4).
 
 | File | Edit | Content |
 |---|---|---|
-| `B/012-manual-testing-scenarios/spec.md` | Edit line 261 | The empty inbox prints `{"version":1,"items":[]}` |
+| `B/013-manual-testing-scenarios/spec.md` | Edit line 261 | The empty inbox prints `{"version":1,"items":[]}` |
 | Same file | Edit REQ-006 and the handoff criteria | A scenario defect is fixed and re-run. A product failure is filed in `scratch/failures.md` with scenario id, phase, requirement, observed line and evidence path, and that file is a named input to 014 |
-| `B/012-manual-testing-scenarios/acceptance-criteria.md` | Edit AC-006 | The same rule, and a check that each filed row has all five fields |
-| `B/012-manual-testing-scenarios/tasks.md` | Edit T046 | Write the five fields. Copy `scratch/failures.md` beside `results.csv` in the run folder |
+| `B/013-manual-testing-scenarios/acceptance-criteria.md` | Edit AC-006 | The same rule, and a check that each filed row has all five fields |
+| `B/013-manual-testing-scenarios/tasks.md` | Edit T046 | Write the five fields. Copy `scratch/failures.md` beside `results.csv` in the run folder |
 
-### WO-11: 013-skilled-and-doc-alignment
+### WO-11: 014-skilled-and-doc-alignment
 
 **Depends on.** WO-01.
 
 | File | Edit | Content |
 |---|---|---|
-| `B/013-skilled-and-doc-alignment/spec.md` | New requirement, edit the handoff criteria | After the last run of each command, copy `report.md`, `findings.json` and `recheck.md` into `evidence/skilled-alignment/` and `evidence/doc-alignment/` in the phase folder. The handoff to 014 is `evidence/` and `scratch/rebuttals.md` |
+| `B/014-skilled-and-doc-alignment/spec.md` | New requirement, edit the handoff criteria | After the last run of each command, copy `report.md`, `findings.json` and `recheck.md` into `evidence/skilled-alignment/` and `evidence/doc-alignment/` in the phase folder. The handoff to 014 is `evidence/` and `scratch/rebuttals.md` |
 | Same file | Edit the `topics.json` row | Paste one existing topic from the file as the model shape |
 | Same file | One sentence | 013 fixes findings of every severity, and 014 leaves P2 open, by intent |
-| `B/013-skilled-and-doc-alignment/acceptance-criteria.md`, `tasks.md` | One row, one task | `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines |
+| `B/014-skilled-and-doc-alignment/acceptance-criteria.md`, `tasks.md` | One row, one task | `rg -n '^- Open findings: 0' evidence/*/report.md` prints two lines |
 
-### WO-12: 014-deep-review
+### WO-12: 015-deep-review
 
 **Depends on.** WO-01 (D3, D4, D7).
 
 | File | Edit | Content |
 |---|---|---|
-| `B/014-deep-review/tasks.md` | Edit T003 | Probe the five binaries and record which are present. At least one must be. An absent one is replaced per the plan's fallback order |
-| `B/014-deep-review/plan.md` | Definition of ready and the setup row | The same wording, so setup and section 8.3 agree |
-| `B/014-deep-review/spec.md` | Dependencies | Three inputs: `B/012-manual-testing-scenarios/scratch/failures.md`, `B/013-skilled-and-doc-alignment/scratch/rebuttals.md` and `B/013-skilled-and-doc-alignment/evidence/` |
+| `B/015-deep-review/tasks.md` | Edit T003 | Probe the five binaries and record which are present. At least one must be. An absent one is replaced per the plan's fallback order |
+| `B/015-deep-review/plan.md` | Definition of ready and the setup row | The same wording, so setup and section 8.3 agree |
+| `B/015-deep-review/spec.md` | Dependencies | Three inputs: `B/013-manual-testing-scenarios/scratch/failures.md`, `B/014-skilled-and-doc-alignment/scratch/rebuttals.md` and `B/014-skilled-and-doc-alignment/evidence/` |
 | Same file | Handoff criteria and verdict rule | Each row of the two handoff files becomes a seeded finding. The verdict cannot read PASS while a filed product failure is open |
 | Same file | New requirement | After the last fix, re-run each 012 scenario whose owning phase a fix touched, and record the result |
 | Same file | Edit REQ-009 | The scope check exempts `review/` and `implementation-summary.md` |
-| `B/014-deep-review/acceptance-criteria.md` | Edit AC-003, add two rows | AC-003 reads five lineages after fallback. One row for the seeded inputs, one for the scenario re-run |
+| `B/015-deep-review/acceptance-criteria.md` | Edit AC-003, add two rows | AC-003 reads five lineages after fallback. One row for the seeded inputs, one for the scenario re-run |
 
 ### WO-13: 004-computer-exposure
 
@@ -557,7 +557,7 @@ Across every phase document: replace each line-number citation into `B/spec.md` 
 | V3-2 (P0) | `answer.ts` is a contracts module whose imports break the README's direction rule. | The README lists `answer.ts` in the request pipeline group [SOURCE: L/README.md:33]. The rule binds contracts modules only [SOURCE: L/README.md:39]. |
 | V9-4 (P0) | The packet has no schema version concept, and `run-record.ts` has no version field. | The run record carries and checks one [SOURCE: L/run-record.ts:197] [SOURCE: L/run-record.ts:239]. 001 states the rule [SOURCE: B/001-activity-and-actor/plan.md:66]. The true residue is X3. |
 | V7-1 (P1) | The skill-name grammar is defined nowhere. | The plan defines it as the bot-id grammar [SOURCE: B/009-skills/plan.md:63]. |
-| V8-5 (P1) | 014 has no rule for a host with fewer than five executors. | The plan has one [SOURCE: B/014-deep-review/plan.md:219]. The real defect is the contradiction `codex-2` found. |
+| V8-5 (P1) | 014 has no rule for a host with fewer than five executors. | The plan has one [SOURCE: B/015-deep-review/plan.md:219]. The real defect is the contradiction `codex-2` found. |
 | V9-5 (P1) | No phase has a rollback step. | Each plan has a rollback section [SOURCE: B/006-approval-grants/plan.md:144-148] [SOURCE: B/008-vault/plan.md:151-155]. |
 | V2-5 (P1), and half of C1-2-1 | REQ-017 promises five conformance rules and names two. | The sentence carries five assertions: an unsupported result, no platform reached, no provider error, one matching observation, a receipt [SOURCE: B/011-messaging-channels/spec.md:204]. They match the reference checker [SOURCE: C/tinychannels-main/crates/tinychannels-conformance/src/lib.rs:374-470]. My count of five is a reading of the sentence. A numbered list from the phase author would confirm it. Kept as P2. |
 | C1-4-1 (P1) | Two concurrent runs write and restore one worktree's config with no lease. | Each worktree run makes its own numbered tree [SOURCE: L/isolation.ts:477-489]. One lease per bot, repository and spec target stops a second run of the same key [SOURCE: L/runner.ts:290-295]. So two live runs do not share a tree. The lineage tagged this as inference. A test with two overlapping runs of one bot would settle it. The residue is 007 gap 2. |

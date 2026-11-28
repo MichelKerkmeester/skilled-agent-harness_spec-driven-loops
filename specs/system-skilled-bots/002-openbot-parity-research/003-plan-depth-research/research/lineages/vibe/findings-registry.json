@@ -153,7 +153,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 013-skilled-and-doc-alignment?",
+      "text": "Which phase owns the `contracts/` folder, and does it land as a new phase 015 or as a child of 014-skilled-and-doc-alignment?",
       "addedAtIteration": 1,
       "source": "iteration-markdown"
     },
@@ -173,7 +173,7 @@
       "source": "iteration-markdown"
     },
     {
-      "text": "Should the contracts phase be a new phase 015 or a child of 013-skilled-and-doc-alignment, given that 013 already owns doc alignment?",
+      "text": "Should the contracts phase be a new phase 015 or a child of 014-skilled-and-doc-alignment, given that 013 already owns doc alignment?",
       "addedAtIteration": 3,
       "source": "iteration-markdown"
     },
@@ -910,9 +910,9 @@
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
@@ -923,9 +923,9 @@
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
@@ -936,35 +936,35 @@
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
     },
     {
       "id": "finding-7-6-p1-012-can-close-with-33-recorded-fails-req-006-requires-every-fail-to-be-fixed-",
-      "text": "**P1 — 012 can close with 33 recorded FAILs.** REQ-006 requires every `FAIL` to be \"fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed\" — naming is the whole obligation. The phase's handoff criteria are \"every row in `acceptance-criteria.md` is Met\", and those rows assert that scenarios were written and executed, not that they passed. So the packet's only end-to-end proof can record that the build is broken and still close. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "text": "**P1 — 012 can close with 33 recorded FAILs.** REQ-006 requires every `FAIL` to be \"fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed\" — naming is the whole obligation. The phase's handoff criteria are \"every row in `acceptance-criteria.md` is Met\", and those rows assert that scenarios were written and executed, not that they passed. So the packet's only end-to-end proof can record that the build is broken and still close. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30]",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
     },
     {
       "id": "finding-7-8-p1-012-s-recorded-results-go-stale-before-the-packet-closes-and-nothing-requires",
-      "text": "**P1 — 012's recorded results go stale before the packet closes, and nothing requires a re-run.** 012 runs after 011 and before 013 and 014; 014 is defined as \"an expanded deep review over every code and doc phase 001 to 013 built ... with every P0 and P1 fixed and the affected tests re-run\" (`014/spec.md:3`, `:41`, `:53`). So the corpus executes against a build that 014 then changes, and no requirement in 012 or 014 says the corpus is re-executed after a fix. The packet's end-to-end evidence is therefore a snapshot of a superseded build. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:41] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "text": "**P1 — 012's recorded results go stale before the packet closes, and nothing requires a re-run.** 012 runs after 011 and before 013 and 014; 014 is defined as \"an expanded deep review over every code and doc phase 001 to 013 built ... with every P0 and P1 fixed and the affected tests re-run\" (`014/spec.md:3`, `:41`, `:53`). So the corpus executes against a build that 014 then changes, and no requirement in 012 or 014 says the corpus is re-executed after a fix. The packet's end-to-end evidence is therefore a snapshot of a superseded build. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:41] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30]",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
@@ -975,9 +975,9 @@
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
@@ -988,112 +988,112 @@
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
     },
     {
       "id": "finding-7-7-p2-the-scenario-inventory-names-the-phase-and-the-requirement-per-scenario-but-n",
-      "text": "**P2 — the scenario inventory names the phase and the requirement per scenario but no fixture or precondition.** The 33-row table at `012/spec.md:140-170` is the packet's best traceability artifact — id, category, owning phase, the requirement line it proves — but a scenario file read alone does not say which bot, state root or stub executor it needs; REQ-007 puts preconditions in the root index instead. That is a defensible split, and it means the per-scenario file is not self-contained. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:186]",
+      "text": "**P2 — the scenario inventory names the phase and the requirement per scenario but no fixture or precondition.** The 33-row table at `012/spec.md:140-170` is the packet's best traceability artifact — id, category, owning phase, the requirement line it proves — but a scenario file read alone does not say which bot, state root or stub executor it needs; REQ-007 puts preconditions in the root index instead. That is a defensible split, and it means the per-scenario file is not self-contained. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:186]",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200",
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53",
         ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297",
         ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)"
       ]
     },
     {
       "id": "finding-8-2-p1-013-s-evidence-lives-outside-the-checkout-so-its-close-cannot-be-re-verified-",
-      "text": "**P1 — 013's evidence lives outside the checkout, so its close cannot be re-verified.** REQ-002 and REQ-003 write `report.md`, `findings.json` and `fix-plan.md` under `<state>/local-skilled-alignment/system-skilled-bots/<UTC timestamp>/` and `<state>/local-doc-alignment/...`, and REQ-005's clean criterion is a line inside those reports. Nothing copies them into the packet; `implementation-summary.md` records only the folder paths. A later reader, or 014, cannot check that the reports held zero open findings. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:158]",
+      "text": "**P1 — 013's evidence lives outside the checkout, so its close cannot be re-verified.** REQ-002 and REQ-003 write `report.md`, `findings.json` and `fix-plan.md` under `<state>/local-skilled-alignment/system-skilled-bots/<UTC timestamp>/` and `<state>/local-doc-alignment/...`, and REQ-005's clean criterion is a line inside those reports. Nothing copies them into the packet; `implementation-summary.md` records only the folder paths. A later reader, or 014, cannot check that the reports held zero open findings. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:158]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-1-p1-013-s-handoff-has-no-receiver-013-s-handoff-criteria-say-what-passes-to-014-i",
-      "text": "**P1 — 013's handoff has no receiver.** 013's handoff criteria say \"What passes to 014 is the two report folders and the clean criterion\" (`013/spec.md:33`), and its scope says a finding that needs a runtime change \"is recorded and handed to 014 rather than fixed here\" (`:112`, restated at `:183` and `:235`). 014's dependency list names only \"Phase 013 is clean first: every row in its `acceptance-criteria.md` is `Met`\" (`014/spec.md:44`) and never the report folders or the handed-over findings. So a runtime finding 013 deliberately refuses to fix is dropped at the boundary, and 014's fresh review may or may not rediscover it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:112] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:44]",
+      "text": "**P1 — 013's handoff has no receiver.** 013's handoff criteria say \"What passes to 014 is the two report folders and the clean criterion\" (`013/spec.md:33`), and its scope says a finding that needs a runtime change \"is recorded and handed to 014 rather than fixed here\" (`:112`, restated at `:183` and `:235`). 014's dependency list names only \"Phase 013 is clean first: every row in its `acceptance-criteria.md` is `Met`\" (`014/spec.md:44`) and never the report folders or the handed-over findings. So a runtime finding 013 deliberately refuses to fix is dropped at the boundary, and 014's fresh review may or may not rediscover it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:112] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:44]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-5-p1-014-s-five-lineage-fan-out-has-no-rule-for-a-host-with-fewer-than-five-execut",
-      "text": "**P1 — 014's five-lineage fan-out has no rule for a host with fewer than five executors.** REQ-003 requires five lineages \"one per roster executor\" and `review/orchestration-summary.json` to list all five labels \"with no partition gap\" (`014/spec.md:161`). The plan names the roster, each kind's effort, the enforced allowlists and a fallback order that starts at `pi` (`plan.md:149-177`), but nothing says what happens when a kind is not installed on the host: the phase either cannot start, or must record a gap that REQ-003 forbids. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:161] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:177]",
+      "text": "**P1 — 014's five-lineage fan-out has no rule for a host with fewer than five executors.** REQ-003 requires five lineages \"one per roster executor\" and `review/orchestration-summary.json` to list all five labels \"with no partition gap\" (`014/spec.md:161`). The plan names the roster, each kind's effort, the enforced allowlists and a fallback order that starts at `pi` (`plan.md:149-177`), but nothing says what happens when a kind is not installed on the host: the phase either cannot start, or must record a gap that REQ-003 forbids. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:161] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:177]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-4-p1-014-s-verdict-can-read-pass-while-012-s-corpus-recorded-fails-014-s-verdict-i",
-      "text": "**P1 — 014's verdict can read PASS while 012's corpus recorded FAILs.** 014's verdict is strongest-restriction over the review's own findings, and the review reads code and docs against the docs that describe them; it never reads `benchmark/reports/<run>/results.csv`. 012's handoff criteria are satisfied by executing the scenarios and naming every FAIL (iteration 7, finding 6). So the packet can close on a PASS verdict beside a corpus that recorded the build broken. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:181]",
+      "text": "**P1 — 014's verdict can read PASS while 012's corpus recorded FAILs.** 014's verdict is strongest-restriction over the review's own findings, and the review reads code and docs against the docs that describe them; it never reads `benchmark/reports/<run>/results.csv`. 012's handoff criteria are satisfied by executing the scenarios and naming every FAIL (iteration 7, finding 6). So the packet can close on a PASS verdict beside a corpus that recorded the build broken. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:181]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-3-p1-the-packet-closes-without-a-re-review-or-a-corpus-re-run-014-s-out-of-scope-f",
-      "text": "**P1 — the packet closes without a re-review or a corpus re-run.** 014's out-of-scope forbids \"a second review run after the fixes\" (`014/spec.md:104`), and 012's 33-scenario corpus is never re-executed after 014's fixes (iteration 7, finding 8). The final state is therefore: fixes applied, `npm test` green, `validate.sh --strict` green, and no evidence that the fixes did not break the surface the review just read or the scenarios the corpus just ran. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:104] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]",
+      "text": "**P1 — the packet closes without a re-review or a corpus re-run.** 014's out-of-scope forbids \"a second review run after the fixes\" (`014/spec.md:104`), and 012's 33-scenario corpus is never re-executed after 014's fixes (iteration 7, finding 8). The final state is therefore: fixes applied, `npm test` green, `validate.sh --strict` green, and no evidence that the fixes did not break the surface the review just read or the scenarios the corpus just ran. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:104] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-6-p2-013-and-014-disagree-on-what-a-p2-finding-is-worth-013-fixes-every-finding-ei",
-      "text": "**P2 — 013 and 014 disagree on what a P2 finding is worth.** 013 fixes \"every finding either report names\" with no severity filter (`013/spec.md:110`), while 014 explicitly excludes \"fixing a P2 finding\" and leaves it open because \"the verdict reads PASS with advisories\" (`014/spec.md:103`). A P2 that 013 would have fixed is left open by 014, and the two phases' fix passes are not comparable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:110] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:103]",
+      "text": "**P2 — 013 and 014 disagree on what a P2 finding is worth.** 013 fixes \"every finding either report names\" with no severity filter (`013/spec.md:110`), while 014 explicitly excludes \"fixing a P2 finding\" and leaves it open because \"the verdict reads PASS with advisories\" (`014/spec.md:103`). A P2 that 013 would have fixed is left open by 014, and the two phases' fix passes are not comparable. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:110] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:103]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-7-p2-013-s-topics-json-topic-is-named-by-field-but-not-by-schema-the-files-table-s",
-      "text": "**P2 — 013's `topics.json` topic is named by field but not by schema.** The files table says the topic carries \"title, `terms`, three `codeRoots`, `lanes`, three `checks`\" (`013/spec.md:126`) without key names or value shapes. The existing file is a usable precedent, so this is polish rather than a blocker. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:126]",
+      "text": "**P2 — 013's `topics.json` topic is named by field but not by schema.** The files table says the topic carries \"title, `terms`, three `codeRoots`, `lanes`, three `checks`\" (`013/spec.md:126`) without key names or value shapes. The existing file is a usable precedent, so this is polish rather than a blocker. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:126]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {
       "id": "finding-8-8-p2-014-s-git-status-porcelain-scope-check-includes-the-review-s-own-writes-req-0",
-      "text": "**P2 — 014's `git status --porcelain` scope check includes the review's own writes.** REQ-009 requires the fix pass to change no file outside the surfaces the review named and `git status --porcelain` to list only those surfaces (`014/spec.md:169`), while the same phase writes `review/` and `implementation-summary.md`, both listed in its own files-to-change table. The check needs the review's own outputs to count as named surfaces, which the requirement does not say. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:169]",
+      "text": "**P2 — 014's `git status --porcelain` scope check includes the review's own writes.** REQ-009 requires the fix pass to change no file outside the surfaces the review named and `git status --porcelain` to list only those surfaces (`014/spec.md:169`), while the same phase writes `review/` and `implementation-summary.md`, both listed in its own files-to-change table. The check needs the review's own outputs to count as named surfaces, which the requirement does not say. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:169]",
       "addedAtIteration": 8,
       "sources": [
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31, :38-56, :55-95, :95-175",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/plan.md:30, :66, :88, :145-177",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30, :181"
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:33, :95-150, :154-158, :183, :235",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31, :38-56, :55-95, :95-175",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:30, :66, :88, :145-177",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30, :181"
       ]
     },
     {

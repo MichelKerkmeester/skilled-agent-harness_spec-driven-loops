@@ -1,14 +1,14 @@
-# Iteration 7: Phases 009-skills and 012-manual-testing-scenarios — the proposal path and the scenario corpus
+# Iteration 7: Phases 009-skills and 013-manual-testing-scenarios — the proposal path and the scenario corpus
 
 ## Focus
 Whether 009's skill loading and proposal review are planned deeply enough to one-shot, and whether 012's 33-scenario corpus is a real proof or prose. 012 is the packet's only end-to-end evidence, so its contract with the phases it proves matters as much as its own files.
 
 ## Actions Taken
 1. Read `009-skills/spec.md:95-175` (scope, 25 files to change, REQ-001..REQ-011).
-2. Read `012-manual-testing-scenarios/spec.md:1-60` (metadata, phase context, dependencies, deliverables) and `:168-200` (the scenario inventory tail and REQ-001..REQ-010).
+2. Read `013-manual-testing-scenarios/spec.md:1-60` (metadata, phase context, dependencies, deliverables) and `:168-200` (the scenario inventory tail and REQ-001..REQ-010).
 3. Read the full 33-row scenario inventory at `012/spec.md:140-170`.
 4. Grepped `needs-you.ts` for the item shape and any `kind` field, and grepped every phase spec for who adds `kind` to the item.
-5. Read `005-memory/spec.md:152-154` and `:265` for the recorded decision on the item's `kind` and the sentinel, and `014-deep-review/spec.md:3,41,53` for what runs after 012.
+5. Read `005-memory/spec.md:152-154` and `:265` for the recorded decision on the item's `kind` and the sentinel, and `015-deep-review/spec.md:3,41,53` for what runs after 012.
 
 ## Findings
 
@@ -22,11 +22,11 @@ Whether 009's skill loading and proposal review are planned deeply enough to one
 
 5. **P2 — the draft `SKILL.md`'s own shape is unstated.** `proposal.json` is specified field by field; the draft beside it is not. Nothing says the draft carries frontmatter, satisfies the skill package validator, or follows a template, so a builder writes free prose and the operator receives a file that may not load as a skill at all. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:163]
 
-6. **P1 — 012 can close with 33 recorded FAILs.** REQ-006 requires every `FAIL` to be "fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed" — naming is the whole obligation. The phase's handoff criteria are "every row in `acceptance-criteria.md` is Met", and those rows assert that scenarios were written and executed, not that they passed. So the packet's only end-to-end proof can record that the build is broken and still close. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]
+6. **P1 — 012 can close with 33 recorded FAILs.** REQ-006 requires every `FAIL` to be "fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed" — naming is the whole obligation. The phase's handoff criteria are "every row in `acceptance-criteria.md` is Met", and those rows assert that scenarios were written and executed, not that they passed. So the packet's only end-to-end proof can record that the build is broken and still close. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:181] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30]
 
-7. **P2 — the scenario inventory names the phase and the requirement per scenario but no fixture or precondition.** The 33-row table at `012/spec.md:140-170` is the packet's best traceability artifact — id, category, owning phase, the requirement line it proves — but a scenario file read alone does not say which bot, state root or stub executor it needs; REQ-007 puts preconditions in the root index instead. That is a defensible split, and it means the per-scenario file is not self-contained. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:186]
+7. **P2 — the scenario inventory names the phase and the requirement per scenario but no fixture or precondition.** The 33-row table at `012/spec.md:140-170` is the packet's best traceability artifact — id, category, owning phase, the requirement line it proves — but a scenario file read alone does not say which bot, state root or stub executor it needs; REQ-007 puts preconditions in the root index instead. That is a defensible split, and it means the per-scenario file is not self-contained. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:140] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:186]
 
-8. **P1 — 012's recorded results go stale before the packet closes, and nothing requires a re-run.** 012 runs after 011 and before 013 and 014; 014 is defined as "an expanded deep review over every code and doc phase 001 to 013 built ... with every P0 and P1 fixed and the affected tests re-run" (`014/spec.md:3`, `:41`, `:53`). So the corpus executes against a build that 014 then changes, and no requirement in 012 or 014 says the corpus is re-executed after a fix. The packet's end-to-end evidence is therefore a snapshot of a superseded build. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:41] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:30]
+8. **P1 — 012's recorded results go stale before the packet closes, and nothing requires a re-run.** 012 runs after 011 and before 013 and 014; 014 is defined as "an expanded deep review over every code and doc phase 001 to 013 built ... with every P0 and P1 fixed and the affected tests re-run" (`014/spec.md:3`, `:41`, `:53`). So the corpus executes against a build that 014 then changes, and no requirement in 012 or 014 says the corpus is re-executed after a fix. The packet's end-to-end evidence is therefore a snapshot of a superseded build. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:41] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:30]
 
 ## Ruled Out
 - Reading 012 as under-planned. It has a 33-row inventory with a requirement citation per row, a package validator as its gate, a single writer for the run folder (`record-playbook-run.cjs`), a FAIL-handling requirement, a SKIP rule for a missing channel account, and a wave plan. It needs no child phase; it needs two rules added (findings 6 and 8).
@@ -52,9 +52,9 @@ Whether 009's skill loading and proposal review are planned deeply enough to one
 
 ## Sources Consulted
 - specs/system-skilled-bots/003-openbot-parity-build/009-skills/spec.md:95-175
-- specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:1-60, :140-200
+- specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:1-60, :140-200
 - specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:152-154, :265
-- specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:3, :31, :41, :53
+- specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:3, :31, :41, :53
 - .skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts:29-48, :51, :97, :263-297
 - .skilled/skills/system-skilled-bots/scripts/bot-check.cjs (no name-grammar helper)
 
@@ -69,4 +69,4 @@ Whether 009's skill loading and proposal review are planned deeply enough to one
 - What I would do differently: read the handoff criteria of every phase first. Both of this iteration's structural findings (6 and 8) came from comparing a phase's obligations to its close condition rather than from its requirements.
 
 ## Recommended Next Focus
-Phases 013-skilled-and-doc-alignment and 014-deep-review: whether the two closing phases can actually prove the packet, and whether 014's five-lineage review has a defined input, a merge rule and a fix-verification loop.
+Phases 014-skilled-and-doc-alignment and 015-deep-review: whether the two closing phases can actually prove the packet, and whether 014's five-lineage review has a defined input, a merge rule and a fix-verification loop.

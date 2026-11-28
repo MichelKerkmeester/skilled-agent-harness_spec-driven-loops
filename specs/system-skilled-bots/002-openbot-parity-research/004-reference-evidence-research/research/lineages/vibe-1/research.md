@@ -377,7 +377,7 @@ will read it.
 
 ---
 
-## 15. 012-manual-testing-scenarios
+## 15. 013-manual-testing-scenarios
 
 **Reference:** `turnstone-main`, `buzz-main`, `OpenMausBot-main` (all Apache-2.0). **Findings:** 7 from
 iteration 7 plus 4 from iteration 9. **Iterations:** 7, 9.
@@ -412,7 +412,7 @@ rule carries the PR that produced it
 
 ---
 
-## 16. 013-skilled-and-doc-alignment
+## 16. 014-skilled-and-doc-alignment
 
 **Reference:** `turnstone-main`, `hermes-muse-main`, `buzz-main`. **Findings:** 7, shared with 012 and
 014. **Iteration:** 7.
@@ -439,7 +439,7 @@ tool, distinctive names match anywhere
 
 ---
 
-## 17. 014-deep-review
+## 17. 015-deep-review
 
 **Reference:** `buzz-main`, `OpenMausBot-main` (both Apache-2.0). **Findings:** 7 shared with 012 and
 013, plus 2 from iteration 9. **Iterations:** 7, 9.
@@ -606,9 +606,9 @@ reference, not to import a practice from outside.
 | 009-skills | 2 | 6 (shared) | OpenGhost, openhuman |
 | 010-conversations | 2, 9 | 6 + 2 | turnstone, buzz |
 | 011-messaging-channels | 6 | 7 | tinychannels |
-| 012-manual-testing-scenarios | 7, 9 | 7 + 4 | turnstone, buzz, OpenMausBot |
-| 013-skilled-and-doc-alignment | 7 | 7 (shared) | turnstone, hermes-muse, buzz |
-| 014-deep-review | 7, 9 | 7 + 2 | buzz, OpenMausBot |
+| 013-manual-testing-scenarios | 7, 9 | 7 + 4 | turnstone, buzz, OpenMausBot |
+| 014-skilled-and-doc-alignment | 7 | 7 (shared) | turnstone, hermes-muse, buzz |
+| 015-deep-review | 7, 9 | 7 + 2 | buzz, OpenMausBot |
 
 **Limits.** Two phases are thin: 008-vault (5 findings, one repo) and 007-per-bot-apps (one dedicated
 finding plus a shared set). Four phases share a single iteration's findings (004, 005, 009, 010), so

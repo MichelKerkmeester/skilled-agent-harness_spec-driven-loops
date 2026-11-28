@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The 003 build phases were written one at a time, and each one passed its own review",
     "created_at": "2026-11-25T21:22:05Z",
-    "last_save_at": "2026-11-25T22:52:06.597Z",
+    "last_save_at": "2026-11-28T11:25:10.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c6cd14a349d9d7499a03e5f0495b91c32d036ea831953bb67e516c5fd8c58f3e",
+    "source_fingerprint": "sha256:0a814f7295812fd48e1e5973d7a134a6db3f136e87ffb12661a11c59d4811e7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b8ed68ac62e7ec9dab2c26f33561c9157ae4b2756a415aee64d85657a437bdad",
       "plan.md": "0c7a7a49c552c54640971a016b71a2066dd527154c2bd3046a48e7cd7491bdc0",
       "tasks.md": "af4cc50c2399f1c11506e9fc9c59dd1bed329ff8b708d3c967ff769d1e821439",
       "implementation-summary.md": "24537557b7b6275e53b8247b3e2554778a0eadfedcc6e079715a633bb601c1c6",
-      "research/research.md": "08040ebb7f70a3fc302ef18856509b9c34dc3b87e2b0e8b2efb525d21069d1a0"
+      "research/research.md": "56075fd237dec08c239d2b75881482423526e38788f42f23ffdd33f0e497f887"
     },
     "last_active_at": null
   }

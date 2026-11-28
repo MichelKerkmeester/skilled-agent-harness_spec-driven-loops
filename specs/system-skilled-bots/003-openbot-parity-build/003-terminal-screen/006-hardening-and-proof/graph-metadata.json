@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The five children before this one each add a surface, and each one's own tests prove only its own surface",
     "created_at": "2026-11-25T20:22:35Z",
-    "last_save_at": "2026-11-28T11:13:28.223Z",
+    "last_save_at": "2026-11-28T11:23:49.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e722f0619cb16502ede89068e60d5b7c1a11ab3ef5371ec21f752c5ab8f5987e",
+    "source_fingerprint": "sha256:fdf0a880d97a56cd227f5100fe5f9e7d973901917d23e55841706382be8f45c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9064948ea22f039590b352c70ec40f84b035c6352e992c9abbc9d6edd78a0a07",

@@ -45,7 +45,7 @@
     {
       "id": "question-2-net-new-and-operations-what-do-the-ten-reference-repos-have-that-neither-the-003",
       "inboxId": "F-1-006",
-      "text": "Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?",
+      "text": "Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?",
       "origin": "frontier",
       "source": "frontier",
       "injectedAtIteration": 0,
@@ -1187,7 +1187,7 @@
     },
     {
       "id": "finding-10-1-012-manual-testing-scenarios-and-the-coverage-table-every-one-of-the-fourteen-ph",
-      "text": "**012-manual-testing-scenarios and the coverage table: every one of the fourteen phases now carries at least one cited finding, and four of them carry only one.** The count per phase, from the deltas: 003 eight, 012 five, 005 four, 007 four, 011 four, 006 three, 002 two, 008 two, 009 two, 010 two, 001 one, 004 one, 013 one, 014 one, plus ten net-new. The four single-finding phases are single for different reasons and only one of them is thin: 004's is negative evidence that supports the plan, 013's is a doc index, 014's is a review-note shape, and 001's is a rule about optimistic rows — none of them has an unread reference implementation behind it. That is the honest coverage statement, and it is stronger than a count: a phase with one finding and no reference implementation is *covered*, while a phase with one finding and an unread reference would not be. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl:1-12] (observed; the count is over this lineage's own recorded findings)",
+      "text": "**013-manual-testing-scenarios and the coverage table: every one of the fourteen phases now carries at least one cited finding, and four of them carry only one.** The count per phase, from the deltas: 003 eight, 012 five, 005 four, 007 four, 011 four, 006 three, 002 two, 008 two, 009 two, 010 two, 001 one, 004 one, 013 one, 014 one, plus ten net-new. The four single-finding phases are single for different reasons and only one of them is thin: 004's is negative evidence that supports the plan, 013's is a doc index, 014's is a review-note shape, and 001's is a rule about optimistic rows — none of them has an unread reference implementation behind it. That is the honest coverage statement, and it is stronger than a count: a phase with one finding and no reference implementation is *covered*, while a phase with one finding and an unread reference would not be. [SOURCE: specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl:1-12] (observed; the count is over this lineage's own recorded findings)",
       "addedAtIteration": 10,
       "sources": [
         "specs/system-skilled-bots/002-openbot-parity-research/004-reference-evidence-research/research/lineages/pi-1/deltas/iter-001.jsonl through iter-009.jsonl",
@@ -2013,7 +2013,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2092,7 +2092,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2126,7 +2126,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2160,7 +2160,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2194,7 +2194,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2228,7 +2228,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2262,7 +2262,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2341,7 +2341,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2419,7 +2419,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2520,7 +2520,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2599,7 +2599,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2677,7 +2677,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2733,7 +2733,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2767,7 +2767,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2801,7 +2801,7 @@
         "specs/system-skilled-bots/context/openhuman-full/crates/openhuman-tui/src/activity_tests.rs:1",
         "specs/system-skilled-bots/context/openhuman-main/crates/openhuman-tui/src/theme.rs:88",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:101-135,237-247",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:134-180",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:134-180",
         "specs/system-skilled-bots/002-openbot-parity-research/001-openbot-parity-research/research/research.md:163-170"
       ],
       "_lineages": [
@@ -2848,7 +2848,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -2920,7 +2920,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -2966,7 +2966,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3083,7 +3083,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3135,7 +3135,7 @@
     },
     {
       "id": "finding-3-4-f-2-008-answered-the-plan-has-no-standing-answer-at-all-so-openbot-s-three-exclu",
-      "text": "**F-2-008 answered — the plan has no standing answer at all, so OpenBot's three exclusions are moot today and binding on whichever phase adds one.** The plan refuses `--scope always` as `grant-scope-unsupported` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145] *(observed)*, and `bots enable` passes the fixed text `enabled`, which `answerItem` records as scope `once`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:269] *(observed)* So a routine's fatigue item cannot become permanent, and the check-in-origin hole iteration 1 raised cannot open. The three exclusions — `source === \"task\"`, `closed`, `hand_off` — become binding the moment a later phase adds `always`, and 006 should record them as the precondition rather than as a rule it implements.",
+      "text": "**F-2-008 answered — the plan has no standing answer at all, so OpenBot's three exclusions are moot today and binding on whichever phase adds one.** The plan refuses `--scope always` as `grant-scope-unsupported` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145] *(observed)*, and `bots enable` passes the fixed text `enabled`, which `answerItem` records as scope `once`. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/002-routine-layer/spec.md:269] *(observed)* So a routine's fatigue item cannot become permanent, and the check-in-origin hole iteration 1 raised cannot open. The three exclusions — `source === \"task\"`, `closed`, `hand_off` — become binding the moment a later phase adds `always`, and 006 should record them as the precondition rather than as a rule it implements.",
       "addedAtIteration": 3,
       "sources": [
         "specs/system-skilled-bots/context/OpenBot-main/shared/tool-name.ts:1-60",
@@ -3152,7 +3152,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3269,7 +3269,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3317,7 +3317,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3365,7 +3365,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3390,7 +3390,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3415,7 +3415,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/007-per-bot-apps/design/state-machines.md:97,221",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/backends.md:59,63,76",
         "specs/system-skilled-bots/003-openbot-parity-build/008-vault/design/leak-checks.md:61",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:145"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:145"
       ],
       "_lineages": [
         "vibe-2"
@@ -3668,7 +3668,7 @@
     },
     {
       "id": "finding-4-4-012-manual-testing-scenarios-a-test-corpus-not-a-requirement-turnstone-s-memory-",
-      "text": "**012-manual-testing-scenarios (a test corpus, not a requirement).** turnstone's memory work ships a test corpus worth copying by shape rather than by content: six files (`test_structured_memory.py` at 597 lines, `test_memory_index.py`, `test_memory_relevance.py`, `test_project_memory_scope.py`, `test_structured_memory_storage.py`, `test_memory_api.py`) and one data fixture, `tests/data/memory_description_parity.json`, whose first key is `whitespace_code_points` with a list of 33 code points. The parity fixture is the pattern: rather than asserting one normalisation case, it enumerates every whitespace code point the language has, so the implementation cannot pass by covering the common ones. That is directly applicable to 005's whitespace-collapse rule and to 012's scenario design, and it is not in the plan's testing chapter. Size S. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/data/memory_description_parity.json:1-8] [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_structured_memory.py:1-1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] (observed)",
+      "text": "**013-manual-testing-scenarios (a test corpus, not a requirement).** turnstone's memory work ships a test corpus worth copying by shape rather than by content: six files (`test_structured_memory.py` at 597 lines, `test_memory_index.py`, `test_memory_relevance.py`, `test_project_memory_scope.py`, `test_structured_memory_storage.py`, `test_memory_api.py`) and one data fixture, `tests/data/memory_description_parity.json`, whose first key is `whitespace_code_points` with a list of 33 code points. The parity fixture is the pattern: rather than asserting one normalisation case, it enumerates every whitespace code point the language has, so the implementation cannot pass by covering the common ones. That is directly applicable to 005's whitespace-collapse rule and to 012's scenario design, and it is not in the plan's testing chapter. Size S. [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/data/memory_description_parity.json:1-8] [SOURCE: specs/system-skilled-bots/context/turnstone-main/tests/test_structured_memory.py:1-1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148] (observed)",
       "addedAtIteration": 4,
       "sources": [
         "specs/system-skilled-bots/003-openbot-parity-build/005-memory/spec.md:148-164",
@@ -4975,7 +4975,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -4985,7 +4985,7 @@
     },
     {
       "id": "finding-7-1-012-manual-testing-scenarios-openhuman-full-carries-a-test-file-named-cli-sigpip",
-      "text": "**012-manual-testing-scenarios.** openhuman-full carries a test file named `cli_sigpipe.rs`, which is a test for a failure the plan's 33 scenarios do not cover and a `bots` verb will meet on its first day: a CLI whose stdout is piped into `head` receives `SIGPIPE`/`EPIPE` mid-write, and the naive outcome is a crashed process and a non-zero exit for a command that worked. The plan's scenario table has no pipe row, and the rule to add is one sentence plus one assertion: `bots activity | head -1` exits 0 and prints one row. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:142-145] (observed)",
+      "text": "**013-manual-testing-scenarios.** openhuman-full carries a test file named `cli_sigpipe.rs`, which is a test for a failure the plan's 33 scenarios do not cover and a `bots` verb will meet on its first day: a CLI whose stdout is piped into `head` receives `SIGPIPE`/`EPIPE` mid-write, and the naive outcome is a crashed process and a non-zero exit for a command that worked. The plan's scenario table has no pipe row, and the rule to add is one sentence plus one assertion: `bots activity | head -1` exits 0 and prints one row. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:142-145] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -4996,9 +4996,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ],
       "_lineages": [
@@ -5121,7 +5121,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5131,7 +5131,7 @@
     },
     {
       "id": "finding-7-2-012-manual-testing-scenarios-a-second-test-name-is-a-post-mortem-in-eight-words-",
-      "text": "**012-manual-testing-scenarios.** A second test name is a post-mortem in eight words: `composio_list_tools_stack_overflow_regression.rs`. A tool-listing call overflowed the stack on a deeply nested payload, and the fix is guarded by a test whose name carries both the call and the failure class. The plan has no scenario about a deeply nested or adversarially shaped JSON payload, and one of its own verbs reads third-party JSON (`.utcp_config.json` in 007, a channel provider's response in 011, an LLM's tool arguments in any run). Size S per verb: one fixture with nesting depth past any recursion limit and an assertion that the verb exits with a refusal rather than a stack overflow. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/composio_list_tools_stack_overflow_regression.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111] (observed)",
+      "text": "**013-manual-testing-scenarios.** A second test name is a post-mortem in eight words: `composio_list_tools_stack_overflow_regression.rs`. A tool-listing call overflowed the stack on a deeply nested payload, and the fix is guarded by a test whose name carries both the call and the failure class. The plan has no scenario about a deeply nested or adversarially shaped JSON payload, and one of its own verbs reads third-party JSON (`.utcp_config.json` in 007, a channel provider's response in 011, an LLM's tool arguments in any run). Size S per verb: one fixture with nesting depth past any recursion limit and an assertion that the verb exits with a refusal rather than a stack overflow. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/composio_list_tools_stack_overflow_regression.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -5142,9 +5142,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ],
       "_lineages": [
@@ -5207,7 +5207,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5217,7 +5217,7 @@
     },
     {
       "id": "finding-7-3-012-manual-testing-scenarios-cost-cap-removed-rs-is-a-third-pattern-worth-naming",
-      "text": "**012-manual-testing-scenarios.** `cost_cap_removed.rs` is a third pattern worth naming: a test that asserts a *removed* feature stays removed. The plan deletes and defers a good deal — standing grants (`grant-scope-unsupported`), a `--demo` binary, a browser computer, `bots skill accept` — and nothing in 012 asserts that a deferred verb is still absent, so a later packet can reintroduce one by accident and no scenario notices. One table row per deferral with the expected refusal or usage error is enough. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cost_cap_removed.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164] (observed)",
+      "text": "**013-manual-testing-scenarios.** `cost_cap_removed.rs` is a third pattern worth naming: a test that asserts a *removed* feature stays removed. The plan deletes and defers a good deal — standing grants (`grant-scope-unsupported`), a `--demo` binary, a browser computer, `bots skill accept` — and nothing in 012 asserts that a deferred verb is still absent, so a later packet can reintroduce one by accident and no scenario notices. One table row per deferral with the expected refusal or usage error is enough. Size S. [SOURCE: specs/system-skilled-bots/context/openhuman-full/tests/cost_cap_removed.rs:1] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -5228,9 +5228,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ],
       "_lineages": [
@@ -5293,7 +5293,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5303,7 +5303,7 @@
     },
     {
       "id": "finding-7-4-013-skilled-and-doc-alignment-openhuman-keeps-a-machine-facing-doc-index-beside-",
-      "text": "**013-skilled-and-doc-alignment.** openhuman keeps a machine-facing doc index beside its human docs: `llms.txt` is 53 lines where every line is `- [Title](path): one sentence saying what the document is for`, and `llms-full.txt` is the 3,231-line concatenation of the same corpus for a reader that wants it whole; the repo root's `AGENTS.md` opens with a repository map that links the architecture documents by role. The plan's 013 proves alignment by running two generators and driving each report's `Open findings:` line to `0`, which proves *agreement between two tools* and says nothing about whether a reader can find the right document. A generated `llms.txt` — one line per doc under the skill tree, with its purpose, checked so every path resolves and every doc has a line — is a second, cheaper proof, and it is the artifact an agent reading this repo actually needs. Value **medium-high**, size **S**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/llms.txt:1-14] [SOURCE: specs/system-skilled-bots/context/openhuman-full/AGENTS.md:1-12] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158] (observed)",
+      "text": "**014-skilled-and-doc-alignment.** openhuman keeps a machine-facing doc index beside its human docs: `llms.txt` is 53 lines where every line is `- [Title](path): one sentence saying what the document is for`, and `llms-full.txt` is the 3,231-line concatenation of the same corpus for a reader that wants it whole; the repo root's `AGENTS.md` opens with a repository map that links the architecture documents by role. The plan's 013 proves alignment by running two generators and driving each report's `Open findings:` line to `0`, which proves *agreement between two tools* and says nothing about whether a reader can find the right document. A generated `llms.txt` — one line per doc under the skill tree, with its purpose, checked so every path resolves and every doc has a line — is a second, cheaper proof, and it is the artifact an agent reading this repo actually needs. Value **medium-high**, size **S**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/llms.txt:1-14] [SOURCE: specs/system-skilled-bots/context/openhuman-full/AGENTS.md:1-12] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -5314,9 +5314,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ],
       "_lineages": [
@@ -5379,7 +5379,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5389,7 +5389,7 @@
     },
     {
       "id": "finding-7-5-014-deep-review-openhuman-s-findings-md-notes-are-the-best-review-deliverable-in",
-      "text": "**014-deep-review.** openhuman's `FINDINGS-*.md` notes are the best review deliverable in the corpus, and their shape is the finding: a title naming the symptom and the ticket, a \"Verdict (final, backend-confirmed)\" line, evidence quoted to the byte (`exactly 182 bytes with keys details,error,errorCode,success`, a `file:line` into the backend checkout), the hypothesis it *rules out* (\"which rules out the tool-declaration hypothesis below\"), and a \"Correction (second commit)\" section that overturns the first note's reading. One of the three notes exists only to correct another. The plan's 014 requires every P0 fixed with a named proving command, which is the same rigour applied to the *fix*; what it does not require is the two halves that make a finding auditable later — the rejected hypothesis and a correction section. Both are one paragraph each in the review report. Size S, value **high**, because a review whose wrong first guess is deleted cannot be re-checked. [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12] [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:182-185] (observed)",
+      "text": "**015-deep-review.** openhuman's `FINDINGS-*.md` notes are the best review deliverable in the corpus, and their shape is the finding: a title naming the symptom and the ticket, a \"Verdict (final, backend-confirmed)\" line, evidence quoted to the byte (`exactly 182 bytes with keys details,error,errorCode,success`, a `file:line` into the backend checkout), the hypothesis it *rules out* (\"which rules out the tool-declaration hypothesis below\"), and a \"Correction (second commit)\" section that overturns the first note's reading. One of the three notes exists only to correct another. The plan's 014 requires every P0 fixed with a named proving command, which is the same rigour applied to the *fix*; what it does not require is the two halves that make a finding auditable later — the rejected hypothesis and a correction section. Both are one paragraph each in the review report. Size S, value **high**, because a review whose wrong first guess is deleted cannot be re-checked. [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12] [SOURCE: specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:182-185] (observed)",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/tests/cli_sigpipe.rs:1",
@@ -5400,9 +5400,9 @@
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-gemini-live.md:1-12",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voiceerr.md:1-14",
         "specs/system-skilled-bots/context/openhuman-full/FINDINGS-voice-signed-url.md:1-8",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:111,142-145",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154-158",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94,182-185",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:111,142-145",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154-158",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94,182-185",
         "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md:164"
       ],
       "_lineages": [
@@ -5448,7 +5448,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5478,7 +5478,7 @@
     },
     {
       "id": "finding-7-7-013-the-reference-symlinks-its-second-agent-instruction-name-to-the-first-and-th",
-      "text": "**013 — the reference symlinks its second agent-instruction name to the first and the plan has no such rule.** `buzz-main/CLAUDE.md` is a 9-byte symlink to `AGENTS.md`, which is 47,801 bytes. [SOURCE: specs/system-skilled-bots/context/buzz-main/CLAUDE.md:1] *(observed)* The plan's 013 runs a doc-alignment pass over the `.skilled` change set and has no rule for a second name for the same document. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41] *(observed)* A copy drifts and a symlink cannot. The reference chose the symlink, and the plan should record the choice before a second agent-instruction name appears in this repo.",
+      "text": "**013 — the reference symlinks its second agent-instruction name to the first and the plan has no such rule.** `buzz-main/CLAUDE.md` is a 9-byte symlink to `AGENTS.md`, which is 47,801 bytes. [SOURCE: specs/system-skilled-bots/context/buzz-main/CLAUDE.md:1] *(observed)* The plan's 013 runs a doc-alignment pass over the `.skilled` change set and has no rule for a second name for the same document. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41] *(observed)* A copy drifts and a symlink cannot. The reference chose the symlink, and the plan should record the choice before a second agent-instruction name appears in this repo.",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:1-90",
@@ -5495,7 +5495,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5525,7 +5525,7 @@
     },
     {
       "id": "finding-7-8-013-the-reference-keeps-a-domain-glossary-whose-entries-name-the-words-to-avoid-",
-      "text": "**013 — the reference keeps a domain glossary whose entries name the words to avoid and the plan has none.** `CONTEXT.md` is \"Buzz domain language ... Shared terminology for Buzz product behavior\", 135 lines carrying 13 `_Avoid_:` lines, for example \"Push gateway ... _Avoid_: Push server, APNs gateway\". [SOURCE: specs/system-skilled-bots/context/buzz-main/CONTEXT.md:1-3,19] *(observed)* The plan's 013 adds a doc-alignment topic whose `terms` reach the docs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41] *(observed)* A `terms` list says which words to find; only a glossary says which word is wrong. The plan's doc run can therefore pass while a doc uses a retired name, which is the exact failure 013 exists to catch.",
+      "text": "**013 — the reference keeps a domain glossary whose entries name the words to avoid and the plan has none.** `CONTEXT.md` is \"Buzz domain language ... Shared terminology for Buzz product behavior\", 135 lines carrying 13 `_Avoid_:` lines, for example \"Push gateway ... _Avoid_: Push server, APNs gateway\". [SOURCE: specs/system-skilled-bots/context/buzz-main/CONTEXT.md:1-3,19] *(observed)* The plan's 013 adds a doc-alignment topic whose `terms` reach the docs. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41] *(observed)* A `terms` list says which words to find; only a glossary says which word is wrong. The plan's doc run can therefore pass while a doc uses a retired name, which is the exact failure 013 exists to catch.",
       "addedAtIteration": 7,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/src/approvals/mod.rs:1-90",
@@ -5542,7 +5542,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5589,7 +5589,7 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md:126",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/acceptance-criteria.md:56-58",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/001-channel-ux-and-message-map/design/reply-grammar.md:51",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:41",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:41",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:84",
         "specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/context-manifest.md:688"
       ],
@@ -5645,14 +5645,14 @@
     },
     {
       "id": "finding-8-1-014-the-reference-s-test-standard-is-falsifiability-and-the-plan-s-review-has-no",
-      "text": "**014 — the reference's test standard is falsifiability and the plan's review has no such rule.** \"Regression tests must bind the production seam and be falsifiable. A guard whose removal doesn't fail any test protects nothing — mutations survived the full mobile suite twice (PRs #6996, #7013).\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:24-27] *(observed)* The plan's 014 reviews code and docs for P0 and P1, and its only mention of a guard is the suite and the validator as a guard against a wrong fix. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:288] *(observed)* So a test that asserts nothing passes the plan's review, and the plan's own Problem Statement names the opposite failure — \"a test that asserts a shape a later phase changed\" — which is a test that breaks rather than a test that never could. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:75] *(observed)* This is the highest-value 014 finding: the review needs one rule that a regression test must fail when its guard is removed.",
+      "text": "**014 — the reference's test standard is falsifiability and the plan's review has no such rule.** \"Regression tests must bind the production seam and be falsifiable. A guard whose removal doesn't fail any test protects nothing — mutations survived the full mobile suite twice (PRs #6996, #7013).\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:24-27] *(observed)* The plan's 014 reviews code and docs for P0 and P1, and its only mention of a guard is the suite and the validator as a guard against a wrong fix. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:288] *(observed)* So a test that asserts nothing passes the plan's review, and the plan's own Problem Statement names the opposite failure — \"a test that asserts a shape a later phase changed\" — which is a test that breaks rather than a test that never could. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:75] *(observed)* This is the highest-value 014 finding: the review needs one rule that a regression test must fail when its guard is removed.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -5693,9 +5693,9 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ],
       "_lineages": [
         "pi-2"
@@ -5729,14 +5729,14 @@
     },
     {
       "id": "finding-8-2-014-the-reference-mines-its-own-review-threads-into-a-standing-rule-and-the-plan",
-      "text": "**014 — the reference mines its own review threads into a standing rule and the plan's review produces findings only.** The test standard is \"Mined from the last 25 PRs' review threads (see Review-Proven Rules in AGENTS.md); this is the test-quality rule reviewers litigated most\". [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:21-23] *(observed)* The plan's 014 produces `review/seeded-findings.json` and a findings registry, both scoped to this run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:188] *(observed)* Nothing turns a finding that recurs across phases into a rule the next phase inherits. The reference's practice is the missing step, and it costs one section in `AGENTS.md`.",
+      "text": "**014 — the reference mines its own review threads into a standing rule and the plan's review produces findings only.** The test standard is \"Mined from the last 25 PRs' review threads (see Review-Proven Rules in AGENTS.md); this is the test-quality rule reviewers litigated most\". [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:21-23] *(observed)* The plan's 014 produces `review/seeded-findings.json` and a findings registry, both scoped to this run. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:188] *(observed)* Nothing turns a finding that recurs across phases into a rule the next phase inherits. The reference's practice is the missing step, and it costs one section in `AGENTS.md`.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -5745,7 +5745,7 @@
     },
     {
       "id": "finding-8-2-documentation-alignment-is-net-new-none-of-the-ten-references-carries-an-automat",
-      "text": "**Documentation alignment is net-new: none of the ten references carries an automated docs-versus-code check, and the phase's subject is this repository's own tooling.** 013 requires a `topics.json` topic whose `terms` reach the skill docs, the README, the catalog, the playbook and the CLI help, two alignment commands that write `report.md`, `findings.json` and `fix-plan.md`, and a clean-close criterion on each report's `Open findings:` line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:155] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md:158] A search of OpenBot-main's package manifest for a documentation-check script (`markdown-link`, `link-check`, `docs:check`, `lint:docs`) returns nothing. **Observed.** The phase therefore has no reference to mirror and cannot have one: the two commands it invokes are Skilled's own, and the artefacts they write are this repository's contract. Its risk is not a missing mechanism but a missing reference point, so its acceptance criteria have to carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.",
+      "text": "**Documentation alignment is net-new: none of the ten references carries an automated docs-versus-code check, and the phase's subject is this repository's own tooling.** 013 requires a `topics.json` topic whose `terms` reach the skill docs, the README, the catalog, the playbook and the CLI help, two alignment commands that write `report.md`, `findings.json` and `fix-plan.md`, and a clean-close criterion on each report's `Open findings:` line. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:154] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:155] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:158] A search of OpenBot-main's package manifest for a documentation-check script (`markdown-link`, `link-check`, `docs:check`, `lint:docs`) returns nothing. **Observed.** The phase therefore has no reference to mirror and cannot have one: the two commands it invokes are Skilled's own, and the artefacts they write are this repository's contract. Its risk is not a missing mechanism but a missing reference point, so its acceptance criteria have to carry the whole weight — and REQ-004 does, by requiring every finding to be fixed, handed off or rebutted with a reason.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
@@ -5753,9 +5753,9 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ],
       "_lineages": [
         "pi-2"
@@ -5813,14 +5813,14 @@
     },
     {
       "id": "finding-8-3-014-the-reference-s-test-standard-names-its-anti-patterns-with-the-pull-request-",
-      "text": "**014 — the reference's test standard names its anti-patterns with the pull request that proved each, and the plan's review has no anti-pattern list.** \"Don't bind a regression test to a test-only helper instead of the production code path (PR #7013). Give pure predicates a table test over the full input combination space (PR #6807). Scope Playwright locators — unscoped `getByText` in a required smoke test is a strict-mode flake (PR #6980).\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:27-32] *(observed)* The plan's 014 has three review inputs and a severity table and no list of known test anti-patterns. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:50] *(observed)* The plan's runtime holds 381 tests, so a test bound to a test-only helper is a live risk rather than a hypothetical one.",
+      "text": "**014 — the reference's test standard names its anti-patterns with the pull request that proved each, and the plan's review has no anti-pattern list.** \"Don't bind a regression test to a test-only helper instead of the production code path (PR #7013). Give pure predicates a table test over the full input combination space (PR #6807). Scope Playwright locators — unscoped `getByText` in a required smoke test is a strict-mode flake (PR #6980).\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:27-32] *(observed)* The plan's 014 has three review inputs and a severity table and no list of known test anti-patterns. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:50] *(observed)* The plan's runtime holds 381 tests, so a test bound to a test-only helper is a live risk rather than a hypothetical one.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -5853,7 +5853,7 @@
     },
     {
       "id": "finding-8-3-the-review-phase-is-net-new-as-well-and-its-one-borrowed-guard-is-the-recorded-s",
-      "text": "**The review phase is net-new as well, and its one borrowed guard is the recorded suite baseline rather than a quoted count.** 014 runs `/deep:review:auto` over phases 001 to 013 as a fan-out of five lineages and requires every P0 to be fixed with the command that proved it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:182] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:185] Its own measured-behaviour block states the rule that makes the review meaningful: the suite floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, because \"a floor quoted from this block would pass a build that deleted a phase's tests\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:94] No reference in the corpus has a review loop, so there is nothing to lift; the recorded baseline is the phase's own guard, and it is the one item in the three phases that a reviewer should check is actually enforced. **Observed.**",
+      "text": "**The review phase is net-new as well, and its one borrowed guard is the recorded suite baseline rather than a quoted count.** 014 runs `/deep:review:auto` over phases 001 to 013 as a fan-out of five lineages and requires every P0 to be fixed with the command that proved it. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:182] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:185] Its own measured-behaviour block states the rule that makes the review meaningful: the suite floor is the count the setup run records in `review/preflight.json` as `suiteBaseline`, because \"a floor quoted from this block would pass a build that deleted a phase's tests\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:94] No reference in the corpus has a review loop, so there is nothing to lift; the recorded baseline is the phase's own guard, and it is the one item in the three phases that a reviewer should check is actually enforced. **Observed.**",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/tinychannels-main/crates/tinychannels-conformance/src/lib.rs",
@@ -5861,9 +5861,9 @@
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/capabilities.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md",
         "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/013-skilled-and-doc-alignment/spec.md",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md"
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md"
       ],
       "_lineages": [
         "pi-2"
@@ -5871,7 +5871,7 @@
     },
     {
       "id": "finding-8-4-012-manual-testing-scenarios-two-test-properties-the-plan-s-channel-chapter-shou",
-      "text": "**012-manual-testing-scenarios — two test properties the plan's channel chapter should borrow.** The reference's pipeline ships \"a property test checks that every ingested event ends exactly once, and a 10,000-event flood test checks order, thread separation and interactive latency\". Both are properties rather than examples, and both are cheap to state for the plan's queue: every queued entry reaches exactly one terminal state and never leaves `unknown` or `sending` behind, and a 10,000-entry drain preserves `at` order per conversation and answers within a bounded time. The plan's 011 acceptance criteria already cover the single uncertain send; neither covers the aggregate. Size **S** each, value **medium**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/README.md:22-24] (observed)",
+      "text": "**013-manual-testing-scenarios — two test properties the plan's channel chapter should borrow.** The reference's pipeline ships \"a property test checks that every ingested event ends exactly once, and a 10,000-event flood test checks order, thread separation and interactive latency\". Both are properties rather than examples, and both are cheap to state for the plan's queue: every queued entry reaches exactly one terminal state and never leaves `unknown` or `sending` behind, and a 10,000-entry drain preserves `at` order per conversation and answers within a bounded time. The plan's 011 acceptance criteria already cover the single uncertain send; neither covers the aggregate. Size **S** each, value **medium**. [SOURCE: specs/system-skilled-bots/context/openhuman-full/vendor/tinyeventqueues/README.md:22-24] (observed)",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/openhuman-full/vendor/tinyskills/README.md:1-60",
@@ -5897,14 +5897,14 @@
     },
     {
       "id": "finding-8-4-014-the-plan-s-014-already-guards-the-failure-the-reference-s-practice-implies-b",
-      "text": "**014 — the plan's 014 already guards the failure the reference's practice implies, by seeding every review-input row before any lineage spawns.** REQ-011: \"Every row of the three review inputs becomes a seeded finding before any lineage spawns, at the severity `design/records.md` section 7.4 assigns ... A missing input is recorded with its reason and does not stop the run.\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:188] *(observed)* The reference has no equivalent: its standards are mined after the fact from threads that already closed. Confirmation, and the plan's ordering is the stronger one.",
+      "text": "**014 — the plan's 014 already guards the failure the reference's practice implies, by seeding every review-input row before any lineage spawns.** REQ-011: \"Every row of the three review inputs becomes a seeded finding before any lineage spawns, at the severity `design/records.md` section 7.4 assigns ... A missing input is recorded with its reason and does not stop the run.\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:188] *(observed)* The reference has no equivalent: its standards are mined after the fact from threads that already closed. Confirmation, and the plan's ordering is the stronger one.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -5937,14 +5937,14 @@
     },
     {
       "id": "finding-8-5-012-the-reference-s-runbook-names-the-silent-failure-a-skipped-step-produces-and",
-      "text": "**012 — the reference's runbook names the silent failure a skipped step produces and the plan's preconditions are index-level.** \"Skip this and the agent boots to \\\"discovered 0 channel(s) → agent will sit idle\\\" and silently ignores every mention.\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:344-345] *(observed)* The plan's root index gains \"the preconditions the new scenarios need\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:194] and NFR-R01 refuses a silent pass [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:255] *(observed)* — but a precondition is a list, not a named failure mode. A scenario that runs with a missing precondition and still prints `PASS` is the gap the reference closes by writing the silent outcome beside the step.",
+      "text": "**012 — the reference's runbook names the silent failure a skipped step produces and the plan's preconditions are index-level.** \"Skip this and the agent boots to \\\"discovered 0 channel(s) → agent will sit idle\\\" and silently ignores every mention.\" [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:344-345] *(observed)* The plan's root index gains \"the preconditions the new scenarios need\" [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:194] and NFR-R01 refuses a silent pass [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:255] *(observed)* — but a precondition is a list, not a named failure mode. A scenario that runs with a missing precondition and still prints `PASS` is the gap the reference closes by writing the silent outcome beside the step.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -6003,14 +6003,14 @@
     },
     {
       "id": "finding-8-6-012-the-reference-s-runbook-warns-before-a-destructive-command-and-the-plan-s-co",
-      "text": "**012 — the reference's runbook warns before a destructive command and the plan's corpus has no destructive-command rule.** The reference marks a reset recipe \"fine for read/write smoke tests, but: `just reset` wipes Desktop's data\". [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:55] *(observed)* The plan's 012 runs \"from a plain terminal\" against the operator's real tree and records each verdict as `PASS` or `FAIL` with its evidence saved. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:66] *(observed)* It has no rule that a scenario must not destroy operator state, and 008's vault and 005's memory are exactly the stores a scenario would wipe. One line per scenario naming the store it may touch is the fix.",
+      "text": "**012 — the reference's runbook warns before a destructive command and the plan's corpus has no destructive-command rule.** The reference marks a reset recipe \"fine for read/write smoke tests, but: `just reset` wipes Desktop's data\". [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:55] *(observed)* The plan's 012 runs \"from a plain terminal\" against the operator's real tree and records each verdict as `PASS` or `FAIL` with its evidence saved. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:66] *(observed)* It has no rule that a scenario must not destroy operator state, and 008's vault and 005's memory are exactly the stores a scenario would wipe. One line per scenario naming the store it may touch is the fix.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -6043,14 +6043,14 @@
     },
     {
       "id": "finding-8-7-012-the-reference-s-runbook-is-a-numbered-procedure-with-copy-pasteable-commands",
-      "text": "**012 — the reference's runbook is a numbered procedure with copy-pasteable commands and expected output, and the plan's corpus is a scenario table.** `TESTING.md`'s steps 1 to 6 each carry a shell block and the output to expect, for example `CHANNEL=$(buzz channels create --name \"smoke-$$\" --type stream --visibility open | jq -r '.channel_id')`. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:231-260] *(observed)* The plan's 012 records each verdict as `PASS` or `FAIL` with its evidence saved. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:66] *(observed)* The plan's shape is the stronger one for a corpus of 25 or more scenarios; the reference's is the stronger one for a first run by a person who has never seen the tool. Confirmation of the plan's choice, with the reference's first-run shape worth keeping for the playbook's opening section.",
+      "text": "**012 — the reference's runbook is a numbered procedure with copy-pasteable commands and expected output, and the plan's corpus is a scenario table.** `TESTING.md`'s steps 1 to 6 each carry a shell block and the output to expect, for example `CHANNEL=$(buzz channels create --name \"smoke-$$\" --type stream --visibility open | jq -r '.channel_id')`. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:231-260] *(observed)* The plan's 012 records each verdict as `PASS` or `FAIL` with its evidence saved. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:66] *(observed)* The plan's shape is the stronger one for a corpus of 25 or more scenarios; the reference's is the stronger one for a first run by a person who has never seen the tool. Confirmation of the plan's choice, with the reference's first-run shape worth keeping for the playbook's opening section.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -6083,14 +6083,14 @@
     },
     {
       "id": "finding-8-8-012-the-reference-s-runbook-carries-a-troubleshooting-section-and-the-plan-s-cor",
-      "text": "**012 — the reference's runbook carries a troubleshooting section and the plan's corpus has no place to record a failure's cause.** `TESTING.md` has `## Configuration reference` at line 405 and `## Troubleshooting` at line 439. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:405,439] *(observed)* The plan's 012 has a `SKIP` verdict with its blocker but no field for what a `FAIL`'s cause was, so a second run repeats the diagnosis. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:255] *(observed)* Small, and one column closes it.",
+      "text": "**012 — the reference's runbook carries a troubleshooting section and the plan's corpus has no place to record a failure's cause.** `TESTING.md` has `## Configuration reference` at line 405 and `## Troubleshooting` at line 439. [SOURCE: specs/system-skilled-bots/context/buzz-main/TESTING.md:405,439] *(observed)* The plan's 012 has a `SKIP` verdict with its blocker but no field for what a `FAIL`'s cause was, so a second run repeats the diagnosis. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:255] *(observed)* Small, and one column closes it.",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -6123,14 +6123,14 @@
     },
     {
       "id": "finding-8-9-014-the-reference-s-changelog-is-a-per-release-record-with-a-pull-request-and-a-",
-      "text": "**014 — the reference's changelog is a per-release record with a pull request and a commit hash per entry, and the plan's 014 records no version.** `CHANGELOG.md` opens `## v0.5.30` with entries such as \"- feat(db): label advisory-lock metrics with the locked event kind ([#9472](...)) ([`359839f70b6`](...))\". [SOURCE: specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:3-7] *(observed)* The plan's 014 closes on a reviewed surface, a passing suite and a passing validator, and records no version. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31] *(observed)* For a small team the changelog is the upgrade path: a person who pulls the repo needs to know what changed, and the plan's own out-of-scope list says \"a checkout updates with `git pull`\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:88] *(observed)*",
+      "text": "**014 — the reference's changelog is a per-release record with a pull request and a commit hash per entry, and the plan's 014 records no version.** `CHANGELOG.md` opens `## v0.5.30` with entries such as \"- feat(db): label advisory-lock metrics with the locked event kind ([#9472](...)) ([`359839f70b6`](...))\". [SOURCE: specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:3-7] *(observed)* The plan's 014 closes on a reviewed surface, a passing suite and a passing validator, and records no version. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31] *(observed)* For a small team the changelog is the upgrade path: a person who pulls the repo needs to know what changed, and the plan's own out-of-scope list says \"a checkout updates with `git pull`\". [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md:88] *(observed)*",
       "addedAtIteration": 8,
       "sources": [
         "specs/system-skilled-bots/context/buzz-main/TESTING.md:19-36,55,231-260,344-345,405,439",
         "specs/system-skilled-bots/context/buzz-main/CHANGELOG.md:1-25",
         "specs/system-skilled-bots/context/buzz-main/PLANS/",
-        "specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/spec.md:63-66,194,229,255",
-        "specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/spec.md:31,41,50,75,188,226,239,288",
+        "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/spec.md:63-66,194,229,255",
+        "specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/spec.md:31,41,50,75,188,226,239,288",
         "specs/system-skilled-bots/003-openbot-parity-build/spec.md:88"
       ],
       "_lineages": [
@@ -7136,7 +7136,7 @@
     },
     {
       "id": "ruled-out-3a132313a827",
-      "text": "**A per-phase \"readiness\" score.** The three earlier syntheses already produce verdict-per-phase tables and the plan-depth run downgraded and rejected findings with reasons; a fourth score would be a fourth scale. This iteration states coverage as counts plus the one qualitative fact that matters (whether a reference implementation exists behind the finding), and leaves scoring to 014-deep-review.",
+      "text": "**A per-phase \"readiness\" score.** The three earlier syntheses already produce verdict-per-phase tables and the plan-depth run downgraded and rejected findings with reasons; a fourth score would be a fourth scale. This iteration states coverage as counts plus the one qualitative fact that matters (whether a reference implementation exists behind the finding), and leaves scoring to 015-deep-review.",
       "contentHash": "3a132313a827",
       "addedAtIteration": 10,
       "_lineages": [
@@ -8351,7 +8351,7 @@
     },
     {
       "id": "ruled-out-f19656fcb1ef",
-      "text": "`014-deep-review/spec.md` was read for the words `ruled out`, `hypothesis` and `correction` and returned nothing, which is what finding 5 rests on; the absence of a word is weaker evidence than the presence of a requirement, so the finding is stated as \"does not require\" and not \"forbids\".",
+      "text": "`015-deep-review/spec.md` was read for the words `ruled out`, `hypothesis` and `correction` and returned nothing, which is what finding 5 rests on; the absence of a word is weaker evidence than the presence of a requirement, so the finding is stated as \"does not require\" and not \"forbids\".",
       "contentHash": "f19656fcb1ef",
       "addedAtIteration": 7,
       "_lineages": [
@@ -8897,8 +8897,8 @@
         "nodeId": "vibe-2:F-1-006",
         "parentId": "root",
         "depth": 1,
-        "scope": "specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review, specs/system-skilled-bots/context/buzz-main",
-        "question": "Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 012-manual-testing-scenarios, 013-skilled-and-doc-alignment and 014-deep-review?",
+        "scope": "specs/system-skilled-bots/context, specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review, specs/system-skilled-bots/context/buzz-main",
+        "question": "Net-new and operations: what do the ten reference repos have that neither the 003 build plan nor the skip list of the parity synthesis covers, ranked by value to a small team, and which test corpora, failure-handling patterns and upgrade paths in those repos should feed phases 013-manual-testing-scenarios, 014-skilled-and-doc-alignment and 015-deep-review?",
         "status": "open",
         "reason": null,
         "iteration": 0,
@@ -8957,7 +8957,7 @@
         "nodeId": "vibe-2:F-2-011",
         "parentId": "vibe-2:F-1-006",
         "depth": 2,
-        "scope": "specs/system-skilled-bots/context/buzz-main, specs/system-skilled-bots/003-openbot-parity-build/014-deep-review",
+        "scope": "specs/system-skilled-bots/context/buzz-main, specs/system-skilled-bots/003-openbot-parity-build/015-deep-review",
         "question": "Which failure-handling and upgrade patterns in buzz-main should feed the 014 review checklist, and does buzz-main carry a test corpus the plan 012 lacks?",
         "status": "pruned",
         "reason": "node-cap",

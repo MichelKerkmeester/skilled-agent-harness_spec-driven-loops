@@ -68,7 +68,7 @@ What this set costs: one new refusal name, no new BOT.md key, seven tests or fix
 
 ### 014 deep review
 
-26. **Record the proof that a regression test fails without its fix. Solid.** The plan requires that proof, but the ledger has no cell for it (`B/014-deep-review/design/records.md:215-221`), and CHK-012 only counts the word "regression" (`B/014-deep-review/tasks.md:231`), which the golden ledger does not contain. Add a column holding the command run with the fix reverted and the failing line it printed. Point CHK-012 at that column. Add one sentence: the regression test imports the module the fix changed, never a test helper.
+26. **Record the proof that a regression test fails without its fix. Solid.** The plan requires that proof, but the ledger has no cell for it (`B/015-deep-review/design/records.md:215-221`), and CHK-012 only counts the word "regression" (`B/015-deep-review/tasks.md:231`), which the golden ledger does not contain. Add a column holding the command run with the fix reverted and the failing line it printed. Point CHK-012 at that column. Add one sentence: the regression test imports the module the fix changed, never a test helper.
 
 ## 2. Plan contradictions and wrong citations to correct
 
@@ -93,7 +93,7 @@ These are the places where a worker would have to choose between two plan lines,
 2. **OpenBot's rule for when a standing answer may be offered.** This build refuses every standing answer, so the rule has nothing to act on. Trigger: the rules-store packet is opened. The row is in `R4/research.md`, phase 006.
 3. **Refuse a standing answer for a tell-only routine.** Same reason and same trigger.
 4. **Removing a collaborator counts as "share".** Both kinds ask today, so nothing runs unasked. Trigger: a rules store keys an answer on the kind.
-5. **A test that the help text lists every verb.** The help block is edited only in 013 (`B/013-skilled-and-doc-alignment/tasks.md:66`), so a test added earlier would fail through every phase before it. 013's one-time check covers the build. The reviews split between a test now and waiting. The earlier review's point holds. Trigger: a verb added after 013 is missing from `--help`. Then add the test, which is cheaper than generating the block.
+5. **A test that the help text lists every verb.** The help block is edited only in 013 (`B/014-skilled-and-doc-alignment/tasks.md:66`), so a test added earlier would fail through every phase before it. 013's one-time check covers the build. The reviews split between a test now and waiting. The earlier review's point holds. Trigger: a verb added after 013 is missing from `--help`. Then add the test, which is cheaper than generating the block.
 6. **A retired-names list for the doc check.** One retired name exists, and the first alignment run already flags a wrong command. Trigger: a third retired name, or a stale name found after 013 closes.
 7. **A quiet exit when a reader closes the pipe early.** No handler exists in `bots.cjs`, but no probe has shown a bots verb failing. Trigger: a real `bots ... --json | head` prints a stack trace. Then add one handler line. No contract rule and no scenario.
 8. **Hide a run that shows as both working and waiting.** The overlap lasts for the few statements between two writes (`L/runner.ts:1116-1120`) and clears on the next read. Trigger: an operator sees the double row, or a script counts activity rows.

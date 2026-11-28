@@ -119,13 +119,13 @@ This map applies sections 1 and 2 of `specs/system-skilled-bots/002-openbot-pari
 | 100 | `011-messaging-channels/006-daemon-and-webhook-transports/tasks.md` | 4 | A-282 to A-285 |
 | 101 | `011-messaging-channels/007-conformance-hardening-and-proof/plan.md` | 1 | A-286 to A-286 |
 | 102 | `011-messaging-channels/spec.md` | 3 | A-287 to A-289 |
-| 103 | `012-manual-testing-scenarios/spec.md` | 1 | A-290 to A-290 |
-| 104 | `012-manual-testing-scenarios/design/fixtures.md` | 1 | A-291 to A-291 |
-| 105 | `012-manual-testing-scenarios/design/refusal-catalogue.md` | 2 | A-292 to A-293 |
-| 106 | `012-manual-testing-scenarios/design/scenario-contract.md` | 1 | A-294 to A-294 |
-| 107 | `014-deep-review/tasks.md` | 3 | A-295 to A-297 |
-| 108 | `014-deep-review/design/records.md` | 3 | A-298 to A-300 |
-| 109 | `014-deep-review/design/fixtures/fix-ledger.md` | 6 | A-301 to A-306 |
+| 103 | `013-manual-testing-scenarios/spec.md` | 1 | A-290 to A-290 |
+| 104 | `013-manual-testing-scenarios/design/fixtures.md` | 1 | A-291 to A-291 |
+| 105 | `013-manual-testing-scenarios/design/refusal-catalogue.md` | 2 | A-292 to A-293 |
+| 106 | `013-manual-testing-scenarios/design/scenario-contract.md` | 1 | A-294 to A-294 |
+| 107 | `015-deep-review/tasks.md` | 3 | A-295 to A-297 |
+| 108 | `015-deep-review/design/records.md` | 3 | A-298 to A-300 |
+| 109 | `015-deep-review/design/fixtures/fix-ledger.md` | 6 | A-301 to A-306 |
 | 110 | `spec.md` | 1 | A-307 to A-307 |
 
 ## HALT list
@@ -168,7 +168,7 @@ None. Every cited line was found at HEAD, some at a moved line number found with
 - 013 lists no `bots` refusal name and no notice count, so it gets no entry.
 - Counts that were already wrong at HEAD are not ripples of this map and stay as they are: 005-memory CHK-001 says 15 REQ rows and the spec has 17, and 008 CHK-001 and plan V-row say 19 and the spec has 20.
 - `003-terminal-screen/context/legacy-003/spec.md` still says "bot plus kind". It is an archived source, not a plan doc.
-- The 012 run transcripts under `012-manual-testing-scenarios/scratch/` record past runs and are not edited.
+- The 012 run transcripts under `013-manual-testing-scenarios/scratch/` record past runs and are not edited.
 - `decision-record.md` at the parent has uncommitted changes in the working tree and is not a target.
 
 ## Entries
@@ -5759,7 +5759,7 @@ A later name would be a new row there and a new exit here.
 - **Does a Slack message redelivered after a reconnect answer an approval twice?** UNKNOWN. The research found no verified answer, and this is the approval path. The design has two guards. The seen record is keyed `envelope:<envelope_id>` and written before the acknowledge. The index entry is removed once a press resolves. Whether Slack gives a redelivered press the same `envelope_id` is not known. Settle it before child 005 is dispatched: press a button, drop the socket before the acknowledge, reconnect and read whether the second delivery carries the same id.
 ```
 
-### 103. `012-manual-testing-scenarios/spec.md`
+### 103. `013-manual-testing-scenarios/spec.md`
 
 #### A-290
 
@@ -5779,7 +5779,7 @@ New.
 refuses the next append with `bots: memory-full: <path> (<n> entries, <b> bytes), free a line with bots remember --forget <entry-id>` and exit 4,
 ```
 
-### 104. `012-manual-testing-scenarios/design/fixtures.md`
+### 104. `013-manual-testing-scenarios/design/fixtures.md`
 
 #### A-291
 
@@ -5799,7 +5799,7 @@ New.
 | `bots: memory-full: <path> (59 entries, 3590 bytes), free a line with bots remember --forget <entry-id>` with `exit=4` at the 60th append |
 ```
 
-### 105. `012-manual-testing-scenarios/design/refusal-catalogue.md`
+### 105. `013-manual-testing-scenarios/design/refusal-catalogue.md`
 
 #### A-292
 
@@ -5833,7 +5833,7 @@ Old. It ends with one line feed, which the block cannot show.
 
 New. empty. Delete the old text and put nothing in its place.
 
-### 106. `012-manual-testing-scenarios/design/scenario-contract.md`
+### 106. `013-manual-testing-scenarios/design/scenario-contract.md`
 
 #### A-294
 
@@ -5853,7 +5853,7 @@ New.
 | `bots: memory-full: <path> (59 entries, 3590 bytes), free a line with bots remember --forget <entry-id>` with `exit=4` at the 60th append |
 ```
 
-### 107. `014-deep-review/tasks.md`
+### 107. `015-deep-review/tasks.md`
 
 #### A-295
 
@@ -5909,7 +5909,7 @@ New.
 - [ ] CHK-012 [P1] Every fixed defect has a regression test that fails without the fix, and its ledger row records that failure in the `Revert proof` cell. Verify: `rg -c '^\| F[0-9].*printed .FAIL.*\| pass \|$' $R/fix-ledger.md` prints the same number as `rg -c '^\| F[0-9].*\| pass \|$' $R/fix-ledger.md`.
 ```
 
-### 108. `014-deep-review/design/records.md`
+### 108. `015-deep-review/design/records.md`
 
 #### A-298
 
@@ -5970,7 +5970,7 @@ New.
 A row reads `pass` when the fix landed, its verify command printed what the row says and its `Revert proof` cell shows the regression test failing with the fix reverted. The regression test imports the module the fix changed and never only a helper of the suite. When that module is `bots.cjs`, the test runs it instead.
 ```
 
-### 109. `014-deep-review/design/fixtures/fix-ledger.md`
+### 109. `015-deep-review/design/fixtures/fix-ledger.md`
 
 #### A-301
 
