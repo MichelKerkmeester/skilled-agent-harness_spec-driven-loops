@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
     "created_at": "2026-11-28T11:26:16Z",
-    "last_save_at": "2026-11-28T11:36:33.770Z",
+    "last_save_at": "2026-11-28T11:58:03.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d90b159294f3ebc9f265d1c8a27db760e6df6e80fa13c258d25d4b513fa3bf27",
+    "source_fingerprint": "sha256:de584496cee21fe767e71298cae8d5e20b0a37d099ba1c793c64178468f7cfcf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f74e5b3204c1c291e712813cdc834f6b7d1f4869791fee1786b096fa8b2ede39",
-      "plan.md": "de309744861673e5944acbabad7e55e20df98404e6567820cdcd88a8e1be4a02",
-      "tasks.md": "5d2edabd4e651c429746f44f0cd6e1b7deb225931b9648e027c92319ff8d22bf",
+      "plan.md": "d4b1271991c4ecf746569b5ad3a3d65cc56acf5b2d6ee6c8d3b033faef0b1813",
+      "tasks.md": "963c73d29490e8e2d7cbbaccf80ce30dd4bc0aa56accaae22d62c5c63d237e78",
       "implementation-summary.md": "07adde6212db5f884d9e3c0bc56aaad180dc5f9e6e6488a0286e53c38b015800"
     },
     "last_active_at": null

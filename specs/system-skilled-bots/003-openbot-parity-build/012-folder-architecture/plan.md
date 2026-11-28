@@ -59,7 +59,7 @@ Measured move map.
 - **`scratch/gate-baseline.md`**: every gate's output before the first move, so no regression claim rests on memory.
 
 ### Data Flow
-The measure feeds the map, the map feeds one move group at a time, and each group's verify reruns the gates it can break before the next group starts.
+The measure feeds the map and the map feeds one move group at a time. Each group's verify reruns the gates it can break before the next group starts.
 <!-- /ANCHOR:architecture -->
 
 ---

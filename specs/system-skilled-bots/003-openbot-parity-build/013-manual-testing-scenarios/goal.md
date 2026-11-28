@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Prove from a plain terminal that an operator can drive every verb and record phases 001 to 011 deliver, by adding 33 scenarios in ten new category folders to the system-skilled-bots manual testing playbook, the nine conversation scenarios first, and recording one execution of all 58 scenarios with the three system-deep-loop scenarios that cover the executor audit, as phase 13 of the parent goal's OpenBot parity build.
+**Objective:** Prove from a plain terminal that an operator can drive every verb and record phases 001 to 011 deliver, by adding 33 scenarios in ten new category folders to the system-skilled-bots manual testing playbook, the nine conversation scenarios first and recording one execution of all 58 scenarios with the three system-deep-loop scenarios that cover the executor audit, as phase 13 of the parent goal's OpenBot parity build.
 
 ### Decisions
 

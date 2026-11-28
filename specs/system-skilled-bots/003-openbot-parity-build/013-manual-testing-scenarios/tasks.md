@@ -180,7 +180,7 @@ The fallback order is the ladder in `plan.md`'s External orchestration section, 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] The package validator prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`, and the run folder holds 58 verdict rows, and the deep-loop run folder holds 3
+- [ ] The package validator prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`, and the run folder holds 58 verdict rows. The deep-loop run folder holds 3
 - [ ] No verdict reads `SKIP` for a missing verb or a missing field, because phases 001 to 011 are closed before wave 7 starts
 <!-- /ANCHOR:completion -->
 

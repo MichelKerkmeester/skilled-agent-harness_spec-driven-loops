@@ -43,7 +43,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 
 - [ ] T003 Write the move map from T001's measure: one row per candidate with an id `M001` up, the old path, the verdict `move` or `keep`, the new path for a move, the reason and the count `rg -c -F '<old path>' .` returns. Keep every folder `parent-skill-check.cjs` or the mode registry fixes, and group the move rows by the task below that lands them (`$F/scratch/move-map.md`). Verify: `rg -c '^\| M[0-9]{3} \|' $F/scratch/move-map.md` prints the row count, and `rg -n '^\| M[0-9]{3} \|[^|]*\|[^|]*\|[^|]*\| *\|' $F/scratch/move-map.md` prints nothing, so no row has an empty reason.
 - [ ] T004 Land the runtime lib and test rows with `git mv` and rewrite every import and every reference in code, CI, docs and specs in the same commit (`$H/runtime/`). Verify: `npm --prefix $H/runtime run typecheck` exits 0 and `npm --prefix $H/runtime test` prints the baseline counts with no `failed`.
-- [ ] T005 Land the script and fixture rows the same way (`$H/scripts/`). Verify: `npm --prefix $H/runtime test` prints the baseline counts, and for each landed row `rg -n -F '<old path>' . -g '!$F/scratch/**'` prints nothing.
+- [ ] T005 Land the script and fixture rows the same way (`$H/scripts/`). Verify: `npm --prefix $H/runtime test` prints the baseline counts, and for each landed row `rg -n -F '<old path>' . -g "!$F/scratch/**"` prints nothing.
 - [ ] T006 Land the mode packet, reference and asset rows the same way (`$H/bots-*/`, `$H/assets/`, `$H/shared/`). Verify: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs $H` prints `OK: parent-skill-check`.
 - [ ] T007 Land the playbook and feature catalog rows the same way (`$H/manual-testing-playbook/`, `$H/feature-catalog/`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
 - [ ] T008 Land the crate and CLI rows the same way, and keep the crate's `design/` copy equal to the packet's two design folders (`.skilled/crates/bots-tui/`, `.skilled/bin/bots.cjs`, `.github/workflows/bots-runtime.yml`). Verify: `cargo test --locked --manifest-path $C` prints the baseline counts per target, the guard's diff commands from `bots-runtime.yml` print nothing and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`.
@@ -57,7 +57,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 
 - [ ] T010 Rerun every gate T002 recorded from the final state and compare each line with the baseline. Verify: each count matches and no output names `failed` or `FAILED`.
 - [ ] T011 Prove every move is a rename. Verify: `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing.
-- [ ] T012 Prove no old path survives. Verify: for each `move` row, `rg -n -F '<old path>' . -g '!$F/scratch/**'` prints nothing.
+- [ ] T012 Prove no old path survives. Verify: for each `move` row, `rg -n -F '<old path>' . -g "!$F/scratch/**"` prints nothing.
 - [ ] T013 Measure the final state the way T001 did (`$F/scratch/tree-after.md`). Verify: the one-file folder count under `$H` is lower than the baseline's, or each keep row the difference rests on names its reason.
 - [ ] T014 Validate this folder. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $F --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
