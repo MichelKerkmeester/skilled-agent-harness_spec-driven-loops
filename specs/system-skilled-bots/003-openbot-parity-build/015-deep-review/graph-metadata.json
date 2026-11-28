@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Fourteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
     "created_at": "2026-11-25T19:32:30Z",
-    "last_save_at": "2026-11-28T15:26:56.416Z",
+    "last_save_at": "2026-11-28T15:28:03.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:967d9ccfdeee760d03250b3609574e12c0bb00f75f94c2e95222a6f54a7ad60d",
+    "source_fingerprint": "sha256:08f3eb88a9d92a5ee94b5dc1bdbadea402c3a9d49bdae2fa6a3bd992ac3a7d64",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2c0659ecca9e37fcc9f6c36606459ced9df550b0da0ca055930041cea00dd643",
       "plan.md": "15244fe8413bff04fba630707abd681ff4965d689ea29365be3239c392d909c4",
-      "tasks.md": "7551f465cca4733e873aed8ca1b0b30f004c8617b15e1560f68f579b1bca8b34",
+      "tasks.md": "06584b619c4eafdf070e8118752ad7dc20c0e0849ff4bda33250c531cfacbef8",
       "implementation-summary.md": "aa4b4e88d08274abe26de799b62bf898f6f4e3a9a1d4232966dbf847bae76bf1"
     },
     "last_active_at": null
