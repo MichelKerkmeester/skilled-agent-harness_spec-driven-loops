@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports"
-    last_updated_at: "2026-11-26T06:00:00Z"
-    last_updated_by: "wo-09-writer"
-    recent_action: "Authored the acceptance criteria"
-    next_safe_action: "Run each block and mark the rows"
+    last_updated_at: "2026-11-28T15:30:00Z"
+    last_updated_by: "unit-orchestrator-011-006"
+    recent_action: "Marked all four rows Met with observed evidence"
+    next_safe_action: "Merge the unit branch, then open child 007"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-006-daemon-webhook"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,10 +53,10 @@ AC ids follow their requirement, AC-NNN checks REQ-NNN and keep the pre-expansio
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-011 | REQ-011 | Given a fake `signal-cli` daemon on a loopback port, When it pushes one message event and then the same event again, Then one request is queued and the replay adds nothing, a 2,500-character reply is sent as two `send` calls, a stream drop reconnects after 2 s and a daemon that stops answering refuses `channel-daemon-unreachable` with the entry still `queued`. Given an event whose conversation is a group, When it arrives, Then it is refused `channel-group-approval` with reply M16 and no prompt is answered | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal follows the wire table$")` prints `Tests  1 passed` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal refuses a group event$")` prints `Tests  1 passed` | Unmet | - |
-| AC-012 | REQ-012 | Given the listener on a loopback port and the stored app secret, When an unsigned, a malformed and a wrongly signed body are posted, Then each answers `401` and the parser spy records no call, a body of 2 MiB plus one byte answers `413`, a signed body of two messages answers `200` only after both seen records exist, the same body posted again adds nothing and a body for another `phone_number_id` adds nothing. Given a `statuses` entry whose status is `failed` for a platform message id the queue knows, When the body is posted, Then that queue entry and the run record read `failed` | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp refuses an unsigned body before parse$")` prints `Tests  1 passed`, `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp follows the wire table$")` prints `Tests  1 passed` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp maps a failed status onto the queue entry$")` prints `Tests  1 passed` | Unmet | - |
-| AC-026 | REQ-026 | Given a fake daemon whose `/api/v1/check` answers `200`, When `listen signal` starts, Then stderr starts `bots: signal ready as +` and given one that answers `503`, Then `listen` exits 4 with `channel-daemon-unreachable` and the lease file is gone | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal probes the daemon before the stream$")` prints `Tests  1 passed` | Unmet | - |
-| AC-027 | REQ-027 | Given all four secrets, When `listen whatsapp` starts, Then it binds `127.0.0.1` only, a `GET` with `hub.mode=subscribe` and the stored verify token echoes `hub.challenge` with `200`, a wrong token answers `403` and with the app secret missing it exits 4 with `secret-unknown` before the bind | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp echoes the handshake challenge$")` prints `Tests  1 passed` | Unmet | - |
+| AC-011 | REQ-011 | Given a fake `signal-cli` daemon on a loopback port, When it pushes one message event and then the same event again, Then one request is queued and the replay adds nothing, a 2,500-character reply is sent as two `send` calls, a stream drop reconnects after 2 s and a daemon that stops answering refuses `channel-daemon-unreachable` with the entry still `queued`. Given an event whose conversation is a group, When it arrives, Then it is refused `channel-group-approval` with reply M16 and no prompt is answered | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal follows the wire table$")` prints `Tests  1 passed` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal refuses a group event$")` prints `Tests  1 passed` Observed 2026-11-28: `Tests  1 passed | 22 skipped (23)` for each filter | Met | - |
+| AC-012 | REQ-012 | Given the listener on a loopback port and the stored app secret, When an unsigned, a malformed and a wrongly signed body are posted, Then each answers `401` and the parser spy records no call, a body of 2 MiB plus one byte answers `413`, a signed body of two messages answers `200` only after both seen records exist, the same body posted again adds nothing and a body for another `phone_number_id` adds nothing. Given a `statuses` entry whose status is `failed` for a platform message id the queue knows, When the body is posted, Then that queue entry and the run record read `failed` | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp refuses an unsigned body before parse$")` prints `Tests  1 passed`, `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp follows the wire table$")` prints `Tests  1 passed` and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp maps a failed status onto the queue entry$")` prints `Tests  1 passed` Observed 2026-11-28: `Tests  1 passed | 22 skipped (23)` for each of the three filters | Met | - |
+| AC-026 | REQ-026 | Given a fake daemon whose `/api/v1/check` answers `200`, When `listen signal` starts, Then stderr starts `bots: signal ready as +` and given one that answers `503`, Then `listen` exits 4 with `channel-daemon-unreachable` and the lease file is gone | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport signal probes the daemon before the stream$")` prints `Tests  1 passed` Observed 2026-11-28: `Tests  1 passed | 22 skipped (23)` | Met | - |
+| AC-027 | REQ-027 | Given all four secrets, When `listen whatsapp` starts, Then it binds `127.0.0.1` only, a `GET` with `hub.mode=subscribe` and the stored verify token echoes `hub.challenge` with `200`, a wrong token answers `403` and with the app secret missing it exits 4 with `secret-unknown` before the bind | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts -t "^transport whatsapp echoes the handshake challenge$")` prints `Tests  1 passed` Observed 2026-11-28: `Tests  1 passed | 22 skipped (23)` | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is unmet until the code lands and each command prints what its row says.
+All four rows are Met. Each Verification cell names the `Tests` line observed on 2026-11-28 in the unit worktree, and the block filter `-t "^transport "` printed `Tests  23 passed (23)`.
 <!-- /ANCHOR:closure -->

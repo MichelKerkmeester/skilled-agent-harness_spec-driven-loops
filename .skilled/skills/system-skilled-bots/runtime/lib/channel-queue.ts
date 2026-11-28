@@ -7,8 +7,9 @@
 // exclusively under its idempotency key, so a second enqueue of one key
 // enqueues nothing and the first entry stands. A state only moves forward:
 // queued, then sending, then delivered or failed, and a send whose result is
-// uncertain is unknown and never retried. This module is the only writer of
-// the queue folder.
+// uncertain is unknown and never retried. A platform's later failure report is
+// the one move out of delivered, and the sent records map a platform message
+// id back to its key. This module is the only writer of the queue folder.
 
 import { createHash, randomBytes } from 'node:crypto';
 import { linkSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -584,4 +585,110 @@ export async function drainQueue(input: DrainInput): Promise<DrainReport> {
   // One stamp per pass, so a status index sees the queue transitions.
   if (recorded) writeGenerationStamp(input.stateRoot, input.identity);
   return report;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 6. SENT RECORDS AND A LATE PLATFORM FAILURE
+// ───────────────────────────────────────────────────────────────────
+
+/** One delivered send, kept so a platform message id names its queue key later. */
+export interface SentRecord {
+  schemaVersion: 1;
+  channel: ChannelName;
+  platformMessageId: string;
+  idempotencyKey: string;
+  sentAt: string;
+}
+
+/**
+ * The sent record file of one platform message. The provider id is hashed, so
+ * no provider id reaches a path.
+ */
+export function sentRecordFile(stateRoot: string, identity: string, channel: ChannelName, platformMessageId: string): string {
+  return join(channelFolder(stateRoot, identity), 'sent', channel, `${createHash('sha256').update(platformMessageId).digest('hex')}.json`);
+}
+
+/**
+ * Record that one platform message id belongs to one queue key.
+ *
+ * The same message id always names the same key, so an existing file is
+ * overwritten rather than refused.
+ */
+export function writeSentRecord(input: {
+  stateRoot: string;
+  identity: string;
+  channel: ChannelName;
+  platformMessageId: string;
+  key: string;
+  now?: Date;
+}): void {
+  ensureChannelState(input.stateRoot, input.identity);
+  const record: SentRecord = {
+    schemaVersion: 1,
+    channel: input.channel,
+    platformMessageId: input.platformMessageId,
+    idempotencyKey: input.key,
+    sentAt: (input.now ?? new Date()).toISOString(),
+  };
+  writeStateFile(sentRecordFile(input.stateRoot, input.identity, input.channel, input.platformMessageId), record);
+}
+
+/**
+ * Move a delivered entry to failed on the platform's own later report.
+ *
+ * A platform may accept a send and report it failed afterwards, so this is the
+ * one move out of delivered. A second report for the same id moves nothing,
+ * because the entry is no longer delivered.
+ *
+ * @returns The key the message id named, whether the entry moved, and the item
+ *   the entry answered.
+ */
+export function failDeliveredEntry(input: {
+  stateRoot: string;
+  identity: string;
+  channel: ChannelName;
+  platformMessageId: string;
+  detail: string;
+  now?: Date;
+}): ChannelResult<{ key: string | null; moved: boolean; itemId: string | null }> {
+  const now = input.now ?? new Date();
+  const nothing: ChannelResult<{ key: string | null; moved: boolean; itemId: string | null }> = {
+    ok: true,
+    value: { key: null, moved: false, itemId: null },
+  };
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(sentRecordFile(input.stateRoot, input.identity, input.channel, input.platformMessageId), 'utf8'));
+  } catch {
+    return nothing;
+  }
+  if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return nothing;
+  const fields = parsed as Record<string, unknown>;
+  if (typeof fields.idempotencyKey !== 'string' || fields.channel !== input.channel) return nothing;
+
+  const key = fields.idempotencyKey;
+  const read = readQueueEntry(input.stateRoot, input.identity, key);
+  if (!read.ok) return read;
+  const entry = read.value;
+  if (entry.channel !== input.channel || entry.state !== 'delivered') {
+    return { ok: true, value: { key, moved: false, itemId: entry.itemId } };
+  }
+
+  // This is the one move out of delivered, because only the platform's own later report can say a delivered message never arrived.
+  entry.state = 'failed';
+  entry.nextAttemptAt = null;
+  entry.error = {
+    kind: 'platform-failed',
+    message: input.detail,
+    unsupported: false,
+    retryable: false,
+    sentBeforeError: false,
+  };
+  entry.updatedAt = now.toISOString();
+  writeStateFile(queueEntryFile(input.stateRoot, input.identity, key), entry);
+
+  if (recordOutcome(input.stateRoot, input.identity, entry)) writeGenerationStamp(input.stateRoot, input.identity, now);
+
+  return { ok: true, value: { key, moved: true, itemId: entry.itemId } };
 }

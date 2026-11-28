@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "timestamp": 1764104701000,
+    "results": [
+      {
+        "recipientAddress": { "number": "+15550111" },
+        "type": "SUCCESS"
+      }
+    ]
+  },
+  "id": "00000000-0000-4000-8000-000000000001"
+}
