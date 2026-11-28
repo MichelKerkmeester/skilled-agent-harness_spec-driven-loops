@@ -9,7 +9,7 @@
 // wrapped, so a case reads the call it receives and the config file the
 // child would find in its working folder at that moment.
 
-import { copyFileSync, existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, lstatSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { isAbsolute, join, resolve } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -36,7 +36,7 @@ interface AuditedCall {
   cwdConfig: string | null;
 }
 
-const seen = vi.hoisted(() => ({ calls: [] as AuditedCall[] }));
+const seen = vi.hoisted(() => ({ calls: [] as AuditedCall[], plant: undefined as ((cwd: string) => void) | undefined }));
 
 vi.mock('../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js')>();
@@ -52,6 +52,7 @@ vi.mock('../../../system-deep-loop/runtime/lib/deep-loop/executor-audit.js', asy
         dispatchEnvKeys: input.dispatchEnvKeys,
         cwdConfig: fs.existsSync(config) ? fs.readFileSync(config, 'utf8') : null,
       });
+      seen.plant?.(input.cwd);
       return actual.runAuditedExecutorCommand(input);
     },
   };
@@ -118,6 +119,7 @@ function answeredAs(item: NeedsYouItem, text: string): NeedsYouItem {
 
 afterEach(() => {
   seen.calls.length = 0;
+  seen.plant = undefined;
   cleanupTemp();
 });
 
@@ -292,6 +294,43 @@ describe('apps written file', () => {
     expect(call?.cwdConfig).toBe(runCopyText(recordOf(world, resumed)));
     expect(readFileSync(join(tree, '.utcp_config.json'), 'utf8')).toBe(own);
   }, 120_000);
+
+  it('never restores the tree config through a planted link', async () => {
+    // A child that swaps the tree's config for a link to a file outside the tree must not make the restore write there.
+    const world = appsWorld(true);
+    writeBot(world, 'link-app', bot('link-app', ['isolation: worktree', 'apps: [github]'], 'Edit the notes and ask before keeping them.\nSTUB:park-edit=parked.md'));
+    const own = readFileSync(join(world.checkoutRoot, '.utcp_config.json'), 'utf8');
+    const outside = join(tempDir('apps-outside-'), 'outside.json');
+    const known = '{"outside": true}\n';
+    writeFileSync(outside, known);
+    seen.plant = (cwd: string) => {
+      const file = join(cwd, '.utcp_config.json');
+      rmSync(file, { force: true });
+      symlinkSync(outside, file);
+    };
+    const parked = await runBot(world.input('link-app', { senders: {} }));
+    if (parked.kind !== 'awaiting-decision') throw new Error(`expected a parked run, got ${parked.kind}`);
+    const tree = recordOf(world, parked).evidence.worktreePath as string;
+    expect(readFileSync(outside, 'utf8')).toBe(known);
+    const entry = lstatSync(join(tree, '.utcp_config.json'));
+    expect(entry.isSymbolicLink()).toBe(false);
+    expect(entry.isFile()).toBe(true);
+    expect(readFileSync(join(tree, '.utcp_config.json'), 'utf8')).toBe(own);
+  }, 120_000);
+
+  it('refuses a tree config that is a link', () => {
+    // The refusal writes nothing, so the link and the file it names are both left as they were.
+    const worktree = tempDir('apps-tree-');
+    const outside = join(tempDir('apps-outside-'), 'outside.json');
+    const known = '{"outside": true}\n';
+    writeFileSync(outside, known);
+    symlinkSync(outside, join(worktree, '.utcp_config.json'));
+    const runFolder = tempDir('apps-run-');
+    writeFileSync(join(runFolder, 'utcp.json'), '{"manual_call_templates": []}\n');
+    expect(writeRunUtcpConfig({ runFolder, worktree })).toMatchObject({ ok: false, reason: 'utcp-config-unwritten' });
+    expect(readFileSync(outside, 'utf8')).toBe(known);
+    expect(lstatSync(join(worktree, '.utcp_config.json')).isSymbolicLink()).toBe(true);
+  });
 });
 
 describe('apps record', () => {

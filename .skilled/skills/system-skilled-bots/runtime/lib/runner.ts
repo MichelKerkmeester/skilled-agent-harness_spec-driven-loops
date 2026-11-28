@@ -50,7 +50,7 @@ import { classifyAction, clipAction } from './action-kind.js';
 import { resolveActor } from './actor.js';
 import { decideApproval } from './approval-ladder.js';
 import { approveDefinition, checkApproval, digestOf } from './approval.js';
-import { resolveApps, UTCP_CONFIG_NAME, writeRunUtcpConfig } from './apps.js';
+import { resolveApps, restoreTreeUtcpConfig, UTCP_CONFIG_NAME, writeRunUtcpConfig } from './apps.js';
 import { parseDefinition } from './definition.js';
 import { deliverRecord, resolveDeliveryEntries } from './delivery.js';
 import {
@@ -938,17 +938,6 @@ function settleUnusedTree(
 }
 
 /**
- * Put a tree's own UTCP config back once its child is done: the text taken before the
- * filtered copy was written, or no file when the tree held none. Only the working tree is
- * restored, so a commit the child made stays as the child made it.
- */
-function restoreTreeUtcpConfig(treePath: string, original: string | null): void {
-  const path = join(treePath, UTCP_CONFIG_NAME);
-  if (original === null) rmSync(path, { force: true });
-  else writeFileSync(path, original);
-}
-
-/**
  * Restore a reopened tree's UTCP config when it differs from the checkout's, which is what a
  * run killed before its restore leaves behind. The tree's own git index says what the file
  * should hold, so no marker file is needed. A file the index does not track was left by a run,
@@ -957,6 +946,8 @@ function restoreTreeUtcpConfig(treePath: string, original: string | null): void 
 function restoreOrphanedUtcpConfig(checkoutRoot: string, treePath: string, env: NodeJS.ProcessEnv): Result<null> {
   const read = (path: string): string | null => (existsSync(path) ? readFileSync(path, 'utf8') : null);
   const treeFile = join(treePath, UTCP_CONFIG_NAME);
+  const entry = lstatSync(treeFile, { throwIfNoEntry: false });
+  if (entry !== undefined && !entry.isFile()) rmSync(treeFile, { recursive: true, force: true });
   if (read(treeFile) === read(join(checkoutRoot, UTCP_CONFIG_NAME))) return { ok: true, value: null };
   const gitEnv: NodeJS.ProcessEnv = { ...env };
   for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR']) delete gitEnv[key];
