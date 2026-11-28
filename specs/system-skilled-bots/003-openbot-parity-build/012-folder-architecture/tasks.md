@@ -24,7 +24,7 @@ contextType: "implementation"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Every command runs from the repository root. `F` is `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture`, `H` is `.skilled/skills/system-skilled-bots` and `C` is `.skilled/crates/bots-tui/Cargo.toml`. `BASE` is the commit `main` held when T001 ran, which T001 writes into `$F/scratch/tree-baseline.md`.
+Every command runs from the repository root. `F` is `specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture`, `H` is `.skilled/skills/system-skilled-bots` and `C` is `.skilled/crates/bots-tui/Cargo.toml`. `BASE` is the commit `system-skilled-bots` held when the phase opened, which T001 writes into `$F/scratch/tree-baseline.md`.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -32,7 +32,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Measure every in-scope root as it stands when the phase opens, after 011.005 to 011.007 and 010.003 have merged: tracked file count, folder count, the folders that hold one file and the deepest path, for `$H` and each of its top-level folders, `.skilled/crates/bots-tui`, `.skilled/bin/bots.cjs` and the deep-loop executor audit files, and record `BASE` (`$F/scratch/tree-baseline.md`). Verify: `rg -c '^\| ' $F/scratch/tree-baseline.md` prints at least 6, and `rg -n 'BASE' $F/scratch/tree-baseline.md` prints the commit.
+- [ ] T001 Measure every in-scope root as it stands when the phase opens, after 011.005 to 011.007 and 010.003 have merged: tracked file count, folder count, the folders that hold one file and the deepest path, for `$H` and each of its top-level folders, `.skilled/crates/bots-tui`, `.skilled/bin/bots.cjs` and the deep-loop executor audit files, and record `BASE`, the commit `system-skilled-bots` held when the phase opened (`$F/scratch/tree-baseline.md`). Verify: `rg -c '^\| ' $F/scratch/tree-baseline.md` prints at least 6, and `rg -n 'BASE' $F/scratch/tree-baseline.md` prints the commit.
 - [ ] T002 Record every gate's output before the first move: the runtime `npm test` and `npm run typecheck`, `cargo fmt --check`, `cargo clippy --locked --all-targets -- -D warnings` and `cargo test --locked` on `$C`, the deep-loop executor audit tests, `parent-skill-check.cjs` on `$H`, `check-gate-inputs.sh`, the playbook validator and `node .skilled/bin/bots.cjs --help` (`$F/scratch/gate-baseline.md`). Verify: `rg -c 'Test Files|test result: ok|OK: parent-skill-check|RESULT: PASSED|scenarios=58' $F/scratch/gate-baseline.md` prints at least 12.
 <!-- /ANCHOR:phase-1 -->
 
@@ -48,6 +48,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 - [ ] T007 Land the playbook and feature catalog rows the same way (`$H/manual-testing-playbook/`, `$H/feature-catalog/`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
 - [ ] T008 Land the crate and CLI rows the same way, and keep the crate's `design/` copy equal to the packet's two design folders (`.skilled/crates/bots-tui/`, `.skilled/bin/bots.cjs`, `.github/workflows/bots-runtime.yml`). Verify: `cargo test --locked --manifest-path $C` prints the baseline counts per target, the guard's diff commands from `bots-runtime.yml` print nothing and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`.
 - [ ] T009 Land the deep-loop executor audit rows the same way, when the map holds any (`.skilled/skills/system-deep-loop/runtime/`). Verify: the executor audit tests print the baseline counts.
+- [ ] T010 Author a README through `/create:readme`, which applies sk-doc's `sk-create-readme` standards, for each folder that is new or unique in the final layout. It runs after T004 to T009, because the move map creates folders that do not exist until the moves land. Each README says what belongs in its folder and what does not. Write `.skilled/crates/README.md` and refresh `.skilled/crates/bots-tui/README.md`. The rest comes from the move map's new folders and the folders the build created under an in-scope root. Add a README table to `$F/scratch/move-map.md` with one row per folder in the form `| R001 | <folder> | readme | <reason> |`, ids `R001` up, the verdict `readme` or `skip` and a reason. The two named folders are rows. Skip a fixture case folder, the crate's `design/` copy the CI diff guard compares, a feature catalog category folder or a folder whose parent README already says what it holds (each folder named here and in the table). Verify: `test -f .skilled/crates/README.md && test -f .skilled/crates/bots-tui/README.md` exits 0, `rg -c '^\| R[0-9]{3} \|' $F/scratch/move-map.md` prints at least 2, `rg -N -o -r '$1' '^\| R[0-9]{3} \| ([^ |]+) \| readme \|' $F/scratch/move-map.md | while read d; do test -f "$d/README.md" || echo "missing $d"; done` prints nothing and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <folder>/README.md` prints `VALID` for each `readme` row.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,11 +56,11 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Rerun every gate T002 recorded from the final state and compare each line with the baseline. Verify: each count matches and no output names `failed` or `FAILED`.
-- [ ] T011 Prove every move is a rename. Verify: `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing.
-- [ ] T012 Prove no old path survives. Verify: for each `move` row, `rg -n -F '<old path>' . -g "!$F/scratch/**"` prints nothing.
-- [ ] T013 Measure the final state the way T001 did (`$F/scratch/tree-after.md`). Verify: the one-file folder count under `$H` is lower than the baseline's, or each keep row the difference rests on names its reason.
-- [ ] T014 Validate this folder. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $F --strict` prints `RESULT: PASSED`.
+- [ ] T011 Rerun every gate T002 recorded from the final state and compare each line with the baseline. Verify: each count matches and no output names `failed` or `FAILED`.
+- [ ] T012 Prove every move is a rename. Verify: `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing.
+- [ ] T013 Prove no old path survives. Verify: for each `move` row, `rg -n -F '<old path>' . -g "!$F/scratch/**"` prints nothing.
+- [ ] T014 Measure the final state the way T001 did (`$F/scratch/tree-after.md`). Verify: the one-file folder count under `$H` is lower than the baseline's, or each keep row the difference rests on names its reason.
+- [ ] T015 Validate this folder. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $F --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -123,7 +124,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 ## Testing Checklist
 
 - [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` reads `Met`
-- [ ] CHK-021 [P0] Every gate count in T010 equals the baseline
+- [ ] CHK-021 [P0] Every gate count in T011 equals the baseline
 - [ ] CHK-022 [P1] `node .skilled/bin/bots.cjs ui` refuses `ui-not-built` on a bare tree with the crate folder and opens on the built crate
 - [ ] CHK-023 [P1] A group whose gate failed was reverted, not patched
 <!-- /ANCHOR:testing -->
@@ -135,7 +136,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 
 - [ ] CHK-FIX-001 [P0] Each move row is `instance-only`: one path and every reference to it.
 - [ ] CHK-FIX-002 [P0] Each move row carries the `rg -c -F` count of the files that name it.
-- [ ] CHK-FIX-003 [P0] T012 proves no consumer still names an old path.
+- [ ] CHK-FIX-003 [P0] T013 proves no consumer still names an old path.
 - [ ] CHK-FIX-004 [P0] N/A: no path, parser or redaction logic changes, only where files live.
 - [ ] CHK-FIX-005 [P1] The move map's row count is stated in `scratch/tree-after.md`.
 - [ ] CHK-FIX-006 [P1] N/A: no code or test reads new process-wide state.
@@ -160,6 +161,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 - [ ] CHK-040 [P1] Spec, plan and tasks synchronized
 - [ ] CHK-041 [P1] No code comment names a spec path or a task id
 - [ ] CHK-042 [P2] The hub `README.md` names any moved folder it described
+- [ ] CHK-043 [P1] Every `readme` row in the move map's README table, `.skilled/crates/` and `.skilled/crates/bots-tui/` among them, holds a `README.md` authored through `/create:readme` that says what belongs in the folder and what does not
 <!-- /ANCHOR:docs -->
 
 ---
@@ -168,7 +170,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 ## File Organization
 
 - [ ] CHK-050 [P1] Working files stay in `scratch/`
-- [ ] CHK-051 [P1] `scratch/` keeps only the four records the spec names
+- [ ] CHK-051 [P1] `scratch/` keeps only the four records the spec names, so the two `draft-*.md` files are deleted once T001 and T003 have written the real records
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -179,7 +181,7 @@ Every command runs from the repository root. `F` is `specs/system-skilled-bots/0
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 0/12 |
-| P1 Items | 13 | 0/13 |
+| P1 Items | 14 | 0/14 |
 | P2 Items | 1 | 0/1 |
 
 **Verification Date**: Pending

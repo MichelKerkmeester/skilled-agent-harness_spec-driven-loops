@@ -35,7 +35,7 @@ The phase changes where files live and nothing about what they do. It measures t
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] 011.007, 010.003 and every runtime unit in the parent wave schedule have merged on `main`, and `rg -c "\| Unmet \|"` finds no row in any of their `acceptance-criteria.md` files.
+- [ ] 011.007, 010.003 and every runtime unit in the parent wave schedule have merged on `system-skilled-bots`, and `rg -c "\| Unmet \|"` finds no row in any of their `acceptance-criteria.md` files.
 - [ ] `scratch/tree-baseline.md` and `scratch/gate-baseline.md` exist and name every in-scope root.
 - [ ] `scratch/move-map.md` gives every row a verdict and a reason.
 
@@ -113,13 +113,13 @@ The map is design work, so its fallback tier is `max`.
 
 | Worker | Task ids | Files | Effort | Fallback if `cli-mistral-vibe` runs out |
 |--------|----------|-------|--------|--------------------------------------|
-| W2a | T004, T005, T006, T007, T008, T009 | The mapped paths and every file that names one | `max (fixed)`, fallback at `high` | `cli-pi` `--thinking high`, then `cli-opencode` `#high`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
+| W2a | T004, T005, T006, T007, T008, T009, T010 | The mapped paths and every file that names one, then the `README.md` of each folder the README table marks `readme` | `max (fixed)`, fallback at `high` | `cli-pi` `--thinking high`, then `cli-opencode` `#high`, then `cli-devin` `deepseek-v4-1-flash-max` after a probe, then `cli-codex` `gpt-6-luna` `xhigh` `fast` |
 
-Each task is one brief and one commit, so a failed group reverts alone. Each brief carries its group's rows from the map verbatim, and the worker moves only those rows.
+Each task is one brief and one commit, so a failed group reverts alone. T010 comes last in the wave, because the folders its README table lists exist only once the moves have landed. Each brief carries its group's rows from the map verbatim, and the worker moves only those rows.
 
 ### W3 Verification, orchestrator, no dispatch
 
-Tasks T010 to T014. The orchestrator reruns every gate, writes `scratch/tree-after.md` and validates the packet.
+Tasks T011 to T015. The orchestrator reruns every gate, writes `scratch/tree-after.md` and validates the packet.
 
 ---
 

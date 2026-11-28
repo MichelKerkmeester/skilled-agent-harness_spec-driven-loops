@@ -51,7 +51,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given 011.007, 010.003 and every runtime unit merged on `main`, When the phase opens, Then `scratch/tree-baseline.md` records `BASE` and, for each in-scope root, its file count, folder count, one-file folders and deepest path | `rg -n 'BASE' scratch/tree-baseline.md` prints the commit and `rg -c '^\| ' scratch/tree-baseline.md` prints at least 6 | Unmet | - |
+| AC-001 | REQ-001 | Given 011.007, 010.003 and every runtime unit merged on `system-skilled-bots`, When the phase opens, Then `scratch/tree-baseline.md` records `BASE` and, for each in-scope root, its file count, folder count, one-file folders and deepest path | `rg -n 'BASE' scratch/tree-baseline.md` prints the commit and `rg -c '^\| ' scratch/tree-baseline.md` prints at least 6 | Unmet | - |
 | AC-002 | REQ-002 | Given the baseline, When the map is written, Then every candidate is a row with an id, an old path, a verdict, a new path for a move and a non-empty reason, and no move lands that the map does not list | `rg -n '^\| M[0-9]{3} \|[^|]*\|[^|]*\|[^|]*\| *\|' scratch/move-map.md` prints nothing, and every renamed path in `git diff -M --name-status $BASE HEAD -- .skilled` is a `move` row | Unmet | - |
 | AC-003 | REQ-003 | Given the landed moves, When git compares `BASE` with the final commit, Then every move reads as a rename and no file under an in-scope root reads as deleted | `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing | Unmet | - |
 | AC-004 | REQ-004 | Given each `move` row, When the repository is searched for its old path, Then no file names it outside this phase's `scratch/` | `rg -n -F '<old path>' . -g '!specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/**'` prints nothing for every `move` row | Unmet | - |
@@ -62,6 +62,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-009 | REQ-009 | Given the final state, When the hub check runs, Then the hub and its mode routing stay valid | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` prints `OK: parent-skill-check`, and every path in the hub's `mode-registry.json` and `hub-router.json` exists | Unmet | - |
 | AC-010 | REQ-010 | Given the final state, When the gate-input check runs, Then every workflow path it reads resolves and every filter names both roots | `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED` | Unmet | - |
 | AC-011 | REQ-011 | Given the final state, When the tree is measured again, Then the skill holds fewer one-file folders than the baseline, or the keep rows give the reason it does not | `scratch/tree-after.md` repeats the baseline's measures, and its one-file folder count under the skill is lower than the one in `scratch/tree-baseline.md` or names the keep rows that hold it | Unmet | - |
+| AC-012 | REQ-012 | Given the landed moves, When the README task has run, Then `.skilled/crates/`, `.skilled/crates/bots-tui/` and every folder the move map's README table marks `readme` hold a `README.md` authored through `/create:readme` that says what belongs in the folder and what does not | `test -f .skilled/crates/README.md && test -f .skilled/crates/bots-tui/README.md` exits 0, `rg -N -o -r '$1' '^\| R[0-9]{3} \| ([^ \|]+) \| readme \|' scratch/move-map.md \| while read d; do test -f "$d/README.md" \|\| echo "missing $d"; done` prints nothing and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <folder>/README.md` prints `VALID` for both named folders and every `readme` row | Unmet | - |
 
 ### Status values
 
@@ -88,5 +89,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** No
 
-All eleven criteria are Unmet, because the phase opens only after 011.007, 010.003 and every runtime unit have merged.
+All twelve criteria are Unmet, because the phase opens only after 011.007, 010.003 and every runtime unit have merged.
 <!-- /ANCHOR:closure -->

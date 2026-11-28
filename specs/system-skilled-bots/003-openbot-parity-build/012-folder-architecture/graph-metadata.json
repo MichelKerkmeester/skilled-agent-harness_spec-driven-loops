@@ -48,6 +48,7 @@
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".github/workflows/bots-runtime.yml",
+      ".skilled/crates/bots-tui/README.md",
       ".skilled/crates/bots-tui/Cargo.toml"
     ],
     "entities": [
@@ -103,6 +104,12 @@
         "name": "bots-runtime.yml",
         "kind": "config",
         "path": ".github/workflows/bots-runtime.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/crates/bots-tui/README.md",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
     "created_at": "2026-11-28T11:26:16Z",
-    "last_save_at": "2026-11-28T11:58:03.036Z",
+    "last_save_at": "2026-11-28T13:49:02.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de584496cee21fe767e71298cae8d5e20b0a37d099ba1c793c64178468f7cfcf",
+    "source_fingerprint": "sha256:9c18eea7b6e9f67022f8bc55fb1cd0a500876211364d3f9c0f3633fa9f76f730",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f74e5b3204c1c291e712813cdc834f6b7d1f4869791fee1786b096fa8b2ede39",
-      "plan.md": "d4b1271991c4ecf746569b5ad3a3d65cc56acf5b2d6ee6c8d3b033faef0b1813",
-      "tasks.md": "963c73d29490e8e2d7cbbaccf80ce30dd4bc0aa56accaae22d62c5c63d237e78",
+      "spec.md": "edbef0979d4d5c94ecfcf83126296cb1ca3b917f4b9eb6cccf27b7ef68dfcbdc",
+      "plan.md": "fff8556fbd066af0e0830837d686a1617f729c9180e91caeed2386d30917f95b",
+      "tasks.md": "4661ebbec62ea5ec9b963b6e044cb9ada308ce6832d329384a389ab208191b5d",
       "implementation-summary.md": "07adde6212db5f884d9e3c0bc56aaad180dc5f9e6e6488a0286e53c38b015800"
     },
     "last_active_at": null

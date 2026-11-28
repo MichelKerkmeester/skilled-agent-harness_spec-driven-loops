@@ -55,6 +55,7 @@ _memory:
 | Q021 | The parent goal is amended to fifteen phases, and the operator resets the session goal from the new chat slice. | The new phase needs its own binding row and criteria that count it, and folding it into 013 was offered and not chosen. | goal.md criteria 1 to 3 at fourteen children | goal.md binding table and criteria 1 to 3 |
 | Q022 | Phase 013 executes all 58 bots scenarios, BOT-001 to BOT-025 as a regression check on the rewritten runtime, plus DLR-002, DLR-023 and DLR-064, the system-deep-loop scenarios that cover `executor-audit.ts`. | Phases 001 to 011 rewrote the runtime the first 25 scenarios drive and 007 and 008 changed `executor-audit.ts`. The goal's playbook criterion checks only the package format. | 013's execution of the 33 new scenarios alone | 013-manual-testing-scenarios REQ-005, REQ-014, AC-005, AC-014, AC-015 and goal D8 |
 | Q023 | The Rust crate moves from the repository root to `.skilled/crates/bots-tui/`, under `.skilled` and outside the skill. | The operator asked to keep it in the skill if possible, or else under `.skilled`. It cannot sit in the skill, because `parent-skill-check.cjs` lines 118 to 122 allow no `crates` folder at a hub root and the skill walkers would crawl its build output. | 003-terminal-screen goal D1 as first written, which put the crate at the repository root | 003-terminal-screen goal D1, 003-terminal-screen/002-architecture-and-contracts REQ-001 |
+| Q024 | Phase 012 gains a README task, a requirement and an acceptance row. `.skilled/crates/`, `.skilled/crates/bots-tui/`, each new folder 012's move map lands and each folder the build created get a `README.md` authored through `/create:readme` that says what belongs in the folder and what does not. | The operator asked on 2026-11-28 for every unique folder to explain what is supposed to be in it. The task runs after the move tasks and before the final gate rerun, because the move map creates folders that do not exist until the moves land. | None | 012-folder-architecture REQ-012, T010, AC-012, CHK-043 and goal criterion 7 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -475,6 +476,24 @@ Answer:
 ```text
 keep it in the skill if possible
 Or .skilled
+```
+
+### Q024
+<!-- source: operator chat, 2026-11-28, one line on folder READMEs -->
+
+Question:
+```text
+No AskUserQuestion prompt carries this decision. The operator wrote this line in chat about the crates folder and the other unique folders.
+```
+
+Options:
+```text
+None offered
+```
+
+Answer:
+```text
+that crates folder, and any other unique folder needs a sk create readme explaining whats supposed to be in there
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
