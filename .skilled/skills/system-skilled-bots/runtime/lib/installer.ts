@@ -53,6 +53,7 @@ import { readRepoConfig } from './repo-config.js';
 import { drainQueue } from './request-drain.js';
 import { checkRoutineFloor } from './routine.js';
 import { definitionPath } from './runner.js';
+import { loadSkills } from './skills.js';
 import { schedulePeriodSeconds } from './slot-accounting.js';
 import {
   agentLogFile,
@@ -221,6 +222,8 @@ export interface InstallRecord {
   operator?: string | null;
   /** True only when the operator installed the bot with full access. Absent reads as false, so a declared danger-full-access is capped. */
   fullAccess?: boolean;
+  /** The SHA-256 hex of every skill body the definition names, read at install, keyed by skill name. A run whose body differs refuses skill-changed. Absent on the drain job and on a record written before the field. */
+  skillDigests?: Record<string, string>;
 }
 
 /** An executor kind and the absolute path its binary resolved to at install. */
@@ -291,6 +294,8 @@ interface Preflight {
   definition: BotDefinition | null;
   /** The digest of the definition bytes the preflight vetted; null for the drain job. */
   definitionDigest: string | null;
+  /** The digest of each skill body the definition names, read from the Skilled tree at install; null for the drain job. */
+  skillDigests: Record<string, string> | null;
   translation: Translation | null;
   label: string;
 }
@@ -575,7 +580,7 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   if (agent === 'drain') {
     const label = buildDrainLabel(identity.value.identity);
     if (!label.ok) return label;
-    return { ok: true, value: { ...base, definition: null, definitionDigest: null, translation: null, label: label.value } };
+    return { ok: true, value: { ...base, definition: null, definitionDigest: null, skillDigests: null, translation: null, label: label.value } };
   }
 
   const checked = seams.checker(checkoutRoot, env);
@@ -614,7 +619,11 @@ function preflight(input: InstallInput, seams: InstallerSeams): Result<Preflight
   const posture = validatePosture(definition.value, config.value);
   if (!posture.ok) return { ok: false, reason: 'posture-refused', detail: `${posture.reason}${posture.detail !== undefined ? `: ${posture.detail}` : ''}` };
 
-  return { ok: true, value: { ...base, definition: definition.value, definitionDigest, translation, label: label.value } };
+  // The digests come from the same tree a scheduled run reads, so the pin and the loaded bytes name one file.
+  const skills = loadSkills({ skilledTree, names: definition.value.skills, pins: null });
+  if (!skills.ok) return { ok: false, reason: skills.reason, detail: skills.detail };
+
+  return { ok: true, value: { ...base, definition: definition.value, definitionDigest, skillDigests: Object.fromEntries(skills.value.map(({ name, digest }) => [name, digest])), translation, label: label.value } };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -926,6 +935,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
       enabledAt: null,
       operator,
       fullAccess: true,
+      skillDigests: pre.skillDigests ?? {},
     };
     writeStateAtomic(installFile(pre.stateRoot, pre.identity, input.botId), record);
     if (pre.definitionDigest !== null) {
@@ -1121,6 +1131,7 @@ export function installSchedule(input: InstallInput): Result<InstallReport> {
     enabledAt: previous?.enabledAt ?? null,
     operator,
     fullAccess,
+    ...(pre.agent === 'bot' ? { skillDigests: pre.skillDigests ?? {} } : {}),
   };
   writeStateAtomic(installFile(pre.stateRoot, pre.identity, input.botId), record);
   if (pre.definitionDigest !== null) {

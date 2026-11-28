@@ -1,9 +1,9 @@
 // bots answer: the answer is recorded before one resume request keyed by the item, and the item can expire.
 
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { userInfo } from 'node:os';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -13,14 +13,16 @@ import { rosterAdd } from '../lib/channel-link.js';
 import { appendMemoryEntry, botMemoryFile, forgetMemoryEntry, MEMORY_LIMITS, readMemoryFile } from '../lib/memory.js';
 import { itemAwaitingResume, needsYouExpiry, needsYouState, readNeedsYouItem, writeNeedsYouItem } from '../lib/needs-you.js';
 import { requestIdFor } from '../lib/request-record.js';
-import { readRunRecord } from '../lib/run-record.js';
+import { readRunRecord, writeRunRecord } from '../lib/run-record.js';
 import { generationStampFile, newRunId, runBot } from '../lib/runner.js';
+import { proposalFile, writeProposal } from '../lib/skill-proposal.js';
 import { identityStatePaths, needsYouFile } from '../lib/state-root.js';
 import { botWorld, IDENTITY, runCli } from './runner-support.js';
 import { entries, queueOf, records, writeItem } from './queue-support.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir, writeConfig } from './support.js';
 
 import type { AnswerScope, NeedsYouItem } from '../lib/needs-you.js';
+import type { RunRecord } from '../lib/run-record.js';
 import type { BotWorld } from './runner-support.js';
 
 afterEach(cleanupTemp);
@@ -83,6 +85,64 @@ function proposal(world: BotWorld, overrides: Partial<NeedsYouItem> = {}): Needs
   const written = writeNeedsYouItem(world.stateRoot, item);
   if (!written.ok) throw new Error(written.reason);
   return item;
+}
+
+// A record with every field group filled, for one completed run of the manual-ok bot.
+function completedRecord(runFolder: string, runId: string): RunRecord {
+  return {
+    schemaVersion: 1,
+    identity: {
+      repository: IDENTITY,
+      repositoryPath: '/work/acme/tool',
+      botId: 'manual-ok',
+      runId,
+      definitionDigest: 'sha256:abc123',
+    },
+    request: { requestId: 'req-1', leaseNonce: 'nonce-1', resultEventId: 'evt-1', firedSlot: '2026-11-25T21:02:04Z' },
+    dispatch: {
+      source: 'launchd',
+      scheduledAt: '2026-11-25T21:02:04Z',
+      dispatchedAt: '2026-11-25T21:02:08Z',
+      latenessSeconds: 4,
+      latenessClass: 'on-time',
+      skippedSlots: { count: 0, slots: [] },
+    },
+    budget: {
+      declared: { maxIterations: 6, maxDurationMinutes: 120, timeoutSeconds: 900 },
+      measured: { iterations: 3, elapsedMinutes: 12.5, costUsd: null, costSource: null },
+    },
+    posture: { isolation: 'worktree', sandbox: 'workspace-write', executorKind: 'cli-opencode', model: 'deepseek-v4-flash', apps: [] },
+    exit: { reason: 'completed', class: null, needsYouItemId: null },
+    evidence: {
+      runFolder,
+      ledgerDir: `${runFolder}/ledger`,
+      receiptDir: `${runFolder}/receipts`,
+      observabilityStream: `${runFolder}/events.jsonl`,
+      worktreePath: '/work/acme/tool-wt/r1',
+      branch: 'bots/r1',
+    },
+    delivery: [{ channel: 'desktop', target: 'local', state: 'attempted', evidence: null }],
+  };
+}
+
+// A world holding one completed run of manual-ok and the skill proposal that run produced.
+function skillProposal(world: BotWorld): { runId: string; actor: string } {
+  const runId = newRunId();
+  const written = writeRunRecord(world.stateRoot, completedRecord(tempDir('bots-run-'), runId));
+  if (!written.ok) throw new Error(written.reason);
+  const proposed = writeProposal({
+    stateRoot: world.stateRoot,
+    identity: IDENTITY,
+    checkoutRoot: world.checkoutRoot,
+    skilledTree: world.skilledTree,
+    runId,
+    name: 'report',
+    expiryDays: 7,
+    env: world.env,
+  });
+  expect(proposed.ok).toBe(true);
+  if (!proposed.ok) throw new Error(proposed.reason);
+  return { runId, actor: userInfo().username };
 }
 
 describe('bots answer', () => {
@@ -520,6 +580,53 @@ describe('bots answer', () => {
     expect([['yes', 'ada'], ['no', 'bob']]).toContainEqual([stored.value.answer?.text, stored.value.answer?.by]);
     const locks = readdirSync(identityStatePaths(world.stateRoot, IDENTITY).needsYou).filter((name) => name.endsWith('.lock'));
     expect(locks).toEqual([]);
+  }, 60_000);
+
+  it('records a proposal review and queues no resume', () => {
+    const world = botWorld();
+    const { runId, actor } = skillProposal(world);
+    const answerPath = proposalFile(world.stateRoot, IDENTITY, runId, 'answer');
+
+    const answered = answerItem({ checkoutRoot: world.checkoutRoot, skilledTree: world.skilledTree, itemId: runId, text: 'confirm', env: world.env, surface: 'terminal', actor });
+    expect(answered).toMatchObject({ ok: true, value: { status: 'reviewed', kind: 'skill-proposal', itemId: runId } });
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, runId);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer?.text).toBe('confirm');
+    expect(stored.value.answer?.by).toBe(actor);
+    expect(stored.value.answer?.scope).toBe('once');
+    expect(stored.value.grants?.scope).toBe('once');
+    expect(stored.value.grants?.grantedBy).toBe(actor);
+    expect(stored.value.resumeRequestId).not.toBeNull();
+
+    const recorded = JSON.parse(readFileSync(answerPath, 'utf8')) as Record<string, unknown>;
+    expect(Object.keys(recorded).sort()).toEqual(['answeredAt', 'by', 'decision', 'revisionRead', 'schemaVersion', 'scope', 'text']);
+    expect(recorded).toMatchObject({ schemaVersion: 1, decision: 'confirm', text: 'confirm', by: actor, scope: 'once', revisionRead: null });
+
+    const inbox = identityStatePaths(world.stateRoot, IDENTITY).requests.inbox;
+    expect(existsSync(inbox) ? readdirSync(inbox) : []).toEqual([]);
+
+    const bytes = readFileSync(answerPath);
+    const again = answerItem({ checkoutRoot: world.checkoutRoot, skilledTree: world.skilledTree, itemId: runId, text: 'confirm', env: world.env, surface: 'terminal', actor });
+    expect(again).toMatchObject({ ok: true, value: { status: 'reviewed' } });
+    expect(readFileSync(answerPath).equals(bytes)).toBe(true);
+  }, 60_000);
+
+  it('refuses a stale proposal and leaves the item open', () => {
+    const world = botWorld();
+    const { runId, actor } = skillProposal(world);
+    const target = join(world.skilledTree, '.skilled', 'skills', 'report', 'SKILL.md');
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, '---\nname: report\n---\n');
+
+    const refused = answerItem({ checkoutRoot: world.checkoutRoot, skilledTree: world.skilledTree, itemId: runId, text: 'confirm', env: world.env, surface: 'terminal', actor });
+    expect(refused).toEqual({ ok: false, reason: 'proposal-stale', detail: 'report' });
+
+    const stored = readNeedsYouItem(world.stateRoot, IDENTITY, runId);
+    if (!stored.ok) throw new Error(stored.reason);
+    expect(stored.value.answer).toBeNull();
+    expect(stored.value.grants?.scope).toBeNull();
+    expect(existsSync(proposalFile(world.stateRoot, IDENTITY, runId, 'answer'))).toBe(false);
   }, 60_000);
 });
 

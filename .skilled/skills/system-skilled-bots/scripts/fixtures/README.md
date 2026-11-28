@@ -14,9 +14,11 @@ trigger_phrases:
 
 Each folder here is a miniature repository holding a bots folder with a config file and one or two BOT.md definitions. The `clean` folder passes `../bot-check.cjs` with exit 0. Every other folder injects exactly one defect into a copy of `clean` and must fail with exit 1 and a `FAIL:` line naming its hard invariant.
 
-`../../runtime/tests/bot-check.vitest.ts` enforces two rules over this folder. The set of folders must equal `clean` plus `routine-clean` plus one folder per hard invariant, so a new invariant cannot land without its fixture. Each defect folder must differ from `clean` by one added or changed file, with at most two changed lines.
+`../../runtime/tests/bot-check.vitest.ts` enforces two rules over this folder. The set of folders must equal `clean`, `routine-clean` and `skills-clean` plus one folder per hard invariant, so a new invariant cannot land without its fixture. Each defect folder must differ from `clean` by one added or changed file, with at most two changed lines.
 
 `routine-clean` is a second clean checkout with two routine bots and one plain bot, and each `routine-*` defect differs from `routine-clean`, not from `clean`, by one changed file.
+
+`skills-clean` is a third clean checkout: `clean` with one `skills` line naming `system-skilled-bots`. Each `skills-*` defect differs from `clean` by that one line, and each names real skills from this tree, because the checker reads the skills folder it ships in. A later edit that grows one of those `SKILL.md` files past a cap moves its fixture's outcome, and the checker's own line names the size.
 
 ---
 
@@ -64,6 +66,10 @@ fixtures/
 ├── routine-trigger-conflict/
 ├── routine-until-check-without-outcome/
 ├── routine-until-shell-metacharacters/
+├── skills-clean/
+├── skills-over-budget/
+├── skills-too-large/
+├── skills-unknown/
 ├── timeout-over-bound/
 ├── unknown-executor-kind/
 ├── unknown-trigger-kind/
@@ -106,6 +112,10 @@ The clean bot is `nightly-digest`: a `cron` trigger at `0 9 * * *`, the `cli-cod
 | `routine-until-check-without-outcome/` | `definition.routine-until-check-without-outcome` |
 | `routine-until-shell-metacharacters/` | `definition.routine-until-shell-metacharacters` |
 | `routine-floor/` | `routine-floor-15-minutes` |
+| `skills-clean/` | none, it passes |
+| `skills-unknown/` | `skills-unknown` |
+| `skills-too-large/` | `skills-too-large` |
+| `skills-over-budget/` | `skills-over-budget` |
 
 `no-identity` passes once an identity is set. The suite checks that too, in a temp repository with no remote.
 

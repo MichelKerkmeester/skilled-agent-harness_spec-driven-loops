@@ -1,0 +1,76 @@
+The propose, inbox and answer loop, run on 2026-11-28 against a copy of fixtures/skills-clean committed into a temp git repository, with XDG_STATE_HOME a temp folder and the CLI started under env -i (PATH, HOME, USER and LOGNAME only). Two completed run records of nightly-digest were seeded with writeRunRecord, and no run was dispatched. <tmp> stands for the temp folder.
+
+Under the full session environment both proposals refused 'bots: proposal-secret: CLAUDE_CODE_SESSION_ID' and exited 4, because the temp path held that variable's value.
+
+## bots skill propose 20261128T015139Z-26bbc239 --name report
+bots: proposal for skill report written at proposals/20261128T015139Z-26bbc239
+exit 0
+## bots skill propose 20261128T015140Z-c4a23da8 --name system-skilled-bots
+bots: proposal for skill system-skilled-bots written at proposals/20261128T015140Z-c4a23da8
+exit 0
+## proposal.json (new target)
+{
+  "schemaVersion": 1,
+  "targetPath": ".skilled/skills/report/SKILL.md",
+  "revisionRead": null,
+  "runId": "20261128T015139Z-26bbc239",
+  "botId": "nightly-digest",
+  "createdAt": "2026-11-28T01:52:07.946Z"
+}
+## proposal.json (existing target)
+{
+  "schemaVersion": 1,
+  "targetPath": ".skilled/skills/system-skilled-bots/SKILL.md",
+  "revisionRead": "d98c430ad2d2aaad6d0d2459acb0e05cdcf3bccaf2ae30b0fe2bf2ce0534f8c7",
+  "runId": "20261128T015140Z-c4a23da8",
+  "botId": "nightly-digest",
+  "createdAt": "2026-11-28T01:52:08.112Z"
+}
+jq exit 0
+jq exit 0
+## shasum of the existing target
+d98c430ad2d2aaad6d0d2459acb0e05cdcf3bccaf2ae30b0fe2bf2ce0534f8c7  /Users/michelkerkmeester/worktrees/public/568-openbot-009-skills/.skilled/skills/system-skilled-bots/SKILL.md
+## modes
+700 <tmp>/system-skilled-bots/local%2Ftool/proposals/20261128T015139Z-26bbc239
+600 <tmp>/system-skilled-bots/local%2Ftool/proposals/20261128T015139Z-26bbc239/proposal.json
+600 <tmp>/system-skilled-bots/local%2Ftool/proposals/20261128T015139Z-26bbc239/SKILL.md
+## bots inbox
+open	20261128T015139Z-26bbc239	skill-proposals	other	bot	-	created 2026-11-28T01:52:07.946Z	expires 2026-12-05T01:52:07.946Z
+	Propose skill report?
+	- confirm
+	- reject
+open	20261128T015140Z-c4a23da8	skill-proposals	other	bot	-	created 2026-11-28T01:52:08.112Z	expires 2026-12-05T01:52:08.112Z
+	Propose skill system-skilled-bots?
+	- confirm
+	- reject
+exit 0
+## bots inbox --json
+exit 0
+{"id":"20261128T015140Z-c4a23da8","botId":"skill-proposals","kind":"skill-proposal","grants":{"kind":"other","action":"Propose skill system-skilled-bots?","rung":"bot","scope":null,"grantedBy":null,"grantedAt":null}}
+{"id":"20261128T015139Z-26bbc239","botId":"skill-proposals","kind":"skill-proposal","grants":{"kind":"other","action":"Propose skill report?","rung":"bot","scope":null,"grantedBy":null,"grantedAt":null}}
+
+## bots answer 20261128T015139Z-26bbc239 confirm
+bots: item 20261128T015139Z-26bbc239 answered; skill-proposal review recorded
+exit 0
+## answer.json
+{
+  "schemaVersion": 1,
+  "decision": "confirm",
+  "text": "confirm",
+  "by": "michelkerkmeester",
+  "scope": "once",
+  "answeredAt": "2026-11-28T01:52:20.304Z",
+  "revisionRead": null
+}
+## requests queued
+       0
+## item answer
+{"answer":{"text":"confirm","answeredAt":"2026-11-28T01:52:20.304Z","by":"michelkerkmeester","scope":"once"},"resumeRequestId":null,"grants":{"kind":"other","action":"Propose skill report?","rung":"bot","scope":"once","grantedBy":"michelkerkmeester","grantedAt":"2026-11-28T01:52:20.304Z"}}
+## answer again
+bots: item 20261128T015139Z-26bbc239 answered; skill-proposal review recorded
+exit 0
+answer.json unchanged
+
+## needs-you hold probe (holdForBot over the state root, item B still open)
+open items: ["20261128T015140Z-c4a23da8 skill-proposal"]
+holdForBot(nightly-digest): null

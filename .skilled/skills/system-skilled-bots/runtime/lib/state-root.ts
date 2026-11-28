@@ -73,6 +73,8 @@ export interface IdentityStatePaths {
   memory: string;
   /** The vault's index, lock and value files, owner-only so no other OS user reads a stored value. */
   secrets: string;
+  /** Skill drafts awaiting review, one folder per run id, made owner-only by their writer and never by a read. */
+  proposals: string;
 }
 
 /** Entries shared across identities, beside the identity folders. */
@@ -141,6 +143,7 @@ export function identityStatePaths(stateRoot: string, identity: string): Identit
     routines: join(base, 'routines'),
     memory: join(base, 'memory'),
     secrets: join(base, 'secrets'),
+    proposals: join(base, 'proposals'),
   };
 }
 

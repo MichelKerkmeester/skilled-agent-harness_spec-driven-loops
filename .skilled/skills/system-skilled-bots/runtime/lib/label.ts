@@ -27,8 +27,11 @@ export const DRAIN_SUFFIX = 'drain';
 /** The bot id every memory proposal item carries, so a review item names a queue and never a real bot. */
 export const MEMORY_PROPOSALS_BOT_ID = 'memory-proposals';
 
+/** The bot id every skill proposal review item carries, so the review names a queue and never a real bot. */
+export const SKILL_PROPOSALS_BOT_ID = 'skill-proposals';
+
 /** Bot ids a definition may not take, because a label part or a review queue already means something else. */
-export const RESERVED_BOT_IDS: readonly string[] = [DRAIN_SUFFIX, MEMORY_PROPOSALS_BOT_ID];
+export const RESERVED_BOT_IDS: readonly string[] = [DRAIN_SUFFIX, MEMORY_PROPOSALS_BOT_ID, SKILL_PROPOSALS_BOT_ID];
 
 export type ParsedLabel =
   | { kind: 'bot'; identity: string; botId: string; scheduleIndex: number }

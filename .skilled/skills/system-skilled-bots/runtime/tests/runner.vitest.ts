@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { chmodSync, existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { chmodSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 import { afterEach, describe, expect, it } from 'vitest';
@@ -21,6 +21,7 @@ import {
 import { postRunCausesOf, readRunRecord } from '../lib/run-record.js';
 import { openResultLedger, sendResultEvent } from '../lib/result-ledger.js';
 import { EMPTY_ROUTINE_STATE, FATIGUE_QUESTION, readRoutineState, writeRoutineState } from '../lib/routine-state.js';
+import { skillDigest, skillFile } from '../lib/skills.js';
 import { identityStatePaths, receiptFolder, recordFile, sharedMemoryFile, sharedStatePaths } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { cleanupTemp, isolatedEnv, tempDir } from './support.js';
@@ -1066,5 +1067,65 @@ describe('memory in a run', () => {
     if (outcome.kind !== 'refused') throw new Error('expected a refusal');
     expect(outcome.detail?.startsWith('resume at ')).toBe(true);
     expect(stubRunCount(world)).toBe(0);
+  });
+});
+
+describe('the skills load', () => {
+  /** A bot that names skills, written from manual-ok so only its id and its list differ. */
+  function skilledBot(world: BotWorld, id: string, skills: string): void {
+    const manualOk = readFileSync(join(FIXTURE_BOTS, 'manual-ok', 'BOT.md'), 'utf8');
+    writeBot(world, id, manualOk.replace('id: manual-ok', `id: ${id}`).replace('\nisolation: shared\n', `\nisolation: shared\nskills: [${skills}]\n`));
+  }
+
+  /** One SKILL.md in a world's Skilled tree, so the run reads the body from the tree it was given. */
+  function writeSkill(world: BotWorld, name: string, body: string): void {
+    const path = skillFile(world.skilledTree, name);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, body);
+  }
+
+  it('loads the named bodies before dispatch', async () => {
+    const world = botWorld();
+    skilledBot(world, 'skilled-ok', 'demo');
+    writeSkill(world, 'demo', 'Demo skill body. SKILL-BODY-TEXT-41c2\n');
+    const seen: string[] = [];
+    const outcome = await runBot(world.input('skilled-ok', { buildCommand: speak('done\n', seen) }));
+    expect(outcome.kind).toBe('completed');
+
+    const prompt = seen[0] ?? '';
+    const tag = '<skill_content name="demo">';
+    const marker = prompt.indexOf('If you reach a decision');
+    expect(prompt).toContain(tag);
+    expect(prompt).toContain('SKILL-BODY-TEXT-41c2');
+    // The block sits after the memory position and before the decision marker and the body.
+    expect(prompt.indexOf(tag)).toBeLessThan(marker);
+    expect(prompt.indexOf('SKILL-BODY-TEXT-41c2')).toBeLessThan(marker);
+    expect(prompt.split('\n').at(-1)).toBe('Tidy the notes folder. FIXTURE-PROMPT-TEXT-7f3a');
+  });
+
+  it('refuses an unknown skill before dispatch', async () => {
+    const world = botWorld();
+    skilledBot(world, 'skilled-unknown', 'no-such-skill');
+    const seen: string[] = [];
+    const outcome = await runBot(world.input('skilled-unknown', { buildCommand: speak('done\n', seen) }));
+    expect(outcome).toMatchObject({ kind: 'refused', cause: 'skill-unknown', detail: 'no-such-skill' });
+    expect(seen).toEqual([]);
+    expect(record(world, outcome).exit.refusal?.cause).toBe('skill-unknown');
+  });
+
+  it('records each loaded body on the run record', async () => {
+    const world = botWorld();
+    skilledBot(world, 'skilled-ok', 'demo');
+    writeSkill(world, 'demo', 'Demo skill body. SKILL-BODY-TEXT-41c2\n');
+    const outcome = await runBot(world.input('skilled-ok'));
+    expect(outcome.kind).toBe('completed');
+    const rec = record(world, outcome);
+    expect(rec.posture.skills).toEqual([{ name: 'demo', digest: skillDigest(readFileSync(skillFile(world.skilledTree, 'demo'))) }]);
+    // The record keeps the name and the digest, never the text.
+    expect(JSON.stringify(rec)).not.toContain('SKILL-BODY-TEXT-41c2');
+
+    const plain = await runBot(world.input('manual-ok'));
+    expect(plain.kind).toBe('completed');
+    expect(record(world, plain).posture).not.toHaveProperty('skills');
   });
 });

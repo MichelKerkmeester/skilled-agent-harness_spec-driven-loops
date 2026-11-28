@@ -9,7 +9,7 @@
 // runner and installer use: the definition parser, the config reader, the
 // identity resolver, the executor bounds, the cron translator, the routine
 // floor, the label grammar, the worktree shared-path resolver, the
-// delivery channel list and the apps resolver.
+// delivery channel list, the apps resolver and the skills loader.
 // It restates no field rule, so it cannot pass a file the runtime would
 // refuse. It only reads.
 //
@@ -66,6 +66,9 @@ const HARD_INVARIANTS = Object.freeze([
   'definition.routine-until-check-without-outcome',
   'definition.routine-until-shell-metacharacters',
   'routine-floor-15-minutes',
+  'skills-unknown',
+  'skills-too-large',
+  'skills-over-budget',
 ]);
 
 /**
@@ -77,6 +80,17 @@ const ADVISORY_INVARIANTS = Object.freeze([]);
 
 const DEFINITION_FILE = 'BOT.md';
 const RUNTIME_DIR = resolve(__dirname, '..', 'runtime');
+// The checker audits the skills folder of the tree it ships in, four folders above this file,
+// because a fixture copied into a temp repository has no skills folder of its own.
+const SKILLED_TREE = resolve(__dirname, '..', '..', '..', '..');
+// The runtime's run refusals and the invariant each one fails here. The checker audits the
+// list, so its names are plural.
+const SKILL_INVARIANTS = Object.freeze({
+  'skill-unknown': 'skills-unknown',
+  'skill-unreadable': 'skills-unreadable',
+  'skill-too-large': 'skills-too-large',
+  'skills-over-budget': 'skills-over-budget',
+});
 
 // ───────────────────────────────────────────────────────────────────
 // 2. LOADING
@@ -97,7 +111,7 @@ async function loadRuntime() {
   const loader = register({ namespace: 'bot-check' });
   const lib = (name) => loader.import(join(RUNTIME_DIR, 'lib', `${name}.ts`), __filename);
   try {
-    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps] = await Promise.all([
+    const [definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps, skills] = await Promise.all([
       lib('definition'),
       lib('repo-config'),
       lib('identity'),
@@ -109,8 +123,9 @@ async function loadRuntime() {
       lib('routine'),
       lib('slot-accounting'),
       lib('apps'),
+      lib('skills'),
     ]);
-    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps };
+    return { definition, repoConfig, identity, translator, label, isolation, delivery, posture, routine, slotAccounting, apps, skills };
   } finally {
     await loader.unregister();
   }
@@ -248,6 +263,17 @@ async function runCheck(checkoutRoot, options = {}) {
       if (!apps.ok && apps.reason === appsId) fail(appsId, `${shown}: ${apps.detail}`);
       else if (!apps.ok && apps.reason === 'utcp-config-missing') info(appsId, `${apps.detail} is not there, so no server name can be checked`);
       else if (!apps.ok) info(appsId, `${join(root, runtime.apps.UTCP_CONFIG_NAME)} does not read (${apps.reason}: ${apps.detail}), so no server name can be checked`);
+    }
+
+    // The runner's own loader with no pin, so a list the runner would refuse fails here before
+    // anything installs. A pin is a run's concern, not the author's.
+    if (bot.skills.length > 0) {
+      const loaded = runtime.skills.loadSkills({ skilledTree: SKILLED_TREE, names: bot.skills, pins: null });
+      if (loaded.ok) {
+        pass('skills', `${shown}: ${loaded.value.length} skill(s) within ${runtime.skills.SKILL_MAX_BYTES} bytes each and ${runtime.skills.SKILLS_TOTAL_MAX_BYTES} together`);
+      } else {
+        fail(SKILL_INVARIANTS[loaded.reason] ?? loaded.reason, `${bot.id}: ${loaded.detail}`);
+      }
     }
 
     if (bot.delivery.mode === 'targets') {

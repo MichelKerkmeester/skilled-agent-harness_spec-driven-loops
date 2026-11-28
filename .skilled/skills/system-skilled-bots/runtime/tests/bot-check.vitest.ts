@@ -57,6 +57,9 @@ const DEFECTS: Record<string, string> = {
   'routine-until-check-without-outcome': 'definition.routine-until-check-without-outcome',
   'routine-until-shell-metacharacters': 'definition.routine-until-shell-metacharacters',
   'routine-floor': 'routine-floor-15-minutes',
+  'skills-unknown': 'skills-unknown',
+  'skills-too-large': 'skills-too-large',
+  'skills-over-budget': 'skills-over-budget',
 };
 
 interface Run {
@@ -107,10 +110,10 @@ function baseOf(name: string): string {
 afterEach(() => cleanupTemp());
 
 describe('fixtures', () => {
-  it('has one defect fixture per hard invariant, plus the two clean ones', () => {
+  it('has one defect fixture per hard invariant, plus the three clean ones', () => {
     expect(Object.values(DEFECTS).sort()).toEqual([...HARD_INVARIANTS].sort());
     const folders = readdirSync(FIXTURES).filter((name) => statSync(join(FIXTURES, name)).isDirectory()).sort();
-    expect(folders).toEqual(['clean', 'routine-clean', ...Object.keys(DEFECTS)].sort());
+    expect(folders).toEqual(['clean', 'routine-clean', 'skills-clean', ...Object.keys(DEFECTS)].sort());
   });
 
   it('differs from the clean fixture by one injected defect each', () => {
@@ -223,5 +226,30 @@ describe('bot-check.cjs', () => {
 
   it('exits 2 on an unknown option', () => {
     expect(run(copyFixture('clean'), '--fast').status).toBe(2);
+  });
+});
+
+describe('the skills invariants', () => {
+  it('refuses an unknown skill', () => {
+    const unknown = run(copyFixture('skills-unknown'));
+    expect(unknown.status).toBe(1);
+    expect(unknown.lines.some((line) => line.startsWith('FAIL: skills-unknown: nightly-digest: no-such-skill'))).toBe(true);
+
+    const clean = run(copyFixture('skills-clean'));
+    expect(clean.status).toBe(0);
+    expect(clean.lines.some((line) => line.startsWith('FAIL:'))).toBe(false);
+    expect(clean.lines.some((line) => line.startsWith('PASS: skills: '))).toBe(true);
+  });
+
+  it('refuses a body over the per-skill cap', () => {
+    const result = run(copyFixture('skills-too-large'));
+    expect(result.status).toBe(1);
+    expect(result.lines.some((line) => line.startsWith('FAIL: skills-too-large: nightly-digest: sk-git is ') && line.endsWith(' bytes, over 16384'))).toBe(true);
+  });
+
+  it('refuses a list over the total cap', () => {
+    const result = run(copyFixture('skills-over-budget'));
+    expect(result.status).toBe(1);
+    expect(result.lines.some((line) => line.startsWith('FAIL: skills-over-budget: nightly-digest: sk-doc takes the list to ') && line.endsWith(' bytes, over 20480'))).toBe(true);
   });
 });

@@ -23,7 +23,7 @@ The modules lean on the deep-loop runtime for the parts a bot run shares with a 
 ```text
 contracts and state   repo-config, definition, identity, state-root,
                       approval, run-record, switches, needs-you,
-                      routine, routine-state, memory
+                      routine, routine-state, memory, skills
         ▲
         │ every other group reads these
         │
@@ -31,7 +31,7 @@ schedule              cron-translator ──▶ slot-lister ──▶ slot-accou
 runner and dispatch   runner ──▶ dispatch, posture, result-ledger
 isolation, delivery   isolation, delivery           (called by runner)
 request pipeline      request-record ──▶ request-queue ──▶ request-drain ──▶ runner
-                      answer ──▶ request-queue
+                      answer ──▶ request-queue, skill-proposal
 launchd installer     installer ──▶ plist-render, label, cron-translator, request-drain
                       launchctl-print ──▶ installer
 status index          status ──▶ status-index, launchctl-print, installer
@@ -57,6 +57,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `switches.ts` | Contracts and state | The `disabled`, `paused` and `completed` stop files, kept outside every checkout so a run cannot clear its own stop. |
 | `needs-you.ts` | Contracts and state | Items a run leaves for an operator decision. State (open, answered, expired) is derived on every read and never stored, and the item's grants field carries the kind, the rung and the granted scope. |
 | `memory.ts` | Contracts and state | The two bounded memory files, the shared one beside the identity folders and one per bot in its identity's `memory` folder, both owner-only and made by the first append. One entry is one line, `- <type> \| <YYYY-MM-DD> \| <actor> \| <source> \| <text>`, split on its first four delimiters, with an 8-hex id from the SHA-256 of the line. A file holds at most 60 entries and 3,600 bytes and a text at most 400 characters, and an append past either bound is refused `memory-full` rather than rewritten. `renderMemoryBlock` writes the labelled `<memory>` block the prompt carries. Imports `state-root.ts` only. |
+| `skills.ts` | Contracts and state | The BOT.md `skills` list. `parseSkillList` checks the names against the bot id grammar, `loadSkills` reads each named `SKILL.md` once and refuses a body over 16,384 bytes, a list over 20,480 bytes or a body whose digest differs from its pin, `resolveSkillPins` finds that pin in the install record or the bot's last dispatched run, and `renderSkillsPrompt` writes one labelled `<skill_content>` block per skill. Imports `memory.ts`, `run-record.ts` and `state-root.ts` only. |
 | `secrets.ts` | Contracts and state | The vault and the only module that reads or writes a stored value. Names follow the bot id grammar with at most 64 characters, and a name maps to the child environment key `SKILLED_BOT_SECRET_<NAME>`. A value lives in the OS keychain, through `security` on macOS or `secret-tool` on Linux, stored in hex under account `<name>@<scope>`, or in a 0600 file under the identity's `secrets` folder. The 0600 index records the backend, the timestamps and who set each entry. `set` and `forget` hold `secrets/index.lock`, every keychain call is killed after 10 s and a store that cannot be read refuses `secret-store-unreadable` rather than reading as empty. Imports `state-root.ts` only. |
 | `secret-matcher.ts` | Contracts and state | The one-pass multi-value matcher lifted from Rakazo under its licence, which `findSecretLiteral` and the post-run scan use so many stored values cost one pass over a text. Imports nothing. |
 | `routine.ts` | Contracts and state | The optional BOT.md `routine` block: `parseRoutine` takes the trigger parser as an argument, `renderTrigger` makes the first start the bot's trigger, `describeStart` phrases a start such as `every 6h`, `routineDelivery` maps `does: tell` to local-only and `checkRoutineFloor` refuses a cron start under 900 seconds from a period its caller measures. Pure, and imports `definition.ts` for types only. |
@@ -74,6 +75,7 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `request-queue.ts` | Request pipeline | File queue keyed by identity. Every state change is one rename between sibling folders, so only one consumer can claim a request. |
 | `request-drain.ts` | Request pipeline | `drainQueue` claims each request, hands it to the runner and routes it to done, back to the watched folder or to quarantine after `RETRY_BOUND` attempts. A failure a second dispatch cannot mend is quarantined at once, and a missing executor stops the pass. |
 | `answer.ts` | Request pipeline | `answerItem` records an operator answer on a needs-you item, then enqueues one `resume` request keyed by the item id, and the lock that guards the item write sits beside the item. |
+| `skill-proposal.ts` | Request pipeline | `bots skill propose`. `writeProposal` reads one run record and writes a draft `SKILL.md`, then `proposal.json`, then one review item under the reserved `skill-proposals` bot id, into the identity's proposals folder. `claimProposalAnswer` checks the pin before an answer is written, and `settleProposalAnswer` writes `answer.json` beside the proposal after it. |
 | `installer.ts` | launchd installer | The only module that writes a job file or calls `launchctl`. `installSchedule`, `enableSchedule`, `disableSchedule` and `uninstallSchedule` each rerun a preflight first. A first install is held disabled. The install record pins the executor path, and `scheduledRunEnv` puts its folder first on a scheduled fire's PATH. The drain job's record pins every resolvable executor for the queued runs `scheduledDrain` starts. |
 | `plist-render.ts` | launchd installer | Renders bot and drain job property lists with absolute paths only, because launchd starts a job with no shell and a bare PATH. Every job pins the state root and identity, and a bot job also carries the scheduled-fire marker `SKILLED_BOTS_SCHEDULED_FIRE`. |
 | `label.ts` | launchd installer | Builds and parses job labels under `com.skilled.bots.` from identity, bot id and schedule index. Holds the reserved ids. |

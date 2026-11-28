@@ -50,11 +50,16 @@ const USAGE = [
   '                 remove a schedule and sweep this repository\'s orphaned ones',
   '  answer <item-id> <text> [--as <name>] [--scope once|deny]',
   '                 answer a needs-you item and queue the run that continues it, or',
-  '                 confirm or reject a memory proposal; --as records who answered',
+  '                 confirm or reject a memory or skill proposal; --as records who answered',
   '                 and needs a tty unless it is you; --scope records what the',
   '                 answer grants, once or deny, and a NO with no --scope records',
   '                 deny; always and conversation are refused grant-scope-unsupported',
   '                 because no rule store lands',
+  '  skill propose <run-id> [--name <skill-name>]',
+  '                 write a draft SKILL.md and a proposal.json from one finished run',
+  '                 into the state root and raise one review item to answer with',
+  '                 confirm or reject; --name defaults to the run\'s bot id, and you',
+  '                 move a confirmed draft into .skilled/skills/<name>/ yourself',
   '  remember <fact> [--bot <id>] [--type <type>] [--as <name>]',
   '                 add one fact to the shared memory file, or with --bot to that',
   '                 bot\'s own; --type is user, general, feedback or reference',
@@ -116,6 +121,10 @@ const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
 const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii', 'list']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
+const SKILL_ACTIONS = ['propose'];
+// The name grammar a skill folder must match, mirroring SKILL_NAME_PATTERN in the runtime's skills
+// module. The pattern is repeated here because these refusals run before the runtime loads.
+const SKILL_NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 const ENQUEUE_OPTIONS = ['source', 'event-id', 'key', 'prompt', 'origin', 'fired-slot', 'git-commit'];
 const STATUS_OPTIONS = ['rebuild', 'json', 'all', 'unregister'];
 const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
@@ -149,6 +158,7 @@ const VERB_SPECS = {
   remember: { ids: 1, options: REMEMBER_OPTIONS },
   channel: { ids: 0, options: ['role', 'secret', 'as', 'json'] },
   secret: { ids: 0, options: ['store'] },
+  skill: { ids: 2, options: ['name'] },
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
   activity: { ids: 0, options: ['json'] },
@@ -157,7 +167,7 @@ const VERB_SPECS = {
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', 'store', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', 'store', 'name', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
@@ -174,7 +184,7 @@ const UNSUPPORTED_SCOPES = new Set(['always', 'conversation']);
 // The scopes an answer may record.
 const ANSWER_SCOPES = new Set(['once', 'deny']);
 // The write verbs a bot child may not run. Each later write verb joins this list.
-const CHILD_REFUSED_VERBS = new Set(['answer', 'enable']);
+const CHILD_REFUSED_VERBS = new Set(['answer', 'enable', 'skill']);
 // Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
 // A value that is itself one of this CLI's flags still means the value was left out.
 const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
@@ -390,6 +400,14 @@ function parseArgs(argv) {
     if (ids.length > 2) return { error: `unexpected argument: ${ids[2]}` };
     return { verb, id: ids[1], args: [ids[0]], options };
   }
+  if (verb === 'skill') {
+    if (ids.length === 0) return { error: `skill needs ${SKILL_ACTIONS.join(' or ')}` };
+    if (!SKILL_ACTIONS.includes(ids[0])) return { error: `unknown action: ${ids[0]}` };
+    if (!ids[1]) return { error: `skill ${ids[0]} needs a run id` };
+    if (ids.length > 2) return { error: `unexpected argument: ${ids[2]}` };
+    if (options.name !== undefined && !SKILL_NAME_PATTERN.test(options.name)) return { error: '--name takes a skill name' };
+    return { verb, id: ids[1], args: [ids[0]], options };
+  }
   if (options['schedule-index'] !== undefined && !/^(?:0|[1-9]\d*)$/.test(options['schedule-index'])) {
     return { error: '--schedule-index takes a whole number' };
   }
@@ -427,7 +445,7 @@ async function loadRuntimeOnce() {
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
   const load = runtimeModule;
-  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets] = await Promise.all([
+  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal] = await Promise.all([
     load('runner'),
     load('switches'),
     load('needs-you'),
@@ -442,8 +460,9 @@ async function loadRuntimeOnce() {
     load('state-root'),
     load('identity'),
     load('secrets'),
+    load('skill-proposal'),
   ]);
-  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets };
+  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal };
 }
 
 // One process registers the TypeScript loader once, however many verbs it runs.
@@ -556,9 +575,10 @@ async function drainVerb(rt, checkoutRoot, skilledTree, scheduled, resolveEnv) {
   return 0;
 }
 
-function answerVerb(rt, parsed, checkoutRoot, resolveEnv) {
+function answerVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
   const result = rt.answer.answerItem({
     checkoutRoot,
+    skilledTree,
     itemId: parsed.id,
     text: parsed.args[0],
     env: process.env,
@@ -579,6 +599,33 @@ function answerVerb(rt, parsed, checkoutRoot, resolveEnv) {
   }
   const sent = status === 'duplicate' ? 'duplicate: already queued' : 'enqueued';
   process.stdout.write(`bots: item ${itemId} answered; resume request ${requestId} ${sent}\n`);
+  return 0;
+}
+
+// A proposal is written under the state root the drain job reads, so the review item lands in the
+// inbox the scheduled jobs see. Nothing is created before the run record reads, so a refusal writes nothing.
+function skillVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
+  const context = rt.runner.resolveBotContext({ checkoutRoot, skilledTree, env: resolveEnv });
+  if (!context.ok) {
+    process.stderr.write(`${describeRefusal(context)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const { stateRoot, identity, config } = context.value;
+  const result = rt.skillProposal.writeProposal({
+    stateRoot,
+    identity,
+    checkoutRoot,
+    skilledTree,
+    runId: parsed.id,
+    name: parsed.options.name ?? null,
+    expiryDays: config.needsYou.expiryDays,
+    env: process.env,
+  });
+  if (!result.ok) {
+    process.stderr.write(`${describeRefusal(result)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  process.stdout.write(`bots: proposal for skill ${result.value.name} written at proposals/${parsed.id}\n`);
   return 0;
 }
 
@@ -1415,7 +1462,8 @@ async function main(argv) {
   const env = process.env;
   if (parsed.verb === 'enqueue') return enqueueVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
-  if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
+  if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
+  if (parsed.verb === 'skill') return skillVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
   if (parsed.verb === 'remember') return rememberVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'secret') return secretVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);

@@ -438,11 +438,11 @@ export function checkPromptBudget(prompt: string, block = 'resume'): Result<stri
  * stops to ask and exits 0 would otherwise read as a clean run.
  *
  * The blocks land in one order: the exemption, the spec folder, the working
- * place, the checkout, the memory, the decision marker, the body and the
- * request prompt. An absent block adds nothing, so a bot with no memory file
- * and no queued request gets the prompt it always did. The bound is checked
- * on the joined output, never on a block, so a refusal names the block that
- * crossed the line.
+ * place, the checkout, the memory, the skills, the decision marker, the body
+ * and the request prompt. An absent block adds nothing, so a bot with no
+ * memory file and no queued request gets the prompt it always did. The bound
+ * is checked on the joined output, never on a block, so a refusal names the
+ * block that crossed the line.
  */
 export function buildBotPrompt(input: {
   body: string;
@@ -455,6 +455,8 @@ export function buildBotPrompt(input: {
   scheduled?: boolean;
   /** The rendered memory blocks, the shared file's first. Absent or empty adds nothing. */
   memoryBlocks?: readonly string[];
+  /** The rendered skill blocks, in the order the definition lists them. Absent or empty adds nothing. */
+  skillBlocks?: readonly string[];
   /** A queued request's own text, joined under REQUEST_PROMPT_HEADER after the body. */
   requestPrompt?: string | null;
 }): Result<string> {
@@ -484,6 +486,7 @@ export function buildBotPrompt(input: {
       lines: input.checkoutRoot !== undefined && input.checkoutRoot !== null ? [checkoutLine(input.checkoutRoot)] : [],
     },
     { name: 'memory', lines: [...(input.memoryBlocks ?? [])] },
+    { name: 'skills', lines: [...(input.skillBlocks ?? [])] },
     {
       name: 'decision-marker',
       lines: [

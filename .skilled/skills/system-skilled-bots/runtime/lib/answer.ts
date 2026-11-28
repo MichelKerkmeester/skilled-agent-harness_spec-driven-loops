@@ -12,8 +12,9 @@
 // it once. The answer is checked for secret literals before it is stored,
 // because it reaches the resumed run's prompt. An answer given with the
 // no-resume option records the answer, writes the request id the resume would
-// have had and queues nothing. A review item asks about a fact rather than the
-// bot's work, so its answer settles it in place and queues no run.
+// have had and queues nothing. A review item asks about a fact or a proposed
+// skill rather than the bot's work, so its answer settles it in place and
+// queues no run.
 //
 // The answer carries the name of whoever gave it and a scope of once or deny,
 // and the parked run's record is stamped with that same name so a reader of
@@ -43,6 +44,7 @@ import { ANSWER_SOURCE, buildRequest, requestIdFor } from './request-record.js';
 import { enqueueRequest, listInbox, queueContext, queueFolders } from './request-queue.js';
 import { readRunRecord, writeRunRecord } from './run-record.js';
 import { writeGenerationStamp } from './runner.js';
+import { claimProposalAnswer, DEFAULT_SKILLED_TREE, settleProposalAnswer } from './skill-proposal.js';
 import { identityStatePaths, isSafeSegment } from './state-root.js';
 
 import type { KnownSecrets } from './dispatch.js';
@@ -63,6 +65,8 @@ export const ANSWER_SURFACES: readonly AnswerSurface[] = ['terminal', 'channel']
 
 export interface AnswerInput {
   checkoutRoot: string;
+  /** The Skilled tree whose `.skilled/skills` holds a skill proposal's target, the root the loader reads. Absent means the tree this runtime ships in. */
+  skilledTree?: string;
   itemId: string;
   text: string;
   env?: NodeJS.ProcessEnv;
@@ -107,6 +111,7 @@ interface ReviewContext {
   stateRoot: string;
   identity: string;
   known: KnownSecrets;
+  skilledTree: string;
 }
 
 /**
@@ -180,7 +185,33 @@ const MEMORY_PROPOSAL_REVIEW: ReviewKind = {
   },
 };
 
-const REVIEW_KINDS: readonly ReviewKind[] = [MEMORY_PROPOSAL_REVIEW];
+/**
+ * A skill proposal: the answer records the decision beside the proposal and queues no run. The pin
+ * is checked before the answer is written, so a target that changed since the proposal read it
+ * refuses with the item still open. A proposal that does not read is no proposal, so the answer
+ * still lands and settles nothing rather than refusing every answer on the item.
+ */
+const SKILL_PROPOSAL_REVIEW: ReviewKind = {
+  kind: 'skill-proposal',
+  claim(item, text) {
+    const t = text.trim().toLowerCase();
+    if (t === 'confirm') return { ok: true, value: { verdict: 'confirm', scope: 'once' } };
+    if (REVIEW_NO.has(t)) return { ok: true, value: { verdict: 'reject', scope: 'deny' } };
+    return { ok: false, reason: 'review-answer-invalid', detail: text };
+  },
+  precheck(context, item) {
+    const claimed = claimProposalAnswer({ stateRoot: context.stateRoot, identity: context.identity, skilledTree: context.skilledTree, item });
+    if (!claimed.ok) return claimed;
+    return { ok: true, value: null };
+  },
+  settle(context, item, verdict) {
+    const settled = settleProposalAnswer({ stateRoot: context.stateRoot, identity: context.identity, item, decision: verdict });
+    if (!settled.ok) return settled;
+    return { ok: true, value: null };
+  },
+};
+
+const REVIEW_KINDS: readonly ReviewKind[] = [MEMORY_PROPOSAL_REVIEW, SKILL_PROPOSAL_REVIEW];
 
 /** The review kind that claims an item by its kind, asked in order, or null for a plain decision. */
 function reviewFor(item: NeedsYouItem): ReviewKind | null {
@@ -228,8 +259,8 @@ function answeredGrant(item: NeedsYouItem, scope: AnswerScope, by: string, at: s
  *   `surface-invalid`, `answer-not-approver`, `channel-roster-missing`,
  *   `item-unknown`, `item-busy`, `item-expired`,
  *   `item-answered-differently`, `answer-secret` (named by key, never by
- *   value), `review-answer-invalid`, `memory-full`, `memory-secret` or a
- *   queue refusal.
+ *   value), `review-answer-invalid`, `memory-full`, `memory-secret`,
+ *   `proposal-stale` or a queue refusal.
  */
 export function answerItem(input: AnswerInput): Result<AnswerResult> {
   const env = input.env ?? process.env;
@@ -313,7 +344,7 @@ function answerLocked(input: AnswerInput, ctx: LockedContext): Result<AnswerResu
   if (secret !== null) return { ok: false, reason: 'answer-secret', detail: `the answer holds a literal of ${secret.kind} ${secret.name}` };
 
   if (claimed !== null && !claimed.ok) return claimed;
-  const reviewContext: ReviewContext = { stateRoot, identity, known };
+  const reviewContext: ReviewContext = { stateRoot, identity, known, skilledTree: input.skilledTree ?? DEFAULT_SKILLED_TREE };
   if (review !== null && claimed !== null && claimed.ok && state === 'open') {
     const checked = review.precheck(reviewContext, item, claimed.value.verdict, ctx.actor, now);
     if (!checked.ok) return checked;

@@ -43,6 +43,7 @@ describe('worked shapes', () => {
       budget: DEFAULT_BUDGET,
       enabled: true,
       memory: true,
+      skills: [],
       delivery: { mode: 'targets', targets: [], onFailure: null },
       posture: { isolation: null, sandbox: null, secrets: null, apps: null },
       precheck: null,
@@ -202,5 +203,41 @@ describe('memory key', () => {
 
     expect(parseDefinition(bot('memory: maybe'))).toMatchObject({ ok: false, reason: 'memory-invalid' });
     expect(parseDefinition(bot('memory: 1'))).toMatchObject({ reason: 'memory-invalid' });
+  });
+});
+
+describe('parseDefinition', () => {
+  // A cli runtime keeps the skills key the only thing the definition varies.
+  const bot = (...lines: string[]) =>
+    ['---', 'id: b', 'trigger: {kind: manual}', 'runtime: {kind: cli-codex}', ...lines, '---', 'body', ''].join('\n');
+
+  it('carries the skills list', () => {
+    const one = parseDefinition(bot('skills: [sk-code]'));
+    if (!one.ok) throw new Error(one.reason);
+    expect(one.value.skills).toEqual(['sk-code']);
+
+    const two = parseDefinition(bot('skills: [sk-code, sk-doc]'));
+    if (!two.ok) throw new Error(two.reason);
+    expect(two.value.skills).toEqual(['sk-code', 'sk-doc']);
+  });
+
+  it('defaults skills to an empty list', () => {
+    const absent = parseDefinition(bot());
+    if (!absent.ok) throw new Error(absent.reason);
+    expect(absent.value.skills).toEqual([]);
+
+    const empty = parseDefinition(bot('skills: []'));
+    if (!empty.ok) throw new Error(empty.reason);
+    expect(empty.value.skills).toEqual([]);
+  });
+
+  it('refuses a skills value that is not a list', () => {
+    expect(parseDefinition(bot('skills: sk-code'))).toMatchObject({
+      ok: false,
+      reason: 'skills-name-invalid',
+      detail: 'not a list',
+    });
+    expect(parseDefinition(bot('skills: [sk-code, sk-code]'))).toMatchObject({ ok: false, reason: 'skills-duplicate' });
+    expect(parseDefinition(bot('skills: [Sk-Code]'))).toMatchObject({ ok: false, reason: 'skills-name-invalid' });
   });
 });
