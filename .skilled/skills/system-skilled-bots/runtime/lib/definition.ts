@@ -94,6 +94,10 @@ export const DEFAULT_RUNTIME: Readonly<RuntimeBlock> = Object.freeze({ kind: 'na
 
 /** Bot ids are label-safe: lowercase letters, digits and hyphens, no dots. */
 export const BOT_ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+
+/** The longest secret name a definition may declare, the bound the vault's index keys keep. */
+export const SECRET_NAME_MAX = 64;
+
 const QUEUE_NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 const DOC_VERSION_PATTERN = /^\d+\.\d+\.\d+\.\d+$/;
 
@@ -312,6 +316,15 @@ export function parseDefinition(text: string): Result<BotDefinition> {
     const value = optionalString(raw, key);
     if (!value.ok) return value;
     strings[key] = value.value;
+  }
+
+  // The name becomes a file name, a keychain account and an environment key, so only the bot id grammar is safe for all three.
+  if (typeof strings.secrets === 'string' && (!BOT_ID_PATTERN.test(strings.secrets) || strings.secrets.length > SECRET_NAME_MAX)) {
+    return {
+      ok: false,
+      reason: 'secret-name-invalid',
+      detail: 'expected lowercase letters, digits and hyphens, starting with a letter or digit, at most 64 characters',
+    };
   }
 
   const apps = parseApps(raw.apps);

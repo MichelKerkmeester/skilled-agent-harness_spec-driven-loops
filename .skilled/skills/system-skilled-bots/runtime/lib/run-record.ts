@@ -143,6 +143,8 @@ export interface HonoredPosture {
   model: string | null;
   /** The honored connector server names in the source config's order, empty when none was declared. A record written before the field reads as empty. */
   apps: string[];
+  /** The names of the secrets the run's child received, never a value. A record written before the field reads as none. */
+  secretsUsed?: string[];
 }
 
 export interface RunExit {
@@ -217,7 +219,7 @@ export interface UntilObservation {
 }
 
 /** The post-run causes this runtime records. Each names a finding after the child ran, so the run keeps its own exit. */
-export const POST_RUN_CAUSES = ['memory-proposal-secret', 'remember-type-invalid', 'remember-fact-too-long'] as const;
+export const POST_RUN_CAUSES = ['memory-proposal-secret', 'remember-type-invalid', 'remember-fact-too-long', 'secret-in-output'] as const;
 
 /** One finding after the child ran. names lists secret names or known-secret keys, never a value. */
 export interface PostRunCause {
@@ -270,6 +272,11 @@ function isNullableNumber(value: unknown): boolean {
   return value === null || (typeof value === 'number' && Number.isFinite(value));
 }
 
+/** True for an absent list or an array of strings. */
+function isOptionalNameList(value: unknown): boolean {
+  return value === undefined || (Array.isArray(value) && value.every((name) => typeof name === 'string'));
+}
+
 /**
  * Check a record's shape and its exit rules.
  *
@@ -284,6 +291,7 @@ export function validateRunRecord(raw: unknown): Result<RunRecord> {
     if (!valid) return { ok: false, reason: 'record-field-missing', detail: group };
   }
   const record = raw as unknown as RunRecord;
+  if (!isOptionalNameList((record.posture as unknown as Record<string, unknown>).secretsUsed)) return { ok: false, reason: 'record-field-invalid', detail: 'posture.secretsUsed' };
 
   if (typeof record.identity.runId !== 'string' || record.identity.runId === '') {
     return { ok: false, reason: 'record-field-missing', detail: 'identity.runId' };

@@ -39,7 +39,7 @@
       "environment"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/secrets.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/secret-matcher.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/delivery.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
-      ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-      "design/names-and-keys.md",
-      ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md"
+      ".skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/secret-matcher.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/state-root.vitest.ts"
     ],
     "entities": [
       {
@@ -100,33 +100,27 @@
         "source": "derived"
       },
       {
-        "name": "definition.ts",
+        "name": "secrets.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/secrets.ts",
         "source": "derived"
       },
       {
-        "name": "state-root.ts",
+        "name": "secret-matcher.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-record.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runner.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/secret-matcher.ts",
         "source": "derived"
       },
       {
         "name": "dispatch.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runner.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
         "source": "derived"
       },
       {
@@ -142,6 +136,24 @@
         "source": "derived"
       },
       {
+        "name": "run-record.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/run-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "definition.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/definition.ts",
+        "source": "derived"
+      },
+      {
+        "name": "state-root.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
+        "source": "derived"
+      },
+      {
         "name": "executor-audit.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -154,33 +166,21 @@
         "source": "derived"
       },
       {
-        "name": "bot-template.txt",
-        "kind": "file",
-        "path": ".skilled/skills/system-skilled-bots/assets/bot-template.txt",
+        "name": "secrets.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/secrets.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+        "name": "secret-matcher.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/secret-matcher.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "bot-definition.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md",
-        "source": "derived"
-      },
-      {
-        "name": "names-and-keys.md",
-        "kind": "doc",
-        "path": "design/names-and-keys.md",
-        "source": "derived"
-      },
-      {
-        "name": "bot-definition-contract.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md",
+        "name": "state-root.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/state-root.vitest.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A bot that needs a key takes it from the operator's environment or a dotenv file, so every bot on the host can read every key and nothing records which bot used which",
     "created_at": "2026-11-25T07:13:42Z",
-    "last_save_at": "2026-11-27T15:40:02.007Z",
+    "last_save_at": "2026-11-28T00:26:54.525Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:666fece5a55b9ef660a9930f2df5cd213a787cc61fb0b5bad33cd71e18500b53",
+    "source_fingerprint": "sha256:095b38cc4049ed27882730529bf8afdb4f9606504c7fb6410e3c0463661eb44c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a51a5d2cc4e0ab7e2ec60ad722461abc1fc835554848dabe71c87ac590e488c8",
+      "spec.md": "be0b5aefe8d109270ff34b4ce6e47fb191cba2b2d40c331a805e617524c3bb7d",
       "plan.md": "808bb461b0abd35695395bc2e47d97ef1966762b4e08308cc2d2add6176ae110",
-      "tasks.md": "bf9e3b2f31dd6167776cecdf15aded1c846ca1dd0c1c8f89d6de92d5a2c0049a",
-      "implementation-summary.md": "3e2f6c78f919e766404842e9f2eb1c03048397a1bac8a1b836b7a03f4b888414"
+      "tasks.md": "15bca5c666f50c2728edab3498c68ae28b1cb3f665b0f668bc01c62a2b29d5cf",
+      "implementation-summary.md": "b82fdb5778e1da5a62a395969410a0b3ea48e3d5ff08bd7f430e3a9313269bf5"
     },
     "last_active_at": null
   }

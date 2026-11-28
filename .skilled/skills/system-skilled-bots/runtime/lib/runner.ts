@@ -34,9 +34,9 @@
 
 import { spawn, spawnSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
-import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, lstatSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
 import {
@@ -57,11 +57,12 @@ import {
   buildBotPrompt,
   checkoutLine,
   checkPromptBudget,
-  collectKnownSecrets,
+  collectAllKnownSecrets,
   commonEnv,
   dispatchHeadless,
   finalAnswerText,
   findSecretLiteral,
+  MIN_SECRET_LENGTH,
   parseDecisionMarker,
   parseRememberMarker,
   READ_ONLY_UNCONFINED,
@@ -83,6 +84,8 @@ import { readRepoConfig } from './repo-config.js';
 import { openResultLedger, resultEventKey, sendResultEvent } from './result-ledger.js';
 import { disabledCause, evaluateFatigue, readRoutineState, recordUntilOutcome } from './routine-state.js';
 import { AWAITING_DECISION, readRunRecord, RESULT_EVENT_UNRECORDED, writeRunRecord } from './run-record.js';
+import { createSecretMatcher } from './secret-matcher.js';
+import { resolveSecret, secretEnvKey } from './secrets.js';
 import { HELD_SLOT_REASON, recordScheduledFire } from './slot-accounting.js';
 import {
   ensureIdentityState,
@@ -103,7 +106,7 @@ import { readSwitch, setSwitch } from './switches.js';
 import type { ExecutorKind } from '../../../system-deep-loop/runtime/lib/deep-loop/executor-config.js';
 import type { BotDefinition, Delivery } from './definition.js';
 import type { DeliverySenders } from './delivery.js';
-import type { CommandBuilder, DispatchOutcome, WorkingPlace } from './dispatch.js';
+import type { CommandBuilder, DispatchOutcome, KnownSecrets, WorkingPlace } from './dispatch.js';
 import type { BotWorktree } from './isolation.js';
 import type { MemoryType } from './memory.js';
 import type { NeedsYouItem } from './needs-you.js';
@@ -159,6 +162,8 @@ export const REFUSAL_CAUSES = Object.freeze({
   'apps-unenforceable': { reason: 'apps-unenforceable', class: 'author' },
   'apps-refused': { reason: 'apps-refused', class: 'author' },
   'body-secret': { reason: 'body-secret', class: 'author' },
+  'secret-unknown': { reason: 'secret-unknown', class: 'operator' },
+  'secret-store-unreadable': { reason: 'secret-store-unreadable', class: 'environment' },
   'prompt-over-budget': { reason: 'prompt-over-budget', class: 'author' },
   'read-only-unconfined': { reason: 'read-only-unconfined', class: 'environment' },
   'result-ledger-unbound': { reason: 'result-ledger-unbound', class: 'environment' },
@@ -608,7 +613,184 @@ function runPrecheck(command: string, cwd: string, env: NodeJS.ProcessEnv, timeo
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 5. RUN
+// 5. POST-RUN SCAN
+// ───────────────────────────────────────────────────────────────────
+
+/** The prefix a vault row's key carries, so a scan names the secret rather than the row. */
+const VAULT_KEY_PREFIX = 'vault:';
+
+/** One text a scan looks for, with the name a redaction reports it under. */
+interface ScanForm {
+  name: string;
+  value: string;
+}
+
+/**
+ * Every text the scan looks for, built from the known-secret map.
+ *
+ * A vault row also contributes the three encodings a child is likely to print
+ * instead of the value itself. The hex form is the one the keychain stores, so a
+ * bot that reads its own keychain item back prints it.
+ *
+ * @param known - The values every text is checked against.
+ * @returns The forms to scan for, each long enough to be a secret.
+ */
+function scanForms(known: KnownSecrets): ScanForm[] {
+  const forms: ScanForm[] = [];
+  const seen = new Set<string>();
+  const push = (name: string, value: string): void => {
+    if (value.length < MIN_SECRET_LENGTH || seen.has(value)) return;
+    seen.add(value);
+    forms.push({ name, value });
+  };
+  for (const [key, value] of known) {
+    if (value.length < MIN_SECRET_LENGTH) continue;
+    const vault = key.startsWith(VAULT_KEY_PREFIX);
+    const name = vault ? key.slice(VAULT_KEY_PREFIX.length) : key;
+    push(name, value);
+    if (!vault) continue;
+    const bytes = Buffer.from(value, 'utf8');
+    push(name, bytes.toString('hex'));
+    // The unpadded text is the start of the padded one, so one form matches both.
+    push(name, bytes.toString('base64').replace(/=+$/, ''));
+    push(name, encodeURIComponent(value));
+  }
+  return forms;
+}
+
+/**
+ * Replace every stretch a known value covers with the name it is filed under.
+ *
+ * @param text - The text to redact.
+ * @param forms - The values to look for.
+ * @param matcher - The one-pass matcher over those values.
+ * @returns The redacted text, the names used and how many stretches were replaced.
+ */
+function redactText(text: string, forms: ScanForm[], matcher: ReturnType<typeof createSecretMatcher>): { text: string; names: string[]; stretches: number } {
+  const ranges = matcher.ranges(text);
+  if (ranges.length === 0) return { text, names: [], stretches: 0 };
+  const names: string[] = [];
+  let out = '';
+  let at = 0;
+  for (const [start, end] of ranges) {
+    // The longest value starting where the stretch starts names it, so a value that
+    // begins the stretch wins over one buried inside it.
+    let longest: ScanForm | null = null;
+    for (const form of forms) {
+      if (!text.startsWith(form.value, start)) continue;
+      if (longest === null || form.value.length > longest.value.length) longest = form;
+    }
+    const inside = text.slice(start, end);
+    const name = longest?.name ?? forms.filter((form) => inside.includes(form.value)).map((form) => form.name).sort()[0] ?? 'secret';
+    names.push(name);
+    out += `${text.slice(at, start)}[redacted: ${name}]`;
+    at = end;
+  }
+  return { text: out + text.slice(at), names, stretches: ranges.length };
+}
+
+/**
+ * Redact one file in place, through a temporary file renamed over it, so a reader
+ * never sees a half-written copy.
+ *
+ * @param path - The file to redact.
+ * @param forms - The values to look for.
+ * @param matcher - The one-pass matcher over those values.
+ * @returns The names used, how many stretches were replaced and whether the file was rewritten.
+ */
+function redactFile(path: string, forms: ScanForm[], matcher: ReturnType<typeof createSecretMatcher>): { names: string[]; stretches: number; rewritten: boolean } {
+  let text: string;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch {
+    return { names: [], stretches: 0, rewritten: false };
+  }
+  const names: string[] = [];
+  let stretches = 0;
+  // No value holds a newline, so a line at a time keeps every stretch inside one line.
+  const lines = text.split('\n').map((line) => {
+    const redacted = redactText(line, forms, matcher);
+    names.push(...redacted.names);
+    stretches += redacted.stretches;
+    return redacted.text;
+  });
+  if (stretches === 0) return { names, stretches, rewritten: false };
+  const temp = `${path}.${process.pid}.${randomBytes(6).toString('hex')}.tmp`;
+  try {
+    writeFileSync(temp, lines.join('\n'), { flag: 'wx', mode: statSync(path).mode & 0o777 });
+    renameSync(temp, path);
+    return { names, stretches, rewritten: true };
+  } catch {
+    rmSync(temp, { force: true });
+    return { names, stretches, rewritten: false };
+  }
+}
+
+/**
+ * Redact every text a run produced: the child's two streams and every file in the
+ * run folder and the receipt folder.
+ *
+ * @param known - The values every text is checked against.
+ * @param outcome - The dispatch outcome whose streams are redacted.
+ * @param folders - The folders to walk, in the order their places are reported.
+ * @param runFolder - The run folder the reported places are relative to.
+ * @returns The redacted streams and the cause to record, or null when nothing matched.
+ */
+function scanRunOutput(known: KnownSecrets, outcome: DispatchOutcome, folders: string[], runFolder: string): { stdout: string; stderr: string; cause: PostRunCause | null } {
+  const forms = scanForms(known);
+  if (forms.length === 0) return { stdout: outcome.stdout, stderr: outcome.stderr, cause: null };
+  const matcher = createSecretMatcher(forms.map((form) => form.value));
+  const names: string[] = [];
+  const places: string[] = [];
+  let stretches = 0;
+  const stdout = redactText(outcome.stdout, forms, matcher);
+  names.push(...stdout.names);
+  stretches += stdout.stretches;
+  if (stdout.stretches > 0) places.push('stdout');
+  const stderr = redactText(outcome.stderr, forms, matcher);
+  names.push(...stderr.names);
+  stretches += stderr.stretches;
+  if (stderr.stretches > 0) places.push('stderr');
+  for (const folder of folders) {
+    // A folder that does not exist is skipped, so a run that wrote no receipt costs nothing.
+    const pending = [folder];
+    for (let head = 0; head < pending.length; head += 1) {
+      const current = pending[head] as string;
+      let entries: string[];
+      try {
+        entries = readdirSync(current);
+      } catch {
+        continue;
+      }
+      for (const entry of entries) {
+        const path = join(current, entry);
+        const stats = lstatSync(path, { throwIfNoEntry: false });
+        if (stats === undefined) continue;
+        // A link is skipped rather than followed, so a scan never rewrites a file outside the run.
+        if (stats.isSymbolicLink()) continue;
+        if (stats.isDirectory()) {
+          pending.push(path);
+          continue;
+        }
+        if (!stats.isFile()) continue;
+        const redacted = redactFile(path, forms, matcher);
+        if (redacted.stretches === 0) continue;
+        names.push(...redacted.names);
+        stretches += redacted.stretches;
+        places.push(`${relative(runFolder, path)}${redacted.rewritten ? '' : ' (not rewritten)'}`);
+      }
+    }
+  }
+  if (stretches === 0) return { stdout: stdout.text, stderr: stderr.text, cause: null };
+  return {
+    stdout: stdout.text,
+    stderr: stderr.text,
+    cause: { cause: 'secret-in-output', names: [...new Set(names)].sort(), detail: `${stretches} stretches in ${places.join(', ')}` },
+  };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 6. RUN
 // ───────────────────────────────────────────────────────────────────
 
 function declaredPosture(definition: BotDefinition | null, config: RepoConfig): HonoredPosture {
@@ -618,6 +800,7 @@ function declaredPosture(definition: BotDefinition | null, config: RepoConfig): 
     executorKind: definition?.runtime.kind ?? 'unknown',
     model: typeof definition?.runtime.model === 'string' ? definition.runtime.model : null,
     apps: [],
+    secretsUsed: [],
   };
 }
 
@@ -1111,7 +1294,18 @@ async function runSeeded(
     // Every run writes its copy before any tree exists: it is the evidence the child's UTCP_CONFIG_FILE names.
     const utcp = writeRunUtcpConfig({ runFolder: runFolderPath, source: apps.value.source, honored: apps.value.honored });
     if (!utcp.ok) return refusalRecord(context.stateRoot, seed, 'apps-refused', `${utcp.reason}: ${utcp.detail ?? ''}`.trim(), null, nonce);
-    seed.posture = { ...seed.posture, apps: apps.value.honored };
+    seed.posture = { ...seed.posture, apps: apps.value.honored, secretsUsed: [] };
+
+    // The secret is resolved after the precheck, so no precheck ever sees its value, which lives
+    // only in this function and the dispatch input.
+    const secretEnv: Record<string, string> = {};
+    const secretName = definition.posture.secrets;
+    if (secretName !== null) {
+      const resolved = resolveSecret(context.stateRoot, context.identity, secretName, { env });
+      if (!resolved.ok) return refusalRecord(context.stateRoot, seed, resolved.reason as RefusalCause, resolved.detail ?? null, null, nonce);
+      secretEnv[secretEnvKey(secretName)] = resolved.value;
+      seed.posture = { ...seed.posture, secretsUsed: [secretName] };
+    }
 
     // Memory reaches only a freshly composed prompt: a resumed run re-sends its parked prompt as it was.
     const memory: Array<{ path: string; block: string }> = [];
@@ -1123,7 +1317,10 @@ async function runSeeded(
         if (block !== null) memory.push({ path, block });
       }
     }
-    const known = collectKnownSecrets(env, context.checkoutRoot);
+    // Every stored value guards every body, a bot that declares no secret included, because its body could still carry one.
+    const allKnown = collectAllKnownSecrets(env, context.checkoutRoot, context.stateRoot, context.identity);
+    if (!allKnown.ok) return refusalRecord(context.stateRoot, seed, 'secret-store-unreadable', allKnown.detail ?? null, null, nonce);
+    const known = allKnown.value;
     const texts: Array<[string, string]> = [['body', definition.body]];
     for (const { path, block } of memory) texts.push([`memory ${path}`, block]);
     if (resumeItem !== null) {
@@ -1297,7 +1494,7 @@ async function runSeeded(
         stateLogPath: join(evidence.ledgerDir as string, 'state.jsonl'),
         receiptDir: evidence.receiptDir as string,
         stdoutLogPath: join(runFolderPath, 'stdout.log'),
-        extraEnv: { UTCP_CONFIG_FILE: utcp.value.path },
+        extraEnv: { UTCP_CONFIG_FILE: utcp.value.path, ...secretEnv },
         ...(input.buildCommand !== undefined ? { buildCommand: input.buildCommand } : {}),
         ...(input.guard !== undefined ? { guard: input.guard } : {}),
       });
@@ -1313,6 +1510,14 @@ async function runSeeded(
       return refusalRecord(context.stateRoot, seed, 'read-only-unconfined', outcome.detail, null, nonce);
     }
 
+    const postRunCauses: PostRunCause[] = [];
+    // The scan runs before anything reads the child's output, so the answer text, the decision
+    // marker and the delivery message all come from the redacted copy.
+    const scanned = scanRunOutput(known, outcome, [runFolderPath, evidence.receiptDir as string], runFolderPath);
+    outcome = { ...outcome, stdout: scanned.stdout, stderr: scanned.stderr };
+    if (scanned.stderr !== '') process.stderr.write(scanned.stderr);
+    if (scanned.cause !== null) postRunCauses.push(scanned.cause);
+
     // A timeout or budget stop keeps its class even when the child asked a question first,
     // and so does a Vibe run whose own record says it did not finish.
     const stopped = outcome.reason === 'timeout'
@@ -1322,7 +1527,6 @@ async function runSeeded(
     const answer = outcome.dispatched && !stopped ? finalAnswerText(kind, outcome.stdout) : null;
     const signal = answer !== null ? parseDecisionMarker(answer) : { kind: 'none' as const };
 
-    const postRunCauses: PostRunCause[] = [];
     let exit: RunRecord['exit'];
     let result: RunOutcome;
     if (signal.kind === 'question') {

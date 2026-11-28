@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "w3-008-vault"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -61,13 +61,13 @@ Frozen choices. Changing one is an amendment.
 
 Each criterion traces to a row in `acceptance-criteria.md` or a line in the plan's Definition of Done [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/acceptance-criteria.md, AC-001] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/008-vault/plan.md, section "Definition of Done"].
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/secrets.vitest.ts tests/secret-matcher.vitest.ts` prints a `Test Files` line with no `failed` count, so the store sets, lists, forgets and resolves over the file backend and the fake keychain programs, refuses `secret-empty`, `secret-no-input`, `secret-too-long`, `secret-write-dropped` and `secret-store-unreadable`, keeps the index true under racing and stopped writers, the matcher matches a per-value scan and a run declaring `secrets: demo` injects `SKILLED_BOT_SECRET_DEMO`, records `secretsUsed: ["demo"]`, redacts a printed value, its lowercase hex form, its base64 form with or without padding or its URL-encoded form to `[redacted: demo]` as `secret-in-output` and withholds the delivery.
-- [ ] After the `FIXTURE` recipe in `tasks.md` Task Notation, `printf 'skilled-test-value-7f3a\n' | node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret list --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret forget demo --repo "$FIXTURE"` exits 0 and prints `demo` with no `skilled-test-value-7f3a`.
-- [ ] `node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE" < /dev/null; echo "exit=$?"` prints `secret-no-input` and `exit=2`.
-- [ ] `node .skilled/bin/bots.cjs run pb-vault --repo "$FIXTURE"; echo "exit=$?"` prints `bots: pb-vault refused before dispatch (secret-unknown): absent is not stored, run bots secret set absent` and `exit=4`.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm test && npm run typecheck` exits 0.
-- [ ] `rg -c 'Apache-2.0' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints 1, `rg -c 'Apache-2.0' .skilled/skills/system-skilled-bots/runtime/lib/secret-matcher.ts` prints 1 and `test -e .skilled/skills/system-skilled-bots/runtime/lib/secrets-guard.ts` exits 1, so the one-pass matcher is the only lifted file.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/008-vault --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/secrets.vitest.ts tests/secret-matcher.vitest.ts` prints a `Test Files` line with no `failed` count, so the store sets, lists, forgets and resolves over the file backend and the fake keychain programs, refuses `secret-empty`, `secret-no-input`, `secret-too-long`, `secret-write-dropped` and `secret-store-unreadable`, keeps the index true under racing and stopped writers, the matcher matches a per-value scan and a run declaring `secrets: demo` injects `SKILLED_BOT_SECRET_DEMO`, records `secretsUsed: ["demo"]`, redacts a printed value, its lowercase hex form, its base64 form with or without padding or its URL-encoded form to `[redacted: demo]` as `secret-in-output` and withholds the delivery.
+- [x] After the `FIXTURE` recipe in `tasks.md` Task Notation, `printf 'skilled-test-value-7f3a\n' | node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret list --repo "$FIXTURE" && node .skilled/bin/bots.cjs secret forget demo --repo "$FIXTURE"` exits 0 and prints `demo` with no `skilled-test-value-7f3a`.
+- [x] `node .skilled/bin/bots.cjs secret set demo --store file --repo "$FIXTURE" < /dev/null; echo "exit=$?"` prints `secret-no-input` and `exit=2`.
+- [x] `node .skilled/bin/bots.cjs run pb-vault --repo "$FIXTURE"; echo "exit=$?"` prints `bots: pb-vault refused before dispatch (secret-unknown): absent is not stored, run bots secret set absent` and `exit=4`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm test && npm run typecheck` exits 0.
+- [x] `rg -c 'Apache-2.0' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints 1, `rg -c 'Apache-2.0' .skilled/skills/system-skilled-bots/runtime/lib/secret-matcher.ts` prints 1 and `test -e .skilled/skills/system-skilled-bots/runtime/lib/secrets-guard.ts` exits 1, so the one-pass matcher is the only lifted file.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/008-vault --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -85,8 +85,8 @@ and findings belong here.
 |------|-------|----------|
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/008-vault` prints `RESULT: PASSED (5/5 checks)` |
 | Packet validates | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/008-vault --strict` prints `RESULT: PASSED` |
-| Implementation | Pending | `rg -n 'export function setSecret' .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts` exits 2, so the store does not exist yet |
-| Acceptance criteria | Pending | All 28 rows in `acceptance-criteria.md` read `Unmet` |
+| Implementation | Done | 2026-11-28: `rg -c 'export function setSecret' .skilled/skills/system-skilled-bots/runtime/lib/secrets.ts` prints 1. Runtime `npm test` prints 49 files and 634 passed, and the typecheck exits 0 |
+| Acceptance criteria | Done | 2026-11-28: all 28 rows read `Met`, and `rg -c '\| Unmet \|' acceptance-criteria.md` exits 1 |
 
 ### Deviations and findings
 
@@ -106,4 +106,8 @@ and findings belong here.
 | Choices taken by the assistant, second wave | 2026-11-26, under the operator's do-not-ask directive, where a finding named alternatives the first one was taken. F-074: `setBy` added to the secrets index rather than striking "secret records" from the parent's Scope line. |
 | Verify commands re-pinned | The criteria used `SKILLED_BOTS_STATE_ROOT=$(mktemp -d)`, which the verb's job-environment resolution turns into `XDG_STATE_HOME` set to the temp folder's parent, so it was not isolated. They now use the `FIXTURE` recipe, which pins the state root in the fixture's own config. |
 | Guard removed and scan widened | The final parity recommendations dropped rakazo's placeholder guard and `secrets-guard.ts` and added the lowercase hex and unpadded base64 forms to the post-run scan. Criterion 1 names the scan forms from AC-014. The test and typecheck criteria share one bullet, so criterion 6 can carry AC-012's one-lifted-file check. The `[SOURCE: ...spec.md:<line>]` citations moved up one line, because the commit removed one row above them. |
+| Criterion 4 run from a worktree | 2026-11-28: run from the unit worktree, `bots run pb-vault` refuses `run-folder-refused` (`skilled-tree-is-worktree`) before the secret check, a host fact older than this phase. With `--skilled-tree` pointing at a scratch tree it prints the exact `secret-unknown` line and `exit=4`. The fixture also needed one commit before a run could bind its result ledger. |
+| Live fixture runs | 2026-11-28: two cli-codex runs of the fixture closed AC-007, AC-008, AC-014, AC-015 and AC-027. `pb-vault` converged with `secretsUsed` `["demo"]` and no value anywhere outside `demo.value`. `pb-reader`, which declares no `secrets`, read the value file and recorded `[]`. A manual run writes no `agent-logs` file, so AC-027's scan ran on the bots process's own stderr. |
+| Build deviations | 2026-11-28: keychain calls use `spawnSync` with a 10 s kill where `design/backends.md` says `child_process.spawn`. `secret set` and `forget` refuse inside a bot child as `child-write-refused`, and `list` stays open. The resolve runs after the apps step. Three test files outside the owner rows changed only their pins: `state-root.vitest.ts`, `runner.vitest.ts` and `apps.vitest.ts`. `design/backends.md` section 6 no longer carries the stale widening sentence, so nothing was dropped. No skill reference file was added, so `leaf-manifest.json` was not regenerated. |
+| Findings for 013 | 2026-11-28: `contracts/refusals.md` section 3.4 lacks `remember-fact-too-long`, and section 3.7 lacks `secret-keychain-unavailable` (verb exit 2). Plan greps that count an import line and a call line cannot print 1: `collectAllKnownSecrets` in runner, delivery and answer, `createSecretMatcher` in dispatch and `timingSafeEqual` in `secrets.ts` each print 2. T001 says 20 REQ rows while CHK-001 says 19. The spec has 20. |
 <!-- /ANCHOR:log -->

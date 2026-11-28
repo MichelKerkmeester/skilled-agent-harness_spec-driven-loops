@@ -294,6 +294,9 @@ type RunAuditedExecutorCommandInput = {
   // Receives the child's captured stdout once a spawned child settles, whatever its exit,
   // so a caller can record what the stream reports, such as its cost, without echoing it.
   onStdout?: (stdout: string) => void;
+  // Receives the child's captured stderr once a spawned child settles, whatever its exit, in place of
+  // the copy written to this process's stderr, so a caller can redact it first. Only the synchronous runner reads it.
+  onStderr?: (stderr: string) => void;
   // Where the synchronous runner writes the child's stdout. The file is the only copy of
   // the stream, so a caller that keeps it names the path; without one the runner uses a
   // temporary file it removes once the stream has been read.
@@ -1647,9 +1650,9 @@ export function runAuditedExecutorCommand(requested: RunAuditedExecutorCommandIn
     }
   }
   const stderr = typeof result.stderr === 'string' ? result.stderr : '';
-  if (stderr.length > 0) {
-    process.stderr.write(stderr);
-  }
+  const stderrSink = input.onStderr;
+  if (stderrSink !== undefined) stderrSink(stderr);
+  else if (stderr.length > 0) process.stderr.write(stderr);
   const unavailableMarker = classifyExecutorUnavailable(stdout, stderr);
 
   // Post-dispatch COMPLETION countersign: bind the INTENT to the child facts the

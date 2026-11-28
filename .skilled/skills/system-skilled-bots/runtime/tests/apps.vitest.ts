@@ -301,7 +301,7 @@ describe('apps record', () => {
     const outcome = await runBot(world.input('one-app', { senders: {} }));
     expect(outcome.kind).toBe('completed');
     const rec = recordOf(world, outcome);
-    expect(rec.posture).toEqual((golden('run-record.posture.json') as { posture: unknown }).posture);
+    expect(rec.posture).toEqual({ ...(golden('run-record.posture.json') as { posture: Record<string, unknown> }).posture, secretsUsed: [] });
     expect(validateRunRecord(rec).ok).toBe(true);
   }, 90_000);
 
