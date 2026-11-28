@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-28 |
 | **Branch** | `system-skilled-bots` |
 | **Parent Spec** | ../spec.md |

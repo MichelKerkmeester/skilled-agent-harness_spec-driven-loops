@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/012-folder-architecture"
-    last_updated_at: "2026-11-28T11:26:17Z"
-    last_updated_by: "goal-author"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-28T17:00:00Z"
+    last_updated_by: "012-orchestrator"
+    recent_action: "Ticked criteria 1 to 6"
+    next_safe_action: "Top orchestrator decides the design guard fix"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-012-folder-architecture"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -54,13 +54,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing, where `BASE` is the commit `scratch/tree-baseline.md` records.
-- [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
-- [ ] `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, and `cargo clippy --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --check --manifest-path .skilled/crates/bots-tui/Cargo.toml` both exit 0.
-- [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` prints `OK: parent-skill-check`, and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`.
-- [ ] `test -f .skilled/crates/README.md && test -f .skilled/crates/bots-tui/README.md` exits 0, `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py` prints `VALID` for both, `rg -c '^. R[0-9]{3} .' specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md` prints at least 2 and `for d in $(rg -N -o -r '$1' '^. R[0-9]{3} . ([^ ]+) . readme ' specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md); do test -f "$d/README.md" && continue; echo "missing $d"; done` prints nothing.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture --strict` prints `RESULT: PASSED`.
+- [x] `git diff -M --diff-filter=D --name-only $BASE HEAD -- .skilled` prints nothing, where `BASE` is the commit `scratch/tree-baseline.md` records.
+- [x] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`, and `npm --prefix .skilled/skills/system-skilled-bots/runtime run typecheck` exits 0.
+- [x] `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, and `cargo clippy --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --check --manifest-path .skilled/crates/bots-tui/Cargo.toml` both exit 0.
+- [x] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS` with `scenarios=58` and `violations=0`.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-skilled-bots` prints `OK: parent-skill-check`, and `bash .github/scripts/check-gate-inputs.sh` prints `RESULT: PASSED`.
+- [x] `test -f .skilled/crates/README.md && test -f .skilled/crates/bots-tui/README.md` exits 0, `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py` prints `VALID` for both, `rg -c '^. R[0-9]{3} .' specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md` prints at least 2 and `for d in $(rg -N -o -r '$1' '^. R[0-9]{3} . ([^ ]+) . readme ' specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md); do test -f "$d/README.md" && continue; echo "missing $d"; done` prints nothing.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,11 +79,17 @@ and findings belong here.
 | Phase added by the operator | Done | The operator added the phase on 2026-11-28, numbered it 012 and shifted the closing phases to 013, 014 and 015 |
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture` passes |
 | Goal amended for folder READMEs, operator line of 2026-11-28 | Done | D5 and the README criterion added through `/create:goal` amend. The change stays inside this phase, so the parent goal and its chat slice are unchanged. `check-goal.cjs` on this folder passes |
-| Tree measured | Pending | T001 runs once 011.007, 010.003 and every runtime unit have merged |
+| Tree measured | Done | `scratch/tree-baseline.md` records BASE 1937abca823 |
+| Move map written | Done | 32 M rows and 28 R rows in `scratch/move-map.md` |
+| M016 landed | Done | 150c1d4d2b2, R100 with mode 100755, suite 57 files 794 passed |
+| READMEs | Done | 56529b6deab, `.skilled/crates/README.md` and `.skilled/crates/bots-tui/README.md` print VALID |
+| Final gate rerun | Done | every gate equal to `scratch/gate-baseline.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | The numbers in `spec.md` are a snapshot | The 365 files and 123 one-file folders were measured on 2026-11-28, before 011.005 to 011.007 and 010.003 added theirs. The move map reads T001's measure, not these. |
+| The CI design guard fails at BASE | It prints `Only in .skilled/crates/bots-tui/design: chat-mockups.md` at BASE and at FINAL. Cause 44216a6ad13. AC-007 stays Unmet and the top orchestrator decides the fix |
+| `channels/` has no README of its own | The document validator exempts fixture trees, so its parent README names it and the README table marks it skip |
 <!-- /ANCHOR:log -->

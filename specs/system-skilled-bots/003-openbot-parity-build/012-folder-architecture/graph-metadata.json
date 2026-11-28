@@ -37,7 +37,7 @@
       "map"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,11 +45,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-      ".github/workflows/bots-runtime.yml",
+      ".skilled/crates/README.md",
+      ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/osascript-stub.sh",
+      ".skilled/skills/system-skilled-bots/runtime/tests/delivery.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/README.md",
       ".skilled/crates/bots-tui/README.md",
-      ".skilled/crates/bots-tui/Cargo.toml"
+      "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-baseline.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/gate-baseline.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md",
+      "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-after.md",
+      ".github/workflows/bots-runtime.yml",
+      "scratch/move-map.md",
+      "scratch/tree-baseline.md",
+      "scratch/tree-after.md",
+      ".skilled/bin/bots.cjs"
     ],
     "entities": [
       {
@@ -89,15 +98,45 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/crates/README.md",
         "source": "derived"
       },
       {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "name": "osascript-stub.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/fixtures/osascript-stub.sh",
+        "source": "derived"
+      },
+      {
+        "name": "delivery.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/delivery.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tree-baseline.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-baseline.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/gate-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "move-map.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/move-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "tree-after.md",
+        "kind": "doc",
+        "path": "specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/scratch/tree-after.md",
         "source": "derived"
       },
       {
@@ -107,19 +146,19 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/crates/bots-tui/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "Cargo.toml",
+        "name": "bots.cjs",
         "kind": "file",
-        "path": ".skilled/crates/bots-tui/Cargo.toml",
+        "path": ".skilled/bin/bots.cjs",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -149,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Eleven",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -171,35 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Measured",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eleven phases each added files where their own plan put them, so the bots skill grew by accretion rather than by a layout",
     "created_at": "2026-11-28T11:26:16Z",
-    "last_save_at": "2026-11-28T13:52:59.615Z",
+    "last_save_at": "2026-11-28T15:47:25.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21a54da0015cb1e73feb0d8bbaf6a2af9cc676525e0bdf133e112994c2145d92",
+    "source_fingerprint": "sha256:77af9e8bf9034d88e528e113e056b4413599040247fc4647f3e9e38d8524e107",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edbef0979d4d5c94ecfcf83126296cb1ca3b917f4b9eb6cccf27b7ef68dfcbdc",
+      "spec.md": "09b5460439b0ef3a8df18f990fc1f6760c0d740656122e5941207bc8589076f0",
       "plan.md": "fff8556fbd066af0e0830837d686a1617f729c9180e91caeed2386d30917f95b",
-      "tasks.md": "4661ebbec62ea5ec9b963b6e044cb9ada308ce6832d329384a389ab208191b5d",
-      "implementation-summary.md": "07adde6212db5f884d9e3c0bc56aaad180dc5f9e6e6488a0286e53c38b015800"
+      "tasks.md": "00642e478a6519acdbde125db1bc8a83554ee0c6511e907ac8ee0b0e11c75a9b",
+      "implementation-summary.md": "885c836228adf93e0b8c1d21a8bbf23a3ef7792518eddbfd93e2fe99da4b2452"
     },
     "last_active_at": null
   }
