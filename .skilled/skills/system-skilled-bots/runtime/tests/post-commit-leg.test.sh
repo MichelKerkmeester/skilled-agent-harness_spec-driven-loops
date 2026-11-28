@@ -154,6 +154,10 @@ export XDG_STATE_HOME="$T/state"
 chk "$(find "$T/state" -path '*/records/*' -type f | wc -l | tr -d ' ')" "0" "no row wrote a run record"
 chk "$(find "$T/state" -path '*/leases/*' -type f | wc -l | tr -d ' ')" "0" "no row took a bot lease"
 
+# ── 11. a commit made by a dispatched session, not a bot run, still enqueues one request ──
+chk "$(commit "$T/trusted" AI_SESSION_CHILD=1)" "0" "a commit made by a dispatched session exits 0"
+chk "$(inbox_count)" "3" "a commit made by a dispatched session enqueues one request"
+
 echo
 echo "post-commit-leg: $pass passed, $fail failed"
 [[ "$fail" -eq 0 ]]

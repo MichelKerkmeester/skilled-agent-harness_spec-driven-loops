@@ -68,12 +68,16 @@ The actor is a validated name. `--as` names it, a scheduled fire takes the opera
 | `.skilled/skills/system-skilled-bots/runtime/lib/posture.ts` | Modified | Caps a declared `danger-full-access` without the grant |
 | `.skilled/skills/system-skilled-bots/runtime/lib/plist-render.ts` | Modified | Pins the operator and the full-access marker into the job |
 | `.skilled/skills/system-skilled-bots/runtime/lib/installer.ts` | Modified | Writes `operator` and `fullAccess` and records full access for a non-cron bot |
-| `.skilled/bin/bots.cjs` | Modified | `activity`, `inbox --json --all`, `--as`, `--scope`, `--full-access`, the tty refusals and the child bar |
+| `.skilled/bin/bots.cjs` | Modified | `activity`, `inbox --json --all`, `--as`, `--scope`, `--full-access`, the tty refusals and the child bar over every write verb and write form |
 | `.skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts`, `actor.vitest.ts` | Created | Group order, the one data set, refresh on read, row sources and the actor cases |
 | `.skilled/skills/system-skilled-bots/runtime/tests/` answer, needs-you, posture, resume, run-record, status-index, status, installer and cli-run suites | Modified | The named tests for each criterion and the updates the new keys and the refresh required |
 | `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Created | The MIT notice for OpenBot's `activity-groups.ts` |
 | `.skilled/skills/system-skilled-bots/runtime/lib/README.md`, `bots-status/SKILL.md`, `bots-status/references/status-and-inbox.md`, `bots-run/references/run-queue-and-answer.md` | Modified | The two module rows, the new read verb and the three new options |
 | `design/fixtures/one-data-set.json`, `design/fixtures/README.md` | Modified | The missing `nightly-report` install record |
+
+### Follow-up: every write verb inside a bot run
+
+A review found that the child bar refused only `answer`, `enable` and `skill`. A bot child could still send a chat message under the operator's name, start a manual run, reinstall or remove a schedule, pause, resume or disable a bot, queue or drain requests and rebuild or unregister status rows. A manual run and a reinstall both write the definition approval, so a child that edited its own BOT.md could approve its own drift. `CHILD_REFUSED_VERBS` now holds every verb whose every form writes, and `chat` without `--transcript` and `status` with `--unregister` or `--rebuild` get their own detailed refusal beside the `remember` and `secret` ones (REQ-014, AC-017). The read forms stay open. The test `refuses every write verb from a bot child` failed against the old `bots.cjs` with `run manual-ok: expected 4 to be 2` and passes now, and `keeps the read forms open to a bot child` passes on both.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -107,11 +111,13 @@ Cheap workers wrote every change in eleven internal waves, one change per brief,
 |-------|--------|
 | `npm test` in the runtime | PASS: `Test Files  37 passed (37)` and `Tests  424 passed (424)`, exit 0. Baseline 35 and 381 |
 | `npm run typecheck` | PASS: exit 0 |
-| AC-001 to AC-016 commands | PASS: every anchored filter printed `Tests  1 passed` |
+| AC-001 to AC-017 commands | PASS: every anchored filter printed `Tests  1 passed` |
 | `bots activity`, `bots activity --json` and `bots inbox --json` on a fresh scratch | PASS: `bots: no activity`, `{"version":1,"groups":[]}` and `{"version":1,"items":[]}`, each exit 0 |
 | `bots answer item-1 yes --scope always` | PASS: `bots: grant-scope-unsupported`, exit 2 |
 | `bots schedule install plain --full-access` through a pty | PASS: the recorded-only message, exit 0, and the record holds `fullAccess: true` with no labels |
 | `validate.sh --strict` on this folder | PASS: `RESULT: PASSED` |
+| Follow-up: `npm test` and `npm run typecheck` in the runtime | PASS: `Test Files  57 passed (57)` and `Tests  800 passed (800)`, exit 0, against a floor of 57 and 798, and the type-check exit 0 |
+| Follow-up: `cargo test --locked` for the bots-tui crate | PASS: exit 0, with 148, 24, 41, 8, 2, 51 (1 ignored), 1 and 17 passed |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -122,4 +128,5 @@ Cheap workers wrote every change in eleven internal waves, one change per brief,
 1. **A hand drain can record the pinned operator.** `request-drain.ts` cannot tell the runner it is unscheduled, so a queued or resume request counts as scheduled. A hand drain from a shell that exports `SKILLED_BOTS_OPERATOR` records that name. Unset the variable before draining by hand.
 2. **`schedule` prints null until the describe seam is wired.** The `scheduled` and `recurring` rows carry `schedule: null` until the next phase passes `describeStart`.
 3. **The child bar runs after parsing.** A bot child with a malformed argv gets the usage line and exit 2 instead of `child-write-refused`.
+4. **A dispatched session's commit still queues its git-commit request.** The wider bar would have refused the post-commit hook's `bots enqueue --git-commit` for a commit made with `AI_SESSION_CHILD=1` alone, and the hook discards that output. The hook now calls the CLI with that marker cleared, because the hook asks for the request and a dispatched session is not a bot run. A commit inside a bot run (`SKILLED_BOT_RUN_ID`) is still skipped. Row 11 of `post-commit-leg.test.sh` covers it: it fails on the old hook (`got '2' want '3'`) and the file prints `30 passed, 0 failed` after.
 <!-- /ANCHOR:limitations -->

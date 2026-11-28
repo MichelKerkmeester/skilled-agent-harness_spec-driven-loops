@@ -125,7 +125,10 @@ fi
 # opt-in follows, so a repository that has bots but leaves the trigger off starts no
 # process either; the CLI still reads the config properly and stays the authority on
 # whether anything is enqueued. A commit made inside a bot run
-# is skipped, so a bot cannot enqueue itself. The CLI is reached only through the
+# is skipped, so a bot cannot enqueue itself. A commit made by a dispatched session is
+# not a bot run, so the CLI is called with that session's child marker cleared: the hook
+# asks for the request, and the CLI refuses every write verb to a marked child. The CLI is
+# reached only through the
 # trusted source root, never through PATH, so an untrusted clone enqueues nothing.
 # Every failure is swallowed: this leg must never fail or block the commit.
 if [ -f "$REPO_ROOT/bots/config.json" ] \
@@ -147,7 +150,7 @@ if [ -f "$REPO_ROOT/bots/config.json" ] \
     fi
     __pc_bots_sha="$(git rev-parse HEAD 2>/dev/null || true)"
     if [ "$__pc_bots_enabled" = "1" ] && [ -n "$__pc_bots_sha" ]; then
-      node "$SOURCE_ROOT/bin/bots.cjs" enqueue --git-commit "$__pc_bots_sha" --repo "$REPO_ROOT" </dev/null >/dev/null 2>&1
+      env -u AI_SESSION_CHILD node "$SOURCE_ROOT/bin/bots.cjs" enqueue --git-commit "$__pc_bots_sha" --repo "$REPO_ROOT" </dev/null >/dev/null 2>&1
     fi
   } || true
 fi
