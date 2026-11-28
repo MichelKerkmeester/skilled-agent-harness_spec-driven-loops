@@ -209,8 +209,16 @@ export type RunRequest =
       prompt: string;
       /** The request's reply target, `<channel>:<chatId>`, so a chat-started run answers the chat that asked. */
       delivery?: string | null;
+      /** The conversation a chat message belongs to, so a run that parks names it on its item. */
+      conversationId?: string | null;
     }
-  | { kind: 'resume'; requestId: string; itemId: string }
+  | {
+      kind: 'resume';
+      requestId: string;
+      itemId: string;
+      /** The conversation the parked run came from, stamped on the resume request by the answer. */
+      conversationId?: string | null;
+    }
   | { kind: 'scheduled'; scheduleIndex: number; firedAt?: Date };
 
 /** The dispatch source a scheduled fire records. */
@@ -248,7 +256,13 @@ export interface RunBotInput {
 export type RunOutcome =
   | { kind: 'refused'; cause: RefusalCause; detail: string | null; runId: string | null; recordPath: string | null; itemId: string | null }
   | { kind: 'failed'; reason: string; class: FailureClass | null; runId: string; recordPath: string | null; recursionGuard: boolean }
-  | { kind: 'completed'; runId: string; recordPath: string | null }
+  | {
+      kind: 'completed';
+      runId: string;
+      recordPath: string | null;
+      /** The final answer text, read from the copy the post-run scan already redacted, or null when none was read. */
+      answer: string | null;
+    }
   | { kind: 'awaiting-decision'; runId: string; recordPath: string | null; itemId: string };
 
 /** Everything a verb needs to find one repository's bots and state. */
@@ -1572,6 +1586,8 @@ async function runSeeded(
         observe(seed, 'action-kind', 'refused', { detail: classified.detail ?? null });
       } else {
         const created = new Date();
+        // A chat-started run names its conversation on the item, so the resumed answer is appended where the person asked.
+        const conversationId = request.kind === 'queued' || request.kind === 'resume' ? request.conversationId ?? null : null;
         const item: NeedsYouItem = {
           id: runId,
           runId,
@@ -1596,6 +1612,7 @@ async function runSeeded(
             grantedBy: null,
             grantedAt: null,
           },
+          ...(conversationId !== null ? { conversationId } : {}),
         };
         const written = writeNeedsYouItem(context.stateRoot, item);
         if (written.ok) {
@@ -1614,7 +1631,7 @@ async function runSeeded(
       result = { kind: 'failed', reason: exit.reason, class: 'author', runId, recordPath: null, recursionGuard: false };
     } else if (outcome.clean) {
       exit = { reason: STOP.converged as string, class: null, needsYouItemId: null, refusal: null };
-      result = { kind: 'completed', runId, recordPath: null };
+      result = { kind: 'completed', runId, recordPath: null, answer };
     } else {
       const reason = outcome.reason ?? 'error';
       exit = { reason, class: outcome.class, needsYouItemId: null, refusal: null };

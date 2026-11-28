@@ -30,6 +30,8 @@ Use this hub for a request about a file-defined bot: writing one, running one, p
 
 `bots inbox` belongs to status and `bots answer` belongs to run. Neither has a mode of its own.
 
+`bots chat` belongs to run as well. Each message it sends is one bot run, and the thread is kept in a conversation file under the state root.
+
 `bots ui` belongs to status too. It opens the terminal screen, a live status surface over the same reads that can also answer a needs-you item.
 
 ### When NOT to Use

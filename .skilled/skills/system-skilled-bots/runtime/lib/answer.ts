@@ -410,6 +410,8 @@ function answerLocked(input: AnswerInput, ctx: LockedContext): Result<AnswerResu
     source: ANSWER_SOURCE,
     eventId: item.id,
     origin: `needs-you item ${item.id}`,
+    // The parked run's conversation travels on the resume, so the drain appends the resumed answer where the person asked.
+    conversationId: item.conversationId ?? null,
     target: { identity, path: input.checkoutRoot },
     now,
   });

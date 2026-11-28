@@ -39,7 +39,7 @@
       "acceptance"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-skilled-bots/runtime/lib/conversation.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/request-record.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+      ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
       ".skilled/bin/bots.cjs",
-      ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
-      ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
-      ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
-      ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+      ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
-      ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts"
+      ".skilled/skills/system-skilled-bots/runtime/tests/conversation.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/cli-chat.vitest.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts"
     ],
     "entities": [
       {
@@ -100,27 +100,15 @@
         "source": "derived"
       },
       {
+        "name": "conversation.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/conversation.ts",
+        "source": "derived"
+      },
+      {
         "name": "state-root.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/state-root.ts",
-        "source": "derived"
-      },
-      {
-        "name": "request-drain.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
-        "source": "derived"
-      },
-      {
-        "name": "answer.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "needs-you.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
         "source": "derived"
       },
       {
@@ -130,9 +118,27 @@
         "source": "derived"
       },
       {
+        "name": "needs-you.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/needs-you.ts",
+        "source": "derived"
+      },
+      {
         "name": "runner.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "answer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/answer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "request-drain.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skilled-bots/runtime/lib/request-drain.ts",
         "source": "derived"
       },
       {
@@ -142,39 +148,39 @@
         "source": "derived"
       },
       {
-        "name": "queued-run.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "runner.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
         "source": "derived"
       },
       {
-        "name": "run-queue-and-answer.md",
+        "name": "THIRD_PARTY_NOTICES.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-run/references/run-queue-and-answer.md",
+        "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
+        "path": ".skilled/skills/system-skilled-bots/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "dispatch.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skilled-bots/runtime/lib/dispatch.ts",
+        "name": "conversation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/conversation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-chat.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/cli-chat.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "queued-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/queued-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled bots is headless by contract",
     "created_at": "2026-11-25T23:17:48Z",
-    "last_save_at": "2026-11-27T15:42:09.585Z",
+    "last_save_at": "2026-11-28T10:46:47.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5650d88641826e56a12d5160f6307bee3cb47ce232c55d43f85a5ec54724ee8b",
+    "source_fingerprint": "sha256:f1ed197d6fe63a001886871185fb5f6a68b4362680a52ca03aaa011f30e06bf9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f51272f94c459514c9b092c752338daf6411af23c28504052d9397738c1e63ad",
+      "spec.md": "57f55e465fffeda37b97337c4660d15ed36049842fc8b4bbc49171b23fbf99d5",
       "plan.md": "24d562edff50d7953a7f838455a950c185ea26271c1abc5e7fb1be4488960648",
-      "tasks.md": "39d03b63ea424be6acd038566b5ceb8760972884f75437946e510f4a798219c6",
-      "implementation-summary.md": "8175bb576cda3fc929ea86ab61bb931de419d550e8b1a2340bc0fbb28b21564e"
+      "tasks.md": "72d99aba6c59b0c909ca50383f1e7114970e35c3a9578bedb4e75f0739e5b1f6",
+      "implementation-summary.md": "d530799bd72c4f7bf2076d143635202090d25fbac751b15fb45d60ea824e865c"
     },
     "last_active_at": null
   }

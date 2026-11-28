@@ -59,6 +59,8 @@ export interface QueuedRequest {
   delivery: string | null;
   /** Runs already attempted for this request. */
   attempts: number;
+  /** The conversation a chat message or its resumed answer belongs to. Absent or null on a request from no conversation. */
+  conversationId?: string | null;
 }
 
 export interface RequestInput {
@@ -74,6 +76,8 @@ export interface RequestInput {
   target: RequestTarget;
   firedSlot?: string | null;
   delivery?: string | null;
+  /** The conversation the request belongs to, a safe path segment. Absent or null for none. */
+  conversationId?: string | null;
   now?: Date;
 }
 
@@ -91,6 +95,7 @@ const RECORD_KEYS = [
   'idempotencyKey',
   'delivery',
   'attempts',
+  'conversationId',
 ] as const;
 
 /** A lower-case word, so `<source>:<event id>` always splits at its first colon. */
@@ -176,6 +181,7 @@ export function buildRequest(input: RequestInput): Result<QueuedRequest> {
     idempotencyKey: key.value,
     delivery: input.delivery ?? null,
     attempts: 0,
+    ...(input.conversationId !== undefined && input.conversationId !== null ? { conversationId: input.conversationId } : {}),
   };
   return validateRequest(record);
 }
@@ -215,6 +221,9 @@ export function validateRequest(raw: unknown): Result<QueuedRequest> {
   }
   if (typeof raw.attempts !== 'number' || !Number.isInteger(raw.attempts) || raw.attempts < 0) {
     return { ok: false, reason: 'request-field-invalid', detail: 'attempts' };
+  }
+  if (raw.conversationId !== undefined && raw.conversationId !== null && !(typeof raw.conversationId === 'string' && isSafeSegment(raw.conversationId))) {
+    return { ok: false, reason: 'request-field-invalid', detail: 'conversationId' };
   }
   if (raw.id !== requestIdFor(raw.workflowId, raw.idempotencyKey)) return { ok: false, reason: 'request-id-mismatch' };
   return { ok: true, value: raw as unknown as QueuedRequest };

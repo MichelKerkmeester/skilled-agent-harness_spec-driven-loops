@@ -60,6 +60,11 @@ const USAGE = [
   '                 into the state root and raise one review item to answer with',
   '                 confirm or reject; --name defaults to the run\'s bot id, and you',
   '                 move a confirmed draft into .skilled/skills/<name>/ yourself',
+  '  chat <id> [--message <text> | --transcript [--json]] [--conversation <name>]',
+  '                 talk to a bot: each message is one run, and its reply is the next',
+  '                 line of the conversation file. With neither option it opens a loop',
+  '                 that /exit or /quit leaves. --message - reads the text from stdin,',
+  '                 and a message that starts with @<bot-id> goes to that bot',
   '  remember <fact> [--bot <id>] [--type <type>] [--as <name>]',
   '                 add one fact to the shared memory file, or with --bot to that',
   '                 bot\'s own; --type is user, general, feedback or reference',
@@ -119,7 +124,7 @@ const USAGE = [
 
 const COMMON_OPTIONS = ['repo', 'skilled-tree'];
 // Options that are switches and take no value.
-const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii', 'list']);
+const FLAG_OPTIONS = new Set(['scheduled', 'rebuild', 'json', 'all', 'full-access', 'ascii', 'list', 'transcript']);
 const SCHEDULE_ACTIONS = ['install', 'uninstall'];
 const SKILL_ACTIONS = ['propose'];
 // The name grammar a skill folder must match, mirroring SKILL_NAME_PATTERN in the runtime's skills
@@ -155,6 +160,7 @@ const VERB_SPECS = {
   enqueue: { ids: 1, options: ENQUEUE_OPTIONS },
   drain: { ids: 0, options: ['scheduled'] },
   answer: { ids: 2, options: ['as', 'scope'] },
+  chat: { ids: 1, options: ['message', 'transcript', 'conversation', 'json'] },
   remember: { ids: 1, options: REMEMBER_OPTIONS },
   channel: { ids: 0, options: ['role', 'secret', 'as', 'json'] },
   secret: { ids: 0, options: ['store'] },
@@ -167,7 +173,7 @@ const VERB_SPECS = {
 };
 // Verbs whose id is a bot, so identity and the state root come from that bot's installed job first.
 const ON_ONE_BOT = new Set(['run', 'enable', 'disable', 'pause', 'resume']);
-const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', 'store', 'name', ...FLAG_OPTIONS]);
+const KNOWN_OPTIONS = new Set([...COMMON_OPTIONS, ...ENQUEUE_OPTIONS, ...STATUS_OPTIONS, 'schedule-index', 'as', 'scope', 'bot', 'type', 'forget', 'role', 'secret', 'store', 'name', 'message', 'conversation', ...FLAG_OPTIONS]);
 // The marker a bot schedule's job file sets, the renderer's SCHEDULED_FIRE_ENV. A schedule index
 // moves the schedule's slot accounting, so only the installed job may pass one.
 const SCHEDULED_FIRE_ENV = 'SKILLED_BOTS_SCHEDULED_FIRE';
@@ -185,9 +191,14 @@ const UNSUPPORTED_SCOPES = new Set(['always', 'conversation']);
 const ANSWER_SCOPES = new Set(['once', 'deny']);
 // The write verbs a bot child may not run. Each later write verb joins this list.
 const CHILD_REFUSED_VERBS = new Set(['answer', 'enable', 'skill']);
-// Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash.
-// A value that is itself one of this CLI's flags still means the value was left out.
-const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key']);
+// Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash, and
+// a chat message is free text too. A value that is itself one of this CLI's flags still means the
+// value was left out.
+const FREE_TEXT_OPTIONS = new Set(['prompt', 'origin', 'key', 'message']);
+// A terminal wraps a pasted block in these two sequences once bracketed paste is on, so the chat
+// loop can tell a paste from a person pressing Enter on each line.
+const PASTE_START = '\x1b[200~';
+const PASTE_END = '\x1b[201~';
 
 function missingValue(name, value) {
   if (value === undefined) return true;
@@ -277,6 +288,24 @@ function checkEnqueue(options, ids) {
   if (options.source === undefined) return 'enqueue needs --source';
   if (options['event-id'] === undefined && options.key === undefined) return 'enqueue needs --event-id or --key';
   return null;
+}
+
+// The refusals a chat request gets before any file is read. They run here, before the runtime
+// loads, so a malformed chat request never reaches a conversation file.
+function checkChat(ids, options) {
+  if (ids.length === 0) return 'chat needs a bot id';
+  if (ids.length > 1) return `unexpected argument: ${ids[1]}`;
+  if (options.message !== undefined && options.transcript === true) return 'chat takes --message or --transcript, not both';
+  if (options.json === true && options.transcript !== true) return '--json needs --transcript';
+  if (options.message !== undefined && options.message !== '-' && options.message.trim() === '') return 'chat needs a message';
+  return null;
+}
+
+// --message - reads the draft from stdin, so a pasted token never sits in a process table. One
+// trailing line feed is the end of the line and not part of the message.
+function readStdinText() {
+  const text = require('node:fs').readFileSync(0, 'utf8');
+  return text.replace(/\r?\n$/, '');
 }
 
 // The channel group takes a subverb and its operands, so its argv is checked here rather than by
@@ -394,6 +423,11 @@ function parseArgs(argv) {
     if (problem) return { error: problem };
     return { verb, id: ids[0], args: ids.slice(1), options };
   }
+  if (verb === 'chat') {
+    const problem = checkChat(ids, options);
+    if (problem) return { error: problem };
+    return { verb, id: ids[0], args: [], options };
+  }
   if (verb === 'schedule') {
     if (ids.length === 0 || !SCHEDULE_ACTIONS.includes(ids[0])) return { error: `schedule needs ${SCHEDULE_ACTIONS.join(' or ')}` };
     if (!ids[1]) return { error: `schedule ${ids[0]} needs a bot id, or drain` };
@@ -445,7 +479,7 @@ async function loadRuntimeOnce() {
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
   register();
   const load = runtimeModule;
-  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal] = await Promise.all([
+  const [runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal, conversation] = await Promise.all([
     load('runner'),
     load('switches'),
     load('needs-you'),
@@ -461,8 +495,9 @@ async function loadRuntimeOnce() {
     load('identity'),
     load('secrets'),
     load('skill-proposal'),
+    load('conversation'),
   ]);
-  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal };
+  return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets, skillProposal, conversation };
 }
 
 // One process registers the TypeScript loader once, however many verbs it runs.
@@ -627,6 +662,271 @@ function skillVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
   }
   process.stdout.write(`bots: proposal for skill ${result.value.name} written at proposals/${parsed.id}\n`);
   return 0;
+}
+
+// Stdout carries only the conversation, so a piped session holds the messages and nothing else. A message that
+// holds line feeds prints each later line on a line of its own, indented four spaces.
+function printMessageLine(stream, head, text) {
+  const [first, ...rest] = text.split('\n');
+  stream.write(`${head}${first}\n`);
+  for (const line of rest) stream.write(`    ${line}\n`);
+}
+
+// One message is one run. The message is appended first and then exactly that request is drained, so the
+// reply printed here answers this message and never another conversation's.
+async function chatVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv) {
+  const conversationId = parsed.options.conversation ?? parsed.id;
+  if (!rt.stateRoot.isSafeSegment(conversationId)) return usageExit('--conversation takes a safe name');
+  const context = rt.runner.resolveBotContext({ checkoutRoot, skilledTree, env: resolveEnv });
+  if (!context.ok) {
+    process.stderr.write(`${describeRefusal(context)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  // The positional bot is checked before the loop starts or a message is read, and printed with its control characters dropped.
+  if (!rt.conversation.botDefined(checkoutRoot, parsed.id)) {
+    process.stderr.write(`bots: bot-unknown: ${rt.conversation.cleanMessageText(parsed.id)}\n`);
+    return rt.runner.EXIT_CODES.refused;
+  }
+  const { stateRoot, identity } = context.value;
+  const file = rt.conversation.conversationFile(stateRoot, identity, conversationId);
+  if (!file.ok) return usageExit('--conversation takes a safe name');
+  const chat = { rt, checkoutRoot, skilledTree, resolveEnv, stateRoot, identity, conversationId, defaultBot: parsed.id, path: file.value };
+  if (parsed.options.transcript === true) return transcriptVerb(chat, parsed.options.json === true);
+  if (parsed.options.message !== undefined) {
+    const text = parsed.options.message === '-' ? readStdinText() : parsed.options.message;
+    return sendMessage(chat, text, false);
+  }
+  return chatLoop(chat);
+}
+
+// The transcript prints what is stored, verbatim, so an injection attempt reads back exactly as it was
+// typed and never as something this verb made of it. A missing file prints the empty shape and creates
+// nothing, because a read is never a write.
+function transcriptVerb(chat, json) {
+  const read = chat.rt.conversation.readConversation(chat.path);
+  if (read.skippedLines > 0) {
+    const torn = read.torn ? ', the last one torn' : '';
+    process.stderr.write(`bots: ${read.skippedLines} line(s) of ${chat.path} did not parse and were skipped${torn}\n`);
+  }
+  if (json) {
+    process.stdout.write(`${JSON.stringify({ version: 1, conversationId: chat.conversationId, messages: read.messages }, null, 2)}\n`);
+    return 0;
+  }
+  const unanswered = chat.rt.conversation.unansweredIds(read.messages);
+  for (const message of read.messages) {
+    const at = message.at.replace(/\.\d+Z$/, 'Z');
+    const head = message.role === 'human' ? `${at} ${message.by} → ${message.botId}: ` : `${at} ${message.botId} › `;
+    const text = message.role === 'human' && unanswered.has(message.id) ? `${message.text} (no reply yet)` : message.text;
+    printMessageLine(process.stdout, head, text);
+  }
+  return 0;
+}
+
+// The loop keeps one conversation open at a terminal: readline holds the history and completes the
+// commands and the bot addresses, and every line is classified before it is dispatched, so a command
+// never reaches a run. Its exit is 0 however its runs ended, because each run's outcome is already a
+// message in the file.
+async function chatLoop(chat) {
+  const readline = require('node:readline');
+  const tty = process.stdin.isTTY === true;
+  const bots = chat.rt.conversation.listBots(chat.checkoutRoot);
+  const commands = ['/exit', '/quit', '/help'];
+  // The completer sees the whole line, so a command completes only while the line is still that
+  // command and an address completes only until the first space.
+  const completer = (line) => {
+    const lead = line.replace(/^\s+/, '');
+    if (lead.startsWith('/')) return [commands.filter((c) => c.startsWith(lead)), lead];
+    if (lead.startsWith('@') && !/\s/.test(lead)) return [bots.map((b) => `@${b} `).filter((c) => c.startsWith(lead)), lead];
+    return [[], line];
+  };
+  // The opening line and the prompt are drawn only for a person at a terminal, so a piped session
+  // holds the messages and nothing else.
+  if (tty) {
+    const count = chat.rt.conversation.readConversation(chat.path).messages.length;
+    process.stderr.write(`bots: chat ${chat.defaultBot} · conversation ${chat.conversationId} · ${count} messages · /help lists the commands\n`);
+  }
+  const rl = readline.createInterface({ input: process.stdin, output: tty ? process.stdout : undefined, terminal: tty, historySize: 1000, completer, prompt: `[${chat.defaultBot}] > ` });
+  // Bracketed paste is on only at a terminal, so a pasted block arrives as one draft instead of one
+  // line per Enter, and it is turned off in a finally so a failed run never leaves it on.
+  if (tty) process.stdout.write('\x1b[?2004h');
+  // Ctrl+C at an empty prompt leaves with exit 0, and inside a draft it clears the line instead, so a
+  // half-typed message is never lost to a stray interrupt.
+  rl.on('SIGINT', () => {
+    if (rl.line === '') {
+      rl.close();
+    } else {
+      rl.write(null, { ctrl: true, name: 'u' });
+      rl.prompt();
+    }
+  });
+  let keyPasting = false;
+  let markerPasting = false;
+  let draft = [];
+  // The tag is taken when readline emits the line, because the loop body runs later than that, and by
+  // then a short paste has already ended and the flag is back to false.
+  const pasteTags = [];
+  // readline swallows the two sequences at a terminal and emits each pasted line on its own, so the
+  // keys are the only place the loop can see where a paste starts and where it ends.
+  if (tty) {
+    process.stdin.on('keypress', (_text, key) => {
+      if (key && key.name === 'paste-start') keyPasting = true;
+      else if (key && key.name === 'paste-end') keyPasting = false;
+    });
+    rl.on('line', () => { pasteTags.push(keyPasting); });
+  }
+  if (tty) rl.prompt();
+  try {
+    for await (const raw of rl) {
+      // A paste is one draft: the bytes between the two sequences keep their line feeds, and the
+      // Enter after them sends the whole block as one message, so a pasted stack trace starts one
+      // run and not one run per line. The handling follows a reference under another licence by
+      // design only and copies no code.
+      const keyPasted = tty ? pasteTags.shift() === true : false;
+      let line = raw;
+      if (line.includes(PASTE_START)) { markerPasting = true; line = line.split(PASTE_START).join(''); }
+      if (line.includes(PASTE_END)) { markerPasting = false; line = line.split(PASTE_END).join(''); }
+      if (keyPasted || markerPasting) { draft.push(line); continue; }
+      const text = [...draft, line].join('\n').replace(/\n+$/, '');
+      draft = [];
+      const command = chatCommand(text);
+      if (command === 'exit') break;
+      if (command === 'help') {
+        const help = [
+          '/exit or /quit leaves, and so do Ctrl+D and Ctrl+C at an empty prompt',
+          '/help prints this list',
+          'a line that starts with @<bot-id> sends that one message to that bot',
+          'a line that starts with / is a command, so send such a message with --message',
+        ];
+        for (const line of help) process.stderr.write(`bots: ${line}\n`);
+      } else if (command === 'unknown') {
+        process.stderr.write(`bots: unknown command: ${chat.rt.conversation.cleanMessageText(text.trim().split(/\s/)[0])}\n`);
+      } else if (command === 'send') {
+        // A run takes the terminal out of raw mode, so Ctrl+C reaches the whole foreground group as it
+        // does for bots run, and the mode comes back in a finally so a failed run never leaves it off.
+        if (tty) process.stdin.setRawMode(false);
+        try {
+          await sendMessage(chat, text, true);
+        } finally {
+          if (tty) process.stdin.setRawMode(true);
+        }
+      }
+      if (tty) rl.prompt();
+    }
+  } finally {
+    if (tty) process.stdout.write('\x1b[?2004l');
+  }
+  rl.close();
+  return 0;
+}
+
+// A line is classified before it is dispatched, so a command never reaches a run and a message that has
+// to start with a slash is sent with --message instead.
+function chatCommand(text) {
+  const trimmed = text.trim();
+  if (trimmed === '') return 'skip';
+  if (!trimmed.startsWith('/')) return 'send';
+  const word = trimmed.split(/\s/)[0].toLowerCase();
+  if (word === '/exit' || word === '/quit') return 'exit';
+  if (word === '/help') return 'help';
+  return 'unknown';
+}
+
+// The append is the commit point, so every refusal runs before it and a refused message leaves no line and
+// starts no run. From the append on, a failure still leaves the human message in the file, which the
+// transcript reports as unanswered rather than dispatching it a second time.
+async function sendMessage(chat, rawText, inLoop) {
+  const known = chat.rt.dispatch.collectAllKnownSecrets(process.env, chat.checkoutRoot, chat.stateRoot, chat.identity);
+  if (!known.ok) {
+    process.stderr.write(`${describeRefusal(known)}\n`);
+    return chat.rt.runner.EXIT_CODES.refused;
+  }
+  const actor = chat.rt.actor.resolveActor({ env: process.env, scheduled: false });
+  const by = actor.ok && actor.value !== null ? actor.value : 'unknown';
+  const prepared = chat.rt.conversation.prepareHumanMessage({
+    checkoutRoot: chat.checkoutRoot,
+    stateRoot: chat.stateRoot,
+    identity: chat.identity,
+    conversationId: chat.conversationId,
+    defaultBot: chat.defaultBot,
+    text: rawText,
+    by,
+    known: known.value,
+    stamp: chat.rt.runner.newRunId(),
+  });
+  if (!prepared.ok) {
+    if (prepared.reason === 'message-empty') {
+      if (inLoop) return 0;
+      return usageExit('chat needs a message');
+    }
+    if (prepared.reason === 'address-without-message') {
+      const line = `chat needs a message after ${prepared.detail}`;
+      if (inLoop) {
+        process.stderr.write(`bots: ${line}\n`);
+        return chat.rt.runner.EXIT_CODES.usage;
+      }
+      return usageExit(line);
+    }
+    if (prepared.reason === 'bot-unknown') {
+      process.stderr.write(`bots: bot-unknown: ${prepared.detail}\n`);
+      return chat.rt.runner.EXIT_CODES.refused;
+    }
+    process.stderr.write(`${describeRefusal(prepared)}\n`);
+    return chat.rt.runner.EXIT_CODES.refused;
+  }
+  const { path: conversationPath, message, block, botId } = prepared.value;
+  const appended = chat.rt.conversation.appendMessage(conversationPath, message);
+  if (!appended.ok) {
+    process.stderr.write(`${describeRefusal(appended)}\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  const queued = chat.rt.queue.enqueueFromCheckout(chat.checkoutRoot, {
+    kind: 'run',
+    workflowId: botId,
+    source: chat.rt.conversation.CHAT_SOURCE,
+    eventId: message.id,
+    prompt: block,
+    origin: `conversation ${chat.conversationId}`,
+    conversationId: chat.conversationId,
+  }, chat.resolveEnv);
+  if (!queued.ok) {
+    process.stderr.write(`${describeRefusal(queued)}\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  const requestId = queued.value.requestId;
+  if (queued.value.status === 'duplicate') {
+    process.stderr.write(`bots: ${requestId} duplicate\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  process.stderr.write(`· ${botId} · working…\n`);
+  const drained = await chat.rt.drain.drainQueue({
+    checkoutRoot: chat.checkoutRoot,
+    skilledTree: chat.skilledTree,
+    env: process.env,
+    resolveEnv: chat.resolveEnv,
+    requestIds: [requestId],
+  });
+  if (!drained.ok) {
+    process.stderr.write(`${describeRefusal(drained)}\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  const line = drained.value.lines.find((entry) => entry.requestId === requestId);
+  if (line === undefined) {
+    process.stderr.write(`bots: ${requestId} was not drained, the next drain runs it\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  if (line.outcome === 'lost-claim') {
+    process.stderr.write(`bots: ${requestId} lost-claim\n`);
+    return chat.rt.runner.EXIT_CODES.runFailure;
+  }
+  if (line.reply !== null) printMessageLine(process.stdout, `${line.reply.botId} › `, line.reply.text);
+  if (line.outcome === 'ran' && line.run !== null) {
+    if (line.run.kind === 'completed') return chat.rt.runner.EXIT_CODES.completed;
+    if (line.run.kind === 'awaiting-decision') {
+      process.stderr.write(`bots: answer it with: bots answer ${line.run.itemId} <text>\n`);
+      return chat.rt.runner.EXIT_CODES.awaitingDecision;
+    }
+  }
+  return chat.rt.runner.EXIT_CODES.runFailure;
 }
 
 // The memory verb writes where a confirmed proposal writes, so it resolves the state root under the
@@ -1469,6 +1769,7 @@ async function main(argv) {
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'routines') return routinesVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
+  if (parsed.verb === 'chat') return chatVerb(rt, parsed, checkoutRoot, skilledTree, resolveEnv);
 
   if (parsed.verb === 'run') {
     const index = parsed.options['schedule-index'];

@@ -30,8 +30,9 @@ contracts and state   repo-config, definition, identity, state-root,
 schedule              cron-translator ──▶ slot-lister ──▶ slot-accounting
 runner and dispatch   runner ──▶ dispatch, posture, result-ledger
 isolation, delivery   isolation, delivery           (called by runner)
-request pipeline      request-record ──▶ request-queue ──▶ request-drain ──▶ runner
+request pipeline      request-record ──▶ request-queue ──▶ request-drain ──▶ runner, conversation
                       answer ──▶ request-queue, skill-proposal
+                      conversation ──▶ dispatch, memory
 launchd installer     installer ──▶ plist-render, label, cron-translator, request-drain
                       launchctl-print ──▶ installer
 status index          status ──▶ status-index, launchctl-print, installer
@@ -73,7 +74,8 @@ Allowed direction: a contracts module imports no `lib/` module outside its own g
 | `delivery.ts` | Isolation and delivery | `deliverRecord` tells a run's declared targets what happened, at most once. The one channel is `desktop`, sent through `osascript`. |
 | `request-record.ts` | Request pipeline | Builds and validates a `run` or `resume` request. The idempotency key comes from the event source and id, never a hash of the body. |
 | `request-queue.ts` | Request pipeline | File queue keyed by identity. Every state change is one rename between sibling folders, so only one consumer can claim a request. |
-| `request-drain.ts` | Request pipeline | `drainQueue` claims each request, hands it to the runner and routes it to done, back to the watched folder or to quarantine after `RETRY_BOUND` attempts. A failure a second dispatch cannot mend is quarantined at once, and a missing executor stops the pass. |
+| `request-drain.ts` | Request pipeline | `drainQueue` claims each request, hands it to the runner and routes it to done, back to the watched folder or to quarantine after `RETRY_BOUND` attempts. A failure a second dispatch cannot mend is quarantined at once, and a missing executor stops the pass. With `requestIds` a pass drains only the named requests. It appends the one bot message of every request that carries a `conversationId`, and a `chat` request is never retried. |
+| `conversation.ts` | Request pipeline | The append-only conversation file of `bots chat`, one JSON message per line under the identity's owner-only `conversations` folder. `appendMessage` writes one whole line and never rewrites one, `readConversation` skips and counts a line that does not parse, the torn last line included, and `parseAddress` routes a leading `@<bot-id>` to that bot. `renderConversationBlock` writes the labelled `<conversation id="...">` block a chat run gets as its request prompt, holding the newest 40 messages within 8,000 characters, and `renderChannelBlock` writes the `channel` form an inbound channel message uses. `prepareHumanMessage` runs the three refusals before the append: the address, the secret literal and the prompt bound. Imports `state-root.ts`, `definition.ts`, `dispatch.ts` and `memory.ts`. |
 | `answer.ts` | Request pipeline | `answerItem` records an operator answer on a needs-you item, then enqueues one `resume` request keyed by the item id, and the lock that guards the item write sits beside the item. |
 | `skill-proposal.ts` | Request pipeline | `bots skill propose`. `writeProposal` reads one run record and writes a draft `SKILL.md`, then `proposal.json`, then one review item under the reserved `skill-proposals` bot id, into the identity's proposals folder. `claimProposalAnswer` checks the pin before an answer is written, and `settleProposalAnswer` writes `answer.json` beside the proposal after it. |
 | `installer.ts` | launchd installer | The only module that writes a job file or calls `launchctl`. `installSchedule`, `enableSchedule`, `disableSchedule` and `uninstallSchedule` each rerun a preflight first. A first install is held disabled. The install record pins the executor path, and `scheduledRunEnv` puts its folder first on a scheduled fire's PATH. The drain job's record pins every resolvable executor for the queued runs `scheduledDrain` starts. |

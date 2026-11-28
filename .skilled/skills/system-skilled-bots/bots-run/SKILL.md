@@ -7,7 +7,7 @@ version: 1.0.0.0
 
 # Bots Run
 
-The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one. `bots remember` lives here too, because it writes a bot's memory, and `bots answer` confirms or rejects a fact a bot proposed. It also turns a finished run into a skill proposal, a draft `SKILL.md` the operator reviews through one needs-you item that `bots answer` confirms or rejects.
+The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one. `bots remember` lives here too, because it writes a bot's memory, and `bots answer` confirms or rejects a fact a bot proposed. It also turns a finished run into a skill proposal, a draft `SKILL.md` the operator reviews through one needs-you item that `bots answer` confirms or rejects. `bots chat <id>` lives here too, because each message it sends is one bot run: it keeps the thread in a conversation file under the state root and sends a message that starts with `@<bot-id>` to that bot.
 
 ---
 
