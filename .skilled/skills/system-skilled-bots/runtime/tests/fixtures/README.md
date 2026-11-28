@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder holds the inputs and stand-ins the runtime suites share. Loose `.md` files are single BOT.md definitions for the parser tests. The `bots/` folder is a ready-made bots folder the runner tests copy into temp checkouts. The stub folders replace every binary a run would otherwise reach: the executors, `osascript` and sk-git's worktree numbering script.
+This folder holds the inputs and stand-ins the runtime suites share. Loose `.md` files are single BOT.md definitions for the parser tests. The `bots/` folder is a ready-made bots folder the runner tests copy into temp checkouts. The stubs replace every binary a run would otherwise reach: the executors, `osascript` and sk-git's worktree numbering script.
 
 Nothing here is a production entry point. Each consumer suite owns the assertion that gives a fixture meaning, and every fixture runs inside a temp world, never against this checkout.
 
@@ -25,9 +25,9 @@ fixtures/
 ├── bots/                      # One folder per runner scenario, each with a BOT.md
 ├── stub-executor/             # claude, codex, opencode and vibe stand-ins
 ├── naming-stub/               # Stand-ins for sk-git's worktree numbering script
-├── osascript-stub/            # Stand-in for the desktop notice binary
 ├── drain-race-driver.cjs
 ├── launchctl-intercept.cjs
+├── osascript-stub.sh          # Stand-in for the desktop notice binary
 ├── run-bot-child.ts
 ├── empty-body.md
 ├── manual.md
@@ -86,7 +86,7 @@ fixtures/
 | `stub-executor/codex-stub.cjs` | Reads the prompt, writes a receipt under the temp HOME and acts on `STUB:` lines such as `exit`, `sleep`, `decide` and `tamper`. Its siblings `claude-stub.cjs`, `opencode-stub.cjs` and `vibe-stub.cjs` mimic each kind's output format. |
 | `naming-stub/half-provisioned.sh` | Makes a tree folder, then reports a provisioning failure with exit 3. |
 | `naming-stub/record-calls.sh` | Only logs that it was called, to prove a run never reached worktree creation. |
-| `osascript-stub/osascript` | Logs each argument to `OSASCRIPT_STUB_LOG` and exits with `OSASCRIPT_STUB_EXIT`, so no notice is shown. |
+| `osascript-stub.sh` | Logs each argument to `OSASCRIPT_STUB_LOG` and exits with `OSASCRIPT_STUB_EXIT`, so no notice is shown. |
 | `launchctl-intercept.cjs` | Loaded with `--require` into a bots CLI a test starts, so every `launchctl` call is answered and logged here. Used by `installer.vitest.ts` and `status.vitest.ts`. |
 | `drain-race-driver.cjs` | One drain process for `race.vitest.ts`. It loads the runtime, signals ready and waits on a start file so two drains begin together. |
 | `run-bot-child.ts` | Runs one bot through `runBot` in its own process so `isolation.vitest.ts` can hold two runs alive or kill one. |
