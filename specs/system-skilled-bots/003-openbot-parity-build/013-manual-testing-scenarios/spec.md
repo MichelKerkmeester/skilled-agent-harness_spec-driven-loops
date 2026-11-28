@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 13: manual-testing-scenarios"
-description: "Adds 33 operator scenarios to the system-skilled-bots manual testing playbook for everything phases 001 to 011 deliver, conversation scenarios first, then executes every one of them and records PASS or FAIL with evidence."
+description: "Adds 33 operator scenarios to the system-skilled-bots manual testing playbook for everything phases 001 to 011 deliver, conversation scenarios first, then executes all 58 scenarios of the package with the system-deep-loop scenarios that cover the executor audit and records PASS or FAIL with evidence."
 trigger_phrases:
   - "manual testing scenarios"
   - "phase 13 manual testing scenarios"
@@ -37,9 +37,9 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 13** of the OpenBot parity build. Phases 001 to 011 each land a slice of the runtime: activity and the actor, routines, the terminal screen, the working place, memory, approval grants, per-bot apps, the vault, skills, conversations and messaging channels. Each one closes on its own automated suite, and no phase proves that an operator can drive the slice from a terminal. This phase writes that proof as a corpus of manual scenarios and then runs it.
+This is **Phase 13** of the OpenBot parity build. Phases 001 to 011 each land a slice of the runtime: activity and the actor, routines, the terminal screen, the working place, memory, approval grants, per-bot apps, the vault, skills, conversations and messaging channels. Each one closes on its own automated suite, and no phase proves that an operator can drive the slice from a terminal. This phase writes that proof as a corpus of manual scenarios and then runs it. The run covers all 58 scenarios, so BOT-001 to BOT-025 also prove that the runtime phases 001 to 011 rewrote still does what the pre-parity corpus says, and it covers the system-deep-loop scenarios that read `executor-audit.ts`, which 007 and 008 changed.
 
-**Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index and the run folder the recorder writes under `benchmark/reports/`. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
+**Scope Boundary**: The manual testing playbook under `.skilled/skills/system-skilled-bots/manual-testing-playbook/`, its root index, the run folder the recorder writes under `benchmark/reports/` and the one run folder it writes under `.skilled/skills/system-deep-loop/benchmark/reports/` for the deep-loop verdicts. The eleven phase specs are read and never edited. No runtime module, CLI verb, test or crate changes.
 
 **Dependencies**:
 - The eleven phase specs, which name every verb and record a scenario asserts [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/spec.md, section "PHASE DOCUMENTATION MAP"]
@@ -47,9 +47,13 @@ This is **Phase 13** of the OpenBot parity build. Phases 001 to 011 each land a 
 - The `/create:manual-testing-playbook` command, whose router binds the presentation contract and the workflow YAML [SOURCE: .skilled/commands/create/manual-testing-playbook.md:11]
 - The existing 25-scenario corpus, whose category folders, `BOT-NNN` ids and one-bash-block execution form this phase extends [SOURCE: .skilled/skills/system-skilled-bots/manual-testing-playbook/manual-testing-playbook.md:1]
 - The shipped stub executor, which lets a scenario dispatch a real run without calling a model [SOURCE: .skilled/skills/system-skilled-bots/manual-testing-playbook/manual-run/needs-you-park-and-hold.md:1]
+- 012-folder-architecture, which moves files the scenarios name and rewrites those paths, so the corpus runs on the final layout
+- The system-deep-loop runtime playbook, whose DLR-002, DLR-023 and DLR-064 read `executor-audit.ts` or its tests [SOURCE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:127]
 
 **Deliverables**:
 - 33 new scenario files in ten new category folders, `BOT-026` to `BOT-058`
+- One recorded execution of all 58 scenarios, BOT-001 to BOT-058, with 58 verdicts
+- One recorded execution of DLR-002, DLR-023 and DLR-064 from `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/`, with 3 verdicts
 - The root index's ten new category sections, its updated counts, its preconditions and its wave plan
 - One run folder under `benchmark/reports/` holding `results.csv`, `README.md` and `source.md`, and the run's row in `benchmark/reports/README.md`
 <!-- /ANCHOR:phase-context -->
@@ -102,7 +106,8 @@ The corpus holds 25 scenario files in 7 category folders, and the package valida
 - Write the nine conversation scenarios first, as multi-turn operator conversations with the bots CLI in one bash block whose turns are numbered, so a message, a parked question, an answer and a resumed run are one scenario rather than four
 - Name in each scenario the verb and the record its phase defines, with a citation to that phase's requirement line, so a reader checks the scenario against the requirement it proves
 - Compute every timing scenario's slot at run time from the current clock plus two minutes, and use a short loop for the `until` and fatigue scenarios, so no scenario waits for a future day
-- Execute every created scenario and record its `PASS` or `FAIL` with its evidence through `record-playbook-run.cjs`, the one writer of a run folder [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:215]
+- Execute all 58 scenarios in the package, BOT-001 to BOT-025 as a regression check on the rewritten runtime and BOT-026 to BOT-058 as the new proof, and record each `PASS` or `FAIL` with its evidence through `record-playbook-run.cjs`, the one writer of a run folder [SOURCE: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:215]
+- Execute DLR-002 Executor audit, DLR-023 Fan-out config schema and DLR-064 Research honors the configured Claude config dir from the system-deep-loop runtime playbook, the three scenarios whose steps read `executor-audit.ts` or its tests, and record their three verdicts through the same recorder into the deep-loop hub's benchmark folder
 - Fix a `FAIL` in the scenario, or file it as a defect naming the phase, the requirement and the observed line
 - Extend the root index with the ten new category sections, the updated counts, the preconditions and the wave plan
 
@@ -130,6 +135,8 @@ The corpus holds 25 scenario files in 7 category folders, and the package valida
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/channels/` | Create | One channel queue scenario, `BOT-058` |
 | `.skilled/skills/system-skilled-bots/benchmark/reports/<dated-run-label>/` | Create | The run folder the recorder writes: `results.csv`, `README.md` and `source.md` |
 | `.skilled/skills/system-skilled-bots/benchmark/reports/README.md` | Create | The run index the recorder writes, with the run's row |
+| `.skilled/skills/system-deep-loop/benchmark/reports/<date>--manual-testing-playbook--executor-audit/` | Create | The deep-loop run folder the recorder writes for DLR-002, DLR-023 and DLR-064 |
+| `.skilled/skills/system-deep-loop/benchmark/reports/README.md` | Modify | The deep-loop run index, which gains the run's row |
 
 ### Scenario Inventory
 
@@ -189,10 +196,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-002 | The conversation scenarios come first: nine files under `conversations/`, each a multi-turn operator conversation with the bots CLI in one bash block whose turns are numbered, covering `bots chat` and `@bot` routing, an answer with `--scope`, the item's `grants`, a memory confirmation, a skill proposal review and the channel fake transport |
 | REQ-003 | Every scenario names the verb and the record its phase defines and cites that phase's requirement line, so a reader checks the scenario against the requirement it proves |
 | REQ-004 | Every timing scenario computes its slot at run time from the current clock plus two minutes and names no future day, and the `until` and fatigue scenarios use a short loop with no wait |
-| REQ-005 | Every created scenario is executed and its `PASS` or `FAIL` recorded with its evidence in `benchmark/reports/<dated-run-label>/results.csv` through `record-playbook-run.cjs`, which is the one writer of that folder |
+| REQ-005 | All 58 scenarios in the package are executed, BOT-001 to BOT-025 as a regression check on the rewritten runtime and BOT-026 to BOT-058 as the new proof, and each `PASS` or `FAIL` is recorded with its evidence in `benchmark/reports/<dated-run-label>/results.csv` through `record-playbook-run.cjs`, which is the one writer of that folder |
 | REQ-006 | Every `FAIL` is either fixed in the scenario or filed as a defect naming the phase, the requirement and the observed line, and no `FAIL` is left unnamed |
 | REQ-007 | The root playbook index gains the ten new category sections, the updated scenario and category counts, the preconditions the new scenarios need and the wave plan |
 | REQ-013 | The corpus is executed only after phases 001 to 011 close, so no verdict reads `SKIP` for a missing verb or a missing field. A `SKIP` names a prerequisite the build does not own, such as an absent real channel account, and never a blocker the build already cleared |
+| REQ-014 | DLR-002, DLR-023 and DLR-064 from `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/` are executed, because they read `executor-audit.ts` and its tests and phases 007 and 008 changed that file, and their three verdicts are recorded through `record-playbook-run.cjs` with `--reports .skilled/skills/system-deep-loop/benchmark/reports` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -214,7 +222,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS package=system-skilled-bots tier=FAIL_CLOSED scenarios=58 categories=17 operator=52 routing_gold_excluded=6 violations=0 warnings=0`
-- **SC-002**: `results.csv` holds one row per created scenario, each `PASS` or `FAIL` with a reason and an evidence path
+- **SC-002**: `results.csv` holds 58 rows, one per scenario from BOT-001 to BOT-058, each `PASS` or `FAIL` with a reason and an evidence path, and the deep-loop run's `results.csv` holds the 3 rows DLR-002, DLR-023 and DLR-064
 - **SC-003**: no `FAIL` is left both unfixed and unfiled
 - **SC-004**: every timing scenario's slot is computed at run time, proved by `rg -n 'date -v\+2M' <file>` printing the computation
 <!-- /ANCHOR:success-criteria -->

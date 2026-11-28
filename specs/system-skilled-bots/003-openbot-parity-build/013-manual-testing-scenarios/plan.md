@@ -47,8 +47,9 @@ The corpus gains 33 scenario files in ten new category folders, `BOT-026` to `BO
 ### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-skilled-bots` prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`
-- [ ] `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, and that file holds 33 data rows
-- [ ] `rg -c '^BOT-0' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 33, `rg -c ',(PASS|FAIL|SKIP),' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 33, and `rg -c '^# recorded by record-playbook-run.cjs' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 1
+- [ ] `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, and that file holds 58 data rows, one per scenario from BOT-001 to BOT-058
+- [ ] `rg -c '^BOT-0' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 58, `rg -c ',(PASS|FAIL|SKIP),' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 58, and `rg -c '^# recorded by record-playbook-run.cjs' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 1
+- [ ] `rg -c '^DLR-0(02|23|64),' .skilled/skills/system-deep-loop/benchmark/reports/*--manual-testing-playbook--executor-audit/results.csv` prints 3, one verdict each for the three system-deep-loop scenarios that read `executor-audit.ts`
 - [ ] `rg -c ',SKIP,' .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints 0, or every `SKIP` row's reason names a prerequisite the build does not own rather than a missing verb or field
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios --strict` prints `RESULT: PASSED`
 - [ ] Docs updated (spec/plan/tasks)
@@ -121,7 +122,9 @@ Setup reads the eleven phase specs and records each verb and record, reads the p
 | Manual | The nine conversation scenarios, executed in one pass | each scenario's own bash block, from a plain terminal |
 | Manual | The five routine scenarios, including the one schedule scenario whose slot is computed at run time | each scenario's own bash block |
 | Manual | The three activity, three screen, two working-place, three memory, two app, three vault, two skill and one channel scenarios | each scenario's own bash block |
-| Record | The 33 verdicts, written into one run folder | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook <path> --results <csv> --label manual-testing-playbook--openbot-parity` |
+| Manual | The 25 pre-parity scenarios, BOT-001 to BOT-025, rerun as a regression check on the runtime phases 001 to 011 rewrote | each scenario's own bash block |
+| Manual | DLR-002, DLR-023 and DLR-064 from `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook`, which read `executor-audit.ts` that 007 and 008 changed | each scenario's own steps |
+| Record | The 58 bots verdicts, written into one run folder, and the 3 deep-loop verdicts, written into one run folder under `.skilled/skills/system-deep-loop/benchmark/reports` with `--reports` | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/record-playbook-run.cjs --playbook <path> --results <csv> --label manual-testing-playbook--openbot-parity` |
 | Packet | This packet's own structure and citations | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <packet> --strict` |
 
 No scenario calls a model. The stub executor stands in for every runtime, so a scenario's verdict depends on the runtime's own code and never on a provider's availability.
@@ -207,9 +210,9 @@ Parallelism follows file overlap: no two workers touch one file, so a wave's wor
 | 4 | T028-T037 | three `memory/`, two `apps/`, three `vault/` and two `skills/` files | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` | 10 | V4 |
 | 5 | T038-T039 | one `channels/` file and the root index | `cli-devin` | `deepseek-v4-1-flash-max` | max, baked into the uid | 2, after the quota probe | V5 |
 | 6 | T050-T051 | `scratch/contract-recheck.md` and the moved dry-run folder | the orchestrator, no external executor | none | none | 1, because the re-check reads every file the five authoring waves wrote | V6 |
-| 7 | T040-T043 | four verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 |
+| 7 | T040-T043, T052, T053 | six verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 |
 | 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because both tasks share the results file | V8 |
-| 9 | T047, T045 | `scratch/results.csv` and the run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the file the re-run wrote | V9 |
+| 9 | T047, T045, T054 | `scratch/results.csv`, the bots run folder and the deep-loop run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the files the re-run wrote | V9 |
 | 10 | T048-T049 | none. Both tasks read | the orchestrator, no external executor | none | none | 1 | V10 |
 
 - **V0**: `rg -c '^\| BOT-0' scratch/scenario-inventory.md` prints 33, and each of the five `scratch/` notes exists.
@@ -219,9 +222,9 @@ Parallelism follows file overlap: no two workers touch one file, so a wave's wor
 - **V4**: `find .skilled/skills/system-skilled-bots/manual-testing-playbook/memory .skilled/skills/system-skilled-bots/manual-testing-playbook/apps .skilled/skills/system-skilled-bots/manual-testing-playbook/vault .skilled/skills/system-skilled-bots/manual-testing-playbook/skills -name '*.md' | wc -l` prints 10, and the validator prints `PASS`.
 - **V5**: `find .skilled/skills/system-skilled-bots/manual-testing-playbook/channels -name '*.md' | wc -l` prints 1, and the validator prints `PASS ... scenarios=58 categories=17 ... violations=0`.
 - **V6**: `rg -c '^\| BOT-0' scratch/contract-recheck.md` prints 33, `rg -c 'pbots check' .skilled/skills/system-skilled-bots/manual-testing-playbook` exits 1, and `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` exits 1.
-- **V7**: `cat scratch/verdicts-*.csv | rg -c ',(PASS|FAIL|SKIP),'` prints 33.
-- **V8**: `rg -c '^BOT-0' scratch/results.csv` prints 33, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 33, and `rg -c ',FAIL,' scratch/results.csv` prints 0, or every id it prints appears in `scratch/failures.md`.
-- **V9**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, `rg -c '^BOT-0' <that path>` prints 33, `rg -c ',(PASS|FAIL|SKIP),' <that path>` prints 33, and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1.
+- **V7**: `cat scratch/verdicts-*.csv | rg -c '^BOT-0[0-9]{2},[^,]*,(PASS|FAIL|SKIP),'` prints 58, and `rg -c '^DLR-0(02|23|64),[^,]*,(PASS|FAIL|SKIP),' scratch/verdicts-deep-loop.csv` prints 3.
+- **V8**: `rg -c '^BOT-0' scratch/results.csv` prints 58, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 58, and `rg -c ',FAIL,' scratch/results.csv` prints 0, or every id it prints appears in `scratch/failures.md`.
+- **V9**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, `rg -c '^BOT-0' <that path>` prints 58, `rg -c ',(PASS|FAIL|SKIP),' <that path>` prints 58, and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1. `rg -c '^DLR-0(02|23|64),' .skilled/skills/system-deep-loop/benchmark/reports/*--manual-testing-playbook--executor-audit/results.csv` prints 3.
 - **V10**: `validate-playbook-package.cjs --package system-skilled-bots` prints `PASS`, and `validate.sh --strict` prints `RESULT: PASSED`.
 
 ### Fallback Order

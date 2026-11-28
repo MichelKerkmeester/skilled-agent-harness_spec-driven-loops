@@ -49,9 +49,9 @@ Waves 6, 7, 9 and 10 run from the orchestrator as plain shell, with no external 
 | 4 | T028-T037 | three `memory/`, two `apps/`, three `vault/` and two `skills/` files | `cli-opencode` | `opencode-go/deepseek-v4.1-flash` | `#high` | 10 | V4 | pi, vibe, devin, codex |
 | 5 | T038-T039 | one `channels/` file and the root index | `cli-devin` | `deepseek-v4-1-flash-max` | max, baked into the uid | 2, after the quota probe | V5 | pi, opencode, vibe, codex |
 | 6 | T050-T051 | `scratch/contract-recheck.md` and the moved dry-run folder | the orchestrator, no external executor | none | none | 1, because the re-check reads every file the five authoring waves wrote | V6 | none. The orchestrator runs both |
-| 7 | T040-T043 | four verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 | none. The orchestrator runs all four |
+| 7 | T040-T043, T052, T053 | six verdict CSVs under `scratch/` | the orchestrator, no external executor | none | none | 1, because one operator runs the blocks in order | V7 | none. The orchestrator runs all six |
 | 8 | T044, T046 | `scratch/results.csv` and the scenario files a `FAIL` names | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)`, fallback at `max` | 1, because both tasks share the results file | V8 | pi, opencode, devin, codex |
-| 9 | T047, T045 | `scratch/results.csv` and the run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the file the re-run wrote | V9 | none. The orchestrator runs both |
+| 9 | T047, T045, T054 | `scratch/results.csv`, the bots run folder and the deep-loop run folder | the orchestrator, no external executor | none | none | 1, because the recorder reads the files the re-run wrote | V9 | none. The orchestrator runs all three |
 | 10 | T048-T049 | none. Both tasks read | the orchestrator, no external executor | none | none | 1 | V10 | none. The orchestrator runs both |
 
 - **V0**: `rg -c '^\| BOT-0' scratch/scenario-inventory.md` prints 33, and each of the five `scratch/` notes exists.
@@ -61,9 +61,9 @@ Waves 6, 7, 9 and 10 run from the orchestrator as plain shell, with no external 
 - **V4**: `find $PB/memory $PB/apps $PB/vault $PB/skills -name '*.md' | wc -l` prints 10, and `$VAL --package system-skilled-bots` prints `PASS`.
 - **V5**: `find $PB/channels -name '*.md' | wc -l` prints 1, and `$VAL --package system-skilled-bots` prints `PASS ... scenarios=58 categories=17 ... violations=0`.
 - **V6**: `rg -c '^\| BOT-0' scratch/contract-recheck.md` prints 33, `rg -c 'pbots check' $PB` exits 1, and `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` exits 1, so the dry-run folder is out of the recorder's way.
-- **V7**: `cat scratch/verdicts-*.csv | rg -c ',(PASS|FAIL|SKIP),'` prints 33.
-- **V8**: `rg -c '^BOT-0' scratch/results.csv` prints 33, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 33, and `rg -c ',FAIL,' scratch/results.csv` prints 0, or every id it prints appears in `scratch/failures.md`.
-- **V9**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, `rg -c '^BOT-0' <that path>` prints 33, `rg -c ',(PASS|FAIL|SKIP),' <that path>` prints 33, and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1.
+- **V7**: `cat scratch/verdicts-*.csv | rg -c '^BOT-0[0-9]{2},[^,]*,(PASS|FAIL|SKIP),'` prints 58, and `rg -c '^DLR-0(02|23|64),[^,]*,(PASS|FAIL|SKIP),' scratch/verdicts-deep-loop.csv` prints 3.
+- **V8**: `rg -c '^BOT-0' scratch/results.csv` prints 58, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 58, and `rg -c ',FAIL,' scratch/results.csv` prints 0, or every id it prints appears in `scratch/failures.md`.
+- **V9**: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path, `rg -c '^BOT-0' <that path>` prints 58, `rg -c ',(PASS|FAIL|SKIP),' <that path>` prints 58, and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1. `rg -c '^DLR-0(02|23|64),' .skilled/skills/system-deep-loop/benchmark/reports/*--manual-testing-playbook--executor-audit/results.csv` prints 3.
 - **V10**: `$VAL --package system-skilled-bots` prints `PASS`, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios --strict` prints `RESULT: PASSED`.
 
 The fallback order is the ladder in `plan.md`'s External orchestration section, minus the executor the wave already used. A wave that reaches the end of its ladder without a working executor stops and reports the wave, its task ids and the last refusal. A wave with no external executor has no ladder to walk, so a failure there is repaired and re-run rather than delegated.
@@ -152,16 +152,19 @@ The fallback order is the ladder in `plan.md`'s External orchestration section, 
 - [ ] T041 Execute the five routine scenarios, including the one schedule scenario whose slot is computed at run time (`scratch/verdicts-routines.csv`). Verify: `rg -c ',(PASS|FAIL|SKIP),' scratch/verdicts-routines.csv` prints 5
 - [ ] T042 Execute the three activity and three terminal-screen scenarios (`scratch/verdicts-activity-screen.csv`). Verify: `rg -c ',(PASS|FAIL|SKIP),' scratch/verdicts-activity-screen.csv` prints 6
 - [ ] T043 Execute the two working-place, three memory, two app, three vault, two skill and one channel scenarios (`scratch/verdicts-rest.csv`). Verify: `rg -c ',(PASS|FAIL|SKIP),' scratch/verdicts-rest.csv` prints 13
+- [ ] T052 Execute the 25 pre-parity scenarios, BOT-001 to BOT-025, as a regression check on the runtime phases 001 to 011 rewrote, and record one verdict row per scenario with its reason and evidence (`scratch/verdicts-regression.csv`). Verify: `rg -c '^BOT-0(0[1-9]|1[0-9]|2[0-5]),[^,]*,(PASS|FAIL|SKIP),' scratch/verdicts-regression.csv` prints 25
+- [ ] T053 Execute DLR-002 Executor audit, DLR-023 Fan-out config schema and DLR-064 Research honors the configured Claude config dir from `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook`, the three scenarios that read `executor-audit.ts` or its tests, which 007 and 008 changed, and record one verdict row each with its reason and evidence (`scratch/verdicts-deep-loop.csv`). Verify: `rg -c '^DLR-0(02|23|64),[^,]*,(PASS|FAIL|SKIP),' scratch/verdicts-deep-loop.csv` prints 3
 
 ### Wave 8: Merge And Fix
 
-- [ ] T044 Merge the four verdict files into one results file with the recorder's header (`scratch/results.csv`). Verify: `rg -c '^BOT-0' scratch/results.csv` prints 33 and `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 33
-- [ ] T046 Fix each `FAIL` in its scenario, or file it as a defect naming the phase, the requirement and the observed line (`scratch/failures.md`). Verify: `rg -c ',FAIL,' scratch/results.csv` prints 0, or every id it prints appears in `scratch/failures.md` with a phase and a requirement
+- [ ] T044 Merge the five bots verdict files into one results file with the recorder's header (`scratch/results.csv`). Verify: `rg -c '^BOT-0' scratch/results.csv` prints 58 and `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 58
+- [ ] T046 Fix each `FAIL` in its scenario, or file it as a defect naming the phase, the requirement and the observed line, and file a deep-loop `FAIL` against 007 or 008, whichever changed the line it observed (`scratch/failures.md`). Verify: `rg -c ',FAIL,' scratch/results.csv scratch/verdicts-deep-loop.csv` prints 0 for both, or every id it prints appears in `scratch/failures.md` with a phase and a requirement
 
 ### Wave 9: Re-run And Record
 
-- [ ] T047 Re-run the scenarios a fix touched and update their rows, so the recorded run matches the corpus (`scratch/results.csv`). Verify: `rg -c '^BOT-0' scratch/results.csv` prints 33, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 33 and `rg -c ',FAIL,' scratch/results.csv` prints 0
-- [ ] T045 Record the run through the recorder, which writes the run folder and its row in the benchmark index (`.skilled/skills/system-skilled-bots/benchmark/reports/`). Verify: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path
+- [ ] T047 Re-run the scenarios a fix touched and update their rows, so the recorded run matches the corpus (`scratch/results.csv`). Verify: `rg -c '^BOT-0' scratch/results.csv` prints 58, `rg -c ',(PASS|FAIL|SKIP),' scratch/results.csv` prints 58 and `rg -c ',FAIL,' scratch/results.csv` prints 0
+- [ ] T045 Record the run through the recorder, which writes the run folder and its row in the benchmark index (`.skilled/skills/system-skilled-bots/benchmark/reports/`). Verify: `ls .skilled/skills/system-skilled-bots/benchmark/reports/*/results.csv` prints one path and `rg -c '^BOT-0' <that path>` prints 58
+- [ ] T054 Record the three deep-loop verdicts through the recorder with `--playbook .skilled/skills/system-deep-loop/runtime/manual-testing-playbook --reports .skilled/skills/system-deep-loop/benchmark/reports --label manual-testing-playbook--executor-audit` (`.skilled/skills/system-deep-loop/benchmark/reports/`). Verify: `rg -c '^DLR-0(02|23|64),' .skilled/skills/system-deep-loop/benchmark/reports/*--manual-testing-playbook--executor-audit/results.csv` prints 3 and `rg -c '^# recorded by record-playbook-run.cjs' <that path>` prints 1
 
 ### Wave 10: The Gates
 
@@ -177,7 +180,7 @@ The fallback order is the ladder in `plan.md`'s External orchestration section, 
 - [ ] All tasks marked `[x]`
 - [ ] No `[B]` blocked tasks remaining
 - [ ] Manual verification passed
-- [ ] The package validator prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`, and the run folder holds 33 verdict rows
+- [ ] The package validator prints `PASS ... scenarios=58 categories=17 ... violations=0 warnings=0`, and the run folder holds 58 verdict rows, and the deep-loop run folder holds 3
 - [ ] No verdict reads `SKIP` for a missing verb or a missing field, because phases 001 to 011 are closed before wave 7 starts
 <!-- /ANCHOR:completion -->
 
@@ -239,7 +242,7 @@ A blocked task is marked `[B]` with the blocker on the same line, and the packet
 - [ ] CHK-021 [P0] Manual testing complete: every created scenario has a recorded verdict
 - [x] CHK-022 [P1] Edge cases tested: the empty inbox, the memory bound and the non-zero exit each have a scenario
 - [x] CHK-023 [P1] Error scenarios validated: each refusal a scenario asserts names its own error string
-- [ ] CHK-024 [P0] `$VAL --coverage --package system-skilled-bots` reports 33 recorded ids and no run folder without a `results.csv`
+- [ ] CHK-024 [P0] `$VAL --coverage --package system-skilled-bots` reports 58 recorded ids and no run folder without a `results.csv`
 - [ ] CHK-025 [P0] Every scenario file was re-checked against the contracts before execution, so `rg -c '^\| BOT-0' scratch/contract-recheck.md` prints 33 and no scenario asserts a field name, a verb or a refusal form the contracts do not carry
 <!-- /ANCHOR:testing -->
 

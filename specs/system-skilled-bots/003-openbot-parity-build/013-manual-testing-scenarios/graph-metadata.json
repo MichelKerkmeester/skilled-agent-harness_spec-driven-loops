@@ -52,6 +52,7 @@
       ".skilled/skills/system-skilled-bots/benchmark/reports/README.md",
       "design/refusal-catalogue.md",
       "benchmark/reports/README.md",
+      ".skilled/skills/system-deep-loop/benchmark/reports/README.md",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
       "scratch/results.csv",
       "scratch/failures.md",
@@ -59,8 +60,7 @@
       "scratch/playbook-contract.md",
       "scratch/baseline-corpus.md",
       "scratch/baseline-verbs.txt",
-      "scratch/scenario-inventory.md",
-      "scratch/verdicts-conversations.csv"
+      "scratch/scenario-inventory.md"
     ],
     "entities": [
       {
@@ -172,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "verdicts-conversations.csv",
-        "kind": "file",
-        "path": "scratch/verdicts-conversations.csv",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every parity slice closes on an automated suite that calls its modules directly",
     "created_at": "2026-11-25T19:32:28Z",
-    "last_save_at": "2026-11-28T11:39:33.058Z",
+    "last_save_at": "2026-11-28T11:44:39.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c6c39c90eb4d23cb93df856eb25883555969f4d7c272f71759f813d436dcd6c",
+    "source_fingerprint": "sha256:a9d16cab327c375d3e057f2e465acaf190763d5f1d68edb1b0be81e626ad71b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5cc24566d413af87531e78e1f117994c11e412ae37fbbeac5f59849114dd1fef",
-      "plan.md": "ec4217c224e6c870f90ad6aa206bba4f086d89467c0b485e1caa4b541d2577d2",
-      "tasks.md": "ee28b806922d4e140944807446fa9f843fa790411ddc026b178e6e58782f8dfd",
+      "spec.md": "d06eb98518258db5dd725bda3f0b8197937fb659be3645504bf0f2382cf0151e",
+      "plan.md": "41fc84c1a351602947db0f5b59766e393dc5569a2e343d5c9e45da92f655f909",
+      "tasks.md": "de342020b249f3efe7457f2e0f6569ab26661724128207c6ed41f63f4322c3d7",
       "implementation-summary.md": "f6b3d7fd8ef6c66ea6263dd47f70d59b468ab4e5db63785e849d8547e63bc81a"
     },
     "last_active_at": null
