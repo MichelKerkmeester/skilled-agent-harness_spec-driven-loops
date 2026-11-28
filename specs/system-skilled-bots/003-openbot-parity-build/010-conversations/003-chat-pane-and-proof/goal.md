@@ -54,11 +54,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
-- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target.
-- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [ ] After a line typed in the chat tab, `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r '.messages[-2].text'` prints it.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof --strict` prints `RESULT: PASSED`.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target.
+- [x] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] After a line typed in the chat tab, `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r '.messages[-2].text'` prints it.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,7 +74,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Implementation | Blocked | `test -d .skilled/crates/bots-tui` exited 1 on 2026-11-26, and the key map delta is not approved |
+| Implementation | Done | Built on 2026-11-28 in three internal waves of `cli-mistral-vibe` workers after the orchestrator's setup reads. `--test chat frame_` 26 passed, the whole crate suite passes, clippy and fmt exit 0 |
+| Live send | Done | On a scratch checkout with the stub executor, a line typed in `bots-ui` read back as `messages[-2].text` = `hello` |
 
 ### Deviations and findings
 
@@ -84,4 +85,8 @@ and findings belong here.
 | The draft goes on stdin | F-071 offered stdin or dropping the claim. The first was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `chat_send` writes the draft to the child's stdin, so REQ-017, T005, T011 and CHK-030 read `--message -`. |
 | Every exit 4 appends nothing | F-059 offered running the knowable refusals before the append or appending `failed: <cause>` for a run refusal. The first was taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: REQ-019 and AC-030 say a send that exits 2 or 4 appended nothing, so the pane puts the draft back and a re-press is safe. |
 | The extended tests verify by name | O-005. T028 names the footer test it adds and filters it with a stated pass count, taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The types landed first | The plan's wave 1 ran model, cli, state and data side by side, but the new types break every exhaustive match, so one vocabulary slot ran first and the behaviour fanned out after it, taken on 2026-11-28 |
+| `saved_draft` added to `ChatView` | The key map restores the saved draft after the newest recalled line, and the frozen field list had no field for it |
+| `footer.rs` test changed | CHK-011 asks for an empty diff, but its own test asserted the old chat footer, so one expected string changed and the code did not |
+| Placeholder tests retired | The two placeholder snapshots, its frame state and its wide-layout entry left `tests/panes`, which now runs 51 passed and 1 ignored |
 <!-- /ANCHOR:log -->

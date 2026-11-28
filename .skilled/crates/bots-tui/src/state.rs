@@ -1,5 +1,8 @@
 use crate::keys::{self, Action, Cond, Context, Key};
-use crate::model::{ActivityGroup, ActivityRow, InboxItem, ItemState, Routine, StatusPayload};
+use crate::model::{
+    ActivityGroup, ActivityRow, InboxItem, ItemState, Role, Routine, StatusPayload, Transcript,
+};
+use unicode_width::{UnicodeWidthChar, UnicodeWidthStr};
 
 /// Milliseconds since the Unix epoch, UTC.
 pub type EpochMs = i64;
@@ -49,7 +52,7 @@ pub enum Tab {
     Inbox,
     /// The routines tab.
     Routines,
-    /// The chat tab, which holds no state and has no surface.
+    /// The chat tab, which reads the chosen bot's conversation.
     Chat,
 }
 
@@ -64,6 +67,8 @@ pub enum Surface {
     Inbox,
     /// The `routines --json` read.
     Routines,
+    /// The `chat --transcript --json` read of the chosen bot's conversation.
+    Chat,
 }
 
 /// The five states a data pane draws, derived and never stored.
@@ -167,6 +172,41 @@ pub struct Palette {
     pub scroll: usize,
 }
 
+/// The chat pane's own state, kept across tab switches.
+#[derive(Clone, Debug, Default, PartialEq)]
+pub struct ChatView {
+    /// The chosen bot, which is also the conversation id.
+    pub bot: Option<BotId>,
+    /// Where the pane is.
+    pub mode: ChatMode,
+    /// The line being written, kept across Esc and tab switches.
+    pub draft: String,
+    /// The draft kept aside while a sent line is recalled, put back after the newest.
+    pub saved_draft: String,
+    /// The lines sent from this pane in this session, newest last.
+    pub history: Vec<String>,
+    /// The recalled line, absent while the draft is being edited.
+    pub history_index: Option<usize>,
+    /// How many display lines the transcript window sits above its bottom, 0 at the bottom.
+    pub scroll_from_bottom: usize,
+    /// The text of the send in flight, absent when none is out.
+    pub sending: Option<String>,
+    /// The picker's selected row.
+    pub picker_selected: usize,
+}
+
+/// Where the chat pane is: the main context, or one of the chat context's two modes.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum ChatMode {
+    /// The main context, with the transcript in view and no text entry.
+    #[default]
+    Main,
+    /// Every printable key is text for the draft.
+    Typing,
+    /// The bot picker is open.
+    Picking,
+}
+
 /// Everything the reducer reads and the view draws.
 #[derive(Clone, Debug, Default, PartialEq)]
 pub struct State {
@@ -192,6 +232,10 @@ pub struct State {
     pub inbox_view: PaneView<ItemId>,
     /// The routines selection and scroll.
     pub routines_view: PaneView<BotId>,
+    /// The chosen bot's conversation, read by the chat pane.
+    pub chat: Remote<Transcript>,
+    /// The chat pane's bot, mode, draft, history, scroll, send in flight and picker row.
+    pub chat_view: ChatView,
     /// The decision or choice overlay, when open.
     pub overlay: Option<Overlay>,
     /// The command palette, when open.
@@ -226,6 +270,8 @@ pub enum Source {
     Read(Surface),
     /// The one write.
     Answer,
+    /// The chat pane's send.
+    ChatSend,
     /// The loop's own message.
     Shell,
 }
@@ -298,6 +344,15 @@ pub enum Msg {
         /// The reply or the composed failure.
         outcome: Result<AnswerOk, AnswerError>,
     },
+    /// The chat send's reply.
+    ChatSent {
+        /// The bot the send was addressed to.
+        bot: BotId,
+        /// The text the send carried.
+        text: String,
+        /// The exit the send ended with, or the reason nothing was appended.
+        outcome: Result<ChatOk, ChatError>,
+    },
     /// The input or worker thread died.
     ThreadLost {
         /// The thread's name.
@@ -325,6 +380,8 @@ pub enum Payload {
     Inbox(Vec<InboxItem>),
     /// The `routines --json` payload.
     Routines(Vec<Routine>),
+    /// The `chat --transcript --json` payload.
+    Chat(Transcript),
 }
 
 /// A write that exited 0.
@@ -354,6 +411,24 @@ pub struct AnswerError {
     pub line: String,
 }
 
+/// A chat send that exited 0, 1 or 5, so a message was appended and the transcript is read again.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ChatOk {
+    /// The send's exit code.
+    pub code: i32,
+    /// The line the status row draws, when the send wrote one.
+    pub warning: Option<String>,
+}
+
+/// A chat send that appended nothing: exit 2 or 4, or a child that did not start.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ChatError {
+    /// Why the send failed.
+    pub kind: FailKind,
+    /// The line the status row draws.
+    pub line: String,
+}
+
 /// Why a call failed.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum FailKind {
@@ -374,6 +449,8 @@ pub enum Effect {
     Fetch {
         /// The surface to read.
         surface: Surface,
+        /// The chosen bot, present only for the chat surface.
+        bot: Option<BotId>,
         /// The generation the read is issued at.
         generation: u64,
     },
@@ -385,6 +462,13 @@ pub enum Effect {
         text: String,
         /// The scope the answer carries.
         scope: Scope,
+    },
+    /// One chat send, run on the chat worker.
+    ChatSend {
+        /// The bot the send is addressed to.
+        bot: BotId,
+        /// The trimmed draft.
+        text: String,
     },
     /// Leave the loop with this exit code.
     Quit {
@@ -420,6 +504,12 @@ impl RowCount for StatusPayload {
     }
 }
 
+impl RowCount for Transcript {
+    fn row_count(&self) -> usize {
+        self.messages.len()
+    }
+}
+
 impl<T: RowCount> Remote<T> {
     /// Derives the pane state from the last read, the last failure and the rows.
     pub fn pane_state(&self) -> PaneState {
@@ -439,13 +529,13 @@ impl<T: RowCount> Remote<T> {
 }
 
 impl Tab {
-    /// The surface this tab draws, absent for the chat tab.
+    /// The surface this tab draws.
     pub fn surface(self) -> Option<Surface> {
         match self {
             Tab::Activity => Some(Surface::Activity),
             Tab::Inbox => Some(Surface::Inbox),
             Tab::Routines => Some(Surface::Routines),
-            Tab::Chat => None,
+            Tab::Chat => Some(Surface::Chat),
         }
     }
 
@@ -499,6 +589,7 @@ pub fn update(state: &mut State, msg: Msg) -> Vec<Effect> {
         // A paste is one message and never a key, so it can only add text to a typed line.
         Msg::Paste(text) => {
             overlay_on_paste(state, &text);
+            chat_on_paste(state, &text);
             Vec::new()
         }
         Msg::Resize { cols, rows } => {
@@ -514,7 +605,14 @@ pub fn update(state: &mut State, msg: Msg) -> Vec<Effect> {
             outcome,
         } => {
             on_fetched(state, surface, generation, outcome);
-            Vec::new()
+            // The first status read names the bots, so the chat pane can choose one and read it.
+            if surface == Surface::Status && chat_first_choice(state) {
+                issue_fetch(&mut state.chat, Surface::Chat, state.chat_view.bot.clone())
+                    .into_iter()
+                    .collect()
+            } else {
+                Vec::new()
+            }
         }
         Msg::Answered {
             id,
@@ -525,6 +623,7 @@ pub fn update(state: &mut State, msg: Msg) -> Vec<Effect> {
             on_answered(state, id, text, scope, outcome);
             Vec::new()
         }
+        Msg::ChatSent { bot, text, outcome } => on_chat_sent(state, bot, text, outcome),
         Msg::ThreadLost { .. } => vec![Effect::Quit { code: 1 }],
     }
 }
@@ -542,23 +641,30 @@ pub fn on_tick(state: &mut State, now: EpochMs) -> Vec<Effect> {
 /// Issues a fetch for every surface that is due and not already in flight.
 pub fn refresh(state: &mut State) -> Vec<Effect> {
     let mut effects = Vec::new();
-    if let Some(effect) = issue_fetch(&mut state.inbox, Surface::Inbox) {
+    if let Some(effect) = issue_fetch(&mut state.inbox, Surface::Inbox, None) {
         effects.push(effect);
     }
     match state.active_tab {
         Tab::Activity => {
-            if let Some(effect) = issue_fetch(&mut state.activity, Surface::Activity) {
+            if let Some(effect) = issue_fetch(&mut state.activity, Surface::Activity, None) {
                 effects.push(effect);
             }
         }
         Tab::Routines => {
-            if let Some(effect) = issue_fetch(&mut state.routines, Surface::Routines) {
+            if let Some(effect) = issue_fetch(&mut state.routines, Surface::Routines, None) {
                 effects.push(effect);
             }
         }
-        Tab::Inbox | Tab::Chat => {}
+        Tab::Chat => {
+            if let Some(bot) = state.chat_view.bot.clone() {
+                if let Some(effect) = issue_fetch(&mut state.chat, Surface::Chat, Some(bot)) {
+                    effects.push(effect);
+                }
+            }
+        }
+        Tab::Inbox => {}
     }
-    if let Some(effect) = issue_fetch(&mut state.status, Surface::Status) {
+    if let Some(effect) = issue_fetch(&mut state.status, Surface::Status, None) {
         effects.push(effect);
     }
     state.next_poll_at = state.now + 5000;
@@ -583,6 +689,14 @@ pub fn on_fetched(
         return;
     }
     set_in_flight(state, surface, false);
+    // A transcript read that lands while the window is scrolled keeps the window where it was, so
+    // the lines the read added above it do not move it.
+    let before =
+        if surface == Surface::Chat && outcome.is_ok() && state.chat_view.scroll_from_bottom > 0 {
+            Some(chat_lines(state, chat_width(state)).len())
+        } else {
+            None
+        };
     match outcome {
         Ok(read) => {
             // The rows as they stood, so an answered item a read no longer lists stays drawn.
@@ -622,6 +736,12 @@ pub fn on_fetched(
                 text: error.line,
             });
         }
+    }
+    if let Some(before) = before {
+        let after = chat_lines(state, chat_width(state)).len();
+        state.chat_view.scroll_from_bottom = (state.chat_view.scroll_from_bottom
+            + after.saturating_sub(before))
+        .min(chat_max_scroll(state));
     }
     reconcile_selection(state, surface);
     if surface == Surface::Inbox {
@@ -702,24 +822,34 @@ pub fn context_stack(state: &State) -> Vec<Context> {
     match state.active_tab {
         Tab::Inbox => vec![Context::Inbox, Context::List],
         Tab::Activity | Tab::Routines => vec![Context::Main, Context::List],
-        Tab::Chat => vec![Context::Main],
+        Tab::Chat => match state.chat_view.mode {
+            ChatMode::Main => vec![Context::Main],
+            ChatMode::Typing | ChatMode::Picking => vec![Context::Chat],
+        },
     }
 }
 
 /// The facts a row's conditions read.
 pub fn cond(state: &State) -> Cond {
     let overlay = state.overlay.as_ref();
+    // The chat pane's own modes count only while no overlay and no palette hold the keys.
+    let chat = state.overlay.is_none() && state.palette.is_none() && state.active_tab == Tab::Chat;
     Cond {
         inbox_tab: state.active_tab == Tab::Inbox,
         has_options: overlay.is_some_and(|open| !open.options.is_empty()),
-        typing: overlay.is_some_and(|open| open.phase == Phase::Typing),
+        typing: overlay.is_some_and(|open| open.phase == Phase::Typing)
+            || (chat && state.chat_view.mode == ChatMode::Typing),
         gone: overlay.is_some_and(|open| open.phase == Phase::Gone),
-        sending: overlay.is_some_and(|open| open.phase == Phase::Sending),
+        sending: overlay.is_some_and(|open| open.phase == Phase::Sending)
+            || (chat && state.chat_view.sending.is_some()),
+        chat_tab: state.active_tab == Tab::Chat,
+        picking: chat && state.chat_view.mode == ChatMode::Picking,
     }
 }
 
 /// Routes one action to the arm that owns it.
 pub fn apply(state: &mut State, action: Action) -> Vec<Effect> {
+    let chat = state.active_tab == Tab::Chat && state.overlay.is_none() && state.palette.is_none();
     match action {
         Action::Quit => vec![Effect::Quit { code: 0 }],
         Action::SelectTab(_)
@@ -736,21 +866,32 @@ pub fn apply(state: &mut State, action: Action) -> Vec<Effect> {
                 on_shell_action(state, action)
             } else if state.overlay.is_some() {
                 on_overlay_action(state, action)
+            } else if chat {
+                on_chat_action(state, action)
             } else {
                 Vec::new()
             }
         }
         Action::MoveUp | Action::MoveDown | Action::PageUp | Action::PageDown => {
-            on_list_action(state, action)
+            if chat {
+                on_chat_action(state, action)
+            } else {
+                on_list_action(state, action)
+            }
         }
-        Action::OpenItem
-        | Action::EnterText
-        | Action::Deny
-        | Action::ApproveOnce
-        | Action::Pick(_)
-        | Action::TypeChar(_)
-        | Action::DeleteChar
-        | Action::SendText => on_overlay_action(state, action),
+        Action::EnterText | Action::TypeChar(_) | Action::DeleteChar | Action::SendText => {
+            if chat {
+                on_chat_action(state, action)
+            } else {
+                on_overlay_action(state, action)
+            }
+        }
+        Action::OpenItem | Action::Deny | Action::ApproveOnce | Action::Pick(_) => {
+            on_overlay_action(state, action)
+        }
+        Action::ChatPick | Action::ChatChoose | Action::ChatHistoryUp | Action::ChatHistoryDown => {
+            on_chat_action(state, action)
+        }
     }
 }
 
@@ -761,6 +902,7 @@ fn generation_of(state: &State, surface: Surface) -> u64 {
         Surface::Activity => state.activity.generation,
         Surface::Inbox => state.inbox.generation,
         Surface::Routines => state.routines.generation,
+        Surface::Chat => state.chat.generation,
     }
 }
 
@@ -771,6 +913,7 @@ fn set_in_flight(state: &mut State, surface: Surface, in_flight: bool) {
         Surface::Activity => state.activity.in_flight = in_flight,
         Surface::Inbox => state.inbox.in_flight = in_flight,
         Surface::Routines => state.routines.in_flight = in_flight,
+        Surface::Chat => state.chat.in_flight = in_flight,
     }
 }
 
@@ -806,6 +949,13 @@ fn store_read(state: &mut State, surface: Surface, payload: Payload) {
             state.routines.last_ok_at = Some(now);
             state.routines.error = None;
         }
+        Surface::Chat => {
+            if let Payload::Chat(rows) = payload {
+                state.chat.rows = rows;
+            }
+            state.chat.last_ok_at = Some(now);
+            state.chat.error = None;
+        }
     }
 }
 
@@ -816,11 +966,12 @@ fn mark_read_failed(state: &mut State, surface: Surface, line: String) {
         Surface::Activity => state.activity.error = Some(line),
         Surface::Inbox => state.inbox.error = Some(line),
         Surface::Routines => state.routines.error = Some(line),
+        Surface::Chat => state.chat.error = Some(line),
     }
 }
 
 /// Issues one fetch for a surface that is not already in flight.
-fn issue_fetch<T>(remote: &mut Remote<T>, surface: Surface) -> Option<Effect> {
+fn issue_fetch<T>(remote: &mut Remote<T>, surface: Surface, bot: Option<BotId>) -> Option<Effect> {
     if remote.in_flight {
         return None;
     }
@@ -828,6 +979,7 @@ fn issue_fetch<T>(remote: &mut Remote<T>, surface: Surface) -> Option<Effect> {
     remote.in_flight = true;
     Some(Effect::Fetch {
         surface,
+        bot,
         generation: remote.generation,
     })
 }
@@ -903,19 +1055,60 @@ fn keep_own_rows(state: &mut State) {
     state.inbox.rows.retain(|item| !foreign.contains(&item.id));
 }
 
+/// The bots the picker lists: every bot row of the last status read, sorted and without repeats.
+pub fn chat_bots(state: &State) -> Vec<BotId> {
+    let mut bots: Vec<BotId> = state
+        .status
+        .rows
+        .rows
+        .iter()
+        .filter(|row| row.kind == "bot" && !row.bot_id.is_empty())
+        .map(|row| BotId(row.bot_id.clone()))
+        .collect();
+    bots.sort();
+    bots.dedup();
+    bots
+}
+
+/// Picks the pane's first bot when none is chosen: one listed bot is chosen, more open the picker.
+fn chat_first_choice(state: &mut State) -> bool {
+    if state.active_tab != Tab::Chat
+        || state.chat_view.bot.is_some()
+        || state.chat_view.mode != ChatMode::Main
+    {
+        return false;
+    }
+    let bots = chat_bots(state);
+    match bots.len() {
+        0 => false,
+        1 => {
+            state.chat_view.bot = bots.first().cloned();
+            true
+        }
+        _ => {
+            state.chat_view.mode = ChatMode::Picking;
+            state.chat_view.picker_selected = 0;
+            false
+        }
+    }
+}
+
 /// The shell's own actions: the tabs, the palette and the quit a palette entry can run.
 pub fn on_shell_action(state: &mut State, action: Action) -> Vec<Effect> {
     match action {
         Action::SelectTab(tab) => {
             state.active_tab = tab;
+            chat_first_choice(state);
             refresh(state)
         }
         Action::PrevTab => {
             state.active_tab = state.active_tab.prev();
+            chat_first_choice(state);
             refresh(state)
         }
         Action::NextTab => {
             state.active_tab = state.active_tab.next();
+            chat_first_choice(state);
             refresh(state)
         }
         Action::OpenPalette => {
@@ -1060,10 +1253,174 @@ pub fn on_list_action(state: &mut State, action: Action) -> Vec<Effect> {
     Vec::new()
 }
 
+/// The chat pane's own actions: the transcript window, the draft and its history, the send and the bot picker.
+pub fn on_chat_action(state: &mut State, action: Action) -> Vec<Effect> {
+    match state.chat_view.mode {
+        ChatMode::Main => match action {
+            Action::MoveUp => {
+                state.chat_view.scroll_from_bottom =
+                    (state.chat_view.scroll_from_bottom + 1).min(chat_max_scroll(state));
+                Vec::new()
+            }
+            Action::MoveDown => {
+                state.chat_view.scroll_from_bottom =
+                    state.chat_view.scroll_from_bottom.saturating_sub(1);
+                Vec::new()
+            }
+            Action::PageUp => {
+                state.chat_view.scroll_from_bottom = (state.chat_view.scroll_from_bottom
+                    + chat_window_rows(state))
+                .min(chat_max_scroll(state));
+                Vec::new()
+            }
+            Action::PageDown => {
+                state.chat_view.scroll_from_bottom = state
+                    .chat_view
+                    .scroll_from_bottom
+                    .saturating_sub(chat_window_rows(state));
+                Vec::new()
+            }
+            Action::EnterText => {
+                // The key table binds this key only once a bot is chosen, so no bot leaves nothing to type to.
+                if state.chat_view.bot.is_some() {
+                    state.chat_view.mode = ChatMode::Typing;
+                    state.chat_view.history_index = None;
+                }
+                Vec::new()
+            }
+            Action::ChatPick => {
+                let bots = chat_bots(state);
+                state.chat_view.mode = ChatMode::Picking;
+                state.chat_view.picker_selected = state
+                    .chat_view
+                    .bot
+                    .as_ref()
+                    .and_then(|bot| bots.iter().position(|listed| listed == bot))
+                    .unwrap_or(0);
+                Vec::new()
+            }
+            _ => Vec::new(),
+        },
+        ChatMode::Typing => match action {
+            Action::TypeChar(c) => {
+                state.chat_view.draft.push(c);
+                state.chat_view.history_index = None;
+                state.chat_view.saved_draft.clear();
+                Vec::new()
+            }
+            Action::DeleteChar => {
+                state.chat_view.draft.pop();
+                state.chat_view.history_index = None;
+                state.chat_view.saved_draft.clear();
+                Vec::new()
+            }
+            Action::ChatHistoryUp => {
+                let len = state.chat_view.history.len();
+                if len == 0 {
+                    return Vec::new();
+                }
+                let index = match state.chat_view.history_index {
+                    Some(index) => index.saturating_sub(1),
+                    None => {
+                        // The draft is kept aside, so the newest line's Down puts it back.
+                        state.chat_view.saved_draft = state.chat_view.draft.clone();
+                        len - 1
+                    }
+                };
+                state.chat_view.history_index = Some(index);
+                state.chat_view.draft = state.chat_view.history[index].clone();
+                Vec::new()
+            }
+            Action::ChatHistoryDown => {
+                let Some(index) = state.chat_view.history_index else {
+                    return Vec::new();
+                };
+                if index + 1 < state.chat_view.history.len() {
+                    let next = index + 1;
+                    state.chat_view.history_index = Some(next);
+                    state.chat_view.draft = state.chat_view.history[next].clone();
+                } else {
+                    state.chat_view.history_index = None;
+                    state.chat_view.draft = std::mem::take(&mut state.chat_view.saved_draft);
+                }
+                Vec::new()
+            }
+            Action::SendText => {
+                let text = state.chat_view.draft.trim().to_string();
+                let Some(bot) = state.chat_view.bot.clone() else {
+                    return Vec::new();
+                };
+                if text.is_empty() || state.chat_view.sending.is_some() {
+                    return Vec::new();
+                }
+                // A line equal to the newest one is not added twice, so a retry does not fill the history.
+                if state.chat_view.history.last() != Some(&text) {
+                    state.chat_view.history.push(text.clone());
+                }
+                state.chat_view.history_index = None;
+                state.chat_view.saved_draft.clear();
+                state.chat_view.draft.clear();
+                state.chat_view.sending = Some(text.clone());
+                vec![Effect::ChatSend { bot, text }]
+            }
+            Action::Close => {
+                // The draft is kept, so a half-written message survives a look at another tab.
+                state.chat_view.mode = ChatMode::Main;
+                Vec::new()
+            }
+            _ => Vec::new(),
+        },
+        ChatMode::Picking => {
+            let bots = chat_bots(state);
+            match action {
+                Action::MoveUp => {
+                    state.chat_view.picker_selected =
+                        state.chat_view.picker_selected.saturating_sub(1);
+                    Vec::new()
+                }
+                Action::MoveDown => {
+                    if state.chat_view.picker_selected + 1 < bots.len() {
+                        state.chat_view.picker_selected += 1;
+                    }
+                    Vec::new()
+                }
+                Action::ChatChoose => {
+                    let Some(bot) = bots.get(state.chat_view.picker_selected).cloned() else {
+                        return Vec::new();
+                    };
+                    if state.chat_view.bot.as_ref() != Some(&bot) {
+                        state.chat_view.bot = Some(bot);
+                        // The generation is kept, so a reply for the bot left behind is dropped.
+                        state.chat.rows = Transcript::default();
+                        state.chat.last_ok_at = None;
+                        state.chat.error = None;
+                        state.chat.in_flight = false;
+                        state.chat_view.scroll_from_bottom = 0;
+                        if matches!(&state.last_error, Some(line) if line.source == Source::Read(Surface::Chat))
+                        {
+                            state.last_error = None;
+                        }
+                    }
+                    state.chat_view.mode = ChatMode::Main;
+                    issue_fetch(&mut state.chat, Surface::Chat, state.chat_view.bot.clone())
+                        .into_iter()
+                        .collect()
+                }
+                Action::Close => {
+                    // The bot chosen before is kept, so Esc leaves the picker without changing the conversation.
+                    state.chat_view.mode = ChatMode::Main;
+                    Vec::new()
+                }
+                _ => Vec::new(),
+            }
+        }
+    }
+}
+
 /// Keeps the selection when it survives a read, else falls to the nearest row.
 pub fn reconcile_selection(state: &mut State, surface: Surface) {
     match surface {
-        Surface::Status => return,
+        Surface::Status | Surface::Chat => return,
         Surface::Activity => {
             let keys = activity_keys(state);
             if keys.is_empty() {
@@ -1439,6 +1796,245 @@ fn overlay_on_paste(state: &mut State, text: &str) {
     }
 }
 
+/// Ends the send in flight: a send that appended re-reads the transcript, a refused one puts its draft back.
+pub fn on_chat_sent(
+    state: &mut State,
+    bot: BotId,
+    text: String,
+    outcome: Result<ChatOk, ChatError>,
+) -> Vec<Effect> {
+    state.chat_view.sending = None;
+    match outcome {
+        Ok(ok) => {
+            match ok.warning {
+                Some(warning) => {
+                    state.last_error = Some(StatusLine {
+                        source: Source::ChatSend,
+                        text: warning,
+                    });
+                }
+                None => {
+                    if matches!(&state.last_error, Some(line) if line.source == Source::ChatSend) {
+                        state.last_error = None;
+                    }
+                }
+            }
+            if state.chat_view.bot.as_ref() == Some(&bot) {
+                issue_fetch(&mut state.chat, Surface::Chat, Some(bot))
+                    .into_iter()
+                    .collect()
+            } else {
+                Vec::new()
+            }
+        }
+        Err(error) => {
+            // Nothing was appended, so the text goes back to be edited and sent again.
+            if state.chat_view.draft.trim().is_empty() {
+                state.chat_view.draft = text;
+            } else {
+                state.chat_view.draft = format!("{text} {}", state.chat_view.draft);
+            }
+            state.chat_view.history_index = None;
+            state.last_error = Some(StatusLine {
+                source: Source::ChatSend,
+                text: error.line,
+            });
+            Vec::new()
+        }
+    }
+}
+
+/// Appends a pasted text to the chat draft while typing, each line break as one space, and never sends.
+fn chat_on_paste(state: &mut State, text: &str) {
+    if state.active_tab != Tab::Chat || state.overlay.is_some() || state.palette.is_some() {
+        return;
+    }
+    if state.chat_view.mode != ChatMode::Typing {
+        return;
+    }
+    for c in text.chars() {
+        state.chat_view.draft.push(match c {
+            '\r' | '\n' => ' ',
+            other => other,
+        });
+    }
+    state.chat_view.history_index = None;
+}
+
+/// One display line of the chat transcript, before the view styles it.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum ChatLine {
+    /// The marker for the messages above the window, holding how many there are.
+    Earlier(usize),
+    /// The label line of the message at this index of the transcript.
+    Label(usize),
+    /// One line of a message's text, already indented four columns.
+    Text(String),
+    /// The line under the newest human message while its send is in flight.
+    Working,
+    /// The note a stale transcript draws under its messages.
+    StaleNote,
+    /// An empty line.
+    Blank,
+}
+
+/// The columns the transcript and the composer draw in: the list column when the detail column is drawn.
+pub fn chat_width(state: &State) -> usize {
+    if state.wide() {
+        usize::from(state.size.cols).saturating_sub(48)
+    } else {
+        usize::from(state.size.cols)
+    }
+}
+
+/// The transcript window's rows: the body less its title, the two blank rows and the composer.
+pub fn chat_window_rows(state: &State) -> usize {
+    state.body_rows().saturating_sub(4).max(1)
+}
+
+/// A message's text as drawn lines: split on each line feed, made printable, wrapped and indented four columns.
+pub fn chat_text_lines(text: &str, width: usize) -> Vec<String> {
+    let budget = width.saturating_sub(4).max(1);
+    let mut lines = Vec::new();
+    for piece in text.split('\n') {
+        let piece = piece.strip_suffix('\r').unwrap_or(piece);
+        for line in wrap(&crate::theme::printable(piece), budget) {
+            lines.push(format!("    {line}"));
+        }
+    }
+    lines
+}
+
+/// Wraps one line at a display width, breaking at the last space that fits and never splitting a wide cell.
+fn wrap(text: &str, width: usize) -> Vec<String> {
+    let mut lines = Vec::new();
+    let mut line = String::new();
+    let mut used = 0;
+    for c in text.chars() {
+        let step = UnicodeWidthChar::width(c).unwrap_or(0);
+        if used + step > width && !line.is_empty() {
+            match line.rfind(' ') {
+                Some(at) => {
+                    // The space is dropped and the rest of the line carries over to the next one.
+                    let rest = line[at + 1..].to_string();
+                    line.truncate(at);
+                    lines.push(std::mem::take(&mut line));
+                    line = rest;
+                    used = UnicodeWidthStr::width(line.as_str());
+                }
+                None => {
+                    lines.push(std::mem::take(&mut line));
+                    used = 0;
+                }
+            }
+        }
+        line.push(c);
+        used += step;
+    }
+    lines.push(line);
+    lines
+}
+
+/// Every display line of the transcript in file order, with the working line and the stale note after it.
+pub fn chat_lines(state: &State, width: usize) -> Vec<ChatLine> {
+    let mut lines = Vec::new();
+    for (index, message) in state.chat.rows.messages.iter().enumerate() {
+        if index > 0 {
+            lines.push(ChatLine::Blank);
+        }
+        lines.push(ChatLine::Label(index));
+        for line in chat_text_lines(&message.text, width) {
+            lines.push(ChatLine::Text(line));
+        }
+    }
+    if state.chat_view.sending.is_some() {
+        if !lines.is_empty() {
+            lines.push(ChatLine::Blank);
+        }
+        lines.push(ChatLine::Working);
+    }
+    if state.chat.pane_state() == PaneState::Stale {
+        if !lines.is_empty() {
+            lines.push(ChatLine::Blank);
+        }
+        lines.push(ChatLine::StaleNote);
+    }
+    lines
+}
+
+/// The lines the transcript window draws, top first, never more than its rows.
+///
+/// Scroll counts display lines up from the bottom. When the lines above the window's end do not
+/// fit, whole messages are dropped from the top and the marker and a blank take their place, so
+/// no message is drawn without its label.
+pub fn chat_window(state: &State, width: usize, rows: usize) -> Vec<ChatLine> {
+    let lines = chat_lines(state, width);
+    let len = lines.len();
+    let scroll = state
+        .chat_view
+        .scroll_from_bottom
+        .min(len.saturating_sub(rows));
+    let end = len - scroll;
+    if end <= rows {
+        return lines[..end].to_vec();
+    }
+    if rows < 3 {
+        return lines[end - rows..end].to_vec();
+    }
+    let labels: Vec<usize> = lines[..end]
+        .iter()
+        .enumerate()
+        .filter(|(_, line)| matches!(line, ChatLine::Label(_)))
+        .map(|(index, _)| index)
+        .collect();
+    let dropped = |at: usize| labels.iter().filter(|label| **label < at).count();
+    if let Some(at) = labels.iter().copied().find(|at| 2 + (end - at) <= rows) {
+        let mut window = vec![ChatLine::Earlier(dropped(at)), ChatLine::Blank];
+        window.extend(lines[at..end].iter().cloned());
+        return window;
+    }
+    let Some(at) = labels.last().copied() else {
+        return lines[end - rows..end].to_vec();
+    };
+    let mut window = vec![ChatLine::Earlier(dropped(at)), ChatLine::Blank];
+    window.extend(lines[at..at + rows - 2].iter().cloned());
+    window
+}
+
+/// The largest scroll the window takes: the display lines that do not fit above it.
+pub fn chat_max_scroll(state: &State) -> usize {
+    chat_lines(state, chat_width(state))
+        .len()
+        .saturating_sub(chat_window_rows(state))
+}
+
+/// Whether the message at this index is a human message with no bot message after it.
+///
+/// The newest human message is not unanswered while a send is in flight, because it draws the
+/// working line instead.
+pub fn chat_unanswered(state: &State, index: usize) -> bool {
+    let messages = &state.chat.rows.messages;
+    let Some(message) = messages.get(index) else {
+        return false;
+    };
+    if message.role != Role::Human {
+        return false;
+    }
+    if messages[index + 1..]
+        .iter()
+        .any(|later| later.role == Role::Bot)
+    {
+        return false;
+    }
+    if state.chat_view.sending.is_some() {
+        let newest = messages.iter().rposition(|later| later.role == Role::Human);
+        if newest == Some(index) {
+            return false;
+        }
+    }
+    true
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1772,6 +2368,7 @@ mod tests {
         let effects = refresh(&mut state);
         assert!(effects.contains(&Effect::Fetch {
             surface: Surface::Inbox,
+            bot: None,
             generation: generation + 1,
         }));
 
@@ -1801,14 +2398,17 @@ mod tests {
             vec![
                 Effect::Fetch {
                     surface: Surface::Inbox,
+                    bot: None,
                     generation: 1,
                 },
                 Effect::Fetch {
                     surface: Surface::Activity,
+                    bot: None,
                     generation: 1,
                 },
                 Effect::Fetch {
                     surface: Surface::Status,
+                    bot: None,
                     generation: 1,
                 },
             ]
@@ -1825,10 +2425,12 @@ mod tests {
             vec![
                 Effect::Fetch {
                     surface: Surface::Inbox,
+                    bot: None,
                     generation: 1,
                 },
                 Effect::Fetch {
                     surface: Surface::Status,
+                    bot: None,
                     generation: 1,
                 },
             ]
@@ -1853,6 +2455,7 @@ mod tests {
             third,
             vec![Effect::Fetch {
                 surface: Surface::Inbox,
+                bot: None,
                 generation: 2,
             }]
         );
@@ -2169,10 +2772,12 @@ mod on_shell_action {
         assert_eq!(state.active_tab, Tab::Inbox);
         assert!(effects.contains(&Effect::Fetch {
             surface: Surface::Inbox,
+            bot: None,
             generation: 1,
         }));
         assert!(effects.contains(&Effect::Fetch {
             surface: Surface::Status,
+            bot: None,
             generation: 1,
         }));
 
@@ -2777,6 +3382,7 @@ mod on_overlay_action {
         let effects = update(&mut state, Msg::Tick { now: 6_000 });
         assert!(effects.contains(&Effect::Fetch {
             surface: Surface::Inbox,
+            bot: None,
             generation: 2,
         }));
 
@@ -2955,5 +3561,310 @@ mod on_overlay_action {
         state.inbox.rows = vec![item("i1", ItemState::Open, &[])];
         update(&mut state, Msg::Key(Key::Enter));
         assert!(state.overlay.is_none());
+    }
+}
+
+#[cfg(test)]
+mod on_chat_action {
+    use super::*;
+    use crate::model::{Message, StatusRow};
+
+    /// The status payload the picker reads, one bot row per id.
+    fn status_with(bots: &[&str]) -> StatusPayload {
+        StatusPayload {
+            rows: bots
+                .iter()
+                .map(|bot_id| StatusRow {
+                    kind: "bot".to_string(),
+                    bot_id: bot_id.to_string(),
+                    ..StatusRow::default()
+                })
+                .collect(),
+            ..StatusPayload::default()
+        }
+    }
+
+    /// A state on the chat tab with a bot chosen and four bots listed, so the picker has rows to move over.
+    fn state_on_chat() -> State {
+        let mut state = State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Chat,
+            ..State::default()
+        };
+        state.chat_view.bot = Some(BotId("hello".to_string()));
+        state.status.rows = status_with(&["archive", "digest", "hello", "nightly-report"]);
+        state
+    }
+
+    /// One message of the transcript, with the fields the window reads.
+    fn message(role: Role, text: &str) -> Message {
+        Message {
+            role,
+            text: text.to_string(),
+            ..Message::default()
+        }
+    }
+
+    /// The chat context is the stack in both of its modes, and the main context is the stack before them.
+    #[test]
+    fn context_follows_the_chat_mode() {
+        let mut state = state_on_chat();
+        assert_eq!(context_stack(&state), vec![Context::Main]);
+        state.chat_view.mode = ChatMode::Typing;
+        assert_eq!(context_stack(&state), vec![Context::Chat]);
+        state.chat_view.mode = ChatMode::Picking;
+        assert_eq!(context_stack(&state), vec![Context::Chat]);
+    }
+
+    /// Enter enters typing, the typed line is sent trimmed, and a second Enter finds the send still out.
+    #[test]
+    fn enter_types_and_send_hands_off_the_trimmed_draft() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(state.chat_view.mode, ChatMode::Typing);
+        for c in "  hi  ".chars() {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        assert_eq!(state.chat_view.draft, "  hi  ");
+
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(
+            effects,
+            vec![Effect::ChatSend {
+                bot: BotId("hello".to_string()),
+                text: "hi".to_string(),
+            }]
+        );
+        assert_eq!(state.chat_view.sending, Some("hi".to_string()));
+        assert!(state.chat_view.draft.is_empty());
+        assert!(update(&mut state, Msg::Key(Key::Enter)).is_empty());
+    }
+
+    /// A draft that is blank after trimming sends nothing and leaves the history alone.
+    #[test]
+    fn blank_draft_sends_nothing() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Enter));
+        for c in "   ".chars() {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        assert!(update(&mut state, Msg::Key(Key::Enter)).is_empty());
+        assert_eq!(state.chat_view.sending, None);
+        assert!(state.chat_view.history.is_empty());
+    }
+
+    /// Up walks the sent lines back to the oldest, and Down walks them forward to the kept draft.
+    #[test]
+    fn history_recalls_and_restores_the_draft() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Enter));
+        for text in ["one", "two"] {
+            for c in text.chars() {
+                update(&mut state, Msg::Key(Key::Char(c)));
+            }
+            update(&mut state, Msg::Key(Key::Enter));
+            on_chat_sent(
+                &mut state,
+                BotId("hello".to_string()),
+                text.to_string(),
+                Ok(ChatOk {
+                    code: 0,
+                    warning: None,
+                }),
+            );
+        }
+        assert_eq!(
+            state.chat_view.history,
+            vec!["one".to_string(), "two".to_string()]
+        );
+
+        for c in "dra".chars() {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        update(&mut state, Msg::Key(Key::Up));
+        assert_eq!(state.chat_view.draft, "two");
+        update(&mut state, Msg::Key(Key::Up));
+        assert_eq!(state.chat_view.draft, "one");
+        update(&mut state, Msg::Key(Key::Down));
+        assert_eq!(state.chat_view.draft, "two");
+        update(&mut state, Msg::Key(Key::Down));
+        assert_eq!(state.chat_view.draft, "dra");
+    }
+
+    /// A refused send appended nothing, so the text comes back and the next Enter sends it once.
+    #[test]
+    fn refused_send_puts_the_draft_back() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Enter));
+        for c in "hi".chars() {
+            update(&mut state, Msg::Key(Key::Char(c)));
+        }
+        assert_eq!(update(&mut state, Msg::Key(Key::Enter)).len(), 1);
+
+        let effects = on_chat_sent(
+            &mut state,
+            BotId("hello".to_string()),
+            "hi".to_string(),
+            Err(ChatError {
+                kind: FailKind::Exit(4),
+                line: "bots: body-secret".to_string(),
+            }),
+        );
+        assert!(effects.is_empty());
+        assert_eq!(state.chat_view.draft, "hi");
+        assert_eq!(
+            state.last_error,
+            Some(StatusLine {
+                source: Source::ChatSend,
+                text: "bots: body-secret".to_string(),
+            })
+        );
+
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(
+            effects,
+            vec![Effect::ChatSend {
+                bot: BotId("hello".to_string()),
+                text: "hi".to_string(),
+            }]
+        );
+    }
+
+    /// A send that appended draws its warning and reads the transcript again.
+    #[test]
+    fn appended_send_reads_the_transcript_again() {
+        let mut state = state_on_chat();
+        let effects = on_chat_sent(
+            &mut state,
+            BotId("hello".to_string()),
+            "hi".to_string(),
+            Ok(ChatOk {
+                code: 1,
+                warning: Some("bots: chat --message exited 1: executor exited 1".to_string()),
+            }),
+        );
+        assert_eq!(
+            state.last_error,
+            Some(StatusLine {
+                source: Source::ChatSend,
+                text: "bots: chat --message exited 1: executor exited 1".to_string(),
+            })
+        );
+        assert_eq!(
+            effects,
+            vec![Effect::Fetch {
+                surface: Surface::Chat,
+                bot: Some(BotId("hello".to_string())),
+                generation: 1,
+            }]
+        );
+    }
+
+    /// The picker opens on the chosen bot's row, moves up it and chooses the row it lands on.
+    #[test]
+    fn picker_moves_and_chooses() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Char('b')));
+        assert_eq!(state.chat_view.mode, ChatMode::Picking);
+        assert_eq!(state.chat_view.picker_selected, 2);
+
+        update(&mut state, Msg::Key(Key::Up));
+        assert_eq!(state.chat_view.picker_selected, 1);
+
+        let effects = update(&mut state, Msg::Key(Key::Enter));
+        assert_eq!(state.chat_view.bot, Some(BotId("digest".to_string())));
+        assert_eq!(state.chat_view.mode, ChatMode::Main);
+        assert_eq!(
+            effects,
+            vec![Effect::Fetch {
+                surface: Surface::Chat,
+                bot: Some(BotId("digest".to_string())),
+                generation: 1,
+            }]
+        );
+    }
+
+    /// The first visit opens the picker when several bots are listed and chooses the only one when one is.
+    #[test]
+    fn first_visit_opens_the_picker_for_four_bots_and_chooses_a_lone_bot() {
+        let mut state = State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Activity,
+            ..State::default()
+        };
+        state.status.rows = status_with(&["archive", "digest", "hello", "nightly-report"]);
+        update(&mut state, Msg::Key(Key::Alt('4')));
+        assert_eq!(state.active_tab, Tab::Chat);
+        assert_eq!(state.chat_view.mode, ChatMode::Picking);
+        assert_eq!(state.chat_view.picker_selected, 0);
+
+        let mut state = State {
+            size: Size { cols: 80, rows: 24 },
+            active_tab: Tab::Activity,
+            ..State::default()
+        };
+        state.status.rows = status_with(&["hello"]);
+        let effects = update(&mut state, Msg::Key(Key::Alt('4')));
+        assert_eq!(state.chat_view.bot, Some(BotId("hello".to_string())));
+        assert!(effects.contains(&Effect::Fetch {
+            surface: Surface::Chat,
+            bot: Some(BotId("hello".to_string())),
+            generation: 1,
+        }));
+    }
+
+    /// A paste adds text to the draft while typing, each line break as one space, and never sends.
+    #[test]
+    fn paste_appends_while_typing_and_never_sends() {
+        let mut state = state_on_chat();
+        update(&mut state, Msg::Key(Key::Enter));
+        let effects = update(&mut state, Msg::Paste("a\nb\rc".to_string()));
+        assert!(effects.is_empty());
+        assert_eq!(state.chat_view.draft, "a b c");
+        assert_eq!(state.chat_view.sending, None);
+
+        let mut state = state_on_chat();
+        let effects = update(&mut state, Msg::Paste("a\nb\rc".to_string()));
+        assert!(effects.is_empty());
+        assert!(state.chat_view.draft.is_empty());
+    }
+
+    /// A window that cannot hold every line drops whole messages and marks how many it dropped.
+    #[test]
+    fn window_drops_whole_messages_and_marks_them() {
+        let mut state = state_on_chat();
+        state.chat.rows.messages = (0..5)
+            .map(|index| message(Role::Human, &format!("m{index}")))
+            .collect();
+        state.chat_view.sending = Some("m4".to_string());
+
+        let rows = chat_window_rows(&state);
+        assert_eq!(rows, 13);
+        let window = chat_window(&state, chat_width(&state), rows);
+        assert_eq!(window[0], ChatLine::Earlier(2));
+        assert_eq!(window[1], ChatLine::Blank);
+        assert_eq!(window[2], ChatLine::Label(2));
+        assert_eq!(window[window.len() - 2], ChatLine::Blank);
+        assert_eq!(window[window.len() - 1], ChatLine::Working);
+        assert!(window.len() <= rows);
+    }
+
+    /// The scroll stops at the lines above the window and comes back to the bottom.
+    #[test]
+    fn scroll_clamps_to_the_lines_above_the_window() {
+        let mut state = state_on_chat();
+        state.chat.rows.messages = (0..30)
+            .map(|index| message(Role::Human, &format!("m{index}")))
+            .collect();
+
+        for _ in 0..1_000 {
+            update(&mut state, Msg::Key(Key::Up));
+        }
+        assert_eq!(state.chat_view.scroll_from_bottom, chat_max_scroll(&state));
+
+        for _ in 0..1_000 {
+            update(&mut state, Msg::Key(Key::Down));
+        }
+        assert_eq!(state.chat_view.scroll_from_bottom, 0);
     }
 }
