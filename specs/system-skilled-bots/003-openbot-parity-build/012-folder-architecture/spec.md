@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Phase** | 12 of 15 |
 | **Predecessor** | 011-messaging-channels |
 | **Successor** | 013-manual-testing-scenarios |
-| **Handoff Criteria** | `scratch/move-map.md` holds a reason for every move it lists and every move landed through `git mv`. The runtime suite and typecheck, the crate's fmt, clippy and tests, the deep-loop executor audit tests, `parent-skill-check.cjs`, the gate-input check and the playbook validator at `scenarios=58 violations=0` all pass from the final state |
+| **Handoff Criteria** | `scratch/move-map.md` holds a reason for every move it lists and every move landed through `git mv`. The runtime suite and typecheck, the crate's fmt, clippy and tests, the deep-loop executor audit tests, `parent-skill-check.cjs`, the gate-input check and the playbook validator at `scenarios=58 violations=0` all pass from the final state. Every folder in the move map's README table that reads `readme` holds a `README.md` that `validate_document.py` passes |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -39,7 +39,7 @@ contextType: "implementation"
 
 This is **Phase 12** of the Build OpenBot parity for skilled bots from the 002 research: activity, routines, terminal screen, workspace, memory, approvals, apps, vault, skills and chat specification. The operator added it on 2026-11-28 to make the folder and file architecture clearer, with less unneeded nesting, across all of `.skilled` that the build touched.
 
-**Scope Boundary**: Moves and the reference updates each move needs, nothing else. The phase changes no behavior, no output, no record shape and no test assertion beyond a path it names.
+**Scope Boundary**: Moves, the reference updates each move needs and a README for each folder the README table lists, nothing else. The phase changes no behavior, no output, no record shape and no test assertion beyond a path it names.
 
 **Dependencies**:
 - 011.007, 010.003 and every runtime unit, because 011.005 to 011.007 and 010.003 still add files to the tree this phase restructures. The phase measures the tree only once they have merged.
@@ -49,6 +49,7 @@ This is **Phase 12** of the Build OpenBot parity for skilled bots from the 002 r
 - `scratch/tree-baseline.md`: the tree measured when the phase opens.
 - `scratch/move-map.md`: one row per candidate with its verdict, its target and its reason.
 - The moves, each a `git mv` with every reference to the old path rewritten in the same change.
+- A `README.md` in `.skilled/crates/`, a refreshed one in `.skilled/crates/bots-tui/` and one in each other folder the move map's README table lists, each authored through `/create:readme` and saying what belongs in the folder and what does not.
 - `scratch/tree-after.md`: the same measures from the final state.
 <!-- /ANCHOR:phase-context -->
 
@@ -92,6 +93,7 @@ Measured on 2026-11-28 before 011.005 to 011.007 and 010.003 merged. These numbe
 - Measure every in-scope root when the phase opens: its file count, its folder count, its folders that hold one file and its deepest path.
 - Write a move map that gives each candidate a verdict, a target and a reason, and keeps a folder whenever moving it would break a gate or a routing rule.
 - Move each mapped path with `git mv` and rewrite every reference to it in code, CI, docs and specs in the same change.
+- Author a README through `/create:readme` for `.skilled/crates/`, `.skilled/crates/bots-tui/`, each new folder the move map lands and each folder the build created under an in-scope root, unless the README table gives the reason to skip it.
 - Prove that nothing behaves differently: every gate passes from the final state with the same test counts as the baseline.
 
 The in-scope roots are every `.skilled` path the build touched:
@@ -118,7 +120,10 @@ The exact paths come from the move map, so this table names the roots and what h
 | `.skilled/skills/system-deep-loop/runtime/` | Move/Modify | Only the executor audit files the build edited, when the map moves one |
 | `.github/workflows/bots-runtime.yml` | Modify | Any path filter, manifest path or diff guard path a move changes |
 | `specs/system-skilled-bots/003-openbot-parity-build/` | Modify | Every spec that names a moved path |
-| `012-folder-architecture/scratch/` | Create | `tree-baseline.md`, `move-map.md`, `gate-baseline.md` and `tree-after.md` |
+| `.skilled/crates/README.md` | Create | What belongs in the crates folder and what does not, authored through `/create:readme` |
+| `.skilled/crates/bots-tui/README.md` | Modify | Refreshed through `/create:readme` so it says what belongs in the crate folder and what does not |
+| `README.md` in each folder the README table marks `readme` | Create | One per new folder the move map lands and per build-created folder with no README, authored through `/create:readme` |
+| `012-folder-architecture/scratch/` | Create | `tree-baseline.md`, `move-map.md`, `gate-baseline.md` and `tree-after.md`. The two `draft-*.md` files there are read-only drafts the opener replaces and deletes |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -135,7 +140,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | The phase opens only after 011.007, 010.003 and every runtime unit have merged, and its first task measures every in-scope root as it then stands into `scratch/tree-baseline.md` |
 | REQ-002 | `scratch/move-map.md` holds one row per candidate with its old path, its verdict of move or keep, its new path for a move and a reason. No move lands that the map does not list |
 | REQ-003 | Every move is a `git mv`, so `git diff -M --diff-filter=D --name-only <base> HEAD` prints no path under an in-scope root, where `<base>` is the commit the phase opened on |
-| REQ-004 | Every reference to a moved path is rewritten in the same change: for each move row, `rg -n -F '<old path>'` over the repository prints nothing outside `scratch/move-map.md` and `scratch/tree-baseline.md` |
+| REQ-004 | Every reference to a moved path is rewritten in the same change: for each move row, `rg -n -F '<old path>'` over the repository prints nothing outside this phase's `scratch/` |
 | REQ-005 | No behavior changes. The runtime `npm test` prints the same `Test Files` and `Tests` counts as `scratch/gate-baseline.md` with no `failed`, and `npm run typecheck` exits 0 |
 | REQ-006 | The crate gates hold. `cargo fmt --check`, `cargo clippy --locked --all-targets -- -D warnings` and `cargo test --locked` each pass with `--manifest-path` naming the crate, and each target prints the baseline's passed and ignored counts |
 | REQ-007 | The deep-loop executor audit tests pass with the baseline counts, and the bots CI design diff guard passes when its diff commands run by hand |
@@ -148,6 +153,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-011 | `scratch/tree-after.md` repeats the baseline's measures from the final state, and each root shows fewer one-file folders or a shallower deepest path, or the map's keep rows give the reason it does not |
+| REQ-012 | Every folder the build created or that is unique in the layout holds a `README.md` authored through `/create:readme` that says what belongs in the folder and what does not. The set is `.skilled/crates/`, `.skilled/crates/bots-tui/`, each new folder the move map lands and each build-created folder under an in-scope root. The move map's README table lists each one with `readme` or `skip` and a reason. A skip is a fixture case folder, the crate's `design/` copy the CI diff guard compares, a feature catalog category folder or a folder whose parent README already says what it holds. Each `readme` row's file passes `validate_document.py` |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -161,6 +167,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-001**: `git diff -M --diff-filter=D --name-only <base> HEAD -- .skilled` prints nothing, so every move reads as a rename.
 - **SC-002**: The runtime suite, the typecheck, the three cargo gates, the executor audit tests, the hub check, the gate-input check and the playbook validator all pass from the final state with the baseline counts.
 - **SC-003**: `scratch/tree-after.md` shows fewer one-file folders under the skill than `scratch/tree-baseline.md`, or the map says why not.
+- **SC-004**: `.skilled/crates/README.md`, `.skilled/crates/bots-tui/README.md` and every `readme` row's `README.md` exist and pass `validate_document.py`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
