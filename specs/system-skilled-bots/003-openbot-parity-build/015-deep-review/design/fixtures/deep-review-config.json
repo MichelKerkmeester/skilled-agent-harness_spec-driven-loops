@@ -56,6 +56,8 @@
     ".skilled/skills/system-skilled-bots/runtime/lib/runner.ts",
     ".skilled/skills/system-skilled-bots/runtime/lib/conversation.ts",
     ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
+    ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+    ".github/workflows/bots-runtime.yml",
     "specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md",
     "specs/system-skilled-bots/003-openbot-parity-build/006-approval-grants/spec.md",
     "specs/system-skilled-bots/003-openbot-parity-build/010-conversations/spec.md",
