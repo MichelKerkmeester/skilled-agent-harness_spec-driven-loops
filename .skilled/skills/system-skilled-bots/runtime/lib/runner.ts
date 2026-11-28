@@ -194,7 +194,15 @@ const WORKFLOW = 'system-skilled-bots';
  */
 export type RunRequest =
   | { kind: 'manual' }
-  | { kind: 'queued'; requestId: string; source: string; firedSlot: string | null; prompt: string }
+  | {
+      kind: 'queued';
+      requestId: string;
+      source: string;
+      firedSlot: string | null;
+      prompt: string;
+      /** The request's reply target, `<channel>:<chatId>`, so a chat-started run answers the chat that asked. */
+      delivery?: string | null;
+    }
   | { kind: 'resume'; requestId: string; itemId: string }
   | { kind: 'scheduled'; scheduleIndex: number; firedAt?: Date };
 
@@ -275,6 +283,8 @@ export interface RecordSeed {
   evidence: EvidenceLocations;
   /** The definition's delivery fields; null when the definition did not parse. */
   delivery?: Delivery | null;
+  /** The request's reply target, null for a run no chat started. */
+  replyTarget?: string | null;
   /** What a scheduled fire stood for; absent for every other run. */
   slot?: SlotFields | null;
 }
@@ -423,7 +433,7 @@ function buildRecord(
     posture: seed.posture,
     exit,
     evidence: seed.evidence,
-    delivery: resolveDeliveryEntries(seed.delivery ?? null, exit),
+    delivery: resolveDeliveryEntries(seed.delivery ?? null, exit, seed.replyTarget ?? null),
     actor: seed.actor ?? null,
     answeredBy: seed.answeredBy ?? null,
     until: extra.until ?? null,
@@ -1060,6 +1070,7 @@ export async function runBot(input: RunBotInput): Promise<RunOutcome> {
     posture: declaredPosture(definition, context.config),
     evidence,
     delivery: definition?.delivery ?? null,
+    replyTarget: request.kind === 'queued' ? request.delivery ?? null : null,
     actor: resolvedActor.ok ? resolvedActor.value : null,
     answeredBy: null,
   };

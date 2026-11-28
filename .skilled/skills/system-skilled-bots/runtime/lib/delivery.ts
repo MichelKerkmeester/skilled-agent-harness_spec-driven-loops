@@ -17,7 +17,10 @@
 // `attempted` and never `delivered`. A message carries the bot id, run id,
 // outcome, evidence pointers, a kept worktree and a needs-you question:
 // never a command line or an environment value, and a body that holds a
-// known secret literal is withheld rather than sent.
+// known secret literal is withheld rather than sent. The four chat channels
+// never send from here. A chat target becomes one entry on the durable send
+// queue that its drain sends, and a chat prompt is checked with its choice
+// block before it is queued.
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -26,6 +29,7 @@ import { homedir } from 'node:os';
 import { isAbsolute, join, relative } from 'node:path';
 
 import { writeStateAtomic } from '../../../system-deep-loop/runtime/lib/deep-loop/atomic-state.js';
+import { enqueueChannel, noticeKey, promptForm } from './channel-queue.js';
 import { LOCAL_ONLY } from './definition.js';
 import { collectAllKnownSecrets, findSecretLiteral } from './dispatch.js';
 import { readNeedsYouItem } from './needs-you.js';
@@ -42,12 +46,27 @@ import type { DeliveryEntry, DeliveryState, RunExit, RunRecord } from './run-rec
 // ───────────────────────────────────────────────────────────────────
 
 /** Channels a target may name. A target is `<channel>` or `<channel>:<address>`. */
-export const DELIVERY_CHANNELS = ['desktop'] as const;
+export const DELIVERY_CHANNELS = ['desktop', 'telegram', 'slack', 'signal', 'whatsapp'] as const;
 
 export type DeliveryChannel = (typeof DELIVERY_CHANNELS)[number];
 
+/** The chat channels, which queue their notice instead of sending it here. The terminal is never one, because its transport reads the open needs-you items itself. */
+export const CHAT_CHANNELS = ['telegram', 'slack', 'signal', 'whatsapp'] as const;
+export type ChatChannel = (typeof CHAT_CHANNELS)[number];
+
+/** Whether a channel queues its notice instead of sending it here. */
+function isChatChannel(channel: string): channel is ChatChannel {
+  return (CHAT_CHANNELS as readonly string[]).includes(channel);
+}
+
 /** Whether a channel's sender can learn that its notice arrived. Only such a channel may record `delivered`. */
-const CHANNEL_ACKNOWLEDGES: Readonly<Record<DeliveryChannel, boolean>> = Object.freeze({ desktop: false });
+const CHANNEL_ACKNOWLEDGES: Readonly<Record<DeliveryChannel, boolean>> = Object.freeze({
+  desktop: false,
+  telegram: true,
+  slack: true,
+  signal: true,
+  whatsapp: true,
+});
 
 /** The one entry of a run that sends nothing: local-only, no target, or a refusal that is not a failure. */
 export const NO_SEND_ENTRY: Readonly<DeliveryEntry> = Object.freeze({
@@ -125,15 +144,19 @@ export function parseTarget(target: string): { channel: string; known: boolean }
  * a held lease, a skipped precheck) tells nobody. A run that parked a
  * question sends a notice for its needs-you item, keyed by the item id.
  *
+ * The reply target is the request's, never the definition's, so a
+ * chat-started run answers the chat that asked, and it joins the declared
+ * targets.
+ *
  * @returns One `queued` entry per target, or the single no-send entry.
  */
-export function resolveDeliveryEntries(delivery: Delivery | null, exit: RunExit): DeliveryEntry[] {
-  if (delivery === null || delivery.mode === 'local-only') return [{ ...NO_SEND_ENTRY }];
+export function resolveDeliveryEntries(delivery: Delivery | null, exit: RunExit, replyTarget: string | null = null): DeliveryEntry[] {
   if (exit.refusal !== undefined && exit.refusal !== null && exit.class === null) return [{ ...NO_SEND_ENTRY }];
   const parked = exit.reason === AWAITING_DECISION && exit.needsYouItemId !== null;
   const failed = exit.class !== null && !parked;
-  const chosen = failed && delivery.onFailure !== null ? delivery.onFailure : delivery.targets;
-  const targets = [...new Set(chosen.map((target) => target.trim()).filter((target) => target !== ''))];
+  const declared = delivery === null || delivery.mode === 'local-only' ? [] : (failed && delivery.onFailure !== null ? delivery.onFailure : delivery.targets);
+  const asked = replyTarget === null ? [] : [replyTarget];
+  const targets = [...new Set([...declared, ...asked].map((target) => target.trim()).filter((target) => target !== ''))];
   if (targets.length === 0) return [{ ...NO_SEND_ENTRY }];
   return targets.map((target) => {
     const { channel, known } = parseTarget(target);
@@ -186,6 +209,19 @@ export function deliveryMessage(
   }
   lines.push(`Record: ${pointer(recordFile(stateRoot, record.identity.repository, record.identity.runId), stateRoot, home)}`);
   return { title: `Skilled bot ${record.identity.botId}`, body: lines.join('\n') };
+}
+
+/** The choices a prompt offers: the item's options, or YES and NO. */
+function choicesOf(item: Pick<NeedsYouItem, 'options'>): string[] {
+  return item.options !== null && item.options.length > 0 ? item.options : ['YES', 'NO'];
+}
+
+/** The choice block a prompt ends with. The text form numbers the options, two spaces after each number, or asks for YES or NO. The button form points at the buttons. */
+export function choiceBlock(item: Pick<NeedsYouItem, 'options'>, form: 'buttons' | 'text'): string {
+  if (form === 'buttons') return 'Press a button to answer.';
+  const options = item.options;
+  if (options === null || options.length === 0) return 'Reply YES or NO.';
+  return ['Reply with a number:', ...options.map((option, i) => `${i + 1}  ${option}`)].join('\n');
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -288,13 +324,18 @@ export function deliverRecord(input: DeliverInput): Result<DeliverOutcome> {
     item = found.ok ? found.value : null;
   }
   const message = deliveryMessage(record, item, input.stateRoot, env);
+  const textBlock = item !== null ? choiceBlock(item, 'text') : null;
   // A run whose child printed a stored value is never delivered, and a vault
   // that cannot be read withholds the send rather than checking against the
   // environment alone. The message's own literal is checked first, because
   // naming the key the message holds is the evidence an operator acts on.
   const leaked = postRunCausesOf(record).some((row) => row.cause === 'secret-in-output');
   const allKnown = collectAllKnownSecrets(env, input.checkoutRoot ?? null, input.stateRoot, input.identity);
-  const secret = allKnown.ok ? findSecretLiteral(`${message.title}\n${message.body}`, allKnown.value) : null;
+  // The check always runs over the text form whatever a channel draws, so the
+  // only label a chat can show is one the check saw, and a hit withholds the
+  // whole prompt.
+  const checked = textBlock === null ? `${message.title}\n${message.body}` : `${message.title}\n${message.body}\n\n${textBlock}`;
+  const secret = allKnown.ok ? findSecretLiteral(checked, allKnown.value) : null;
   mkdirSync(deliveryClaimFolder(input.stateRoot, input.identity), { recursive: true, mode: STATE_DIR_MODE });
 
   // A rewrite the record refuses or that throws is noted in the claim file, which
@@ -314,6 +355,56 @@ export function deliverRecord(input: DeliverInput): Result<DeliverOutcome> {
   let changed = false;
   for (const entry of record.delivery) {
     if (entry.state !== 'queued') continue;
+    if (isChatChannel(entry.channel)) {
+      changed = true;
+      if (secret !== null) {
+        entry.state = 'not-attempted';
+        entry.evidence = `withheld: the message holds a literal of ${secret.kind} ${secret.name}`;
+      } else if (leaked) {
+        entry.state = 'not-attempted';
+        entry.evidence = 'withheld: secret-in-output';
+      } else if (!allKnown.ok) {
+        entry.state = 'not-attempted';
+        entry.evidence = 'withheld: secret-store-unreadable';
+      } else {
+        const colon = entry.target.indexOf(':');
+        const conversation = colon === -1 ? '' : entry.target.slice(colon + 1).trim();
+        if (conversation === '') {
+          entry.state = 'not-attempted';
+          entry.evidence = 'channel-conversation-missing';
+        } else {
+          const form = item !== null ? promptForm(entry.channel, choicesOf(item)) : 'text';
+          const text = item !== null ? `${message.title}\n${message.body}\n\n${choiceBlock(item, form)}` : `${message.title}\n${message.body}`;
+          const key = noticeKey(input.runId, entry.channel);
+          const queued = enqueueChannel({
+            stateRoot: input.stateRoot,
+            identity: input.identity,
+            key,
+            channel: entry.channel,
+            conversationId: conversation,
+            text,
+            itemId: entry.itemId ?? null,
+            runId: input.runId,
+          });
+          if (!queued.ok) {
+            entry.state = 'not-attempted';
+            entry.evidence = `queue-refused: ${queued.reason}${queued.detail !== undefined ? ` (${queued.detail})` : ''}`;
+          } else if (queued.value.entry.conversationId !== conversation) {
+            // A notice key names one chat per channel and run, so a second chat of one channel gets no entry.
+            entry.state = 'not-attempted';
+            entry.evidence = `queue-key-taken: ${key}`;
+          } else {
+            const state = queued.value.entry.state;
+            // The entry reads queued until the drain writes its final state, so no reader sees a prompt as delivered before the platform took it.
+            entry.state = state === 'delivered' || state === 'failed' || state === 'unknown' ? state : 'queued';
+            entry.evidence = key;
+          }
+        }
+      }
+      // The queue file is the authority on what was sent, so a failed record write is not noted elsewhere.
+      persist();
+      continue;
+    }
     const path = claimPath(input.stateRoot, input.identity, input.runId, entry);
     const claimBody: ClaimFile = {
       runId: input.runId,

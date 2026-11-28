@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] T020 in `tasks.md` prints `exit=0`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [x] T020 in `tasks.md` prints `exit=0`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/004-approval-index-and-send-queue --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,7 +75,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Build | Not started | The child was planned on 2026-11-26 and no code has landed |
+| Build | Built 2026-11-28 | Suite 51 files and 654 tests passed, typecheck exit 0, T020 `exit=0` with a checkout config naming the identity, seven acceptance rows Met |
 
 ### Deviations and findings
 
@@ -95,4 +95,5 @@ and findings belong here.
 | F-071, the counter reader | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `bots channel list` prints one `notApprover <actor> <count>` line per actor with a count above zero, which is the only reader of the counter, and `--json` gains no key because `contracts/cli-json.md` section 3.3 is frozen. |
 | F-012, the terminal exception | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: `DELIVERY_CHANNELS` keeps its four chat names and never gains `terminal`, because the terminal transport reads the open needs-you items directly and writes no index entry. |
 | The queue and Slack rules, amended on 2026-11-27 | D5 gains the maybe-sent rule of REQ-013 and AC-013. D7 records operator answer Q015 in the packet decision record, carried by REQ-008, REQ-028, AC-008 and AC-028. The F-013 row above predates it: the button form is also skipped on Slack when an option is over 75 characters. |
+| T020 tick, the build | Ticked on the run with a checkout `bots/config.json` naming `acme/widgets`, because the CLI resolves identity under the job environment, which drops `SKILLED_BOTS_IDENTITY`. The literal command exits 4 `identity-unknown`, as 011.003's T024 did. Four files outside the Files to Change table changed, named in implementation-summary.md |
 <!-- /ANCHOR:log -->
