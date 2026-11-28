@@ -194,8 +194,10 @@ const PINNED_OPERATOR_ENV = 'SKILLED_BOTS_OPERATOR';
 const UNSUPPORTED_SCOPES = new Set(['always', 'conversation']);
 // The scopes an answer may record.
 const ANSWER_SCOPES = new Set(['once', 'deny']);
-// The write verbs a bot child may not run. Each later write verb joins this list.
-const CHILD_REFUSED_VERBS = new Set(['answer', 'enable', 'skill']);
+// Every verb whose every form writes, which a bot child may not run. A verb with a read form gets
+// its own check beside the remember and secret ones, and a new verb joins this list unless it is a
+// pure read.
+const CHILD_REFUSED_VERBS = new Set(['answer', 'enable', 'skill', 'run', 'disable', 'pause', 'resume', 'enqueue', 'drain', 'schedule']);
 // Free text a person types: a prompt such as "- fix the lint warnings" may start with a dash, and
 // a chat message is free text too. A value that is itself one of this CLI's flags still means the
 // value was left out.
@@ -1991,8 +1993,20 @@ async function main(argv) {
       return 2;
     }
   }
-  // A refusal that reads the run marker for answer and enable belongs here, before any
-  // runtime work, so a bot's own child cannot answer or re-enable itself.
+  // A chat send appends a message under the operator's name and queues a run, so it runs no write
+  // inside a bot run. --transcript is a read and stays open.
+  if (parsed.verb === 'chat' && parsed.options.transcript !== true && isBotChild(process.env)) {
+    process.stderr.write('bots: child-write-refused: chat runs no write inside a bot run\n');
+    return 2;
+  }
+  // --unregister and --rebuild rewrite the status index, so they run no write inside a bot run.
+  // Plain status, --json and --all are reads and stay open.
+  if (parsed.verb === 'status' && (parsed.options.unregister !== undefined || parsed.options.rebuild === true) && isBotChild(process.env)) {
+    process.stderr.write('bots: child-write-refused: status runs no write inside a bot run\n');
+    return 2;
+  }
+  // The run-marker refusal for every verb whose every form writes belongs here, before any runtime
+  // work, so a bot's own child cannot answer, run, approve, schedule or queue work for any bot.
   if (CHILD_REFUSED_VERBS.has(parsed.verb) && isBotChild(process.env)) {
     process.stderr.write('bots: child-write-refused\n');
     return 2;

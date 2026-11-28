@@ -85,6 +85,7 @@ Each implementation task names the `design/` section it builds. A builder that f
 - [x] T033 Prove the `activity --json` and `inbox --json` payloads through the CLI's own output in a test named `payload types` (`$RT/tests/cli-run.vitest.ts`). Also check that every key in `specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/payloads/activity.json`, `inbox.json` and `status.json` appears in the real output with the same JSON type, so the screen's fixture and the runtime cannot drift. The comparison is by the screen contract's Type and Null columns for keys whose Producer is `today` or `packet 001`, as `$D/fixtures/README.md` defines it. Verify: `$SBOTS activity --json | jq -e '.version == 1 and (.groups | type == "array")'` exits 0, `$SBOTS inbox --json | jq -e '.version == 1 and (.items | type == "array")'` exits 0, and `cd $RT && npx vitest run tests/cli-run.vitest.ts -t "payload types"` prints one passing test
 - [x] T044 Extend the status tests with `version` and `updatedAt` on the report and `stale` true only after a refresh that could not complete, in a test named `reports stale only after a refresh that could not complete` (`$RT/tests/status.vitest.ts`). Verify: `(cd $RT && npx vitest run tests/status.vitest.ts -t "^bots status reports stale only after a refresh that could not complete$")` prints `Tests  1 passed`
 - [x] T045 Extend the installer tests with the operator and full-access values in the rendered job, the install record and `jobEnv`, in a test named `pins the operator and the full-access flag` (`$RT/tests/installer.vitest.ts`). Verify: `(cd $RT && npx vitest run tests/installer.vitest.ts -t "^install record pins the operator and the full-access flag$")` prints `Tests  1 passed`
+- [x] T048 Refuse every write verb and write form for a bot child: `CHILD_REFUSED_VERBS` gains `run`, `disable`, `pause`, `resume`, `enqueue`, `drain` and `schedule`, and `chat` without `--transcript` and `status` with `--unregister` or `--rebuild` each get their own detailed refusal, with two tests named `refuses every write verb from a bot child` and `keeps the read forms open to a bot child` (`.skilled/bin/bots.cjs`, `$RT/tests/cli-run.vitest.ts`). Verify: `(cd $RT && npx vitest run tests/cli-run.vitest.ts -t "^bots answer refuses every write verb from a bot child$")` prints `Tests  1 passed` and `(cd $RT && npx vitest run tests/cli-run.vitest.ts -t "^bots answer keeps the read forms open to a bot child$")` prints `Tests  1 passed`. Observed 2026-11-28: against the base `bots.cjs` the first printed `Tests  1 failed | 27 skipped (28)` with `run manual-ok: expected 4 to be 2`, and with the fix each printed `Tests  1 passed | 27 skipped (28)`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -144,7 +145,7 @@ A blocked task is marked `[B]` with the reason on the same line, and the phase d
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints 13. Observed 2026-11-27: printed 13
+- [x] CHK-001 [P0] Requirements documented in spec.md. Verify: `rg -c '^\| REQ-' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md` prints 14. Observed 2026-11-28: printed 14
 - [x] CHK-002 [P0] Technical approach defined in plan.md. Verify: `rg -n '^## 4\. IMPLEMENTATION PHASES' specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/plan.md` prints one line. Observed 2026-11-27: printed line 119
 - [x] CHK-003 [P1] Dependencies identified and available. Verify: `cd $RT && npx vitest --version` exits 0 and `jq --version` exits 0. Observed 2026-11-27: both exited 0
 - [x] CHK-004 [P0] The design fixtures parse. Verify: `node -e 'require("fs").readdirSync(process.argv[1]).filter((n) => n.endsWith(".json")).forEach((n) => JSON.parse(require("fs").readFileSync(process.argv[1] + "/" + n, "utf8"))), console.log("done")' $D/fixtures` prints `done` and exits 0. Observed 2026-11-27: printed `done`, exit 0
@@ -199,6 +200,7 @@ The plan's affected-surfaces addendum is active because this phase changes a per
 - [x] CHK-031 [P0] Input validation implemented. Verify: `rg -n 'ACTOR_PATTERN' $RT/lib/actor.ts` prints the pattern and its use. Observed 2026-11-27: printed lines 28 and 58
 - [x] CHK-032 [P1] Auth/authz working correctly. Verify: `rg -n 'isTTY|needs a tty' .skilled/bin/bots.cjs` prints the two tty refusals, `rg -n 'child-write-refused|SKILLED_BOT_RUN_ID|AI_SESSION_CHILD' .skilled/bin/bots.cjs` prints the child refusal and its two markers, and `rg -n 'isTTY' $RT/lib/answer.ts` prints nothing, because the refusal is the CLI's alone and the runtime has no sign-in. The actor is a name the host vouches for, and the child marker is a bar rather than an authentication. Observed 2026-11-27: printed the two refusals at lines 155 and 559, the child refusal and both markers, and nothing for `answer.ts`
 - [x] CHK-033 [P0] A definition cannot grant itself full access. Verify: `rg -n 'workspace-write|fullAccess' $RT/lib/posture.ts` prints the cap and the install-time flag read. Observed 2026-11-27: printed the cap at line 108 and the grant at line 86
+- [x] CHK-034 [P0] A bot child runs no write verb and no write form, and its read forms stay open. Verify: `(cd $RT && npx vitest run tests/cli-run.vitest.ts -t "^bots answer (refuses every write verb from|keeps the read forms open to) a bot child$")` prints `Tests  2 passed`. Observed 2026-11-28: printed `Tests  2 passed | 26 skipped (28)`
 <!-- /ANCHOR:security -->
 
 ---
@@ -227,7 +229,7 @@ The plan's affected-surfaces addendum is active because this phase changes a per
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 16 | [ ]/16 |
+| P0 Items | 17 | [ ]/17 |
 | P1 Items | 13 | [ ]/13 |
 | P2 Items | 1 | [ ]/1 |
 

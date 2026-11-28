@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The status index already holds a row for every run, delivery and needs-you item, but nothing shows them as a timeline: `bots status` prints one line per bot and one line per open item, so a reader cannot tell what is waiting, what is running and what ended without reading three surfaces [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/status.ts:470]",
     "created_at": "2026-11-25T07:13:37Z",
-    "last_save_at": "2026-11-28T11:23:12.526Z",
+    "last_save_at": "2026-11-28T18:22:08.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5de60b903d8f3e580a83b8fb4827cebf2c2f0849aa5ea3a91c520405d3eb582d",
+    "source_fingerprint": "sha256:5d190f7a428f56db033b6600fe01bf54cf728d70e99d04bcbc6de2d2a5f602d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5d0e07c91c49f5bf688a6417b01d4cd09ce7820f561900e18d4bb091977c6221",
+      "spec.md": "a6d0590a51fbabec943f65c2cbfa9dd2ed8024786760f91cf7f5208a290ed491",
       "plan.md": "9be8e6f8c6b6da309e987fcd0a6281b62097e1583030c2ceab000d9fc17dd6c4",
-      "tasks.md": "94f37b5ac54d129f139641fe50e0dd4102c1dc888bc5627358a3ad9bed4abba9",
-      "implementation-summary.md": "5f014830596ce6677e46ea3d544b2e875e33c79a0e6c2e6f5a297457e3495650"
+      "tasks.md": "27d16d6c4d7973d6dbb84debfe1ed6b9751b8bac19d06420aba6cc4fd847aab1",
+      "implementation-summary.md": "40249b92d41ea2e060240ddac3e09c3d4fc2a5a7d50a40f44f39fd56419c9d6a"
     },
     "last_active_at": null
   }

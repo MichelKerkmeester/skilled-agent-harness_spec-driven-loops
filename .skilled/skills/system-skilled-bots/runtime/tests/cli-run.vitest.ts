@@ -29,7 +29,7 @@ import { proposalFile } from '../lib/skill-proposal.js';
 import { identityStatePaths, installFile, PINNED_STATE_ROOT_ENV, slotSnapshotFile } from '../lib/state-root.js';
 import { readSwitch, setSwitch } from '../lib/switches.js';
 import { drain, entries, queueOf, records, writeItem } from './queue-support.js';
-import { botWorld, BOTS_CLI, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
+import { botWorld, BOTS_CLI, filesUnder, IDENTITY, runCli, stubReceipt, stubRunCount, writeBot } from './runner-support.js';
 import { writeRecord } from './status-support.js';
 import { cleanupTemp, REAL_CHECKOUT, tempDir } from './support.js';
 
@@ -583,6 +583,53 @@ describe('bots answer', () => {
     expect(unknown.status).toBe(4);
     expect(firstLine(unknown.stderr)).toMatch(/^bots: item-unknown: /);
   }, 60_000);
+
+  it('refuses every write verb from a bot child', () => {
+    // Every write verb and write form refuses before the runtime loads, so the state root keeps what it held.
+    const world = botWorld();
+    const paused = setSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'paused');
+    if (!paused.ok) throw new Error(paused.reason);
+    const pausedBefore = readSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'paused');
+    const before = filesUnder(world.stateRoot).sort();
+    const child = { ...world, env: { ...world.env, SKILLED_BOT_RUN_ID: 'r1' } };
+    const bare = 'bots: child-write-refused';
+    const cases: Array<[string[], string]> = [
+      [['run', 'manual-ok'], bare],
+      [['disable', 'manual-ok'], bare],
+      [['pause', 'manual-ok'], bare],
+      [['resume', 'manual-ok'], bare],
+      [['enqueue', 'manual-ok', '--source', 'manual', '--event-id', '1'], bare],
+      [['drain'], bare],
+      [['schedule', 'install', 'manual-ok'], bare],
+      [['schedule', 'uninstall', 'manual-ok'], bare],
+      [['chat', 'manual-ok', '--message', 'hi'], 'bots: child-write-refused: chat runs no write inside a bot run'],
+      [['status', '--rebuild'], 'bots: child-write-refused: status runs no write inside a bot run'],
+      [['status', '--unregister', IDENTITY], 'bots: child-write-refused: status runs no write inside a bot run'],
+    ];
+    for (const [args, line] of cases) {
+      const refused = runCli(child, args);
+      expect(refused.status, args.join(' ')).toBe(2);
+      expect(firstLine(refused.stderr), args.join(' ')).toBe(line);
+    }
+    expect(filesUnder(world.stateRoot).sort()).toEqual(before);
+    expect(stubRunCount(world)).toBe(0);
+    expect(entries(queueOf(world).inbox)).toEqual([]);
+    expect(existsSync(installFile(world.stateRoot, IDENTITY, 'manual-ok'))).toBe(false);
+    expect(readSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'paused')).toEqual(pausedBefore);
+    expect(readSwitch(world.stateRoot, IDENTITY, 'manual-ok', 'disabled')).toBeNull();
+  }, 120_000);
+
+  it('keeps the read forms open to a bot child', () => {
+    // A child may still read: the transcript, the status table and the inbox answer as they do for the operator.
+    const world = botWorld();
+    const session = { ...world, env: { ...world.env, AI_SESSION_CHILD: '1' } };
+    for (const args of [['chat', 'manual-ok', '--transcript'], ['status'], ['inbox']]) {
+      const read = runCli(session, args);
+      const operator = runCli(world, args);
+      expect(read.stderr, args.join(' ')).not.toContain('child-write-refused');
+      expect(read.status, args.join(' ')).toBe(operator.status);
+    }
+  }, 120_000);
 
   it('review recorded', () => {
     const world = botWorld();

@@ -62,6 +62,7 @@ _memory:
 | Q028 | 015 reviews and may fix `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` and `.github/workflows/bots-runtime.yml`. Both are lines in `review/fanout-review-scope.txt`, they form fix group O and the diff filter admits them with the `executor-audit` and `dispatch-receipts` suites. A fix to the executor audit reruns those suites and a fix to the workflow reruns `check-gate-inputs.sh`. | The operator chose on 2026-11-28 to amend 015. Phases 007 and 008 changed the executor audit and phase 003 and the crate move changed the workflow, yet neither file sat in 015's scope list or its diff filter, so 015 as written could neither review nor fix them. | 015's scope list and diff filter as first written | 015-deep-review spec.md (Phase Context, Scope Boundary, In Scope, Files to Change), plan.md (section 8.4, FIX ADDENDUM), tasks.md (T012, T014, T019, Wave 0, group O, CHK-FIX-005), acceptance-criteria.md (AC-002, AC-009), goal.md criterion 7 and its log, design/records.md sections 2 and 12 and the config golden |
 | Q029 | Review finding RB-039 is a P0. A vault value that holds a quote or a backslash leaks unredacted into a JSON-log executor's decoded answer, because the post-run scan in `runner.ts` `scanForms` builds no JSON-escaped form of the value. Per Q026 it holds 013 until a follow-up fix unit of phase 008 merges. | The operator answered on 2026-11-28 to fix it before 013. A leaked secret in a conversation file is the one failure the vault exists to prevent. | RB-039's P1 severity in the review store | A follow-up fix unit of 008-vault and the top orchestrator's entry check before 013 opens |
 | Q030 | Phase 012 fixes the CI design guard inside its own scope. The guard step in `.github/workflows/bots-runtime.yml` excludes `chat-mockups.md` from its first `diff -r`, diffs `010-conversations/001-chat-ux-and-pane-map/design/mockups.md` against the crate's `design/chat-mockups.md` and the push filter names that design folder. | The guard failed before 012 opened, because commit `44216a6ad13` added the chat copy without teaching the guard about it. The operator chose a named amendment to 012 over a supersede record that would send the fix to the deep review. | 012's scope line that let it touch the workflow only for a path a move changes | 012-folder-architecture REQ-007, Files to Change, T008, AC-007 and implementation-summary.md |
+| Q031 | Review finding RB-069 is a P0. The child bar in `bots.cjs` refused only `answer`, `enable` and `skill`, so a bot child could still run `chat`, `run`, `schedule install` and `uninstall`, `resume`, `disable`, `pause`, `enqueue`, `drain` and `status --unregister` or `--rebuild`. A manual run and a reinstall both write the definition approval that `enable` is barred for. Per Q026 it holds 013 until a follow-up fix unit of phase 001 merges. | The operator answered on 2026-11-28 to fix it before 013. A child that edited its own BOT.md could reinstall the bot and so approve its own drift. | RB-069's P1 severity in the review store | A follow-up fix unit of 001-activity-and-actor, which fixed it by refusing every write verb and write form for a bot child, and the top orchestrator's entry check before 013 opens |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -608,6 +609,24 @@ Not passed to this record
 Answer:
 ```text
 Fix it inside 012 (Recommended)
+```
+
+### Q031
+<!-- source: operator answer of 2026-11-28 on review finding RB-069, passed in the orchestrator task message. The question below paraphrases that message and the tool-use id was not passed to this record. A 001 follow-up unit fixed it -->
+
+Question:
+```text
+Review finding RB-069: the child bar leaves chat, run, schedule install and uninstall, resume, disable, pause, enqueue, drain and status --unregister or --rebuild open to a bot child, and a manual run or a reinstall writes the definition approval. What severity and when is it fixed?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+P0: fix before 013 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
