@@ -12,7 +12,8 @@
 // source and filters one list, and it resolves no variable, so it holds no
 // credential.
 
-import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+import { existsSync, lstatSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 
 import type { Result } from './repo-config.js';
@@ -74,11 +75,11 @@ function messageOf(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
-/** Write through a sibling temp file and a rename, so a reader never sees half a file and a link is replaced, not followed. */
+/** Write through a sibling temp file and a rename, so a reader never sees half a file and a link is replaced, not followed. The temp name is unguessable and created exclusively, so an entry planted at that name fails the write. */
 function writeAtomic(path: string, text: string): Result<string> {
-  const temp = `${path}.${process.pid}.tmp`;
+  const temp = `${path}.${process.pid}.${randomUUID()}.tmp`;
   try {
-    writeFileSync(temp, text);
+    writeFileSync(temp, text, { flag: 'wx' });
     renameSync(temp, path);
     return { ok: true, value: path };
   } catch (error: unknown) {
@@ -176,7 +177,11 @@ export function writeRunUtcpConfig(input: UtcpWrite): Result<WrittenUtcpConfig> 
     let treeOriginal: string | null;
     try {
       text = readFileSync(runCopy, 'utf8');
-      treeOriginal = existsSync(target) ? readFileSync(target, 'utf8') : null;
+      const entry = lstatSync(target, { throwIfNoEntry: false });
+      if (entry !== undefined && !entry.isFile()) {
+        return { ok: false, reason: 'utcp-config-unwritten', detail: `${target} is not a regular file` };
+      }
+      treeOriginal = entry === undefined ? null : readFileSync(target, 'utf8');
     } catch (error: unknown) {
       return { ok: false, reason: 'utcp-config-unwritten', detail: messageOf(error) };
     }
@@ -187,4 +192,24 @@ export function writeRunUtcpConfig(input: UtcpWrite): Result<WrittenUtcpConfig> 
   const written = writeAtomic(runCopy, `${JSON.stringify(filteredConfig(input.source, input.honored), null, 2)}\n`);
   if (!written.ok) return written;
   return { ok: true, value: { path: runCopy, treeOriginal: null } };
+}
+
+/**
+ * Put a tree's own UTCP config back once its child is done: the text taken before the
+ * filtered copy was written, or no file when the tree held none. Only the working tree is
+ * restored, so a commit the child made stays as the child made it. A link or a directory
+ * the child left at the path is removed rather than followed, so the restore never writes
+ * outside the tree. A failure leaves the path as it is, because nothing outside the tree has
+ * been touched and the next open of the tree restores it.
+ */
+export function restoreTreeUtcpConfig(treePath: string, original: string | null): void {
+  const path = join(treePath, UTCP_CONFIG_NAME);
+  try {
+    const entry = lstatSync(path, { throwIfNoEntry: false });
+    if (entry !== undefined && !entry.isFile()) rmSync(path, { recursive: true, force: true });
+    if (original === null) rmSync(path, { force: true });
+    else writeAtomic(path, original);
+  } catch {
+    // Nothing outside the tree has been touched, and the next open of the tree restores it.
+  }
 }

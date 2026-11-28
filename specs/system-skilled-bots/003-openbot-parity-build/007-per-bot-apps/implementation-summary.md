@@ -57,7 +57,7 @@ The child gets `UTCP_CONFIG_FILE` on the one new `DispatchInput.extraEnv` field.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/system-skilled-bots/runtime/lib/apps.ts` | Created | `readUtcpServerNames`, `resolveApps` and `writeRunUtcpConfig`, each returning a named refusal |
+| `.skilled/skills/system-skilled-bots/runtime/lib/apps.ts` | Created | `readUtcpServerNames`, `resolveApps` and `writeRunUtcpConfig`, each returning a named refusal, and the after-exit restore `restoreTreeUtcpConfig` |
 | `.skilled/skills/system-skilled-bots/runtime/lib/definition.ts` | Modified | `apps` in the closed key set, `Posture.apps` and the untrimmed list predicate refusing `apps-invalid` |
 | `.skilled/skills/system-skilled-bots/runtime/lib/run-record.ts` | Modified | `HonoredPosture.apps: string[]`, validator unchanged |
 | `.skilled/skills/system-skilled-bots/runtime/lib/posture.ts` | Modified | Seeds `apps: []` in the honored posture |
@@ -66,7 +66,7 @@ The child gets `UTCP_CONFIG_FILE` on the one new `DispatchInput.extraEnv` field.
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modified | `dispatchEnvKeys` on the input and the bounded caller namespace in `assertDispatchEnvAllowed` |
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | Modified | `apps-unknown-server` in the hard invariants and one resolver call per declaring definition |
 | `.skilled/skills/system-skilled-bots/scripts/fixtures/apps-unknown-server/` | Created | The defect fixture, its own one-server `.utcp_config.json` included |
-| `.skilled/skills/system-skilled-bots/runtime/tests/apps.vitest.ts` | Created | Six describe blocks and eighteen tests over the matrix, the goldens, the record, the child key and both refusals |
+| `.skilled/skills/system-skilled-bots/runtime/tests/apps.vitest.ts` | Created | Six describe blocks and twenty tests over the matrix, the goldens, the record, the child key, both refusals and the planted-link cases |
 | `.skilled/skills/system-skilled-bots/runtime/tests/bot-check.vitest.ts` | Modified | The defect row, the fixture's root config copied and kept out of the one-defect count |
 | `.skilled/skills/system-skilled-bots/runtime/tests/runner.vitest.ts` | Modified | The exact-shape posture assertion gains `apps: []` |
 | `.skilled/skills/system-skilled-bots/runtime/tests/definition.vitest.ts`, `posture.vitest.ts`, `activity.vitest.ts`, `run-record.vitest.ts` and `status-support.ts` | Modified | One posture literal each gains the new field, outside the planned file list (see Key Decisions) |
@@ -74,6 +74,11 @@ The child gets `UTCP_CONFIG_FILE` on the one new `DispatchInput.extraEnv` field.
 | `.skilled/skills/system-skilled-bots/bots-author/references/bot-definition.md` | Modified | The field in the template list and the shared-run limit |
 | `.skilled/skills/system-skilled-bots/feature-catalog/definition/bot-definition-contract.md` | Modified | The field in the field list |
 | `.skilled/skills/system-skilled-bots/feature-catalog/definition/definition-checker.md` | Modified | The invariant and the `INFO` case |
+
+### Follow-up: a planted link at the tree config
+
+A review found that the restore after the child exits wrote the tree's own config with a plain write, so a child that replaced the tree's `.utcp_config.json` with a link to a file outside the tree made the restore write that outside file. The tree write had the same root: its temp name was predictable and written with a plain write, and it read the tree's own file through any link. The temp name now carries a random UUID and is created exclusively, the tree write refuses a path that is not a regular file as `utcp-config-unwritten` and the restore moved into `apps.ts`, where it removes a link or a directory before it puts the tree's own file back. The next-open restore removes such an entry before its compare, so git puts the tracked file back (REQ-011, AC-017). Two tests in the `apps written file` block fail against the old code and pass now. A restore that fails leaves the path as it is, and the next open of the tree repairs it.
+
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -98,6 +103,7 @@ Every change was written by a `cli-mistral-vibe` worker at `deepseek-flash` from
 | The unknown-name detail has no backticks | The mockups and the matrix print `nosuchserver` bare, while `refusals.md` section 2 says each name in backticks. The literal surfaces win |
 | The next-open restore runs only on a reopened tree and removes a file the tree's index does not track | Only a resume reopens a tree, and a fresh tree comes from git with its own file. An untracked copy has no index answer, so it is one a run left |
 | Runner literal counts follow the acceptance rows, not the plan's affected-surfaces table | The plan row's bare counts (`apps-refused` 1, `apps-unenforceable` 1, `utcp_config.json` 2) cannot hold with real call sites. The whole-literal counts hold at 1, and the runner names the file through `UTCP_CONFIG_NAME` |
+| The no-throw check now matches the whole word | The `throwIfNoEntry` option name holds the letters `throw`, so `grep -c 'throw'` would count it. `grep -cw 'throw'` still finds any real throw statement |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -115,6 +121,7 @@ Every change was written by a `cli-mistral-vibe` worker at `deepseek-flash` from
 | Checker on `apps-unknown-server` and on `clean` | PASS: `FAIL: apps-unknown-server: bots/nightly-digest/BOT.md: nosuchserver` with exit 1, then exit 0 |
 | Grep counts the goal names | PASS: `dispatchEnvKeys` 2, `extraEnv` 3 in dispatch and 1 in the runner, `apps: null` one line, `apps-unenforceable` 1 |
 | Design section 5 commands | PASS: all three printed their stated lines |
+| The link follow-up | PASS: the two new `apps written file` cases failed against the base `apps.ts` and `runner.ts` and pass now, `apps.vitest.ts` 20 passed, `npm test` 57 files and 798 tests against a floor of 57 files and 796 tests, typecheck exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
