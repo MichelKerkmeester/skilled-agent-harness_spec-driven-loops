@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment"
-    last_updated_at: "2026-11-25T20:02:11Z"
-    last_updated_by: "create-goal"
-    recent_action: "Authored the durable directive"
+    last_updated_at: "2026-11-28T12:00:00Z"
+    last_updated_by: "014-am1"
+    recent_action: "Added D7 for the crate design docs amendment"
     next_safe_action: "Execute against the completion criteria"
     blockers: []
     key_files: []
@@ -52,6 +52,7 @@ Frozen choices. Changing one is an amendment.
 | D4 | The clean criterion is read from the last run of each command only, and a `new` bucket above `0` reopens the fix pass [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md:216]. |
 | D5 | No new surface in `surface-map.yaml` and no new alignment command, because S1 to S16 already fire for a `.skilled` scope [SOURCE: .skilled/commands/assets/local-skilled-alignment/surface-map.yaml:103]. |
 | D6 | The `specs/` tree stays out of the doc run's scope, so this packet's own docs are checked by `validate.sh` and not by the doc run [SOURCE: .skilled/commands/local-doc-alignment.md:82]. |
+| D7 | The five crate design docs no code or test reads (`architecture.md`, `contracts.md`, `key-map.md`, `glyph-table.md` and `component-inventory.md`) leave `.skilled/crates/bots-tui/design/` for one product-voice status-mode reference, `bots-status/references/terminal-screen.md`, while `mockups.md` and `chat-mockups.md` stay there as frame-test fixtures beside a `README.md` and the CI guard keeps only their two diffs. The operator accepted this on 2026-11-28 and `spec.md` REQ-011 carries it [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/decision-record.md, Q032]. |
 
 <!-- /ANCHOR:directive -->
 
@@ -86,7 +87,7 @@ and findings belong here.
 | Packet validates | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment --strict` prints `RESULT: PASSED` |
 | Topic entry | Pending | `rg -c 'system-skilled-bots' .skilled/commands/assets/local-doc-alignment/topics.json` exits 1, the measured gap `spec.md` records |
 | Both alignment runs | Pending | `ls "${XDG_STATE_HOME:-$HOME/.local/state}/local-doc-alignment/system-skilled-bots"` exits 1, so no doc run has been made here |
-| Acceptance criteria | Pending | All nine rows in `acceptance-criteria.md` read `Unmet` |
+| Acceptance criteria | Pending | All eleven rows in `acceptance-criteria.md` read `Unmet` |
 | Design artifacts | Done | `ls design/records.md design/state-machines.md design/sequences.md design/refusals.md design/mockups.md design/fixtures/README.md evidence/README.md` exits 0, and `rg -c '^## [0-9]+\.' design/records.md` prints `13` |
 | Evidence copy | Pending | `rg -n '^- Open findings: 0' evidence/*/report.md` prints nothing until both runs are made and copied |
 
@@ -102,4 +103,5 @@ and findings belong here.
 | Plan section not added | `plan.md` already carries §8 External orchestration and the three implementation phases, so this run added no plan section and left the file unchanged. |
 | Review findings applied as written, by the assistant on 2026-11-26 under the operator's do-not-ask directive | F-067's half in this folder changes T017 to a second full run after the fix pass and then the recheck, adds `- Phase: <NNN>` to the rebuttal grammar in `design/records.md` section 11, and adds the readiness line that phases 001 to 013 are committed and the tree is clean, carried by T024. F-077's half stops T008 asserting a 35-line help block and a `64:` line, so it records the block into `scratch/help-baseline.md` instead. Neither finding offered an alternative |
 | Scaffold tokens outside this goal's write scope | `implementation-summary.md` still carries six unfilled value tokens, which the implementation run fills when it writes that file. `validate.sh --strict` reports them as one warning on a Draft packet, not as an error. |
+| Crate design docs amendment, 2026-11-28 | D7 is a child-only amendment: it changes no parent decision, criterion or binding row, so the parent goal needs no amendment and no resend. The goal sits at its seven-criterion cap, so D7 adds no criterion line and its proof is AC-011 in `acceptance-criteria.md` |
 <!-- /ANCHOR:log -->
