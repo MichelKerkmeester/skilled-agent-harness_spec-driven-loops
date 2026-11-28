@@ -140,7 +140,7 @@ const REMEMBER_OPTIONS = ['bot', 'type', 'as', 'list', 'json', 'forget'];
 const CHANNEL_NAMES = ['telegram', 'slack', 'signal', 'whatsapp'];
 // The channels bots channel listen can run, mirroring the keys of LISTEN_TRANSPORTS below. The
 // list is repeated here because these refusals run before the runtime loads.
-const LISTEN_CHANNELS = ['telegram', 'slack', 'terminal'];
+const LISTEN_CHANNELS = ['telegram', 'slack', 'signal', 'whatsapp', 'terminal'];
 const ROSTER_ROLES = ['owner', 'member'];
 // The name grammar a stored secret must match, mirroring SECRET_NAME_PATTERN in the runtime's
 // secrets module. The pattern is repeated here because these refusals run before the runtime loads.
@@ -1082,10 +1082,13 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
 const CHANNEL_TRANSPORTS = Object.freeze({});
 
 // The transports bots channel listen can run, keyed by channel name: the runtime module and the
-// factory it exports. Each later transport adds one row.
+// factory it exports. Each later transport adds one row. A row marked announces prints its own ready
+// line once it has bound its port, so listen prints none for it.
 const LISTEN_TRANSPORTS = Object.freeze({
   telegram: Object.freeze({ module: 'channel-telegram', create: 'createTelegramTransport' }),
   slack: Object.freeze({ module: 'channel-slack', create: 'createSlackTransport' }),
+  signal: Object.freeze({ module: 'channel-signal', create: 'createSignalTransport' }),
+  whatsapp: Object.freeze({ module: 'channel-whatsapp', create: 'createWhatsAppTransport', announces: true }),
   terminal: Object.freeze({ module: 'channel-terminal', create: 'createTerminalTransport' }),
 });
 
@@ -1387,6 +1390,8 @@ async function listenVerb(rt, ctx, io) {
         ...whenGiven('fetch', io.fetch),
         ...whenGiven('socket', io.socket),
         ...whenGiven('sleep', io.sleep),
+        ...whenGiven('daemonUrl', io.daemonUrl),
+        ...whenGiven('listenPort', io.listenPort),
         log: (line) => io.stderr.write(`${line}\n`),
       };
     }
@@ -1396,7 +1401,7 @@ async function listenVerb(rt, ctx, io) {
     if (name !== 'terminal') {
       const probe = await transport.probe();
       if (probe.ok) {
-        io.stderr.write(`bots: ${name} ready as ${probe.name}\n`);
+        if (row.announces !== true) io.stderr.write(`bots: ${name} ready as ${probe.name}\n`);
       } else if (probe.kind === 'secret') {
         const detail = probe.detail === undefined ? '' : `: ${probe.detail}`;
         io.stderr.write(`bots: ${probe.reason}${detail}\n`);
@@ -1404,6 +1409,9 @@ async function listenVerb(rt, ctx, io) {
       } else if (probe.kind === 'rejected') {
         io.stderr.write(`bots: ${name} rejected the credential\n`);
         return 1;
+      } else if (probe.kind === 'unreachable') {
+        io.stderr.write(`bots: channel-daemon-unreachable: ${probe.detail}\n`);
+        return refused;
       } else {
         io.stderr.write(`bots: ${name} probe failed: ${probe.detail}\n`);
         return 1;
@@ -1499,6 +1507,8 @@ async function runChannelVerb(argv, transports, io = {}) {
       sleep: io.sleep,
       tickMs: io.tickMs,
       signal: io.signal,
+      daemonUrl: io.daemonUrl,
+      listenPort: io.listenPort,
     });
   } catch (error) {
     stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);

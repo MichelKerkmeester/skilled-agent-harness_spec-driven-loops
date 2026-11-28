@@ -1,0 +1,46 @@
+{
+  "message": {
+    "envelope": {
+      "source": "7a1c3e00-0000-4000-8000-000000000111",
+      "sourceNumber": "+15550111",
+      "sourceName": "Ada",
+      "timestamp": 1764104700000,
+      "dataMessage": {
+        "timestamp": 1764104700000,
+        "message": "@digest Which channel?"
+      }
+    }
+  },
+  "group": {
+    "envelope": {
+      "source": "7a1c3e00-0000-4000-8000-000000000111",
+      "sourceNumber": "+15550111",
+      "sourceName": "Ada",
+      "timestamp": 1764104760000,
+      "dataMessage": {
+        "timestamp": 1764104760000,
+        "message": "1",
+        "groupInfo": { "groupId": "Z3JvdXAtc2tpbGxlZC0x", "type": "DELIVER" }
+      }
+    }
+  },
+  "receipt": {
+    "envelope": {
+      "sourceNumber": "+15550111",
+      "timestamp": 1764104702000,
+      "receiptMessage": {
+        "when": 1764104702000,
+        "isDelivery": true,
+        "isRead": false,
+        "timestamps": [1764104701000]
+      }
+    }
+  },
+  "typing": {
+    "envelope": {
+      "sourceNumber": "+15550111",
+      "timestamp": 1764104703000,
+      "typingMessage": { "action": "STARTED", "timestamp": 1764104703000 }
+    }
+  }
+}

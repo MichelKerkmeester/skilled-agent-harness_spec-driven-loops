@@ -1,0 +1,35 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "200000000000001",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550100",
+              "phone_number_id": "100000000000999"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ada" },
+                "wa_id": "15550122"
+              }
+            ],
+            "messages": [
+              {
+                "id": "wamid.TEST.message.9",
+                "timestamp": "1764104700",
+                "type": "text",
+                "from": "15550122",
+                "text": { "body": "@digest Which channel?" }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

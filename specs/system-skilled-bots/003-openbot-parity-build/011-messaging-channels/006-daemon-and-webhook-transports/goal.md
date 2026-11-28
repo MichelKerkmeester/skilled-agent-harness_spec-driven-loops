@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports"
-    last_updated_at: "2026-11-26T06:00:00Z"
-    last_updated_by: "wo-09-writer"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-28T15:30:00Z"
+    last_updated_by: "unit-orchestrator-011-006"
+    recent_action: "Built and verified both transports"
+    next_safe_action: "Merge the unit branch, then open child 007"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-006-daemon-webhook"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-transports.vitest.ts` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,7 +75,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Build | Not started | The child was planned on 2026-11-26 and no code has landed |
+| Build | Built 2026-11-28 | Transport file `Tests  23 passed (23)`, suite 56 files and 765 tests passed against the 56 and 758 floor, typecheck exit 0, cargo exit 0, four acceptance rows Met |
 
 ### Deviations and findings
 
@@ -88,5 +88,6 @@ and findings belong here.
 | F-023, the failed status | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: a `statuses` entry whose status is `failed` for a known platform message id maps onto that queue entry and the run record, so a prompt Meta accepted and then rejected is never left `delivered`. |
 | F-064, the two addresses | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: both loopback addresses are injected arguments of the transport, fixed at `127.0.0.1:8787` and `127.0.0.1:8080` in production, so a test binds an ephemeral port. |
 | O-001, the anchored filters | Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive: every filter names its full test name and states its pass count, and the shared cases are one `transport shared` block that runs over every transport in the table. |
+| The failed status needed a queue change | `channel-queue.ts` gained a sent record and `failDeliveredEntry`, outside the Files to Change table, because no entry kept a platform id and `delivered` was final. Recorded in implementation-summary.md |
 | The worker rule, amended on 2026-11-27 | D7 is the GPL rule of `../003-link-roster-and-answer-gate/plan.md`, applied by T002 to T005. D4 already matches the Telegram `5xx` rule child 005 now cites. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,8 @@
+{
+  "error": {
+    "message": "(#130429) Rate limit hit",
+    "type": "OAuthException",
+    "code": 130429,
+    "fbtrace_id": "TESTTRACE000002"
+  }
+}

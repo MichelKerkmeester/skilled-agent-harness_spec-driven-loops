@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -1,
+    "message": "Failed to send message due to rate limiting: Rate limit exceeded"
+  },
+  "id": "00000000-0000-4000-8000-000000000002"
+}

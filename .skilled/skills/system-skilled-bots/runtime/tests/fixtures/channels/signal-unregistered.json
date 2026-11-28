@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -1,
+    "message": "Failed to send message: +15550199 is not registered"
+  },
+  "id": "00000000-0000-4000-8000-000000000003"
+}
