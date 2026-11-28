@@ -1,9 +1,9 @@
 {
   "level": "2",
   "specFolder": "system-skilled-bots/003-openbot-parity-build/015-deep-review",
-  "description": "Thirteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
+  "description": "Fourteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
   "keywords": [
-    "thirteen",
+    "fourteen",
     "phases",
     "wrote",
     "own",
@@ -14,7 +14,7 @@
     "validated",
     "alone"
   ],
-  "lastUpdated": "2026-11-28T11:15:58.551Z",
+  "lastUpdated": "2026-11-28T11:47:03.164Z",
   "specId": "015",
   "folderSlug": "deep-review",
   "parentChain": [

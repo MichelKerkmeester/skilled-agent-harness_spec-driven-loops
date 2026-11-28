@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Close the OpenBot parity build on a reviewed surface rather than thirteen separately validated ones, by running one expanded deep review over the code and docs phases 001 to 014 built, fixing every P0 and P1 it reports, and re-running the affected tests, as phase 15 of the parent goal's OpenBot parity build.
+**Objective:** Close the OpenBot parity build on a reviewed surface rather than fourteen separately validated ones, by running one expanded deep review over the code and docs phases 001 to 014 built, fixing every P0 and P1 it reports, and re-running the affected tests, as phase 15 of the parent goal's OpenBot parity build.
 
 ### Decisions
 

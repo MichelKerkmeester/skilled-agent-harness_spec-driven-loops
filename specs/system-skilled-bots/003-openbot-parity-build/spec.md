@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Build OpenBot parity for skilled bots from the 002 research: activity, routines, terminal screen, workspace, memory, approvals, apps, vault, skills and chat"
-description: "Fourteen build phases that close the OpenBot parity gaps the 002 research ranked, from the activity view and actor field through routines, a Rust terminal screen, memory, approvals, apps, vault, skills, conversations and messaging channels, then the operator scenario corpus, the skills and doc alignment, and one deep review."
+description: "Fifteen build phases that close the OpenBot parity gaps the 002 research ranked, from the activity view and actor field through routines, a Rust terminal screen, memory, approvals, apps, vault, skills, conversations and messaging channels, then a folder architecture pass, the operator scenario corpus, the skills and doc alignment and one deep review."
 trigger_phrases:
   - "openbot parity build phase parent spec"
 importance_tier: "important"
@@ -77,6 +77,7 @@ Close each gap the 002 research ranked, one child phase per gap, so a small team
 ### In Scope
 - The ten ranked slices of `../002-openbot-parity-research/001-openbot-parity-research/research/research.md` §15, one child phase each: activity and actor, routines, terminal screen, computer exposure, memory, approval grants, per-bot apps, vault, skills, conversations, plus the messaging-channels extension.
 - The three closing phases the operator added on 2026-11-25: 013 writes and then runs the operator scenario corpus for everything 001 to 011 deliver, 014 aligns the `.skilled` change set and the docs that describe it, and 015 runs one expanded deep review over the built surface and fixes every P0 and P1 it reports.
+- The folder architecture phase the operator added on 2026-11-28: 012 measures every `.skilled` path the build touched once the last file-adding units merge, then moves only what its move map gives a reason for, so the tree has less unneeded nesting, no behavior changes and every gate stays green. It sits before the three closing phases, so they read the final layout.
 - The operator decision of 2026-11-24: the terminal screen moves up to third, after activity and routines, and draws its panes over the data those two write, so it needs no backend of its own.
 - The operator decision of 2026-11-25: the screen is a new MIT Rust ratatui app that follows openhuman-tui's layout, tabs, approval banner, overlay and command palette, reads and writes through `bots ... --json`, and copies none of its GPL-3.0 code.
 - The operator decision of 2026-11-25 on the answer scope: `bots answer` gains `--scope once|deny` in 001, so 003 depends on 001 and 002 only and never waits for 006. 006 keeps `grants` and the ladder and extends that scope with them.
@@ -100,7 +101,7 @@ Close each gap the 002 research ranked, one child phase per gap, so a small team
 - **Recording a skill from a demonstration** (§8, open question 6): no counterpart and no design.
 
 ### Files to Change
-Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the fourteen phases touch.
+Per-phase detail lives in each child's `plan.md`. This table is the audit trail of the surfaces the fifteen phases touch.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
@@ -117,6 +118,7 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 | `.github/workflows/bots-runtime.yml` | Modify | 003 | Two path entries and one `bots-tui` job: `--locked`, a release build, the design diff, a named runner, cache and timeout |
 | `.gitignore` | Modify | 003 | Ignore `/.skilled/crates/bots-tui/target` |
 | `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (008, 010, 011) | 001, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path. 001 creates the file and the rest append a `## <phase>` section |
+| Every `.skilled` path the build touched | Move/Modify | 012 | The moves the folder architecture move map lists, each a `git mv` with every reference to the old path rewritten in code, CI, docs and specs |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Create/Modify | 013 | 33 new scenario files in ten category folders, the root index's sections and counts, and one run folder under `benchmark/reports/` |
 | `.skilled/skills/system-skilled-bots/SKILL.md` and its catalog, playbook and references | Modify | 014 | The fix for every finding the two alignment reports name |
 | `.skilled/commands/assets/local-doc-alignment/topics.json` | Modify | 014 | The `system-skilled-bots` topic: its title, `terms`, three `codeRoots` and the three package checks |
@@ -151,7 +153,7 @@ One owner per record more than one phase writes. The owner fixes the shape and e
 
 > This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-The packet has fourteen phases. Phases 001 to 011 build the parity slices the 002 research ranked, 013 proves them with an operator scenario corpus, 014 aligns the skills and docs that describe them, and 015 reviews the built surface and fixes what it finds.
+The packet has fifteen phases. Phases 001 to 011 build the parity slices the 002 research ranked, 012 gives the files they touched a clearer layout, 013 proves them with an operator scenario corpus, 014 aligns the skills and docs that describe them and 015 reviews the built surface and fixes what it finds.
 
 | Phase | Folder | Focus | Depends on | Status |
 |-------|--------|-------|------------|--------|
@@ -166,7 +168,8 @@ The packet has fourteen phases. Phases 001 to 011 build the parity slices the 00
 | 9 | `009-skills/` | A `skills:` list under a byte cap, and `bots skill propose` reviewed through a needs-you item | 001, whose needs-you item reviews the proposal. 005, whose prompt order and review seam it inserts into. 006, whose `grants` field its item fills. 008, whose `collectAllKnownSecrets` map the draft's secret check calls | Pending |
 | 10 | `010-conversations/` | `bots chat` with `@bot` routing over an append-only conversation JSONL. A phase parent with three children | 001, whose run records each message writes. 003, whose chat pane this phase fills. 005, whose review seam stamps the conversation id. 008, whose `secret-in-output` cause its scan reuses | Pending |
 | 11 | `011-messaging-channels/` | A shared channel adapter, a file-backed identity link and the `operators.json` roster, then Telegram long polling, Slack Socket Mode, Signal through a local `signal-cli` daemon and the WhatsApp Cloud API, with approvals as buttons where the platform has them and numbered or YES/NO replies elsewhere. A phase parent with seven children | 001, whose actor a link names. 005, whose review seam the roster check runs before. 006, whose grant an approval carries. 008, whose vault holds the tokens. 010, whose chat the terminal transport reuses | Pending |
-| 13 | `013-manual-testing-scenarios/` | 33 operator scenarios in ten new category folders, `BOT-026` to `BOT-058`, the root index's sections and counts, and one recorded execution of every scenario | 001 to 011, whose verbs and records every scenario asserts. This is the phase that proves an operator can drive them | Pending |
+| 12 | `012-folder-architecture/` | A measured move map over every `.skilled` path the build touched, then each move as a `git mv` with every reference rewritten, so the tree has less unneeded nesting and no behavior changes | 011.007, 010.003 and every runtime unit, whose files it moves. It measures the tree only once they merge | Pending |
+| 13 | `013-manual-testing-scenarios/` | 33 operator scenarios in ten new category folders, `BOT-026` to `BOT-058`, the root index's sections and counts, and one recorded execution of all 58 scenarios with the three system-deep-loop scenarios that cover the executor audit | 001 to 011, whose verbs and records every scenario asserts, and 012, whose layout the scenarios name. This is the phase that proves an operator can drive them | Pending |
 | 14 | `014-skilled-and-doc-alignment/` | The `system-skilled-bots` topic in `topics.json`, one `/local-skilled-alignment` run and one `/local-doc-alignment` run over the packet's change set, and the fix for every finding either report names | 001 to 013, whose `.skilled` change set and docs the two runs read | Pending |
 | 15 | `015-deep-review/` | One expanded `/deep:review` run over the code and docs 001 to 014 built, the merged findings registry, and the fix for every P0 and P1 it reports | 014, which must be clean first so the review reads a checked surface rather than an assumed one | Pending |
 
@@ -210,6 +213,7 @@ Every phase's build is dispatched, not hand-run. The hub owns the routing and ea
 | 009 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 3 | A new `skills.ts` and `skill-proposal.ts`. Three groups: skills, the proposal, the definition keys and template |
 | 010 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 3 | A new `conversation.ts` and the `@bot` routing. Three groups: the conversation module, `bots.cjs`, the state root and drain |
 | 011 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 4 | Four transports over one adapter seam. Four groups: the adapter and queue, the link and roster, approval and delivery, `bots.cjs` |
+| 012 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 1 | Its `plan.md` External orchestration: a move rewrites every file that names the old path, so the move groups share files and run as sequential briefs in one slot. The map is design work and falls back at `max`, the moves at `high` |
 | 013 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 10 | Its `plan.md` §Waves: waves 0 to 5 ran before 2026-11-27 on their own executors, wave 4's ten distinct files set the bound and Vibe carries the open wave 8 |
 | 014 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 4 | Its `tasks.md` §Waves: Vibe carries seven of the nine waves, two of them through the commands' `vibe-deepseek` lane preset, and W1's four read groups set the bound |
 | 015 | `cli-mistral-vibe` | `deepseek-flash` | `max (fixed)` | 5 | Its `tasks.md` §Waves: wave 1 is a five-lineage fan-out, one per executor, so the Vibe lineage sits beside four other executor groups. Wave 3 fixes with at most 3 workers and wave 4 with at most 4 |
@@ -226,7 +230,7 @@ A phase's own wave table may name a different order for its own waves and says w
 
 This section turns the phase map and the per-phase table above into one dispatch plan for the whole build. It keeps the roster, the tier rule, the worker rule, the per-phase table and the fallback ladder as they are. It extends the worker rule across phases: no two workers in one wave touch one file, whichever phase they work for. An orchestrator that follows this section makes no scheduling choice, and a build worker meets no design choice that its own phase plan has not already made.
 
-**Units.** A unit is a phase with no children or one child of 003, 010 or 011. There are 27: 001, 002, 004 to 009 and 013 to 015, the six children of 003, the three of 010 and the seven of 011. A child is written as its phase and child numbers, so 011.003 is `011-messaging-channels/003-link-roster-and-answer-gate/`.
+**Units.** A unit is a phase with no children or one child of 003, 010 or 011. There are 28: 001, 002, 004 to 009 and 012 to 015, the six children of 003, the three of 010 and the seven of 011. A child is written as its phase and child numbers, so 011.003 is `011-messaging-channels/003-link-roster-and-answer-gate/`.
 
 **The file view.** A unit's write set is every file its open `tasks.md` task lines name for writing. Read-only tasks (Record, Read, Confirm, Run, Prove, Type-check) are left out. Two false hits were removed by hand: 003.006 T033 writes a `.skilled/bin/bots.cjs` shim inside a temporary tree and never the repository file, and the `tsconfig.json` lines in 010 and 011 are type-check runs. A file two or more units write is a shared file, and the owner table below lists every one. Each unit also writes its own spec folder, which no other unit writes.
 
@@ -262,11 +266,12 @@ Each row is a unit, the units it waits for and the exact output it needs. Merged
 | 011.005 | 011.004, 008 and 010.002 | The queue and the index with `BACKOFF_MS` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:282]. 008's `resolveSecret` and 010.002's `conversation.ts` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/005-polling-transports/plan.md:112-113] |
 | 011.006 | 011.005 and 008 | `listen`, the shared transport test file and 008's `resolveSecret` [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/006-daemon-and-webhook-transports/plan.md:108-109] |
 | 011.007 | 011.005, 011.006 and 001 | The five transports [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/spec.md:284-285]. `THIRD_PARTY_NOTICES.md`, which 001 creates [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof/plan.md:95] |
-| 013 | Every unit from 001 to 011 | Every verb a scenario names [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/plan.md:45] |
+| 012 | 011.007, 010.003 and every runtime unit | The final tree. 011.005 to 011.007 and 010.003 still add files, and a runtime unit still writing a file would move under its owner [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-folder-architecture/spec.md, REQ-001] |
+| 013 | 012, and through it every unit from 001 to 011 | The final layout the scenarios name, and every verb a scenario names [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/plan.md:45] |
 | 014 | 013 | The packet's whole `.skilled` change set and its docs [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/plan.md:45] |
 | 015 | 014 | A clean 014, so the review reads a checked surface [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/plan.md:134] |
 
-**Critical path.** The edges alone give a longest chain of 12 waves: 001, 004, 005, 006, 011.003, 011.004, 011.005, 011.006, 011.007, 013, 014 and 015. The file rule makes it 16. The runtime lane holds 14 units. Eleven of them write `bots.cjs` and nine write `runner.ts`, so they cannot share a wave. Only 007 can share a wave with another runtime unit, and only with 011.003. Every other file-disjoint pair is joined by a chain of edges, such as 004 and 011.003 through 005 and 006. The runtime lane therefore takes 13 waves, and 013, 014 and 015 add three. The realised path is 001, 002, 004, 005, 006, 007, 008, 011.004, 009, 010.002, 011.005, 011.006, 011.007, 013, 014 and 015, which is 16 waves. 002 takes W2 because it shares `runner.ts` with 004. 008 must merge before 011.004 and 011.005, and 010.002 before 011.005. 009 shares a file with every runtime unit, so it takes a wave of its own.
+**Critical path.** The edges alone give a longest chain of 13 waves: 001, 004, 005, 006, 011.003, 011.004, 011.005, 011.006, 011.007, 012, 013, 014 and 015. The file rule makes it 17. The runtime lane holds 14 units. Eleven of them write `bots.cjs` and nine write `runner.ts`, so they cannot share a wave. Only 007 can share a wave with another runtime unit, and only with 011.003. Every other file-disjoint pair is joined by a chain of edges, such as 004 and 011.003 through 005 and 006. The runtime lane therefore takes 13 waves, and 012, 013, 014 and 015 add four. The realised path is 001, 002, 004, 005, 006, 007, 008, 011.004, 009, 010.002, 011.005, 011.006, 011.007, 012, 013, 014 and 015, which is 17 waves. 002 takes W2 because it shares `runner.ts` with 004. 008 must merge before 011.004 and 011.005, and 010.002 before 011.005. 009 shares a file with every runtime unit, so it takes a wave of its own.
 
 ### Wave schedule
 
@@ -287,11 +292,12 @@ A wave is a round. It lasts as long as its slowest unit, and a unit may open ins
 | W11 | 011.005 at 3, 010.003 at 3. 6 workers | 011.005: `bots.cjs`. 010.003: the crate | None |
 | W12 | 011.006 at 2 | `bots.cjs` | None |
 | W13 | 011.007 at 4 | The hub `SKILL.md`, `THIRD_PARTY_NOTICES.md` and `lib/README.md` | None |
-| W14 | 013 at 1 | `contracts/cli-json.md`, `contracts/refusals.md` and the playbook | 39 of its 52 tasks are done. Its open waves are the re-check and the recorded run, which the orchestrator and one `cli-mistral-vibe` worker carry |
-| W15 | 014 at 4 | Every file a fix touches, the hub `SKILL.md` and `bots.cjs` among them | Runs alone, because a fix can land anywhere |
-| W16 | 015 at 5 | Every file a fix touches | Runs alone. Its wave 1 replaces a lineage whose executor is out with `--count=2` on the next one, by its own rule, and stops rather than run Vibe as the only executor group [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/tasks.md:127] |
+| W14 | 012 at 1 | Every path its move map lists and every file that names one, `bots.cjs`, the hub `SKILL.md`, the crate and the playbook among them | Runs alone, because a move rewrites references anywhere in the tree. It opens once 011.007 and 010.003 have merged |
+| W15 | 013 at 1 | `contracts/cli-json.md`, `contracts/refusals.md` and the playbook | 39 of its 54 tasks are done. Its open waves are the re-check and the recorded run, which the orchestrator and one `cli-mistral-vibe` worker carry |
+| W16 | 014 at 4 | Every file a fix touches, the hub `SKILL.md` and `bots.cjs` among them | Runs alone, because a fix can land anywhere |
+| W17 | 015 at 5 | Every file a fix touches | Runs alone. Its wave 1 replaces a lineage whose executor is out with `--count=2` on the next one, by its own rule, and stops rather than run Vibe as the only executor group [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/tasks.md:127] |
 
-**The slip rule.** Two crate units own a file in the runtime lane's chain. 003.002 owns `bots.cjs` in W3, ahead of 005. 003.006 owns the hub `SKILL.md` in W7, ahead of 010.002. Neither may stall that lane. When 004 opens, the orchestrator runs `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md`. If it prints no line, 003.002 leaves W3 and opens in W13 beside 011.007, the next wave whose units leave `bots.cjs` free. Every later crate unit then moves ten waves: 003.003 to W14, 003.004 to W15, 003.005 to W16, 003.006 to W17 and 010.003 to W18. 013, 014 and 015 take W19, W20 and W21. A held 003.002 or 003.006 is handled the same way. Its branch stays unmerged as evidence, its shared file passes to the next owner and it reopens after the operator's repair from a fresh worktree, in the next wave whose units leave that file free, with its tasks dispatched again. It then edits on top of every owner that went before it.
+**The slip rule.** Two crate units own a file in the runtime lane's chain. 003.002 owns `bots.cjs` in W3, ahead of 005. 003.006 owns the hub `SKILL.md` in W7, ahead of 010.002. Neither may stall that lane. When 004 opens, the orchestrator runs `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/key-map.md`. If it prints no line, 003.002 leaves W3 and opens in W13 beside 011.007, the next wave whose units leave `bots.cjs` free. Every later crate unit then moves ten waves: 003.003 to W14, 003.004 to W15, 003.005 to W16, 003.006 to W17 and 010.003 to W18. 012, 013, 014 and 015 take W19, W20, W21 and W22. A held 003.002 or 003.006 is handled the same way. Its branch stays unmerged as evidence, its shared file passes to the next owner and it reopens after the operator's repair from a fresh worktree, in the next wave whose units leave that file free, with its tasks dispatched again. It then edits on top of every owner that went before it.
 
 Three child tables name more workers than their phase row above. 003.002 names 5 and 003.003 names 4 against the 003 row's 3. 011.002 names 5 against the 011 row's 4. The counts here follow the child tables, because goal.md ranks child detail above a summary of it. The phase row still sets each phase's executor, model and effort.
 
@@ -301,7 +307,7 @@ The wave order is the owner order. A unit holds every shared file it writes from
 
 | File | Owners in wave order | Note |
 |------|----------------------|------|
-| `.skilled/bin/bots.cjs` | 001 (W1) > 002 (W2) > 003.002 (W3) > 005 (W4) > 006 (W5) > 011.003 (W6) > 008 (W7) > 011.004 (W8) > 009 (W9) > 010.002 (W10) > 011.005 (W11) > 011.006 (W12) > 014 (W15) | 004, 007 and 011.007 never write it, so 003.002 shares W3 with 004 and 011.003 shares W6 with 007 |
+| `.skilled/bin/bots.cjs` | 001 (W1) > 002 (W2) > 003.002 (W3) > 005 (W4) > 006 (W5) > 011.003 (W6) > 008 (W7) > 011.004 (W8) > 009 (W9) > 010.002 (W10) > 011.005 (W11) > 011.006 (W12) > 012 (W14) > 014 (W16) | 004, 007 and 011.007 never write it, so 003.002 shares W3 with 004 and 011.003 shares W6 with 007 |
 | `runtime/lib/runner.ts` | 001 (W1) > 002 (W2) > 004 (W3) > 005 (W4) > 006 (W5) > 007 (W6) > 008 (W7) > 009 (W9) > 010.002 (W10) | Nine owners, one per wave |
 | `runtime/lib/answer.ts` | 001 (W1) > 002 (W2) > 005 (W4) > 006 (W5) > 011.003 (W6) > 008 (W7) > 009 (W9) > 010.002 (W10) | The review seam is 005's and the guarded write is 006's, per Shared Records |
 | `runtime/lib/README.md` | 001 (W1) > 002 (W2) > 004 (W3) > 005 (W4) > 006 (W5) > 008 (W7) > 009 (W9) > 010.002 (W10) > 011.007 (W13) | One module row per owner |
@@ -325,7 +331,7 @@ The wave order is the owner order. A unit holds every shared file it writes from
 | `bots-run/SKILL.md` | 005 (W4) > 009 (W9) > 010.002 (W10) > 011.007 (W13) | None |
 | `bots-status/references/status-and-inbox.md` | 001 (W1) > 004 (W3) > 006 (W5) | None |
 | `bots-status/SKILL.md` | 001 (W1) > 002 (W2) | None |
-| The hub `SKILL.md` | 003.006 (W7) > 010.002 (W10) > 011.007 (W13) > 014 (W15) | One line per owner |
+| The hub `SKILL.md` | 003.006 (W7) > 010.002 (W10) > 011.007 (W13) > 012 (W14) > 014 (W16) | One line per owner, and 012 changes only the paths it names |
 | `THIRD_PARTY_NOTICES.md` | 001 (W1) > 008 (W7) > 010.002 (W10) > 011.007 (W13) | 001 creates it and each later owner appends one `## <phase>` section |
 | `contracts/prompt-sections.md` | 002 (W2) > 004 (W3) > 009 (W9) > 010.002 (W10) | A shape change edits the contract in the same change, per Shared Records |
 | `contracts/records.md` | 005 (W4) > 008 (W7) | Same rule |
@@ -342,8 +348,8 @@ The wave order is the owner order. A unit holds every shared file it writes from
 | `runtime/tests/cli-channel.vitest.ts` | 011.003 (W6) > 011.004 (W8) | None |
 | `runtime/tests/channel-support.ts` | 011.003 (W6) > 011.007 (W13) | None |
 | `runtime/tests/channel-transports.vitest.ts` | 011.005 (W11) > 011.006 (W12) | None |
-| `.skilled/crates/bots-tui/src/` and `.skilled/crates/bots-tui/tests/` | 003.002 (W3) > 003.003 (W4) > 003.004 (W5) > 003.005 (W6) > 003.006 (W7) > 010.003 (W11) | One crate unit per wave |
-| Any file a fix touches | 014 (W15) > 015 (W16) | Each runs alone |
+| `.skilled/crates/bots-tui/src/` and `.skilled/crates/bots-tui/tests/` | 003.002 (W3) > 003.003 (W4) > 003.004 (W5) > 003.005 (W6) > 003.006 (W7) > 010.003 (W11) > 012 (W14) | One crate unit per wave, and 012 moves only what its map lists |
+| Any file a fix touches, and every path 012 moves | 012 (W14) > 014 (W16) > 015 (W17) | Each runs alone. 012 owns every path it moves and every file that names one |
 
 `runtime/` is `.skilled/skills/system-skilled-bots/runtime/`, and the skill doc paths sit under `.skilled/skills/system-skilled-bots/`. No unit writes a file at the parent level except the `contracts/` files this table names. The parent's generated `description.json` and `graph-metadata.json` are rebuilt on `main` after a merge and never in a worktree.
 
@@ -377,7 +383,7 @@ Every unit's primary is `cli-mistral-vibe` at `deepseek-flash`. The mode's `SKIL
 1. Ask the workspace question and wait for the answer.
 2. Record the baseline on `main`: `(cd .skilled/skills/system-skilled-bots/runtime && npm test)`, `(cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck)` and the Summary line of `validate.sh --strict` for this folder. Every later no-regression claim is a delta against these three.
 3. Run the Vibe preflight above. Treat `cli-opencode` as out of usage until the operator says OpenCode Go has reset, because its monthly limit ran out on 2026-11-25. It is the third rung on every ladder, so a wave that falls past `cli-pi` skips it and goes to `cli-devin`.
-4. Ask the operator for the two key map approvals. 003.002 needs 003.001's approval before 004 opens, and a later approval moves the build from 16 waves to 21 under the slip rule, so this one is on the critical path. 010.003 needs 010.001's delta approval at W11. After 003.006 merges, ask for the hand answer its acceptance step names.
+4. Ask the operator for the two key map approvals. 003.002 needs 003.001's approval before 004 opens, and a later approval moves the build from 17 waves to 22 under the slip rule, so this one is on the critical path. 010.003 needs 010.001's delta approval at W11. After 003.006 merges, ask for the hand answer its acceptance step names.
 
 **Each wave:**
 
@@ -393,18 +399,18 @@ Every unit's primary is `cli-mistral-vibe` at `deepseek-flash`. The mode's `SKIL
 - A failed verify gets one retry: the same task ids, files and verify step, dispatched on the next rung of the unit's own ladder, `cli-pi` after a Vibe failure. A rung skipped for exhausted usage, a Vibe `429` or `402` or a self-invocation guard does not spend the retry.
 - A second failure holds the unit. The orchestrator stops dispatching it, keeps its worktree and its files and reports the unit, the internal wave, the task ids, the verify output and the last executor. The operator decides the repair.
 - A red regression gate reverts that merge with `git revert -m 1 <merge commit>` and holds the unit. The unit lands later by reverting that revert after its repair, never by a second merge of the same branch.
-- A held unit holds its dependents and every later owner of a file it writes, because its files never pass on. The one exception is a held 003.002 or 003.006, which follows the slip rule and passes its file on. In this schedule a held runtime unit holds every runtime unit in a later wave. Every unit with no edge and no shared file on the held one continues, which means the crate lane and the design units up to their first edge on it. A held crate unit holds every crate unit after it, 010.003 among them. It also holds 013, 014 and 015.
+- A held unit holds its dependents and every later owner of a file it writes, because its files never pass on. The one exception is a held 003.002 or 003.006, which follows the slip rule and passes its file on. In this schedule a held runtime unit holds every runtime unit in a later wave. Every unit with no edge and no shared file on the held one continues, which means the crate lane and the design units up to their first edge on it. A held crate unit holds every crate unit after it, 010.003 among them. It also holds 012, 013, 014 and 015.
 
 ### Concurrency and length
 
 | Measure | One unit after another | This schedule |
 |---------|------------------------|---------------|
-| Rounds | 27, one per unit | 16 waves |
+| Rounds | 28, one per unit | 17 waves |
 | Units at once | 1 | 3 by the table, in W1, W2 and W6 |
 | Workers at once | 5, in 003.002, 011.002 or 015 | 10, in W6 |
-| Critical path | 27 units | 16 waves. The edges alone would allow 12, and a late 003.001 approval makes it 21 |
+| Critical path | 28 units | 17 waves. The edges alone would allow 13, and a late 003.001 approval makes it 22 |
 
-The four waves between 12 and 16 are the price of the file rule, not of the schedule. Only a change to the phase plans could buy them back, for example by moving each phase's `bots.cjs` verb entry and `runner.ts` hook into one integration unit per file. That is a plan amendment for the operator, and nothing in this section assumes it.
+The four waves between 13 and 17 are the price of the file rule, not of the schedule. Only a change to the phase plans could buy them back, for example by moving each phase's `bots.cjs` verb entry and `runner.ts` hook into one integration unit per file. That is a plan amendment for the operator, and nothing in this section assumes it.
 <!-- /ANCHOR:build-orchestration -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Contract: refusals and exit codes for the parity build"
-description: "Every refusal the fourteen phases add with its phase, layer, failure class, exit code and whether it enters the runner's typed registry, plus every exit code the runtime has today."
+description: "Every refusal the fifteen phases add with its phase, layer, failure class, exit code and whether it enters the runner's typed registry, plus every exit code the runtime has today."
 trigger_phrases:
   - "bots refusal table"
   - "bots exit codes"

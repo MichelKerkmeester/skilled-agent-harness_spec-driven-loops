@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Target runtime architecture
 
-The sum of what fourteen phases do to `.skilled/skills/system-skilled-bots/runtime/lib/` and to the state root. Each phase still names its own files in its own `spec.md`. This file is where the sum, the import edges and the final tree are written once, so a builder of one phase can see where its module sits.
+The sum of what fifteen phases do to `.skilled/skills/system-skilled-bots/runtime/lib/` and to the state root. Each phase still names its own files in its own `spec.md`. This file is where the sum, the import edges and the final tree are written once, so a builder of one phase can see where its module sits.
 
 The runtime has 28 flat modules today in seven groups, and one direction rule: a contracts module imports no `lib/` module outside its own group, `repo-config.ts` imports no sibling, every other group may import the contracts group and no module imports the CLI or the checker. [SOURCE: .skilled/skills/system-skilled-bots/runtime/lib/README.md:21-39] The packet keeps that rule and adds one group, channels. After the packet the folder holds 51 modules.
 

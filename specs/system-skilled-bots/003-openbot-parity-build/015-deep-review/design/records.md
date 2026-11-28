@@ -71,7 +71,7 @@ The loop's config asset fixes every key. [SOURCE: .skilled/skills/system-deep-lo
 | `maxMinutesPerIteration` | integer | no | `10` | the contract default |
 | `specFolder` | string | no | `specs/system-skilled-bots/003-openbot-parity-build/015-deep-review` | the packet this run reports into |
 | `mode` | string | no | `review` | the loop's mode |
-| `reviewTarget` | string | no | `specs/system-skilled-bots/003-openbot-parity-build` | the thirteen phase folders plus the contracts folder. The scope source is the file list `plan.md` §8.4 fixes, built from `contracts/runtime-architecture.md` section 1 plus `.skilled/crates/bots-tui/` and `.skilled/bin/bots.cjs`, because a folder walk reaches no module phases 001 to 011 add |
+| `reviewTarget` | string | no | `specs/system-skilled-bots/003-openbot-parity-build` | the fourteen phase folders plus the contracts folder. The scope source is the file list `plan.md` §8.4 fixes, built from `contracts/runtime-architecture.md` section 1 plus `.skilled/crates/bots-tui/` and `.skilled/bin/bots.cjs`, because a folder walk reaches no module phases 001 to 011 add |
 | `reviewTargetType` | string | no | `spec-folder` | the target is a folder tree |
 | `reviewDimensions` | array | no | `["correctness","security","traceability","maintainability"]` | the four canonical ids. The five named dimensions ride on them, per `spec.md` section 4 |
 | `reviewFocus` | string | yes | `null` | no single focus, because the run covers the whole build |
