@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder holds the inputs and stand-ins the runtime suites share. Loose `.md` files are single BOT.md definitions for the parser tests. The `bots/` folder is a ready-made bots folder the runner tests copy into temp checkouts. The stubs replace every binary a run would otherwise reach: the executors, `osascript` and sk-git's worktree numbering script.
+This folder holds the inputs and stand-ins the runtime suites share. Loose `.md` files are single BOT.md definitions for the parser tests. The `bots/` folder is a ready-made bots folder the runner tests copy into temp checkouts. The stubs replace every binary a run would otherwise reach: the executors, `osascript` and sk-git's worktree numbering script. The `channels/` folder holds recorded chat platform replies for the transport tests.
 
 Nothing here is a production entry point. Each consumer suite owns the assertion that gives a fixture meaning, and every fixture runs inside a temp world, never against this checkout.
 
@@ -23,6 +23,7 @@ Nothing here is a production entry point. Each consumer suite owns the assertion
 ```text
 fixtures/
 ├── bots/                      # One folder per runner scenario, each with a BOT.md
+├── channels/                  # Recorded platform replies for the chat transport tests
 ├── stub-executor/             # claude, codex, opencode and vibe stand-ins
 ├── naming-stub/               # Stand-ins for sk-git's worktree numbering script
 ├── drain-race-driver.cjs
@@ -77,6 +78,17 @@ fixtures/
 | `bots/weak-write/` | A write-capable posture on a kind with only an approval gate, refused before dispatch. |
 | `bots/worktree-posture/` | A run in its own numbered worktree. |
 | `bots/worktree-slow/` | A worktree run that edits slowly until told to hurry. |
+
+### Channel Recordings
+
+`channel-transports.vitest.ts` is the only suite that reads these files. It resolves them through `FIXTURES`, which joins the test folder with `fixtures` and `channels`. Each file holds one recorded reply or event body from a chat platform, so a test replays the provider's own bytes with no network call. Files are named `<platform>-<case>.json`.
+
+| File prefix | What the files hold |
+|---|---|
+| `signal-` | Four files: the Server-Sent Events stream, a send result, a rate limit and an unregistered account. |
+| `slack-` | Seven files: `auth.test`, `apps.connections.open`, Socket Mode frames, `chat.postMessage`, `channel_not_found`, `invalid_auth` and `ratelimited`. |
+| `telegram-` | Ten files: `getMe`, `getUpdates` with and without updates, `sendMessage`, `answerCallbackQuery`, `deleteWebhook`, bad request, conflict, too many requests and unauthorized. |
+| `whatsapp-` | Seven files: the Graph API send, a bad request, a rate limit and four webhook bodies for text, statuses, a failed status and another number. |
 
 ### Stand-ins and Drivers
 
