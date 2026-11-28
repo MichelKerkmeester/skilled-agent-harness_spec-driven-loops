@@ -45,11 +45,16 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-skilled-bots/runtime/tests/channel-support.ts",
+      ".skilled/skills/system-skilled-bots/runtime/tests/channel-conformance.vitest.ts",
       ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
       ".skilled/skills/system-skilled-bots/runtime/lib/README.md",
+      ".skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md",
       ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
       ".skilled/skills/system-skilled-bots/SKILL.md",
+      ".skilled/skills/system-skilled-bots/feature-catalog/operator-loop/messaging-channels.md",
       ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-skilled-bots/leaf-manifest.json",
+      "runtime/lib/README.md",
       "specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/002-adapter-and-record-contracts/design/conformance-rules.md"
     ],
     "entities": [
@@ -96,6 +101,12 @@
         "source": "derived"
       },
       {
+        "name": "channel-conformance.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skilled-bots/runtime/tests/channel-conformance.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "THIRD_PARTY_NOTICES.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md",
@@ -108,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "messaging-channels.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/bots-run/SKILL.md",
@@ -117,6 +134,12 @@
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skilled-bots/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -178,29 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Table",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each transport child proves its own transport",
     "created_at": "2026-11-26T00:00:21Z",
-    "last_save_at": "2026-11-28T11:23:49.766Z",
+    "last_save_at": "2026-11-28T15:02:39.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be46a15c9afe556d66f40e81298f45c221bb406785c177a0bea38a53890fa1f9",
+    "source_fingerprint": "sha256:ddd7a385c099f592a8e135e4a997d0e99062d165d5507473100ecdaba5571961",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c2392806faf23235d160f23a1bdd44af2171c1b5142ec154f2374669c1b3af0",
       "plan.md": "8ee4341c17a7e1177e038a39ec9f187f5a925773ed1d031b1ceee6f6544d41fc",
-      "tasks.md": "634a7c3d8973eec8846ee1b4d4585d99a7d7b43a44a0c40078c0ffb10be4215a",
-      "implementation-summary.md": "4662bb621a4a6a19e092cd8351be32eb81838685ad3d06da676f63093b2073d3"
+      "tasks.md": "fdb86b92117eec87ec4017cdf5624a34e8ddf866b05fe28dbed200dbb8e4dc26",
+      "implementation-summary.md": "43832ba6bb78261dcc0e8e78307908a2a18014c373bfdb8cde45296186b79a91"
     },
     "last_active_at": null
   }

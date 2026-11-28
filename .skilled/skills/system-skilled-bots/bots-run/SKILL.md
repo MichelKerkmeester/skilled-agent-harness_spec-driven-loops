@@ -7,7 +7,7 @@ version: 1.0.0.0
 
 # Bots Run
 
-The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one. `bots remember` lives here too, because it writes a bot's memory, and `bots answer` confirms or rejects a fact a bot proposed. It also turns a finished run into a skill proposal, a draft `SKILL.md` the operator reviews through one needs-you item that `bots answer` confirms or rejects. `bots chat <id>` lives here too, because each message it sends is one bot run: it keeps the thread in a conversation file under the state root and sends a message that starts with `@<bot-id>` to that bot.
+The run mode of the `system-skilled-bots` hub. It starts or continues a bot run through `.skilled/bin/bots.cjs`: one bot run, a queued request, a drain of the queue, or an answer to a needs-you item. `bots answer` lives here because answering queues the run that continues the parked one. `bots remember` lives here too, because it writes a bot's memory, and `bots answer` confirms or rejects a fact a bot proposed. It also turns a finished run into a skill proposal, a draft `SKILL.md` the operator reviews through one needs-you item that `bots answer` confirms or rejects. `bots chat <id>` lives here too, because each message it sends is one bot run: it keeps the thread in a conversation file under the state root and sends a message that starts with `@<bot-id>` to that bot. `bots channel` lives here too, because a chat on Telegram, Slack, Signal, WhatsApp or the terminal answers a needs-you item and starts a run the same way `bots answer` and `bots chat` do, and its setup is in `references/messaging-channels.md`.
 
 ---
 
@@ -77,6 +77,7 @@ The machine router, its intent signals and its resource map live in
 
 - [`ROUTER.md`](./ROUTER.md): this packet's machine router.
 - [`references/run-queue-and-answer.md`](./references/run-queue-and-answer.md): the run verbs and their contract.
+- [`references/messaging-channels.md`](./references/messaging-channels.md): the `bots channel` setup per transport, its checks and its failure table.
 - [`README.md`](./README.md): packet overview.
 - `../mode-registry.json`: authoritative packet registration.
 - `../hub-router.json`: parent routing policy.
