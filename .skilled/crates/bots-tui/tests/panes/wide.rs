@@ -114,12 +114,11 @@ fn detail_draws_as_a_right_column_at_120() {
         );
     }
 
-    for heading in ["Shell, Chat tab, placeholder", "Activity, loading"] {
-        let state = frame_state(heading, 120, 40);
-        let drawn = body(&state, 120, 40);
-        for (y, row) in body_rows(&drawn, LAST_WIDE) {
-            assert_eq!(cell(row, RULE), BAR, "{heading} row {y} holds the rule");
-            assert!(!row.contains("Detail"), "{heading} row {y} holds no detail");
-        }
+    let heading = "Activity, loading";
+    let state = frame_state(heading, 120, 40);
+    let drawn = body(&state, 120, 40);
+    for (y, row) in body_rows(&drawn, LAST_WIDE) {
+        assert_eq!(cell(row, RULE), BAR, "{heading} row {y} holds the rule");
+        assert!(!row.contains("Detail"), "{heading} row {y} holds no detail");
     }
 }

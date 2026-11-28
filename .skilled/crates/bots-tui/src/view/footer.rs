@@ -115,7 +115,7 @@ mod tests {
         let chat = state_on(Tab::Chat);
         assert_eq!(
             key_line(&chat, FooterLine::One, 80),
-            "Alt+1..4 tabs \u{b7} [ ] cycle"
+            "Alt+1..4 tabs \u{b7} [ ] cycle \u{b7} \u{2191}\u{2193} scroll \u{b7} PgUp/PgDn page \u{b7} Enter type"
         );
 
         let activity = state_on(Tab::Activity);

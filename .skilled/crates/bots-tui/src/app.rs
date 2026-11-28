@@ -5,7 +5,7 @@ use ratatui::backend::Backend;
 use ratatui::Terminal;
 
 use crate::cli::Program;
-use crate::data::{ThreadGuard, Worker};
+use crate::data::{ChatWorker, ThreadGuard, Worker};
 use crate::event::EventSource;
 use crate::state::{Effect, Msg, State};
 use crate::Options;
@@ -18,6 +18,7 @@ pub struct App<'t, B: Backend> {
     rx: Receiver<Msg>,
     tx: Sender<Msg>,
     worker: Option<Worker>,
+    chat: Option<ChatWorker>,
     opts: Options,
 }
 
@@ -30,7 +31,9 @@ impl<'t, B: Backend> App<'t, B> {
             checkout: Some(program.repo.to_string_lossy().into_owned()),
             ..State::default()
         };
-        // The loop thread never starts a process, so every read and write goes to the worker.
+        // The loop thread never starts a process, so every read and write goes to the read worker
+        // and every chat send to the chat worker.
+        let chat = ChatWorker::spawn(program.clone(), tx.clone());
         let worker = Worker::spawn(program, tx.clone());
         App {
             terminal,
@@ -38,6 +41,7 @@ impl<'t, B: Backend> App<'t, B> {
             rx,
             tx,
             worker: Some(worker),
+            chat: Some(chat),
             opts,
         }
     }
@@ -61,12 +65,17 @@ impl<'t, B: Backend> App<'t, B> {
                         worker.submit(&effect);
                     }
                 }
+                Effect::ChatSend { .. } => {
+                    if let Some(chat) = &self.chat {
+                        chat.submit(&effect);
+                    }
+                }
             }
         }
         None
     }
 
-    /// Handles worker replies until nothing is in flight, false on timeout.
+    /// Handles worker replies, a Msg::ChatSent from the chat worker included, until nothing is in flight, false on timeout.
     pub fn settle(&mut self, deadline: Duration) -> bool {
         let started = Instant::now();
         loop {
@@ -92,19 +101,24 @@ impl<'t, B: Backend> App<'t, B> {
         let _ = self.try_draw();
     }
 
-    /// Stops the worker, once, however the loop leaves.
+    /// Stops both workers, once, however the loop leaves. The chat worker is let go, never joined.
     fn shutdown(&mut self) {
         if let Some(worker) = self.worker.take() {
             worker.shutdown();
         }
+        if let Some(chat) = self.chat.take() {
+            chat.shutdown();
+        }
     }
 
-    /// Whether no read is out and no answer is waiting for its reply.
+    /// Whether no read is out, no answer is waiting for its reply and no chat send is out.
     fn idle(&self) -> bool {
         !self.state.status.in_flight
             && !self.state.activity.in_flight
             && !self.state.inbox.in_flight
             && !self.state.routines.in_flight
+            && !self.state.chat.in_flight
+            && self.state.chat_view.sending.is_none()
             && self.state.pending_answers.is_empty()
     }
 
@@ -182,7 +196,7 @@ mod tests {
     use crate::cli::{test_dir, test_program};
     use crate::event::ScriptedEvents;
     use crate::keys::Key;
-    use crate::state::Tab;
+    use crate::state::{BotId, ChatMode, Tab};
     use ratatui::backend::TestBackend;
 
     /// A terminal the loop can draw into without a real screen.
@@ -300,5 +314,36 @@ mod tests {
             thread: "input",
         }]));
         assert_eq!(run(&mut terminal, events, program, Options::default()), 1);
+    }
+
+    #[test]
+    fn chat_send_does_not_hold_the_quit() {
+        let dir = test_dir("chat-send-does-not-hold-the-quit");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "chat-slow");
+        let mut terminal = test_terminal();
+        let mut app = App::new(&mut terminal, program, Options::default());
+
+        // A key resolves against the size, so the terminal is sized before one is sent.
+        assert_eq!(app.handle(Msg::Resize { cols: 80, rows: 24 }), None);
+        app.state.active_tab = Tab::Chat;
+        app.state.chat_view.bot = Some(BotId("hello".into()));
+        app.state.chat_view.mode = ChatMode::Typing;
+        app.state.chat_view.draft = "hi".into();
+        assert_eq!(app.handle(Msg::Key(Key::Enter)), None);
+        // Long enough for the send to be out and the fixture to be sleeping on it.
+        std::thread::sleep(Duration::from_millis(300));
+
+        let started = Instant::now();
+        assert_eq!(app.handle(Msg::Key(Key::Ctrl('d'))), Some(0));
+        let elapsed = started.elapsed();
+        assert!(elapsed < Duration::from_millis(500), "{elapsed:?}");
+
+        let deadline = Instant::now() + Duration::from_secs(10);
+        while Instant::now() < deadline && !logged(&log).contains("fixture-chat-done") {
+            std::thread::sleep(Duration::from_millis(100));
+        }
+        let calls = logged(&log);
+        assert!(calls.contains("fixture-chat-done"), "{calls}");
     }
 }

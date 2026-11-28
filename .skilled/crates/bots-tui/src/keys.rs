@@ -15,6 +15,8 @@ pub enum Context {
     Palette,
     /// The too-small screen.
     TooSmall,
+    /// The chat pane's text entry and bot picker, on the chat tab.
+    Chat,
 }
 
 /// A key after the event source maps it.
@@ -72,6 +74,10 @@ pub enum When {
     NotGone,
     /// No answer is out.
     NotSending,
+    /// The chat tab is the active one.
+    ChatTab,
+    /// The chat pane's bot picker is open.
+    Picking,
 }
 
 /// The footer line a label lands on.
@@ -147,6 +153,14 @@ pub enum Action {
     DeleteChar,
     /// Send the typed line.
     SendText,
+    /// Open the chat pane's bot picker.
+    ChatPick,
+    /// Choose the selected bot and read its conversation.
+    ChatChoose,
+    /// Put the previous sent line in the chat draft.
+    ChatHistoryUp,
+    /// Put the next sent line, or the kept draft, in the chat draft.
+    ChatHistoryDown,
     /// Leave the screen.
     Quit,
 }
@@ -164,6 +178,10 @@ pub struct Cond {
     pub gone: bool,
     /// An answer is out.
     pub sending: bool,
+    /// The chat tab is the active one.
+    pub chat_tab: bool,
+    /// The chat pane's bot picker is open.
+    pub picking: bool,
 }
 
 /// The shell's rows: the tab, palette and quit keys of the main, inbox, palette and too-small contexts.
@@ -545,9 +563,173 @@ pub const OVERLAY_ROWS: &[Row] = &[
     },
 ];
 
+/// The chat pane's rows: the main context's scroll, type and picker keys, and the chat context's typing and picking keys.
+pub const CHAT_ROWS: &[Row] = &[
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Up),
+        when: &[When::ChatTab],
+        action: Action::MoveUp,
+        label: "↑↓ scroll",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Down),
+        when: &[When::ChatTab],
+        action: Action::MoveDown,
+        label: "↑↓ scroll",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::PageUp),
+        when: &[When::ChatTab],
+        action: Action::PageUp,
+        label: "PgUp/PgDn page",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::PageDown),
+        when: &[When::ChatTab],
+        action: Action::PageDown,
+        label: "PgUp/PgDn page",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[When::ChatTab],
+        action: Action::EnterText,
+        label: "Enter type",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Main,
+        key: KeyMatch::Exact(Key::Char('b')),
+        when: &[When::ChatTab],
+        action: Action::ChatPick,
+        label: "b bot",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Printable,
+        when: &[When::Typing],
+        action: Action::TypeChar(' '),
+        label: "type message",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[When::Typing, When::NotSending],
+        action: Action::SendText,
+        label: "Enter send",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Up),
+        when: &[When::Typing],
+        action: Action::ChatHistoryUp,
+        label: "↑↓ history",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Down),
+        when: &[When::Typing],
+        action: Action::ChatHistoryDown,
+        label: "↑↓ history",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Backspace),
+        when: &[When::Typing],
+        action: Action::DeleteChar,
+        label: "Bksp delete",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Esc),
+        when: &[When::Typing],
+        action: Action::Close,
+        label: "Esc leave",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[When::Typing],
+        action: Action::Close,
+        label: "Ctrl+C leave",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Up),
+        when: &[When::Picking],
+        action: Action::MoveUp,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Down),
+        when: &[When::Picking],
+        action: Action::MoveDown,
+        label: "↑↓ select",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Enter),
+        when: &[When::Picking],
+        action: Action::ChatChoose,
+        label: "Enter choose",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Esc),
+        when: &[When::Picking],
+        action: Action::Close,
+        label: "Esc close",
+        line: FooterLine::One,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Ctrl('c')),
+        when: &[When::Picking],
+        action: Action::Close,
+        label: "Ctrl+C close",
+        line: FooterLine::Two,
+    },
+    Row {
+        context: Context::Chat,
+        key: KeyMatch::Exact(Key::Ctrl('d')),
+        when: &[],
+        action: Action::Quit,
+        label: "Ctrl+D exit",
+        line: FooterLine::Two,
+    },
+];
+
+/// The SHELL_ROWS rows that come before the chat rows: the main context's tab and palette keys, ahead of its two quit keys.
+const SHELL_SPLIT: usize = 8;
+
 /// Every row of the key map, in owner order.
 pub fn rows() -> impl Iterator<Item = &'static Row> {
-    SHELL_ROWS.iter().chain(LIST_ROWS).chain(OVERLAY_ROWS)
+    SHELL_ROWS[..SHELL_SPLIT]
+        .iter()
+        .chain(CHAT_ROWS)
+        .chain(SHELL_ROWS[SHELL_SPLIT..].iter())
+        .chain(LIST_ROWS)
+        .chain(OVERLAY_ROWS)
 }
 
 /// The first row whose context, key and conditions match.
@@ -599,7 +781,7 @@ pub fn palette_entries_in<'a>(rows: impl Iterator<Item = &'a Row>) -> Vec<&'a Ro
 
 /// The palette's entries, one per distinct label.
 pub fn palette_entries() -> Vec<&'static Row> {
-    palette_entries_in(rows())
+    palette_entries_in(SHELL_ROWS.iter().chain(LIST_ROWS).chain(OVERLAY_ROWS))
 }
 
 /// The entry lines the palette panel shows at its full height, so the reducer's scroll and the drawn window agree.
@@ -621,7 +803,10 @@ pub fn palette_filtered_in<'a>(rows: impl Iterator<Item = &'a Row>, filter: &str
 
 /// The palette's entries whose label contains the filter, in table order.
 pub fn palette_filtered(filter: &str) -> Vec<&'static Row> {
-    palette_filtered_in(rows(), filter)
+    palette_filtered_in(
+        SHELL_ROWS.iter().chain(LIST_ROWS).chain(OVERLAY_ROWS),
+        filter,
+    )
 }
 
 /// The action of the first row with this label that is bound where the palette was opened, because one label can cover several rows.
@@ -659,6 +844,8 @@ fn when_holds(when: When, cond: &Cond) -> bool {
         When::Typing => cond.typing,
         When::NotGone => !cond.gone,
         When::NotSending => !cond.sending,
+        When::ChatTab => cond.chat_tab,
+        When::Picking => cond.picking,
     }
 }
 
@@ -1261,7 +1448,13 @@ mod tests {
         state.active_tab = Tab::Chat;
         assert_eq!(
             crate::view::footer::labels(&state, FooterLine::One),
-            ["Alt+1..4 tabs", "[ ] cycle"]
+            [
+                "Alt+1..4 tabs",
+                "[ ] cycle",
+                "↑↓ scroll",
+                "PgUp/PgDn page",
+                "Enter type"
+            ]
         );
 
         let before = (
@@ -1387,6 +1580,55 @@ mod tests {
                 assert_eq!(resolve(&stack, &Key::Char(c), &cond), None);
             }
             assert_eq!(resolve(&stack, &Key::Esc, &cond), Some(Action::Close));
+        }
+    }
+
+    /// The chat rows sit between the main context's palette keys and its two quit keys, so `b bot` lands second on line two.
+    #[test]
+    fn shell_split_sits_before_the_main_quit_keys() {
+        assert_eq!(SHELL_ROWS[SHELL_SPLIT].context, Context::Main);
+        assert_eq!(SHELL_ROWS[SHELL_SPLIT].key, KeyMatch::Exact(Key::Ctrl('c')));
+        assert_eq!(SHELL_ROWS[SHELL_SPLIT - 1].context, Context::Main);
+        assert_eq!(
+            SHELL_ROWS[SHELL_SPLIT - 1].key,
+            KeyMatch::Exact(Key::Char('?'))
+        );
+    }
+
+    /// The chat rows add no palette entry, so the palette's frame is the same on every tab.
+    #[test]
+    fn chat_rows_hold_nineteen_rows() {
+        assert_eq!(CHAT_ROWS.len(), 19);
+        assert_eq!(
+            CHAT_ROWS
+                .iter()
+                .filter(|row| row.context == Context::Main)
+                .count(),
+            6
+        );
+        assert_eq!(
+            CHAT_ROWS
+                .iter()
+                .filter(|row| row.context == Context::Chat)
+                .count(),
+            13
+        );
+        let listed: Vec<&'static str> = palette_entries().iter().map(|row| row.label).collect();
+        let shell: Vec<&'static str> = SHELL_ROWS
+            .iter()
+            .chain(LIST_ROWS)
+            .chain(OVERLAY_ROWS)
+            .map(|row| row.label)
+            .collect();
+        for row in CHAT_ROWS {
+            if shell.contains(&row.label) {
+                continue;
+            }
+            assert!(
+                !listed.contains(&row.label),
+                "{} reached the palette",
+                row.label
+            );
         }
     }
 }

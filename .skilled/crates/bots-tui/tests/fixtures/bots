@@ -5,6 +5,9 @@
 # needs the runtime, a state folder or a live schedule. The payloads sit in
 # the payloads folder beside this script.
 #
+# A chat send appends to chat-appended.jsonl beside the log, and the transcript
+# reads it back, so a test sees what it sent on the next call.
+#
 # Usage:
 #   bash bots [--fixture-log FILE] [--fixture-scenario NAME] VERB [ARGS...]
 #
@@ -17,6 +20,13 @@
 #   refuse-REASON     exit 4 with "bots: REASON" when the verb is answer
 #   empty             the four read verbs print empty payloads
 #   warn              inbox prints its payload plus a did-not-read warning
+#   chat-empty        chat --transcript prints the empty transcript
+#   chat-refuse-REASON  chat --message exits 4 with "bots: REASON"
+#   chat-usage        chat --message exits 2 with an empty-message error
+#   chat-sleep        chat --message sleeps a minute then answers
+#   chat-slow         chat --message sleeps two seconds then answers
+#   chat-park         chat --message appends a needs-you reply and exits 5
+#   chat-fail         chat --message appends a failed reply and exits 1
 #
 # Any other scenario name answers normally.
 
@@ -142,6 +152,116 @@ if [ "$SCENARIO" = "warn" ] && [ "$VERB" = "inbox" ]; then
   cat "$PAYLOADS/inbox.json"
   printf 'bots: item 20261124T090000Z-0badf00d did not read\n' >&2
   exit 0
+fi
+
+# A chat send appends to chat-appended.jsonl beside the log, and the transcript
+# reads it back, so a test sees what it sent on the next call.
+if [ "$VERB" = "chat" ]; then
+  CHAT_SHAPE=""
+  CHAT_BOT=""
+  CHAT_AFTER_DASH=0
+  for ARG in "$@"; do
+    case "$ARG" in
+      --transcript|--message)
+        CHAT_SHAPE="$ARG"
+        ;;
+      --)
+        CHAT_AFTER_DASH=1
+        ;;
+      *)
+        if [ "$CHAT_AFTER_DASH" = "1" ] && [ -z "$CHAT_BOT" ]; then
+          CHAT_BOT="$ARG"
+        fi
+        ;;
+    esac
+  done
+  CHAT_STATE=""
+  if [ -n "$LOG" ]; then
+    CHAT_STATE="$(dirname "$LOG")/chat-appended.jsonl"
+  fi
+
+  if [ "$CHAT_SHAPE" = "--transcript" ]; then
+    if [ "$SCENARIO" = "empty" ] || [ "$SCENARIO" = "chat-empty" ]; then
+      cat "$PAYLOADS/chat-empty.json"
+      exit 0
+    fi
+    if [ -n "$CHAT_STATE" ] && [ -s "$CHAT_STATE" ]; then
+      CHAT_LINES="$(wc -l < "$PAYLOADS/chat-transcript.json")"
+      head -n $((CHAT_LINES - 2)) "$PAYLOADS/chat-transcript.json"
+      while IFS= read -r CHAT_LINE; do
+        printf ',\n    %s' "$CHAT_LINE"
+      done < "$CHAT_STATE"
+      printf '\n  ]\n}\n'
+    else
+      cat "$PAYLOADS/chat-transcript.json"
+    fi
+    exit 0
+  fi
+
+  if [ "$CHAT_SHAPE" = "--message" ]; then
+    if [ -n "$LOG" ]; then
+      CHAT_PGID="$(ps -o pgid= -p $$ | tr -d ' ')"
+      printf 'fixture-chat-pgid %s %s\n' "$CHAT_PGID" "$$" >> "$LOG"
+      # Tested on the fd itself, never inside a command substitution, which would
+      # make stdout a pipe of its own.
+      if [ /dev/fd/1 -ef /dev/null ]; then CHAT_OUT="null"; else CHAT_OUT="open"; fi
+      printf 'fixture-chat-fds stdout=%s\n' "$CHAT_OUT" >> "$LOG"
+    fi
+    CHAT_TEXT=""
+    IFS= read -r CHAT_TEXT || true
+    if [ -n "$LOG" ]; then
+      printf 'fixture-chat-stdin %s\n' "$CHAT_TEXT" >> "$LOG"
+    fi
+
+    case "$SCENARIO" in
+      chat-refuse-*)
+        printf 'bots: %s\n' "${SCENARIO#chat-refuse-}" >&2
+        exit 4
+        ;;
+      chat-usage)
+        printf 'bots: chat: the message is empty\n' >&2
+        exit 2
+        ;;
+      chat-sleep)
+        sleep 60
+        ;;
+      chat-slow)
+        sleep 2
+        ;;
+    esac
+
+    CHAT_REPLY="fixture reply"
+    CHAT_EXIT=0
+    case "$SCENARIO" in
+      chat-park)
+        CHAT_REPLY="needs you: Ship the release? (item 20261125T211204Z-7c1e9a40)"
+        CHAT_EXIT=5
+        ;;
+      chat-fail)
+        CHAT_REPLY="failed: executor exited 1"
+        CHAT_EXIT=1
+        ;;
+    esac
+
+    if [ -n "$CHAT_STATE" ]; then
+      CHAT_N=0
+      if [ -f "$CHAT_STATE" ]; then
+        CHAT_N="$(wc -l < "$CHAT_STATE" | tr -d ' ')"
+      fi
+      CHAT_ESCAPED="${CHAT_TEXT//\\/\\\\}"
+      CHAT_ESCAPED="${CHAT_ESCAPED//\"/\\\"}"
+      printf '{"schemaVersion":1,"id":"msg-fixture-h%s","conversationId":"%s","botId":"%s","role":"human","text":"%s","at":"2026-11-25T21:14:04.000Z","runId":null,"by":"ada"}\n' "$CHAT_N" "$CHAT_BOT" "$CHAT_BOT" "$CHAT_ESCAPED" >> "$CHAT_STATE"
+      printf '{"schemaVersion":1,"id":"msg-fixture-b%s","conversationId":"%s","botId":"%s","role":"bot","text":"%s","at":"2026-11-25T21:14:05.000Z","runId":"20261125T211404Z-0f1e2d3c","by":"bot"}\n' "$CHAT_N" "$CHAT_BOT" "$CHAT_BOT" "$CHAT_REPLY" >> "$CHAT_STATE"
+    fi
+
+    if [ "$CHAT_EXIT" = "1" ]; then
+      printf 'bots: executor exited 1\n' >&2
+    fi
+    if [ "$SCENARIO" = "chat-slow" ] && [ -n "$LOG" ]; then
+      printf 'fixture-chat-done\n' >> "$LOG"
+    fi
+    exit "$CHAT_EXIT"
+  fi
 fi
 
 ok_answer

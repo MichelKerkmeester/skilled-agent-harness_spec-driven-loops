@@ -52,7 +52,6 @@ frames! {
     routines_empty_80x24, routines_empty_120x40 => "Routines, empty",
     routines_stale_80x24, routines_stale_120x40 => "Routines, stale with the rows kept",
     routines_error_80x24, routines_error_120x40 => "Routines, error with no rows",
-    chat_placeholder_80x24, chat_placeholder_120x40 => "Shell, Chat tab, placeholder",
 }
 
 /// Every correction names a frame the table draws, at a size the table draws it.

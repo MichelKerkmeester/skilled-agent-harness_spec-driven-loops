@@ -5,7 +5,7 @@ trigger_phrases:
   - "bots-ui terminal screen"
   - "bots ui build and run"
   - "terminal screen keys and glyphs"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # bots-ui: the terminal screen for skilled bots
@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.skilled/crates/bots-tui/` builds `bots-ui`, a Rust binary that draws the bots CLI's JSON reads and answers a needs-you item. It reads `status`, `activity`, `inbox` and `routines`, each called as `<verb> --json --repo <checkout>`, and it answers an item with `answer`.
+`.skilled/crates/bots-tui/` builds `bots-ui`, a Rust binary that draws the bots CLI's JSON reads and answers a needs-you item. It reads `status`, `activity`, `inbox` and `routines`, each called as `<verb> --json --repo <checkout>`, and it answers an item with `answer`. The Chat tab reads a conversation with `bots chat <bot> --transcript --json` and sends a line with `bots chat <bot> --message -`, which reads the line from stdin so it never sits in a process table.
 
 Current state:
 
@@ -74,6 +74,20 @@ The binary also runs directly:
 | Main screen and inbox | `Ctrl+P` or `?` | Open the command palette |
 | Main screen and inbox | `Ctrl+C` | Exit |
 | Main screen and inbox | `Ctrl+D` | Exit |
+| Chat tab | `Up` and `Down` | Scroll the transcript one line |
+| Chat tab | `PgUp` and `PgDn` | Scroll the transcript one window |
+| Chat tab | `Enter` | Start typing a message to the chosen bot |
+| Chat tab | `b` | Open the bot picker |
+| Chat, typing | Any printable character | Add it to the message |
+| Chat, typing | `Enter` | Send the message, unless a send is already out |
+| Chat, typing | `Up` and `Down` | Recall an earlier sent line, or go back to the draft |
+| Chat, typing | `Backspace` | Delete the last character |
+| Chat, typing | `Esc` or `Ctrl+C` | Leave typing and keep the draft |
+| Chat, typing | `Ctrl+D` | Exit |
+| Chat, bot picker | `Up` and `Down` | Select the bot above or below |
+| Chat, bot picker | `Enter` | Choose the bot and read its conversation |
+| Chat, bot picker | `Esc` or `Ctrl+C` | Close the picker and keep the bot chosen before |
+| Chat, bot picker | `Ctrl+D` | Exit |
 | A list | `Up` and `Down` | Select the row above or below |
 | A list | `PgUp` and `PgDn` | Page up or down |
 | A list | `Enter` | Open the selected item, on the inbox tab |
@@ -96,9 +110,22 @@ The binary also runs directly:
 | Answer overlay | `Ctrl+D` | Exit |
 | Too-small screen | `Ctrl+D` | Exit |
 
+`[`, `]`, `?` and the tab keys are text while you type, so press `Esc` first to change tabs. A paste is added to the message with each line break as a space and never sends it.
+
 ---
 
-## 6. GLYPHS
+## 6. THE CHAT TAB
+
+| Call | Argv | When | Deadline |
+|---|---|---|---|
+| Read | `bots chat --transcript --json --repo <checkout> -- <bot>` | On opening the tab, on choosing a bot, every 5 seconds while the tab is open and after each send | 10 seconds |
+| Send | `bots chat --message - --repo <checkout> -- <bot>`, with the line on stdin | `Enter` while typing | None, the bot run's own bound ends it |
+
+The send runs on a chat worker thread of its own, in its own process group with stdout closed, so the other tabs keep reading while a run lasts minutes. A send that exits 0, 1 or 5 appended a reply, so the pane reads the transcript again. A send that exits 2 or 4 appended nothing, so the line goes back into the draft and its first stderr line shows in the status row. Quitting never waits for a send: the run goes on and its reply lands in the conversation file.
+
+---
+
+## 7. GLYPHS
 
 | State | Glyph | Fallback |
 |---|---|---|
@@ -113,7 +140,7 @@ The binary also runs directly:
 
 ---
 
-## 7. EXIT CODES
+## 8. EXIT CODES
 
 | Code | When |
 |---|---|
@@ -126,7 +153,7 @@ The `ui` verb passes the code through.
 
 ---
 
-## 8. KEY FILES
+## 9. KEY FILES
 
 | File | Responsibility |
 |---|---|
@@ -134,18 +161,18 @@ The `ui` verb passes the code through.
 | `src/main.rs` | Passes argv in and the exit code out |
 | `src/app.rs` | The loop that draws a frame and reads the next message |
 | `src/state.rs` | The screen state and the key dispatch |
-| `src/keys.rs` | The key table, its six contexts and the label each row draws |
+| `src/keys.rs` | The key table, its seven contexts and the label each row draws |
 | `src/theme.rs` | The System and Mono palettes and the glyph table |
-| `src/model.rs` | The four payload shapes |
-| `src/cli.rs` | Runs the bots verbs as child processes |
-| `src/data.rs` | The worker thread that runs every read and the one write |
+| `src/model.rs` | The four payload shapes and the chat transcript |
+| `src/cli.rs` | Runs the bots verbs as child processes, the two chat calls included |
+| `src/data.rs` | The worker thread that runs every read and the one write, and the chat worker that runs each send |
 | `src/event.rs` | The terminal events and the clock |
 | `src/terminal.rs` | The terminal guard and the signal handling |
 | `src/view/` | The frame: banner, header, tabs, panes, footer and overlay |
 
 ---
 
-## 9. VALIDATION
+## 10. VALIDATION
 
 Run from the repository root:
 
@@ -160,9 +187,10 @@ The last command runs the release binary in a pseudo-terminal and approves one i
 
 ---
 
-## 10. DESIGN DOCUMENTS
+## 11. DESIGN DOCUMENTS
 
 - [`design/mockups.md`](design/mockups.md) holds one frame per screen state at 80x24 and 120x40.
+- [`design/chat-mockups.md`](design/chat-mockups.md) holds the Chat tab's thirteen states at 80x24 and 120x40, copied from the approved chat design.
 - [`design/key-map.md`](design/key-map.md) holds every binding, its context, its action and the label the footer draws.
 - [`design/glyph-table.md`](design/glyph-table.md) holds the eight glyphs, their fallback and the rule that colour is never the meaning.
 - [`design/component-inventory.md`](design/component-inventory.md) holds every component, what it reads and every state it can be in.
@@ -171,6 +199,6 @@ The last command runs the release binary in a pseudo-terminal and approves one i
 
 ---
 
-## 11. DESIGN REFERENCE AND LICENCE
+## 12. DESIGN REFERENCE AND LICENCE
 
 openhuman's terminal client (licensed GPL-3.0) was read as a design reference for the screen's shape, the terminal guard, the minimum-size screen, the footer key line, the banner and the two palettes, and no code or text was copied from it. The crate is MIT.

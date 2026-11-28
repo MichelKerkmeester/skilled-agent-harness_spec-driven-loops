@@ -1,17 +1,21 @@
-use std::io::Read as _;
+use std::io::{Read as _, Write as _};
 use std::os::unix::process::CommandExt;
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command, Stdio};
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
-use crate::model::{ActivityPayload, InboxPayload, RoutinesPayload, StatusPayload};
+use crate::model::{ActivityPayload, InboxPayload, RoutinesPayload, StatusPayload, Transcript};
 use crate::state::{
-    AnswerError, AnswerOk, FailKind, ItemId, Payload, Read, ReadError, Scope, Surface,
+    AnswerError, AnswerOk, BotId, ChatError, ChatOk, FailKind, ItemId, Payload, Read, ReadError,
+    Scope, Surface,
 };
 
 /// How often the wait loop looks at a child.
 const POLL: Duration = Duration::from_millis(10);
+
+/// The number of chat sends this process has started, so two sends never share a stderr file.
+static CHAT_SEND_COUNT: AtomicU64 = AtomicU64::new(0);
 
 /// The program and the arguments every call starts with.
 #[derive(Clone, Debug, PartialEq)]
@@ -66,6 +70,32 @@ impl Program {
         argv.push(text.to_string());
         argv
     }
+
+    /// The argv of the chat transcript read. The `--` ends the options, so a bot id is never read as a flag.
+    pub fn chat_transcript_argv(&self, bot: &BotId) -> Vec<String> {
+        let mut argv = self.leading.clone();
+        argv.push("chat".to_string());
+        argv.push("--transcript".to_string());
+        argv.push("--json".to_string());
+        argv.push("--repo".to_string());
+        argv.push(self.repo.to_string_lossy().into_owned());
+        argv.push("--".to_string());
+        argv.push(bot.0.clone());
+        argv
+    }
+
+    /// The argv of one chat send. `--message -` reads the text from stdin, so the draft is never in a process table.
+    pub fn chat_send_argv(&self, bot: &BotId) -> Vec<String> {
+        let mut argv = self.leading.clone();
+        argv.push("chat".to_string());
+        argv.push("--message".to_string());
+        argv.push("-".to_string());
+        argv.push("--repo".to_string());
+        argv.push(self.repo.to_string_lossy().into_owned());
+        argv.push("--".to_string());
+        argv.push(bot.0.clone());
+        argv
+    }
 }
 
 /// The verb one surface reads.
@@ -75,6 +105,7 @@ pub fn verb(surface: Surface) -> &'static str {
         Surface::Activity => "activity",
         Surface::Inbox => "inbox",
         Surface::Routines => "routines",
+        Surface::Chat => "chat",
     }
 }
 
@@ -149,10 +180,22 @@ fn kill_tree(child: &mut Child) {
     let _ = child.wait();
 }
 
-/// Runs one read and parses its payload.
-pub fn read(program: &Program, surface: Surface, cancel: &AtomicBool) -> Result<Read, ReadError> {
-    let verb = verb(surface);
-    let argv = program.read_argv(surface);
+/// Runs one read on the read worker and parses its payload.
+///
+/// Both reads share this path, so a deadline, a quit and a killed process
+/// group behave the same for the transcript as for a surface. The spawn and
+/// exit lines name the whole call, the timeout and quit lines name its verb.
+fn read_call<F>(
+    program: &Program,
+    argv: Vec<String>,
+    call: &str,
+    verb: &str,
+    cancel: &AtomicBool,
+    parse: F,
+) -> Result<Read, ReadError>
+where
+    F: FnOnce(&str) -> Result<Payload, String>,
+{
     let mut child = command(program, &argv)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
@@ -160,7 +203,7 @@ pub fn read(program: &Program, surface: Surface, cancel: &AtomicBool) -> Result<
         .spawn()
         .map_err(|error| ReadError {
             kind: FailKind::Spawn,
-            line: format!("bots-ui: {verb} --json did not start: {error}"),
+            line: format!("bots-ui: {call} did not start: {error}"),
         })?;
 
     let stdout_pipe = child.stdout.take();
@@ -213,7 +256,7 @@ pub fn read(program: &Program, surface: Surface, cancel: &AtomicBool) -> Result<
             kind: FailKind::Timeout,
             line: format!("bots-ui: {verb} stopped at quit"),
         }),
-        Stop::Exited(0) => match parse_payload(surface, &stdout) {
+        Stop::Exited(0) => match parse(&stdout) {
             Ok(payload) => Ok(Read {
                 payload,
                 warning: first_line(&stderr),
@@ -225,9 +268,45 @@ pub fn read(program: &Program, surface: Surface, cancel: &AtomicBool) -> Result<
         },
         Stop::Exited(code) => Err(ReadError {
             kind: FailKind::Exit(code),
-            line: exit_line(&format!("{verb} --json"), code, &stderr),
+            line: exit_line(call, code, &stderr),
         }),
     }
+}
+
+/// Runs one read and parses its payload.
+pub fn read(program: &Program, surface: Surface, cancel: &AtomicBool) -> Result<Read, ReadError> {
+    // The chat read names one bot, so the surface alone cannot build its call.
+    if surface == Surface::Chat {
+        return Err(ReadError {
+            kind: FailKind::Spawn,
+            line: "bots-ui: chat --transcript --json needs a bot".to_string(),
+        });
+    }
+    let verb = verb(surface);
+    read_call(
+        program,
+        program.read_argv(surface),
+        &format!("{verb} --json"),
+        verb,
+        cancel,
+        |stdout| parse_payload(surface, stdout),
+    )
+}
+
+/// Reads the chosen bot's conversation on the read worker, under the read deadline.
+pub fn chat_transcript(
+    program: &Program,
+    bot: &BotId,
+    cancel: &AtomicBool,
+) -> Result<Read, ReadError> {
+    read_call(
+        program,
+        program.chat_transcript_argv(bot),
+        "chat --transcript --json",
+        "chat",
+        cancel,
+        |stdout| parse_transcript(bot, stdout),
+    )
 }
 
 /// Runs one write and reports whether it landed.
@@ -322,6 +401,90 @@ pub fn answer_detached(
     Ok(())
 }
 
+/// The stderr file path one chat send writes, unique across processes and calls.
+fn chat_stderr_path() -> PathBuf {
+    let nanos = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map(|elapsed| elapsed.as_nanos())
+        .unwrap_or(0);
+    let count = CHAT_SEND_COUNT.fetch_add(1, Ordering::Relaxed);
+    std::env::temp_dir().join(format!(
+        "bots-ui-chat-{}-{}-{}.err",
+        std::process::id(),
+        nanos,
+        count
+    ))
+}
+
+/// Runs one chat send and waits for it with no deadline, because a bot run lasts as long as its own bound.
+///
+/// The child leads its own process group, so a signal to the screen's group does not stop the
+/// run. Its stdout is null, because the reply is read from the transcript. The draft goes to its
+/// stdin as one line. Its stderr goes to a temporary file that is read after it exits and then
+/// removed, so no pipe reader has to outlive the screen.
+pub fn chat_send(program: &Program, bot: &BotId, text: &str) -> Result<ChatOk, ChatError> {
+    let stderr_path = chat_stderr_path();
+    let file = std::fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&stderr_path)
+        .map_err(|error| ChatError {
+            kind: FailKind::Spawn,
+            line: format!("bots-ui: chat send did not start: {error}"),
+        })?;
+
+    let mut child = match command(program, &program.chat_send_argv(bot))
+        .stdin(Stdio::piped())
+        .stdout(Stdio::null())
+        .stderr(Stdio::from(file))
+        .process_group(0)
+        .spawn()
+    {
+        Ok(child) => child,
+        Err(error) => {
+            let _ = std::fs::remove_file(&stderr_path);
+            return Err(ChatError {
+                kind: FailKind::Spawn,
+                line: format!("bots-ui: chat send did not start: {error}"),
+            });
+        }
+    };
+
+    // The draft goes in as one line and stdin is then dropped, so the child reads it and sees EOF.
+    if let Some(mut stdin) = child.stdin.take() {
+        let _ = stdin.write_all(format!("{text}\n").as_bytes());
+    }
+
+    // A wait that fails leaves the exit unknown, so it is reported as the no-code exit.
+    let code = match child.wait() {
+        Ok(status) => status.code().unwrap_or(-1),
+        Err(_) => -1,
+    };
+
+    let stderr = std::fs::read(&stderr_path)
+        .map(|bytes| String::from_utf8_lossy(&bytes).into_owned())
+        .unwrap_or_default();
+    let _ = std::fs::remove_file(&stderr_path);
+
+    match code {
+        2 | 4 => Err(ChatError {
+            kind: FailKind::Exit(code),
+            line: match first_line(&stderr) {
+                Some(line) => line,
+                None => format!("bots-ui: chat --message exited {code}"),
+            },
+        }),
+        0 | 5 => Ok(ChatOk {
+            code,
+            warning: first_line(&stderr),
+        }),
+        _ => Ok(ChatOk {
+            code,
+            warning: Some(exit_line("chat --message", code, &stderr)),
+        }),
+    }
+}
+
 /// Parses one read's stdout into the payload its surface carries.
 pub fn parse_payload(surface: Surface, stdout: &str) -> Result<Payload, String> {
     let verb = verb(surface);
@@ -350,7 +513,24 @@ pub fn parse_payload(surface: Surface, stdout: &str) -> Result<Payload, String> 
             check_version(verb, payload.version)?;
             Ok(Payload::Routines(payload.routines))
         }
+        Surface::Chat => Err(
+            "bots-ui: chat --transcript --json is read for one bot, not as a surface".to_string(),
+        ),
     }
+}
+
+/// Parses the transcript payload and checks it is the chosen bot's conversation in a version this build reads.
+pub fn parse_transcript(bot: &BotId, stdout: &str) -> Result<Payload, String> {
+    let payload: Transcript =
+        serde_json::from_str(stdout).map_err(|error| no_payload("chat --transcript", &error))?;
+    check_version("chat --transcript", payload.version)?;
+    if payload.conversation_id != bot.0 {
+        return Err(format!(
+            "bots-ui: chat --transcript --json printed conversation {}, not {}",
+            payload.conversation_id, bot.0
+        ));
+    }
+    Ok(Payload::Chat(payload))
 }
 
 /// The line a read composes when its stdout does not parse.
@@ -649,5 +829,206 @@ mod tests {
             error,
             "bots-ui: inbox --json speaks version 2, the screen reads version 1"
         );
+    }
+
+    /// The chat stderr files this process has in the temp directory.
+    fn chat_stderr_files(prefix: &str) -> Vec<String> {
+        std::fs::read_dir(std::env::temp_dir())
+            .expect("the temp dir reads")
+            .filter_map(|entry| entry.ok())
+            .map(|entry| entry.file_name().to_string_lossy().into_owned())
+            .filter(|name| name.starts_with(prefix))
+            .collect()
+    }
+
+    #[test]
+    fn chat_argv_keeps_the_draft_out() {
+        let program = Program::production(Path::new("/s"), Path::new("/r"));
+        let bot = BotId("hello".to_string());
+        let send = program.chat_send_argv(&bot);
+        assert_eq!(
+            &send[send.len() - 7..],
+            strings(&["chat", "--message", "-", "--repo", "/r", "--", "hello"]).as_slice()
+        );
+        let transcript = program.chat_transcript_argv(&bot);
+        assert_eq!(
+            &transcript[transcript.len() - 7..],
+            strings(&[
+                "chat",
+                "--transcript",
+                "--json",
+                "--repo",
+                "/r",
+                "--",
+                "hello"
+            ])
+            .as_slice()
+        );
+        assert!(!send.iter().any(|item| item == "--as"), "{send:?}");
+        assert!(
+            !transcript.iter().any(|item| item == "--as"),
+            "{transcript:?}"
+        );
+    }
+
+    #[test]
+    fn chat_transcript_reads_the_fixture() {
+        let dir = test_dir("chat-transcript-reads-the-fixture");
+        let program = test_program(&dir.join("calls.log"), "ok");
+        let cancel = AtomicBool::new(false);
+        let bot = BotId("hello".to_string());
+        let outcome = chat_transcript(&program, &bot, &cancel).expect("the fixture answers");
+        assert_eq!(outcome.warning, None);
+        match outcome.payload {
+            Payload::Chat(transcript) => assert_eq!(transcript.messages.len(), 4),
+            other => panic!("expected a chat payload, got {other:?}"),
+        }
+    }
+
+    #[test]
+    fn chat_transcript_refuses_another_conversation() {
+        let dir = test_dir("chat-transcript-refuses-another-conversation");
+        let program = test_program(&dir.join("calls.log"), "ok");
+        let cancel = AtomicBool::new(false);
+        let bot = BotId("digest".to_string());
+        let error = chat_transcript(&program, &bot, &cancel).expect_err("the fixture prints hello");
+        assert_eq!(error.kind, FailKind::Parse);
+        assert!(
+            error
+                .line
+                .ends_with("printed conversation hello, not digest"),
+            "{}",
+            error.line
+        );
+    }
+
+    #[test]
+    fn chat_transcript_failure_composes_the_line() {
+        let dir = test_dir("chat-transcript-failure-composes-the-line");
+        let program = test_program(&dir.join("calls.log"), "fail-chat");
+        let cancel = AtomicBool::new(false);
+        let bot = BotId("hello".to_string());
+        let error = chat_transcript(&program, &bot, &cancel).expect_err("the fixture fails");
+        assert_eq!(error.kind, FailKind::Exit(1));
+        assert_eq!(
+            error.line,
+            "bots: chat --transcript --json exited 1: index locked"
+        );
+    }
+
+    #[test]
+    fn chat_read_of_the_surface_starts_nothing() {
+        let dir = test_dir("chat-read-of-the-surface-starts-nothing");
+        let log = dir.join("calls.log");
+        let program = test_program(&log, "ok");
+        let cancel = AtomicBool::new(false);
+        let error = read(&program, Surface::Chat, &cancel).expect_err("the surface names no bot");
+        assert_eq!(error.kind, FailKind::Spawn);
+        assert_eq!(error.line, "bots-ui: chat --transcript --json needs a bot");
+        assert!(!log.exists(), "the fixture was started");
+    }
+
+    #[test]
+    fn chat_send_writes_the_draft_on_stdin() {
+        let dir = test_dir("chat-send-writes-the-draft-on-stdin");
+        let log = dir.join("calls.log");
+        let program = test_program(&log, "ok");
+        let bot = BotId("hello".to_string());
+        let outcome = chat_send(&program, &bot, "hello there").expect("the fixture answers");
+        assert_eq!(outcome.code, 0);
+        assert_eq!(outcome.warning, None);
+        let calls = std::fs::read_to_string(&log).expect("the fixture logs its call");
+        let expected = format!(
+            "chat --message - --repo {} -- hello",
+            program.repo.display()
+        );
+        assert!(calls.lines().any(|line| line == expected), "{calls}");
+        assert!(
+            calls
+                .lines()
+                .any(|line| line == "fixture-chat-stdin hello there"),
+            "{calls}"
+        );
+        assert!(
+            calls
+                .lines()
+                .any(|line| line == "fixture-chat-fds stdout=null"),
+            "{calls}"
+        );
+        let carrying: Vec<&str> = calls
+            .lines()
+            .filter(|line| line.contains("hello there"))
+            .collect();
+        assert_eq!(carrying, vec!["fixture-chat-stdin hello there"], "{calls}");
+    }
+
+    #[test]
+    fn chat_send_routes_each_code() {
+        let bot = BotId("hello".to_string());
+
+        let dir = test_dir("chat-send-routes-each-code-park");
+        let program = test_program(&dir.join("calls.log"), "chat-park");
+        let outcome = chat_send(&program, &bot, "ship it").expect("exit 5 appended a reply");
+        assert_eq!(outcome.code, 5);
+        assert_eq!(outcome.warning, None);
+
+        let dir = test_dir("chat-send-routes-each-code-fail");
+        let program = test_program(&dir.join("calls.log"), "chat-fail");
+        let outcome = chat_send(&program, &bot, "ship it").expect("exit 1 appended a reply");
+        assert_eq!(outcome.code, 1);
+        assert_eq!(
+            outcome.warning,
+            Some("bots: chat --message exited 1: executor exited 1".to_string())
+        );
+
+        let dir = test_dir("chat-send-routes-each-code-refuse");
+        let program = test_program(&dir.join("calls.log"), "chat-refuse-bot-unknown");
+        let error = chat_send(&program, &bot, "ship it").expect_err("exit 4 appended nothing");
+        assert_eq!(error.kind, FailKind::Exit(4));
+        assert_eq!(error.line, "bots: bot-unknown");
+
+        let dir = test_dir("chat-send-routes-each-code-usage");
+        let program = test_program(&dir.join("calls.log"), "chat-usage");
+        let error = chat_send(&program, &bot, "ship it").expect_err("exit 2 appended nothing");
+        assert_eq!(error.kind, FailKind::Exit(2));
+        assert_eq!(error.line, "bots: chat: the message is empty");
+    }
+
+    #[test]
+    fn chat_send_outlives_the_read_deadline() {
+        let dir = test_dir("chat-send-outlives-the-read-deadline");
+        let log = dir.join("calls.log");
+        let mut program = test_program(&log, "chat-slow");
+        program.read_timeout = Duration::from_secs(1);
+        program.answer_timeout = Duration::from_secs(1);
+        let bot = BotId("hello".to_string());
+        let started = Instant::now();
+        let outcome = chat_send(&program, &bot, "ship it").expect("the fixture answers");
+        let elapsed = started.elapsed();
+        assert_eq!(outcome.code, 0);
+        assert!(elapsed >= Duration::from_secs(2), "{elapsed:?}");
+        let calls = std::fs::read_to_string(&log).expect("the fixture logs its call");
+        assert!(
+            calls.lines().any(|line| line == "fixture-chat-done"),
+            "{calls}"
+        );
+    }
+
+    #[test]
+    fn chat_send_leaves_no_stderr_file() {
+        let dir = test_dir("chat-send-leaves-no-stderr-file");
+        let program = test_program(&dir.join("calls.log"), "chat-fail");
+        let bot = BotId("hello".to_string());
+        let _ = chat_send(&program, &bot, "ship it");
+        let prefix = format!("bots-ui-chat-{}-", std::process::id());
+        // A send in flight elsewhere in this process still holds its file, so the scan
+        // waits for every send to finish and then reads what was left behind.
+        let deadline = Instant::now() + Duration::from_secs(10);
+        let mut left = chat_stderr_files(&prefix);
+        while !left.is_empty() && Instant::now() < deadline {
+            std::thread::sleep(Duration::from_millis(25));
+            left = chat_stderr_files(&prefix);
+        }
+        assert!(left.is_empty(), "{left:?}");
     }
 }

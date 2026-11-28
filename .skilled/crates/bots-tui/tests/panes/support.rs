@@ -3,7 +3,7 @@
 
 use bots_tui::model::{
     parse_utc, ActivityGroup, ActivityPayload, InboxItem, InboxPayload, Routine, RoutinesPayload,
-    RunState, StatusPayload,
+    RunState, StatusPayload, Transcript,
 };
 use bots_tui::state::{
     on_answered, on_fetched, AnswerOk, FailKind, Payload, Read, ReadError, Scope, Size, State,
@@ -56,6 +56,12 @@ pub fn status_fixture() -> StatusPayload {
         .expect("the status fixture parses")
 }
 
+/// The chat transcript fixture, parsed from the payload the runtime prints.
+pub fn chat_fixture() -> Transcript {
+    serde_json::from_str(include_str!("../fixtures/payloads/chat-transcript.json"))
+        .expect("the chat transcript fixture parses")
+}
+
 /// The activity fixture without the two rows the mockup leaves out of its stale frame.
 pub fn eight() -> Vec<ActivityGroup> {
     let mut groups = activity_fixture();
@@ -75,6 +81,7 @@ pub fn surface_of(payload: &Payload) -> Surface {
         Payload::Activity(_) => Surface::Activity,
         Payload::Inbox(_) => Surface::Inbox,
         Payload::Routines(_) => Surface::Routines,
+        Payload::Chat(_) => Surface::Chat,
     }
 }
 
@@ -85,6 +92,7 @@ pub fn bump(state: &mut State, surface: Surface) -> u64 {
         Surface::Activity => &mut state.activity.generation,
         Surface::Inbox => &mut state.inbox.generation,
         Surface::Routines => &mut state.routines.generation,
+        Surface::Chat => &mut state.chat.generation,
     };
     *generation += 1;
     *generation
@@ -124,6 +132,7 @@ pub fn fail(state: &mut State, surface: Surface) {
         Surface::Activity => "activity",
         Surface::Inbox => "inbox",
         Surface::Routines => "routines",
+        Surface::Chat => "chat --transcript",
     };
     let generation = bump(state, surface);
     on_fetched(
@@ -146,12 +155,11 @@ pub fn land_stale(state: &mut State, payload: Payload) {
     fail(state, surface);
 }
 
-/// The seventeen mockup frames the pane tests compare against.
-pub const PANE_FRAMES: [&str; 17] = [
+/// The sixteen mockup frames the pane tests compare against.
+pub const PANE_FRAMES: [&str; 16] = [
     "Shell, Activity tab, rows",
     "Shell, Inbox tab, open and expired items",
     "Shell, Routines tab, rows",
-    "Shell, Chat tab, placeholder",
     "Activity, loading",
     "Activity, empty",
     "Activity, stale with the rows kept",
@@ -185,11 +193,6 @@ pub fn frame_state(heading: &str, cols: u16, rows: u16) -> State {
             let mut state = base(cols, rows, Tab::Routines);
             land(&mut state, Payload::Inbox(inbox_fixture()));
             land(&mut state, Payload::Routines(routines_fixture()));
-            state
-        }
-        "Shell, Chat tab, placeholder" => {
-            let mut state = base(cols, rows, Tab::Chat);
-            land(&mut state, Payload::Inbox(inbox_fixture()));
             state
         }
         "Activity, loading" => {

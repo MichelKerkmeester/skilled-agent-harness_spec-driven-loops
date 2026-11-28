@@ -9,11 +9,14 @@ use ratatui::Frame;
 use unicode_width::{UnicodeWidthChar, UnicodeWidthStr};
 
 use crate::model::{
-    parse_utc, ActivityGroup, ActivityRow, InboxItem, ItemState, Routine, RunState,
+    parse_utc, ActivityGroup, ActivityRow, InboxItem, ItemState, Role, Routine, RunState,
 };
-use crate::state::{activity_key, ActivityKey, BotId, EpochMs, Outcome, PaneState, State, Tab};
-use crate::theme::{printable, state_color, Theme};
-use crate::view::{header, window_start};
+use crate::state::{
+    activity_key, chat_bots, chat_unanswered, chat_window, ActivityKey, BotId, ChatLine, ChatMode,
+    EpochMs, Outcome, PaneState, State, Tab,
+};
+use crate::theme::{marker, printable, state_color, Theme};
+use crate::view::{banner, header, window_start};
 
 /// The narrowest body that draws the detail column beside the list.
 const WIDE: u16 = 120;
@@ -37,11 +40,23 @@ const ROUTINE_EMPTY_LINES: [&str; 3] = [
     "  when it starts, whether it acts or tells, and when it is done.",
 ];
 
-/// The two lines the chat tab draws until the chat pane lands.
-const CHAT_LINES: [&str; 2] = [
-    "  The chat pane lands with phase 010 (`bots chat <id>`).",
-    "  This tab holds no state until then.",
-];
+/// The line the chat pane draws under a failed read, so the reader knows why the list is empty.
+const CHAT_ERROR_NOTE: &str = "  No messages yet. The last read failed.";
+
+/// The line the chat pane draws when the status read lists no bot.
+const CHAT_NO_BOTS: &str = "  No bots installed.";
+
+/// The line the chat pane draws when a bot is installed and none is chosen.
+const CHAT_NO_BOT: &str = "  No bot chosen. Press b to choose one.";
+
+/// The line the chat pane draws when the conversation holds no message.
+const CHAT_EMPTY_NOTE: &str = "  No messages yet.";
+
+/// The line the picker draws under its bots, so the reader knows what a pick does.
+const PICKER_NOTE: &str = "  The bot you pick is the default bot of its own conversation.";
+
+/// The note a stale transcript draws under its messages.
+const STALE_NOTE: &str = "  Messages from the last successful read stay on screen.";
 
 /// One data pane's name and the verb its loading line names.
 struct Pane {
@@ -345,15 +360,9 @@ pub fn draw(frame: &mut Frame, area: Rect, state: &State, theme: &Theme) -> usiz
         Tab::Activity => activity_pane(state, theme, area),
         Tab::Inbox => inbox_pane(state, theme, area),
         Tab::Routines => routines_pane(state, theme, area),
-        Tab::Chat => chat_body(theme, area),
+        Tab::Chat => chat_pane(state, theme, area),
     };
-    let count = paint(frame, area, theme, body);
-    // The chat tab draws fixed copy and no list, so it reports no line to the caller.
-    if state.active_tab == Tab::Chat {
-        0
-    } else {
-        count
-    }
+    paint(frame, area, theme, body)
 }
 
 /// The activity groups that hold at least one row, in payload order.
@@ -987,17 +996,416 @@ fn routines_empty_body(theme: &Theme, area: Rect, title: &str) -> Body {
     }
 }
 
-/// Builds the chat tab's fixed copy, which reads no state and selects nothing.
-fn chat_body(theme: &Theme, area: Rect) -> Body {
-    let g = geometry(area);
-    let lines = CHAT_LINES
+/// The UTC hour and minute of a timestamp or a question mark when it does not parse.
+fn clock(at: &str) -> String {
+    match parse_utc(at) {
+        Some(at) => {
+            let minutes = at.div_euclid(60_000).rem_euclid(1_440);
+            format!("{:02}:{:02}", minutes / 60, minutes % 60)
+        }
+        None => "?".to_string(),
+    }
+}
+
+/// One chat detail line: a fixed key, then the sanitized value.
+fn chat_field(key: &str, value: &str) -> String {
+    format!("{key:<13} {}", printable(value))
+}
+
+/// One chat detail line, cut to the detail column's width.
+fn chat_detail_line(key: &str, value: &str, width: usize, ascii: bool) -> Line<'static> {
+    Line::from(clip(&chat_field(key, value), width, ascii))
+}
+
+/// The conversation file a bot's messages are stored in.
+fn chat_file(bot: &BotId) -> String {
+    format!("conversations/{}.jsonl", bot.0)
+}
+
+/// The item id inside the first `(item ...)` of a parked message's text.
+fn item_id(text: &str) -> Option<String> {
+    let rest = text.split_once("(item ")?.1;
+    Some(rest.split_once(')')?.0.to_string())
+}
+
+/// The secret's name inside the first `[redacted: ...]` of a message's text.
+fn redacted_name(text: &str) -> Option<String> {
+    let rest = text.split_once("[redacted: ")?.1;
+    Some(rest.split_once(']')?.0.to_string())
+}
+
+/// The tail of a text that fits a display width, so the newest typed character stays on screen.
+fn tail(text: &str, width: usize) -> String {
+    let mut used = 0usize;
+    let mut kept: Vec<char> = Vec::new();
+    for c in text.chars().rev() {
+        let step = UnicodeWidthChar::width(c).unwrap_or(0);
+        if used.saturating_add(step) > width {
+            break;
+        }
+        used += step;
+        kept.push(c);
+    }
+    kept.iter().rev().collect()
+}
+
+/// The chat pane's title, which names the conversation, its message count and its read state.
+fn chat_title(state: &State, bot: Option<&BotId>, pane: PaneState, ellipsis: &str) -> String {
+    if state.chat_view.mode == ChatMode::Picking {
+        return "Chat \u{b7} choose a bot".to_string();
+    }
+    let Some(bot) = bot else {
+        return "Chat".to_string();
+    };
+    if matches!(pane, PaneState::Loading | PaneState::Error) {
+        return format!("Chat \u{b7} {}", printable(&bot.0));
+    }
+    let mut title = format!(
+        "Chat \u{b7} {} \u{b7} {}",
+        printable(&bot.0),
+        count(state.chat.rows.messages.len(), "message", "messages")
+    );
+    if state.chat_view.sending.is_some() {
+        title.push_str(&format!(" \u{b7} sending{ellipsis}"));
+    }
+    if pane == PaneState::Stale {
+        if let Some(at) = state.chat.last_ok_at {
+            title.push_str(&format!(" \u{b7} {}", header::stale_label(state.now, at)));
+        }
+    }
+    title
+}
+
+/// The picker's bot lines and the note under them, with the selected row marked.
+fn chat_picker_lines(state: &State, theme: &Theme, width: usize) -> Vec<Line<'static>> {
+    let ascii = theme.ascii;
+    let bots = chat_bots(state);
+    if bots.is_empty() {
+        return vec![Line::from(clip(CHAT_NO_BOTS, width, ascii))];
+    }
+    let mut lines: Vec<Line<'static>> = Vec::new();
+    for (index, bot) in bots.iter().enumerate() {
+        let name = printable(&bot.0);
+        if index == state.chat_view.picker_selected {
+            // The reverse video marks the selected row, so the picker reads without colour.
+            lines.push(clip_spans(
+                vec![Span::styled(
+                    format!("{} {name}", theme.focus_mark()),
+                    Style::default().add_modifier(Modifier::REVERSED),
+                )],
+                width,
+                ascii,
+            ));
+        } else {
+            lines.push(Line::from(clip(&format!("  {name}"), width, ascii)));
+        }
+    }
+    lines.push(Line::from(""));
+    lines.push(Line::from(clip(PICKER_NOTE, width, ascii)));
+    lines
+}
+
+/// The label line of one message: who wrote it, to which bot and when.
+fn chat_label(state: &State, theme: &Theme, index: usize, width: usize) -> Line<'static> {
+    let ascii = theme.ascii;
+    let Some(message) = state.chat.rows.messages.get(index) else {
+        return Line::from("");
+    };
+    let at = clock(&message.at);
+    match &message.role {
+        Role::Human => {
+            let mut text = format!(
+                "  {} \u{2192} {} \u{b7} {at}",
+                printable(&message.by),
+                printable(&message.bot_id)
+            );
+            if chat_unanswered(state, index) {
+                text.push_str(" \u{b7} no reply yet");
+            }
+            Line::from(clip(&text, width, ascii))
+        }
+        Role::Bot => {
+            let state_word = if message.text.starts_with("needs you: ") {
+                RunState::NeedsYou
+            } else if message.text.starts_with("failed: ") {
+                RunState::Failed
+            } else {
+                RunState::Done
+            };
+            let colors = theme.colors();
+            clip_spans(
+                vec![
+                    Span::styled(
+                        marker(&state_word, ascii),
+                        Style::default().fg(state_color(&colors, &state_word)),
+                    ),
+                    Span::styled(
+                        format!(" {} \u{b7} {at}", printable(&message.bot_id)),
+                        Style::default(),
+                    ),
+                ],
+                width,
+                ascii,
+            )
+        }
+        Role::Unknown(raw) => Line::from(clip(
+            &format!(
+                "? {} \u{b7} {} \u{b7} {at}",
+                printable(raw),
+                printable(&message.bot_id)
+            ),
+            width,
+            ascii,
+        )),
+    }
+}
+
+/// One transcript line, styled by the message it belongs to.
+fn chat_line(
+    state: &State,
+    theme: &Theme,
+    line: &ChatLine,
+    bot: &BotId,
+    width: usize,
+) -> Line<'static> {
+    let ascii = theme.ascii;
+    let ellipsis = if ascii { "..." } else { "\u{2026}" };
+    match line {
+        ChatLine::Earlier(n) => Line::from(clip(
+            &format!(
+                "  \u{2191} {} \u{b7} PgUp",
+                count(*n, "earlier message", "earlier messages")
+            ),
+            width,
+            ascii,
+        )),
+        ChatLine::Label(index) => chat_label(state, theme, *index, width),
+        ChatLine::Text(text) => Line::from(clip(text, width, ascii)),
+        ChatLine::Working => {
+            let colors = theme.colors();
+            let name = state
+                .chat
+                .rows
+                .messages
+                .iter()
+                .rfind(|message| message.role == Role::Human)
+                .map_or_else(|| bot.0.clone(), |message| message.bot_id.clone());
+            clip_spans(
+                vec![
+                    Span::styled(
+                        marker(&RunState::Working, ascii),
+                        Style::default().fg(state_color(&colors, &RunState::Working)),
+                    ),
+                    Span::styled(
+                        format!(" {} \u{b7} working{ellipsis}", printable(&name)),
+                        Style::default(),
+                    ),
+                ],
+                width,
+                ascii,
+            )
+        }
+        ChatLine::StaleNote => Line::from(clip(STALE_NOTE, width, ascii)),
+        ChatLine::Blank => Line::from(""),
+    }
+}
+
+/// The composer row: the bot's name, the prompt and the draft or the hint.
+fn chat_composer(state: &State, theme: &Theme, bot: &BotId, width: usize) -> Line<'static> {
+    let prefix = format!("[{}] > ", printable(&bot.0));
+    let body = match state.chat_view.mode {
+        ChatMode::Typing => {
+            let room = width.saturating_sub(UnicodeWidthStr::width(prefix.as_str()));
+            tail(&printable(&state.chat_view.draft), room)
+        }
+        _ => "(Enter to type)".to_string(),
+    };
+    Line::from(clip(&format!("{prefix}{body}"), width, theme.ascii))
+}
+
+/// The chat pane's detail column: the conversation, its newest reply and what it holds.
+fn chat_detail(
+    state: &State,
+    bot: Option<&BotId>,
+    pane: PaneState,
+    width: usize,
+    ascii: bool,
+) -> Vec<Line<'static>> {
+    let messages = &state.chat.rows.messages;
+    let mut lines = vec![Line::from(clip("Detail", width, ascii)), Line::from("")];
+    if state.chat_view.mode == ChatMode::Picking {
+        let bots = chat_bots(state);
+        if let Some(selected) = bots.get(state.chat_view.picker_selected) {
+            lines.push(chat_detail_line("bot", &selected.0, width, ascii));
+            lines.push(chat_detail_line("conversation", &selected.0, width, ascii));
+            // The count belongs to the chosen conversation, so it is drawn only for that row.
+            if Some(selected) == bot && state.chat.last_ok_at.is_some() {
+                lines.push(chat_detail_line(
+                    "messages",
+                    &messages.len().to_string(),
+                    width,
+                    ascii,
+                ));
+            }
+        }
+        return lines;
+    }
+    let Some(bot) = bot else {
+        return lines;
+    };
+    lines.push(chat_detail_line("conversation", &bot.0, width, ascii));
+    lines.push(chat_detail_line("default bot", &bot.0, width, ascii));
+    if matches!(pane, PaneState::Loading | PaneState::Error) {
+        return lines;
+    }
+    lines.push(chat_detail_line(
+        "messages",
+        &messages.len().to_string(),
+        width,
+        ascii,
+    ));
+    let file = chat_file(bot);
+    if state.chat_view.sending.is_some() {
+        let since = messages.iter().rfind(|message| message.role == Role::Human);
+        let value = match since {
+            Some(message) => format!("to {}, since {}", bot.0, clock(&message.at)),
+            None => format!("to {}", bot.0),
+        };
+        lines.push(chat_detail_line("sending", &value, width, ascii));
+        lines.push(chat_detail_line("file", &file, width, ascii));
+        return lines;
+    }
+    if messages
+        .last()
+        .is_some_and(|message| message.role == Role::Human)
+    {
+        let unanswered: Vec<usize> = (0..messages.len())
+            .filter(|index| chat_unanswered(state, *index))
+            .collect();
+        let newest = unanswered.last().and_then(|index| messages.get(*index));
+        let value = match newest {
+            Some(message) => format!(
+                "{}, {} \u{b7} {}",
+                unanswered.len(),
+                message.by,
+                clock(&message.at)
+            ),
+            None => unanswered.len().to_string(),
+        };
+        lines.push(chat_detail_line("unanswered", &value, width, ascii));
+        lines.push(chat_detail_line("file", &file, width, ascii));
+        return lines;
+    }
+    if let Some(reply) = messages
         .iter()
-        .map(|line| Line::from(clip(line, g.width, theme.ascii)))
-        .collect();
+        .rev()
+        .find(|message| message.role == Role::Bot)
+    {
+        let mut value = format!("{} \u{b7} {}", reply.bot_id, clock(&reply.at));
+        if reply.text.starts_with("needs you: ") {
+            value.push_str(" \u{b7} needs you");
+        } else if reply.text.starts_with("failed: ") {
+            value.push_str(" \u{b7} failed");
+        }
+        lines.push(chat_detail_line("last reply", &value, width, ascii));
+        if let Some(run_id) = reply.run_id.as_deref() {
+            lines.push(chat_detail_line("run", run_id, width, ascii));
+        }
+        if reply.text.starts_with("needs you: ") {
+            if let Some(item) = item_id(&reply.text) {
+                lines.push(chat_detail_line("item", &item, width, ascii));
+            }
+            let answer = format!("Inbox, {}", banner::inbox_key());
+            lines.push(chat_detail_line("answer in", &answer, width, ascii));
+        } else if let Some(reason) = reply.text.strip_prefix("failed: ") {
+            let first = reason.lines().next().unwrap_or_default();
+            lines.push(chat_detail_line("reason", first, width, ascii));
+        } else if let Some(name) = redacted_name(&reply.text) {
+            lines.push(chat_detail_line("redacted", &name, width, ascii));
+        } else {
+            lines.push(chat_detail_line("file", &file, width, ascii));
+        }
+        return lines;
+    }
+    lines.push(chat_detail_line("file", &file, width, ascii));
+    lines
+}
+
+/// Builds the chat pane's body for whichever state its remote derives.
+fn chat_pane(state: &State, theme: &Theme, area: Rect) -> Body {
+    let g = geometry(area);
+    let ascii = theme.ascii;
+    let ellipsis = if ascii { "..." } else { "\u{2026}" };
+    let bot = state.chat_view.bot.as_ref();
+    let mode = state.chat_view.mode;
+    let messages = &state.chat.rows.messages;
+    let pane = state.chat.pane_state();
+    let list_rows = g.visible;
+    let window_rows = list_rows.saturating_sub(2).max(1);
+    let title = chat_title(state, bot, pane, ellipsis);
+
+    let mut lines: Vec<Line<'static>> = Vec::new();
+    if mode == ChatMode::Picking {
+        lines.extend(chat_picker_lines(state, theme, g.width));
+    } else if let Some(bot) = bot {
+        match pane {
+            PaneState::Loading => {
+                let line = format!(
+                    "  Loading{ellipsis}  bots chat {} --transcript --json",
+                    printable(&bot.0)
+                );
+                lines.push(Line::from(clip(&line, g.width, ascii)));
+            }
+            PaneState::Error => {
+                let first = state
+                    .chat
+                    .error
+                    .as_deref()
+                    .and_then(|line| line.lines().next())
+                    .unwrap_or_default();
+                // The two spaces that indent the line come out of the list width, so it still fits.
+                let text = clip(&printable(first), g.width.saturating_sub(2), ascii);
+                lines.push(Line::from(format!("  {text}")));
+                lines.push(Line::from(""));
+                lines.push(Line::from(clip(CHAT_ERROR_NOTE, g.width, ascii)));
+            }
+            _ if messages.is_empty() && state.chat_view.sending.is_none() => {
+                lines.push(Line::from(clip(CHAT_EMPTY_NOTE, g.width, ascii)));
+                let line = format!(
+                    "  Press Enter, type a line and press Enter to send it to {}.",
+                    printable(&bot.0)
+                );
+                lines.push(Line::from(clip(&line, g.width, ascii)));
+                while lines.len() + 1 < list_rows {
+                    lines.push(Line::from(""));
+                }
+                lines.push(chat_composer(state, theme, bot, g.width));
+            }
+            _ => {
+                let window = chat_window(state, g.width, window_rows);
+                for _ in 0..window_rows.saturating_sub(window.len()) {
+                    lines.push(Line::from(""));
+                }
+                for line in &window {
+                    lines.push(chat_line(state, theme, line, bot, g.width));
+                }
+                lines.push(Line::from(""));
+                lines.push(chat_composer(state, theme, bot, g.width));
+            }
+        }
+    } else {
+        let line = if chat_bots(state).is_empty() {
+            CHAT_NO_BOTS
+        } else {
+            CHAT_NO_BOT
+        };
+        lines.push(Line::from(clip(line, g.width, ascii)));
+    }
+
     Body {
-        title: Line::from(clip("Chat", g.width, theme.ascii)),
+        title: Line::from(clip(&title, g.width, ascii)),
         lines,
-        detail: Vec::new(),
+        detail: chat_detail(state, bot, pane, DETAIL_WIDTH, ascii),
     }
 }
 

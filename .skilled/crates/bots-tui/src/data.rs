@@ -5,7 +5,7 @@ use std::sync::Arc;
 use std::thread::JoinHandle;
 
 use crate::cli::{self, Program};
-use crate::state::{Effect, ItemId, Msg, Scope, Surface};
+use crate::state::{BotId, Effect, FailKind, ItemId, Msg, ReadError, Scope, Surface};
 
 /// One unit of work the worker thread runs.
 #[derive(Clone, Debug, PartialEq)]
@@ -14,6 +14,8 @@ pub enum Job {
     Fetch {
         /// The surface to read.
         surface: Surface,
+        /// The chosen bot, present only for the chat surface.
+        bot: Option<BotId>,
         /// The generation the read is issued at.
         generation: u64,
     },
@@ -66,9 +68,11 @@ impl Worker {
         let job = match effect {
             Effect::Fetch {
                 surface,
+                bot,
                 generation,
             } => Job::Fetch {
                 surface: *surface,
+                bot: bot.clone(),
                 generation: *generation,
             },
             Effect::Answer { id, text, scope } => Job::Answer {
@@ -76,6 +80,7 @@ impl Worker {
                 text: text.clone(),
                 scope: *scope,
             },
+            Effect::ChatSend { .. } => return,
             Effect::Quit { .. } => return,
         };
         if let Some(jobs) = &self.jobs {
@@ -148,9 +153,18 @@ fn run_job(program: &Program, tx: &Sender<Msg>, shutting_down: &AtomicBool, job:
     match job {
         Job::Fetch {
             surface,
+            bot,
             generation,
         } => {
-            let outcome = cli::read(program, surface, shutting_down);
+            // The chat read is the one read that names a bot, so it takes its own call.
+            let outcome = match (surface, bot) {
+                (Surface::Chat, Some(bot)) => cli::chat_transcript(program, &bot, shutting_down),
+                (Surface::Chat, None) => Err(ReadError {
+                    kind: FailKind::Spawn,
+                    line: "bots-ui: chat --transcript --json needs a bot".to_string(),
+                }),
+                (surface, _) => cli::read(program, surface, shutting_down),
+            };
             let _ = tx.send(Msg::Fetched {
                 surface,
                 generation,
@@ -183,6 +197,75 @@ fn abandon(program: &Program, queue: VecDeque<Job>) {
     }
 }
 
+/// One chat send the chat worker runs.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ChatJob {
+    /// The bot the send is addressed to.
+    pub bot: BotId,
+    /// The trimmed draft.
+    pub text: String,
+}
+
+/// The thread that runs chat sends, so a bot run that lasts minutes never holds a read.
+pub struct ChatWorker {
+    jobs: Option<Sender<ChatJob>>,
+    handle: Option<JoinHandle<()>>,
+}
+
+impl ChatWorker {
+    /// Starts the chat worker thread beside the read worker.
+    ///
+    /// The thread is named and holds a guard that reports a panic on the message channel, as the
+    /// read worker does.
+    pub fn spawn(program: Program, tx: Sender<Msg>) -> ChatWorker {
+        let (jobs, queue) = mpsc::channel::<ChatJob>();
+        let handle = std::thread::Builder::new()
+            .name("bots-ui-chat".to_string())
+            .spawn(move || run_chat(program, queue, tx))
+            .ok();
+        ChatWorker {
+            jobs: Some(jobs),
+            handle,
+        }
+    }
+
+    /// Hands one chat send to the chat worker, and ignores every other effect.
+    pub fn submit(&self, effect: &Effect) {
+        let job = match effect {
+            Effect::ChatSend { bot, text } => ChatJob {
+                bot: bot.clone(),
+                text: text.clone(),
+            },
+            _ => return,
+        };
+        if let Some(jobs) = &self.jobs {
+            let _ = jobs.send(job);
+        }
+    }
+
+    /// Drops the job sender and returns at once, without joining the thread.
+    ///
+    /// A send in flight runs on in its own process group and appends its reply to the
+    /// conversation file, so quitting never waits for it.
+    pub fn shutdown(self) {
+        drop(self.jobs);
+        drop(self.handle);
+    }
+}
+
+/// The chat worker thread's whole life: one send at a time until the job channel closes.
+fn run_chat(program: Program, jobs: Receiver<ChatJob>, tx: Sender<Msg>) {
+    let _guard = ThreadGuard::new(tx.clone(), "chat");
+    while let Ok(job) = jobs.recv() {
+        let outcome = cli::chat_send(&program, &job.bot, &job.text);
+        let _ = tx.send(Msg::ChatSent {
+            bot: job.bot,
+            text: job.text,
+            outcome,
+        });
+    }
+}
+
 /// Reports a thread that died by panicking, so the loop can leave with 1.
 pub struct ThreadGuard {
     tx: Sender<Msg>,
@@ -210,7 +293,7 @@ impl Drop for ThreadGuard {
 mod tests {
     use super::*;
     use crate::cli::{test_dir, test_program};
-    use crate::state::FailKind;
+    use crate::state::{ChatOk, FailKind};
     use std::path::Path;
     use std::time::{Duration, Instant};
 
@@ -239,6 +322,7 @@ mod tests {
 
         worker.submit(&Effect::Fetch {
             surface: Surface::Status,
+            bot: None,
             generation: 1,
         });
         // Long enough for the worker to have started the status read, so the
@@ -246,10 +330,12 @@ mod tests {
         std::thread::sleep(Duration::from_millis(300));
         worker.submit(&Effect::Fetch {
             surface: Surface::Activity,
+            bot: None,
             generation: 1,
         });
         worker.submit(&Effect::Fetch {
             surface: Surface::Inbox,
+            bot: None,
             generation: 1,
         });
         worker.submit(&Effect::Answer {
@@ -314,6 +400,7 @@ mod tests {
         let started = Instant::now();
         worker.submit(&Effect::Fetch {
             surface: Surface::Status,
+            bot: None,
             generation: 1,
         });
         let reply = next(&rx);
@@ -347,6 +434,7 @@ mod tests {
         let started = Instant::now();
         worker.submit(&Effect::Fetch {
             surface: Surface::Status,
+            bot: None,
             generation: 1,
         });
         let elapsed = started.elapsed();
@@ -377,10 +465,12 @@ mod tests {
 
         worker.submit(&Effect::Fetch {
             surface: Surface::Status,
+            bot: None,
             generation: 1,
         });
         worker.submit(&Effect::Fetch {
             surface: Surface::Activity,
+            bot: None,
             generation: 1,
         });
         // Long enough for the status read to be running and the activity read
@@ -393,5 +483,134 @@ mod tests {
 
         assert!(elapsed < Duration::from_millis(1500), "{elapsed:?}");
         assert_eq!(logged_verbs(&log), vec!["status"]);
+    }
+
+    #[test]
+    fn chat_job_replies_with_its_outcome() {
+        let dir = test_dir("chat-job-replies-with-its-outcome");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "ok");
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = ChatWorker::spawn(program, tx);
+
+        worker.submit(&Effect::ChatSend {
+            bot: BotId("hello".to_string()),
+            text: "hi".to_string(),
+        });
+
+        assert_eq!(
+            next(&rx),
+            Msg::ChatSent {
+                bot: BotId("hello".to_string()),
+                text: "hi".to_string(),
+                outcome: Ok(ChatOk {
+                    code: 0,
+                    warning: None,
+                }),
+            }
+        );
+        worker.shutdown();
+    }
+
+    #[test]
+    fn chat_shutdown_returns_while_a_send_runs() {
+        let dir = test_dir("chat-shutdown-returns-while-a-send-runs");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "chat-slow");
+        let (tx, _rx) = mpsc::channel::<Msg>();
+        let worker = ChatWorker::spawn(program, tx);
+
+        worker.submit(&Effect::ChatSend {
+            bot: BotId("hello".to_string()),
+            text: "hi".to_string(),
+        });
+        // Long enough for the chat worker to have started the send.
+        std::thread::sleep(Duration::from_millis(300));
+
+        let started = Instant::now();
+        worker.shutdown();
+        let elapsed = started.elapsed();
+        assert!(elapsed < Duration::from_millis(200), "{elapsed:?}");
+
+        // The send outlives the worker, so its own line lands after the shutdown returned.
+        let deadline = Instant::now() + Duration::from_secs(10);
+        loop {
+            let done = std::fs::read_to_string(&log)
+                .unwrap_or_default()
+                .lines()
+                .any(|line| line == "fixture-chat-done");
+            if done {
+                break;
+            }
+            assert!(Instant::now() < deadline, "the send never finished");
+            std::thread::sleep(Duration::from_millis(100));
+        }
+    }
+
+    #[test]
+    fn chat_read_goes_to_the_transcript_call() {
+        let dir = test_dir("chat-read-goes-to-the-transcript-call");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "ok");
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Chat,
+            bot: Some(BotId("hello".to_string())),
+            generation: 1,
+        });
+
+        match next(&rx) {
+            Msg::Fetched {
+                surface,
+                generation,
+                outcome,
+            } => {
+                assert_eq!(surface, Surface::Chat);
+                assert_eq!(generation, 1);
+                assert!(outcome.is_ok(), "{outcome:?}");
+            }
+            other => panic!("expected a fetch reply, got {other:?}"),
+        }
+
+        let calls = std::fs::read_to_string(&log).expect("the fixture logs its call");
+        let first = calls.lines().next().expect("the fixture logged one call");
+        assert!(first.starts_with("chat --transcript --json"), "{first}");
+        assert!(first.ends_with("-- hello"), "{first}");
+        worker.shutdown();
+    }
+
+    #[test]
+    fn chat_read_without_a_bot_is_refused() {
+        let dir = test_dir("chat-read-without-a-bot-is-refused");
+        let log = dir.join("argv.log");
+        let program = test_program(&log, "ok");
+        let (tx, rx) = mpsc::channel::<Msg>();
+        let worker = Worker::spawn(program, tx);
+
+        worker.submit(&Effect::Fetch {
+            surface: Surface::Chat,
+            bot: None,
+            generation: 1,
+        });
+
+        match next(&rx) {
+            Msg::Fetched {
+                surface,
+                generation,
+                outcome,
+            } => {
+                assert_eq!(surface, Surface::Chat);
+                assert_eq!(generation, 1);
+                let error = outcome.expect_err("a chat read needs a bot");
+                assert_eq!(error.kind, FailKind::Spawn);
+            }
+            other => panic!("expected a fetch reply, got {other:?}"),
+        }
+
+        let calls = std::fs::read_to_string(&log).unwrap_or_default();
+        assert!(calls.is_empty(), "{calls}");
+        worker.shutdown();
     }
 }

@@ -187,6 +187,86 @@ pub struct Start {
     pub summary: Option<String>,
 }
 
+/// The `chat --transcript --json` payload, one conversation's messages in file order.
+#[derive(Clone, Debug, Default, PartialEq, Deserialize)]
+#[serde(default, rename_all = "camelCase")]
+pub struct Transcript {
+    /// The payload contract major.
+    #[serde(default = "contract_one")]
+    pub version: u32,
+    /// The conversation the messages belong to, which is the chosen bot's id.
+    pub conversation_id: String,
+    /// The messages, oldest first.
+    pub messages: Vec<Message>,
+}
+
+/// One message of a conversation.
+#[derive(Clone, Debug, Default, PartialEq, Deserialize)]
+#[serde(default, rename_all = "camelCase")]
+pub struct Message {
+    /// The message's id.
+    pub id: String,
+    /// The addressed bot on a human message, the replying bot on a bot message.
+    pub bot_id: String,
+    /// Who wrote the message.
+    pub role: Role,
+    /// The message text, which may hold line feeds.
+    pub text: String,
+    /// When the message was appended, ISO 8601 UTC.
+    pub at: String,
+    /// The run that wrote a bot message, absent on a human message.
+    pub run_id: Option<String>,
+    /// The human's actor name, or the literal `bot` on a bot message.
+    pub by: String,
+}
+
+/// Who wrote a message.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub enum Role {
+    /// A person typed it.
+    Human,
+    /// A bot run replied with it.
+    Bot,
+    /// A role word this build does not know, kept as it arrived.
+    Unknown(String),
+}
+
+impl Role {
+    /// Reads a wire role word, keeping an unknown one as it arrived.
+    pub fn from_raw(raw: &str) -> Self {
+        match raw {
+            "human" => Role::Human,
+            "bot" => Role::Bot,
+            other => Role::Unknown(other.to_string()),
+        }
+    }
+
+    /// The wire role word, or the raw text of an unknown one.
+    pub fn as_str(&self) -> &str {
+        match self {
+            Role::Human => "human",
+            Role::Bot => "bot",
+            Role::Unknown(raw) => raw,
+        }
+    }
+}
+
+impl Default for Role {
+    fn default() -> Self {
+        Role::Unknown(String::new())
+    }
+}
+
+impl<'de> Deserialize<'de> for Role {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let raw = String::deserialize(deserializer)?;
+        Ok(Role::from_raw(&raw))
+    }
+}
+
 /// A run's state word.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum RunState {
@@ -507,6 +587,28 @@ mod tests {
         ] {
             assert!(parse_utc(text).is_none(), "{text} must not parse");
         }
+    }
+
+    #[test]
+    fn transcript_parses_every_role() {
+        let transcript: Transcript = serde_json::from_str(
+            r#"{"version":1,"conversationId":"hello","messages":[
+ {"schemaVersion":1,"id":"m1","conversationId":"hello","botId":"hello","role":"human","text":"hi","at":"2026-11-25T21:02:12.000Z","runId":null,"by":"ada"},
+ {"schemaVersion":1,"id":"m2","conversationId":"hello","botId":"hello","role":"bot","text":"hello","at":"2026-11-25T21:03:40.000Z","runId":"r1","by":"bot"},
+ {"schemaVersion":1,"id":"m3","conversationId":"hello","botId":"hello","role":"system","text":"x","at":"2026-11-25T21:04:00.000Z","runId":null,"by":"bot"}]}"#,
+        )
+        .expect("a transcript with three roles parses");
+        assert_eq!(transcript.version, 1);
+        assert_eq!(transcript.conversation_id, "hello");
+        assert_eq!(transcript.messages.len(), 3);
+        assert_eq!(transcript.messages[0].role, Role::Human);
+        assert_eq!(transcript.messages[1].role, Role::Bot);
+        assert_eq!(
+            transcript.messages[2].role,
+            Role::Unknown("system".to_string())
+        );
+        assert_eq!(transcript.messages[0].run_id, None);
+        assert_eq!(transcript.messages[1].run_id, Some("r1".to_string()));
     }
 
     #[test]

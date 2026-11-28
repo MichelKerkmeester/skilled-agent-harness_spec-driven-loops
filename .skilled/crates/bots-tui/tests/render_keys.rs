@@ -4,8 +4,8 @@
 use bots_tui::keys::{self, Action, Cond, Context, FooterLine, Key, KeyMatch, Row, When};
 use bots_tui::model::{parse_utc, InboxItem, StatusPayload, StatusRow};
 use bots_tui::state::{
-    on_fetched, update, Effect, FailKind, ItemId, Msg, Overlay, Palette, Payload, Phase, Read,
-    ReadError, Remote, Size, Source, State, StatusLine, Surface, Tab,
+    on_fetched, update, BotId, ChatMode, Effect, FailKind, ItemId, Msg, Overlay, Palette, Payload,
+    Phase, Read, ReadError, Remote, Size, Source, State, StatusLine, Surface, Tab,
 };
 use bots_tui::view;
 use bots_tui::Options;
@@ -88,8 +88,11 @@ const SHELL_80X24: [(usize, &str); 7] = [
     ),
     (20, ""),
     (21, ""),
-    (22, "Alt+1..4 tabs · [ ] cycle"),
-    (23, "Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit"),
+    (
+        22,
+        "Alt+1..4 tabs · [ ] cycle · ↑↓ scroll · PgUp/PgDn page · Enter type",
+    ),
+    (23, "Ctrl+P/? commands · b bot · Ctrl+C exit · Ctrl+D exit"),
 ];
 
 /// The shell bands at 120x40, the same rows at the taller size.
@@ -99,8 +102,8 @@ const SHELL_120X40: [(usize, &str); 7] = [
     (2, "────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"),
     (36, ""),
     (37, ""),
-    (38, "Alt+1..4 tabs · [ ] cycle"),
-    (39, "Ctrl+P/? commands · Ctrl+C exit · Ctrl+D exit"),
+    (38, "Alt+1..4 tabs · [ ] cycle · ↑↓ scroll · PgUp/PgDn page · Enter type"),
+    (39, "Ctrl+P/? commands · b bot · Ctrl+C exit · Ctrl+D exit"),
 ];
 
 /// Every row of the key table draws its label in the context it binds.
@@ -110,7 +113,12 @@ fn every_bound_label_is_drawn() {
         let mut state = shell(80, 24);
         let (cols, rows) = match row.context {
             Context::Main => {
-                state.active_tab = Tab::Activity;
+                if row.when.contains(&When::ChatTab) {
+                    state.active_tab = Tab::Chat;
+                    state.chat_view.bot = Some(BotId("hello".to_string()));
+                } else {
+                    state.active_tab = Tab::Activity;
+                }
                 (80, 24)
             }
             Context::Inbox => {
@@ -133,6 +141,16 @@ fn every_bound_label_is_drawn() {
             Context::TooSmall => {
                 state.size = Size { cols: 30, rows: 7 };
                 (30, 7)
+            }
+            Context::Chat => {
+                state.active_tab = Tab::Chat;
+                state.chat_view.bot = Some(BotId("hello".to_string()));
+                state.chat_view.mode = if row.when.contains(&When::Picking) {
+                    ChatMode::Picking
+                } else {
+                    ChatMode::Typing
+                };
+                (80, 24)
             }
             Context::Overlay => {
                 state.active_tab = Tab::Inbox;
@@ -210,6 +228,56 @@ fn footer_names_alt_1_4_brackets_ctrl_p_ctrl_d() {
             assert!(
                 footer.contains(label),
                 "{tab:?} does not draw {label:?}:\n{footer}"
+            );
+        }
+    }
+}
+
+/// The chat tab draws its own two footer lines in each of its four modes, inside the footer width.
+#[test]
+fn chat_footer_draws_the_four_lines() {
+    let cases: [(ChatMode, Option<&str>, &str, &str); 4] = [
+        (
+            ChatMode::Main,
+            None,
+            "Alt+1..4 tabs · [ ] cycle · ↑↓ scroll · PgUp/PgDn page · Enter type",
+            "Ctrl+P/? commands · b bot · Ctrl+C exit · Ctrl+D exit",
+        ),
+        (
+            ChatMode::Typing,
+            None,
+            "type message · Enter send · ↑↓ history · Bksp delete · Esc leave",
+            "Ctrl+C leave · Ctrl+D exit",
+        ),
+        (
+            ChatMode::Typing,
+            Some("hi"),
+            "type message · ↑↓ history · Bksp delete · Esc leave",
+            "Ctrl+C leave · Ctrl+D exit",
+        ),
+        (
+            ChatMode::Picking,
+            None,
+            "↑↓ select · Enter choose · Esc close",
+            "Ctrl+C close · Ctrl+D exit",
+        ),
+    ];
+    for (mode, sending, one, two) in cases {
+        let mut state = State {
+            active_tab: Tab::Chat,
+            ..shell(80, 24)
+        };
+        state.chat_view.bot = Some(BotId("hello".to_string()));
+        state.chat_view.mode = mode;
+        state.chat_view.sending = sending.map(str::to_string);
+        let drawn = draw(&state, 80, 24);
+        assert_eq!(drawn[22], one, "{mode:?} line one");
+        assert_eq!(drawn[23], two, "{mode:?} line two");
+        // The labels are single width, so the character count is the display width.
+        for line in [one, two] {
+            assert!(
+                line.chars().count() <= 67,
+                "{mode:?} draws {line:?} wider than the footer"
             );
         }
     }

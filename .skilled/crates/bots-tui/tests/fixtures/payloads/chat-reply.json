@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "conversationId": "hello",
+  "messages": [
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T210212Z-3f9a0c11",
+      "conversationId": "hello",
+      "botId": "hello",
+      "role": "human",
+      "text": "what changed on main since yesterday?",
+      "at": "2026-11-25T21:02:12.000Z",
+      "runId": null,
+      "by": "ada"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T210214Z-5d7e2a90",
+      "conversationId": "hello",
+      "botId": "hello",
+      "role": "bot",
+      "text": "Three merges: the lint fix, the changelog and the CI cache bump.",
+      "at": "2026-11-25T21:03:40.000Z",
+      "runId": "20261125T210214Z-5d7e2a90",
+      "by": "bot"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T210408Z-b41d2e07",
+      "conversationId": "hello",
+      "botId": "digest",
+      "role": "human",
+      "text": "@digest summarize the open review threads",
+      "at": "2026-11-25T21:04:08.000Z",
+      "runId": null,
+      "by": "ada"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T210410Z-c2a81f3e",
+      "conversationId": "hello",
+      "botId": "digest",
+      "role": "bot",
+      "text": "Two threads wait on you: the release notes and the cache key.",
+      "at": "2026-11-25T21:04:31.000Z",
+      "runId": "20261125T210410Z-c2a81f3e",
+      "by": "bot"
+    }
+,
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T211204Z-1a2b3c4d",
+      "conversationId": "hello",
+      "botId": "hello",
+      "role": "human",
+      "text": "is the release ready?",
+      "at": "2026-11-25T21:12:04.000Z",
+      "runId": null,
+      "by": "ada"
+    }
+,
+    {
+      "schemaVersion": 1,
+      "id": "msg-20261125T211400Z-2b3c4d5e",
+      "conversationId": "hello",
+      "botId": "hello",
+      "role": "bot",
+      "text": "Yes. CI is green and the changelog is merged.",
+      "at": "2026-11-25T21:14:00.000Z",
+      "runId": "20261125T211204Z-7c1e9a40",
+      "by": "bot"
+    }
+  ]
+}

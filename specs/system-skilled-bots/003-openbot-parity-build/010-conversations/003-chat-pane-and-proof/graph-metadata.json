@@ -43,11 +43,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/crates/bots-tui/src/view/panes.rs",
+      ".skilled/crates/bots-tui/src/model.rs",
+      ".skilled/crates/bots-tui/src/state.rs",
       ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/cli.rs",
       ".skilled/crates/bots-tui/src/data.rs",
+      ".skilled/crates/bots-tui/src/app.rs",
+      ".skilled/crates/bots-tui/src/view/panes.rs",
       ".skilled/crates/bots-tui/src/view/footer.rs",
-      ".skilled/bin/bots.cjs"
+      ".skilled/crates/bots-tui/tests/chat.rs",
+      ".skilled/crates/bots-tui/tests/common/frames.rs",
+      ".skilled/crates/bots-tui/design/chat-mockups.md",
+      ".skilled/crates/bots-tui/tests/panes/chat.rs",
+      ".skilled/crates/bots-tui/tests/render_keys.rs",
+      ".skilled/crates/bots-tui/README.md"
     ],
     "entities": [
       {
@@ -87,9 +96,15 @@
         "source": "derived"
       },
       {
-        "name": "panes.rs",
+        "name": "model.rs",
         "kind": "file",
-        "path": ".skilled/crates/bots-tui/src/view/panes.rs",
+        "path": ".skilled/crates/bots-tui/src/model.rs",
+        "source": "derived"
+      },
+      {
+        "name": "state.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/state.rs",
         "source": "derived"
       },
       {
@@ -99,9 +114,27 @@
         "source": "derived"
       },
       {
+        "name": "cli.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/cli.rs",
+        "source": "derived"
+      },
+      {
         "name": "data.rs",
         "kind": "file",
         "path": ".skilled/crates/bots-tui/src/data.rs",
+        "source": "derived"
+      },
+      {
+        "name": "app.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/app.rs",
+        "source": "derived"
+      },
+      {
+        "name": "panes.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/panes.rs",
         "source": "derived"
       },
       {
@@ -111,9 +144,33 @@
         "source": "derived"
       },
       {
-        "name": "bots.cjs",
+        "name": "chat.rs",
         "kind": "file",
-        "path": ".skilled/bin/bots.cjs",
+        "path": ".skilled/crates/bots-tui/tests/chat.rs",
+        "source": "derived"
+      },
+      {
+        "name": "frames.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/tests/common/frames.rs",
+        "source": "derived"
+      },
+      {
+        "name": "chat-mockups.md",
+        "kind": "doc",
+        "path": ".skilled/crates/bots-tui/design/chat-mockups.md",
+        "source": "derived"
+      },
+      {
+        "name": "render_keys.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/tests/render_keys.rs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/crates/bots-tui/README.md",
         "source": "derived"
       },
       {
@@ -145,59 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Opening",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 draws a Chat tab whose body is a placeholder naming phase 010, so a person who opens `bots ui` sees the tab and cannot read or send a message there",
     "created_at": "2026-11-25T23:17:49Z",
-    "last_save_at": "2026-11-28T11:13:36.087Z",
+    "last_save_at": "2026-11-28T13:03:13.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cfc3693c7aeb6ed2da93cdb1e7bb9618f478967a509ca05714548c8bdf7614d",
+    "source_fingerprint": "sha256:2f9576d7857f1289a552a1565402dfce4ecbefb461b192286efa8f3df9e78d0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "028c9d5a44117820dd8d166156a480f45e01ae32836cc8c89fb328c1ce06e900",
       "plan.md": "fdc70c0ea0cdcd6d91dd4ad724dc13e153f4803df74a88311cec5a300ba034db",
-      "tasks.md": "4d675a100323355997ba1a55d7035892332c1933dcc4bf38a849ac57cf60f5cc",
-      "implementation-summary.md": "de64247757c296e328d6a3dd3de0fa304bef48776da35012d96a8833600da9b3"
+      "tasks.md": "a73904c2215d9c305dee0de9ed8a6b953d2a283f5e648058be7ffcd45e494e60",
+      "implementation-summary.md": "bf26905efaa78bb62dfe7de1805e1c6d95f35a76f825e1e82078ac6ce186f67f"
     },
     "last_active_at": null
   }
