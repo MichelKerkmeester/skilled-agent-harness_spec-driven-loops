@@ -32,6 +32,8 @@ Use this hub for a request about a file-defined bot: writing one, running one, p
 
 `bots chat` belongs to run as well. Each message it sends is one bot run, and the thread is kept in a conversation file under the state root.
 
+`bots channel` belongs to run as well. It links a chat on Telegram, Slack, Signal, WhatsApp or the terminal to a roster member, so a needs-you item is answered from the chat where it was asked.
+
 `bots ui` belongs to status too. It opens the terminal screen, a live status surface over the same reads that can also answer a needs-you item.
 
 ### When NOT to Use

@@ -8,7 +8,7 @@ trigger_phrases:
   - "bots cli inventory"
   - "feature catalog"
 last_updated: "2026-11-23"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # system-skilled-bots: Feature Catalog
@@ -320,6 +320,22 @@ Delivery runs after the terminal record and sends to the bot's targets, or its f
 #### Source Files
 
 See [`operator-loop/run-delivery.md`](operator-loop/run-delivery.md) for targets, channels and the at-most-once claim, with full implementation and test file listings.
+
+---
+
+### Messaging channels
+
+#### Description
+
+Lets a roster member answer a bot's needs-you question from Telegram, Slack, Signal, WhatsApp or the terminal, with every prompt indexed and every send queued before it goes out.
+
+#### Current Reality
+
+`bots channel link` pairs a chat to an actor by a one-time code and `bots channel roster` names who may answer. Every prompt has an approval index entry before it is sent and every outbound message is a queue file before it is sent. An uncertain send is `unknown` and never retried, and an operation a transport does not declare reaches no provider.
+
+#### Source Files
+
+See [`operator-loop/messaging-channels.md`](operator-loop/messaging-channels.md) for the link, the roster, the index, the queue and the five transports, with full implementation and test file listings.
 
 ---
 

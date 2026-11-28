@@ -1,4 +1,4 @@
-// Channel test worlds: a temporary state root with the bots CLI pointed at it, and a scripted fake transport that opens no socket.
+// Channel test worlds: a temporary state root with the bots CLI pointed at it, a scripted fake transport that opens no socket, the capability-matrix driver the conformance suite walks, and a fake platform that stands where each provider's API stands.
 //
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Channel Test Support
@@ -13,8 +13,15 @@
 import { spawnSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { Readable } from 'node:stream';
 
-import { checkDeclared, CAPABILITY_MATRIX, CHANNEL_DESCRIPTORS } from '../lib/channel.js';
+import { checkDeclared, CAPABILITY_MATRIX, CHANNEL_DESCRIPTORS, CHANNEL_NAMES } from '../lib/channel.js';
+import { createSignalTransport } from '../lib/channel-signal.js';
+import { createSlackTransport } from '../lib/channel-slack.js';
+import { createTelegramTransport } from '../lib/channel-telegram.js';
+import { createTerminalTransport, terminalConversationId } from '../lib/channel-terminal.js';
+import { createWhatsAppTransport } from '../lib/channel-whatsapp.js';
+import { setSecret } from '../lib/secrets.js';
 import { userStateRoot } from '../lib/state-root.js';
 import { tempDir, writeConfig } from './support.js';
 
@@ -23,12 +30,14 @@ import type {
   ChannelCapabilities,
   ChannelDescriptor,
   ChannelInbound,
+  ChannelIntentKind,
   ChannelName,
   ChannelOutboundIntent,
   ChannelSendResult,
   ChannelSink,
   ChannelStatus,
 } from '../lib/channel.js';
+import type { TelegramTransport } from '../lib/channel-telegram.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -225,5 +234,321 @@ export function fakeTransport(options: FakeTransportOptions = {}): FakeTransport
       delivered.push(built);
       return built;
     },
+  };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CAPABILITY-MATRIX DRIVER
+// ───────────────────────────────────────────────────────────────────
+
+/** The five outbound operations a conformance case sends. receiveText, numberedReply and groupKnown are inbound facts with no send intent, so they have no case. */
+export type ConformanceOperation = 'sendText' | 'buttons' | 'edit' | 'react' | 'file';
+
+/** The operations in the order the suite walks them, so the case list is the same on every run. */
+export const CONFORMANCE_OPERATIONS: readonly ConformanceOperation[] = ['sendText', 'buttons', 'edit', 'react', 'file'];
+
+/** The send intent each operation builds, so a case sends the intent its operation names. */
+export const OPERATION_INTENT: Readonly<Record<ConformanceOperation, ChannelIntentKind>> = Object.freeze({
+  sendText: 'text',
+  buttons: 'buttons',
+  edit: 'edit',
+  react: 'react',
+  file: 'file',
+});
+
+/** The numbered conformance rules a case checks. */
+export type ConformanceRule = 'R1' | 'R2' | 'R3' | 'R4' | 'R5';
+
+/** One conformance case: a transport, an operation and the rules that case checks. */
+export interface ConformanceCase {
+  /** The it name: channel, operation and the rules the case checks. */
+  name: string;
+  channel: ChannelName;
+  operation: ConformanceOperation;
+  /** True when the design matrix says yes for this channel and operation. */
+  declared: boolean;
+  rules: readonly ConformanceRule[];
+}
+
+/** The design table copied by hand, never read from CAPABILITY_MATRIX, because the suite checks the code against the design and not against itself. */
+export function capabilityMatrix(): Readonly<Record<ChannelName, Readonly<Record<ConformanceOperation, boolean>>>> {
+  return Object.freeze({
+    terminal: Object.freeze({ sendText: true, buttons: false, edit: false, react: false, file: false }),
+    telegram: Object.freeze({ sendText: true, buttons: true, edit: false, react: false, file: false }),
+    slack: Object.freeze({ sendText: true, buttons: true, edit: false, react: false, file: false }),
+    signal: Object.freeze({ sendText: true, buttons: false, edit: false, react: false, file: false }),
+    whatsapp: Object.freeze({ sendText: true, buttons: false, edit: false, react: false, file: false }),
+  });
+}
+
+/** One case per transport and operation, so every cell of the matrix is walked and none is skipped. */
+export function conformanceCases(): readonly ConformanceCase[] {
+  const matrix = capabilityMatrix();
+  const cases: ConformanceCase[] = [];
+  for (const channel of CHANNEL_NAMES) {
+    for (const operation of CONFORMANCE_OPERATIONS) {
+      const declared = matrix[channel][operation];
+      const rules: readonly ConformanceRule[] = declared ? ['R3', 'R4', 'R5'] : ['R1', 'R2'];
+      cases.push(Object.freeze({ name: `${channel} ${operation} ${rules.join(' ')}`, channel, operation, declared, rules }));
+    }
+  }
+  return Object.freeze(cases);
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 6. FAKE PLATFORM
+// ───────────────────────────────────────────────────────────────────
+
+/** The terminal actor every conformance world pins, so no case reads the host's user name. */
+export const CONFORMANCE_OS_USER = 'ada';
+
+/** Every conversation id reaches the wire unchanged, which is why the WhatsApp one carries no leading plus. */
+export const CONFORMANCE_CONVERSATION: Readonly<Record<ChannelName, string>> = Object.freeze({
+  terminal: terminalConversationId(CONFORMANCE_OS_USER),
+  telegram: '81234567',
+  slack: 'C07CONFORM1',
+  signal: '+15550101',
+  whatsapp: '15550102',
+});
+
+/** Every transport is pointed at a dead loopback port, so a call the fake does not catch fails on the host instead of leaving it. */
+const UNREACHABLE_BASE = 'http://127.0.0.1:9';
+
+/** Every secret name a transport reads, so a declared and an undeclared case run in the same world and R2 tests the declaration rather than a missing secret. */
+export const CONFORMANCE_SECRETS: ReadonlyArray<readonly [string, string]> = Object.freeze([
+  ['telegram', 'test-telegram-token-conformance-1'],
+  ['slack', 'test-slack-app-token-conformance-1'],
+  ['slack-bot', 'test-slack-bot-token-conformance-1'],
+  ['signal', '+15550100'],
+  ['whatsapp', 'test-whatsapp-token-conformance-1'],
+  ['whatsapp-app-secret', 'test-whatsapp-app-secret-conformance-1'],
+  ['whatsapp-verify-token', 'test-whatsapp-verify-conformance-1'],
+  ['whatsapp-phone-number-id', '106540352242922'],
+] as const);
+
+/** The four things a transport reads from its caller, so a case builds one world and every channel shares it. */
+export interface ConformanceWorld {
+  stateRoot: string;
+  identity: string;
+  checkoutRoot: string;
+  env: NodeJS.ProcessEnv;
+}
+
+/** Store every secret a transport reads, so a case that declares a channel and one that does not run in the same world. */
+export function storeConformanceSecrets(world: ConformanceWorld): void {
+  for (const [name, value] of CONFORMANCE_SECRETS) {
+    const stored = setSecret({ stateRoot: world.stateRoot, identity: world.identity, name, value, store: 'file', setBy: null });
+    if (!stored.ok) throw new Error(`${name}: ${stored.reason}`);
+  }
+}
+
+/** One call that carried a message to a chat. */
+export interface WireObservation {
+  operation: ConformanceOperation;
+  channel: ChannelName;
+  conversation: string;
+  idempotencyKey: string | null;
+}
+
+/** One call of any kind, a message or not. */
+export interface WireRequest {
+  channel: ChannelName;
+  url: string;
+  body: string;
+}
+
+/** A fake platform standing where each provider's API stands: it records every wire call and never reaches a network. */
+export interface FakePlatform {
+  readonly channel: ChannelName;
+  readonly observations: WireObservation[];
+  readonly requests: WireRequest[];
+  readonly fetch: typeof globalThis.fetch;
+  readonly output: { write(text: string): boolean };
+  /** What each later getUpdates call answers, one array per call, then an empty list. */
+  readonly telegramUpdates: unknown[][];
+  /** No transport puts the key on the wire, so the fake tags every message call made while one send runs with that send's key. */
+  withKey<T>(key: string, run: () => Promise<T>): Promise<T>;
+}
+
+/** A fake platform for one channel, so a conformance case runs the real transport with no network. */
+export function fakePlatform(channel: ChannelName): FakePlatform {
+  const observations: WireObservation[] = [];
+  const requests: WireRequest[] = [];
+  const telegramUpdates: unknown[][] = [];
+  let activeKey: string | null = null;
+  let sent = 0;
+
+  const json = (status: number, value: unknown): Response =>
+    new Response(JSON.stringify(value), { status, headers: { 'content-type': 'application/json' } });
+
+  const observe = (operation: ConformanceOperation, conversation: string): void => {
+    observations.push({ operation, channel, conversation, idempotencyKey: activeKey });
+  };
+
+  const fetchImpl = (async (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+    const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
+    const body = typeof init?.body === 'string' ? init.body : '';
+    requests.push({ channel, url, body });
+    const path = new URL(url).pathname;
+    const payload = body === '' ? {} : (JSON.parse(body) as Record<string, unknown>);
+    if (channel === 'telegram') {
+      if (path.endsWith('/sendMessage')) {
+        observe(payload.reply_markup !== undefined ? 'buttons' : 'sendText', String(payload.chat_id));
+        sent += 1;
+        return json(200, { ok: true, result: { message_id: 1000 + sent } });
+      }
+      if (path.endsWith('/getUpdates')) return json(200, { ok: true, result: telegramUpdates.shift() ?? [] });
+      if (path.endsWith('/answerCallbackQuery')) return json(200, { ok: true, result: true });
+      return json(404, { ok: false, error_code: 404, description: 'Not Found' });
+    }
+    if (channel === 'slack') {
+      if (path.endsWith('/chat.postMessage')) {
+        observe(payload.blocks !== undefined ? 'buttons' : 'sendText', String(payload.channel));
+        sent += 1;
+        return json(200, { ok: true, channel: payload.channel, ts: `1764104700.${String(sent).padStart(6, '0')}` });
+      }
+      return json(200, { ok: false, error: 'unknown_method' });
+    }
+    if (channel === 'signal') {
+      if (path.endsWith('/api/v1/rpc') && payload.method === 'send') {
+        const params = payload.params as Record<string, unknown>;
+        const conversation = typeof params.groupId === 'string' ? `group:${params.groupId}` : String((params.recipient as unknown[])[0]);
+        observe('sendText', conversation);
+        sent += 1;
+        return json(200, { jsonrpc: '2.0', result: { timestamp: 1764104700000 + sent }, id: payload.id });
+      }
+      return json(404, {});
+    }
+    if (channel === 'whatsapp') {
+      if (path.endsWith('/messages')) {
+        observe('sendText', String(payload.to));
+        sent += 1;
+        return json(200, {
+          messaging_product: 'whatsapp',
+          contacts: [{ input: payload.to, wa_id: payload.to }],
+          messages: [{ id: `wamid.conformance-${sent}` }],
+        });
+      }
+      return json(404, {});
+    }
+    throw new Error('the terminal has no HTTP API');
+  }) as typeof globalThis.fetch;
+
+  return {
+    channel,
+    observations,
+    requests,
+    fetch: fetchImpl,
+    output: {
+      write: (text: string): boolean => {
+        requests.push({ channel, url: 'stdout', body: text });
+        if (channel === 'terminal') observe('sendText', CONFORMANCE_CONVERSATION.terminal);
+        return true;
+      },
+    },
+    telegramUpdates,
+    withKey: async <T>(key: string, run: () => Promise<T>): Promise<T> => {
+      activeKey = key;
+      try {
+        return await run();
+      } finally {
+        activeKey = null;
+      }
+    },
+  };
+}
+
+/** The real Telegram transport over a fake platform, so a case drives the adapter the runtime ships. */
+export function telegramConformanceTransport(world: ConformanceWorld, platform: FakePlatform): TelegramTransport {
+  return createTelegramTransport({
+    stateRoot: world.stateRoot,
+    identity: world.identity,
+    checkoutRoot: world.checkoutRoot,
+    secretName: 'telegram',
+    env: world.env,
+    resolveEnv: world.env,
+    fetch: platform.fetch,
+    apiBase: UNREACHABLE_BASE,
+    sleep: async () => {},
+    log: () => {},
+  });
+}
+
+/** The real transport for one channel over a fake platform, so every case drives the adapter the runtime ships and never a stand-in. */
+export function conformanceTransport(world: ConformanceWorld, channel: ChannelName, platform: FakePlatform): ChannelAdapter {
+  const shared = {
+    stateRoot: world.stateRoot,
+    identity: world.identity,
+    checkoutRoot: world.checkoutRoot,
+    env: world.env,
+    resolveEnv: world.env,
+  };
+  switch (channel) {
+    case 'terminal':
+      return createTerminalTransport({
+        ...shared,
+        osUser: CONFORMANCE_OS_USER,
+        input: Readable.from([]),
+        output: platform.output,
+        listOpen: () => [],
+        knownSecrets: () => ({ ok: true, value: new Map() }),
+        drainRequest: async () => null,
+      });
+    case 'telegram':
+      return telegramConformanceTransport(world, platform);
+    case 'slack':
+      return createSlackTransport({
+        ...shared,
+        secretName: 'slack',
+        fetch: platform.fetch,
+        socket: () => {
+          throw new Error('the conformance suite opens no socket');
+        },
+        apiBase: UNREACHABLE_BASE,
+        sleep: async () => {},
+        log: () => {},
+      });
+    case 'signal':
+      return createSignalTransport({
+        ...shared,
+        secretName: 'signal',
+        fetch: platform.fetch,
+        daemonUrl: UNREACHABLE_BASE,
+        sleep: async () => {},
+        log: () => {},
+      });
+    case 'whatsapp':
+      return createWhatsAppTransport({
+        ...shared,
+        secretName: 'whatsapp',
+        fetch: platform.fetch,
+        graphBase: UNREACHABLE_BASE,
+        listenPort: 0,
+        log: () => {},
+      });
+  }
+}
+
+/** A drain passes the queue entry's own key as the intent key, so wrapping the transport tags each wire call with the key the queue holds. */
+export function keyedAdapter(transport: ChannelAdapter, platform: FakePlatform): ChannelAdapter {
+  return {
+    descriptor: () => transport.descriptor(),
+    declaredCapabilities: () => transport.declaredCapabilities(),
+    start: (sink) => transport.start(sink),
+    stop: () => transport.stop(),
+    status: () => transport.status(),
+    send: (intent) => platform.withKey(intent.idempotencyKey, () => transport.send(intent)),
+  };
+}
+
+/** The intent one case sends, so every case sends the intent its operation names to the conversation its channel owns. */
+export function conformanceIntent(conformance: ConformanceCase): ChannelOutboundIntent {
+  return {
+    kind: OPERATION_INTENT[conformance.operation],
+    idempotencyKey: `conformance-${conformance.channel}-${conformance.operation}`,
+    conversationId: CONFORMANCE_CONVERSATION[conformance.channel],
+    text: 'Conformance check.',
+    itemId: conformance.operation === 'buttons' ? 'ny-conformance-1' : null,
+    choices: conformance.operation === 'buttons' ? ['email', 'chat'] : null,
   };
 }

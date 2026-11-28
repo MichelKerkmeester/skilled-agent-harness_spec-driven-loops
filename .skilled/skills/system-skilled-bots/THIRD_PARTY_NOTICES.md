@@ -246,3 +246,7 @@ Licensed under the Apache License, Version 2.0; see the LICENSE file.
 Third-party software bundled with this distribution is listed in the
 THIRD-PARTY-NOTICES file; each component remains under its own license.
 ```
+
+## 011-messaging-channels
+
+The messaging channels lift no third-party code. The adapter contract, the link and roster, the approval index, the send queue and the five transports (terminal, Telegram, Slack, Signal and WhatsApp) under `runtime/lib/channel*.ts`, and their tests, were written fresh for this runtime from design notes written in its own words. So this section names no source file, no licence and no copyright line.

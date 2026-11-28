@@ -8,10 +8,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof"
-    last_updated_at: "2026-11-26T06:00:00Z"
-    last_updated_by: "wo-09-writer"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-28T18:00:00Z"
+    last_updated_by: "unit-orchestrator-011-007"
+    recent_action: "Built and verified the conformance suite and the documents"
+    next_safe_action: "Merge the unit branch"
     blockers: []
     key_files: []
     session_dedup:
@@ -54,11 +54,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 "` prints `Tests  18 passed`.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
-- [ ] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict --recursive` prints `RESULT: PASSED`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof --strict` prints `RESULT: PASSED`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 "` prints `Tests  18 passed`.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
+- [x] `cd .skilled/skills/system-skilled-bots/runtime && npm run typecheck` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels --strict --recursive` prints `RESULT: PASSED`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,7 +74,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Build | Not started | The child was planned on 2026-11-26 and no code has landed |
+| Build | Built 2026-11-28, recursive strict 8 of 8 PASSED | Conformance file `Tests  29 passed (29)`, `-t "^R2 "` 18 passed, `-t "^hardening "` 3 passed, suite 57 files and 794 tests passed against the 56 and 765 floor, typecheck exit 0, cargo exit 0, four acceptance rows Met |
 
 ### Deviations and findings
 
@@ -83,4 +83,7 @@ and findings belong here.
 | Tasks moved from the pre-expansion list | T006, T041, T043 to T049, T061, T062, T068 and T073. Each new task names its old id. |
 | The fake transport | The work order places it here. Child 003 creates it, because every test from 003 on needs it and this child adds the matrix driver. |
 | The fixture rule, amended on 2026-11-27 | D5 follows `plan.md` and `../002-adapter-and-record-contracts/design/conformance-rules.md` section 2. The fake transport in the row above stays for the queue and verb tests of children 003 and 004. The conformance cases and the hardening cases run over the fake platform. |
+| The press hardening case | REQ-030 and AC-030 say a press from another sender is refused `answer-not-approver`. The frozen 001 catalog section 2 and `resolveLink` refuse it `channel-unlinked` with detail `sender mismatch`, in silence. The case asserts the catalog. Recorded for 014. |
+| Lifted code | None. 011.005 and 011.006 lifted no third-party file, so the notices section says so. |
+| Wave order | The docs tasks ran beside the test chain, split into seven single-file workers, under the operator's max-parallel order. |
 <!-- /ANCHOR:log -->

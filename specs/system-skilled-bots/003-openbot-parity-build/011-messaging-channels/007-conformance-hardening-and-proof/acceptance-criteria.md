@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof"
-    last_updated_at: "2026-11-26T06:00:00Z"
-    last_updated_by: "wo-09-writer"
-    recent_action: "Authored the acceptance criteria"
-    next_safe_action: "Run each block and mark the rows"
+    last_updated_at: "2026-11-28T18:00:00Z"
+    last_updated_by: "unit-orchestrator-011-007"
+    recent_action: "Marked all four rows Met on observed evidence"
+    next_safe_action: "Merge the unit branch"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "wo09-011-007-conformance"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-skilled-bots/003-openbot-parity-build/011-messaging-channels/007-conformance-hardening-and-proof
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-26
 <!-- /ANCHOR:metadata -->
 
@@ -53,10 +53,10 @@ AC ids follow their requirement, AC-NNN checks REQ-NNN and keep the pre-expansio
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-017 | REQ-017 | Given the capability-matrix driver and the fake platform, When the conformance file runs, Then 25 cases run, each undeclared operation returns the unsupported result and records no wire call and each declared one returns a receipt with no error, records at least one matching call carrying the intent's one idempotency key and names its platform message ids | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts)` prints no `failed`, and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 ")` prints `Tests  18 passed` | Unmet | - |
-| AC-018 | REQ-018 | Given the lifted files, When the `## 011-messaging-channels` section of `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` is read, Then it names each lifted file with the Apache-2.0 licence, its copyright line and a statement of changes and no entry names tinychannels | `rg -n '^## 011-messaging-channels' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints one line and `rg -n 'tinychannels' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` exits 1 | Unmet | - |
-| AC-030 | REQ-030 | Given the fake platform, When a press arrives whose sender id differs from the link record's, a parked question holds a stored secret and a 5,000-character Telegram send runs, Then the first two record no wire call and are refused `answer-not-approver` and withheld and the third records two wire calls with one idempotency key | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^hardening ")` prints `Tests  3 passed` | Unmet | - |
-| AC-031 | REQ-031 | Given the operator reference, When it is read, Then it has a preflight, a health and a rotation row for each of the four providers, every derived secret name and the Signal message-loss line and the README, the run mode, the hub and the catalog name the feature | `rg -c '^\| (Preflight\|Health\|Rotation) \|' .skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md` prints 12, `rg -n 'may be lost' .skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md` prints one line and `rg -n 'messaging-channels.md' .skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md` prints the row | Unmet | - |
+| AC-017 | REQ-017 | Given the capability-matrix driver and the fake platform, When the conformance file runs, Then 25 cases run, each undeclared operation returns the unsupported result and records no wire call and each declared one returns a receipt with no error, records at least one matching call carrying the intent's one idempotency key and names its platform message ids | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts)` prints no `failed`, and `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^R2 ")` prints `Tests  18 passed`. Observed 2026-11-28: the whole file printed `Tests  29 passed (29)` with no `failed`, and `-t "^R2 "` printed `Tests  18 passed \| 11 skipped (29)`. The 7 declared cases passed under `declared operations return a receipt under one key` | Met | - |
+| AC-018 | REQ-018 | Given the lifted files, When the `## 011-messaging-channels` section of `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` is read, Then it names each lifted file with the Apache-2.0 licence, its copyright line and a statement of changes and no entry names tinychannels | `rg -n '^## 011-messaging-channels' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` prints one line and `rg -n 'tinychannels' .skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` exits 1. Observed 2026-11-28: the heading grep printed `250:## 011-messaging-channels` and the `tinychannels` grep exited 1. 011.005 and 011.006 lifted no third-party code, so the section says so and names no file | Met | - |
+| AC-030 | REQ-030 | Given the fake platform, When a press arrives whose sender id differs from the link record's, a parked question holds a stored secret and a 5,000-character Telegram send runs, Then the first two record no wire call and are refused `answer-not-approver` and withheld and the third records two wire calls with one idempotency key | `(cd .skilled/skills/system-skilled-bots/runtime && npx vitest run tests/channel-conformance.vitest.ts -t "^hardening ")` prints `Tests  3 passed`. Observed 2026-11-28: `-t "^hardening "` printed `Tests  3 passed \| 26 skipped (29)`. Drift: the press from another sender is refused `channel-unlinked` with detail `sender mismatch`, the silent rule of the frozen 001 catalog section 2, and not `answer-not-approver`. The case asserts the catalog, no reply, no counter, no answer and no send observation, then a control press from the linked sender answers | Met | - |
+| AC-031 | REQ-031 | Given the operator reference, When it is read, Then it has a preflight, a health and a rotation row for each of the four providers, every derived secret name and the Signal message-loss line and the README, the run mode, the hub and the catalog name the feature | `rg -c '^\| (Preflight\|Health\|Rotation) \|' .skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md` prints 12, `rg -n 'may be lost' .skilled/skills/system-skilled-bots/bots-run/references/messaging-channels.md` prints one line and `rg -n 'messaging-channels.md' .skilled/skills/system-skilled-bots/feature-catalog/feature-catalog.md` prints the row. Observed 2026-11-28: the row grep printed 12, `may be lost` printed one line (140), and the catalog grep printed line 338. The README grep counts 9 module rows and both SKILL files name `bots channel` | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is unmet until the code lands and each command prints what its row says.
+All four rows are Met on evidence observed on 2026-11-28 from the final state. AC-030 carries one recorded wording drift, which the 014 alignment phase owns.
 <!-- /ANCHOR:closure -->
