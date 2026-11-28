@@ -63,8 +63,8 @@ describe('target resolution', () => {
     const delivery = { mode: 'targets' as const, targets: ['desktop:team'], onFailure: ['desktop:oncall', 'desktop:oncall'] };
     expect(resolveDeliveryEntries(delivery, failed)).toEqual([{ channel: 'desktop', target: 'desktop:oncall', state: 'queued', evidence: null }]);
     expect(resolveDeliveryEntries(delivery, completed)).toEqual([{ channel: 'desktop', target: 'desktop:team', state: 'queued', evidence: null }]);
-    expect(resolveDeliveryEntries({ mode: 'targets', targets: ['slack:ops'], onFailure: null }, completed)).toEqual([
-      { channel: 'slack', target: 'slack:ops', state: 'not-attempted', evidence: 'channel-unsupported' },
+    expect(resolveDeliveryEntries({ mode: 'targets', targets: ['email:ops'], onFailure: null }, completed)).toEqual([
+      { channel: 'email', target: 'email:ops', state: 'not-attempted', evidence: 'channel-unsupported' },
     ]);
   });
 });

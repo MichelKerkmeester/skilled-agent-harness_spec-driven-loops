@@ -74,6 +74,14 @@ const USAGE = [
   '  channel roster list',
   '                 the only way to write operators.json, who may answer from a chat;',
   '                 --role defaults to member and an owner add replaces the owner',
+  '  channel list [--json]',
+  '                 each configured channel with its linked chats and queued sends,',
+  '                 then one notApprover line per actor a chat refused; --json prints one document',
+  '  channel send <channel> <conversation> <text>',
+  '                 queue one test message to a linked chat and send it now',
+  '  channel drain',
+  '                 send every due queued message once; exits 1 when one failed or may',
+  '                 have landed, and never resends a message that may have landed',
   '  secret set <name> [--store keychain|file]',
   '                 store one secret in the vault, read from a prompt with echo off,',
   '                 or one piped line, and never from an argument; --store picks',
@@ -139,7 +147,7 @@ const VERB_SPECS = {
   drain: { ids: 0, options: ['scheduled'] },
   answer: { ids: 2, options: ['as', 'scope'] },
   remember: { ids: 1, options: REMEMBER_OPTIONS },
-  channel: { ids: 0, options: ['role', 'secret', 'as'] },
+  channel: { ids: 0, options: ['role', 'secret', 'as', 'json'] },
   secret: { ids: 0, options: ['store'] },
   schedule: { ids: 2, options: ['full-access'] },
   status: { ids: 0, options: STATUS_OPTIONS },
@@ -265,7 +273,8 @@ function checkEnqueue(options, ids) {
 // the id count every other verb uses.
 function parseChannel(verb, ids, options) {
   const [sub, ...rest] = ids;
-  if (!sub) return { error: 'channel needs link, unlink or roster' };
+  if (!sub) return { error: 'channel needs link, unlink, roster, list, send or drain' };
+  if (options.json !== undefined && sub !== 'list') return { error: `channel ${sub} takes no --json` };
   if (sub === 'link' || sub === 'unlink') {
     if (rest.length === 0) return { error: `channel ${sub} needs a channel: ${CHANNEL_NAMES.join(', ')}` };
     if (rest.length > 1) return { error: `unexpected argument: ${rest[1]}` };
@@ -292,6 +301,27 @@ function parseChannel(verb, ids, options) {
     if (!ACTOR_PATTERN.test(name)) return { error: 'channel roster takes a name' };
     if (options.role !== undefined && !ROSTER_ROLES.includes(options.role)) return { error: '--role takes owner or member' };
     return { verb, id: undefined, args: ['roster', action, name], options };
+  }
+  if (sub === 'list') {
+    if (rest.length > 0) return { error: `unexpected argument: ${rest[0]}` };
+    const given = ['role', 'secret', 'as'].find((name) => options[name] !== undefined);
+    if (given) return { error: `channel list takes no --${given}` };
+    return { verb, id: undefined, args: ['list'], options };
+  }
+  if (sub === 'send') {
+    const given = ['role', 'secret', 'as'].find((name) => options[name] !== undefined);
+    if (given) return { error: `channel send takes no --${given}` };
+    if (rest.length < 3 || rest[1].trim() === '') return { error: 'channel send needs a channel, a conversation and the text' };
+    if (rest.length > 3) return { error: `unexpected argument: ${rest[3]}` };
+    if (!CHANNEL_NAMES.includes(rest[0])) return { error: `channel send takes ${CHANNEL_NAMES.join(', ')}` };
+    if (rest[2].trim() === '') return { error: 'channel send needs the text' };
+    return { verb, id: undefined, args: ['send', rest[0], rest[1].trim(), rest[2]], options };
+  }
+  if (sub === 'drain') {
+    if (rest.length > 0) return { error: `unexpected argument: ${rest[0]}` };
+    const given = ['role', 'secret', 'as'].find((name) => options[name] !== undefined);
+    if (given) return { error: `channel drain takes no --${given}` };
+    return { verb, id: undefined, args: ['drain'], options };
   }
   return { error: `unknown channel verb: ${sub}` };
 }
@@ -391,7 +421,7 @@ function runtimeModule(name) {
   return import(pathToFileURL(path.join(RUNTIME, 'lib', `${name}.ts`)).href);
 }
 
-async function loadRuntime() {
+async function loadRuntimeOnce() {
   // A global loader, not a namespaced import: the runtime requires the deep-loop
   // CommonJS scripts, which a namespaced loader cannot resolve.
   const { register } = require(require.resolve('tsx/esm/api', { paths: [RUNTIME] }));
@@ -414,6 +444,13 @@ async function loadRuntime() {
     load('secrets'),
   ]);
   return { runner, switches, needsYou, queue, drain, answer, installer, memory, actor, dispatch, repoConfig, stateRoot, identity, secrets };
+}
+
+// One process registers the TypeScript loader once, however many verbs it runs.
+let runtimeLoad = null;
+function loadRuntime() {
+  if (runtimeLoad === null) runtimeLoad = loadRuntimeOnce();
+  return runtimeLoad;
 }
 
 // The payload contract the screen binary must speak. It is read from the runtime
@@ -679,52 +716,187 @@ async function rememberVerb(rt, parsed, checkoutRoot, resolveEnv) {
   }
 }
 
+// The transport table the channel verbs send through, keyed by channel name. Each transport adds its
+// own entry here, and until one does, a queued message for its channel stays queued.
+const CHANNEL_TRANSPORTS = Object.freeze({});
+
 // The channel verbs write the roster, the channel config and the link record under the drain job's
 // environment, the same place the answer path reads the roster from, so the two never disagree.
-async function channelVerb(rt, parsed, checkoutRoot, resolveEnv) {
+async function channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, io) {
   const context = rt.queue.queueContext(checkoutRoot, resolveEnv);
   if (!context.ok) {
-    process.stderr.write(`${describeRefusal(context)}\n`);
+    io.stderr.write(`${describeRefusal(context)}\n`);
     return rt.runner.EXIT_CODES.refused;
   }
   const { identity, stateRoot } = context.value;
-  const [channel, link] = await Promise.all([runtimeModule('channel'), runtimeModule('channel-link')]);
+  const [channel, link, queue, approval] = await Promise.all([runtimeModule('channel'), runtimeModule('channel-link'), runtimeModule('channel-queue'), runtimeModule('channel-approval')]);
   const [sub, first, second] = parsed.args;
+  const refused = rt.runner.EXIT_CODES.refused;
   let result;
+  if (sub === 'list') {
+    const config = channel.readChannelConfig(stateRoot, identity);
+    if (!config.ok) {
+      io.stderr.write(`${describeRefusal(config)}\n`);
+      return refused;
+    }
+    const links = link.readLinks(stateRoot, identity);
+    if (!links.ok) {
+      io.stderr.write(`${describeRefusal(links)}\n`);
+      return refused;
+    }
+    const index = approval.readApprovalIndex(stateRoot, identity);
+    if (!index.ok) {
+      io.stderr.write(`${describeRefusal(index)}\n`);
+      return refused;
+    }
+    const entries = queue.listQueueEntries(stateRoot, identity);
+    const rows = Object.keys(config.value.channels).sort().map((name) => {
+      const entry = config.value.channels[name];
+      const linkedChats = Object.values(links.value.links).filter((record) => record.channel === name).length;
+      const queueDepth = entries.filter((queued) => queued.channel === name && (queued.state === 'queued' || queued.state === 'sending')).length;
+      return { name, enabled: entry.enabled, secret: entry.secret, linkedChats, queueDepth };
+    });
+    if (parsed.options.json === true) {
+      io.stdout.write(`${JSON.stringify({ version: 1, channels: rows })}\n`);
+      return 0;
+    }
+    if (rows.length === 0) io.stderr.write('bots: no channel configured\n');
+    for (const row of rows) {
+      io.stdout.write(`${row.name} ${row.enabled ? 'enabled' : 'disabled'} secret ${row.secret} linked ${row.linkedChats} queued ${row.queueDepth}\n`);
+    }
+    const notApprover = index.value.index.notApprover;
+    for (const actor of Object.keys(notApprover).sort()) {
+      const { failures } = notApprover[actor];
+      if (failures > 0) io.stdout.write(`notApprover ${actor} ${failures}\n`);
+    }
+    return 0;
+  }
+  if (sub === 'drain') {
+    const report = await queue.drainQueue({ stateRoot, identity, transports, hooks: drainHooks(approval, stateRoot, identity) });
+    for (const line of report.lines) {
+      const note = line.note === null ? '' : ` (${line.note})`;
+      io.stdout.write(`bots: channel ${line.channel}: ${line.key} ${line.state}${note}\n`);
+    }
+    for (const entry of report.unknown) io.stderr.write(`${queue.m21Line(entry)}\n`);
+    if (report.refusal !== null) {
+      io.stderr.write(`bots: ${report.refusal.reason}: ${report.refusal.detail}\n`);
+      return refused;
+    }
+    // An entry that merely stays queued changes no exit code.
+    return report.failed > 0 || report.unknown.length > 0 ? 1 : 0;
+  }
+  if (sub === 'send') {
+    const [name, conversation, text] = parsed.args.slice(1);
+    const links = link.readLinks(stateRoot, identity);
+    if (!links.ok) {
+      io.stderr.write(`${describeRefusal(links)}\n`);
+      return refused;
+    }
+    if (links.value.links[link.linkKey(name, conversation)] === undefined) {
+      io.stderr.write(`bots: channel-unlinked: ${name}:${conversation}\n`);
+      return refused;
+    }
+    const known = rt.dispatch.collectAllKnownSecrets(io.env, checkoutRoot, stateRoot, identity);
+    if (!known.ok) {
+      io.stderr.write(`${describeRefusal(known)}\n`);
+      return refused;
+    }
+    const hit = rt.dispatch.findSecretLiteral(text, known.value);
+    if (hit !== null) {
+      io.stderr.write(`bots: channel-send-secret: the text holds a literal of ${hit.kind} ${hit.name}\n`);
+      return refused;
+    }
+    const now = new Date();
+    const key = queue.sendKey(name, conversation, text, now);
+    const queued = queue.enqueueChannel({ stateRoot, identity, key, channel: name, conversationId: conversation, text, now });
+    if (!queued.ok) {
+      io.stderr.write(`${describeRefusal(queued)}\n`);
+      return refused;
+    }
+    const report = await queue.drainQueue({ stateRoot, identity, transports, only: key, now, hooks: drainHooks(approval, stateRoot, identity) });
+    for (const entry of report.unknown) io.stderr.write(`${queue.m21Line(entry)}\n`);
+    if (report.refusal !== null) {
+      io.stderr.write(`bots: ${report.refusal.reason}: ${report.refusal.detail}\n`);
+      return refused;
+    }
+    const final = queue.readQueueEntry(stateRoot, identity, key);
+    const state = final.ok ? final.value.state : 'unknown';
+    io.stdout.write(`bots: channel ${name}: ${key} ${state}\n`);
+    // A second send inside one minute is the same key, so it enqueues nothing and sends nothing again.
+    return state === 'delivered' ? 0 : 1;
+  }
   if (sub === 'link') {
     const actor = rt.actor.resolveActor({
       as: parsed.options.as === undefined ? null : parsed.options.as.trim(),
-      env: process.env,
+      env: io.env,
       scheduled: false,
     });
     if (!actor.ok) {
-      process.stderr.write(`${describeRefusal(actor)}\n`);
+      io.stderr.write(`${describeRefusal(actor)}\n`);
       return 2;
     }
     result = link.startLink({ stateRoot, identity, channel: first, actor: actor.value, secret: parsed.options.secret ?? null });
-    if (result.ok) process.stdout.write(`${channel.REPLIES.M09({ channel: first, code: result.value.code })}\n`);
+    if (result.ok) io.stdout.write(`${channel.REPLIES.M09({ channel: first, code: result.value.code })}\n`);
   } else if (sub === 'unlink') {
     result = link.unlinkChannel(stateRoot, identity, first);
   } else if (first === 'list') {
     const roster = link.readRoster(stateRoot, identity);
     if (roster === null) {
-      process.stderr.write('bots: no roster\n');
+      io.stderr.write('bots: no roster\n');
       return 0;
     }
-    process.stdout.write(`owner ${roster.owner}\n`);
-    for (const member of roster.members) process.stdout.write(`member ${member}\n`);
+    io.stdout.write(`owner ${roster.owner}\n`);
+    for (const member of roster.members) io.stdout.write(`member ${member}\n`);
     return 0;
   } else if (first === 'add') {
     result = link.rosterAdd(stateRoot, identity, second, parsed.options.role ?? 'member');
   } else {
     result = link.rosterRemove(stateRoot, identity, second);
-    if (result.ok && !result.value.removed) process.stderr.write(`bots: ${second} is not on the roster\n`);
+    if (result.ok && !result.value.removed) io.stderr.write(`bots: ${second} is not on the roster\n`);
   }
   if (!result.ok) {
-    process.stderr.write(`${describeRefusal(result)}\n`);
+    io.stderr.write(`${describeRefusal(result)}\n`);
     return rt.runner.EXIT_CODES.refused;
   }
   return 0;
+}
+
+// The drain writes a prompt's approval index entry before it goes sending and removes it when the send fails, because the queue module may not import the approval module.
+function drainHooks(approval, stateRoot, identity) {
+  return {
+    beforeSend: (entry) => {
+      const written = approval.writePromptEntry({ stateRoot, identity, itemId: entry.itemId, channel: entry.channel, conversation: entry.conversationId });
+      return written.ok ? { ok: true, value: { choices: written.value.choices } } : written;
+    },
+    afterFailed: (entry) => { approval.removePromptEntry(stateRoot, identity, entry.itemId); },
+  };
+}
+
+// The body of every channel verb. It takes the transport table and writes only to the streams it is
+// given, so this file passes the real table and a test passes a fake one without spawning the CLI.
+async function runChannelVerb(argv, transports, io = {}) {
+  const env = io.env ?? process.env;
+  const stdout = io.stdout ?? process.stdout;
+  const stderr = io.stderr ?? process.stderr;
+  const parsed = parseArgs(argv);
+  if (parsed.help) { stdout.write(`${USAGE}\n`); return 0; }
+  const problem = parsed.error ?? (parsed.verb === 'channel' ? null : 'runChannelVerb takes the channel verb');
+  if (problem) { stderr.write(`bots: ${problem}\n`); stderr.write(`${USAGE}\n`); return 2; }
+  // A bot child that linked a chat or wrote the roster could answer its own questions, so the
+  // channel group writes nothing inside a bot run. Listing the roster is a read and stays open.
+  const read = (parsed.args[0] === 'roster' && parsed.args[1] === 'list') || parsed.args[0] === 'list';
+  if (!read && isBotChild(env)) { stderr.write('bots: child-write-refused: channel runs no write inside a bot run\n'); return 2; }
+  const actorProblem = checkActorOptions(parsed);
+  if (actorProblem) { stderr.write(`bots: ${actorProblem.message}\n`); stderr.write(`${USAGE}\n`); return 2; }
+  const rt = await loadRuntime();
+  const checkoutRoot = checkoutRootFrom(parsed.options.repo);
+  const resolveEnv = rt.installer.jobEnv({ checkoutRoot, botId: rt.installer.DRAIN_ID, env });
+  try {
+    return await channelVerb(rt, parsed, checkoutRoot, resolveEnv, transports, { env, stdout, stderr });
+  } catch (error) {
+    stderr.write(`bots: ${error instanceof Error ? error.message : String(error)}\n`);
+    return 1;
+  }
 }
 
 // The secret verbs read and write the vault under the drain job's environment, the same state root
@@ -1190,6 +1362,7 @@ async function main(argv) {
   // The screen starts a separate binary and reads no bot state, so it runs before
   // the child refusals and before the runtime loads.
   if (parsed.verb === 'ui') return uiVerb(parsed);
+  if (parsed.verb === 'channel') return runChannelVerb(argv, CHANNEL_TRANSPORTS);
   if (parsed.verb === 'remember') {
     const problem = checkRemember(parsed);
     if (problem) return usageExit(problem);
@@ -1207,13 +1380,6 @@ async function main(argv) {
     process.stderr.write('bots: child-write-refused\n');
     return 2;
   }
-  // A bot child that linked a chat or wrote the roster could answer its own questions, so the
-  // channel group writes nothing inside a bot run. Listing the roster is a read and stays open.
-  const channelRead = parsed.verb === 'channel' && parsed.args[0] === 'roster' && parsed.args[1] === 'list';
-  if (parsed.verb === 'channel' && !channelRead && isBotChild(process.env)) {
-    process.stderr.write('bots: child-write-refused: channel runs no write inside a bot run\n');
-    return 2;
-  }
   // A bot child that set a secret could replace the value another bot is given, so the secret group
   // writes nothing inside a bot run. Listing is a read and stays open.
   if (parsed.verb === 'secret' && parsed.args[0] !== 'list' && isBotChild(process.env)) {
@@ -1223,7 +1389,7 @@ async function main(argv) {
   if (parsed.verb === 'run' && parsed.options['schedule-index'] !== undefined && process.env[SCHEDULED_FIRE_ENV] !== '1') {
     return usageExit('--schedule-index is passed only by the installed schedule; run the bot without it');
   }
-  if (parsed.verb === 'answer' || parsed.verb === 'run' || parsed.verb === 'remember' || parsed.verb === 'channel') {
+  if (parsed.verb === 'answer' || parsed.verb === 'run' || parsed.verb === 'remember') {
     const actorProblem = checkActorOptions(parsed);
     if (actorProblem) return usageExit(actorProblem.message);
   }
@@ -1251,7 +1417,6 @@ async function main(argv) {
   if (parsed.verb === 'drain') return drainVerb(rt, checkoutRoot, skilledTree, parsed.options.scheduled === true, resolveEnv);
   if (parsed.verb === 'answer') return answerVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'remember') return rememberVerb(rt, parsed, checkoutRoot, resolveEnv);
-  if (parsed.verb === 'channel') return channelVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'secret') return secretVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'status') return statusVerb(rt, parsed, checkoutRoot, resolveEnv);
   if (parsed.verb === 'activity') return activityVerb(rt, parsed, checkoutRoot, resolveEnv);
@@ -1442,4 +1607,4 @@ if (require.main === module) {
   );
 }
 
-module.exports = { parseArgs, USAGE };
+module.exports = { parseArgs, USAGE, runChannelVerb, CHANNEL_TRANSPORTS };

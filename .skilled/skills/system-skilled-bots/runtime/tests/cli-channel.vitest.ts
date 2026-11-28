@@ -1,17 +1,39 @@
 // bots channel link, unlink and roster: the pairing code, the link record and the operators.json roster.
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { userInfo } from 'node:os';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { readChannelConfig } from '../lib/channel.js';
-import { pairChat, readLinks, resolveLink } from '../lib/channel-link.js';
+import { readChannelConfig, writeChannelConfig } from '../lib/channel.js';
+import { countNotApprover } from '../lib/channel-approval.js';
+import { pairChat, readLinks, resolveLink, rosterAdd, startLink } from '../lib/channel-link.js';
+import { enqueueChannel, listQueueEntries, readQueueEntry, sendKey } from '../lib/channel-queue.js';
 import { identityStatePaths, operatorsFile } from '../lib/state-root.js';
-import { runBots, temporaryStateRoot } from './channel-support.js';
+import { CHANNEL_BOTS_CLI, fakeTransport, runBots, temporaryStateRoot } from './channel-support.js';
 import { cleanupTemp } from './support.js';
 
 import type { TemporaryStateRoot } from './channel-support.js';
+
+/**
+ * The channel verb body, loaded once from the CLI.
+ *
+ * A spawned CLI cannot be handed a fake transport, so the list, send and drain
+ * tests call this in process with a scripted transport table and two streams
+ * that collect what the verb printed.
+ */
+const { runChannelVerb } = createRequire(import.meta.url)(CHANNEL_BOTS_CLI) as {
+  runChannelVerb: (
+    argv: string[],
+    transports: Record<string, unknown>,
+    io: {
+      env: NodeJS.ProcessEnv;
+      stdout: { write(text: string): void };
+      stderr: { write(text: string): void };
+    },
+  ) => Promise<number>;
+};
 
 afterEach(cleanupTemp);
 
@@ -277,5 +299,227 @@ describe('bots channel roster', () => {
     expect(refused.status).toBe(4);
     expect(refused.stderr.startsWith('bots: channel-roster-missing')).toBe(true);
     expect(existsSync(rosterPath(world))).toBe(false);
+  }, 120_000);
+});
+
+// ───────────────────────────────────────────────────────────────────
+// IN-PROCESS CHANNEL VERBS
+// ───────────────────────────────────────────────────────────────────
+
+/** What one in-process channel verb exited with and printed. */
+interface VerbRun {
+  code: number;
+  stdout: string;
+  stderr: string;
+}
+
+/**
+ * Run one channel verb in this process against a world's checkout and state
+ * root.
+ *
+ * The verb writes only to the two strings this collects, so a test reads what
+ * an operator would see without spawning a process.
+ */
+async function verb(world: TemporaryStateRoot, args: string[], transports: Record<string, unknown> = {}): Promise<VerbRun> {
+  let stdout = '';
+  let stderr = '';
+  const code = await runChannelVerb(['channel', ...args, '--repo', world.checkoutRoot], transports, {
+    env: world.env,
+    stdout: { write: (text: string): void => { stdout += text; } },
+    stderr: { write: (text: string): void => { stderr += text; } },
+  });
+  return { code, stdout, stderr };
+}
+
+/**
+ * Link one chat to the operator's own name.
+ *
+ * The roster add is ignored when it writes nothing, because a world that
+ * linked before already names this owner.
+ */
+function linkChat(world: TemporaryStateRoot, chatId: string): void {
+  const me = userInfo().username;
+  rosterAdd(world.stateRoot, world.identity, me, 'owner');
+  const started = startLink({ stateRoot: world.stateRoot, identity: world.identity, channel: 'telegram', actor: me, secret: null });
+  if (!started.ok) throw new Error(started.reason);
+  const paired = pairChat({
+    stateRoot: world.stateRoot,
+    identity: world.identity,
+    channel: 'telegram',
+    chatId,
+    senderId: chatId,
+    text: started.value.code,
+  });
+  if (!paired.ok) throw new Error(paired.reason);
+  if (paired.value.kind !== 'linked') throw new Error(`the chat did not link: ${paired.value.kind}`);
+}
+
+describe('bots channel list', () => {
+  it('lists both channels', async () => {
+    const world = temporaryStateRoot();
+    linkChat(world, '81234567');
+    // The link writes the telegram entry, so the config is written last.
+    writeChannelConfig(world.stateRoot, world.identity, {
+      schemaVersion: 1,
+      channels: {
+        telegram: { secret: 'telegram', enabled: true },
+        slack: { secret: 'slack-app-token', enabled: false },
+      },
+    });
+    const queued = enqueueChannel({
+      stateRoot: world.stateRoot,
+      identity: world.identity,
+      key: sendKey('telegram', '81234567', 'hello', new Date()),
+      channel: 'telegram',
+      conversationId: '81234567',
+      text: 'hello',
+    });
+    if (!queued.ok) throw new Error(queued.reason);
+    countNotApprover(world.stateRoot, world.identity, 'mallory');
+    countNotApprover(world.stateRoot, world.identity, 'mallory');
+
+    const json = await verb(world, ['list', '--json']);
+    expect(json.code).toBe(0);
+    expect(JSON.parse(json.stdout)).toEqual({
+      version: 1,
+      channels: [
+        { name: 'slack', enabled: false, secret: 'slack-app-token', linkedChats: 0, queueDepth: 0 },
+        { name: 'telegram', enabled: true, secret: 'telegram', linkedChats: 1, queueDepth: 1 },
+      ],
+    });
+    expect(json.stdout).not.toContain('notApprover');
+    expect(json.stdout.trimEnd().split('\n')).toHaveLength(1);
+
+    const text = await verb(world, ['list']);
+    expect(text.code).toBe(0);
+    const lines = text.stdout.split('\n');
+    expect(lines).toContain('slack disabled secret slack-app-token linked 0 queued 0');
+    expect(lines).toContain('telegram enabled secret telegram linked 1 queued 1');
+    expect(lines).toContain('notApprover mallory 2');
+  }, 120_000);
+});
+
+describe('bots channel send', () => {
+  it('sends one entry twice within a minute', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    try {
+      vi.setSystemTime(new Date('2026-11-28T10:00:05.000Z'));
+      const world = temporaryStateRoot();
+      linkChat(world, '81234567');
+      const fake = fakeTransport();
+
+      const first = await verb(world, ['send', 'telegram', '81234567', 'hello'], { telegram: fake });
+      expect(first.code).toBe(0);
+      expect(first.stdout).toMatch(/^bots: channel telegram: send-[0-9a-f]{32} delivered\n$/);
+
+      const second = await verb(world, ['send', 'telegram', '81234567', 'hello'], { telegram: fake });
+      expect(second.code).toBe(0);
+      expect(second.stdout).toMatch(/^bots: channel telegram: send-[0-9a-f]{32} delivered\n$/);
+
+      const sends = fake.calls.filter((call) => call.op === 'send');
+      expect(sends).toHaveLength(1);
+      expect(sends[0].intent?.kind).toBe('text');
+      expect(sends[0].intent?.text).toBe('hello');
+
+      const entries = listQueueEntries(world.stateRoot, world.identity);
+      expect(entries).toHaveLength(1);
+      expect(entries[0].state).toBe('delivered');
+
+      const unlinked = await verb(world, ['send', 'telegram', '99999999', 'hello'], { telegram: fake });
+      expect(unlinked.code).toBe(4);
+      expect(unlinked.stderr).toContain('channel-unlinked');
+    } finally {
+      vi.useRealTimers();
+    }
+  }, 120_000);
+});
+
+describe('bots channel drain', () => {
+  it('exits 1 when a due entry failed', async () => {
+    const world = temporaryStateRoot();
+    const signalKey = sendKey('signal', '+15550001', 'hello', new Date());
+    const signalQueued = enqueueChannel({
+      stateRoot: world.stateRoot,
+      identity: world.identity,
+      key: signalKey,
+      channel: 'signal',
+      conversationId: '+15550001',
+      text: 'hello',
+    });
+    if (!signalQueued.ok) throw new Error(signalQueued.reason);
+
+    // No transport for signal, so the entry stays queued and changes no exit code.
+    const noTransport = await verb(world, ['drain'], {});
+    expect(noTransport.code).toBe(0);
+    const stillQueued = readQueueEntry(world.stateRoot, world.identity, signalKey);
+    if (!stillQueued.ok) throw new Error(stillQueued.reason);
+    expect(stillQueued.value.state).toBe('queued');
+
+    const telegramKey = sendKey('telegram', '81234567', 'bye', new Date());
+    const telegramQueued = enqueueChannel({
+      stateRoot: world.stateRoot,
+      identity: world.identity,
+      key: telegramKey,
+      channel: 'telegram',
+      conversationId: '81234567',
+      text: 'bye',
+    });
+    if (!telegramQueued.ok) throw new Error(telegramQueued.reason);
+
+    const fake = fakeTransport({
+      sends: [{
+        ok: false,
+        error: {
+          kind: 'bad-request',
+          message: 'Bad Request: chat not found',
+          unsupported: false,
+          retryable: false,
+          sentBeforeError: false,
+        },
+      }],
+    });
+
+    const failed = await verb(world, ['drain'], { telegram: fake });
+    expect(failed.code).toBe(1);
+    expect(failed.stdout).toContain(`bots: channel telegram: ${telegramKey} failed`);
+    const read = readQueueEntry(world.stateRoot, world.identity, telegramKey);
+    if (!read.ok) throw new Error(read.reason);
+    expect(read.value.state).toBe('failed');
+  }, 120_000);
+
+  it('exits 4 when the drain is refused', async () => {
+    const world = temporaryStateRoot();
+    const key = sendKey('signal', '+15550001', 'hello', new Date());
+    const queued = enqueueChannel({
+      stateRoot: world.stateRoot,
+      identity: world.identity,
+      key,
+      channel: 'signal',
+      conversationId: '+15550001',
+      text: 'hello',
+    });
+    if (!queued.ok) throw new Error(queued.reason);
+
+    const fake = fakeTransport({
+      name: 'signal',
+      sends: [{
+        ok: false,
+        error: {
+          kind: 'channel-daemon-unreachable',
+          message: 'signal-cli daemon not reachable',
+          unsupported: false,
+          retryable: false,
+          sentBeforeError: false,
+        },
+      }],
+    });
+
+    const refused = await verb(world, ['drain'], { signal: fake });
+    expect(refused.code).toBe(4);
+    expect(refused.stderr).toContain('bots: channel-daemon-unreachable: signal-cli daemon not reachable');
+    const read = readQueueEntry(world.stateRoot, world.identity, key);
+    if (!read.ok) throw new Error(read.reason);
+    expect(read.value.state).toBe('queued');
+    expect(read.value.attempts).toBe(0);
   }, 120_000);
 });

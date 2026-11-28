@@ -223,7 +223,7 @@ export async function drainQueue(input: DrainInput): Promise<Result<DrainReport>
         // The runner writes the request join in the run's one record, so the drain never rewrites it.
         request: request.kind === 'resume'
           ? { kind: 'resume', requestId: request.id, itemId: request.idempotencyKey }
-          : { kind: 'queued', requestId: request.id, source: request.source, firedSlot: request.firedSlot, prompt: request.prompt },
+          : { kind: 'queued', requestId: request.id, source: request.source, firedSlot: request.firedSlot, prompt: request.prompt, delivery: request.delivery },
         ...input.runOptions,
       });
     } catch {
