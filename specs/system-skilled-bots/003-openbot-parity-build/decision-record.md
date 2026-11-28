@@ -56,6 +56,10 @@ _memory:
 | Q022 | Phase 013 executes all 58 bots scenarios, BOT-001 to BOT-025 as a regression check on the rewritten runtime, plus DLR-002, DLR-023 and DLR-064, the system-deep-loop scenarios that cover `executor-audit.ts`. | Phases 001 to 011 rewrote the runtime the first 25 scenarios drive and 007 and 008 changed `executor-audit.ts`. The goal's playbook criterion checks only the package format. | 013's execution of the 33 new scenarios alone | 013-manual-testing-scenarios REQ-005, REQ-014, AC-005, AC-014, AC-015 and goal D8 |
 | Q023 | The Rust crate moves from the repository root to `.skilled/crates/bots-tui/`, under `.skilled` and outside the skill. | The operator asked to keep it in the skill if possible, or else under `.skilled`. It cannot sit in the skill, because `parent-skill-check.cjs` lines 118 to 122 allow no `crates` folder at a hub root and the skill walkers would crawl its build output. | 003-terminal-screen goal D1 as first written, which put the crate at the repository root | 003-terminal-screen goal D1, 003-terminal-screen/002-architecture-and-contracts REQ-001 |
 | Q024 | Phase 012 gains a README task, a requirement and an acceptance row. `.skilled/crates/`, `.skilled/crates/bots-tui/`, each new folder 012's move map lands and each folder the build created get a `README.md` authored through `/create:readme` that says what belongs in the folder and what does not. | The operator asked on 2026-11-28 for every unique folder to explain what is supposed to be in it. The task runs after the move tasks and before the final gate rerun, because the move map creates folders that do not exist until the moves land. | None | 012-folder-architecture REQ-012, T010, AC-012, CHK-043 and goal criterion 7 |
+| Q025 | Strategy A, the backlog review of the merged work, starts now and runs one review at a time. Each slice goes to one Fable 5.2 medium `review` agent that reads a detached review worktree pinned at `d0b90c9b6a9`. Strategy B, one Fable 5.2 medium review of a multi-child phase once its last child merges, joins the same one-at-a-time queue. Findings land in the gitignored store `.skilled/skills/.state/openbot-build/review/`. A suggestion carries no severity and never counts toward 015's gate. | The operator chose on 2026-11-28 to start the interim review now but one review at a time, not the three at once the review strategy proposed. | None | The top orchestrator's review queue and the store under `.skilled/skills/.state/openbot-build/review/` |
+| Q026 | A confirmed P0 from an interim review, re-run by the top orchestrator, holds 013 until a follow-up fix unit of the owning phase merges. A P1 or lower never holds anything, and an inferred P0 holds nothing. This hold is a gate beside goal.md D2, approved by the operator. | The operator chose on 2026-11-28 to hold 013 until a confirmed P0 is fixed. 013 records one run of all 58 scenarios, and a run on a runtime with a known P0 files failures that 015 must then seed, fix and re-run. 012 changes no behavior, so holding 012 would buy nothing. | None | The top orchestrator's entry check before 013 opens. goal.md D2 keeps its wording |
+| Q027 | 015's documents are not amended for intake. When 015 opens, the top orchestrator's task message tells T009 to read `findings.jsonl` and add every verified, unfixed row that no lineage already reported to `openFindings` as `active` at its severity, with `source` `review`. The rule adds findings and removes none. | The operator chose on 2026-11-28 the bridge at triage over a fourth seeded source, so 015's seeded intake stays at its three inputs and the closing gate can only get stricter. | None | The task message that opens 015. No 015 document changes |
+| Q028 | 015 reviews and may fix `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` and `.github/workflows/bots-runtime.yml`. Both are lines in `review/fanout-review-scope.txt`, they form fix group O and the diff filter admits them with the `executor-audit` and `dispatch-receipts` suites. A fix to the executor audit reruns those suites and a fix to the workflow reruns `check-gate-inputs.sh`. | The operator chose on 2026-11-28 to amend 015. Phases 007 and 008 changed the executor audit and phase 003 and the crate move changed the workflow, yet neither file sat in 015's scope list or its diff filter, so 015 as written could neither review nor fix them. | 015's scope list and diff filter as first written | 015-deep-review spec.md (Scope Boundary, In Scope, Files to Change), plan.md (section 8.4, FIX ADDENDUM), tasks.md (T012, T014, T019, Wave 0, group O, CHK-FIX-005), acceptance-criteria.md (AC-002, AC-009), goal.md criterion 7, design/records.md section 2 and the config golden |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -494,6 +498,78 @@ None offered
 Answer:
 ```text
 that crates folder, and any other unique folder needs a sk create readme explaining whats supposed to be in there
+```
+
+### Q025
+<!-- source: operator answer of 2026-11-28, passed in the orchestrator task message. The question below is the task message's paraphrase and the tool-use id was not passed to this record -->
+
+Question:
+```text
+Start Strategy A, the backlog review of the merged work, now?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+Start, but 1 at a time
+```
+
+### Q026
+<!-- source: operator answer of 2026-11-28, passed in the orchestrator task message. The question below paraphrases review-strategy.md section 10 item 3 and the tool-use id was not passed to this record -->
+
+Question:
+```text
+May a confirmed P0 from an interim review hold phase 013 until a follow-up fix merges?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+Hold 013 until fixed
+```
+
+### Q027
+<!-- source: operator answer of 2026-11-28, passed in the orchestrator task message. The question below paraphrases review-strategy.md section 10 item 2 and the tool-use id was not passed to this record -->
+
+Question:
+```text
+How does a review store row reach 015: a bridge at triage or a fourth seeded source?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+Bridge at triage
+```
+
+### Q028
+<!-- source: operator answer of 2026-11-28, passed in the orchestrator task message. The question is quoted from that message, which elided its middle with an ellipsis, and the tool-use id was not passed to this record -->
+
+Question:
+```text
+The build changed two files that phase 015 neither reviews nor can fix ... How should they be covered?
+```
+
+Options:
+```text
+Not passed to this record
+```
+
+Answer:
+```text
+Amend 015 to include them
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

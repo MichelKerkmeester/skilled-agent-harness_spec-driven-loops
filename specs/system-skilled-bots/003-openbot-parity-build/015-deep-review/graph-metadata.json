@@ -49,6 +49,8 @@
       "implementation-summary.md",
       "design/records.md",
       ".skilled/bin/bots.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".github/workflows/bots-runtime.yml",
       "specs/system-skilled-bots/003-openbot-parity-build/013-manual-testing-scenarios/scratch/failures.md",
       "design/refusals.md",
       ".skilled/skills/system-skilled-bots/scripts/bot-check.cjs",
@@ -58,9 +60,7 @@
       "design/state-machines.md",
       "design/mockups.md",
       ".skilled/commands/deep/review.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      "design/fixtures/README.md",
-      ".skilled/skills/system-skilled-bots/runtime/package.json"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
@@ -109,6 +109,18 @@
         "name": "bots.cjs",
         "kind": "file",
         "path": ".skilled/bin/bots.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bots-runtime.yml",
+        "kind": "config",
+        "path": ".github/workflows/bots-runtime.yml",
         "source": "derived"
       },
       {
@@ -166,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skilled-bots/runtime/package.json",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Fourteen",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fourteen phases each wrote their own code, their own docs and their own acceptance criteria, and each was validated alone",
     "created_at": "2026-11-25T19:32:30Z",
-    "last_save_at": "2026-11-28T11:47:16.236Z",
+    "last_save_at": "2026-11-28T15:22:07.586Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:420e8e71aab345a751da12353be735a78eb34e18b537c8a998b51f9e0ec184dc",
+    "source_fingerprint": "sha256:4d3a33ac0a5fbf81cc8d1551f6b18f8b7a53e3a20ee65487dcd0051fc8ef1c4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edfba99430b1061b7e774bdf1ed75a9be16580d18650e79c95ed5c6a3dd0b697",
-      "plan.md": "37d2e35adbc536d4d2b63293f0e66ec31fc6103fbbd1a57e7c9790aa04fa55a6",
-      "tasks.md": "bd40011cfa7498c2ceaa7c27285277a67a3bca90a7d56eb612b8d9367df834e8",
+      "spec.md": "b7e7566ed1676f7660f0de10aae37ac51bf1796a7f6a7398ee66d192ba9c86f8",
+      "plan.md": "15244fe8413bff04fba630707abd681ff4965d689ea29365be3239c392d909c4",
+      "tasks.md": "bb442786aa681ce1da1309d85c3154d62f04f2dd5985b762d79c5a76e234663b",
       "implementation-summary.md": "aa4b4e88d08274abe26de799b62bf898f6f4e3a9a1d4232966dbf847bae76bf1"
     },
     "last_active_at": null

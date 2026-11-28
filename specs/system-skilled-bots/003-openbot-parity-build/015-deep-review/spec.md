@@ -36,9 +36,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 15** of the OpenBot parity build. Phases 001 to 014 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs and the packet's own phase documents. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
+This is **Phase 15** of the OpenBot parity build. Phases 001 to 014 change `.skilled/bin/bots.cjs`, the runtime modules under `.skilled/skills/system-skilled-bots/runtime/lib/`, the skill's own docs, the packet's own phase documents and two files outside the skill: the deep-loop executor audit `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, which phases 007 and 008 changed, and the CI workflow `.github/workflows/bots-runtime.yml`, which phase 003 and the crate move changed. Each phase was written and checked alone. Nothing has read them together, and nothing has read the built code against the docs that describe it.
 
-**Scope Boundary**: One expanded `/deep:review` run over the code and docs phases 001 to 014 built, the synthesis of its findings, the fix for every P0 and P1 it reports, and the re-run of the affected tests. New feature work, a change to the parity research, a rewrite of a phase document's scope, and any fix to a P2 finding are out of scope.
+**Scope Boundary**: One expanded `/deep:review` run over the code and docs phases 001 to 014 built, including the deep-loop executor audit `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` and the CI workflow `.github/workflows/bots-runtime.yml`, the synthesis of its findings, the fix for every P0 and P1 it reports and the re-run of the affected tests. New feature work, a change to the parity research, a rewrite of a phase document's scope, and any fix to a P2 finding are out of scope.
 
 **Dependencies**:
 - Phase 014 is clean first: every row in its `acceptance-criteria.md` is `Met` and `validate.sh --strict` prints `RESULT: PASSED` for its folder, so the review reads a checked surface rather than an assumed one [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/014-skilled-and-doc-alignment/spec.md, section "1. METADATA"]
@@ -101,6 +101,7 @@ Exit status 0. The suite was 35 files and 381 tests when this block was captured
 
 ### In Scope
 - Run one expanded deep review over the code and docs phases 001 to 014 built, with depth mode `expansive` and the five review dimensions named in §4
+- Review and fix the two files the build changed outside the skill, the crate and the CLI: `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts`, which phases 007 and 008 changed, and `.github/workflows/bots-runtime.yml`, which phase 003 and the crate move changed. Both are lines in `review/fanout-review-scope.txt`, and a fix to either stays inside the scoped diff
 - Run that review as a five-lineage fan-out, one lineage per roster executor, so five independent reads of the same surface are merged
 - Synthesize the lineages into one findings registry and one `review-report.md` with a single verdict
 - Fix every P0 and P1 finding, each with the verification step that proved the fix
@@ -125,6 +126,9 @@ Exit status 0. The suite was 35 files and 381 tests when this block was captured
 | `specs/system-skilled-bots/003-openbot-parity-build/0[01][0-9]-*/` | Modify | Only the doc line a docs-truth finding names |
 | `specs/system-skilled-bots/003-openbot-parity-build/contracts/` | Modify | Only when a finding names a contract the build got wrong. A contract-changing fix edits the contract, its golden, the code and the owning phase document in one worker, because a contract that moves under three of the four leaves the fourth describing a shape nobody has |
 | `.skilled/crates/bots-tui/` | Modify | Only the module, test or fixture a finding names. The crate is phase 003's surface and the review reads it like any other |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modify | Only the gate or field a finding names. Phases 007 and 008 changed it, so the review reads it like a runtime module, and a fix reruns the deep-loop executor audit tests |
+| `.skilled/skills/system-deep-loop/runtime/tests/` | Modify | Only an `executor-audit` or `dispatch-receipts` suite under `tests/` or `tests/unit/`, which also holds the regression test for a fixed executor audit defect |
+| `.github/workflows/bots-runtime.yml` | Modify | Only the job or path filter a finding names. A fix reruns `bash .github/scripts/check-gate-inputs.sh`, which must print `RESULT: PASSED` |
 | `.skilled/skills/system-skilled-bots/assets/bot-template.txt` and the skill docs under `.skilled/skills/system-skilled-bots/` | Modify | Only the line a docs-truth finding names, in the template, `SKILL.md`, `README.md`, `runtime/lib/README.md` or a mode folder |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Modify | Only the scenario line a finding names, because a scenario that drives a verb the CLI does not have is a docs-truth defect |
 | `specs/system-skilled-bots/003-openbot-parity-build/015-deep-review/implementation-summary.md` | Modify | The review outcome, the finding count by severity and the fix list |
