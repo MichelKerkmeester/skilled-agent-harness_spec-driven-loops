@@ -56,12 +56,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
-- [x] `cargo metadata --manifest-path crates/bots-tui/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, and `rg -n 'GNU GENERAL PUBLIC LICENSE' crates/bots-tui/src crates/bots-tui/Cargo.toml crates/bots-tui/Cargo.lock` prints nothing, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
-- [x] `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines, `rg -n 'no code' crates/bots-tui/README.md` prints one line, and every `file:line` pointer in `crates/bots-tui/design/` resolves, proven by the T018 block printing no `DANGLING` line, or naming its skip when `specs/system-skilled-bots/context` is absent.
+- [x] `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`.
+- [x] `cargo metadata --manifest-path .skilled/crates/bots-tui/Cargo.toml --no-deps --format-version 1 | jq -r '.packages[0].license'` prints `MIT`, and `rg -n 'GNU GENERAL PUBLIC LICENSE' .skilled/crates/bots-tui/src .skilled/crates/bots-tui/Cargo.toml .skilled/crates/bots-tui/Cargo.lock` prints nothing, because `README.md` and `design/` name the reference's GPL-3.0 licence by design.
+- [x] `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines, `rg -n 'no code' .skilled/crates/bots-tui/README.md` prints one line, and every `file:line` pointer in `.skilled/crates/bots-tui/design/` resolves, proven by the T018 block printing no `DANGLING` line, or naming its skip when `specs/system-skilled-bots/context` is absent.
 - [x] `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8, and every row of the Defect Audit table prints its expected output.
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`, so the release binary answered one item in a pseudo-terminal.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --release --test pty_smoke` prints `test result: ok. 1 passed` and names `answers_one_item_in_a_pseudo_terminal`, so the release binary answered one item in a pseudo-terminal.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -81,7 +81,7 @@ and findings belong here.
 | Goal authored | Done | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof` prints `RESULT: PASSED` |
 | External orchestration waves | Done | `plan.md` section `External orchestration` names five waves over T001 through T033 |
 | Defect audit table | Done | `rg -c '^\| D[1-8] ' specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/006-hardening-and-proof/tasks.md` prints 8 |
-| Crate scaffolded | Done | `ls crates/bots-tui/src` prints the twelve module entries that `002` to `005` landed |
+| Crate scaffolded | Done | `ls .skilled/crates/bots-tui/src` prints the twelve module entries that `002` to `005` landed |
 | Toolchain | Recorded | `cargo 1.92.0`, `rustfmt 1.8.0-stable`, `clippy 0.1.92` |
 | Wave 1, setup probes | Done, orchestrator shell, no worker | T001 to T004 write nothing and their verify is the probe itself, so the orchestrator ran them and read each output |
 | Wave 2, gate repair | Done, orchestrator shell, no worker | `cargo fmt --check` and `cargo clippy --locked --all-targets -- -D warnings` exited 0 and every crate target printed `ok` at the start, and the runtime suite printed 43 files and 548 passed. No gate named a line, so no repair lane was dispatched |
@@ -90,7 +90,7 @@ and findings belong here.
 | Wave 3, the two documents | Done, `cli-mistral-vibe` `deepseek-flash` at the row's `max`, first rung | Both `0`/`finished`. A second one-change README brief on the same rung corrected two inaccurate lines the orchestrator's read found, the `ui` verb sentence and the `data.rs` row |
 | Wave 4, verification | Done, orchestrator shell | Every gate from the final state, recorded in `implementation-summary.md` |
 | Gates run | Done | `cargo fmt --check` exit 0, `cargo clippy --locked --all-targets -- -D warnings` exit 0, `cargo test --locked` lib 120, answer_flow 24, cli_client 8, end_to_end 2, panes 53 with 1 ignored, pty_smoke 1, render_keys 16, all `ok` |
-| README written | Done | `crates/bots-tui/README.md`, 176 lines, the five greps each print at least one line |
+| README written | Done | `.skilled/crates/bots-tui/README.md`, 176 lines, the five greps each print at least one line |
 | Hub line added | Done | `rg -n 'bots ui' .skilled/skills/system-skilled-bots/SKILL.md` prints line 33 alone |
 | Defect audit | Done | D1 the enum and one `KeyMatch::Digit` row in `OVERLAY_ROWS`. D2 `4` and `5`. D3 `inbox_view: PaneView<ItemId>`. D4 `data.rs:49` and only `cli.rs:95`. D5 15 calls in `view/panes.rs` and no `sanitize.rs`. D6 six lines. D7 the `scheduled` and `recurring` glyph rows. D8 the banner's two words and nothing naming `Ctrl+P` |
 | Clean-room read | Done | The orchestrator read `src/terminal.rs` beside openhuman's `terminal.rs` and `src/view/overlay.rs` beside openhuman's `render/overlay.rs`. Our guard is a `Modes` trait with a static `ACTIVE` slot, a `Once` panic hook and a signal handler, where theirs is one struct that holds an alternate-screen flag and a mouse switch. Our overlay draws field lines and one status line per phase, where theirs draws clickable buttons with hit areas. Both chain the previous panic hook after the restore, which is ratatui's documented idiom. No function, name, comment or string was copied |

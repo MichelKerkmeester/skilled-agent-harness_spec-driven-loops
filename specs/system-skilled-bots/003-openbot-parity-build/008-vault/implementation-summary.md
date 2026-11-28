@@ -109,7 +109,7 @@ The evidence is the working-tree diff against the base `0ae023ff836`, committed 
 |-------|--------|
 | Runtime `npm test` | PASS: 49 files and 634 tests against the 47 and 588 floor. The two new files add 3 and 43 tests |
 | Runtime `npm run typecheck` | PASS: exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS: exit 0 |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS: exit 0 |
 | Deep-loop executor tests | PASS: 11 files, 241 passed and 2 skipped, equal to the floor |
 | Deep-loop `npm run typecheck` | PASS: exit 0 |
 | CLI fixture checks for AC-001 to AC-006, AC-010, AC-023 and AC-025 | PASS: each printed its expected line and exit code |

@@ -33,7 +33,11 @@ on:
       - '.skilled/bin/bots.cjs'
       - '.opencode/bin/bots.cjs'
       - '.github/workflows/bots-runtime.yml'
-      - 'crates/bots-tui/**'
+      - '.skilled/crates/bots-tui/**'
+      # .opencode holds no crates folder, so git reports no changes beneath this path.
+      # The gate-input check requires every source-root filter to name both roots, so
+      # this twin is required and inert.
+      - '.opencode/crates/bots-tui/**'
   push:
     branches: [main, 'skilled/**']
     paths:
@@ -62,7 +66,11 @@ on:
       - '.skilled/bin/bots.cjs'
       - '.opencode/bin/bots.cjs'
       - '.github/workflows/bots-runtime.yml'
-      - 'crates/bots-tui/**'
+      - '.skilled/crates/bots-tui/**'
+      # .opencode holds no crates folder, so git reports no changes beneath this path.
+      # The gate-input check requires every source-root filter to name both roots, so
+      # this twin is required and inert.
+      - '.opencode/crates/bots-tui/**'
       - 'specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design/**'
       - 'specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design/**'
 
@@ -150,21 +158,21 @@ jobs:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            crates/bots-tui/target
-          key: bots-tui-${{ runner.os }}-${{ hashFiles('crates/bots-tui/Cargo.lock') }}
+            .skilled/crates/bots-tui/target
+          key: bots-tui-${{ runner.os }}-${{ hashFiles('.skilled/crates/bots-tui/Cargo.lock') }}
 
       # cargo fmt rejects --locked, so only the three steps that resolve the lock carry it.
       - name: Check the formatting
-        run: cargo fmt --check --manifest-path crates/bots-tui/Cargo.toml
+        run: cargo fmt --check --manifest-path .skilled/crates/bots-tui/Cargo.toml
 
       - name: Lint with warnings denied
-        run: cargo clippy --locked --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings
+        run: cargo clippy --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings
 
       - name: Run the crate tests
-        run: cargo test --locked --manifest-path crates/bots-tui/Cargo.toml
+        run: cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml
 
       - name: Build the release binary the ui verb starts
-        run: cargo build --release --locked --manifest-path crates/bots-tui/Cargo.toml
+        run: cargo build --release --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml
 
       # The crate ships a copy of the packet's design files and sample payloads, so
       # an edit made on one side only fails here rather than drifting.
@@ -173,9 +181,9 @@ jobs:
           set -euo pipefail
           D1=specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design
           D2=specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design
-          diff -r -x architecture.md -x contracts.md "$D1" crates/bots-tui/design
-          diff "$D2/architecture.md" crates/bots-tui/design/architecture.md
-          diff "$D2/contracts.md" crates/bots-tui/design/contracts.md
+          diff -r -x architecture.md -x contracts.md "$D1" .skilled/crates/bots-tui/design
+          diff "$D2/architecture.md" .skilled/crates/bots-tui/design/architecture.md
+          diff "$D2/contracts.md" .skilled/crates/bots-tui/design/contracts.md
           for name in status activity inbox routines; do
-            diff "$D2/payloads/$name.json" "crates/bots-tui/tests/fixtures/payloads/$name.json"
+            diff "$D2/payloads/$name.json" ".skilled/crates/bots-tui/tests/fixtures/payloads/$name.json"
           done

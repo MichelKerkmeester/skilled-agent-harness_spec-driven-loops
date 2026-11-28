@@ -22,7 +22,7 @@ Frame numbers are the state index in `001-ux-and-component-map/design/mockups.md
 
 ## 1. THE SAMPLE FILES AND THE ONE DATA SET
 
-The four samples live beside this file in `design/payloads/`: `status.json`, `activity.json`, `inbox.json` and `routines.json`. The build copies them into `crates/bots-tui/tests/fixtures/payloads/`, and the fixture script prints the file for the verb it is asked for. The literal blocks in sections 4 to 7 are copies of those files. Each block is preceded by a `payload:<verb>` comment so a check can pair it with its file:
+The four samples live beside this file in `design/payloads/`: `status.json`, `activity.json`, `inbox.json` and `routines.json`. The build copies them into `.skilled/crates/bots-tui/tests/fixtures/payloads/`, and the fixture script prints the file for the verb it is asked for. The literal blocks in sections 4 to 7 are copies of those files. Each block is preceded by a `payload:<verb>` comment so a check can pair it with its file:
 
 ```bash
 cd specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/design

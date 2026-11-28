@@ -29,7 +29,7 @@ contextType: "implementation"
 Two shell variables shorten the commands below. Set them once per shell:
 
 ```bash
-CRATE=crates/bots-tui
+CRATE=.skilled/crates/bots-tui
 BOTS="node .skilled/bin/bots.cjs"
 ```
 
@@ -228,7 +228,7 @@ Six waves. A lane is the unit of parallelism and two lanes never hold the same f
 ## File Organization
 
 - [x] CHK-050 [P1] `git status --porcelain $CRATE/src` lists only `keys.rs`, `theme.rs`, `state.rs` and the four files under `view/`.
-- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line.
+- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/.skilled/crates/bots-tui/target` line.
 <!-- /ANCHOR:file-org -->
 
 ---

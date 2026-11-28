@@ -55,14 +55,14 @@ You open the screen and see the bot count and the index age in the header, the f
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `crates/bots-tui/src/keys.rs` | Modified | The 29 approved shell rows in `SHELL_ROWS`, plus `PALETTE_LINES`, `row_holds`, `palette_filtered` and `palette_action` and their tests |
-| `crates/bots-tui/src/theme.rs` | Modified | The System and Mono palettes, the one glyph table with its ASCII column, `marker`, `state_color`, `printable` and the focus mark and rule glyphs |
-| `crates/bots-tui/src/state.rs` | Modified | `on_shell_action`: the tab arms, every palette arm and the quit a palette entry can run, with its own test module |
-| `crates/bots-tui/src/view/mod.rs` | Modified | The seven bands, the too-small screen and the palette panel |
-| `crates/bots-tui/src/view/header.rs` | Created | The bot count, the index age, `stale_label`, `age_label` and the right-hand flag |
-| `crates/bots-tui/src/view/tabs.rs` | Created | The four tabs with the active one bracketed and reversed |
-| `crates/bots-tui/src/view/footer.rs` | Created | The two key lines generated from the table and the status row |
-| `crates/bots-tui/tests/render_keys.rs` | Created | The key-label test, the two shell band snapshots and the header, status row, too-small and palette render tests |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modified | The 29 approved shell rows in `SHELL_ROWS`, plus `PALETTE_LINES`, `row_holds`, `palette_filtered` and `palette_action` and their tests |
+| `.skilled/crates/bots-tui/src/theme.rs` | Modified | The System and Mono palettes, the one glyph table with its ASCII column, `marker`, `state_color`, `printable` and the focus mark and rule glyphs |
+| `.skilled/crates/bots-tui/src/state.rs` | Modified | `on_shell_action`: the tab arms, every palette arm and the quit a palette entry can run, with its own test module |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modified | The seven bands, the too-small screen and the palette panel |
+| `.skilled/crates/bots-tui/src/view/header.rs` | Created | The bot count, the index age, `stale_label`, `age_label` and the right-hand flag |
+| `.skilled/crates/bots-tui/src/view/tabs.rs` | Created | The four tabs with the active one bracketed and reversed |
+| `.skilled/crates/bots-tui/src/view/footer.rs` | Created | The two key lines generated from the table and the status row |
+| `.skilled/crates/bots-tui/tests/render_keys.rs` | Created | The key-label test, the two shell band snapshots and the header, status row, too-small and palette render tests |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,12 +106,12 @@ Every source and test file was written by a `cli-mistral-vibe` worker on `deepse
 | Check | Result |
 |-------|--------|
 | `cargo fmt --check` and `cargo clippy --locked --all-targets -- -D warnings` | Both exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | lib 94 passed, bin 0, `cli_client` 8 passed, `render_keys` 16 passed, doc 0. No `FAILED`. The floor was lib 57 and `cli_client` 8, so the delta is 37 lib tests and the new 16-test target |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | lib 94 passed, bin 0, `cli_client` 8 passed, `render_keys` 16 passed, doc 0. No `FAILED`. The floor was lib 57 and `cli_client` 8, so the delta is 37 lib tests and the new 16-test target |
 | `--lib keys`, `--lib theme`, `--lib header`, `--lib state`, `--lib args` | 18, 7, 2, 17 and 5 passed, each naming the tests the acceptance rows list |
 | Runtime `npm test` and `npm run typecheck` | 40 files, 480 passed, exit 0, typecheck exit 0. Equal to the floor |
-| `rg -n 'env::var' crates/bots-tui/src` and `rg -n 'openhuman' crates/bots-tui/src` | Both print nothing |
-| `rg -n 'Command::new\|read_to_string\|File::open' crates/bots-tui/src/view` | Prints nothing |
-| `rg -n 'unwrap\(\)\|expect\(' crates/bots-tui/src/view` | Every hit sits below the file's `#[cfg(test)]` line |
+| `rg -n 'env::var' .skilled/crates/bots-tui/src` and `rg -n 'openhuman' .skilled/crates/bots-tui/src` | Both print nothing |
+| `rg -n 'Command::new\|read_to_string\|File::open' .skilled/crates/bots-tui/src/view` | Prints nothing |
+| `rg -n 'unwrap\(\)\|expect\(' .skilled/crates/bots-tui/src/view` | Every hit sits below the file's `#[cfg(test)]` line |
 | Clean-room comparison | The orchestrator compared `theme.rs` and `view/mod.rs` with the reference theme and render files by eye. The palette struct, the glyph table and the band layout are our own shapes. The shared facts are the 24 by 8 floor the spec fixes and the usual ANSI colour names. No function was copied |
 <!-- /ANCHOR:verification -->
 
@@ -122,7 +122,7 @@ Every source and test file was written by a `cli-mistral-vibe` worker on `deepse
 
 1. **The approved palette frame draws no focus mark.** The selected palette entry carries `›` because the glyph table rules out focus by reverse video alone. A later frame test that compares the palette with mockup frame 25 cell by cell will see the mark, so the mockup needs the mark added or the rule needs an exception.
 2. **T006's verify grep needed a paren.** `rg -n 'fn stale_label' src/view/header.rs` also matched the test `stale_label_formats_the_age` the same task names, so the task's verify now reads `rg -n 'fn stale_label\('`, which prints the one definition.
-3. **Two key consumers sit outside the inventory.** `rg -n 'keys::' crates/bots-tui/src` also names `app.rs` and `event.rs`, which import the `Key` type the earlier crate work wrote. Neither reads the table.
+3. **Two key consumers sit outside the inventory.** `rg -n 'keys::' .skilled/crates/bots-tui/src` also names `app.rs` and `event.rs`, which import the `Key` type the earlier crate work wrote. Neither reads the table.
 4. **The setup probes ran without a worker.** The wave table names a Vibe worker for T001 to T003. They write nothing and their verify is the probe itself, so the orchestrator ran them directly.
 5. **A frame test must set `state.size` to the backend size.** The frame draws blank while the size is 0x0, and its geometry follows `frame.area()` while the key context follows `state.size`. A test that sets only one of them gets its keys from one context and its frame from another. The panes, the answer flow and the hardening tests all inherit this.
 <!-- /ANCHOR:limitations -->

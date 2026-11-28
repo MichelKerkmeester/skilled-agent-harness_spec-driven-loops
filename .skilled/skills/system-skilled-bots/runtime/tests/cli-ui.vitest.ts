@@ -119,16 +119,16 @@ describe('bots ui', () => {
     const tree = tempDir('bots-tree-');
     const run = runUi(['--repo', tempDir('bots-repo-'), '--skilled-tree', tree]);
     expect(run.status).toBe(4);
-    expect(run.stderr).toContain(`bots: ui-unavailable: no crates/bots-tui in ${tree}.`);
+    expect(run.stderr).toContain(`bots: ui-unavailable: no .skilled/crates/bots-tui in ${tree}.`);
   });
 
   it('refuses ui-not-built for an absent binary', () => {
     const tree = tempDir('bots-tree-');
-    mkdirSync(join(tree, 'crates', 'bots-tui'), { recursive: true });
+    mkdirSync(join(tree, '.skilled', 'crates', 'bots-tui'), { recursive: true });
     const run = runUi(['--repo', tempDir('bots-repo-'), '--skilled-tree', tree]);
     expect(run.status).toBe(4);
     expect(run.stderr).toContain(
-      `bots: ui-not-built: no bots-ui binary at ${join(tree, 'crates', 'bots-tui', 'target', 'release', 'bots-ui')}.`,
+      `bots: ui-not-built: no bots-ui binary at ${join(tree, '.skilled', 'crates', 'bots-tui', 'target', 'release', 'bots-ui')}.`,
     );
   });
 

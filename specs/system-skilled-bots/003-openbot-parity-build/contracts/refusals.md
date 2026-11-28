@@ -98,7 +98,7 @@ Numbered 3.2.1 rather than 3.3 so the sections after it keep the numbers the pha
 
 | Name | Layer | Class | Exit | `REFUSAL_CAUSES` | Source |
 |------|-------|-------|------|------------------|--------|
-| `ui-unavailable` | Verb refusal (`ui`), the Skilled tree holds no `crates/bots-tui` | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
+| `ui-unavailable` | Verb refusal (`ui`), the Skilled tree holds no `.skilled/crates/bots-tui` | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 | `ui-not-built` | Verb refusal (`ui`), the crate is present and the binary is not | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 | `ui-contract-mismatch` | Verb refusal (`ui`), the binary's contract number differs from the verb's | - | 4 | No | [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/002-architecture-and-contracts/spec.md, REQ-001] |
 

@@ -55,13 +55,13 @@ You open the activity tab and see the seven groups in the order the runtime send
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `crates/bots-tui/src/view/panes.rs` | Created | The display-width clip, the shared body frame with its detail column, the four pane bodies and the five state lines |
-| `crates/bots-tui/src/view/banner.rs` | Created | The pending-approval row, its open count and the inbox key read from the key table |
-| `crates/bots-tui/src/view/mod.rs` | Modified | `pub mod banner;` and `pub mod panes;`, and the two draw calls in the body and banner slots |
-| `crates/bots-tui/src/keys.rs` | Modified | The five `LIST_ROWS` and the `list_keys_move_the_selection` test |
-| `crates/bots-tui/src/state.rs` | Modified | `on_list_action`, `reconcile_selection` and `clamp_scroll`, plus `activity_key` and six private helpers beside them |
-| `crates/bots-tui/tests/panes.rs` | Created | The `panes` test target, which declares each test group by path |
-| `crates/bots-tui/tests/panes/*.rs` | Created | The shared frame states and corrections in `support.rs`, and the activity, inbox, routines, chat, states, wide, markers, reorder, budget, sanitize, clip and snapshot groups |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | Created | The display-width clip, the shared body frame with its detail column, the four pane bodies and the five state lines |
+| `.skilled/crates/bots-tui/src/view/banner.rs` | Created | The pending-approval row, its open count and the inbox key read from the key table |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modified | `pub mod banner;` and `pub mod panes;`, and the two draw calls in the body and banner slots |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modified | The five `LIST_ROWS` and the `list_keys_move_the_selection` test |
+| `.skilled/crates/bots-tui/src/state.rs` | Modified | `on_list_action`, `reconcile_selection` and `clamp_scroll`, plus `activity_key` and six private helpers beside them |
+| `.skilled/crates/bots-tui/tests/panes.rs` | Created | The `panes` test target, which declares each test group by path |
+| `.skilled/crates/bots-tui/tests/panes/*.rs` | Created | The shared frame states and corrections in `support.rs`, and the activity, inbox, routines, chat, states, wide, markers, reorder, budget, sanitize, clip and snapshot groups |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -106,13 +106,13 @@ Every source and test file was written by a `cli-mistral-vibe` worker on `deepse
 | Check | Result |
 |-------|--------|
 | `cargo fmt --check` and `cargo clippy --locked --all-targets -- -D warnings` | Both exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | lib 98 passed, bin 0, `cli_client` 8 passed, `panes` 53 passed and 1 ignored, `render_keys` 16 passed, doc 0. No `FAILED`. The floor was lib 94, `cli_client` 8 and `render_keys` 16, so the delta is four lib tests and the new target |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | lib 98 passed, bin 0, `cli_client` 8 passed, `panes` 53 passed and 1 ignored, `render_keys` 16 passed, doc 0. No `FAILED`. The floor was lib 94, `cli_client` 8 and `render_keys` 16, so the delta is four lib tests and the new target |
 | `--test panes -- budget --ignored` | `two_thousand_rows_draw_under_16ms ... ok` |
 | Reorder test against broken reducers | In a lane copy it failed against the stubbed reducer this child replaced and against a reconcile that keeps the row index |
 | Snapshot table against a removed correction | In a lane copy `activity_rows_80x24` failed on the `in 4h` cell |
 | Runtime `npm test` and `npm run typecheck` | 40 files, 480 passed, exit 0, typecheck exit 0. Equal to the floor |
-| `rg -n 'Command::new' crates/bots-tui/src` | Prints only `src/cli.rs:95` |
-| `rg -n 'openhuman' crates/bots-tui/src`, the GPL grep and `rg -n 'env::var' src/view/panes.rs` | All print nothing |
+| `rg -n 'Command::new' .skilled/crates/bots-tui/src` | Prints only `src/cli.rs:95` |
+| `rg -n 'openhuman' .skilled/crates/bots-tui/src`, the GPL grep and `rg -n 'env::var' src/view/panes.rs` | All print nothing |
 | `rg -n 'unwrap\(\)\|expect\(' src/view/panes.rs src/view/banner.rs` | `panes.rs` has none. The two in `banner.rs` sit below its `#[cfg(test)]` line |
 | Clean-room comparison | The orchestrator compared `src/view/panes.rs` with the reference activity and render files by eye. The reference activity file projects tool and child runs with its own status enum and marker method, and its render file draws a chat transcript. Ours draws grouped runtime JSON through 003's glyph table. The shared facts are the glyph characters, which are that table's. No function was copied |
 <!-- /ANCHOR:verification -->

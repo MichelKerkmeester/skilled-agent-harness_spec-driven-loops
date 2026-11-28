@@ -1,7 +1,7 @@
 ---
 title: "system-skilled-bots: Manual Testing Playbook"
 description: "Operator index for system-skilled-bots: hub routing across its four bot modes, and runtime scenarios that author, run, queue, isolate, deliver, schedule, report, converse, remember, link a channel and drive the terminal screen on throwaway bots."
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # system-skilled-bots: Manual Testing Playbook
@@ -34,7 +34,7 @@ The playbook holds 58 scenarios in seventeen categories. The 8 hub-routing scena
 - The working directory is the repository root.
 - The advisor index includes `system-skilled-bots`. Routing scenarios need nothing else.
 - Runtime scenarios need macOS, node, git and the runtime's installed dependencies under `.skilled/skills/system-skilled-bots/runtime/node_modules`. BOT-017 also needs a logged-in desktop session, and BOT-021 the user launchd domain.
-- BOT-043 to BOT-045 need `cargo` and the phase 003 crate at `crates/bots-tui`. BOT-058 needs one free local port for its stand-in daemon and no channel account, because the stand-in never reaches a network.
+- BOT-043 to BOT-045 need `cargo` and the phase 003 crate at `.skilled/crates/bots-tui`. BOT-058 needs one free local port for its stand-in daemon and no channel account, because the stand-in never reaches a network.
 - Run the runtime scenarios from a plain terminal, never from inside an AI runtime session. The recursion guard reads the command lines and session variables of every ancestor process, and a match refuses the run with exit 3. That is a setup `SKIP`, not a product `FAIL`.
 - Neither the repository path nor any temp path may contain an executor word: `claude`, `codex`, `opencode` or `vibe`.
 - Every runtime scenario uses the throwaway identity `local/bots-playbook`, a `pb-` bot id and a state root inside its own temp folder, so it never touches a real bot's state.
@@ -977,10 +977,10 @@ The runtime's vitest suite covers the same behavior with stubbed hosts. These sc
 | `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/activity.vitest.ts` | Activity groups and the JSON inbox | BOT-040, BOT-041 |
 | `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/actor.vitest.ts` | The actor on the record and the answer | BOT-042 |
 | `$REPO_ROOT/.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | The ui refusal and the build command | BOT-043 |
-| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/cli_client.rs` | The client and the stub binary | BOT-043 |
-| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/answer_flow.rs` | The inbox pane keys | BOT-044 |
-| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/render_keys.rs` | The drawn key set | BOT-045 |
-| `.skilled/skills/system-skilled-bots/crates/bots-tui/tests/panes.rs` | The four tabs | BOT-045 |
+| `.skilled/crates/bots-tui/tests/cli_client.rs` | The client and the stub binary | BOT-043 |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` | The inbox pane keys | BOT-044 |
+| `.skilled/crates/bots-tui/tests/render_keys.rs` | The drawn key set | BOT-045 |
+| `.skilled/crates/bots-tui/tests/panes.rs` | The four tabs | BOT-045 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/run-record.vitest.ts` | The working-place line on the record | BOT-046 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/dispatch.vitest.ts` | The working-place line in the prompt | BOT-046 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/status.vitest.ts` | The branch and the tree on the status row | BOT-047 |

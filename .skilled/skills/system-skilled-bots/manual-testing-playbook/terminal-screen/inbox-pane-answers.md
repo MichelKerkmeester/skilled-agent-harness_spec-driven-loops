@@ -1,7 +1,7 @@
 ---
 title: "BOT-044 -- The inbox pane answers with y and n and a closed input writes nothing"
 description: "This scenario proves that the inbox pane lists every open and expired item, that `y` writes `bots answer --scope once` and `n` writes `bots answer --scope deny` with no other key denying, and that a closed input while an item is selected writes no answer and leaves the item open."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-044 -- The inbox pane answers with y and n and a closed input writes nothing
@@ -40,7 +40,7 @@ A screen that answers on the wrong key approves work the operator meant to refus
 
 > **No tty.** The loop takes its events from a source the caller supplies, so every case here runs from a pipe with no terminal. That is the property the test exists to prove, not a workaround.
 
-> **No live state.** The fake CLI at `crates/bots-tui/tests/fixtures/bots` prints the payloads under `tests/fixtures/payloads/` and records its argv, so no test reads a live state root.
+> **No live state.** The fake CLI at `.skilled/crates/bots-tui/tests/fixtures/bots` prints the payloads under `tests/fixtures/payloads/` and records its argv, so no test reads a live state root.
 
 ### Commands
 
@@ -62,12 +62,12 @@ git -C "$W/checkout" -c user.email=playbook@example.invalid -c user.name=playboo
 git -C "$W/checkout" -c user.email=playbook@example.invalid -c user.name=playbook commit -q --no-verify -m "asking bot"
 pbots() { HOME="$W/acct" PATH="$STUB_DIR:$(dirname "$NODE"):/usr/bin:/bin" "$NODE" "$BOTS_CLI" "$@" --repo "$W/checkout" --skilled-tree "$W/skilled"; }
 # 2. Turn 1: run the answer-flow test.
-cargo test --manifest-path "$REPO_ROOT/crates/bots-tui/Cargo.toml" --test answer_flow; echo "exit=$?"
+cargo test --manifest-path "$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml" --test answer_flow; echo "exit=$?"
 # 3. Turn 2: read the argv the fake CLI recorded.
-find "$REPO_ROOT/crates/bots-tui/tests" -name '*argv*' -newer "$REPO_ROOT/crates/bots-tui/Cargo.toml" | sort
-rg -n 'answer' "$REPO_ROOT/crates/bots-tui/tests" -g '*argv*' | head -20
+find "$REPO_ROOT/.skilled/crates/bots-tui/tests" -name '*argv*' -newer "$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml" | sort
+rg -n 'answer' "$REPO_ROOT/.skilled/crates/bots-tui/tests" -g '*argv*' | head -20
 # 4. Turn 3: read the two scopes the test asserts.
-rg -n 'scope once|scope deny' "$REPO_ROOT/crates/bots-tui/tests/answer_flow.rs"
+rg -n 'scope once|scope deny' "$REPO_ROOT/.skilled/crates/bots-tui/tests/answer_flow.rs"
 # 5. Turn 4: park an item and read the JSON inbox the pane draws from.
 pbots chat pb-ask --message "Ask a question."; echo "exit=$?"
 pbots inbox --json; echo "exit=$?"
@@ -112,7 +112,7 @@ The whole `cargo test` output with its exit, the argv log path and its answer li
 
 - **Pass**: the test passes, the two scopes appear on the right keys, no third key answers and the closed input writes nothing.
 - **Fail**: a key writes another scope, a third key answers, the closed input writes an answer or the item reads answered.
-- **Skip**: only when `cargo` is unavailable, when `crates/bots-tui` is missing because phase 003 has not landed, or when the `answer_flow` test file is absent, naming the missing piece and phase 003 as the blocker.
+- **Skip**: only when `cargo` is unavailable, when `.skilled/crates/bots-tui` is missing because phase 003 has not landed, or when the `answer_flow` test file is absent, naming the missing piece and phase 003 as the blocker.
 
 ### Failure Triage
 
@@ -138,10 +138,10 @@ The whole `cargo test` output with its exit, the argv log path and its answer li
 
 | File | Role |
 |---|---|
-| `crates/bots-tui/src/state.rs` | The pure reducer that maps a key to an effect |
-| `crates/bots-tui/src/cli.rs` | The only module that spawns `bots answer` |
-| `crates/bots-tui/tests/answer_flow.rs` | The argv log, Esc and closed-input cases |
-| `crates/bots-tui/tests/fixtures/bots` | The fake CLI that records its argv |
+| `.skilled/crates/bots-tui/src/state.rs` | The pure reducer that maps a key to an effect |
+| `.skilled/crates/bots-tui/src/cli.rs` | The only module that spawns `bots answer` |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` | The argv log, Esc and closed-input cases |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | The fake CLI that records its argv |
 
 The inbox pane and its two keys are [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:206]. The closed-input rule is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:208].
 

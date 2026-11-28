@@ -11,7 +11,7 @@ Fresh Opus high review, read-only, at commit 6b4031c150e. Paths are relative to 
 ## P0
 - U1-P0-1 `1` still means approve once: parent REQ-010 (spec.md:178) wants the inbox footer to show `1-9 y n Esc` and the overlay `1`; 005 REQ-013 (005/spec.md:149) and AC-003, AC-005 (005/acceptance-criteria.md:59,61) assert `1 approve once`, against key-map.md:54-56 and section 3.1. REQ-013 also says deny first but lists approve first. Fix: amend REQ-010, REQ-013, AC-003, AC-005 to the key map, deny first.
 - U1-P0-2 NO_COLOR route conflict (001/spec.md:249-250 and glyph-table section 5 versus 003/spec.md:146,181,209, with the no-env::var checks in 002 tasks.md:245, 005 tasks.md:169, 006 tasks.md:216). Fix per the decision above; 002 spec.md:182 adds the two flags.
-- U1-P0-3 006 REQ-004 and its goal require `rg 'GNU GENERAL PUBLIC LICENSE|GPL-3' crates/bots-tui` to match nothing while REQ-006 and REQ-011 (006/spec.md:143,153) require README and design/ to name GPL-3.0. Fix: the grep targets code only (crates/bots-tui/src and Cargo files) and searches for the licence header text, not the name.
+- U1-P0-3 006 REQ-004 and its goal require `rg 'GNU GENERAL PUBLIC LICENSE|GPL-3' .skilled/crates/bots-tui` to match nothing while REQ-006 and REQ-011 (006/spec.md:143,153) require README and design/ to name GPL-3.0. Fix: the grep targets code only (.skilled/crates/bots-tui/src and Cargo files) and searches for the licence header text, not the name.
 
 ## P1
 - U1-P1-1 Inventory row 8 and every overlay frame draw grant kind and rung from packet phase 006: apply the "only when present" decision in component-inventory.md, mockups.md and the 005 specs, with a frame for both cases.

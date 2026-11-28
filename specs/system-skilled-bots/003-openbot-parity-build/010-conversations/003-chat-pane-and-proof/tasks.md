@@ -25,7 +25,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`CRATE` is `crates/bots-tui` and `P` is `specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof`. Every command runs from the repository root with no tty.
+`CRATE` is `.skilled/crates/bots-tui` and `P` is `specs/system-skilled-bots/003-openbot-parity-build/010-conversations/003-chat-pane-and-proof`. Every command runs from the repository root with no tty.
 
 The pre-expansion phase's crate tasks T022 to T026, T032 and T038 are folded into the tasks below, which name phase 003's file names. The old list named `ui_state.rs` and `render/panes.rs`, which the crate does not have. New tasks take ids from T021 and skip the folded range.
 <!-- /ANCHOR:notation -->

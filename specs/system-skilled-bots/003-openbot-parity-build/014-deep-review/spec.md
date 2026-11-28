@@ -124,7 +124,7 @@ Exit status 0. The suite was 35 files and 381 tests when this block was captured
 | `.skilled/skills/system-skilled-bots/scripts/bot-check.cjs` | Modify | Only when a finding names a checker invariant |
 | `specs/system-skilled-bots/003-openbot-parity-build/0[01][0-9]-*/` | Modify | Only the doc line a docs-truth finding names |
 | `specs/system-skilled-bots/003-openbot-parity-build/contracts/` | Modify | Only when a finding names a contract the build got wrong. A contract-changing fix edits the contract, its golden, the code and the owning phase document in one worker, because a contract that moves under three of the four leaves the fourth describing a shape nobody has |
-| `crates/bots-tui/` | Modify | Only the module, test or fixture a finding names. The crate is phase 003's surface and the review reads it like any other |
+| `.skilled/crates/bots-tui/` | Modify | Only the module, test or fixture a finding names. The crate is phase 003's surface and the review reads it like any other |
 | `.skilled/skills/system-skilled-bots/assets/bot-template.txt` and the skill docs under `.skilled/skills/system-skilled-bots/` | Modify | Only the line a docs-truth finding names, in the template, `SKILL.md`, `README.md`, `runtime/lib/README.md` or a mode folder |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Modify | Only the scenario line a finding names, because a scenario that drives a verb the CLI does not have is a docs-truth defect |
 | `specs/system-skilled-bots/003-openbot-parity-build/014-deep-review/implementation-summary.md` | Modify | The review outcome, the finding count by severity and the fix list |

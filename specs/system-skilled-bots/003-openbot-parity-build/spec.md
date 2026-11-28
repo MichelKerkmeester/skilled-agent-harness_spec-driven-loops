@@ -115,7 +115,7 @@ Per-phase detail lives in each child's `plan.md`. This table is the audit trail 
 | New MIT Rust ratatui crate | Create | 003 | Panes over `bots ... --json`. The crate path is fixed in [`003-terminal-screen/goal.md`](003-terminal-screen/goal.md) D1 |
 | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | Create | 003 | The `ui` verb's tests: argv, exit passthrough and the three refusals |
 | `.github/workflows/bots-runtime.yml` | Modify | 003 | Two path entries and one `bots-tui` job: `--locked`, a release build, the design diff, a named runner, cache and timeout |
-| `.gitignore` | Modify | 003 | Ignore `/crates/bots-tui/target/` |
+| `.gitignore` | Modify | 003 | Ignore `/.skilled/crates/bots-tui/target` |
 | `.skilled/skills/system-skilled-bots/THIRD_PARTY_NOTICES.md` | Create (001), Modify (008, 010, 011) | 001, 008, 010, 011 | One entry per lifted MIT or Apache-2.0 file, with its source path. 001 creates the file and the rest append a `## <phase>` section |
 | `.skilled/skills/system-skilled-bots/manual-testing-playbook/` | Create/Modify | 012 | 33 new scenario files in ten category folders, the root index's sections and counts, and one run folder under `benchmark/reports/` |
 | `.skilled/skills/system-skilled-bots/SKILL.md` and its catalog, playbook and references | Modify | 013 | The fix for every finding the two alignment reports name |
@@ -136,7 +136,7 @@ One owner per record more than one phase writes. The owner fixes the shape and e
 | `bots inbox --json` item | 001 | [`contracts/cli-json.md`](contracts/cli-json.md) section 2 for the payload row, and [`contracts/records.md`](contracts/records.md) section 1 for the stored item it prints |
 | The item's `kind` field | 005 | [`contracts/records.md`](contracts/records.md) section 1, the `kind` row and its absent-means-`decision` default |
 | The item's `grants` field and the answer's scope | 006 | [`contracts/records.md`](contracts/records.md) section 3 for the grant and section 2 for the answer's scope |
-| `crates/bots-tui/tests/fixtures/bots` | 003 | [`003-terminal-screen/002-architecture-and-contracts/spec.md`](003-terminal-screen/002-architecture-and-contracts/spec.md) REQ-008, the scenario names and the payload file each one prints |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | 003 | [`003-terminal-screen/002-architecture-and-contracts/spec.md`](003-terminal-screen/002-architecture-and-contracts/spec.md) REQ-008, the scenario names and the payload file each one prints |
 | `buildBotPrompt` section order | 005 | [`contracts/prompt-sections.md`](contracts/prompt-sections.md) section 1, the nine blocks in order |
 | `answerItem` review seam | 005 | [`contracts/answer-seam.md`](contracts/answer-seam.md) section 1, step 10 |
 | `answerItem` guarded write | 006 | [`contracts/answer-seam.md`](contracts/answer-seam.md) section 1, step 6, the `needs-you/<item-id>.lock` file taken before the read and released on every exit, with `item-busy` when the wait runs out |
@@ -342,7 +342,7 @@ The wave order is the owner order. A unit holds every shared file it writes from
 | `runtime/tests/cli-channel.vitest.ts` | 011.003 (W6) > 011.004 (W8) | None |
 | `runtime/tests/channel-support.ts` | 011.003 (W6) > 011.007 (W13) | None |
 | `runtime/tests/channel-transports.vitest.ts` | 011.005 (W11) > 011.006 (W12) | None |
-| `crates/bots-tui/src/` and `crates/bots-tui/tests/` | 003.002 (W3) > 003.003 (W4) > 003.004 (W5) > 003.005 (W6) > 003.006 (W7) > 010.003 (W11) | One crate unit per wave |
+| `.skilled/crates/bots-tui/src/` and `.skilled/crates/bots-tui/tests/` | 003.002 (W3) > 003.003 (W4) > 003.004 (W5) > 003.005 (W6) > 003.006 (W7) > 010.003 (W11) | One crate unit per wave |
 | Any file a fix touches | 013 (W15) > 014 (W16) | Each runs alone |
 
 `runtime/` is `.skilled/skills/system-skilled-bots/runtime/`, and the skill doc paths sit under `.skilled/skills/system-skilled-bots/`. No unit writes a file at the parent level except the `contracts/` files this table names. The parent's generated `description.json` and `graph-metadata.json` are rebuilt on `main` after a merge and never in a worktree.
@@ -385,7 +385,7 @@ Every unit's primary is `cli-mistral-vibe` at `deepseek-flash`. The mode's `SKIL
 2. **Dispatch.** Run the unit's internal waves exactly as its own wave table names them: the task ids, the executor, the model, the effort and the worker count. Live workers across all units never pass 10, the W6 peak. A unit whose next internal wave would pass 10 waits, and waiting units go in wave order and then row order. A Vibe `429` or `402` drops that internal wave to `cli-pi`, as Vibe dispatch says. A `cli-pi` rate-limit refusal is not a failure: that internal wave reruns in batches of 3, as 012's plan does [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/012-manual-testing-scenarios/plan.md:204].
 3. **Collect and verify.** After each internal wave, read each worker's outcome record, then run that wave's verify commands in the unit's worktree and read their output and exit status. A worker's done is a claim until those commands pass.
 4. **Gate, rebase and merge,** as Isolation and merge says.
-5. **Rerun the regression gate on `main`** after every merge: the runtime `npm test` exits 0 with no `failed` line, `npm run typecheck` exits 0, `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` exits 0 once 003.002 has merged, the merged unit's own Definition of Done commands pass and `validate.sh --strict` prints `RESULT: PASSED` for the merged unit and for this folder. Compare each result with the baseline.
+5. **Rerun the regression gate on `main`** after every merge: the runtime `npm test` exits 0 with no `failed` line, `npm run typecheck` exits 0, `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` exits 0 once 003.002 has merged, the merged unit's own Definition of Done commands pass and `validate.sh --strict` prints `RESULT: PASSED` for the merged unit and for this folder. Compare each result with the baseline.
 6. **Close** the wave when each of its units has merged or is held.
 
 **On a failed worker:**

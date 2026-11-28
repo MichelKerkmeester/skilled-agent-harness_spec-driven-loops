@@ -48,17 +48,17 @@
       "goal.md",
       "implementation-summary.md",
       "design/architecture.md",
-      "crates/bots-tui/Cargo.toml",
-      "crates/bots-tui/src/lib.rs",
-      "crates/bots-tui/src/state.rs",
-      "crates/bots-tui/src/model.rs",
-      "crates/bots-tui/src/keys.rs",
-      "crates/bots-tui/src/cli.rs",
-      "crates/bots-tui/src/data.rs",
-      "crates/bots-tui/src/event.rs",
-      "crates/bots-tui/src/terminal.rs",
-      "crates/bots-tui/src/app.rs",
-      "crates/bots-tui/src/theme.rs",
+      ".skilled/crates/bots-tui/Cargo.toml",
+      ".skilled/crates/bots-tui/src/lib.rs",
+      ".skilled/crates/bots-tui/src/state.rs",
+      ".skilled/crates/bots-tui/src/model.rs",
+      ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/cli.rs",
+      ".skilled/crates/bots-tui/src/data.rs",
+      ".skilled/crates/bots-tui/src/event.rs",
+      ".skilled/crates/bots-tui/src/terminal.rs",
+      ".skilled/crates/bots-tui/src/app.rs",
+      ".skilled/crates/bots-tui/src/theme.rs",
       ".skilled/bin/bots.cjs",
       ".skilled/skills/system-skilled-bots/runtime/lib/contract.ts"
     ],
@@ -108,67 +108,67 @@
       {
         "name": "Cargo.toml",
         "kind": "file",
-        "path": "crates/bots-tui/Cargo.toml",
+        "path": ".skilled/crates/bots-tui/Cargo.toml",
         "source": "derived"
       },
       {
         "name": "lib.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/lib.rs",
+        "path": ".skilled/crates/bots-tui/src/lib.rs",
         "source": "derived"
       },
       {
         "name": "state.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/state.rs",
+        "path": ".skilled/crates/bots-tui/src/state.rs",
         "source": "derived"
       },
       {
         "name": "model.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/model.rs",
+        "path": ".skilled/crates/bots-tui/src/model.rs",
         "source": "derived"
       },
       {
         "name": "keys.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/keys.rs",
+        "path": ".skilled/crates/bots-tui/src/keys.rs",
         "source": "derived"
       },
       {
         "name": "cli.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/cli.rs",
+        "path": ".skilled/crates/bots-tui/src/cli.rs",
         "source": "derived"
       },
       {
         "name": "data.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/data.rs",
+        "path": ".skilled/crates/bots-tui/src/data.rs",
         "source": "derived"
       },
       {
         "name": "event.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/event.rs",
+        "path": ".skilled/crates/bots-tui/src/event.rs",
         "source": "derived"
       },
       {
         "name": "terminal.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/terminal.rs",
+        "path": ".skilled/crates/bots-tui/src/terminal.rs",
         "source": "derived"
       },
       {
         "name": "app.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/app.rs",
+        "path": ".skilled/crates/bots-tui/src/app.rs",
         "source": "derived"
       },
       {
         "name": "theme.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/theme.rs",
+        "path": ".skilled/crates/bots-tui/src/theme.rs",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Every later child of this phase draws into a crate that does not exist, and the one verb that would start it does not exist either",
     "created_at": "2026-11-25T20:22:32Z",
-    "last_save_at": "2026-11-27T19:38:54.007Z",
+    "last_save_at": "2026-11-28T11:13:11.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:529180633d530817fe28fd9ff7e6123c8187cc70641720b01417b3139a3b5b19",
+    "source_fingerprint": "sha256:283d281028fcd617b8e601a170595fcfd5bd95125c61f063714238b8b8cadc1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bf62ef3dcae44a59010f1e5400b4d1545a5a75da4b41d34cf40d2946a1166140",
-      "plan.md": "318b8c741264cf16ca0efb39cb978bc89a3f3c7c1e2c47ec6e4d9db12a5c25d7",
-      "tasks.md": "0b3a9c423aadf0f1ac690ef5ab1d572c9fa3fe88554b73f82e9858b664a72d92",
-      "implementation-summary.md": "8b4e1d9dfc3881c3dad76defe886cf3aa5fccb78ab41ae4511dfbd830c726d87"
+      "spec.md": "6b5465c6f41e389a711b19cc3c8a591e74a0cf92498569366a7157c36c2e9740",
+      "plan.md": "8126cddf275d0932c6e3dc742c8c06e7e7c5be0904268eb2489737691b5712e7",
+      "tasks.md": "726a38a4bec10578315f371a48a5ce8be8d38c839ce227bc6e7bdce85bfe840b",
+      "implementation-summary.md": "1c9e056438f50d9d748b97b9a51509c9d76527148c9bcdf899f53346015cdb99"
     },
     "last_active_at": null
   }

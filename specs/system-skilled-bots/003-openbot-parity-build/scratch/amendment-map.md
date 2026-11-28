@@ -1453,13 +1453,13 @@ New.
 Old.
 
 ```text
-| `crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty |
+| `.skilled/crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty |
 ```
 
 New.
 
 ```text
-| `crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty. It yields a bracketed paste as one `Msg::Paste` |
+| `.skilled/crates/bots-tui/src/event.rs` | Create | The event source the caller supplies, so a test drives the loop without a tty. It yields a bracketed paste as one `Msg::Paste` |
 ```
 
 #### A-068
@@ -1806,7 +1806,7 @@ New.
 
 ```text
 | AC-020 | REQ-017 | Given an inbox item whose `state` is `some-new-state`, When the inbox pane draws, Then the row is dimmed, its state column holds `some-new-state` and it carries no answer key | `cargo test --manifest-path $CRATE/Cargo.toml --test panes -- inbox` prints `test result: ok` and names `unknown_state_draws_dimmed_without_answer_key` | Unmet | - |
-| AC-021 | REQ-021 | Given an inbox question wider than the body with an emoji and a combining mark at the clip column, When the pane draws at 80x24, Then the line ends with `…` inside the width, no double-width cell is split and nothing panics. Given the same question under `--ascii`, Then the line ends with `...` | `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`, and `cargo test --manifest-path crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell` | Unmet | - |
+| AC-021 | REQ-021 | Given an inbox question wider than the body with an emoji and a combining mark at the clip column, When the pane draws at 80x24, Then the line ends with `…` inside the width, no double-width cell is split and nothing panics. Given the same question under `--ascii`, Then the line ends with `...` | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib panes` prints `test result: ok` and names `clips_by_display_width`, and `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test panes -- clip` prints `test result: ok` and names `clip_never_splits_a_wide_cell` | Unmet | - |
 ```
 
 ### 33. `003-terminal-screen/005-answer-flow/spec.md`
@@ -1915,14 +1915,14 @@ New.
 Old.
 
 ```text
-| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |
+| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |
 ```
 
 New.
 
 ```text
-| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |
-| AC-022 | REQ-022 | Given the overlay open in shortcut mode, When `Paste("y\n")` arrives, Then no `answer` argv is recorded and the overlay stays open. Given the inbox tab with no overlay open, When the same paste arrives, Then no overlay opens and no `answer` argv is recorded. Given text mode, When the same paste arrives, Then the typed line reads `y ` and nothing is sent | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `paste_never_answers` | Unmet | - |
+| AC-021 | REQ-016 | Given `--fixture-scenario refuse-item-busy` makes the fixture exit 4 with `bots: item-busy: <id>`, When the overlay sends, Then the overlay stays open on the same item, the status row carries the line and the item stays open | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `item_busy_refusal_keeps_the_overlay` | Unmet | - |
+| AC-022 | REQ-022 | Given the overlay open in shortcut mode, When `Paste("y\n")` arrives, Then no `answer` argv is recorded and the overlay stays open. Given the inbox tab with no overlay open, When the same paste arrives, Then no overlay opens and no `answer` argv is recorded. Given text mode, When the same paste arrives, Then the typed line reads `y ` and nothing is sent | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and names `paste_never_answers` | Unmet | - |
 ```
 
 ### 36. `003-terminal-screen/005-answer-flow/goal.md`
@@ -3006,13 +3006,13 @@ New.
 Old.
 
 ```text
-`lib/README.md`, `THIRD_PARTY_NOTICES.md`, `crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |
+`lib/README.md`, `THIRD_PARTY_NOTICES.md`, `.skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |
 ```
 
 New.
 
 ```text
-`lib/README.md`, `crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |
+`lib/README.md`, `.skilled/crates/bots-tui/tests/fixtures/payloads/inbox.grant.json` |
 ```
 
 #### A-147

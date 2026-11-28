@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`crates/bots-tui/` builds `bots-ui`, a Rust binary that draws the bots CLI's JSON reads and answers a needs-you item. It reads `status`, `activity`, `inbox` and `routines`, each called as `<verb> --json --repo <checkout>`, and it answers an item with `answer`.
+`.skilled/crates/bots-tui/` builds `bots-ui`, a Rust binary that draws the bots CLI's JSON reads and answers a needs-you item. It reads `status`, `activity`, `inbox` and `routines`, each called as `<verb> --json --repo <checkout>`, and it answers an item with `answer`.
 
 Current state:
 
@@ -29,10 +29,10 @@ Current state:
 Run from the repository root:
 
 ```bash
-cargo build --release --manifest-path crates/bots-tui/Cargo.toml
+cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml
 ```
 
-The binary lands at `crates/bots-tui/target/release/bots-ui`.
+The binary lands at `.skilled/crates/bots-tui/target/release/bots-ui`.
 
 ---
 
@@ -49,7 +49,7 @@ The verb refuses with `ui-unavailable` when the crate folder is missing and `ui-
 The binary also runs directly:
 
 ```bash
-crates/bots-tui/target/release/bots-ui --repo <checkout> --skilled-tree <skilled tree> [--mono] [--ascii]
+.skilled/crates/bots-tui/target/release/bots-ui --repo <checkout> --skilled-tree <skilled tree> [--mono] [--ascii]
 ```
 
 `bots-ui --version` prints `bots-ui <version> contract <n>`.
@@ -150,10 +150,10 @@ The `ui` verb passes the code through.
 Run from the repository root:
 
 ```bash
-cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check
-cargo clippy --locked --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings
-cargo test --locked --manifest-path crates/bots-tui/Cargo.toml
-cargo test --locked --manifest-path crates/bots-tui/Cargo.toml --release --test pty_smoke
+cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check
+cargo clippy --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings
+cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml
+cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --release --test pty_smoke
 ```
 
 The last command runs the release binary in a pseudo-terminal and approves one item. Every test reads the fake CLI at `tests/fixtures/bots`.

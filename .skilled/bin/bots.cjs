@@ -110,7 +110,7 @@ const USAGE = [
   '  routines [--json]',
   '                 every bot with a routine block: its start, what it does, its',
   '                 outcome, the switch it reads as and its failure streak',
-  '  ui [--ascii]   open the terminal screen; the binary is built from crates/bots-tui',
+  '  ui [--ascii]   open the terminal screen; the binary is built from .skilled/crates/bots-tui',
   '                 with cargo build --release, NO_COLOR draws it without colour and',
   '                 --ascii draws plain ASCII glyphs',
   '',
@@ -1647,14 +1647,14 @@ async function uiVerb(parsed) {
   if (typeof override === 'string' && override !== '') {
     bin = path.resolve(override);
   } else {
-    const crateDir = path.join(skilledTree, 'crates', 'bots-tui');
+    const crateDir = path.join(skilledTree, '.skilled', 'crates', 'bots-tui');
     if (!fs.existsSync(crateDir)) {
-      process.stderr.write(`bots: ui-unavailable: no crates/bots-tui in ${skilledTree}. The screen ships only in a source checkout, so build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+      process.stderr.write(`bots: ui-unavailable: no .skilled/crates/bots-tui in ${skilledTree}. The screen ships only in a source checkout, so build it with cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml\n`);
       return 4;
     }
     bin = path.join(crateDir, 'target', 'release', 'bots-ui');
     if (!fs.existsSync(bin)) {
-      process.stderr.write(`bots: ui-not-built: no bots-ui binary at ${bin}. Build it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+      process.stderr.write(`bots: ui-not-built: no bots-ui binary at ${bin}. Build it with cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml\n`);
       return 4;
     }
   }
@@ -1664,7 +1664,7 @@ async function uiVerb(parsed) {
   const match = /\scontract (\d+)\s*$/.exec(firstLine);
   const speaks = version.error !== undefined || firstLine === '' || match === null ? 'unknown' : match[1];
   if (speaks !== String(contract)) {
-    process.stderr.write(`bots: ui-contract-mismatch: ${bin} speaks contract ${speaks}, this verb speaks contract ${contract}. Rebuild it with cargo build --release --manifest-path crates/bots-tui/Cargo.toml\n`);
+    process.stderr.write(`bots: ui-contract-mismatch: ${bin} speaks contract ${speaks}, this verb speaks contract ${contract}. Rebuild it with cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml\n`);
     return 4;
   }
   // The binary reads no environment variable of its own, so the two display

@@ -44,9 +44,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | The crate lives at `crates/bots-tui/`, not under `.skilled/`, because `.opencode/` mirrors `.skilled/` wholesale and would duplicate the crate and its build output. |
+| D1 | The crate lives at `.skilled/crates/bots-tui/`, outside every skill, because a hub root may hold no `crates` folder. |
 | D2 | `cli.rs` is the only module that spawns a process. Every other module reads state or draws cells, so a test can drive the loop without a terminal. |
-| D3 | `crates/bots-tui/tests/fixtures/bots` is the only payload source in tests. No test reads a live state root and no test needs a tty. |
+| D3 | `.skilled/crates/bots-tui/tests/fixtures/bots` is the only payload source in tests. No test reads a live state root and no test needs a tty. |
 | D4 | The approval overlay offers `once` and `deny` only. No `always` and no `conversation` scope, because no phase lands the rule store a standing grant needs. |
 | D5 | The fourth tab is a Chat placeholder naming phase 010, so Alt+1..4 does not renumber when that phase lands. |
 | D6 | `[` and `]` are the fallback tab keys beside Alt+1..4, and Ctrl+C closes an open overlay or quits and never writes, because Alt+1..4 is unreliable on macOS. |
@@ -83,11 +83,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` both exit 0.
-- [ ] `rg -n '^license' crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
-- [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target and no `FAILED`. `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` and `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` both exit 0.
+- [ ] `rg -n '^license' .skilled/crates/bots-tui/Cargo.toml` prints `license = "MIT"`, and `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines.
+- [ ] `T=$(mktemp -d); node .skilled/bin/bots.cjs ui --repo . --skilled-tree "$T"` exits 4 and prints `ui-unavailable`. After `mkdir -p "$T/.skilled/crates/bots-tui"` the same command exits 4 and prints `ui-not-built`.
 - [ ] `npm --prefix .skilled/skills/system-skilled-bots/runtime test` prints a `Tests` line with no `failed`.
-- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- 'crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2.
+- [ ] `rg -n '^  bots-tui:' .github/workflows/bots-runtime.yml` prints one line and `rg -c -e "- '.skilled/crates/bots-tui/\*\*'" .github/workflows/bots-runtime.yml` prints 2.
 - [ ] `001-ux-and-component-map/acceptance-criteria.md` AC-007 reads `Met`, and `001-ux-and-component-map/decision-record.md` carries the approval row naming the date and the key set it covers.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen --strict --recursive` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
@@ -108,7 +108,7 @@ and findings belong here.
 | Phase parent authored | Done | `spec.md` carries the Phase Documentation Map for six children, and `decision-record.md` records Q002 to Q009 |
 | Six binding rows | Done | `find specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen -mindepth 1 -maxdepth 1 -type d -name '[0-9][0-9][0-9]-*' | wc -l` prints 6 |
 | Child goals authored | Done | `find specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen -mindepth 2 -maxdepth 2 -name 'goal.md' | wc -l` prints 6, and `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs` passes on each |
-| Crate scaffolded | Pending | No `crates/bots-tui/` exists yet |
+| Crate scaffolded | Pending | No `.skilled/crates/bots-tui/` exists yet |
 | `ui` verb added | Pending | `node .skilled/bin/bots.cjs ui` prints `bots: unknown verb: ui` and exits 2 |
 | First review applied | Done | `spec.md` REQ-010 names `Enter open` in the inbox footer and the two overlay key sets with deny drawn first, Q008 and Q009 are recorded in `decision-record.md`, and the criteria carry 001's key-map approval and run `--strict --recursive` |
 | Integration wave applied | Done | `spec.md` links the four design notes, carries the install, version match, CI and rollback section, and states the answer argv with its `--` terminator. `decision-record.md` section 2 records A1 to A7 as taken by the assistant and open for the operator to override |
@@ -123,6 +123,7 @@ and findings belong here.
 | The pre-expansion documents are kept | `context/legacy-003/` holds the phase 003 spec, plan, tasks, acceptance criteria and goal as they stood before the expansion. The folder is gitignored, so it is reference only. |
 | The two cargo criteria are one | The checker caps a goal at seven criteria, so `cargo test`, `cargo clippy` and `cargo fmt` share one line. Every command and its expected output is still named, so no gate was dropped to make room for 001's key-map approval. |
 | The fixture hand-off names a scenario file | F-034: the fixture bullet now says a key that draws lands as a new scenario file, for example `tests/fixtures/payloads/inbox.grant.json` behind `--fixture-scenario grant`, so a later phase adds a file and never breaks a snapshot or the design-copy diff. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
-| The banner is 004's | F-005: the file table gives `crates/bots-tui/src/view/banner.rs` to 004, because the frames that hold an open item draw the row and 004's snapshot gate must go green before 005 starts. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| The banner is 004's | F-005: the file table gives `.skilled/crates/bots-tui/src/view/banner.rs` to 004, because the frames that hold an open item draw the row and 004's snapshot gate must go green before 005 starts. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
 | The prose rules were applied | O-021 and O-022: every semicolon outside code was split into two sentences and every serial comma before a final `and` was dropped, across this packet's documents. Taken by the assistant on 2026-11-26 under the operator's do-not-ask directive. |
+| D1 moved the crate | The operator moved the crate from the repository root to `.skilled/crates/bots-tui/` on 2026-11-28, so D1 now names that path and its reason. The skill walkers would also crawl a build output under a skill, and `.opencode/` links `.skilled/skills/` and not `.skilled/crates/`. Every path in this phase's documents moved with it. |
 <!-- /ANCHOR:log -->

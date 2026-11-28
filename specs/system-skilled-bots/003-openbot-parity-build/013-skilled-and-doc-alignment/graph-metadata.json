@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 001 to 012 change the bots CLI, the runtime modules and the skill's own docs, and nothing in the packet checks either against the standard it is held to",
     "created_at": "2026-11-25T19:32:29Z",
-    "last_save_at": "2026-11-27T15:40:16.355Z",
+    "last_save_at": "2026-11-28T11:11:17.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a2cb716e0f7ab3cfb89fa489797ffb4ffd8f591001d7329ee3fe3d3aa263d4d",
+    "source_fingerprint": "sha256:3b50f4250b6002f2ef2f1ed078341d26e13ed87f98871fffa2bccb82248cc773",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d8f830b71f58114c77ccbb456b6b2629d7e14ed74338c7a15ab39f5166981b3",
+      "spec.md": "2be3090385a217f7bae2148e1b81f52d2ad8da075f1ab2b7497f954651b66c10",
       "plan.md": "f30ed1e376675ee8f0de3bf0acb06e8066f0fda71d9b726e42c27903202fc625",
-      "tasks.md": "108165892172dc9d9d2c611e9a344e83bc4e8cc622f01e8703ba9517f04a5cfc",
+      "tasks.md": "34c8d6dcc02d51bcb375a4a6130a8434ae893c584c931b4a45eb4e55e28cc025",
       "implementation-summary.md": "071eff58d44445c889c4756c86a51b26bc01930576328e9026b4e3942b05b07b"
     },
     "last_active_at": null

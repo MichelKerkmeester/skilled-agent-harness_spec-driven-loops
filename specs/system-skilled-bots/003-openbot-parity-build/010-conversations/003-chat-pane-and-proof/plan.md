@@ -36,14 +36,14 @@ The pane is a fourth body for the screen's existing shell. `cli.rs` gains the tw
 
 ### Definition of Ready
 - [ ] `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/key-map-delta.md` prints one line
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok`, so phase 003 has shipped
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok`, so phase 003 has shipped
 - [ ] `node .skilled/bin/bots.cjs chat --help` exits 0, so the runtime child has shipped
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok`
-- [ ] `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
-- [ ] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok`
+- [ ] `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0
+- [ ] `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -70,10 +70,10 @@ Opening the tab or choosing a bot queues a transcript read on the screen's read 
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `crates/bots-tui/src/view/panes.rs` | Draws the chat placeholder | update - the chat body | `rg -n 'phase 010' crates/bots-tui/src/view/panes.rs` exits 1 |
-| `crates/bots-tui/src/keys.rs` | Holds the key table | update - the chat context | `rg -n 'CHAT_ROWS' crates/bots-tui/src/keys.rs` prints the slice |
-| `crates/bots-tui/src/data.rs` | Runs the read worker | update - the chat worker | `rg -n 'chat' crates/bots-tui/src/data.rs` prints the worker and its channel |
-| `crates/bots-tui/src/view/footer.rs` | Generates the footer from the key table | unchanged | `git diff --stat crates/bots-tui/src/view/footer.rs` prints nothing |
+| `.skilled/crates/bots-tui/src/view/panes.rs` | Draws the chat placeholder | update - the chat body | `rg -n 'phase 010' .skilled/crates/bots-tui/src/view/panes.rs` exits 1 |
+| `.skilled/crates/bots-tui/src/keys.rs` | Holds the key table | update - the chat context | `rg -n 'CHAT_ROWS' .skilled/crates/bots-tui/src/keys.rs` prints the slice |
+| `.skilled/crates/bots-tui/src/data.rs` | Runs the read worker | update - the chat worker | `rg -n 'chat' .skilled/crates/bots-tui/src/data.rs` prints the worker and its channel |
+| `.skilled/crates/bots-tui/src/view/footer.rs` | Generates the footer from the key table | unchanged | `git diff --stat .skilled/crates/bots-tui/src/view/footer.rs` prints nothing |
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

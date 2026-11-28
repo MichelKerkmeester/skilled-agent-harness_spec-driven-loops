@@ -1,7 +1,7 @@
 ---
 title: "BOT-045 -- Every bound key is drawn in the frame that binds it"
 description: "This scenario proves that the footer names `Alt+1..4`, `[` `]`, `Ctrl+P` and `Ctrl+D`, that the inbox footer names `Enter open`, that the decision overlay names `t`, `n`, `y` and `Esc` with `n deny` drawn before any approve key, that the choice overlay names `1-9`, `n` and `Esc`, and that the tab bar holds the four tabs."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-045 -- Every bound key is drawn in the frame that binds it
@@ -40,7 +40,7 @@ A key the operator cannot see is a key they will not press, and a key they find 
 
 > **No tty.** The render-keys test draws into a test backend rather than a terminal, so every assertion here runs from a pipe with no terminal.
 
-> **No live state.** The fake CLI at `crates/bots-tui/tests/fixtures/bots` prints the payloads under `tests/fixtures/payloads/`, so no test reads a live state root.
+> **No live state.** The fake CLI at `.skilled/crates/bots-tui/tests/fixtures/bots` prints the payloads under `tests/fixtures/payloads/`, so no test reads a live state root.
 
 ### Commands
 
@@ -50,19 +50,19 @@ Run from the repository root in a POSIX shell. One block, five turns.
 # 1. Turn 1: run the render-keys test.
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 W="$(cd "$(mktemp -d)" && pwd -P)" && echo "world: $W"
-cargo test --manifest-path "$REPO_ROOT/crates/bots-tui/Cargo.toml" --test render_keys; echo "exit=$?"
+cargo test --manifest-path "$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml" --test render_keys; echo "exit=$?"
 # 2. Turn 2: run the panes test, which asserts the four tabs.
-cargo test --manifest-path "$REPO_ROOT/crates/bots-tui/Cargo.toml" --test panes; echo "exit=$?"
+cargo test --manifest-path "$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml" --test panes; echo "exit=$?"
 # 3. Turn 3: compare the footer labels against the fixed list.
 printf '%s\n' 'Alt+1' 'Alt+2' 'Alt+3' 'Alt+4' 'Ctrl+P' 'Ctrl+D' | sort > "$W/footer.txt"
-rg -o 'Alt\+[1-4]|Ctrl\+[PD]' "$REPO_ROOT/crates/bots-tui/src" | cut -d: -f2- | sort -u > "$W/footer-seen.txt"
+rg -o 'Alt\+[1-4]|Ctrl\+[PD]' "$REPO_ROOT/.skilled/crates/bots-tui/src" | cut -d: -f2- | sort -u > "$W/footer-seen.txt"
 diff "$W/footer.txt" "$W/footer-seen.txt"; echo "exit=$?"
 # 4. Turn 4: compare the inbox footer and the two overlays against the fixed list.
 printf '%s\n' 'Enter open' 'n deny' '1-9' | sort > "$W/overlay.txt"
-rg -o 'Enter open|n deny|1-9' "$REPO_ROOT/crates/bots-tui/src" | cut -d: -f2- | sort -u > "$W/overlay-seen.txt"
+rg -o 'Enter open|n deny|1-9' "$REPO_ROOT/.skilled/crates/bots-tui/src" | cut -d: -f2- | sort -u > "$W/overlay-seen.txt"
 diff "$W/overlay.txt" "$W/overlay-seen.txt"; echo "exit=$?"
 # 5. Turn 5: read the tab labels in the tab bar.
-rg -n 'activity|inbox|routines|chat' "$REPO_ROOT/crates/bots-tui/src/tabs.rs" 2>/dev/null || rg -n 'Alt\+1 activity|Alt\+2 inbox|Alt\+3 routines|Alt\+4 chat' "$REPO_ROOT/crates/bots-tui/src"; echo "exit=$?"
+rg -n 'activity|inbox|routines|chat' "$REPO_ROOT/.skilled/crates/bots-tui/src/tabs.rs" 2>/dev/null || rg -n 'Alt\+1 activity|Alt\+2 inbox|Alt\+3 routines|Alt\+4 chat' "$REPO_ROOT/.skilled/crates/bots-tui/src"; echo "exit=$?"
 # Last. Remove the throwaway world.
 rm -rf "$W"
 ```
@@ -103,7 +103,7 @@ Both `cargo test` outputs with their exits, both `diff` exits with their empty o
 
 - **Pass**: both tests pass and every named label is present in the source with `n deny` drawn first.
 - **Fail**: a test fails, a label is missing, `n deny` is drawn after an approve key or the tab order differs.
-- **Skip**: only when `cargo` is unavailable, when `crates/bots-tui` is missing because phase 003 has not landed, or when the `render_keys` test file is absent, naming the missing piece and phase 003 as the blocker.
+- **Skip**: only when `cargo` is unavailable, when `.skilled/crates/bots-tui` is missing because phase 003 has not landed, or when the `render_keys` test file is absent, naming the missing piece and phase 003 as the blocker.
 
 ### Failure Triage
 
@@ -129,10 +129,10 @@ Both `cargo test` outputs with their exits, both `diff` exits with their empty o
 
 | File | Role |
 |---|---|
-| `crates/bots-tui/src/app.rs` | Draws one frame per message |
-| `crates/bots-tui/src/state.rs` | Holds the tab and overlay state the frame reads |
-| `crates/bots-tui/tests/render_keys.rs` | The test-backend assertions that every bound key is drawn |
-| `crates/bots-tui/tests/panes.rs` | One buffer snapshot per pane per state at both sizes |
+| `.skilled/crates/bots-tui/src/app.rs` | Draws one frame per message |
+| `.skilled/crates/bots-tui/src/state.rs` | Holds the tab and overlay state the frame reads |
+| `.skilled/crates/bots-tui/tests/render_keys.rs` | The test-backend assertions that every bound key is drawn |
+| `.skilled/crates/bots-tui/tests/panes.rs` | One buffer snapshot per pane per state at both sizes |
 
 The four tabs and the palette keys are [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:205]. The drawn-key rule is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:207].
 

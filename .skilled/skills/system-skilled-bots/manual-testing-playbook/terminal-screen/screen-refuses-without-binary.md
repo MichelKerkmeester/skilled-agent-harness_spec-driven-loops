@@ -1,7 +1,7 @@
 ---
 title: "BOT-043 -- The ui verb refuses a missing crate and a missing binary, and the crate is MIT"
 description: "This scenario proves that `bots ui` refuses `ui-unavailable` with exit 4 when the skilled tree holds no crate, refuses `ui-not-built` with exit 4 and the build command when the crate is present and the binary is absent, passes a stub binary's exit code through, and that the crate declares the MIT licence with no GPL header."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # BOT-043 -- The ui verb refuses a missing crate and a missing binary, and the crate is MIT
@@ -58,15 +58,15 @@ chmod +x "$W/bin/bots-tui"
 # 2. Turn 1: the tree holds no crate.
 "$NODE" "$BOTS_CLI" ui --repo "$REPO_ROOT" --skilled-tree "$W/tree"; echo "exit=$?"
 # 3. Turn 2: the crate folder exists and the binary does not.
-mkdir -p "$W/tree/crates/bots-tui"
+mkdir -p "$W/tree/.skilled/crates/bots-tui"
 "$NODE" "$BOTS_CLI" ui --repo "$REPO_ROOT" --skilled-tree "$W/tree"; echo "exit=$?"
 # 4. Turn 3: a stub binary named in the environment passes its exit code through.
 BOTS_UI_BIN="$W/bin/bots-tui" "$NODE" "$BOTS_CLI" ui --repo "$REPO_ROOT" --skilled-tree "$W/tree"; echo "exit=$?"
 # 5. Turn 4: the crate declares its licence.
-rg -n '^license' "$REPO_ROOT/crates/bots-tui/Cargo.toml"; echo "exit=$?"
+rg -n '^license' "$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml"; echo "exit=$?"
 # 6. Turn 5: no copied header in the source.
-rg -n 'openhuman' "$REPO_ROOT/crates/bots-tui/src"; echo "exit=$?"
-rg -c 'GNU General Public License|GPL-' "$REPO_ROOT/crates/bots-tui/src"; echo "exit=$?"
+rg -n 'openhuman' "$REPO_ROOT/.skilled/crates/bots-tui/src"; echo "exit=$?"
+rg -c 'GNU General Public License|GPL-' "$REPO_ROOT/.skilled/crates/bots-tui/src"; echo "exit=$?"
 # Last. Remove the throwaway world.
 rm -rf "$W"
 ```
@@ -77,7 +77,7 @@ rm -rf "$W"
 
 ### Turn 2 -- a missing binary is refused with the build command
 
-- Expected: `bots: ui-not-built` and `exit=4`, then a line naming `cargo build --release --manifest-path crates/bots-tui/Cargo.toml`.
+- Expected: `bots: ui-not-built` and `exit=4`, then a line naming `cargo build --release --manifest-path .skilled/crates/bots-tui/Cargo.toml`.
 
 ### Turn 3 -- the stub's exit code passes through
 
@@ -136,9 +136,9 @@ Both refusal lines with their exits, the build command line, the stub's argv lin
 | File | Role |
 |---|---|
 | `.skilled/bin/bots.cjs` | Owns the ui verb, its resolution order and its two refusals |
-| `$REPO_ROOT/crates/bots-tui/Cargo.toml` | Declares the licence |
-| `crates/bots-tui/src/lib.rs` | The library root the source search reads |
-| `crates/bots-tui/tests/cli_client.rs` | The integration tests against the fixture |
+| `$REPO_ROOT/.skilled/crates/bots-tui/Cargo.toml` | Declares the licence |
+| `.skilled/crates/bots-tui/src/lib.rs` | The library root the source search reads |
+| `.skilled/crates/bots-tui/tests/cli_client.rs` | The integration tests against the fixture |
 
 The licence and the copied-header rule are [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:203]. The read and write surface is [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:204].
 

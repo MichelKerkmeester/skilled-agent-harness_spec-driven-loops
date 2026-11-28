@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 5 of 6 |
 | **Predecessor** | 004-panes |
 | **Successor** | 006-hardening-and-proof |
-| **Handoff Criteria** | `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and the recorded argv is exactly `answer --scope once\|deny --repo <repo> -- <item-id> <text>`. `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` |
+| **Handoff Criteria** | `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok` and the recorded argv is exactly `answer --scope once\|deny --repo <repo> -- <item-id> <text>`. `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib closed_input` prints `test result: ok` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,10 +50,10 @@ This is **Phase 5** of the Terminal screen children: UX, architecture, shell, pa
 - Phase 001's `bots inbox --json` and `bots answer --scope once|deny --repo <repo> -- <item-id> <text>`, which are the read and the write this child consumes unchanged. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-003] [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/001-activity-and-actor/spec.md, REQ-010]
 
 **Deliverables**:
-- `crates/bots-tui/src/view/overlay.rs`, the decision and choice overlays, the free-text line, the in-flight lock, the refusal state and the grant row drawn only when the item carries one.
-- One `mod overlay;` line in `crates/bots-tui/src/view/mod.rs`, the root 003 creates.
-- `crates/bots-tui/tests/answer_flow.rs`, the argv log, the Esc close, the closed input, the free text, the lock, the refusal, the gone item, Ctrl+C and the unbound key.
-- `crates/bots-tui/tests/end_to_end.rs`, the scripted loop from the fixture to frame 1.
+- `.skilled/crates/bots-tui/src/view/overlay.rs`, the decision and choice overlays, the free-text line, the in-flight lock, the refusal state and the grant row drawn only when the item carries one.
+- One `mod overlay;` line in `.skilled/crates/bots-tui/src/view/mod.rs`, the root 003 creates.
+- `.skilled/crates/bots-tui/tests/answer_flow.rs`, the argv log, the Esc close, the closed input, the free text, the lock, the refusal, the gone item, Ctrl+C and the unbound key.
+- `.skilled/crates/bots-tui/tests/end_to_end.rs`, the scripted loop from the fixture to frame 1.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -88,7 +88,7 @@ ls: crates: No such file or directory
 EXIT=1
 ```
 
-The first two blocks are the gap as it stood when this phase was measured: `answer` accepted no `--scope`, so the screen could not record a deny as a deny, and `inbox` answered no JSON, so the overlay had no item to open. Packet phase 001 closes both, and this child consumes the result rather than re-measuring it, which is why T001 confirms the 001 surface instead of the gap. The third block is the crate: `crates/bots-tui` does not exist yet, so no overlay exists either. The verb spec at `.skilled/bin/bots.cjs:73` lists no option for `answer`, and the inbox branch at `.skilled/bin/bots.cjs:458` prints tab-separated text. [SOURCE: .skilled/bin/bots.cjs:73] [SOURCE: .skilled/bin/bots.cjs:458] [SOURCE: .skilled/bin/bots.cjs:159-164]
+The first two blocks are the gap as it stood when this phase was measured: `answer` accepted no `--scope`, so the screen could not record a deny as a deny, and `inbox` answered no JSON, so the overlay had no item to open. Packet phase 001 closes both, and this child consumes the result rather than re-measuring it, which is why T001 confirms the 001 surface instead of the gap. The third block is the crate: `.skilled/crates/bots-tui` does not exist yet, so no overlay exists either. The verb spec at `.skilled/bin/bots.cjs:73` lists no option for `answer`, and the inbox branch at `.skilled/bin/bots.cjs:458` prints tab-separated text. [SOURCE: .skilled/bin/bots.cjs:73] [SOURCE: .skilled/bin/bots.cjs:458] [SOURCE: .skilled/bin/bots.cjs:159-164]
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -120,14 +120,14 @@ The first two blocks are the gap as it stood when this phase was measured: `answ
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `crates/bots-tui/src/view/overlay.rs` | Create | The decision and choice overlays, the free-text line, the in-flight lock and the refusal state, with a `TestBackend` unit test per state |
-| `crates/bots-tui/src/view/mod.rs` | Modify | One `mod overlay;` line beside the modules 003 and 004 declare, so the view root stays `src/view/mod.rs` |
-| `crates/bots-tui/src/state.rs` | Modify | `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer, and the lock that `Sending` is |
-| `crates/bots-tui/src/keys.rs` | Modify | The overlay bindings and the label each one draws: `y`, `n`, `1` to `9`, `t`, `Esc`, `Ctrl+C` and the `Typing` phase that pauses them |
-| `crates/bots-tui/tests/answer_flow.rs` | Create | The argv log, the digit, the Esc close, the closed input, the free text, the typing pause, the leading `y`, the lock, the refusal, the gone item, the expired item, Ctrl+C, the unbound key, the refresh during sending, the reopen while in flight, the blank line, the gone-class refusal and the dash-led text |
-| `crates/bots-tui/tests/answer_flow/*.rs` | Create | The suite's shared flow in `support.rs` and its four groups, `writes.rs`, `no_write.rs`, `lock.rs` and `refusal.rs`, each declared by path from `answer_flow.rs` so four workers could write at once |
-| `crates/bots-tui/tests/end_to_end.rs` | Create | The scripted loop from the fixture to frame 1 |
-| `crates/bots-tui/src/cli.rs` | Modify | Added during the build: a refused answer's line is the runtime's own first stderr line, or `bots-ui: answer exited <code>` when stderr is empty, as `design/state-machines.md` section 4.2 fixes. 002 had wrapped it as `bots: answer exited <code>: <reason>`, the shape its contract fixes for reads only |
+| `.skilled/crates/bots-tui/src/view/overlay.rs` | Create | The decision and choice overlays, the free-text line, the in-flight lock and the refusal state, with a `TestBackend` unit test per state |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modify | One `mod overlay;` line beside the modules 003 and 004 declare, so the view root stays `src/view/mod.rs` |
+| `.skilled/crates/bots-tui/src/state.rs` | Modify | `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer, and the lock that `Sending` is |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modify | The overlay bindings and the label each one draws: `y`, `n`, `1` to `9`, `t`, `Esc`, `Ctrl+C` and the `Typing` phase that pauses them |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` | Create | The argv log, the digit, the Esc close, the closed input, the free text, the typing pause, the leading `y`, the lock, the refusal, the gone item, the expired item, Ctrl+C, the unbound key, the refresh during sending, the reopen while in flight, the blank line, the gone-class refusal and the dash-led text |
+| `.skilled/crates/bots-tui/tests/answer_flow/*.rs` | Create | The suite's shared flow in `support.rs` and its four groups, `writes.rs`, `no_write.rs`, `lock.rs` and `refusal.rs`, each declared by path from `answer_flow.rs` so four workers could write at once |
+| `.skilled/crates/bots-tui/tests/end_to_end.rs` | Create | The scripted loop from the fixture to frame 1 |
+| `.skilled/crates/bots-tui/src/cli.rs` | Modify | Added during the build: a refused answer's line is the runtime's own first stderr line, or `bots-ui: answer exited <code>` when stderr is empty, as `design/state-machines.md` section 4.2 fixes. 002 had wrapped it as `bots: answer exited <code>: <reason>`, the shape its contract fixes for reads only |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -173,12 +173,12 @@ REQ-003, REQ-006, REQ-010 and REQ-011 are inherited from the parent and keep the
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: `cargo test --manifest-path crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok`, and the argv the fixture recorded for a deny is exactly `answer --scope deny --repo <repo> -- <item-id> deny`.
+- **SC-001**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test answer_flow` prints `test result: ok`, and the argv the fixture recorded for a deny is exactly `answer --scope deny --repo <repo> -- <item-id> deny`.
 - **SC-002**: The same suite proves that an Esc close, a closed input, a Ctrl+C close, an unbound key and a second press each record no `answer` argv at all.
 - **SC-003**: The banner row is 004's, so this child's suite asserts no banner cell and 004's AC-019 owns the row's two states.
 - **SC-004**: An item with no options answered with the typed line `hold` records `answer --scope once --repo <repo> -- <item-id> hold`, and a `y` typed inside that line stays part of the text.
 - **SC-005**: A refused answer puts `bots: answer-not-approver` in the status row, and the overlay and the item both stay open.
-- **SC-006**: `cargo test --manifest-path crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- **SC-006**: `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml` prints `test result: ok` for every target, and `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
 - **SC-007**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/005-answer-flow --strict` prints `RESULT: PASSED`.
 - **SC-008**: An item carrying a grant draws one `grant` row naming its kind and rung, and an item carrying none draws no `grant` row, so the same frame builds before packet phase 006.
 - **SC-009**: A successful answer closes the overlay, leaves the row's outcome word drawn and issues no read of its own, and the word clears only on the next successful inbox read.
@@ -257,7 +257,7 @@ REQ-003, REQ-006, REQ-010 and REQ-011 are inherited from the parent and keep the
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Where does the banner live? Decision: `crates/bots-tui/src/view/banner.rs`, created by 004-panes. The row sits in the frames that hold an open item, so 004's snapshot gate cannot go green while the file belongs to this child, and 004's gate is this child's Definition of Ready. The key label it draws comes from `keys.rs`, which 003 owns, so 003's defect fix and 004's row do not collide. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/spec.md, REQ-027]
+- Where does the banner live? Decision: `.skilled/crates/bots-tui/src/view/banner.rs`, created by 004-panes. The row sits in the frames that hold an open item, so 004's snapshot gate cannot go green while the file belongs to this child, and 004's gate is this child's Definition of Ready. The key label it draws comes from `keys.rs`, which 003 owns, so 003's defect fix and 004's row do not collide. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/004-panes/spec.md, REQ-027]
 - Does the overlay offer `always`? Decision: no, for the reason the parent records: a standing grant needs a rule store no phase lands. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/spec.md:296]
 - How does the operator start typing? Decision: a drawn `t` row enters text mode, because `y` and `n` are bound in the same overlay and a line beginning with either could otherwise never be typed. The key map row is 001's to add and the `keys.rs` row is this child's, so the two cannot disagree. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/research/ui-review-1.md:22]
 - What does `y` answer with? Decision: the literal text `approve` with `--scope once`, because the parent's REQ-006 says so and the runtime stores the text it is given. A choice item's digit sends the option's own text instead.

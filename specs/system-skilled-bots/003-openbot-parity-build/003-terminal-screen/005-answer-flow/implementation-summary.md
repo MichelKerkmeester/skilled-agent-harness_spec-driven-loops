@@ -55,13 +55,13 @@ You open an item and see its bot, its state, its age and its question, then `n d
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `crates/bots-tui/src/state.rs` | Modified | `on_overlay_action`, `reconcile_overlay`, `overlay_on_answered` and the paste arm, with the `on_overlay_action` test module |
-| `crates/bots-tui/src/keys.rs` | Modified | The ten `OVERLAY_ROWS`, in the order the footer draws them, and three key tests |
-| `crates/bots-tui/src/view/overlay.rs` | Created | The panel: the five phases, the numbered options, the grant row, the typed line with its cursor, and eight render tests |
-| `crates/bots-tui/src/view/mod.rs` | Modified | `pub mod overlay;` and the overlay call after the pane and the banner |
-| `crates/bots-tui/src/cli.rs` | Modified | A refused answer's line is the runtime's first stderr line, or `bots-ui: answer exited <code>` when stderr is empty |
-| `crates/bots-tui/tests/answer_flow.rs` and `tests/answer_flow/*.rs` | Created | The 21 answer-flow tests in four groups over one shared flow, each proven from the fake CLI's argv log |
-| `crates/bots-tui/tests/end_to_end.rs` | Created | The real loop from the fake CLI to frame 1 and, after Alt+2, Enter and `y`, to frame 27, at both sizes |
+| `.skilled/crates/bots-tui/src/state.rs` | Modified | `on_overlay_action`, `reconcile_overlay`, `overlay_on_answered` and the paste arm, with the `on_overlay_action` test module |
+| `.skilled/crates/bots-tui/src/keys.rs` | Modified | The ten `OVERLAY_ROWS`, in the order the footer draws them, and three key tests |
+| `.skilled/crates/bots-tui/src/view/overlay.rs` | Created | The panel: the five phases, the numbered options, the grant row, the typed line with its cursor, and eight render tests |
+| `.skilled/crates/bots-tui/src/view/mod.rs` | Modified | `pub mod overlay;` and the overlay call after the pane and the banner |
+| `.skilled/crates/bots-tui/src/cli.rs` | Modified | A refused answer's line is the runtime's first stderr line, or `bots-ui: answer exited <code>` when stderr is empty |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` and `tests/answer_flow/*.rs` | Created | The 21 answer-flow tests in four groups over one shared flow, each proven from the fake CLI's argv log |
+| `.skilled/crates/bots-tui/tests/end_to_end.rs` | Created | The real loop from the fake CLI to frame 1 and, after Alt+2, Enter and `y`, to frame 27, at both sizes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -98,7 +98,7 @@ Ten Vibe workers on `deepseek-flash` built it in four internal waves, and every 
 | `cargo fmt --check` | PASS, exit 0 |
 | `cargo clippy --locked --all-targets -- -D warnings` | PASS, exit 0 |
 | `cargo test --locked`, every target | PASS, exit 0: lib 117 (floor 98), answer_flow 22 (new), cli_client 8, end_to_end 2 (new), panes 53 with 1 ignored, render_keys 16 |
-| `rg -n 'Command::new' crates/bots-tui/src` | PASS, only `cli.rs:95` |
+| `rg -n 'Command::new' .skilled/crates/bots-tui/src` | PASS, only `cli.rs:95` |
 | Runtime `npm test` and `npm run typecheck` | PASS, 43 files and 548 tests, typecheck exit 0, both equal to the floor |
 | Provenance | The finished overlay was compared by eye with openhuman's `render/overlay.rs`. It shares no buttons, hit areas, `safe_text` or selection list, only the `Block` and `Paragraph` shape the crate's own palette uses. No brief carried a GPL path |
 | `validate.sh --strict` | PASS, `RESULT: PASSED` |

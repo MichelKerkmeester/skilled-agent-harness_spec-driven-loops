@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
-- [x] `cargo test --manifest-path crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii`, `every_marker_has_an_ascii_counterpart` and `marker_draws_one_glyph_per_state`.
-- [x] `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
-- [x] `rg -n 'env::var' crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' crates/bots-tui/src` prints only comment lines.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test render_keys` prints `test result: ok` and names `every_bound_label_is_drawn`, `shell_snapshot_80x24` and `shell_snapshot_120x40`.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib keys` prints `test result: ok` and names `alt_2_selects_inbox`, `bracket_right_cycles_forward`, `ctrl_p_opens_palette`, `ctrl_d_quits` and `ctrl_c_quits_and_emits_no_answer`.
+- [x] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --lib theme` prints `test result: ok` and names `mono_resets_every_colour`, `mono_draws_the_same_symbols`, `ascii_glyphs_are_ascii`, `every_marker_has_an_ascii_counterpart` and `marker_draws_one_glyph_per_state`.
+- [x] `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` exits 0 and `cargo clippy --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` exits 0.
+- [x] `rg -n 'env::var' .skilled/crates/bots-tui/src` matches nothing outside `#[cfg(test)]` blocks, and `rg -n 'openhuman' .skilled/crates/bots-tui/src` prints only comment lines.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -92,7 +92,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | `view/mod.rs` is named here and not in the parent's file table | The parent lists the view's children - `header.rs`, `tabs.rs`, `footer.rs`, `panes.rs`, `overlay.rs` - and a directory module needs a root. The shell frame lives there, so this child names it rather than leaving the frame homeless. |
-| The legacy "no environment variable" rule holds | The pre-expansion checklist said the binary reads no environment variable at all, and the approved Mono decision keeps it that way: the `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so `theme.rs` reads no environment variable and the check is `rg -n 'env::var' crates/bots-tui/src` matching nothing outside `#[cfg(test)]` blocks. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/decision-record.md:48] |
+| The legacy "no environment variable" rule holds | The pre-expansion checklist said the binary reads no environment variable at all, and the approved Mono decision keeps it that way: the `ui` verb reads `NO_COLOR` and passes `--mono`, and passes `--ascii` when asked, so `theme.rs` reads no environment variable and the check is `rg -n 'env::var' .skilled/crates/bots-tui/src` matching nothing outside `#[cfg(test)]` blocks. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/decision-record.md:48] |
 | The status row cannot wait for 004's panes | The status row draws stderr, which is runtime text, so the control-character rule lands in `theme::printable` here, replacing each control character with `?`, and 004's panes call it directly. The crate holds no `sanitize.rs`. |
 | The too-small line is our own wording | The reference's own resize line is its text, so this screen draws `Too small · Ctrl+D exit`, which reuses the key map's `Ctrl+D exit` label and fits whole at 23 columns. 001's mockups carry the reference's string and are amended to this wording by 001's own fix pass. |
 | The glyph table is defined here and drawn by 004 | The approved markers and their ASCII fallback are one table, and the shell draws three of them - the stale flag, the banner's `!` and the focus mark - so the table lands with the shell rather than with the panes. 004's panes read it rather than keeping a second copy. |

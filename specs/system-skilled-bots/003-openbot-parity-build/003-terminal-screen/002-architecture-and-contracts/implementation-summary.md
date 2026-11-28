@@ -55,25 +55,25 @@ The crate freezes every shared type and signature `design/architecture.md` names
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `crates/bots-tui/Cargo.toml`, `Cargo.lock` | Created | MIT manifest with the `bots-ui` binary beside the library, and the pinned graph with one ratatui and one crossterm |
-| `crates/bots-tui/src/lib.rs`, `main.rs` | Created | Every `pub mod` line, `CONTRACT`, the argument parser with `--mono`, `--ascii` and `--version`, and the production entry |
-| `crates/bots-tui/src/state.rs` | Created | Every shared type, the pure reducer and empty stubs for the seven functions 003, 004 and 005 own |
-| `crates/bots-tui/src/model.rs` | Created | The payload types with serde defaults, `Unknown(raw)` states and the hand-written `parse_utc` |
-| `crates/bots-tui/src/keys.rs` | Created | The key table types, `resolve` and `palette_entries`, with the three row slices empty |
-| `crates/bots-tui/src/cli.rs` | Created | The only module that spawns: argv, reads with pipe readers and a kill deadline, the answer call, the failure lines |
-| `crates/bots-tui/src/data.rs` | Created | The worker thread, answer-first order and the shutdown rule |
-| `crates/bots-tui/src/event.rs` | Created | `EventSource`, `TerminalEvents`, `ScriptedEvents`, the crossterm mapping with a paste as one message, the signal read |
-| `crates/bots-tui/src/terminal.rs` | Created | The guard behind a `Modes` seam, the chained panic hook and the flag-only signal handler |
-| `crates/bots-tui/src/app.rs` | Created | The drain-then-draw loop, effect hand-off, shutdown and exit codes |
-| `crates/bots-tui/src/theme.rs`, `src/view/mod.rs` | Created | The stubs 003 fills: the theme flags and the empty frame |
-| `crates/bots-tui/tests/fixtures/bots`, `tests/fixtures/payloads/` | Created | The fake CLI with its six scenarios, mode 0755, and the four sample payloads copied unchanged |
-| `crates/bots-tui/tests/common/`, `tests/cli_client.rs` | Created | The frame loader, the fixture helper and the client's integration tests |
-| `crates/bots-tui/design/` | Created | 001's four documents plus `architecture.md` and `contracts.md`, copied unchanged |
+| `.skilled/crates/bots-tui/Cargo.toml`, `Cargo.lock` | Created | MIT manifest with the `bots-ui` binary beside the library, and the pinned graph with one ratatui and one crossterm |
+| `.skilled/crates/bots-tui/src/lib.rs`, `main.rs` | Created | Every `pub mod` line, `CONTRACT`, the argument parser with `--mono`, `--ascii` and `--version`, and the production entry |
+| `.skilled/crates/bots-tui/src/state.rs` | Created | Every shared type, the pure reducer and empty stubs for the seven functions 003, 004 and 005 own |
+| `.skilled/crates/bots-tui/src/model.rs` | Created | The payload types with serde defaults, `Unknown(raw)` states and the hand-written `parse_utc` |
+| `.skilled/crates/bots-tui/src/keys.rs` | Created | The key table types, `resolve` and `palette_entries`, with the three row slices empty |
+| `.skilled/crates/bots-tui/src/cli.rs` | Created | The only module that spawns: argv, reads with pipe readers and a kill deadline, the answer call, the failure lines |
+| `.skilled/crates/bots-tui/src/data.rs` | Created | The worker thread, answer-first order and the shutdown rule |
+| `.skilled/crates/bots-tui/src/event.rs` | Created | `EventSource`, `TerminalEvents`, `ScriptedEvents`, the crossterm mapping with a paste as one message, the signal read |
+| `.skilled/crates/bots-tui/src/terminal.rs` | Created | The guard behind a `Modes` seam, the chained panic hook and the flag-only signal handler |
+| `.skilled/crates/bots-tui/src/app.rs` | Created | The drain-then-draw loop, effect hand-off, shutdown and exit codes |
+| `.skilled/crates/bots-tui/src/theme.rs`, `src/view/mod.rs` | Created | The stubs 003 fills: the theme flags and the empty frame |
+| `.skilled/crates/bots-tui/tests/fixtures/bots`, `tests/fixtures/payloads/` | Created | The fake CLI with its six scenarios, mode 0755, and the four sample payloads copied unchanged |
+| `.skilled/crates/bots-tui/tests/common/`, `tests/cli_client.rs` | Created | The frame loader, the fixture helper and the client's integration tests |
+| `.skilled/crates/bots-tui/design/` | Created | 001's four documents plus `architecture.md` and `contracts.md`, copied unchanged |
 | `.skilled/bin/bots.cjs` | Modified | The `ui` verb with its three refusals and two display flags, and `routines --json` printing `version` from the shared constant |
 | `.skilled/skills/system-skilled-bots/runtime/lib/contract.ts` | Created | `PAYLOAD_CONTRACT`, the one payload contract number |
 | `.skilled/skills/system-skilled-bots/runtime/tests/cli-ui.vitest.ts` | Created | The verb's eight tests against a stub binary |
 | `.github/workflows/bots-runtime.yml` | Modified | The path entries and the `bots-tui` job |
-| `.gitignore` | Modified | Ignores `/crates/bots-tui/target/` |
+| `.gitignore` | Modified | Ignores `/.skilled/crates/bots-tui/target` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -109,7 +109,7 @@ Every file was written by a `cli-mistral-vibe` worker on `deepseek-flash`, in se
 | Check | Result |
 |-------|--------|
 | `cargo fmt --check`, `cargo clippy --locked --all-targets -- -D warnings` | Both exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | lib 57 passed, bin 0, `cli_client` 8 passed, doc 0. No `FAILED`, and it names `paste_is_one_event` |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | lib 57 passed, bin 0, `cli_client` 8 passed, doc 0. No `FAILED`, and it names `paste_is_one_event` |
 | `cargo build --release`, then `bots-ui --version` | `Finished`, then `bots-ui 0.1.0 contract 1` |
 | `bots ui` refusals against a temp `--skilled-tree` | `ui-unavailable` exit 4, then `ui-not-built` exit 4 |
 | `bots ui --skilled-tree .` against the real binary with no tty | The contract check passed and the binary reported `the terminal did not open`, exit 1 |
@@ -124,7 +124,7 @@ Every file was written by a `cli-mistral-vibe` worker on `deepseek-flash`, in se
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **AC-015's literal grep matches `--ascii`.** `rg -n '\-\-as' crates/bots-tui/src` also prints the three `src/lib.rs` lines that parse and print the required `--ascii` flag. `rg -n -e '--as\b' crates/bots-tui/src` prints only test lines.
+1. **AC-015's literal grep matches `--ascii`.** `rg -n '\-\-as' .skilled/crates/bots-tui/src` also prints the three `src/lib.rs` lines that parse and print the required `--ascii` flag. `rg -n -e '--as\b' .skilled/crates/bots-tui/src` prints only test lines.
 2. **The payload constant is not wired everywhere.** `status.ts`, `activity.ts` and the inbox verb still print a literal `version: 1`. The doc-alignment unit can move them onto `PAYLOAD_CONTRACT` once unit 004 has merged `status.ts`.
 3. **The identity filter is not built.** `contracts.md` section 2 keeps only rows whose `identity` matches the checkout. No task here builds it, so it falls to the pane work.
 4. **The quit-path answer test is not written.** `quit_does_not_wait_for_answer` from `architecture.md` section 2.5 is in no task of this child. `shutdown_drops_queued_reads` covers the read half of the rule.

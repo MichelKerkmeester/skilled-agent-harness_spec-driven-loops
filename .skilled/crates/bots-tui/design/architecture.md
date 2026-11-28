@@ -153,7 +153,7 @@ pub enum Outcome { Approved, Denied, Answered }           // the word drawn on a
 pub struct AnsweredRow { pub id: ItemId, pub outcome: Outcome, pub inbox_generation: u64 }   // one mark, and the inbox generation it was set at
 ```
 
-The shell reads `active_tab`, `status`, `last_error` and `now`, the four fields 003 names. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/plan.md, section "AFFECTED SURFACES", row `crates/bots-tui/src/state.rs`]
+The shell reads `active_tab`, `status`, `last_error` and `now`, the four fields 003 names. [SOURCE: specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/003-shell-and-navigation/plan.md, section "AFFECTED SURFACES", row `.skilled/crates/bots-tui/src/state.rs`]
 
 `last_error` follows one rule: a failed call, or a call that exits 0 and writes stderr, sets the line with its own source. A later call from the same source that exits 0 with empty stderr clears the line, and only when the line still carries that source. A clean read of the activity surface therefore never wipes a refusal from `bots answer`.
 
@@ -538,7 +538,7 @@ flowchart TB
     WRITE["answer, argv in contracts.md"]
   end
 
-  subgraph BIN["bots-ui process, crates/bots-tui"]
+  subgraph BIN["bots-ui process, .skilled/crates/bots-tui"]
     LIB["lib.rs and main.rs, child 002<br/>Args, guard, loop entry, exit code"]
     TERM["terminal.rs, child 002<br/>raw mode, alternate screen,<br/>restore on drop and in the panic hook,<br/>signal handler sets a flag"]
 
@@ -742,24 +742,24 @@ Each row names the file, the line as read on 2026-11-25 and the replacement. Pat
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `spec.md:137` | `` `crates/bots-tui/src/app.rs` \| Create \| 002 \| The loop: receive one message, reduce it, hand off its effects, draw once `` |
-| `spec.md:143` | `` `crates/bots-tui/src/terminal.rs` \| Create \| 002 \| RAII guard, a chained panic hook and a signal handler that only sets a flag `` |
-| `spec.md:144` | `` `crates/bots-tui/src/keys.rs` \| Create \| 002 \| The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` `` |
-| `spec.md:145` | `` `crates/bots-tui/src/theme.rs` \| Create \| 002 \| A stub. 003 writes the System and Mono palettes, the glyph table and `printable` `` |
-| `spec.md:149` | `` `crates/bots-tui/src/view/mod.rs` \| Create \| 002 \| A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls `` |
-| `spec.md`, after line 157 | Add rows: `` `crates/bots-tui/tests/common/` \| Create \| 002 \| The frame loader and the fixture helper ``, `` `crates/bots-tui/tests/fixtures/payloads/` \| Create \| 002 \| The canonical payloads ``, `` `crates/bots-tui/tests/end_to_end.rs` \| Create \| 005 \| Scripted loop to frame 1 ``, `` `crates/bots-tui/tests/pty_smoke.rs` \| Create \| 006 \| The release binary in a pseudo-terminal `` |
+| `spec.md:137` | `` `.skilled/crates/bots-tui/src/app.rs` \| Create \| 002 \| The loop: receive one message, reduce it, hand off its effects, draw once `` |
+| `spec.md:143` | `` `.skilled/crates/bots-tui/src/terminal.rs` \| Create \| 002 \| RAII guard, a chained panic hook and a signal handler that only sets a flag `` |
+| `spec.md:144` | `` `.skilled/crates/bots-tui/src/keys.rs` \| Create \| 002 \| The key types, `resolve` and the empty row slices. 003, 004 and 005 fill `SHELL_ROWS`, `LIST_ROWS` and `OVERLAY_ROWS` `` |
+| `spec.md:145` | `` `.skilled/crates/bots-tui/src/theme.rs` \| Create \| 002 \| A stub. 003 writes the System and Mono palettes, the glyph table and `printable` `` |
+| `spec.md:149` | `` `.skilled/crates/bots-tui/src/view/mod.rs` \| Create \| 002 \| A stub that draws the empty frame. 003 writes the seven bands, the too-small screen and the palette panel, and 004 and 005 add their module lines and slot calls `` |
+| `spec.md`, after line 157 | Add rows: `` `.skilled/crates/bots-tui/tests/common/` \| Create \| 002 \| The frame loader and the fixture helper ``, `` `.skilled/crates/bots-tui/tests/fixtures/payloads/` \| Create \| 002 \| The canonical payloads ``, `` `.skilled/crates/bots-tui/tests/end_to_end.rs` \| Create \| 005 \| Scripted loop to frame 1 ``, `` `.skilled/crates/bots-tui/tests/pty_smoke.rs` \| Create \| 006 \| The release binary in a pseudo-terminal `` |
 | `spec.md:179` | Append to REQ-010: `At 67 columns or wider every bound key is in the footer. Narrower, labels drop whole from the right and the palette, whose label leads footer line 2, lists the rest.` |
 
 ### 6.2 002 architecture and contracts
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `002-architecture-and-contracts/spec.md:157` | `` `crates/bots-tui/src/lib.rs` \| Create \| Library root: the whole argument parser including `--mono` and `--ascii`, the terminal guard, the loop entry and every `pub mod` line including `keys`, `theme` and `view`, whose stub files this child also creates `` |
+| `002-architecture-and-contracts/spec.md:157` | `` `.skilled/crates/bots-tui/src/lib.rs` \| Create \| Library root: the whole argument parser including `--mono` and `--ascii`, the terminal guard, the loop entry and every `pub mod` line including `keys`, `theme` and `view`, whose stub files this child also creates `` |
 | `002-architecture-and-contracts/spec.md:189` | REQ-005, last clause: `and it installs a SIGTERM, SIGHUP and SIGINT handler that only sets an atomic flag, which the event source turns into a Terminate message, so the loop returns and the guard's Drop restores the terminal.` |
 | `002-architecture-and-contracts/spec.md:190` | REQ-006: `No process is spawned on the UI thread. One worker thread runs every CLI call, answer jobs ahead of queued reads, each child under a timeout, and sends every result over one std::sync::mpsc channel. Each read carries its surface's generation and the reducer drops a read whose generation is older than the newest issued for that surface. An answer result is never dropped.` |
 | `002-architecture-and-contracts/spec.md:196` | REQ-012: `` `state.rs` is a pure reducer, `update(state, msg) -> Vec<Effect>`, with the effects `Fetch`, `Answer { id, text, scope }` and `Quit`. Each surface is a `Remote<T> { rows, last_ok_at, error, in_flight, generation }`, and each pane keeps its own `PaneView` keyed by the row key `design/architecture.md` names, never a row index. `` |
 | `002-architecture-and-contracts/spec.md:219` | Replace `restore_runs_on_signal` with `signal_becomes_terminate_event` |
-| `002-architecture-and-contracts/spec.md:221` | SC-006: `` `ls crates/bots-tui/design` prints 001's four documents plus `architecture.md` and `contracts.md`. `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design crates/bots-tui/design` prints nothing, `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing, and `diff` of each of the four canonical payload files in `002-architecture-and-contracts/design/payloads/` against `crates/bots-tui/tests/fixtures/payloads/` prints nothing. The payload files are copied into the fixtures folder, not into `crates/bots-tui/design/` `` |
+| `002-architecture-and-contracts/spec.md:221` | SC-006: `` `ls .skilled/crates/bots-tui/design` prints 001's four documents plus `architecture.md` and `contracts.md`. `diff -r -x architecture.md -x contracts.md specs/system-skilled-bots/003-openbot-parity-build/003-terminal-screen/001-ux-and-component-map/design .skilled/crates/bots-tui/design` prints nothing, `diff` of each of `architecture.md` and `contracts.md` against `002-architecture-and-contracts/design/` prints nothing, and `diff` of each of the four canonical payload files in `002-architecture-and-contracts/design/payloads/` against `.skilled/crates/bots-tui/tests/fixtures/payloads/` prints nothing. The payload files are copied into the fixtures folder, not into `.skilled/crates/bots-tui/design/` `` |
 | `002-architecture-and-contracts/plan.md:71` | Replace `and the selection is Option<ItemId> rather than a row index` with `and each pane keeps a PaneView keyed by its row key, as design/architecture.md section 1.4 names` |
 | `002-architecture-and-contracts/plan.md:72` | Replace `and the loop drops a result whose generation is not current` with `and the reducer drops a read whose generation is older than its surface's newest, and never drops an answer result` |
 | `002-architecture-and-contracts/plan.md:80` | Replace the sentence that starts `The loop drops a stale generation` with `The reducer drops a read older than its surface's newest generation, stores a current one, and the loop redraws.` |
@@ -774,11 +774,11 @@ Each row names the file, the line as read on 2026-11-25 and the replacement. Pat
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `003-shell-and-navigation/spec.md:95` | `Fill crates/bots-tui/src/keys.rs's SHELL_ROWS, the main, inbox, palette and too-small rows, in the table 002 creates` |
+| `003-shell-and-navigation/spec.md:95` | `Fill .skilled/crates/bots-tui/src/keys.rs's SHELL_ROWS, the main, inbox, palette and too-small rows, in the table 002 creates` |
 | `003-shell-and-navigation/spec.md:112` | Change Type `Modify`: `` SHELL_ROWS, each carrying the label the renderer draws. The types are 002's `` |
 | `003-shell-and-navigation/spec.md:113` | Change Type `Modify`, the stub 002 creates |
 | `003-shell-and-navigation/spec.md:114` | Change Type `Modify`, the stub 002 creates |
-| `003-shell-and-navigation/spec.md:118` | Delete the `lib.rs` row. Add `` `crates/bots-tui/src/state.rs` \| Modify \| `on_shell_action`: tabs, palette and quit `` |
+| `003-shell-and-navigation/spec.md:118` | Delete the `lib.rs` row. Add `` `.skilled/crates/bots-tui/src/state.rs` \| Modify \| `on_shell_action`: tabs, palette and quit `` |
 | `003-shell-and-navigation/spec.md:249` | `Does the header's age need a clock in the state? Decision: yes. state.now is the time the last Tick carried, sent by the event source once a second.` |
 | `003-shell-and-navigation/spec.md:250` | `Where does the palette live? Decision: its state in State.palette with its arms in on_shell_action, its drawing in view/mod.rs.` |
 | `003-shell-and-navigation/plan.md:64` | Replace `It reads bots status --json through 002's cli.rs and draws nothing else.` with `It reads state.status and draws nothing else.` |
@@ -793,7 +793,7 @@ Each row names the file, the line as read on 2026-11-25 and the replacement. Pat
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `004-panes/spec.md:56` | `` `crates/bots-tui/src/state.rs`, `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row `` |
+| `004-panes/spec.md:56` | `` `.skilled/crates/bots-tui/src/state.rs`, `on_list_action`, `reconcile_selection` and `clamp_scroll`, which move each pane's `PaneView` and fall to the nearest surviving row `` |
 | `004-panes/spec.md:113` | Replace `Hold the selection as Option<ItemId>` with `Hold each pane's selection as its row key, as design/architecture.md section 1.4 names` |
 | `004-panes/spec.md:123` | Replace `` The `Global`, `Tabs`, `Palette` and `Overlay` rows `` with `` The `main`, `inbox`, `palette`, `too-small` and `overlay` rows `` |
 | `004-panes/spec.md:135` | `` The `on_list_action`, `reconcile_selection` and `clamp_scroll` bodies `` |
@@ -805,7 +805,7 @@ Each row names the file, the line as read on 2026-11-25 and the replacement. Pat
 | File:line | Replacement text |
 |-----------|------------------|
 | `005-answer-flow/spec.md:126` | `` `on_overlay_action`, `reconcile_overlay` and `overlay_on_answered`: the phases `Idle`, `Typing`, `Sending`, `Refused` and `Gone`, the buffer and the lock that `Sending` is `` |
-| `005-answer-flow/spec.md:128-131` | Delete the `cli.rs`, `model.rs`, `app.rs` and fixture rows. 002 owns all four. Add `` `crates/bots-tui/tests/end_to_end.rs` \| Create \| The scripted loop from the fixture to frame 1 `` |
+| `005-answer-flow/spec.md:128-131` | Delete the `cli.rs`, `model.rs`, `app.rs` and fixture rows. 002 owns all four. Add `` `.skilled/crates/bots-tui/tests/end_to_end.rs` \| Create \| The scripted loop from the fixture to frame 1 `` |
 | `005-answer-flow/spec.md:155` | REQ-016: `A bots answer that fails puts the first stderr line in the status row. A refusal contracts.md classes as gone moves the overlay to Gone, and every other failure, a timeout included, keeps it open on the same item in Refused.` |
 | `005-answer-flow/plan.md:63` | `` Overlay { item_id, options, item, phase, buffer } where phase is Idle, Typing, Sending, Refused(String) or Gone `` |
 | `005-answer-flow/plan.md:65` | Delete. `cli.rs` is 002's |
@@ -821,7 +821,7 @@ Each row names the file, the line as read on 2026-11-25 and the replacement. Pat
 
 | File:line | Replacement text |
 |-----------|------------------|
-| `006-hardening-and-proof/spec.md`, after line 124 | Add a row: `` `crates/bots-tui/tests/pty_smoke.rs` \| Create \| The release binary in a pseudo-terminal against the fixture, answering one item `` |
+| `006-hardening-and-proof/spec.md`, after line 124 | Add a row: `` `.skilled/crates/bots-tui/tests/pty_smoke.rs` \| Create \| The release binary in a pseudo-terminal against the fixture, answering one item `` |
 
 ### 6.7 001 design files
 

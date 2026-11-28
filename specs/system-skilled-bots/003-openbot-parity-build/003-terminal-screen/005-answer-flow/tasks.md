@@ -29,7 +29,7 @@ contextType: "implementation"
 Three shell variables shorten the commands below. Set them once per shell:
 
 ```bash
-CRATE=crates/bots-tui
+CRATE=.skilled/crates/bots-tui
 BOTS="node .skilled/bin/bots.cjs"
 STATE=${SKILLED_BOTS_STATE_ROOT:-${XDG_STATE_HOME:-$HOME/.local/state}/system-skilled-bots}
 ```
@@ -143,7 +143,7 @@ The build runs in five waves. A wave starts only after the orchestrator has run 
 - [x] CHK-010 [P0] `cargo clippy --manifest-path $CRATE/Cargo.toml --all-targets -- -D warnings` exits 0. Observed: exit 0.
 - [x] CHK-011 [P0] `cargo fmt --manifest-path $CRATE/Cargo.toml --check` exits 0. Observed: exit 0.
 - [x] CHK-012 [P1] `rg -n 'unwrap\(\)|expect\(' $CRATE/src/view/overlay.rs` matches only lines inside `#[cfg(test)]` blocks. Observed: every match sits below line 212, where the `#[cfg(test)]` module starts.
-- [x] CHK-013 [P1] `rg -n 'Command::new' $CRATE/src` prints only `cli.rs`. Observed: only `crates/bots-tui/src/cli.rs:95`.
+- [x] CHK-013 [P1] `rg -n 'Command::new' $CRATE/src` prints only `cli.rs`. Observed: only `.skilled/crates/bots-tui/src/cli.rs:95`.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -183,7 +183,7 @@ The build runs in five waves. A wave starts only after the orchestrator has run 
 ## File Organization
 
 - [x] CHK-050 [P1] `git status --porcelain $CRATE` lists only source, tests, fixtures, `Cargo.toml`, `Cargo.lock` and `README.md`, and no `target/`. Observed: only `src/` and `tests/` files, no `target/`.
-- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/crates/bots-tui/target/` line. Observed: `.gitignore:63:/crates/bots-tui/target/`.
+- [x] CHK-051 [P1] `git check-ignore -v $CRATE/target/release/bots-ui` prints the `/.skilled/crates/bots-tui/target` line. Observed: `.gitignore:63:/.skilled/crates/bots-tui/target/`.
 <!-- /ANCHOR:file-org -->
 
 ---

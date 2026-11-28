@@ -47,14 +47,15 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "crates/bots-tui/src/view/panes.rs",
-      "crates/bots-tui/src/view/banner.rs",
-      "crates/bots-tui/src/view/mod.rs",
-      "crates/bots-tui/src/keys.rs",
-      "crates/bots-tui/src/state.rs",
-      "crates/bots-tui/tests/panes.rs",
-      "crates/bots-tui/src/theme.rs",
-      "crates/bots-tui/src/view/header.rs"
+      ".skilled/crates/bots-tui/src/view/panes.rs",
+      ".skilled/crates/bots-tui/src/view/banner.rs",
+      ".skilled/crates/bots-tui/src/view/mod.rs",
+      ".skilled/crates/bots-tui/src/keys.rs",
+      ".skilled/crates/bots-tui/src/state.rs",
+      ".skilled/crates/bots-tui/tests/panes.rs",
+      ".skilled/crates/bots-tui/src/theme.rs",
+      ".skilled/crates/bots-tui/src/view/header.rs",
+      ".skilled/crates/bots-tui/src/view/overlay.rs"
     ],
     "entities": [
       {
@@ -96,43 +97,49 @@
       {
         "name": "panes.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/panes.rs",
+        "path": ".skilled/crates/bots-tui/src/view/panes.rs",
         "source": "derived"
       },
       {
         "name": "banner.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/banner.rs",
+        "path": ".skilled/crates/bots-tui/src/view/banner.rs",
         "source": "derived"
       },
       {
         "name": "mod.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/mod.rs",
+        "path": ".skilled/crates/bots-tui/src/view/mod.rs",
         "source": "derived"
       },
       {
         "name": "keys.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/keys.rs",
+        "path": ".skilled/crates/bots-tui/src/keys.rs",
         "source": "derived"
       },
       {
         "name": "state.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/state.rs",
+        "path": ".skilled/crates/bots-tui/src/state.rs",
         "source": "derived"
       },
       {
         "name": "theme.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/theme.rs",
+        "path": ".skilled/crates/bots-tui/src/theme.rs",
         "source": "derived"
       },
       {
         "name": "header.rs",
         "kind": "file",
-        "path": "crates/bots-tui/src/view/header.rs",
+        "path": ".skilled/crates/bots-tui/src/view/header.rs",
+        "source": "derived"
+      },
+      {
+        "name": "overlay.rs",
+        "kind": "file",
+        "path": ".skilled/crates/bots-tui/src/view/overlay.rs",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shell 003 lands draws a header, a tab bar, a footer and an empty body",
     "created_at": "2026-11-25T20:22:34Z",
-    "last_save_at": "2026-11-27T21:23:46.739Z",
+    "last_save_at": "2026-11-28T11:13:20.171Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:774ecb9c27839b83c6b652bc00c520d9799e3aaa32247a0787fb7e9780476d50",
+    "source_fingerprint": "sha256:c88a6fea8766188366cb2588cee1b959d69cd77076a214f2c320f75b8567134d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e0de4a602ca9ba41f4714819765df4ec60a09ef0074391684b38d1477d62751",
-      "plan.md": "4fb965f7d235a1fda9830df4b47dcf5715dd343a765f808a23f8af814d7d8054",
-      "tasks.md": "1c573f831bb82c005c526fdde844dc5c7d7cb0c33ee97674d7ecb3930a0d9742",
-      "implementation-summary.md": "c23887c0bb7d38d22576b0a82005ee8c4ac7ed41df5f6e6336a3abe5bc36f7e4"
+      "spec.md": "7a6ade54406b3efb89237b8441926a2053b65bdfbd816207310cbeffc0c27e7d",
+      "plan.md": "36cc8acc4afd15a71f907718ca5fde39abed456cc14363deef399987ef23f118",
+      "tasks.md": "fe19047b0873ef903a98b195c97186c1c0de0e5e27bf13e4cd3ee4c307973c77",
+      "implementation-summary.md": "c1a2a7a353fcd79c1e8bc7a2853d443c3b82d4d4d4a4d7407407b7739e94e2f7"
     },
     "last_active_at": null
   }

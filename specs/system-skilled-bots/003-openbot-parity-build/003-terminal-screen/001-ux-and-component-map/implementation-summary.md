@@ -59,7 +59,7 @@ The terminal screen now has one approved map, so the crate phases draw cells rat
 
 ### Phase 1: ux-and-component-map
 
-You get 53 frames for 27 states, a key table of 29 bindings across six contexts, a glyph table with its ASCII fallback and a 13-component inventory. Phase 002 copies the four documents into `crates/bots-tui/design/` when it creates the crate. The approval row in `design/key-map.md` is the gate phase 002 waits on, and it now reads `Met`.
+You get 53 frames for 27 states, a key table of 29 bindings across six contexts, a glyph table with its ASCII fallback and a 13-component inventory. Phase 002 copies the four documents into `.skilled/crates/bots-tui/design/` when it creates the crate. The approval row in `design/key-map.md` is the gate phase 002 waits on, and it now reads `Met`.
 
 ### Files Changed
 

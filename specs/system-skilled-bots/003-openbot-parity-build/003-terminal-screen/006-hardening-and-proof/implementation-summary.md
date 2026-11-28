@@ -57,15 +57,15 @@ The build orchestrator added two tasks the frozen contract required and no earli
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `crates/bots-tui/README.md` | Created | Build, run, flags, every bound key, the eight glyphs with their fallback, exit codes, tests, design links and the design reference with the no-code statement |
-| `crates/bots-tui/tests/pty_smoke.rs` | Created | The release binary in a pseudo-terminal against the fake CLI, approving one item |
-| `crates/bots-tui/src/model.rs` | Modified | `StatusRow` reads `path` and `itemId` |
-| `crates/bots-tui/src/state.rs` | Modified | `checkout`, `own_identity` and `foreign_items` on `State`, the `own_identity`, `learn_identity` and `keep_own_rows` functions, the reconcile after a status read and three tests |
-| `crates/bots-tui/src/app.rs` | Modified | `App::new` stores the `--repo` checkout on the state |
-| `crates/bots-tui/src/cli.rs` | Modified | The answer child's stdout is null and its unused reader thread is gone |
-| `crates/bots-tui/tests/fixtures/bots` | Modified | The `hold-answer` and `slow-hold-answer` scenarios, which log how the answer child's streams are open and sleep past the quit |
-| `crates/bots-tui/tests/answer_flow.rs` | Modified | Declares the new `quit` group |
-| `crates/bots-tui/tests/answer_flow/quit.rs` | Created | `quit_does_not_wait_for_answer` and `quit_starts_a_queued_answer_detached` |
+| `.skilled/crates/bots-tui/README.md` | Created | Build, run, flags, every bound key, the eight glyphs with their fallback, exit codes, tests, design links and the design reference with the no-code statement |
+| `.skilled/crates/bots-tui/tests/pty_smoke.rs` | Created | The release binary in a pseudo-terminal against the fake CLI, approving one item |
+| `.skilled/crates/bots-tui/src/model.rs` | Modified | `StatusRow` reads `path` and `itemId` |
+| `.skilled/crates/bots-tui/src/state.rs` | Modified | `checkout`, `own_identity` and `foreign_items` on `State`, the `own_identity`, `learn_identity` and `keep_own_rows` functions, the reconcile after a status read and three tests |
+| `.skilled/crates/bots-tui/src/app.rs` | Modified | `App::new` stores the `--repo` checkout on the state |
+| `.skilled/crates/bots-tui/src/cli.rs` | Modified | The answer child's stdout is null and its unused reader thread is gone |
+| `.skilled/crates/bots-tui/tests/fixtures/bots` | Modified | The `hold-answer` and `slow-hold-answer` scenarios, which log how the answer child's streams are open and sleep past the quit |
+| `.skilled/crates/bots-tui/tests/answer_flow.rs` | Modified | Declares the new `quit` group |
+| `.skilled/crates/bots-tui/tests/answer_flow/quit.rs` | Created | `quit_does_not_wait_for_answer` and `quit_starts_a_queued_answer_detached` |
 | `.skilled/skills/system-skilled-bots/SKILL.md` | Modified | One line naming `bots ui` as a status surface |
 <!-- /ANCHOR:what-built -->
 
@@ -100,9 +100,9 @@ The orchestrator ran the setup probes and the starting gates itself, because the
 
 | Check | Result |
 |-------|--------|
-| `cargo fmt --manifest-path crates/bots-tui/Cargo.toml --check` | PASS, exit 0 |
-| `cargo clippy --locked --manifest-path crates/bots-tui/Cargo.toml --all-targets -- -D warnings` | PASS, exit 0 |
-| `cargo test --locked --manifest-path crates/bots-tui/Cargo.toml` | PASS. lib 120 (floor 117), answer_flow 24 (floor 22), cli_client 8, end_to_end 2, panes 53 with 1 ignored, pty_smoke 1 (new), render_keys 16, doc 0 |
+| `cargo fmt --manifest-path .skilled/crates/bots-tui/Cargo.toml --check` | PASS, exit 0 |
+| `cargo clippy --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml --all-targets -- -D warnings` | PASS, exit 0 |
+| `cargo test --locked --manifest-path .skilled/crates/bots-tui/Cargo.toml` | PASS. lib 120 (floor 117), answer_flow 24 (floor 22), cli_client 8, end_to_end 2, panes 53 with 1 ignored, pty_smoke 1 (new), render_keys 16, doc 0 |
 | `cargo test --locked ... --release --test pty_smoke` | PASS, `1 passed` naming `answers_one_item_in_a_pseudo_terminal`, three runs in a row |
 | T034 tests with `keep_own_rows` stubbed | FAIL as intended: both foreign tests failed, then passed once restored |
 | T035 test with the answer stdout piped again | FAIL as intended: `quit_does_not_wait_for_answer` failed on `stdout=null`, then passed once restored |

@@ -79,7 +79,7 @@ string, not these files.
 - [ ] `rg -n '^\| \*\*Approved\*\* \| Met \|' specs/system-skilled-bots/003-openbot-parity-build/010-conversations/001-chat-ux-and-pane-map/design/key-map-delta.md` prints one line.
 - [ ] `cd .skilled/skills/system-skilled-bots/runtime && npx vitest run` prints a `Test Files` line with no `failed` count.
 - [ ] `node .skilled/bin/bots.cjs chat my-bot --transcript --json | jq -r 'keys | join(" ")'` prints `conversationId messages version`.
-- [ ] `cargo test --manifest-path crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
+- [ ] `cargo test --manifest-path .skilled/crates/bots-tui/Cargo.toml --test chat frame_` prints `test result: ok. 26 passed`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skilled-bots/003-openbot-parity-build/010-conversations --strict --recursive` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
